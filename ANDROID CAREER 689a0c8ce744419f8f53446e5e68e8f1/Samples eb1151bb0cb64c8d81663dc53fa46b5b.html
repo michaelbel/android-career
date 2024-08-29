@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Samples</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="eb1151bb-0cb6-4c8d-8166-3dc53fa46b5b" class="page sans"><header><img class="page-cover-image" src="Samples%20eb1151bb0cb64c8d81663dc53fa46b5b/michaelbely_samples_libraries_frameworks_in_programming_white_d0d2d80c-b970-4e61-a2e0-ee39c2d2e8b2.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Samples%20eb1151bb0cb64c8d81663dc53fa46b5b/github.svg"/></div><h1 class="page-title">Samples</h1><p class="page-description"></p></header><div class="page-body"><p id="5a1a782d-fd17-42c8-ba6c-dc64a16c5617" class="">
+</p><div id="cc5a8cae-1efb-4ddd-8ff9-7b7830dabc77" class="column-list"><div id="1914d2ae-71c1-4844-9720-0dfbcf7f0792" style="width:45.83333333333333%" class="column"><p id="10e9eacf-388a-4b26-8ec6-7e875ed9f793" class=""><strong>movies</strong> - kotlin multiplatform проект на самых современных технологиях.</p><figure id="1ec17d29-4263-465b-8573-220863cff13c"><div class="source">https://github.com/michaelbel/movies</div></figure><p id="3fde1aff-b15a-49de-a064-88256c25ee11" class="">
+</p><p id="18712817-2417-43e3-b37e-99467dc44315" class=""><strong>template</strong> - шаблон для старта своего android-приложения со всеми подключенными библиотеками.</p><figure id="c46742b8-5ba5-4e92-9625-3eed0398569f"><div class="source">https://github.com/michaelbel/template</div></figure><p id="a0d04317-5ba8-4862-b7c6-b348bf82112b" class="">
+</p><p id="c1def2e9-ba12-4e4e-87cf-818f8abcb99c" class=""><strong>EnumBitmask</strong> - как делать побитовые маски в kotlin.</p><figure id="e799ea78-b442-499e-8888-805c75fa3c44"><div class="source">https://github.com/michaelbel/EnumBitmask</div></figure><p id="035df4ec-fbd2-437e-9085-590a9ae49997" class="">
+</p><p id="12acd0e6-e683-498a-bb25-2ddcc74eccac" class=""><strong>PreviewSeekBar</strong> - виджет SeekBar c превью-текстом над ползунком.</p><figure id="aedce3bd-f704-490a-be27-4a9ad3715d27"><div class="source">https://github.com/michaelbel/PreviewSeekBar</div></figure></div><div id="91ae774b-5807-4652-8faf-85e9e0891860" style="width:20.833333333333336%" class="column"><p id="3157abd5-a3a4-4d0f-be54-8a06e6fc3022" class="">
+</p></div><div id="14d9e8cc-fa08-46d8-9198-75a9c375e2b3" style="width:33.33333333333333%" class="column"><p id="13ba6b13-f4fd-48d0-8355-e83cdc590bb9" class="">
+</p></div></div><p id="426d170e-31aa-4f13-aa34-10dde792622b" class="">
+</p><h3 id="e7f4be2d-2e96-47f2-a6c2-c98d52d4cec8" class="">Фреймворки</h3><p id="0242a9f7-041c-4d6f-90b1-d16be83afb51" class="">Библиотеки которые юзают все.</p><table id="0121d025-32f8-4fd2-93b5-dde459228c9e" class="simple-table"><thead class="simple-table-header"><tr id="7aec1c17-163b-4e72-b148-6e2fb3f0aacb"><th id="Bfi{" class="simple-table-header-color simple-table-header" style="width:330px">URL</th><th id="Y\KB" class="simple-table-header-color simple-table-header">Тип</th><th id="UkA?" class="simple-table-header-color simple-table-header" style="width:466px">Описание</th></tr></thead><tbody><tr id="09d31eb6-b08f-4b44-9145-e02a9960224b"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>language</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Основной язык для Android и Multiplatform</td></tr><tr id="1e3d847d-210a-4d1d-aabf-7ebb7c2f6261"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>async</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для работы с многопоточностью и асинхронностью</td></tr><tr id="a0abbaba-b20b-44fb-afa7-8a432e112b6e"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>serialization</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для работы с сериализацией</td></tr><tr id="fbcde04b-a253-455f-abcd-440aa7a52306"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>datetime</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для работы с датами и временем</td></tr><tr id="8f90ac70-e39d-44dd-a461-658cf6534947"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>atomic</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для работы с атомарными операциями</td></tr><tr id="6c29d779-adc1-4d08-8bb3-4e3a8c175a2a"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для работы с сетью</td></tr><tr id="1ecc0da5-342a-46e6-9eec-087a1bd3a394"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>android</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотеки Android Jetpack и AOSP</td></tr><tr id="bf6eab15-572f-4875-a90a-75afce42b071"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>android</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>ui</code></mark></td><td id="UkA?" class="" style="width:466px">Компоненты пользовательского интерфейса Material Design</td></tr><tr id="72382964-d178-4c70-8971-1c883336015d"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>compose</code></mark></td><td id="UkA?" class="" style="width:466px">Вспомогательные библиотеки для Jetpack Compose</td></tr><tr id="45d47c35-edb4-43bc-b234-dbb8061f8df0"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>ui</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark><mark class="highlight-default"> </mark></td><td id="UkA?" class="" style="width:466px">Jetpack Compose UI для Multiplatform</td></tr><tr id="5e071ad4-9fc8-4852-b8bb-aea2f9fc4727"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>async</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для асинхронного и реактивного программирования. <mark class="highlight-orange">Рекомендуется мигрировать на kotlinx.coroutines</mark></td></tr><tr id="522722cd-adf0-4316-83b9-96d265adf28d"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>serialization</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>json</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для сериализации/деериализации JSON в Java и обратно. <mark class="highlight-orange">Рекомендуется мигрировать на kotlinx.serialization</mark></td></tr><tr id="ab511e6b-bd77-4e8c-b6fc-acb8c60a43a9"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>serialization</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>json</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для сериализации/деериализации JSON в Java и обратно. <mark class="highlight-orange">Рекомендуется мигрировать на kotlinx.serialization</mark></td></tr><tr id="b92c50db-153b-428e-bf23-5469cbd65361"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>http</code></mark></td><td id="UkA?" class="" style="width:466px">Http-клиент для Android и JVM</td></tr><tr id="a05dc019-baaa-4557-9346-38bc980364c5"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>rest</code></mark></td><td id="UkA?" class="" style="width:466px">Типобезопасный HTTP-клиент для Android и JVM. <mark class="highlight-orange">Рекомендуется мигрировать на ktor</mark></td></tr><tr id="7f5e2f39-3f80-443d-9c00-a6338dc2d528"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>inspector</code></mark></td><td id="UkA?" class="" style="width:466px">Http-инспектор для Android и okhttp</td></tr><tr id="22db8396-76c6-4dcc-940a-17186d291930"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Http-клиент для KMP вдохновленный Retrofit. <mark class="highlight-orange">Рекомендуется мигрировать на ktor</mark></td></tr><tr id="7339665e-4946-49d4-ae7c-7c6a614e3196"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>graphql</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">GraphQL-клиент</td></tr><tr id="ba23ad66-d596-4414-9bbf-40cb2d3ea366"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>network</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>websocket</code></mark></td><td id="UkA?" class="" style="width:466px">Клиент WebSocket, вдохновленный Retrofit</td></tr><tr id="68ea346a-df5c-4e4d-961b-b7858e71b487"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>io</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека ввода/вывода</td></tr><tr id="771f69e8-0cd8-4071-9085-3a6d831c02cd"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>navigation</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека навигации Android. <mark class="highlight-orange">Рекомендуется мигрировать на compose navigation</mark></td></tr><tr id="ee6c57e0-d92c-43d2-8965-20304faae5dd"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>navigation</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека навигации для Jetpack Compose</td></tr><tr id="c1be7aa0-405e-4ad7-99ec-b81d6fbd92f5"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>di</code></mark></td><td id="UkA?" class="" style="width:466px">DI для Android и Java</td></tr><tr id="f2ee86e4-b50a-47c9-96d2-7bf9b250d101"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>di</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Легковесная библиотека для внедрения зависимостей в Kotlin Multiplatform</td></tr><tr id="c5bf0cc2-3434-4b95-8824-d01ac5c2e23b"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>image loading</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека загрузки и кэширования изображений для Android и Compose Multiplatform</td></tr><tr id="deafc605-4b73-48ad-be3b-635077f3ed12"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>image loading</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека загрузки и кэширования изображений для Android. <mark class="highlight-orange">Рекомендуется мигрировать на coil</mark></td></tr><tr id="aa7d4490-d9a4-42c3-89d3-87b799153a72"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>database</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Мобильная NoSQL база данных</td></tr><tr id="c79e76e3-98d3-47d7-a46a-d83c88174225"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>database</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">База данных для Kotlin Multiplatform</td></tr><tr id="5a8b6d6b-7022-4d01-a005-22b43dd58948"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека, которая портирует AndroidX.Paging для Kotlin Multiplatform</td></tr><tr id="c35c0f11-ab3a-4c5a-94dd-9653cfc36e09"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>logger</code></mark></td><td id="UkA?" class="" style="width:466px">Небольшая библиотека для логирования</td></tr><tr id="92544fa3-08ea-4a58-bdbb-b3f976607e35"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>logger</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для логгирования</td></tr><tr id="9cf57dd1-021c-4d7e-afb3-5bfef16c45ad"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>animation</code></mark></td><td id="UkA?" class="" style="width:466px">Рендеринг анимации After Effects на Android, iOS, Web и React Native</td></tr><tr id="c401e03e-bd21-43b4-b3de-0f5f330894bf"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>ui</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Compose Multiplatform UI-компоненты для iOS</td></tr><tr id="9da453eb-1f89-4fc5-ba4d-25dc9ad6b27c"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>navigation</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Compose Multiplatform Navigation и управление состоянием</td></tr><tr id="461fe200-d9e2-440d-8d64-4553353c00be"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Model-View-ViewModel архитектурные компоненты для Kotlin Multiplatform</td></tr><tr id="c084b324-cb64-4983-b20c-2d5d6cd19fed"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Работа с ресурсамив Kotlim Multiplatform</td></tr><tr id="d72507d9-fc7b-47f1-bbf6-afd5e18c7f26"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">BuildConfig для Kotlin Multiplatform</td></tr><tr id="83253e8e-856f-459c-9e08-a5889e01a5eb"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>widget</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Реализация ConstraintLayout для Kotlin Multiplatform</td></tr><tr id="b362176c-8715-4ef1-a18a-7b74fea87189"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>analysis</code></mark></td><td id="UkA?" class="" style="width:466px">Kotlin Linter</td></tr><tr id="c563bbcb-c418-4ff8-908c-b8ca59bbfbab"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>analysis</code></mark></td><td id="UkA?" class="" style="width:466px">Статический анализ кода для Kotlin</td></tr><tr id="e7b47e3c-4e95-41dd-96d0-a94d309460c6"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>analysis</code></mark></td><td id="UkA?" class="" style="width:466px">Статический анализатор кода</td></tr><tr id="e7bcf0b7-44a8-484c-8f8d-353f4270722b"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для создания моков на Kotlin</td></tr><tr id="2578bed9-b084-4d37-92e8-c3ce160c66e0"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека тестирования для kotlinx.coroutines и Flow</td></tr><tr id="2943384a-7163-43e2-bd20-7001ff260654"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для Unit-тестирования Java-приложений</td></tr><tr id="b9d14436-7720-4028-9645-a200e6e48918"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Android Unit Testing фреймворк</td></tr><tr id="e35a49a4-82fb-4196-8f32-6e28f1ea2562"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для Unit-тестов</td></tr><tr id="264c52c5-4bf4-4103-a0a2-81df5d62583e"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Тестовый фреймворк для Kotlin</td></tr><tr id="a942d877-568f-4d94-8b45-cb30a4dcc015"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для тестирования Android UI</td></tr><tr id="7746bde2-1877-4f57-a32e-1a0bd2d04a14"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Обертка над Espresso</td></tr><tr id="6d20d180-abbc-4fd1-9dfb-2201a493fd57"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для интеграционных тестов</td></tr><tr id="90d4cbca-d349-4e21-8ab3-aa91faa35dfe"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>test</code></mark></td><td id="UkA?" class="" style="width:466px">Фреймворк для скриншот-тестирования</td></tr><tr id="147d5696-8296-4ab4-9ef8-e45cd4e82850"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>viewbinding</code></mark></td><td id="UkA?" class="" style="width:466px">Делагат для Android View Binding</td></tr><tr id="406e958e-8de8-4415-8e13-6319180c270f"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>memory leak detection</code></mark></td><td id="UkA?" class="" style="width:466px">Библиотека для обнаружения утечек памяти в Android</td></tr><tr id="ebc9d746-23f7-4465-ad6b-91c8e1498380"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>result</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">Result для успешных и неудачных операций</td></tr><tr id="016d5423-7b42-498d-b03d-07264750814c"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>result</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="UkA?" class="" style="width:466px">API для обработки ответов и исключений</td></tr><tr id="8132063d-86f8-4f69-8fb2-cd953bec95af"><td id="Bfi{" class="" style="width:330px"></td><td id="Y\KB" class=""><mark class="highlight-default"><code>mvi</code></mark></td><td id="UkA?" class="" style="width:466px">MVI-фреймворк</td></tr></tbody></table><p id="db8ddbcf-429e-4c7b-9874-9041c4c2d7c4" class="">
+</p><h3 id="1a33fd01-5e0f-4e54-894c-e02416adead2" class="">Приложения</h3><table id="31238f8d-a99a-4a12-a83d-aa00b3aadc15" class="simple-table"><thead class="simple-table-header"><tr id="99ef9376-3980-4d69-bf56-97b1d959f5c4"><th id="Bfi{" class="simple-table-header-color simple-table-header" style="width:315px">URL</th><th id="x=dc" class="simple-table-header-color simple-table-header" style="width:247px">Категория</th><th id="Y\KB" class="simple-table-header-color simple-table-header" style="width:431px">Описание</th></tr></thead><tbody><tr id="f7ff3647-1ebc-4db3-a0b1-fc01108462dd"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>hilt</code></mark></td><td id="Y\KB" class="" style="width:431px">Полнофункциональное приложение для Android на Kotlin и Compose</td></tr><tr id="de0002c1-f451-476c-86ce-a43ffee1c2bb"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>koin</code></mark></td><td id="Y\KB" class="" style="width:431px">Форк приложения Hilt заменен на Koin</td></tr><tr id="c13ce260-4011-43cf-a04e-20076f548065"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>view</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение садовода показывающее лучшие практики Android-разработки с переносом View на Compose</td></tr><tr id="2666e0cf-692f-446e-a2cc-b42e6b1aedd1"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>ui</code></mark></td><td id="Y\KB" class="" style="width:431px">Лучшие практики по использованию UI на Android</td></tr><tr id="016bd788-5537-4803-82e9-e2667d14b3b2"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>storage</code></mark></td><td id="Y\KB" class="" style="width:431px">Лучшие практики по использованию API хранилища на Android</td></tr><tr id="963fb0a8-25ef-4506-a8c9-31dcad011c6b"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>ui-test</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>material3</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>animation</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>windowinsets</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>screenchot-test</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>draggable-ui</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>adaptive-ui</code></mark></td><td id="Y\KB" class="" style="width:431px">Набор проектов для изучения различных вариантов использования Compose.<br/><br/><br/><mark class="highlight-teal">Crane</mark> - Приложение для путешествий.<br/><br/><br/><mark class="highlight-teal">JetLagged</mark> - Приложение для отслеживания сна.<br/><br/><br/><mark class="highlight-teal">JetNews</mark> - Приложение для просмотра сообщений в блоге.<br/><br/><br/><mark class="highlight-teal">Jetcaster</mark> - Приложение для подкастов.<br/><br/><br/><mark class="highlight-teal">JetChat</mark> - Приложение чата.<br/><br/><br/><mark class="highlight-teal">JetSnack</mark> - Приложение для заказа закусок.<br/><br/><br/><mark class="highlight-teal">JetSurvey</mark> - Приложение для опроса.<br/><br/><br/><mark class="highlight-teal">Owl</mark> - Образовательное приложение, которое предлагает курсы для людей.<br/><br/><br/><mark class="highlight-teal">Rally</mark> - Финансовое приложение с данными и диаграмами.<br/><br/><br/><mark class="highlight-teal">Reply</mark> - Приложение-клиент электронной почты.</td></tr><tr id="d4d189e2-b547-422b-b23b-dd1f1400c1cd"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>platform</code></mark></td><td id="Y\KB" class="" style="width:431px">Набор проектов для изучения платформы Android. Например: predictiveback, draganddrop.</td></tr><tr id="869bb1a2-7deb-49f9-b8e0-4cbd6a83746f"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>datastore</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>room</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>ktor</code></mark></td><td id="Y\KB" class="" style="width:431px">Примеры работы с эксперементальными библиотеками Kotlin Multiplatform Jetpack<br/><br/><br/><mark class="highlight-teal">DiceRoller</mark> - пример использования Multiplatform DataStore.<br/><br/><br/><mark class="highlight-teal">Fruitties</mark> - пример использования Multiplatform Room, DataStore и Ktor.</td></tr><tr id="9341f0ff-fa65-4c2c-bd53-7273da01f600"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Примеры приложений Compose Multiplatform<br/><br/><br/><mark class="highlight-teal">Imageviewer</mark> - Приложение для просмотра изображений.<br/><br/><br/><mark class="highlight-teal">Codeviewer</mark> - Приложение для просмотра файлов и кода.<br/><br/><br/><mark class="highlight-teal">Chat</mark> - Приложение чата.<br/><br/><br/><mark class="highlight-teal">Graphics2D</mark> - 2D-игры и примеры графики.<br/><br/><br/><mark class="highlight-teal">Widgets Gallery</mark> - Галерея стандартных виджетов.<br/><br/><br/><mark class="highlight-teal">Todoapp Lite</mark> - Приложение Todo-лист.<br/><br/><br/><mark class="highlight-teal">Issues tracker</mark> - Приложение-трекер проблем Github<br/><br/><br/><mark class="highlight-teal">Notepad</mark> - Приложение блокнота.<br/><br/><br/><mark class="highlight-teal">HTML based samples</mark> - Примеры compose-лендингов.</td></tr><tr id="598c08d1-92e5-454b-af27-348a1f4c30c2"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение для просмотра новостей</td></tr><tr id="fb24cde1-1eeb-4f5a-8d06-f6085e9a5727"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>audio</code></mark></td><td id="Y\KB" class="" style="width:431px">Музыкальный плеер</td></tr><tr id="91f6fde0-aa0a-472a-8fce-cbacb9e44c59"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>audio</code></mark></td><td id="Y\KB" class="" style="width:431px">Музыкальный плеер</td></tr><tr id="9b0084e6-a134-48e7-949f-b5a098d99801"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>audio</code></mark></td><td id="Y\KB" class="" style="width:431px">Музыкальный плеер</td></tr><tr id="a1d93ea1-b7a1-48ef-ae80-89bd5ee113a9"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>firebase</code></mark></td><td id="Y\KB" class="" style="width:431px">Примеры быстрого старта в Firebase</td></tr><tr id="446de724-d510-497a-b8dd-f7995319e228"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>glance</code></mark></td><td id="Y\KB" class="" style="width:431px">Примеры работы с Jetpack Glance</td></tr><tr id="0f9ed4b6-01e3-44d3-a5b5-5e0d4ed690f5"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>launcher</code></mark></td><td id="Y\KB" class="" style="width:431px">Свой лаунчер для Android</td></tr><tr id="0acd424f-d4ea-46a8-94e6-af73fad3f457"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>keyboard</code></mark></td><td id="Y\KB" class="" style="width:431px">Клавиатура</td></tr><tr id="8b5d210d-c239-475b-8587-bf44210ab189"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер финансов</td></tr><tr id="83830168-3e92-47b0-8fe9-c3bc6028c7ee"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер финансов</td></tr><tr id="4bd366fa-0d1d-4f07-946f-455eae6fe2d9"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер финансов</td></tr><tr id="cb5c1dfa-07d1-4c67-9b7a-e6f0e7f56188"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Стриминг музыки с YouTube Music</td></tr><tr id="da20b501-dc01-47cb-9ca2-913429424f40"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер криптовалют</td></tr><tr id="92a8689f-2fd3-49ca-8ded-63cecb6ff4bf"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер привычек</td></tr><tr id="e534cf0f-8242-4e6a-9ca5-1402af9ef6e6"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Калькулятор</td></tr><tr id="bff91466-8e91-4ce4-ab6a-2723b3fc9337"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Загрузчик книг</td></tr><tr id="774b7426-9b04-40df-aa0a-dabfb35319cb"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Клиент Rutracker</td></tr><tr id="1f4a7f06-fbe5-4da0-8e4a-01ab4393367d"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Редактор изображений</td></tr><tr id="825328da-45d6-4b5b-958c-1c7d470612a2"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">RSS клиент</td></tr><tr id="0ddbb5d2-c9ba-4a7a-b80a-f58e0ae8c27f"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер привычек и Календарь планировщик</td></tr><tr id="33313a40-7645-4305-880a-31d748507ac5"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Stack Overflow &amp; Stack Exchange клиент</td></tr><tr id="537fbf3b-71d9-4688-8123-b9994093ed5d"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Клиент YouTube</td></tr><tr id="4a5adde8-29cf-4ce4-84d5-f5c2fd4ad4e5"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">F-Droid клиент</td></tr><tr id="5a60d1e1-dcdb-49cf-be25-5d35767cce5f"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">F-Droid клиент</td></tr><tr id="bbd00fb9-4f00-46b8-83b6-d9a7d3d9b0ff"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">YouTube Music клиент</td></tr><tr id="acbfa2a1-11ac-4078-be8e-c046c254826a"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Магазин приложений</td></tr><tr id="f04227ca-6ec6-487e-abda-ef3f1db6b60b"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Аудио &amp; Видео загрузчик</td></tr><tr id="063c725c-0e15-4618-8b64-2056044f6f83"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение для подкастов</td></tr><tr id="0a94a987-b950-46cd-b0b5-748326f8ccbb"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>android</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>sample</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Пример работы с ContextualFlowRow и ContextualFlowColumn</td></tr><tr id="ad66912c-d77c-432b-b94a-b7b97b753e4e"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер сериалов</td></tr><tr id="150be943-9e03-43e0-9695-eda5f7f5cc80"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>graphql</code></mark></td><td id="Y\KB" class="" style="width:431px">Список персонажей рик и морти</td></tr><tr id="45bc3fa7-32e3-4fe6-aafd-57fd6e6ec493"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Люди в космосе. Положение МКС</td></tr><tr id="d9cf092f-b745-49c5-9a3f-5da4eb77b448"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>swiftui</code></mark></td><td id="Y\KB" class="" style="width:431px">Автобусный маршрут</td></tr><tr id="fc5bda7c-dfbb-443f-ab4c-b5cb6dbab279"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение конференции</td></tr><tr id="1c343ed8-f121-4c29-b39e-6e6fc7d2e1e6"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Аренда байков</td></tr><tr id="d141f539-ca34-412f-b0f0-71e7f7f0788a"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Премьер-лига</td></tr><tr id="d66461c2-6157-4ace-9c47-d1de402ca1ee"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение для отображения данных о климате</td></tr><tr id="5a6df5fe-ed05-45fa-a877-e0613439e659"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Gemini-интерфейсы</td></tr><tr id="c2af6b73-f3dc-4fc6-862d-04a0f4ee047c"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Список персонажей звездных войн</td></tr><tr id="e46a7c3f-8053-4bc0-b3fc-78c4b6ba109e"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Игра Wordle</td></tr><tr id="ad9f384a-39c0-4a00-a987-9c55a130129d"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Эмулятор Chip-8</td></tr><tr id="91fa52ab-d0b3-4b32-b261-5628077cba6e"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение для управления фокусом</td></tr><tr id="641bd5f9-6e87-4dca-beae-a5919f5c23c3"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приложение The New York Times</td></tr><tr id="9eb6e3bc-f1da-46df-be9c-cc166fba2969"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Платформа для доставки еды и заказа такси</td></tr><tr id="1c1f0f87-a0e4-4405-add6-6968b451be22"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">RSS клиент</td></tr><tr id="43f9e621-e967-4acb-8be6-e0861ca5f371"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">RSS клиент</td></tr><tr id="cdb7273c-e829-4376-98ba-f16e3ec2a2e9"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Словарь</td></tr><tr id="dfb0c0f0-f30c-464c-bf41-b07a4b8c3b57"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Bitwarden клиент</td></tr><tr id="aab84865-2af1-4275-8b8c-f9d73276655a"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Рецепты</td></tr><tr id="2236bca7-dd16-4a63-8389-24bb5cfa1675"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Sample</td></tr><tr id="32e02d85-3003-49af-ba74-4289c8454b60"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">RSS клиент</td></tr><tr id="eba4fff6-fbed-49a7-b61c-7d3beec160c8"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Приготовление пиццы</td></tr><tr id="e11aa964-ccc8-42d5-9923-56836e6a55a8"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Droidcon клиент</td></tr><tr id="3e4e4afc-4d23-4590-b8b1-0eec6db891a9"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Заметки</td></tr><tr id="c59a23ba-42c7-4d0f-959d-567b017ec648"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Визуальная демонстрация 8 чудес света</td></tr><tr id="57e88945-5d3f-402e-98a7-911a8dc38e43"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Рецепты</td></tr><tr id="fb08034c-747a-4dd6-8324-e677eb992193"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Email клиент</td></tr><tr id="be610cf0-894e-4006-bbe7-0ee5554775d2"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Чат</td></tr><tr id="10eaba68-be22-4d80-b9a4-87a31d601f2e"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Маркетплейс</td></tr><tr id="542e4410-3bc3-4b4e-b507-4fba61ff709a"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Трекер фильмов</td></tr><tr id="b8c48c84-692c-4867-baad-7c91380ce47a"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>kmp</code></mark></td><td id="Y\KB" class="" style="width:431px">Новости</td></tr><tr id="0ca4e36a-8614-4b39-a0b9-7eafc95c0179"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>java</code></mark></td><td id="Y\KB" class="" style="width:431px">Оффициальный клиент Telegram</td></tr><tr id="b64301a8-b8e6-46a5-8ee0-4e7370b33279"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>app</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>ml</code></mark></td><td id="Y\KB" class="" style="width:431px">Коллекция примеров приложений, демонстрирующих, как использовать API-интерфейсы Google ML Kit на Android и iOS.</td></tr><tr id="95d07633-d2fb-4143-93c0-e4eeb757c757"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>effects</code></mark></td><td id="Y\KB" class="" style="width:431px">Конфетти анимация</td></tr><tr id="af3f7ede-d077-4754-a2fa-e2e063da4aab"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>effects</code></mark></td><td id="Y\KB" class="" style="width:431px">Анимация падения снега</td></tr><tr id="3931ef2c-cfa3-43dc-9407-ed49c2353dc4"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>effects</code></mark></td><td id="Y\KB" class="" style="width:431px">Библиотека для рисования снегопадов</td></tr><tr id="04ef1a7f-7369-432c-9f8f-2f2de0f45277"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>pager</code></mark></td><td id="Y\KB" class="" style="width:431px">Индикатор для ViewPager</td></tr><tr id="a35ce598-5ec5-42d1-a690-aec2b1123436"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>svg</code></mark></td><td id="Y\KB" class="" style="width:431px">Покрасить SVG</td></tr><tr id="e0f95c79-3445-4f1d-a9d1-2d61dc09ed4f"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>chat</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Бабл для чата</td></tr><tr id="618342d1-7e1f-45ae-8dfa-f0c7c6d8509b"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>chat</code></mark></td><td id="Y\KB" class="" style="width:431px">UI-компоненты для чата</td></tr><tr id="b4c0632b-6ba8-4d4f-b4ba-f6d120baf49d"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>markdown</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Markdown текст</td></tr><tr id="044aae25-ba4c-4db1-8be1-2f13545bd017"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>markdown</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>html</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Markdown и HTML текст</td></tr><tr id="9def33d1-7d62-479c-95e5-11b2cb651ce3"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>zoom</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark></td><td id="Y\KB" class="" style="width:431px">Зуминг изображений</td></tr><tr id="54d272a6-151d-41e9-905b-66673393a5cf"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>navigation</code></mark></td><td id="Y\KB" class="" style="width:431px">Навигация назад жестом свайпа</td></tr><tr id="247d901d-7646-4b06-844e-fbdcf72591be"><td id="Bfi{" class="" style="width:315px"></td><td id="x=dc" class="" style="width:247px"><mark class="highlight-default"><code>library</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>compose</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>toolbar</code></mark></td><td id="Y\KB" class="" style="width:431px">Collapsing Toolbar</td></tr></tbody></table><p id="09ee9bc7-5b68-4c5e-992b-e73179fa997e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
