@@ -1,0 +1,737 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Concurrent</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c0579da6-6608-484e-a34f-f477e5df7783" class="page sans"><header><img class="page-cover-image" src="Concurrent%20c0579da66608484ea34ff477e5df7783/michaelbely_hash_map_orange_e609c5fa-f4fb-44cd-a3ed-c935d2618bf7.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Concurrent%20c0579da66608484ea34ff477e5df7783/java.svg"/></div><h1 class="page-title">Concurrent</h1><p class="page-description"></p></header><div class="page-body"><table id="42a9bf8e-1cd3-449c-8710-0296d542a823" class="simple-table"><tbody><tr id="9f406686-029f-4c15-8f60-053395181862"><td id="zSRY" class="" style="width:102px"><mark class="highlight-brown"><code>31.12.2012</code></mark></td><td id="qjd|" class="" style="width:327px"><a href="https://habr.com/ru/post/164487">https://habr.com/ru/post/164487</a></td></tr></tbody></table><table id="89b8cf83-448c-4be3-b77b-de403d0715c9" class="simple-table"><tbody><tr id="9186591b-74b3-4914-a5b4-3c8db65d6fd7"><td id="Ejc;" class="" style="width:101px"><mark class="highlight-brown"><code>16.01.2024</code></mark></td><td id="@}GP" class="" style="width:611px"><a href="https://dev.to/faangmaster/vopros-s-sobiesiedovaniia-chto-takoie-java-memory-model-i-happens-before-410g">https://dev.to/faangmaster/vopros-s-sobiesiedovaniia-chto-takoie-java-memory-model-i-happens-before-410g</a></td></tr></tbody></table><h3 id="06f9155b-0b9f-4df4-9196-24fdec377b8d" class=""><strong>Process</strong></h3><p id="3a2772ed-8cd9-4e99-b6c9-d8da6e26dd3a" class="">Процесс - совокупность кода и данных разделяющих общее виртуальное адресное пространство. При помощи процессов выполнение разных программ изолировано друг от друга: каждое приложение использует свою область памяти, не мешая другим программам. Чаще всего одна программа состоит из одного процесса, но бывают и исключения (например, браузер Chrome создает отдельный процесс для каждой вкладки, что дает ему некоторые преимущества, вроде независимости вкладок друг от друга). Процессы изолированы друг от друга, поэтому прямой доступ к памяти чужого процесса невозможен (взаимодействие между процессами осуществляется с помощью специальных средств).</p><p id="5a712835-ce77-4a7c-8afd-7fed5d03959d" class="">• если запущен процесс - в нем запущен хотя бы 1 поток.</p><p id="28a7fdea-abcb-4d91-95ab-750d079a91e2" class="">• процесс завершается когда завершается его последний поток.</p><p id="d6ffb75f-560f-44bd-9e00-875142aad618" class="">
+</p><h3 id="d9690c6f-4652-454d-9f1b-fd0af7fb163f" class=""><strong>Thread</strong></h3><p id="073e174a-9b78-4f79-a12b-81e8c7cab95d" class="">Поток - небольшая часть процесса, последовательность инструкций, которая выполняется параллельно с другими потоками. Каждое приложение создает как минимум один поток: основной, который запускает функцию main(). Один поток – это одна единица исполнения кода. Каждый поток последовательно выполняет инструкции процесса, которому он принадлежит, параллельно с другими потоками этого процесса.</p><p id="4860a2a4-00c3-4e4b-8106-aaa697ef5dcd" class="">
+</p><h3 id="9e9e1176-2f69-40f1-9aac-9f1eb6407d37" class=""><strong>Асинхронность</strong></h3><p id="3026d7ab-2e4c-4b96-9d3c-0640d53dac25" class="">Концепция программирования, когда события происходят независимо от главного потока и способ взаимодействия не является последовательным, а происходит через коллбэки.</p><p id="98f0070c-5133-41b3-8f69-39349ffd182a" class="">
+</p><h3 id="a4bb6290-765f-4327-86da-bd92054e1e4f" class=""><strong>Параллельность</strong></h3><p id="53669ac1-b89e-4229-a655-52da3498453f" class="">Тип вычислений, когда множество операций выполняются параллельно. Современные процессоры способствуют этому, так как имеют множество ядер.</p><p id="bbbcc936-916a-44a6-b624-5ae1e469bf2b" class="">
+</p><h3 id="a49be02d-014a-466f-ac22-5524f39fa3d3" class=""><strong>Синхронизация</strong></h3><p id="683cb21d-2f20-4aeb-a7e3-e9571b0996b1" class="">Cнятие блокировки потока должно происходить на том же потоке, которым она и была захвачена. Иначе поток зависнет навсегда.</p><p id="cc0aab22-a8c7-4222-8a27-9f98d72f5dfd" class="">
+</p><h3 id="7edb7388-f226-41e7-b78c-64f2b26bbd8f" class=""><strong>Java Memory Model</strong></h3><p id="3518cdca-65aa-4481-8f1f-2719c010f295" class="">Модель памяти Java. Часть семантики языка. Описывает поведение потоков в среде исполнения Java. Определяет правила и гарантии, касающиеся порядка доступа к переменным из различных потоков. JMM определена в терминах <strong>actions </strong>(действий) - чтение и запись в переменные, <code>lock</code><strong> </strong>и <code>unlock</code> мониторов, запуск <code>start</code> и <code>join</code> потоков.</p><p id="193b2fe6-451e-4b4e-b4ec-214c3f90df56" class="">• Однопоточные программы исполняются псевдопоследовательно. Это значит: в реальности процессор может выполнять несколько операций за такт, заодно изменив их порядок, однако все зависимости по данным остаются, так что поведение не отличается от последовательного.</p><p id="13f3ab2f-d5f1-4b87-988e-8a838098eec9" class="">• Нет невесть откуда взявшихся значений. Чтение любой переменной (кроме не-volatile long и double, для которых это правило может не выполняться) выдаст либо значение по умолчанию (ноль), либо что-то, записанное туда другой командой.</p><p id="14982007-3866-4eca-a0ee-4bf4a6709af7" class="">• Остальные события выполняются по порядку, если связаны отношением строгого частичного порядка “выполняется прежде” (happens before).</p><p id="79b8100a-b24c-4756-bca0-2fcafa269e2e" class="">
+</p><h3 id="49b2f696-9a53-4837-9451-22952c57b543" class=""><strong>Happens before</strong></h3><p id="3ede3e39-90d6-41ec-831f-7fb7566ea229" class="">JMM задает частичный порядок, который называется happens-before, для всех действий (actions) в рамках программы. Для того, чтобы гарантировать, что поток, который выполняет действие B может видеть результат действия A (в не зависимости A и B выполняются в одном потоке или нет), необходимо, чтобы существовала happens-before связь между A и B. Если такой связи нет, то JVM может выполнять действия A и B в произвольном порядке. И никаких гарантий видимости не накладывается. Отношение happens-before является отношением частичного порядка между двумя операциями. Если одна операция происходит-до другой, то ее результат видим и упорядочен для другой.</p><p id="ffcab0a4-f001-496c-bb18-1a7112d573eb" class="">
+</p><h3 id="f811b819-5202-4a5f-b7b0-b1297a239a54" class=""><code><strong>Runnable</strong></code></h3><p id="977afe26-9918-46fc-9f6a-2d13d112d186" class="">Интерфейс содержащий метод <code>run</code> в котором выполняется код потока.</p><p id="bb57badc-5e9b-4a3a-b37e-223e97def63c" class="">
+</p><h3 id="c8681566-035a-410a-b99a-52b2eb3684f1" class=""><strong>Heap</strong></h3><p id="62ba8340-5452-4f1b-85ab-1fe726a25e83" class="">Часть памяти которая хранит фактические объекты (экземпляры классов).</p><p id="c5984bb6-2208-4e1a-9547-d5b90b53fa25" class="">• создание нового объекта происходит в куче.</p><p id="0fc5ad26-df51-42d7-9e6d-cc38ede20c96" class="">• любой объект, созданный в куче, имеет глобальный доступ и на него могут ссылаться из любой части приложения.</p><p id="929cf429-1db9-427e-9552-dc263f204a4c" class="">• куча это огромный объем памяти по сравнению со стеком.</p><p id="c628a789-cd0e-4100-92eb-497a09ffcdf3" class="">• если память кучи заполнена вызывается <code>OutOfMemoryError</code>.</p><p id="ceba7b44-0355-4857-8f09-2f76fa91495e" class="">• максимальный размер кучи не определен заранее - зависит от работающей JVM машины. обычно это вся доступная оперативная память (~500 MB).</p><p id="f50fe5b6-ba5e-44ec-b9b2-fc7dde67b190" class="">
+</p><h3 id="9c777ba0-9de3-498a-8c18-7dba2bd45e94" class=""><strong>Stack</strong></h3><p id="30563220-9db2-403a-b858-aea66933a5a5" class="">Стековая память отвечает за хранение ссылок на объекты кучи и за хранение типов значений (примитивные типы в Java) которые содержат само значение а не ссылку на объект кучи.</p><p id="61d20dc4-4d0e-4285-a5e7-f0f0e4077b1f" class="">• работает по схеме LIFO (last in - first out).</p><p id="5246c9d7-26e5-4d57-b388-3cc866d7451b" class="">• стековая память в Java выделяется для каждого потока. каждый раз когда поток создается и запускается он имеет свою собственную стековую память и не может получить доступ к стековой памяти другого потока.</p><p id="cfe85e11-49a6-4918-8326-54c4e2dd4f57" class="">• из-за простоты распределения памяти стековая память работает намного быстрее кучи.</p><p id="d55ce78d-ced1-406c-b0c9-1d9c72cb159c" class="">• если память стека полностью занята - вызывается <code>StackOverflowError</code>.</p><p id="4f211dd3-ffde-4d77-82a6-c17ec4e9f412" class="">• максимальный размер стека не определен заранее - зависит от работающей JVM машины. обычно это ~1 MB.</p><p id="71b97137-ab4a-44f9-b2f1-a7fb976e693d" class="">
+</p><h3 id="a0c86712-5036-48f5-ada0-53778a894a29" class=""><strong>Разница между Stack и Heap?</strong></h3><p id="b9c38fa2-c062-4fbe-af6c-95ad8147e6e3" class="">• куча используется всеми частями приложения в то время как стек используется только одним потоком исполнения программы.</p><p id="feba424a-78f4-4648-9e1f-f3e470477902" class="">• всякий раз, когда создается объект, он всегда хранится в куче, а в памяти стека содержится ссылка на него. Память стека содержит только локальные переменные примитивных типов и ссылки на объекты в куче.</p><p id="a775dd6d-1e24-4b72-948f-864e00723802" class="">• объекты в куче доступны с любой точки программы, в то время как стековая память не может быть доступна для других потоков.</p><p id="aabd352a-6079-4669-a112-df9dc9ba7a9f" class="">• управление памятью в стеке осуществляется по схеме LIFO.</p><p id="d59ed141-c75f-49ed-8f84-80147ef5a0ba" class="">• стековая память существует лишь какое-то время работы программы, а память в куче живет с самого начала до конца работы программы.</p><p id="c9832b0c-ed11-49a7-8ec6-473e3aa66b66" class="">• если память стека полностью занята, то Java Runtime бросает <code>java.lang.StackOverflowError</code>, а если память кучи заполнена, то бросается исключение <code>java.lang.OutOfMemoryError: Java Heap Space</code>.</p><p id="873a7609-ff9e-4b1a-a78b-c26779348371" class="">• размер памяти стека намного меньше памяти в куче. Из-за простоты распределения памяти (LIFO), стековая память работает намного быстрее кучи.</p><p id="b7bb2ced-44ce-4df2-a859-a6f12486a390" class="">
+</p><h3 id="c1b3d03d-6997-4258-8a9e-fb269af13220" class=""><strong>Method Area</strong></h3><p id="166b75d6-a1f5-4076-b203-4a6a1ccee7ee" class="">В области Method area хранится скомпилированный код для каждой функции. Когда поток начинает выполнять функцию, он получает инструкции из этой области. По сути, она представляет собой кулинарную книгу рецептов, где подробно описано, как что приготовить. </p><p id="cf1e66c9-8c36-4a96-955e-a7b4ef3f4b1c" class="">
+</p><h3 id="fd213344-48c6-4c26-93e2-a940a1e737fc" class=""><code><strong>ThreadPool</strong></code></h3><p id="75fae5f3-c474-49cf-b0f4-1d323f490405" class="">Пулы потоков представляют собой управляемую коллекцию потоков, которые доступны для выполнения различных задач. Пулы потоков обеспечивают:</p><p id="9c1ae908-3e4d-4f8d-8ed6-ba380a1fb565" class="">• повышение производительности при выполнении большого количества задач в связи с сокращением накладных расходов на вызов каждой задачи </p><p id="b2373b60-5e86-4275-8625-bf139d277a0a" class="">• ограничивают расход ресурсов при выполнении набора задач </p><p id="608db6ce-c48a-41f9-98eb-d584aeb69197" class="">• избавляют от необходимости управления жизненным циклом потоков. </p><p id="ccfa0699-42be-47e3-aa85-ee971d36f254" class="">
+</p><h3 id="74970f9a-13eb-4282-aa01-0921d2e455a0" class=""><code><strong>ThreadPoolExecutor</strong></code></h3><p id="9f894a60-da96-42b7-a794-ecd3bff9d5bb" class="">Реализация ExecutorService. Выполняет переданную задачу (Callable или Runnable), используя одну из внутренних доступных нитей из пула. Пул потоков содержит в себе ThreadPoolExecutor, который может содержать изменяющееся число потоков. Число нитей в пуле задается с помощью corePoolSize и maximumPoolSize. </p><p id="b477938c-5321-405c-b326-29aea34e3a59" class="">
+</p><h3 id="f6a2232d-94a5-471a-8bb7-c389360c70a7" class=""><code><strong>ScheduledThreadPoolExecutor</strong></code></h3><p id="5c14f6b9-b4cb-4083-bc6a-21ffc44595cd" class="">Является наследником ThreadPoolExecutor, определенного в пакете java.util.concurrent. Как видно из его названия, этот класс полезен, когда мы хотим запланировать многократное выполнение задач или запуск после заданной задержки на какое-то время в будущем. Он создает пул потоков фиксированного размера. Поэтому, когда он инициируется, ему необходимо указать corePoolSize. </p><p id="bacbf740-f295-462e-be38-c1666d2619fc" class="">
+</p><h3 id="3b25061f-c994-4823-90ef-64aa9edfe77b" class=""><code><strong>Executor</strong></code></h3><p id="6f90a589-9f8f-47c2-98aa-60e7fee4ac37" class="">Executor — интерфейс, который может выполнять подтвержденные задачи. Предоставляет возможность избежать вникания в механику выполнения задачи и деталей использования выполняемого потока. Executor обычно используется для явного создания потоков. </p><p id="ad885eba-fe8d-4a9d-be93-b702ed836fca" class="">
+</p><h3 id="263b1b3c-c3c1-4b0f-a9f4-9485f7e7b8f8" class=""><code><strong>ExecutorService</strong></code></h3><p id="48550753-a4cc-435d-8e3b-5f02736a70ed" class="">ExecutorService исполняет асинхронный код в одном или нескольких потоках. Создание экземпляра ExecutorService делается либо вручную через конкретные реализации (<code>ScheduledThreadPoolExecutor</code> или <code>ThreadPoolExecutor</code>), но проще будет использовать фабрики класса <code>Executors</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4d9c5156-8234-4769-bb16-0003eaa92517" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">ExecutorService service = Executors.newFixedThreadPool(2); // пул с 2 потоками
+ExecutorService service = Executors.newCachedThreadPool(); // кэширующий пул потоков, который создает потоки по мере необходимости, но переиспользует неактивные потоки</code></pre><p id="95af21ec-663d-48f2-a1b3-f41be119186a" class="">
+</p><h3 id="22c516d6-f1bb-42f6-953e-507e696183ae" class=""><code><strong>ScheduledExecutorService</strong></code></h3><p id="287a358a-eb08-4758-8c9b-d6772003493b" class="">Иногда требуется выполнение кода асихронно и периодически или требуется выполнить код через некоторое время, тогда на помощь приходит <code>ScheduledExecutorService</code>. Он позволяет поставить код выполняться в одном или нескольких потоках и сконфигурировать интервал или время, на которое выполненение будет отложено. Интервалом может быть время между двумя последовательными запусками или время между окончанием одного выполнения и началом другого.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f805807b-ada1-491f-b9d5-f89ce5c18078" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+service.schedule(new Runnable() { ... }, 5, TimeUnit.SECONDS);</code></pre><p id="eb2893fd-db0f-472c-a6d5-449faf434f3a" class="">
+</p><h3 id="98929c15-f81b-4535-959f-72a74671696f" class=""><code><strong>Future</strong></code></h3><p id="6f058d40-7d77-4960-98ce-3f362ed91787" class="">Интерфейс описывает API для работы с задачами, результат которых мы планируем получить в будущем: методы получения результата, методы проверки статуса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a85bd4e4-de94-438d-8499-86a15d9030fd" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Callable task = () -&gt; {
+    return &quot;Hello, World!&quot;;
+};
+FutureTask&lt;String&gt; future = new FutureTask&lt;&gt;(task);
+new Thread(future).start();</code></pre><p id="460d0ab2-46dd-4cfd-8cee-32efd85c1d8a" class="">
+</p><h3 id="639a0a2c-832c-4c5a-b9cb-3602665a4fa1" class=""><code><strong>synchronized</strong></code></h3><p id="7bd9f016-9c18-4d31-98bd-22e8f904c859" class="">Если метод или блок кода помечен ключевым словом <code>synchronized</code> это значит, что блок может выполняться только одним потоком одновременно. Позволяет заблокировать доступ к методу или части кода, если его уже использует другой поток. Если метод синхронизирован то вся логика внутри него выполняется одним потоком одновременно. Если один поток зашел внутрь блока кода, который помечен словом synchronized, он моментально захватывает мьютекс объекта, и все другие потоки, которые попытаются зайти в этот же блок или метод вынуждены ждать, пока предыдущий поток не завершит свою работу и не освободит монитор.<br/>• если в <br/><code>synchronized</code> блоке возникнет исключение - блокировка будет снята.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3801b12-eee4-4630-88e3-b860283e685b" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">public synchronized void doSomething() {
+    // целый синхронизированный метод
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f5933394-ebe6-476b-a376-b8c27a883529" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">private Object obj = new Object();
+
+public void doSomething() {
+    //...логика, доступная для всех потоков
+    synchronized (obj) {
+        // логика, которая одновременно доступна только для одного потока
+    }
+}</code></pre><p id="6ca50ef8-9dff-4c64-8165-a4cd39df54e4" class="">
+</p><h3 id="1ce5361e-441f-4cf3-a356-0ae19d33b647" class=""><code><strong>volatile</strong></code></h3><p id="67b9764a-fc9c-4bf7-8605-9f9d63e7750b" class="">Переменная volatile всегда будет атомарно читаться и записываться. Даже если это 64-битные double или long. JVM не будет помещать ее в кэш. Так что ситуация, когда 10 потоков работают со своими локальными копиями исключена. Не используется кэш (область памяти в которой JVM может сохранять локальную копию переменной, чтобы уменьшить время обращения к ней) при обращении к полю. Для volatile JVM гарантирует синхронизацию для операций чтения/записи, но не гарантирует для операций изменения значения переменной (инкремент/декремент) - использовать атомарный тип</p><p id="d4989d65-ffd2-49b5-8b24-a9bb149abd1e" class="">
+</p><h3 id="241eafec-5cf3-4cbb-9621-b3448d7de857" class=""><code><strong>atomic</strong></code></h3><p id="c9d8af25-78b6-4805-9513-02546dfa1d62" class="">В процессе работы многопоточного приложения разные потоки могут кэшировать значения переменных. Возможна ситуация, когда один поток изменил значение переменной, а второй не увидел этого изменения, потому что работал со своей, кэшированной копией переменной. В Java операции чтения и записи полей всех типов, кроме long и double, являются атомарными. Если в одном потоке изменить значение перменной, а в другом попытаться ее считать, то получим либо ее старое закэшированное значение, либо новое, без промежуточных вариантов. С long и double это не работает из-за кроссплатформенности, это тяжеловесные типы, весят по 64 бита. В 32-битных платформах не реализована атомарность чтения и записи 64-битных переменных, они читаются и записываются в две операции. Сначала в переменную записываются первые 32 бита, потом еще 32. В это время и может возникнуть ошибка, которая решается ключевым словом volatile</p><p id="8c76c40a-24b4-44cc-9dc3-77c17bfee58c" class="">Операция называется атомарной, если её можно безопасно выполнять при параллельных вычислениях в нескольких потоках, не используя при этом ни блокировок, ни <code>synchronized</code>. Пример: инкремент, декримент.</p><p id="f6c2f075-006b-4ed6-a555-64ab0aa89f5b" class="">
+</p><h3 id="8906af52-02a6-4841-a9bf-e0f91e7f2c00" class=""><strong>mutex</strong></h3><p id="eca56ac5-e33a-4f9a-a170-0bf6a304c2e1" class="">«MUTual EXclusion» — «взаимное исключение». Специальный объект для синхронизации потоков. Прикреплен к каждому объекту в Java. Задача мьютекса — обеспечить такой механизм, чтобы доступ к объекту в определенное время был только у одного потока. Если Поток-1 захватил мьютекс объекта А, остальные потоки не получат к нему доступ, чтобы что-то в нем менять. До тех пор, пока мьютекс объекта А не освободится, остальные потоки будут вынуждены ждать. Мьютекс - мячик, говорит тот у кого он в руках. Он уже встроен в класс <code>Object</code> а значит, есть у каждого объекта в Java.</p><p id="7cc107e3-4e4c-4e1a-9dcd-4e7e69dc78f3" class="">
+</p><h3 id="ad2a10da-9c71-4112-aec4-fca939917d81" class="">Монитор</h3><p id="19d80af8-27eb-4f16-b1ab-4e3211f4bfb7" class="">Надстройка над мьютексом. Невидимый кусок кода, обеспечивающий защитный механизм объекта от других потоков. Монитор в Java выражен с помощью слова <code>synchronized</code>.</p><p id="0e923236-0764-42ca-80c9-2e0693e7c292" class="">
+</p><h3 id="9867102d-6352-40fc-a887-82b15d7bd3e1" class=""><code>Semaphore</code></h3><p id="dacc256b-1b35-49b4-a75a-4ddbec70eb6e" class="">Семафор - средство для синхронизации доступа к какому-то ресурсу. При создании механизма синхронизации он использует счетчик (сколько потоков одновременно могут получать доступ к общему ресурсу).</p><p id="54779cea-f454-4935-8014-944931904a64" class="">• <code>permits</code> - начальное и максимальное значение счетчика. То есть то, сколько потоков одновременно могут иметь доступ к общему ресурсу.</p><p id="29008fd9-242f-47cd-aca9-7486325be7a3" class="">• <code>fair</code> - для установления порядка, в котором потоки будут получать доступ. Если <code>fair</code> = true, доступ предоставляется ожидающим потокам в том порядке, в котором они его запрашивали. Если же он равен <em>false</em>, порядок будет определять планировщик потоков.</p><p id="5748500b-8133-43fc-a57a-e826bf50062f" class="">• <code>acquire</code> - запрашивает разрешение на доступ к ресурсу у семафора. Если счетчик &gt; 0, разрешение предоставляется, а счетчик уменьшается на 1.</p><p id="a825859f-14c4-49d4-b1df-b99570ba2b40" class="">• <code>release</code> - «освобождает» выданное ранее разрешение и возвращает его в счетчик (увеличивает счетчик разрешений семафора на 1).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef54c3fd-2147-4755-bbfa-7bf3275f8e6a" class="code"><code class="language-Java">Semaphore(int permits)
+Semaphore(int permits, boolean fair)
+
+Semaphore semaphore = new Semaphore(2);
+semaphore.acquire();
+semaphore.release();</code></pre><p id="0a21d054-5cfb-4110-9956-f4b6da9a984e" class="">
+</p><h3 id="e273771f-67e9-415b-a286-141ccfd2c3b8" class=""><code><strong>deadlock</strong></code></h3><p id="478b3b22-44fb-449a-9011-3e53342937d6" class="">Взаимная блокировка. Возникает только в случае неверного порядка синхронизации. Разрешить deadlock нельзя. <br/>Чтобы предотвратить блокировку:<br/></p><p id="4f014360-347c-4700-a0cc-4e340e6d6098" class="">• использовать метод <code>Thread.join</code> с максимальным временем, которое вы хотите ждать, чтобы поток завершился.</p><p id="36a65691-6fbf-4579-a7be-71c78c49e77f" class="">• использовать упорядочивание блокировок.</p><p id="3aee08b1-354c-4117-b14d-3f07f5181290" class="">• избегать ненужных блокировок.</p><p id="c4801f1e-9846-4782-b475-5b193f9267de" class="">
+</p><h3 id="6bcf0210-1a22-4054-a834-cdde29031ca3" class="">Race condition</h3><p id="79ad298d-d714-4923-a530-6353b5602ea5" class="">Гонка потоков. Если из разных потоков менять одно и тоже поле класса, то это небезопасно и нельзя гарантировать, что они будут изменены в том же порядке, что и задумано. Это называется состояние гонки.</p><p id="52990d10-d8b4-4791-b950-498cacca5e1a" class="">
+</p><h3 id="c584f8bf-93d0-48ca-b7c2-b6202173d74f" class=""><code>ThreadLocal</code></h3><p id="6b165b88-f1fd-4faf-8f2a-8f5b15fa9e05" class="">Класс который хранит локальные переменные для потоков. Эти переменные изолированы между разными потоками и могут быть доступны только своему собственному потоку.</p><p id="e712cde0-fa8f-4081-843b-6738a71a3909" class="">• Изоляция данных между потоками.</p><p id="044deaa6-54bd-4458-ac22-1f808f60cd6a" class="">• Управление сессиями для подключения к базе данных.</p><p id="0d898c1f-7a5b-43ae-af5e-8734878866fb" class="">• Хранение транзакционной информации потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b076be80-2f6d-483d-adea-ade9090d7ccf" class="code"><code class="language-Java">ThreadLocal&lt;String&gt; local = new ThreadLocal&lt;&gt;();</code></pre><p id="35f12c96-5271-483d-ae5f-558ca822f2af" class="">
+</p><h3 id="71f43e4b-eab9-4ccc-bf96-227709bdd5cd" class="">Concurrent Collections</h3><p id="7bc9dc50-bbb4-496b-9f7d-ff7a6086bb75" class="">Потокобезопасные коллекции при итерировании не бросают <code>ConcurrentModificationException</code>. </p><p id="58cadfc1-5fb9-4a69-9e8e-e7c31683fb9d" class="">
+</p><h3 id="c1c59226-19f1-4af9-81f3-a176eaffae26" class=""><code><strong>synchronized List</strong></code></h3><p id="89d0f445-221c-4acb-a6b9-f096969eb374" class="">Потокобезопасный <code>List</code>. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a48bffee-b0f4-443e-84b9-ea9505f22306" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">List&lt;String&gt; synchronizedList = Collections.synchronizedList(list);</code></pre><p id="0edea725-ab50-4d73-8e87-6c0d1f6a61f2" class="">
+</p><h3 id="43f3aacc-1de7-48c2-8614-78e5f4fe1d91" class=""><code><strong>synchronized Set</strong></code></h3><p id="be12b2cd-385c-45cc-a73c-7bba6544ce21" class="">Потокобезопасный <code>Set</code>. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="42a7797a-5d13-4065-8bd0-8fdaf6d6ad89" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Set&lt;String&gt; synchronizedSet = Collections.synchronizedSet(new HashSet&lt;&gt;());</code></pre><p id="790897c2-79ad-4d6d-9179-516b9aa21034" class="">
+</p><h3 id="5b6011bf-273e-421c-a029-c0b2db51430d" class=""><code><strong>CopyOnWriteArrayList</strong></code></h3><p id="cddcea91-3eca-4c14-9406-75f5f17dff2f" class="">Потокобезопасный <code>ArrayList</code>.</p><p id="477c4539-4a18-429b-ad00-3e44a5c195a9" class="">• операции <code>add</code> <code>set</code> <code>remove</code> созданиют новую копию внутреннего массива (копируются только ссылки на объекты)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="402ce7e2-d622-48cb-9bad-9cf2c1432248" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">List&lt;String&gt; list = new CopyOnWriteArrayList&lt;&gt;();</code></pre><p id="777e93b3-e4d6-4b49-b83c-79d3d3da5898" class="">
+</p><h3 id="b73f70bc-2133-4e12-95c6-e8212f5bb606" class=""><code><strong>CopyOnWriteArraySet</strong></code></h3><p id="61209dbe-5264-40ab-b445-1826667fc67d" class="">Имплементация интерфейса <code>Set</code> использующая за основу <code>CopyOnWriteArrayList</code>. В отличии от <code>CopyOnWriteArrayList</code> дополнительных методов нет.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a7e03110-1a2e-4bd0-8568-38b4bb94828b" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Set&lt;String&gt; set = new CopyOnWriteArraySet&lt;&gt;();</code></pre><p id="8d439930-50c7-4f13-ae57-875b43376347" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Java Concurrent. Вопросы на собесе</mark></summary><div class="indented"><table id="cf48917e-879f-4dbf-ab27-39ffd2ab96e8" class="simple-table"><tbody><tr id="c6e70443-55d5-445b-9522-8f4b4f529093"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое Stack и Heap?</td></tr><tr id="bc22c26c-58f7-4ebe-b4d0-f15da06cc9e6"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> Как <code>synchronized</code> работает под капотом?</td></tr><tr id="01caf09f-4d60-40ed-a735-ec3065d73b0d"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> В чем разница между мьютексом, монитором и семафором?</td></tr><tr id="aa4ded23-839d-400c-8d50-ee2603f1f7b3"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие есть способы предотвратить deadlock?</td></tr><tr id="f6245c98-8cf0-422a-a915-8024c298fc33"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие есть способы разрешить Race Condition?</td></tr><tr id="bfe6f854-e552-4c8e-a2d2-6f3709e43778"><td id="FkWA" class="" style="width:456.3359375px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое ThreadPool?</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
