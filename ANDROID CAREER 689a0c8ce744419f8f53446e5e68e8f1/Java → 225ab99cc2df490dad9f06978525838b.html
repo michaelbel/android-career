@@ -1,0 +1,798 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Java →</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="225ab99c-c2df-490d-ad9f-06978525838b" class="page sans"><header><img class="page-cover-image" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/michaelbely_java_programming_language_orange_color_e693a9db-a344-44db-b63f-ad32db774d7e.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/java.svg"/></div><h1 class="page-title"><strong>Java →</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="168be0fa-6fbb-492a-bfc7-efef95e27b80" class="simple-table"><tbody><tr id="af7a637b-52ea-4cf4-93c3-40e9651332c7"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>08.08.2023</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/basics-types-operators-arrays">https://javastudy.ru/interview/basics-types-operators-arrays</a></td></tr><tr id="52781d08-b40e-41ad-8b5c-71ff1897587a"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>11.08.2021</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/java-oop">https://javastudy.ru/interview/java-oop</a></td></tr><tr id="29cfcfb6-efb0-4730-9d9d-4929c3a57bc0"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>16.01.2020</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/java-oop2">https://javastudy.ru/interview/java-oop2</a></td></tr><tr id="4bda89b3-7fdd-4f7f-9a24-122259490813"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>19.02.2020</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/java-oop3">https://javastudy.ru/interview/java-oop3</a></td></tr><tr id="4cbfac8c-894e-4cd3-830e-8ca5f2e70c80"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>17.09.2010</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="http://www.skipy.ru/technics/objCompTh.html">http://www.skipy.ru/technics/objCompTh.html</a></td></tr><tr id="5e116373-5f27-4233-b9f6-8070999e992b"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>03.07.2021</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/strings">https://javastudy.ru/interview/strings</a></td></tr><tr id="d0725dfe-c341-4e9e-b7b1-dee98e75b3d2"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>28.07.2020</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javarush.com/groups/posts/modifikator-static-java">https://javarush.com/groups/posts/modifikator-static-java</a></td></tr><tr id="c78198b9-5214-4020-8cee-8417358b73ef"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>15.12.2020</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/input-output">https://javastudy.ru/interview/input-output</a></td></tr><tr id="7a4da557-abf2-4759-b215-1968281a5f76"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>01.12.2021</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/exceptions">https://javastudy.ru/interview/exceptions</a></td></tr><tr id="a0fc65a8-a7ae-438e-bd25-f5336c451887"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>15.07.2019</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javarush.com/groups/posts/2315-stiranie-tipov">https://javarush.com/groups/posts/2315-stiranie-tipov</a></td></tr><tr id="6f5adc44-be02-433f-b830-8356895a2b84"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>13.05.2019</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javarush.com/groups/posts/2281-dinamicheskie-proksi">https://javarush.com/groups/posts/2281-dinamicheskie-proksi</a></td></tr></tbody></table><table id="da8a646a-017b-4306-959c-f43e93b1eea5" class="simple-table"><tbody><tr id="d3351878-0be3-401c-a881-501b55744838"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>18.01.2024</code></mark></td><td id="EkVy" class="" style="width:491px"><a href="https://habr.com/ru/articles/787166/">https://habr.com/ru/articles/787166/</a></td></tr><tr id="c1eda1de-a4dc-4cfe-858b-d3895678ad0e"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>28.07.2020</code></mark></td><td id="EkVy" class="" style="width:491px"><a href="https://habr.com/ru/articles/512730/">https://habr.com/ru/articles/512730/</a></td></tr><tr id="e43b1c18-25a1-4a97-b3d5-f9547e94a967"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>11.12.2012</code></mark></td><td id="EkVy" class="" style="width:491px"><a href="https://habr.com/ru/post/162017">https://habr.com/ru/post/162017</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Types</summary><div class="indented"><h3 id="4ddf9c2a-ff72-4053-8975-385a9feb1e24" class=""><strong>Basic types</strong></h3><p id="fbf4f692-af64-452c-b7ff-b06c826eadda" class="">Примитивные типы. Есть 8 типов деляется на 4 группы:<br/> • целые числа - <br/><code>byte</code> <code>short</code> <code>int</code> <code>long<br/><br/></code> • числа с плавающей точкой (иначе вещественные) - <code>float</code> <code>double<br/><br/></code> • логический тип данных - <code>boolean<br/><br/></code> • символьный тип данных - <code>char</code></p><p id="ff01dcb2-3ea4-4912-9a7e-702ca144c0e6" class="">
+</p><h3 id="874bb41e-54f2-4649-93ae-ce0ae1cb1250" class=""><strong>Reference types</strong></h3><p id="cf245394-8f11-4b62-9b29-a9c693bad023" class="">Ссылочные типы: <code>Byte</code> <code>Short</code> <code>Integer</code> <code>Long</code> <code>Float</code> <code>Double</code> <code>Boolean</code> <code>Character</code>. У классов-оберток есть ряд характеристик, не свойственных примитивам. У каждого примитивного типа данных есть свой класс-обертка. Ссылочный тип данных, который “оборачивает” своего примитивного младшего брата в Java-объект. Ниже приведены примитивные типы данных и соответствующие им классы обертки<br/> • это классы: при работе с классам-обертками мы работаем с объектами<br/> • данные объекты могут быть null<br/> • предоставляют ряд констант и методов, упрощающих работу с определенным типом данных<br/></p><p id="9975c57a-1f53-483f-bc9b-0af9f66f7f03" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Object</summary><div class="indented"><h3 id="16e58286-58fb-4010-8be1-c8d2ee9307a6" class=""><code><strong>Object</strong></code></h3><p id="539cddcd-3fc7-46af-8d42-20f479e0c6f8" class="">Все классы являются наследниками суперкласса Object. Это не нужно указывать явно. Объект Object может ссылаться на объект любого другого класса. </p><p id="884dc2bb-b160-481f-bcbc-669ad9fabf64" class="">
+</p><h3 id="7b3da2e1-91a5-4c99-bc1e-d625a955bc5a" class=""><strong>Methods</strong></h3><p id="b6f1ab4b-7c68-41c5-95ff-9503dd39161c" class="">• <code>equals</code> сравнивает объекты<br/>• <br/><code>hashCode</code> возвращает хэш-код (битовая строка фиксированной длины, целочисленный результат работы метода, которому как входной параметр передан объект)<br/>• <br/><code>toString</code> возвращает строковое представление объекта<br/>• <br/><code>clone</code> клонирование объекта. Объявлен как protected, нужно переопределить, чтобы воспользоваться. Для этого нужно реализовать интерфейс Cloneable, чтобы соблюсти контракт<br/>• <br/><code>finalize</code> вызывается сборщиком мусора когда ссылок на объект больше нет.<br/>• <br/><code>getClass</code> возвращает в рантайме класс данного объекта<br/>• <br/><code>notify</code> просыпается один поток, который ждет на “мониторе” данного объекта<br/>• <br/><code>notifyAll</code> просыпаются все потоки, которые ждут на “мониторе” данного объекта<br/>• <br/><code>wait</code> приводит данный поток в ожидание, пока другой поток не вызовет notify() или notifyAll() методы для этого объекта<br/>• <br/><code>wait(long timeout)</code> поток переходит в режим ожидания в течение указанного времени<br/>• <br/><code>wait(long timeout, int nanos)</code> приводит данный поток в ожидание, пока другой поток не вызовет notify() или notifyAll() для этого метода, или пока не истечет указанный промежуток времени</p><p id="f7cb6510-d066-49bb-ba70-b490e8fe97ca" class="">
+</p><h3 id="05186182-abd7-470b-94bc-47b8a8e3c8a8" class=""><code><strong>hashCode</strong></code></h3><p id="4ca7c5ea-65fa-4a05-acde-a7b9e1d3eaa8" class="">Это число, битовая строка фиксированной длины, полученная из массива произвольной длины (то есть из объекта), целочисленный результат работы метода, которому в качестве входного параметра передан объект. Вычисление нативное (на C++), используется алгоритм Park Miller, в основе которого random. При каждом запуске приложения у объекта будет разный хеш-код • для одного и того же входного объекта хеш-код всегда будет одинаковым<br/>• если хеш-коды разные, то и входные объекты гарантированно разные<br/>• если хеш-коды равны, то входные объекты не всегда равны<br/>• количество хеш-кодов ограничено типом int, поэтому хеш-коды разных объектов могут совпадать<br/>• коллизия - ситуация, когда у разных объектов одинаковые хеш-коды. Вероятность возникновения коллизии зависит от используемого агоритма генерации хеш-кода. Коллизии неизбежны, так как вариантов хешей меньше, чем потенциальных объектов<br/>• какие поля использовать для посчета хеш-кода? - те, которые используются при определении метода equals<br/>• генерируется один раз для каждого объекта при первом вызове метода hashCode, после чего хранится в объекте для последующих вызовов<br/>• число значений hashcode равно диапазону типа int — 2^32<br/></p><p id="57ef8ab6-e59d-4ed6-a5d1-172638c457b9" class="">
+</p><h3 id="09d5e5da-5e08-41bd-9558-c102fd86249a" class=""><code><strong>equals</strong></code></h3><p id="dce97d36-48fc-46c2-8e34-cf79dfd8ccaf" class="">Эквивалентность. Сравнивает содержимое объектов. Стандартная реализация метода equals в Object вернет true лишь в одном случае — когда ссылки указывают на один и тот же объект (адрес объекта в памяти). Содержимое полей не учитывается. Если у двух объектов одного и того же класса содержимое одинаковое, то и хеш-коды должны быть одинаковые. Поэтому, при создании пользовательского класса, принято переопределять методы hashCode() и equals() таким образом, чтобы учитывались поля объекта<br/>• одинаковые объекты — это объекты одного класса с одинаковым содержимым полей<br/>• реализация этого метода для нового класса ложится на плечи разработчика<br/>• при переопределении equals обязательно нужно переопределить hashCode (это даст равенство хеш-кодов для равных обектов, распределено полученное значение будет точно так же, как и исходные данные)<br/>• равные объекты должны возвращать одинаковые хеш-коды <br/>• если переопределить equals без hashCode - классы и методы будут некорректно работать. У объекта HashMap пара, помещенная в Map возможно не будет найдена в ней при обращении, если используется новый экземпляр ключа<br/>• реализация equals должна подчиняться правилам рефлексивности, симметрии, транзитивности и непротиворечивости<br/></p><p id="c6beaf67-70c7-4d87-a2fc-91dde90c38c1" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Class</summary><div class="indented"><h3 id="545076ef-91c9-465b-9536-281db8599b11" class="">Статическая загрузка классов</h3><p id="3a1d02f8-04d9-49e6-8b45-aebc4b08beb9" class="">После запуска java-приложения все классы которые приложение создает через <code>new</code> (те классы которые импортируются директивой <code>import</code>) будут загружены загрузчиком классов перед запуском приложения.</p><p id="3fc5128e-d885-4906-8a8e-01d9a60c21ac" class="">
+</p><h3 id="fe0e2a9c-89a0-4083-bd77-bd5d6b0a6c61" class="">Динамическая загрузка классов</h3><p id="263366fc-c18a-4f2f-b749-16b4badb6acc" class="">Возможность загружать классы после старта. После можно создавать экземпляры этого класса через Reflection Api. Вариант является ненадежным с точки зрения целостности программы, так как нужно руками обеспечить попадание этого класса в область в которой его увидит загрузчик классов тогда как при статической загрузке это проверяет компилятор. Однако это дает возможности создавать действительно модульные системы в которых интерфейс и реализация могут быть разделены физически по разным .jar. Классы могут быть загружены и выгружены динамически что позволяет строить гибкие приложения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="78960e8f-b4dc-482d-b4f1-1b2101bd45ff" class="code"><code class="language-Java">Class.forName(&quot;path.to.class.ClassName&quot;);</code></pre><p id="ddff9cfc-76ec-4ded-ba33-4ae47ecdb4da" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Strings</summary><div class="indented"><h3 id="817402eb-eb0b-42af-88f4-bc2eb91c3427" class=""><code><strong>String</strong></code></h3><p id="64d04a4b-c0d0-488a-8066-3b1fc9c6f36b" class="">Последовательность символов. Все строковые классы — final (от них нельзя унаследоваться). String - immutable final class - созданный объект класса String не может быть изменен.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="febb7dc7-2d29-42b6-90a2-1421bccbe035" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">String name = &quot;Bob&quot;;</code></pre><p id="e7751f2b-b591-4f21-9735-820559a15d9a" class="">
+</p><h3 id="c2642bb5-13ab-4aaf-9f32-cef696a899d0" class=""><code><strong>StringBuffer</strong></code></h3><p id="122d6238-cf43-4144-87f7-901abb81fc68" class="">Строки являются неизменными поэтому частая их модификация приводит к созданию новых объектов, что в свою очередь расходует память. Для решения этой проблемы был создан класс <code>StringBuffer</code> который позволяет более эффективно работать над модификацией строки. Класс является mutable то есть изменяемым — используйте его, если хотите изменять содержимое строки. <code>StringBuffer</code> может быть использован в многопоточных средах так как все необходимые методы являются синхронизированными.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="80203a50-51ec-44cb-8e78-0c36d5516c56" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">StringBuffer stringBuffer = new StringBuffer();
+stringBuffer.append(&quot;abc&quot;).append(&quot;def&quot;);</code></pre><p id="adbdb0e1-f623-4ee0-ada1-c9748b0c81b4" class="">
+</p><h3 id="98e4b9e7-7c03-4d26-bed2-9dacd8cabc54" class=""><code><strong>StringBuilder</strong></code></h3><p id="86b46e3d-4466-4878-bbe3-33887a854267" class="">StringBuilder — класс что представляет изменяемую последовательность символов. Класс был введен в Java 5 и имеет полностью идентичный API с <code>StringBuffer</code>. Единственное отличие — StringBuilder не синхронизирован. Это означает, что его использование в многопоточных средах нежелательно. Следовательно, если вы работаете с многопоточностью идеально подходит <code>StringBuffer</code> иначе используйте <code>StringBuilder</code> который работает намного быстрее в большинстве реализаций.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca9e9329-7d27-4597-8ddf-28a4da9cc7a1" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">StringBuilder stringBuilder = new StringBuilder();
+stringBuilder.append(&quot;abc&quot;).append(&quot;def&quot;);</code></pre><p id="e941c8f7-d5ed-4072-bad0-9a4628e855c2" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Arrays</summary><div class="indented"><p id="073a8f76-e600-4c67-a2f0-401301a39639" class="">Используются для хранения нескольких значений в одной переменной вместо объявления отдельных переменных для каждого значения. Доступ по индексу. Имеют фиксированный размер, не изменить после объявления. Лучше по производительности.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3726d54a-43b1-4940-9a02-040d413f6b36" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">String[] people = { &quot;Bob&quot;, &quot;Alice&quot;, &quot;John&quot; };
+int[] numbers = new int[10];</code></pre><p id="6d525b65-11fb-47c2-9c17-22c4f438b7e2" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Serialization</summary><div class="indented"><h3 id="d5fe4b8a-857e-4964-a1c1-31450449f5c1" class=""><code><strong>Serializable</strong></code></h3><p id="b64a3248-bf41-47d6-aa53-06efbfa9f8b1" class="">Стандартный интерфейс Java. Объекты, реализующие этот интерфейс автоматически сериализуются. Под капотом рефлексия, поэтому медленный. Есть режим ручного управления через методы <code>readObject</code> <code>writeObject</code>. </p><p id="2d056167-29f3-4448-8387-f92a38264df6" class="">
+</p><h3 id="d834681b-1b41-485f-be97-e96cb3610a29" class=""><code><strong>transient</strong></code></h3><p id="f3a5a207-f05b-44b8-ad27-6bcfb214c4f6" class="">Игнорировать поле при сериализации/десериализации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b09f22ab-8f0a-420b-b2e6-53d1d2df6d5c" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">class Book implements Serializable {
+    private String name;
+    private transient String description;
+}</code></pre><p id="fd9490c2-3f21-43ee-84e3-7298b75aa8ae" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Modifiers</summary><div class="indented"><h3 id="b96c967d-53dc-4580-8331-d69f9b4c01f1" class=""><code><strong>static</strong></code></h3><p id="5fc98c31-d5fd-40ba-bf53-ab1e74a0be11" class="">Модификатор применяемый к полю блоку методу или внутреннему классу. Данный модификатор указывает на привязку субъекта к текущему классу. <code>static</code> означает что переменная<strong> </strong>или<strong> </strong>функция<strong> </strong>является<strong> </strong>общей<strong> </strong>для<strong> </strong>всех<strong> </strong>экземпляров<strong> </strong>этого<strong> </strong>класса<strong> </strong>поскольку<strong> </strong>она<strong> </strong>принадлежит типу а не самим фактическим объектам. Итак если у вас есть переменная: private static int i = 0; и вы увеличиваете ее (i++) в одном экземпляре изменение будет отражено во всех экземплярах. Если переменная не статическая то у каждого нового объекта данного класса будет своё значение этой переменной меняя которое мы меняем его исключительно в одном объекте.</p><p id="26ec86a6-dc18-472a-bfe1-48da36e0a517" class="">• статические поля и методы не потокобезопасны (Thread-safe). Это одна из наиболее частых причин возникновения проблем связанных с безопасностью мультипоточного программирования. Учитывая что каждый экземпляр класса имеет одну и ту же копию статической переменной, то такая переменная нуждается в защите — «залочивании» классом. Поэтому при использовании статических переменных, убедитесь, что они должным образом синхронизированы (synchronized), во избежание проблем, например таких как «состояние гонки» (race condition).<br/>• статические методы не переопределяются. всегда вызывается метод родительского класса<br/></p><p id="b82f951a-4c22-4a3e-88ac-83b41eeb6ebf" class="">
+</p><p id="ca59fe07-967c-4493-8d16-537011362911" class="">В статическом блоке инициализируются статические переменные.</p><p id="7390afd0-d25e-4651-81ea-9cd75f2da62b" class="">
+</p><p id="2285588e-38ed-46d3-9116-f1fcdc6fe2e9" class="">Статический метод может обратиться только к статическим переменным.</p><p id="0ab8826e-2dc2-4b57-a56b-bd6398c54815" class="">
+</p><p id="860f7041-f7cb-43d0-b98a-ee6b1c0cf885" class="">Статическим классом может быть только внутренный класс. Данный класс можно наследовать как и он может наследоваться от любого другого класса и имплементировать интерфейс. Статический вложенный класс ничем не отличается от любого другого внутреннего класса за исключением того что его объект не содержит ссылку на создавший его объект внешнего класса. У него есть доступ к приватным статическим переменным внешнего класса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="41831408-be5e-4876-8261-b3b089ec8e8b" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">static class Cat {
+
+    static String name = &quot;Barsik&quot;;
+
+    static {
+        name = &quot;Oscar&quot;;
+    }
+
+    public static void rename() {
+        name = &quot;Tom&quot;;
+    }
+    
+    public static class Car {
+       public int km;
+  }
+}</code></pre><p id="cf3b8429-40ee-459a-aa93-eea374078340" class="">
+</p><p id="089e9bf4-0623-4eb4-b7f5-78641b63f83a" class="">• Нельзя получить доступ к нестатическим членам класса внутри статического контекста (метода/блока).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e2adb502-b12a-44a3-9214-0cb8d352ff49" class="code"><code class="language-Java">public class Counter {
+		
+		private int count;
+		
+		public static void main(String args[]) {
+			  System.out.println(count); // compile time error
+		}
+}</code></pre><p id="6882c3ca-8501-4ab9-a2dd-6cd437186771" class="">
+</p><h3 id="afd11aee-e447-4a53-8f80-bf8d839c7ff9" class=""><code><strong>final</strong></code></h3><p id="0bd206bb-87f4-4298-86dd-343f85459a46" class="">Запретить наследование для классов. Запретить переопределять методы в подклассах. Сделать переменные неизменяемыми. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="81f31e92-0379-458b-b07d-30b60db4aedf" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">final class Cat {
+
+    final String name = &quot;Barsik&quot;;
+
+    final void main() {}
+}</code></pre><p id="4f0b4204-c3a0-4727-ad4d-76a386eac984" class="">
+</p><h3 id="d2f11e62-5f9e-4675-adc9-22ec9912c331" class=""><code><strong>public</strong></code></h3><p id="8f7684fd-391c-4745-80d1-97f270e7a69c" class="">Поля и методы видны другим классам из текущего пакета и из внешних пакетов. </p><p id="6d80603e-5231-4037-8a8a-22a066f1e900" class="">
+</p><h3 id="1822af49-e32c-47d6-8dd8-532c89f5519d" class=""><code><strong>private</strong></code></h3><p id="fe224e77-8754-4047-83fc-f4aa3631ccca" class="">Доступен на уровне класса. </p><p id="9f3cccd6-336e-49f9-b30a-0967fbed1944" class="">
+</p><h3 id="eac0ec81-0549-4ade-8b38-2543268c6e58" class=""><code><strong>protected</strong></code></h3><p id="1071fd61-ceea-4b9c-8883-0ee8d872e149" class="">Доступен из любого места в текущем классе или пакете или в производных классах, даже если они находятся в других пакетах. </p><p id="2757f874-9521-4d9e-beeb-87e0be844563" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">IO</summary><div class="indented"><h3 id="3f98db56-b2e1-41a2-8a92-92f60aa13543" class=""><code><strong>InputStream</strong></code><strong> </strong><code><strong>OutputStream</strong></code></h3><p id="190056d7-57f3-4ddc-98cc-1b96b0a0ad81" class="">Bite-oriented streams. Байтовые потоки. В случае ошибки - IOException. </p><p id="727b1a6f-90b1-417b-a84b-a003cab005ef" class="">
+</p><h3 id="5791d4a3-0816-4817-a375-6a58bd8d0015" class=""><code><strong>Reader</strong></code><strong> </strong><code><strong>Writer</strong></code></h3><p id="39e3267d-c73d-427f-a6a2-22ea88616349" class="">Character-oriented streams. Символьные потоки. В случае ошибки - IOException. </p><p id="281244ff-8c8f-467e-bad8-462b16647a67" class="">
+</p><h3 id="76435e28-a2b8-418d-a5fa-da16fefe6253" class=""><code><strong>BufferedInputStream</strong></code><strong> </strong><code><strong>BufferedOutputStream</strong></code><strong> &amp; </strong><code><strong>BufferedReader</strong></code><strong> </strong><code><strong>BufferedWriter</strong></code></h3><p id="639d6327-e5cb-410a-b86e-e4553519d433" class="">Классы-надстройки наделяют существующий поток дополнительными свойствами. Буферизируют поток и повышают производительность. </p><p id="99e351d1-836b-47aa-8f46-0d4111937fa0" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Exceptions</summary><div class="indented"><h3 id="f242cac7-04e5-4285-97f5-d45944dbcb04" class=""><code><strong>Checked Exceptions</strong></code></h3><p id="8566551f-f8c9-49c9-b18c-be35e04e885c" class="">Проверенные (логические) исключения - ошибки при вызове стороннего API, когда мы можем повторить вызов, отменить его или обработать через <code>try</code>-<code>catch</code>. Такие исключения могут быть проверены во время компиляции: <code>ClassNotFoundException</code> <code>IOException</code> <code>SQLException</code>.</p><p id="ded95ffd-ade9-4cce-a393-9350cd75cc01" class="">
+</p><h3 id="72bca7f2-75b4-4d02-b734-fc072b7e56f0" class=""><code><strong>Unchecked Exceptions</strong></code></h3><p id="ead6d784-9b0b-4f55-a785-bb1a01ed5295" class="">Непроверенные исключения (runtime exceptions) - являются ошибками программирования и обычно не должны специально обрабатываться: <code>NullPointerException</code> <code>ArrayIndexOutOfBoundsException</code> <code>ClassCastException</code>.</p><p id="0d653f86-c921-4473-9370-a3750b54a121" class="">
+</p><h3 id="10fd371c-e1ec-4b74-b33e-4ba7e3adce94" class=""><code><strong>throw</strong></code></h3><p id="cdf2a322-653c-4057-a3c4-b207fdc3359a" class="">Метод явного создания исключения. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4eeace6b-91c1-4819-b6a0-74415b2b335d" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">throw new IllegalArgumentException();</code></pre><p id="5ca3a056-e1c2-4deb-be90-62918763a67d" class="">
+</p><h3 id="07e6682e-17b9-41d9-93bc-c72e80abef34" class=""><code><strong>throws</strong></code></h3><p id="1806c1b2-4531-4dcf-9ec5-38e1aa3b1123" class="">Указать все исключения, которые может сгенерировать метод. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7808654-4522-477f-a96e-97a011c621f7" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">public void someMethod() throws NullPointerException, IllegalArgumentException {}</code></pre><p id="781d6dec-51e2-4f9c-bd35-3ef77b7d46c3" class="">
+</p><h3 id="c5cac801-89ae-4a7e-9066-d07f54d532f3" class=""><code>try</code> <code>catch</code> <code>finally</code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="68e12321-c948-4076-a0c9-760d067ebcc7" class="code"><code class="language-Java">try {
+    s = reader.readLine();
+} catch (IOException e) {
+    System.out.println(e.getMessage());
+} finally {
+		reader.close();
+}</code></pre><p id="41728af8-0ab6-499a-b2c8-9ea484f3d9f6" class="">
+</p><h3 id="76fb5507-6bc3-4b53-906f-505cb7b4d914" class=""><code>Throwable</code></h3><p id="4c1bee75-ffea-44ee-be20-7790056cb467" class="">Подразделяется на <code>Error</code> (<code>OutOfMemoryError</code> <code>StackOwerFlowError</code>) и <code>Exception</code> (<code>RuntimeException</code> <code>IOException</code>).</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Enums</summary><div class="indented"><h3 id="97560090-b332-463f-ac76-ebe911be5a10" class=""><code><strong>enum</strong></code></h3><p id="bd7a5366-ba13-437b-a101-a563c11189a5" class="">Перечесления. Набор логически связанных констант. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d8e919f-93bf-4dc6-8929-db60544f1e3c" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">enum Color {
+    RED(&quot;#FF0000&quot;),
+    GREEN(&quot;#00FF00&quot;),
+    BLUE(&quot;#0000FF&quot;), ;
+
+    private String code;
+
+    Color(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+}</code></pre><p id="0ec69ed0-07bd-4e1b-81b6-ec8ffc7ed916" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Generics</summary><div class="indented"><h3 id="aad509eb-0c42-4153-ae77-5bf1b392c0e4" class="">Стирание типов</h3><p id="22ea1e82-a725-4485-8787-4c3917876af8" class="">Внутри класса не хранится никакой информации о его типе-параметре. Эта информация доступна только на этапе компиляции и стирается (становится недоступной) в runtime. Если ты попытаешься положить объект не того типа в свой <code>List&lt;String&gt;</code>, компилятор выдаст ошибку. Этого как раз и добивались создатели языка, создавая дженерики — проверки на этапе компиляции.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Lambda</strong></summary><div class="indented"><p id="5ddf01a6-0c9b-41f9-82d3-e7244053bebc" class="">Анонимный класс.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11d65f83-6030-4a42-a8c2-ffb4f62ccb26" class="code"><code class="language-Java">// Старый способ:
+button.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(&quot;Кнопка нажата. Старый способ!&quot;);
+    }
+});
+
+// Новый способ:
+button.addActionListener( (e) -&gt; {
+    System.out.println(&quot;Кнопка нажата. Lambda!&quot;);
+});</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d130a71f-54ca-4687-b296-2a2ce529d7be" class="code"><code class="language-Java">// Старый способ:
+List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+for(Integer n: list) {
+    System.out.println(n);
+}
+
+// Новый способ:
+List&lt;Integer&gt; list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+list.forEach(n -&gt; System.out.println(n));
+
+// Новый способ с использованием оператора двойного двоеточия ::
+list.forEach(System.out::println);</code></pre><p id="48ec6e30-4a8d-49f5-9c50-0ee28d9d13dc" class="">
+</p></div></details><p id="1a61cf0f-a4e3-47ba-b0af-8fccc44f98c3" class="">
+</p><h3 id="b227a73f-a386-48e2-b0bb-e5c8dd7fca34" class=""><strong>Dynamic Proxy</strong></h3><p id="ae1601cb-62e6-46b1-a024-742c9cdf82c1" class="">Прокси-класс — «надстройка» над оригинальным классом, которая позволяет при необходимости изменить его поведение. Чтобы добавить поведение нам нужен <code>InvocationHandler</code> - перехватчик вызовов. Это специальный интерфейс который позволяет перехватить любые вызовы методов к нашему объекту и добавить нужное нам дополнительное поведение. Нам необходимо сделать собственный перехватчик — то есть, создать класс и реализовать этот интерфейс. Нам нужно реализовать всего один метод интерфейса — <code><strong>invoke</strong></code>. Он делает то что нам нужно — перехватывает все вызовы методов к нашему объекту и добавляет необходимое поведение (здесь мы внутри метода <code>invoke</code> выводим лог в консоль).</p><p id="d18ff7e9-c753-448b-9ccb-a41bb689d606" class="">
+</p><h3 id="22318619-1dd7-4e50-a32e-d2a19f9a7feb" class=""><strong>Project Valhalla</strong></h3><p id="7a45a502-00ba-4f00-ad11-57325566e165" class="">Нововведение в JVM улучшающее производительность. Каждый объект в Java помимо полезной информации содержит еще и т.н. метаданные (или заголовок/хедер). Даст возможность создавать кастомные примитивные или &quot;value&quot; объекты. Эти объекты должны представлять собой плоскую структуру, подобно массиву <code>int[]</code> а не дерево &quot;указателей&quot;.</p><p id="ebf75ad9-c89c-47dd-be0f-996722c6ae02" class="">
+</p><h3 id="79ab0c0a-9e71-455f-b545-27d6b1803bff" class=""><code><strong>native</strong></code></h3><p id="6a47b973-d27b-4812-98a0-d23c81c9deaf" class="">Реализация данного метода выполнена на другом языке (C, C++, ассемблер). Пример - метод <code>hashCode</code> у <code>Object</code>.</p><p id="1fbd25ea-0d12-42dc-9ddd-887cfe403553" class="">
+</p><h3 id="dd7b3b02-27d5-4758-8b0a-f9df765cce3e" class="">Java version match</h3><table id="f0edfb18-8e80-47f5-a974-79072f4b62b1" class="simple-table"><thead class="simple-table-header"><tr id="5573a9c6-d22c-4e34-a660-fbc0fb8b9196"><th id=":~cN" class="simple-table-header-color simple-table-header" style="width:110px">Java Runtime</th><th id="n_gg" class="simple-table-header-color simple-table-header" style="width:71px">Java</th></tr></thead><tbody><tr id="78cc9414-5fd2-4617-ae8c-eb0b59a6f478"><td id=":~cN" class="" style="width:110px">49</td><td id="n_gg" class="" style="width:71px">Java 5</td></tr><tr id="56df6904-7ae3-4dbf-a82c-cf62763bdf0a"><td id=":~cN" class="" style="width:110px">50</td><td id="n_gg" class="" style="width:71px">Java 6</td></tr><tr id="a1060f9a-fbfa-4ae9-83b2-7dbd8e3f30c7"><td id=":~cN" class="" style="width:110px">51</td><td id="n_gg" class="" style="width:71px">Java 7</td></tr><tr id="812c290f-7d5a-46f8-bb4e-5f4c0293b51d"><td id=":~cN" class="" style="width:110px">52</td><td id="n_gg" class="" style="width:71px">Java 8</td></tr><tr id="82e99c76-a1f9-43cc-8d27-66edf558b74a"><td id=":~cN" class="" style="width:110px">53</td><td id="n_gg" class="" style="width:71px">Java 9</td></tr><tr id="2161a6c3-eec4-466f-b237-d8740ae24f3c"><td id=":~cN" class="" style="width:110px">54</td><td id="n_gg" class="" style="width:71px">Java 10</td></tr><tr id="9a80bf57-3906-42e8-b8f7-3af9ce83e148"><td id=":~cN" class="" style="width:110px">55</td><td id="n_gg" class="" style="width:71px">Java 11</td></tr><tr id="7b8b08d5-3a22-40bc-8bbe-1f8631cc40bb"><td id=":~cN" class="" style="width:110px">56</td><td id="n_gg" class="" style="width:71px">Java 12</td></tr><tr id="ab0031b3-5efb-4e5a-b53e-a4d0b932dbce"><td id=":~cN" class="" style="width:110px">57</td><td id="n_gg" class="" style="width:71px">Java 13</td></tr><tr id="4f9f64e1-645b-4180-b7fb-3d3cd6682ffd"><td id=":~cN" class="" style="width:110px">58</td><td id="n_gg" class="" style="width:71px">Java 14</td></tr><tr id="a2b4f92a-58ab-4fef-acde-6257327e0302"><td id=":~cN" class="" style="width:110px">59</td><td id="n_gg" class="" style="width:71px">Java 15</td></tr><tr id="26bcdd51-c8e2-4969-a5ff-e56dce37f361"><td id=":~cN" class="" style="width:110px">60</td><td id="n_gg" class="" style="width:71px">Java 16</td></tr><tr id="227dea8d-f1ca-4172-91ef-639b680b71a1"><td id=":~cN" class="" style="width:110px">61</td><td id="n_gg" class="" style="width:71px">Java 17</td></tr><tr id="31d80400-0853-4a91-9997-3e5dcf4745ed"><td id=":~cN" class="" style="width:110px">62</td><td id="n_gg" class="" style="width:71px">Java 18</td></tr><tr id="cbf82be5-85f2-47d3-96cc-64c5c47131ad"><td id=":~cN" class="" style="width:110px">63</td><td id="n_gg" class="" style="width:71px">Java 19</td></tr><tr id="d634bdaa-5dbc-4d33-8c89-8c486d31e85f"><td id=":~cN" class="" style="width:110px">64</td><td id="n_gg" class="" style="width:71px">Java 20</td></tr><tr id="6f867f01-4f36-4167-9b66-4ddac1a8c8ee"><td id=":~cN" class="" style="width:110px">65</td><td id="n_gg" class="" style="width:71px">Java 21</td></tr></tbody></table><p id="ade0c24a-af5b-405e-96ef-1e43f50c2129" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Java. Вопросы на собесе</mark></summary><div class="indented"><table id="28972d7d-2f24-4c03-b2a7-dffe39c96c2f" class="simple-table"><tbody><tr id="02804221-bb4b-4104-ae24-f087d9addae3"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> Расскажи про методы класса <code>Object</code>. Для чего используются методы <code>equals</code> и <code>hashcode</code> ?</td></tr><tr id="5e5fcf37-1d7e-4648-9531-a91b96157d29"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> Как в Java генерируется метод equals?</td></tr><tr id="5692c3f0-16c4-42ed-a7cf-09a4388cd3f7"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> Расскажи про примитивные и ссылочные типы?</td></tr><tr id="a375c330-a80e-4d85-a8a0-9f7c9c6b358d"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> В чем разница между <code>StringBuffer</code> и <code>StringBuilder</code> ?</td></tr><tr id="41da74b5-07ee-4bbf-912f-546dd10ba86e"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> Расскажи про проверенные и непроверенные исключения?</td></tr><tr id="827e3d3b-857a-478c-a552-2acee123dd88"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> В чем отличие <code>final</code> <code>finally</code> <code>finalize</code> ?</td></tr><tr id="718813d8-464d-4662-9d43-0d64c6a63267"><td id="YMWc" class="" style="width:667px"><strong><mark class="highlight-red">Q:</mark></strong> Статическая и динамическая загрузка классов?</td></tr><tr id="d18620f8-b748-4ccc-b7ed-000dbbd8eb8f"><td id="YMWc" class="" style="width:667px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое стирание типов у дженериков?</td></tr></tbody></table></div></details><p id="e0b479a1-a14e-4df6-b897-18675ac71430" class="">
+</p><figure id="fa1e6663-6c9a-43e6-963d-011ec3fe5a4e" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Collections%20fa1e66636c9a43e6963d011ec3fe5a4e.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Collections%20fa1e66636c9a43e6963d011ec3fe5a4e/java.svg"/>Collections</a></figure><figure id="1345b917-7e18-4724-8e02-1b585ccf3910" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/GC%201345b9177e1847248e021b585ccf3910.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/GC%201345b9177e1847248e021b585ccf3910/java.svg"/>GC</a></figure><figure id="400a8b8f-94cc-42fd-8ff3-a7bf1bb27154" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Thread%20400a8b8f94cc42fd8ff3a7bf1bb27154.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Thread%20400a8b8f94cc42fd8ff3a7bf1bb27154/java.svg"/>Thread</a></figure><figure id="c0579da6-6608-484e-a34f-f477e5df7783" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Concurrent%20c0579da66608484ea34ff477e5df7783.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/Concurrent%20c0579da66608484ea34ff477e5df7783/java.svg"/>Concurrent</a></figure><figure id="004c88fd-ef52-42ad-859a-3b3a18f602ef" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/HashMap%20004c88fdef5242ad859a3b3a18f602ef.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/HashMap%20004c88fdef5242ad859a3b3a18f602ef/java.svg"/>HashMap</a></figure><figure id="3c21bf52-b794-4fb5-9a38-0f20b52c44f1" class="link-to-page"><a href="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/RxJava%203c21bf52b7944fb59a380f20b52c44f1.html"><img class="icon" src="Java%20%E2%86%92%20225ab99cc2df490dad9f06978525838b/RxJava%203c21bf52b7944fb59a380f20b52c44f1/rx.svg"/>RxJava</a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

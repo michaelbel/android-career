@@ -1,0 +1,1047 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Kotlin →</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f2d4f3ec-6d34-4769-9030-b4cc9a8d99a5" class="page sans"><header><img class="page-cover-image" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/michaelbely_kotlin_programming_language_purple_4aef9038-12ed-4463-a9e4-77686207373e.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/jetbrains-kotlin.svg"/></div><h1 class="page-title"><strong>Kotlin →</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="a68a0363-c6ab-4326-a1c4-dee9cd4f504c" class="simple-table"><tbody><tr id="890dccd4-3a5a-47cb-bd33-ec2cd0034080"><td id="n:ou" class="" style="width:101px"><mark class="highlight-brown"><code>09.03.2024</code></mark></td><td id="c{Pl" class="" style="width:831px"><a href="https://youtu.be/62XBpj2hrQw">https://youtu.be/62XBpj2hrQw</a></td></tr><tr id="0957fd0c-05fa-4dfa-bcff-dea5c6256ee2"><td id="n:ou" class="" style="width:101px"><mark class="highlight-brown"><code>20.01.2024</code></mark></td><td id="c{Pl" class="" style="width:831px"><a href="https://youtu.be/9SHvJy5Sghg">https://youtu.be/9SHvJy5Sghg</a></td></tr></tbody></table><table id="81d1ceed-478b-4508-804f-9b81c1d109f3" class="simple-table"><tbody><tr id="32f7523c-a748-4e8b-8211-1339ee44e2ae"><td id="BnNU" class="" style="width:299px"><a href="https://typealias.com/start/">https://typealias.com/start/</a></td></tr></tbody></table><h3 id="b48aea43-a7c1-4a01-b234-bd6f22d6c48e" class=""><strong>Kotlin features, которых нет в Java</strong></h3><p id="a3ddb1bf-655a-4afc-9a1c-990a2ce6320c" class=""> • Null safety<br/> • Extension functions<br/> • Named arguments<br/> • Type inference<br/></p><p id="d5bd7ebd-2471-48bc-a739-e76a51aa8658" class="">
+</p><h3 id="38641778-1928-4215-88d0-18513c529996" class=""><strong>Basic types</strong></h3><p id="775c1bb2-9a21-467a-8391-982c961bd2c9" class="">Примитивные типы. В Kotlin нет примитивных типов данных, все является объектами. <code>Byte</code> <code>Short</code> <code>Int</code> <code>Double</code> <code>Char</code> <code>Float</code> <code>Long</code> <code>Boolean</code> - все это объекты, наследуются от <code>Any</code> и переопределяют его методы.</p><p id="590415ef-f3aa-48ef-b00e-c315f5c2688f" class="">
+</p><h3 id="86f1bed5-71e0-4c41-85ce-dd4eeb364cff" class=""><strong>Null safety</strong></h3><p id="6313bfbc-c963-44dd-b65b-2620b3082d6a" class="">Cистема типов Kotlin различает ссылки на nullable и not null. Для безопасных вызовов используются операторы <code>?.</code> и <code>?:</code> (элвис). Для утверждающего вызова оператор <code>!!</code>.</p><p id="7c09c400-0c6a-400a-b9e3-743fe24c0d3e" class="">
+</p><h3 id="db81b34b-e666-4d82-834f-1361c225448a" class=""><strong>== </strong>vs<strong> ===</strong></h3><p id="03abe9b5-1311-4074-a8d0-2b94545cbf3d" class="">Оператор <code>==</code> сравнивает значения, а <code>===</code> ссылки на переменные.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bcd2abb4-60a1-4b47-92fc-65138c878dbb" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val number = Integer(1)
+val anotherNumber = Integer(1)
+number == anotherNumber // true (structural equality)
+number === anotherNumber // false (referential equality)</code></pre><p id="604438a7-b97b-4421-b9ea-f9a6c7d77559" class="">
+</p><h3 id="94bdb9bd-402f-49b7-8a3e-720dbd55bebe" class=""><code><strong>val</strong></code></h3><p id="01bf77f1-7945-4f92-bbf3-a72cbdc9d868" class="">Постоянная переменная, может быть инициализирована 1 раз, вычисляется в run time. Аналог final в Java.</p><p id="059b63d0-fcd3-4cc9-be0d-223e7691a822" class="">
+</p><h3 id="2f457123-72b5-4e11-945f-9c47747dfbf4" class=""><code><strong>var</strong></code></h3><p id="a55d0f95-142e-4267-b6f1-e34e37df0779" class="">Мутабельная переменная.</p><p id="3f76921f-a660-48a9-9503-2062feef9729" class="">
+</p><h3 id="7effd25f-c43b-48b4-96d1-67b3eec0c734" class=""><code><strong>const</strong></code></h3><p id="f3cceae7-80f3-45fb-881d-f016e5fecc32" class="">Иммутабельна как и val, вычисляется в compile time</p><p id="7d9b57eb-36bd-43fa-a497-830887d05a9b" class="">
+</p><h3 id="b616b891-c52c-4552-83a0-8aaa26b791ba" class=""><code><strong>varargs</strong></code></h3><p id="95d710eb-33b6-4859-a859-6b1683927a2d" class="">Передать переменное количество аргументов</p><p id="eba837c1-9ac5-4514-b809-5269fb480b68" class="">
+</p><h3 id="1edcf4c4-af27-4efa-965c-854c94031715" class=""><code><strong>init</strong></code></h3><p id="df212f9c-8664-49ce-a73c-39ef9ef1d2dd" class="">Обычная inline-функция, вызывается после создания класса и вызова конструктора. Класс может содержать несколько блоков init, вызывающихся последовательно</p><p id="948acdd2-9fcc-42cf-84ca-b74a1b24c25b" class="">
+</p><h3 id="5f326381-8786-492c-b33b-dabaeef33023" class=""><code><strong>lateinit</strong></code></h3><p id="3ba856d9-6cf5-43b9-9778-6b3079cf3772" class="">Используется с мутабельными значениями, когда поле не имеет изначального метода получения или установки значения (внедрение зависимостей, настройка тестов).</p><p id="5b714740-b2a7-495e-9b82-a0f71bc98130" class="">• если вызвать до объявления будет исключение <code>UninitializedPropertyAccessException</code>: lateinit property has not been initialized.</p><p id="d1d6d438-4e70-405d-9c83-19228965df0e" class="">
+</p><h3 id="ac8f159c-f977-4c08-ac10-fed9c671749b" class=""><code><strong>constructor</strong></code></h3><p id="39d34809-3a8f-4c0e-90fe-6bc1c8617c45" class="">В классах можно объявить один или несколько вторичных конструкторов. Каждый вторичный конструктор должен делегировать полномочия первичному конструктору через ключевое слово this</p><p id="4ac74f25-4f0c-4f95-b6ae-015997759ea5" class="">
+</p><h3 id="a9070f2d-2e96-40df-b38b-29e12d4d6ca0" class=""><code><strong>continue</strong></code></h3><p id="50ef4909-70c4-40a1-abb0-ca6520d1d33f" class="">Переходит к следующему шагу ближайшего вложенного цикла. Иногда при использовании цикла возникает необходимость при некоторых условиях не дожидаться выполнения всех инструкций в цикле, перейти к новой итерации. В данном случае когда n будет равно 5, сработает оператор continue. И последующая инструкция, которая выводит на консоль квадрат числа, не будет выполняться. Цикл перейдет к обработке следующего элемента в массиве</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="17c56b70-84e0-4776-a511-61e721f42d6d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">for (n in 1..8) {
+    if (n == 5) continue
+    println(n * n)
+}</code></pre><p id="dcfd9c64-47a5-4f1f-8266-a1c97bc1587d" class="">
+</p><h3 id="ef3f15ba-2508-4a3b-a3f3-a3f91fdd8217" class=""><code><strong>break</strong></code></h3><p id="fbf40a04-70b6-4ebf-8e63-fc1204039bb6" class="">Завершает выполнение цикла. При некоторых условиях нам вовсе надо выйти из цикла, прекратить его выполнение. В данном случае когда n окажется равен 5, то с помощью оператора break будет выполнен выход из цикла. Цикл полностью завершится</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a46c36c7-6d82-4cac-97d8-0c26b4bf66a0" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">for (n in 1..8) {
+    if (n == 5) break
+    println(n * n)
+}</code></pre><p id="f7be7ace-b004-434b-8867-728d11f3bf39" class="">
+</p><h3 id="b3dc0961-830f-4e76-9a00-b06a3374d71c" class=""><code><strong>final</strong></code></h3><p id="d23450d5-a7ac-4c8d-b3a0-a19d457296cd" class="">Запретить повторное переопределение</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df2c2c40-69e2-4b1d-b43e-84d5c59e4f68" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">open class Sam: Person() {
+    final override fun printName() {
+        println(&quot;Sam&quot;)
+    }
+}</code></pre><p id="6a1f103e-8789-45ec-9423-59981b5077ba" class="">
+</p><h3 id="9fa2a88a-bbee-4808-8a43-2020f94ec8c4" class=""><code>tailrec</code></h3><p id="0b053a74-cf36-47b1-b522-c4548ba2d7ec" class="">Сообщить компилятору о выполнении хвостовой рекурсии. Хвостовая рекурсия - рекурсия, при которой любой рекурсивный вызов является последней операцией перед возвратом из функции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9a45cafa-ee88-41dc-a1d8-0827b028bc88" class="code"><code class="language-Kotlin">tailrec fun fibonacci (n: Int, a: Long, b: Long): Long {
+    return if (n == 0) b else fibonacci (n - 1, a + b, a)
+}</code></pre><p id="c1303287-fc56-488d-b149-99f905443220" class="">
+</p><h2 id="35f4892b-d499-4ee2-a3e4-9a058cbc67b6" class="">Types</h2><p id="802b7fcd-cb36-4895-8801-1eadb2352cb7" class="">
+</p><h3 id="11329d1a-246e-4da3-9a66-f3254a05bc7e" class="">Integer types</h3><table id="0370948b-9f00-46b9-80dd-57eafa5173e2" class="simple-table"><thead class="simple-table-header"><tr id="7a107ed0-568f-46c7-b74f-dddb5234030b"><th id="]q]J" class="simple-table-header-color simple-table-header" style="width:70px"><strong>Type</strong></th><th id="O}&gt;o" class="simple-table-header-color simple-table-header"><strong>Size</strong></th><th id="MjgM" class="simple-table-header-color simple-table-header" style="width:286px"><strong>Min value</strong></th><th id="bcrD" class="simple-table-header-color simple-table-header" style="width:283px"><strong>Max value</strong></th></tr></thead><tbody><tr id="f9125c75-6724-49b2-a624-eb6bfa962317"><td id="]q]J" class="" style="width:70px"><code><strong>Byte</strong></code></td><td id="O}&gt;o" class="">8 bits (1 byte)</td><td id="MjgM" class="" style="width:286px">-128</td><td id="bcrD" class="" style="width:283px">127</td></tr><tr id="06c77082-f9f0-4e72-9f30-08ac6e0ae478"><td id="]q]J" class="" style="width:70px"><code><strong>Short</strong></code></td><td id="O}&gt;o" class="">16 bits (2 byte)</td><td id="MjgM" class="" style="width:286px">-32 768</td><td id="bcrD" class="" style="width:283px">32 767</td></tr><tr id="b661c267-76b3-4209-bb09-16aac7d67593"><td id="]q]J" class="" style="width:70px"><code><strong>Int</strong></code></td><td id="O}&gt;o" class="">32 bits (4 byte)</td><td id="MjgM" class="" style="width:286px">-2 147 483 648 (-2 в 31 степени)</td><td id="bcrD" class="" style="width:283px">2 147 483 647 (2 в 31 степени - 1)</td></tr><tr id="5d192779-464f-4735-833f-97c6e7af3bdd"><td id="]q]J" class="" style="width:70px"><code><strong>Long</strong></code></td><td id="O}&gt;o" class="">64 bits (8 byte)</td><td id="MjgM" class="" style="width:286px">-9 223 372 036 854 775 808 (-2 в 63)</td><td id="bcrD" class="" style="width:283px">9 223 372 036 854 775 807 (2 в 63 - 1)</td></tr></tbody></table><h3 id="22b6aef2-e3c7-402c-a700-6e8502d34c4d" class=""><strong>Unsigned Integer types</strong></h3><table id="3f7732df-2fde-48bb-8dbe-6e4b55cb24e3" class="simple-table"><thead class="simple-table-header"><tr id="6f4b36c0-7059-4713-a1f8-6b3ae3514229"><th id="]q]J" class="simple-table-header-color simple-table-header" style="width:74px"><strong>Type</strong></th><th id="O}&gt;o" class="simple-table-header-color simple-table-header"><strong>Size</strong></th><th id="MjgM" class="simple-table-header-color simple-table-header" style="width:84px"><strong>Min value</strong></th><th id="bcrD" class="simple-table-header-color simple-table-header" style="width:283px"><strong>Max value</strong></th></tr></thead><tbody><tr id="17ae1bb4-098d-4892-a9e4-59cb485605bb"><td id="]q]J" class="" style="width:74px"><code><strong>UByte</strong></code></td><td id="O}&gt;o" class="">8 bits (1 byte)</td><td id="MjgM" class="" style="width:84px">0</td><td id="bcrD" class="" style="width:283px">255</td></tr><tr id="179417ab-8e73-44e9-b558-3cc6259fd2a6"><td id="]q]J" class="" style="width:74px"><code><strong>UShort</strong></code></td><td id="O}&gt;o" class="">16 bits (2 byte)</td><td id="MjgM" class="" style="width:84px">0</td><td id="bcrD" class="" style="width:283px">65 535</td></tr><tr id="8d0a2a35-d35a-48b0-8c81-67176970e3ba"><td id="]q]J" class="" style="width:74px"><code><strong>UInt</strong></code></td><td id="O}&gt;o" class="">32 bits (4 byte)</td><td id="MjgM" class="" style="width:84px">0</td><td id="bcrD" class="" style="width:283px">4 294 967 295 (2 в 32 - 1)</td></tr><tr id="3cc7f607-e1ac-4661-a79b-17431e81ce15"><td id="]q]J" class="" style="width:74px"><code><strong>ULong</strong></code></td><td id="O}&gt;o" class="">64 bits (8 byte)</td><td id="MjgM" class="" style="width:84px">0</td><td id="bcrD" class="" style="width:283px">18 446 744 073 709 551 615 (2 в 64 - 1)</td></tr></tbody></table><h3 id="289645ea-4419-41c2-afb7-27bb37f0e544" class=""><strong>Floating-point types</strong></h3><table id="10775311-bedf-4d56-92f3-1169625abce5" class="simple-table"><thead class="simple-table-header"><tr id="c666dc67-a5e2-4e0c-b186-b89e0a91ecf5"><th id="]q]J" class="simple-table-header-color simple-table-header" style="width:79px"><strong>Type</strong></th><th id="O}&gt;o" class="simple-table-header-color simple-table-header"><strong>Size</strong></th><th id="MjgM" class="simple-table-header-color simple-table-header" style="width:118px"><strong>Decimal digits</strong></th></tr></thead><tbody><tr id="f33e5ded-88a1-447c-b41b-62ca7b2b93b1"><td id="]q]J" class="" style="width:79px"><code><strong>Float</strong></code></td><td id="O}&gt;o" class="">32 bits (4 byte)</td><td id="MjgM" class="" style="width:118px">6-7</td></tr><tr id="5254dfbe-2764-4737-96fe-a7f9a7317205"><td id="]q]J" class="" style="width:79px"><code><strong>Double</strong></code></td><td id="O}&gt;o" class="">64 bits (8 byte)</td><td id="MjgM" class="" style="width:118px">15-16</td></tr></tbody></table><p id="87d25aa4-6cad-4c99-a003-352ec6e4c283" class="">
+</p><h3 id="8468c781-f283-4ac4-94ab-3c8b344cec88" class=""><code><strong>Boolean</strong></code></h3><p id="db59d319-1f3a-4bac-8bbe-30e36d64a65d" class="">Может хранить одно из двух значений: true (истина) или false (ложь)</p><p id="bdd78fb8-a10c-412b-84d8-d84cbd771b67" class="">
+</p><h3 id="174c7e1c-0294-4118-bf29-8921749b0929" class=""><code><strong>Char</strong></code></h3><p id="16582c01-eab0-4ba2-b79b-e14362e77eef" class="">Отдельный символ, который заключается в одинарные кавычки.</p><p id="6e2feb41-5a2f-4125-aef1-28ad9f6ed59e" class="">
+</p><h3 id="2da78f91-4bb2-4582-ba62-a3fcaa5cbc82" class=""><code>CharSequence</code></h3><p id="7838a051-437c-4b3a-9047-8e40a23036a0" class="">Представляет читаемую последовательность значений <code>Char</code>.</p><p id="5d86a903-1814-451c-9828-60d432ac6243" class="">• в Kotlin представляет собой интерфейс.</p><p id="34eb9706-8ad8-4c30-9952-0fb9759ae21c" class="">• содержит поле <code>length</code>.</p><p id="61223edc-a085-465a-b89c-da43b7dae767" class="">• содержит методы <code>get</code> и <code>subSequence</code>.</p><p id="92fbe0a1-efd6-4e41-9dfa-73dfbeaca4a8" class="">
+</p><h3 id="722012d1-8ff0-4bd2-85f5-a0c410de5c35" class=""><code><strong>String</strong></code></h3><p id="573e9948-e053-46ab-8009-f3068a29a0fb" class="">Строка представляет последовательность символов, заключенную в двойные кавычки, либо в тройные двойные кавычки.</p><p id="82e6697e-0a14-4aee-bd76-657954f163d8" class="">
+</p><h3 id="3c6470a4-5ec4-40a2-a793-9d5a1f47ff0b" class=""><code><strong>Number</strong></code></h3><p id="55d82cec-74af-4a45-8394-273a3798336d" class="">Суперкласс для всех классов платформы, представляющих числовые значения.</p><p id="800bec8b-431d-4929-8586-c07529c3c30e" class="">
+</p><h3 id="d8f3ed77-1f5f-4270-9f91-12beb90fcc16" class=""><strong>Open-ended ranges </strong><code><strong>..&lt;</strong></code></h3><p id="96d6084b-f20f-4054-be6c-9835809bf8d3" class="">Оператор для выражения диапазона значений. Работает как <code>until</code>. Дает понять, что верхняя граница не включена</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="500c9357-9664-4ed9-b739-1739fdee9638" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">when (value) {
+    in 0.0..&lt;0.25 -&gt; // first quarter
+    in 0.25..&lt;0.5 -&gt; // second quarter
+    in 0.5..&lt;0.75 -&gt; // third quarter
+    in 0.75..1.0 -&gt;  // last quarter  &lt;- note closed range here
+}</code></pre><p id="b43a4b48-851e-4f34-b90c-98129bed83fa" class="">
+</p><h3 id="2e817dc3-eb67-4dd0-8d9c-2c749331a012" class=""><strong>Float vs Double?</strong></h3><p id="6cc6cf27-3861-46ce-9621-a1245b8f6787" class="">Точность Double в 2 раза выше, чем Float. Double занимает 64 бит и может содержать 15 чисел после запятой, Float - 32 бит и 7 чисел после запятой</p><p id="16326a78-0664-4723-908f-ed5dafee6268" class="">
+</p><h3 id="f0e8d957-47ee-443e-8f91-7459fd762072" class=""><strong>Целочисленные типы?</strong></h3><p id="37577c3d-4afa-44bf-ad54-2494e3fb3f44" class="">Объекты целочисленных типов хранят целые числа. Byte, Short, Int, Long. Начиная с Kotlin 1.5: UByte, UShort, UInt, ULong. Кроме чисел в десятичной системе мы можем определять числа в двоичной и шестнадцатеричной системах. Шестнадцатеричная запись числа начинается с 0x, затем идет набор символов от 0 до F, которые представляют число. Двоичная запись числа предваряется символами 0b, после которых идет последовательность из нулей и единиц</p><p id="d7b31fb7-9ce2-4dab-bb52-259c1e0d74d9" class="">
+</p><h3 id="9a5f9c04-a5ea-49d0-b192-888cfa323137" class=""><strong>Числа с плавающей точкой?</strong></h3><p id="eb7da246-6b95-4cb3-a535-89e822deb483" class="">Позволяют хранить дробные числа. В качестве разделителя целой и дробной части применяется точка. Double поддерживает экспоненциальную запись</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="426d76a8-1a29-4f93-954e-03bdd297f7de" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val a: Byte = -10
+val b: Short = 45
+val c: Int = -250
+val d: Long = 30000L
+
+val a: UByte = 10U
+val b: UShort = 45U
+val c: UInt = 250U
+val d: ULong = 30000U
+
+val a: Int = 0x0A1 // 161
+
+val a: Int = 0b0101 // 5
+val b: Int = 0b1011 // 11
+
+val height: Double = 1.78
+val pi: Float = 3.14F
+
+val d: Double = 23e3 // 23 000
+val g: Double = 23e-3 // 0.023
+
+val a: Boolean = true
+val b: Boolean = false
+
+val a: Char = &#x27;A&#x27;
+val b: Char = &#x27;B&#x27;
+val c: Char = &#x27;T&#x27;
+val t: Char = &#x27;\t&#x27; // табуляция
+val n: Char = &#x27;\n&#x27; // перевод строки
+val r: Char = &#x27;\r&#x27; // возврат каретки
+val a: Char = &#x27;\&#x27;&#x27; // одинарная кавычка
+val b: Char = &#x27;\&quot;&#x27; // двойная кавычка
+val c: Char = &#x27;\\&#x27; // обратный слеш
+
+val name: String = &quot;Michael&quot;
+val name: String = &quot;&quot;&quot;Michael&quot;&quot;&quot;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="030206c5-9c71-4e89-bfca-c04e7b019f80" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val range: IntRange = 1..5 // [1, 2, 3, 4, 5]
+val range: CharRange = &#x27;a&#x27;..&#x27;d&#x27;
+val range: LongRange = 0L..1L
+val range: ClosedRange&lt;String&gt; = &quot;a&quot;..&quot;d&quot;
+val range: IntProgression = 5 downTo 1 // 5 4 3 2 1
+val range: IntProgression = 1..10 step 2 // 1 3 5 7 9
+val range: IntProgression = 10 downTo 1 step 3 // 10 7 4 1
+val range: IntProgression = 1 until 9 // 1 2 3 4 5 6 7 8
+val range: IntProgression = 1 until 9 step 2 // 1 3 5 7
+
+val isInRange: Boolean = 5 in 1..5
+val isNotInRange: Boolean = 5 !in 1..5
+
+val numbers: Array&lt;Int&gt; = arrayOf(1, 2, 3, 4, 5)
+val numbers = Array(3) { 5 } // [5, 5, 5]
+
+var i = 1
+val numbers = Array(3) { i++ * 2 } // [2, 4, 6]
+
+val numbers: IntArray = intArrayOf(1, 2, 3, 4, 5)
+val doubles: DoubleArray = doubleArrayOf(2.4, 4.5, 1.2)
+
+val numbers: IntArray = IntArray(3) { 5 }
+val doubles: DoubleArray = DoubleArray(3) { 1.5 }
+
+val table: Array&lt;Array&lt;Int&gt;&gt; = Array(3) { Array(5) { 0 } } // двумерный массив</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b59b6ea-b3d1-4804-81d4-f694031fadd4" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun changeNumbers(vararg values: Int, koef: Int) {}
+
+val numbers: IntArray = intArrayOf(1, 2, 3, 4)
+changeNumbers(*numbers, koef = 2)</code></pre><p id="66f52c86-026d-4aa6-97ac-e33d275ab577" class="">
+</p><h3 id="cfdc755b-d543-4e64-9065-e3fdc6eba455" class="">Операция по модулю</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="da6513f4-9eec-4a5d-8bcd-57fafe5032cf" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val a: Int = 65 % 10  // 5. Возвращает остаток от целочисленного деления двух чисел
+											// 65 / 10 = 6.5. Результатом будет число после запятой
+											// 10 % 3 = 1
+											// 10 / 20 = 0.5. Если целых до запятой нет то результатом будет числитель.</code></pre><p id="85ea4758-ed18-40e1-94fb-997ef116677c" class="">
+</p><h3 id="301da9b4-e2d4-410b-9585-c592e34a30c4" class="">Операторы расширенного присвоения</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="111fdebf-0ff5-4528-a462-16b8d30e884b" class="code"><code class="language-Kotlin">val a: Int = 10
+a += 2 // 12. Эквивалентно a = a + 2
+a -= 2 // 8. Эквивалентно а = а - 2
+a *= 2 // 20. Эквивалентно а = а * 2
+a /= 2 // 5. Эквивалентно а = а / 2
+a %= 3 // 1.</code></pre><p id="edcb81e3-793d-47d1-9f4d-8a6333a4a7fa" class="">
+</p><h3 id="af6ae8ce-ac7e-45b8-b7f1-a7dfe5225e47" class="">Операторы увеличения и уменьшения</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fecd2522-b8f1-47d0-bf70-4f0194e6944d" class="code"><code class="language-Kotlin">var x: Int = 5
+val y = ++x // Префиксный инкремент увеличивает значение на единицу. x должен быть var
+printLn(x)  // 6
+printLn(y)  // 6
+
+var x = 5
+val y = --x // Префиксный декремент уменьшает значение на единицу. x должен быть var
+println(x)  // x = 4
+println(y)  // y = 4
+
+var x = 5
+val y = x++ // Постфиксный инкремент возвращает значение до увеличения на единицу. x должен быть var
+println(x)  // x = 6
+println(y)  // y = 5
+
+var x = 5
+val y = x-- // Постфиксный декремент возвращает значение до уменьшения на единицу. x должен быть var
+println(x)  // x = 4
+println(y)  // y = 5</code></pre><p id="a89105a7-346c-4ae0-a514-b3920d445ae8" class="">
+</p><h3 id="0ee7078d-a07d-4334-bec4-0250cada5eed" class=""><strong>Bit Shift Operations</strong></h3><p id="6ca8cb37-1c2c-4c30-9f87-243de257278d" class="">Kotlin позволяет сдвигать биты целого числа влево или вправо (умножение или деления целого числа на степень двойки.).</p><h3 id="2ebca10b-a120-4088-857f-adacc3027ebe" class=""><code>shl</code></h3><p id="83285e3a-21e8-4621-8d71-b53d18579806" class="">Оператор сдвига влево. Сдвигает биты целого числа влево на указанное количество позиций, сохраняя исходный знак целого числа. Младшие значащие биты с правой стороны значения заполняются нулями. Операция эквивалентна умножению целого числа на n^2.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="86593619-4c72-4a80-b7a9-943e349b9ebb" class="code"><code class="language-Kotlin">@Test
+fun `shifts bits left in an integer`() {
+    assertEquals(512, 128 shl 2)
+}</code></pre><p id="37a3cbb6-0f91-42ca-b704-523982d207d1" class="">
+</p><h3 id="842fb2f6-75a6-4b86-8749-26939c30d78e" class=""><code><strong>shr</strong></code></h3><p id="b09b242f-8894-4020-b73a-5b689f511fcd" class="">Оператор сдвига вправо. Сдвигает биты целого числа вправо на указанное количество позиций. Эта операция эквивалентна делению целого числа на n^2, сохраняя знак исходного целого числа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="67dadebe-b326-4c74-ae64-e0b78043a272" class="code"><code class="language-Kotlin">@Test
+fun `shifts bits right in a positive integer`() {
+    assertEquals(32, 128 shr 2)
+}
+
+@Test
+fun `shifts bits right in a negative integer`() {
+    val a = -128 // 11111111111111111111111110000000
+    val expected = -32 // 11111111111111111111111111100000
+    assertEquals(expected, a shr 2)
+}</code></pre><p id="aefca5d8-863d-4262-9241-05c244852448" class="">
+</p><h3 id="3961b01e-2908-42a0-baa3-dad90a8c1342" class=""><code>ushr</code></h3><p id="507e89fd-6a03-4826-817d-c3b35255aeda" class="">Оператор сдвига вправо без знака. Сдвигает биты целого числа вправо на указанное количество позиций. Избыточные биты, сдвинутые вправо, отбрасываются, а нулевые биты всегда сдвигаются слева. В отличие от оператора <code>shr</code> оператор <code>ushr</code> не сохраняет знак исходного целого числа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="30eb3eac-2e21-47c6-bd16-b274a8bae4b3" class="code"><code class="language-Kotlin">@Test
+fun `shifts unsigned bits right in an integer`() {
+    val a = -128 // 11111111111111111111111110000000
+    val expected = 1073741792 // 00111111111111111111111111100000
+    assertEquals(expected, a ushr 2)
+}</code></pre><p id="d3f7399d-f430-4783-aec8-4aac43f27c22" class="">
+</p><h3 id="4073c5aa-5f08-488a-b9e2-bac66480e69e" class=""><code><strong>Any</strong></code></h3><p id="c498a8ef-704d-450e-8b8a-170b6e24f531" class="">Аналог <code>Object</code> в Java, но с меньшим количеством методов: <code>equals</code> <code>hashCode</code> <code>toString</code>. Все классы в Kotlin - наследники <code>Any</code>.</p><p id="99ce8003-91bd-4360-a7a0-834abb76f045" class="">
+</p><h3 id="0af79a82-5f60-4879-87a0-12874d120831" class=""><code><strong>Unit</strong></code></h3><p id="383926f4-91be-4282-8a43-18044ccb0c6d" class="">Аналог void в Java. У функции возвращаемый тип можно не указывать, если она ничего не возвращает. Unit - объект, который наследуется от Any и имеет один метод - toString</p><p id="51b8d83d-b18e-453b-b8a9-240067bc9978" class="">
+</p><h3 id="956ee746-24d2-44ed-a717-8c56492526e7" class=""><code><strong>Notning</strong></code></h3><p id="1c43677d-355d-45bb-9410-594c43cbb30f" class="">Является подтипом всех типов Kotlin, даже классов с модификатором <code>final</code>. <code>Nothing</code> нельзя создать — у него приватный конструктор. Так как невозможно передать или вернуть тип <code>Nothing</code>, он описывает результат «функции, которая никогда ничего не вернёт». Примером может быть функция, которая выбрасывает exception или в которой запущен бесконечный цикл: в любом из этих случаев она никогда не вернёт значения. В приложениях — независимо от того, какой тип данных возвращает функция, — она может никогда не вернуть данные, потому что произошла ошибка или вычисления затянулись на неопределённый срок. В этом случае имеет смысл использовать <code>Nothing</code>. Который никогда не возвращает управление назад. Используют для методов Error, которые пробрасывают ошибку. Как прыгнуть с обрыва. Unit - прыгнуть с обрыва на веревке и вернуться назад без результата. Удобно использовать в generics, чтобы не возвращать nullable значения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e0d08d03-fbc5-4206-adbf-223fa2bc4370" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">TODO(&quot;do this&quot;) // Пример функции Nothing
+
+sealed class Result&lt;out A: Any, out B: Any&gt; {
+    data class Success&lt;A: Any&gt;(val value: A): Result&lt;A, Nothing&gt;()
+    data class Failure&lt;B: Any&gt;(val error: B): Result&lt;Nothing, B&gt;()
+}</code></pre><p id="ec92ab45-870e-417b-a450-342000208a4a" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Properties</summary><div class="indented"><h3 id="d375e06a-ea27-4969-b3ba-052f856bc68c" class=""><code><strong>get</strong></code></h3><p id="128b2c7d-0068-4860-ae50-128bd315d3e2" class="">Получить значение свойства.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96b5746c-3edc-4656-8c6a-b4e063016835" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val number: Int
+    get() = 1</code></pre><p id="5da55556-8cc2-4a24-a7ae-7ad1cfd3513c" class="">
+</p><h3 id="fd737162-9f9e-454e-a8b3-ae6034bf7668" class=""><code><strong>set</strong></code></h3><p id="a57256f5-6c7b-4e02-bd37-7e68dfb82005" class="">Присвоить новое значение свойству.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d8676031-aa7f-49e6-83a1-e99914209c9d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">var number: Int = 0
+    set(value) {
+        field = value
+    }
+
+var dependency: MyDependency? = null
+    @Inject set</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Lambdas</summary><div class="indented"><p id="dd557c4f-081a-4f01-b3e3-ff9471f1aee8" class="">Функция без названия (анонимная функция). Можно присвоить переменной и передавать как значение. Под капотом статический класс Java с 1 методом, который создается только один раз для всех вызовов</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f460a531-d481-487d-98b3-cc401822d61a" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val printer: (String) -&gt; Unit = { message: String -&gt;
+    println(message)
+}
+
+printer(&quot;Hello&quot;)
+
+val empty: (value: String) -&gt; Boolean
+    get() = { it.isEmpty() }
+
+empty(&quot;World)</code></pre><p id="76d068f2-f90b-4e26-b23d-7c7b01fe7307" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Enums</summary><div class="indented"><p id="c15b8d53-3078-4ee1-a5e9-60b2a790f334" class="">Перечисления представляют тип данных, который позволяет определить набор логически связанных констант</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="188ab6dc-cf34-4cea-8291-2ab01e2474c1" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">enum class Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+enum class Day(val value: Int) {
+    MONDAY(1), TUESDAY(2), WEDNESDAY(3), THURSDAY(4), FRIDAY(5), SATURDAY(6), SUNDAY(7);
+
+    fun getDuration(day: Day): Int {
+        return value - day.value;
+    }
+}
+
+val day: Day = Day.FRIDAY
+println(day.name) // FRIDAY. Возвращает название константы в виде строки
+println(day.ordinal) // 4. Возвращает порядковый номер константы
+println(Day.values().map(Day::name)) // [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY]
+println(Day.entries) // [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY]</code></pre><p id="37535d30-bfe9-44b0-ab4e-e3afc08ca4a2" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Special Identifiers</summary><div class="indented"><h3 id="192939dd-599d-4af1-b325-8cc7d59f6bb1" class=""><code><strong>it</strong></code></h3><p id="5bf6f4d3-c149-4431-bfaf-3c687bcd9051" class="">Используется внутри лямбды для неявной ссылки на ее параметр.</p><h3 id="b61681e0-a9b5-47ab-b27e-ed7d6e6669cf" class=""><code><strong>field</strong></code></h3><p id="c5b791e6-547f-4f70-aaef-f687481f3e9d" class="">Автоматически генерируемое поле, которое непосредственно хранит значение свойства.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9fbc6f2e-769b-415f-85dc-e80ec64b49aa" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">var age: Int = 18
+    set(value) {
+        if (value &lt; 100) {
+            field = value
+        }
+    }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Access Modifiers</summary><div class="indented"><h3 id="3709ab8e-3230-4a6f-ac00-2e86662eb80d" class=""><code><strong>public</strong></code></h3><p id="99f11bb9-48a0-4344-93af-dab770dc2ad4" class="">Видны везде. Общедоступный модификатор по умолчанию</p><p id="6a48ccdd-7563-4b93-9a9c-85c43103a21d" class="">
+</p><h3 id="05ee2e26-cab1-4b3e-b589-1c5d642130af" class=""><code><strong>private</strong></code></h3><p id="fc66c351-6f2a-4652-80e1-9f79cfa1a5b6" class="">Видны только в том файле, в котором определены<br/> • несовместим с override и internal<br/> • можно указать <br/><code>private open class Person</code> нельзя <code>private open fun run()</code></p><p id="b049e706-3d9e-427b-a9e7-559cece4a969" class="">
+</p><h3 id="cfb0c3cb-9079-4c24-9293-783f8c0e35d3" class=""><code><strong>protected</strong></code></h3><p id="313c70ad-bf42-467c-892c-578bc7bba361" class="">Видны в классах и наследниках<br/> • нельзя использовать в методах верхнего уровня, только внутри классов<br/> • если переопределить protected open метод и в наследнике добавить модификатор public - для метода ничего не изменится<br/></p><p id="cb1f60eb-5656-4015-b13c-08176e2ba175" class="">
+</p><h3 id="7a77d33b-f021-4cdd-8044-ea24b134129b" class=""><code><strong>open</strong></code></h3><p id="929efe4b-c51c-4f0a-9e05-10cd5c6d296e" class="">Применяется, чтобы функции и свойства базового класса можно было переопределять. По умолчанию все классы final и без open класс не может быть унаследован</p><p id="b7f826e3-e5fd-4918-9e3e-7eb73189cf90" class="">
+</p><h3 id="5a7f24c2-6976-468d-bfb8-605a0480940b" class=""><code><strong>internal</strong></code></h3><p id="1c805f8a-e034-4a05-a1c1-d8e01c5a820b" class="">Виден на уровне модуля. Не будут индексироваться в других модулях, не будут перегружать компилятор и автодополнение<br/> • в Java нет модификатора internal, при компиляции станет просто общедоступным public<br/> • в Java методы доступа к переменным помеченные как internal будут искажены, чтобы их сложнее было случайно вызвать. Класс при этом не обязательно помечать как internal<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="72cbe3de-0098-4602-9193-3a682420bde7" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">internal class Foo {
+    internal var name: String = &quot;John&quot;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ace3e94f-c0e1-4bf2-9bf2-0e36df1cc628" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Foo foo = new Foo();
+foo.getName$android_app_template_app_main(); // get
+foo.setName$android_app_template_app_main(&quot;name&quot;); // set</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Exceptions</summary><div class="indented"><p id="ace553ec-25d3-4569-80c0-dcae1fa2af21" class="">Исключение представляет событие, которое возникает при выполнении программы и нарушает ее нормальной ход. Конструкция try может возвращать значение. В отличие от Java, в Kotlin нет checked exceptions, исключения не объявляются явно в сигнатурах функций</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e26998c6-51a5-458e-9dda-86a200b0fb36" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">try {
+    // код, генерирующий исключение
+} catch (e: Exception) {
+    // обработка исключения
+} finally {
+    // постобработка
+}</code></pre><p id="b3bc2b4e-d943-4236-ac6b-142f79a252e0" class="">
+</p><h3 id="538cb464-69fc-4e35-b05e-9d636cc77a6d" class=""><code><strong>throw</strong></code></h3><p id="4c566af8-9293-4c33-bcd3-df5474dc4432" class="">Генерирует исключение. Выражение throw имеет тип Nothing</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9bc880f8-1b78-4da6-8dc1-fef7ac9a8e0f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">throw Exception(&quot;Invalid value&quot;)</code></pre><p id="ccc8d4e8-7a70-448f-8697-e5f9eff7c7c4" class="">
+</p><h3 id="6e6d7ac9-6d14-46ee-b01f-c599ff12c18d" class=""><code><strong>Throwable</strong></code></h3><p id="70a9ca8b-f4b1-4941-8000-0aadb1530b79" class="">Базовый класс для всех исключений.</p><p id="c17b08bd-a27c-42b8-bb52-693fecfe2080" class="">
+</p><h3 id="517e0586-fc12-40da-ad1e-d640ba61e746" class=""><code><strong>@Throws</strong></code></h3><p id="a063d838-e00f-4a02-b507-e29e996b4fa2" class="">Сообщает вызывающим объектам Java, что функция может выдать исключение</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="83529b38-c6b2-4846-8468-ef9fa58164de" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">@Throws(IllegalArgumentException::class)
+fun addNumberToTwo(a: Any): Int {
+    if(a !is Int) {
+        throw IllegalArgumentException(&quot;Number must be an integer&quot;)
+    }
+    return 2 + a
+}</code></pre><p id="a0ed5322-b8e0-47b3-a0cf-da468517bdc8" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Smart casts</summary><div class="indented"><h3 id="8332c8c1-ff60-4b97-999d-08c3af5fe1b2" class=""><code><strong>is</strong></code></h3><p id="1312d856-1b08-4fff-a10b-0fcd62cdab53" class="">Проверяет выражение на пренадлежность к определенному типу данных</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d1e5e244-5ba6-4a71-a5dc-ab8c57d1df59" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">hello is String
+hello !is Int</code></pre><h3 id="8b9b69e8-1f34-4078-8bf8-f06d6285eaf5" class=""><code><strong>as</strong></code></h3><p id="88199537-a9d7-4eca-9efb-3488ef8ca162" class="">Приводит значения одного типа к другому</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f116597e-ef3f-4ccb-837a-bf01cfd143e6" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">hello as String
+hello as? String</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Operator overloading</summary><div class="indented"><h3 id="cdeb2f0d-8843-43ea-a967-a2daa2bf3745" class=""><code><strong>operator</strong></code></h3><p id="a3b2326e-bf86-4a6b-ba89-ced593005d45" class="">Определяет для типов ряд встроенных операторов</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3037c29d-9451-48d4-854e-9033cb5c72c8" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class Counter(var value: Int) {
+    operator fun plus(counter: Counter): Counter {
+        return Counter(this.value + counter.value)
+    }
+
+    operator fun minus(counter: Counter): Counter {
+        return Counter(this.value - counter.value)
+    }
+
+    operator fun compareTo(counter: Counter): Int {
+        return this.value - counter.value
+    }
+}
+
+operator fun Counter.plus(value: Int): Counter {
+    return Counter(this.value + value)
+}
+
+operator fun Int.plus(counter: Counter): Counter {
+    return Counter(this + counter.value)
+}
+
+val counter1 = Counter(5)
+val counter2 = Counter(7)
+
+val plus: Counter = counter1 + counter2
+val plus: Counter = 4 + counter1
+val plus: Counter = counter1 + 4
+val minus: Counter = counter1 - counter2
+val compareTo: Boolean = counter1 &gt; counter2</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Type-safe builders (DSL)</summary><div class="indented"><p id="430c1ecb-4125-4e3f-89b7-d91f2a1f92fa" class="">Типобезопасные статически-типизированные билдеры.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c3f8824f-22c5-4309-9087-a1e1f45100c9" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">data class User(
+    var location: Location? = null
+)
+
+data class Location(
+    var long: String = &quot;&quot;
+) {
+    fun long(lambda: () -&gt; String) {
+        this.long = lambda()
+    }
+}
+
+fun user(lambda: User.() -&gt; Unit): User {
+    val user = User()
+    user.apply(lambda)
+    return user
+}
+
+fun location(lambda: Location.() -&gt; Unit): Location {
+    val location = Location()
+    location.apply(lambda)
+    return location
+}
+
+val user = user {
+    location = location {
+        long { &quot;30.0&quot; }
+    }
+}</code></pre><p id="f66382cf-1a17-4633-aaac-e6ee09008880" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Functional Interfaces</summary><div class="indented"><p id="d86be577-2985-46fe-b9a9-cbd7b9297b57" class="">Интерфейсы только с одним абстрактным методом называются функциональными интерфейсами или Single Abstract Method (SAM) интерфейсами. Функциональный интерфейс может иметь несколько неабстрактных членов, но только один абстрактный. Для функциональных интерфейсов вы можете использовать SAM преобразования, которые помогают сделать ваш код более лаконичным и читаемым, используя лямбда-выражения. Чтобы интерфейс был функциональным у него должна быть 1 функция без стандартной реализации. Другие функции могут быть с реализации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="84542918-905d-4483-aa4e-8496331b8651" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun interface IntPredicate {
+   fun accept(i: Int): Boolean
+}
+
+// без преобразования
+val isEven = object : IntPredicate {
+   override fun accept(i: Int): Boolean {
+       return i % 2 == 0
+   }
+}
+
+// с преобразованием
+val isEven = IntPredicate { it % 2 == 0 }
+
+fun main() {
+   println(&quot;Is 7 even? - ${isEven.accept(7)}&quot;)
+}</code></pre><p id="cb509a48-ea2d-4ac4-8004-1471bb4ae203" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Type Aliases</summary><div class="indented"><h3 id="82c3b0d5-f27a-4467-8dbc-1bab3c0cc24d" class=""><code><strong>typealias</strong></code></h3><p id="115d7c6a-650d-4207-9d68-13274cd88064" class="">Псевдонимы типов. Предоставляют альтернативные имена для существующих типов. Если имя типа слишком длинное, можно создать другое более короткое и использовать вместо него<br/> • nested and local type aliases are not supported<br/> • к typealias можно применять модификаторы доступа public, private, internal<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96c6f2bb-28d5-48e9-a13c-b547ff09cba2" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">typealias OnClick = (view: View) -&gt; Unit
+
+class A {
+    inner class Inner
+}
+
+typealias AInner = A.Inner
+
+typealias Predicate&lt;T&gt; = (T) -&gt; Boolean
+
+fun foo(p: Predicate&lt;Int&gt;) = p(42)
+
+fun main() {
+    val f: (Int) -&gt; Boolean = { it &gt; 0 }
+    println(foo(f)) // prints &quot;true&quot;
+
+    val p: Predicate&lt;Int&gt; = { it &gt; 0 }
+    println(listOf(1, -2).filter(p)) // prints &quot;[1]&quot;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Annotations</summary><div class="indented"><table id="ad86c573-6506-417a-809c-c9939143e228" class="simple-table"><tbody><tr id="03f73819-49a4-48cc-9723-25133832f07e"><td id="hKTs" class=""><code><strong>@JvmStatic</strong></code></td><td id="YM&gt;o" class="" style="width:751px">Сообщает компилятору, что метод является статическим и может использоваться в коде Java.</td></tr><tr id="9d96345e-8ef0-4dbe-8826-e9ad63d75d95"><td id="hKTs" class=""><code><strong><strong>@JvmOverloads</strong></strong></code></td><td id="YM&gt;o" class="" style="width:751px">Чтобы использовать значения по умолчанию, переданные в качестве аргумента в коде Kotlin из кода Java.</td></tr><tr id="9ff1128b-0808-4c85-aa6c-3f5fe441249f"><td id="hKTs" class=""><code><strong>@JvmField</strong></code></td><td id="YM&gt;o" class="" style="width:751px">Для доступа к полям класса Kotlin из кода Java без использования каких-либо геттеров и сеттеров.</td></tr><tr id="496bdf19-8702-4cd8-a7a7-e25a85c370d0"><td id="hKTs" class=""><code><strong>@JvmInline</strong></code></td><td id="YM&gt;o" class="" style="width:751px">Указывает для JVM, что класс является value-классом.</td></tr></tbody></table><p id="750f5f7f-ab18-4bd5-9f67-f76d98ad107a" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Concurrent</summary><div class="indented"><h3 id="e726a792-a5cb-4625-aeb2-70ea1653d8e4" class=""><code>@Synchronized</code> </h3><p id="255a02ab-384b-4816-b460-94a0c20444f3" class="">Аннотация для методов, геттеров и сеттеров. Метод будет защищен от одновременного выполнения несколькими потоками монитором экземпляра.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19140edc-09d2-4836-a9b9-7b4a28499ec2" class="code"><code class="language-Kotlin">var value: Int = 0
+    @Synchronized get() = 5
+    @Synchronized set(value) { field = value }
+    
+@Synchronized
+fun someMethod() {}    </code></pre><p id="30cc733d-98b5-495c-8867-0d30ecea4720" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Math</summary><div class="indented"><p id="a8b064f0-b403-46ca-8c2b-b5ee88d56962" class="">Round a number.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="750d3693-6f8d-4ad6-8560-afab32eba1a0" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val value: Double = 3.14123456789
+val roundedValue: Double = value
+    .toBigDecimal()
+    .setScale(2, RoundingMode.HALF_EVEN)
+    .toDouble() // 3.14</code></pre><p id="f210692f-41dd-48e0-850d-b54b5c3d45b8" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Preconditions</strong></summary><div class="indented"><h3 id="5ab90c0f-88a9-408d-bfea-06b16279c275" class=""><code><strong>require</strong></code></h3><p id="8895e503-f932-4bad-ae47-edc7990d3ec6" class="">Функция для проверки аргументов.<br/>Принимает параметры: <br/><code>value</code> и <code>lazyMessage</code>.<br/>Если <br/><code>value</code> = false, то функция вернет <code>IllegalArgumentException</code> с сообщением <code>lazyMessage</code><em><strong>.<br/><br/></strong></em>Можно передать только <code>value</code> тогда текст ошибки будет стандартным: <mark class="highlight-brown">Failed requirement.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7065b3b-226c-4c23-8f50-bf699ca30abb" class="code"><code class="language-Kotlin">fun printPositiveNumber(num: Int) {
+    require(num &gt; 0)
+    println(num)
+}
+
+fun printPositiveNumber(num: Int) {
+    require(num &gt; 0) { &quot;Number must be positive&quot; }
+    println(num)
+}</code></pre><p id="b4207eae-18e9-4e65-b613-2dccaf789cb1" class="">
+</p><h3 id="fd2536e7-5cd9-4365-989b-cf191eb88f03" class=""><code>requireNotNull</code></h3><p id="1119b4d2-5520-42fc-9f6b-09a2a60341c5" class="">Функция для проверки аргумента на null.<br/>Принимает параметры: <br/><code>value</code> и <code>lazyMessage</code>.<br/>Если value = null, то функция вернет <br/><code>IllegalArgumentException</code> с сообщением <code>lazyMessage</code>.<br/>Можно передать только <br/><code>value</code> тогда текст ошибки будет стандартным: <mark class="highlight-brown">‎Required value was null.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="495f4510-96f0-4da7-a365-44f06f199ace" class="code"><code class="language-Kotlin">private val _numberFlow = MutableStateFlow(0)
+val numberFlow = _numberFlow.asStateFlow()
+
+val number = requireNotNull(numberFlow.value)</code></pre><p id="469fc820-70ed-422f-8a02-47a3f66185ff" class="">
+</p><h3 id="a7d08523-fa76-4d90-8daa-f9e52564a65f" class=""><code>check</code></h3><p id="1459051c-9ad9-4cc1-8517-5beb0b30cb23" class="">Функция для проверки состояния.<br/>Принимает параметры: <br/><code>value</code> и <code>lazyMessage</code>.<br/>Если <br/><code>value</code> = false, то функция вернет <code>IllegalStateException</code> с сообщением переданным в <code>lazyMessage</code><em><strong>.<br/><br/></strong></em>Можно передать только <code>value</code> тогда текст ошибки будет стандартным: <mark class="highlight-brown">Check failed.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fa02357f-8473-440a-bf1d-2435db39d153" class="code"><code class="language-Kotlin">var someState: String = &quot;&quot;
+val state = check(someState) { &quot;State must be not empty&quot; }</code></pre><p id="313a4236-7b16-4abc-ac87-d5c51f1c7c80" class="">
+</p><h3 id="8d297ba9-0bef-4f08-afa9-f5018527b522" class=""><code>checkNotNull</code></h3><p id="82744ca1-1918-409e-aee6-66828746de73" class="">Функция для проверки состояние на null.<br/>Принимает параметры: <br/><code>value</code> и <code>lazyMessage</code>.<br/>Если value = null, то функция вернет <br/><code>IllegalStateException</code> с сообщением <code>lazyMessage</code>.<br/>Можно передать только <br/><code>value</code> тогда текст ошибки будет стандартным: <mark class="highlight-brown">Required value was null.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b04263d7-27c9-4001-ba6c-c47af5510d9a" class="code"><code class="language-Kotlin">var someState: String? = null
+val state = checkNotNull(someState) { &quot;State must be not null&quot; }</code></pre><p id="b33f0b8f-c560-4757-a6b1-89acb48e2a66" class="">
+</p><h3 id="9a68ab97-3342-4039-b47c-aa9b3bae7d93" class=""><code>error</code></h3><p id="735ea34b-c6e0-497c-9168-9cbf21767458" class="">Функция для намеренного вызова исключения в коде. Выдаст <code>IllegalStateException</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a2593212-406e-4f70-ace4-9f81b204587f" class="code"><code class="language-Kotlin">fun divide(a: Int, b: Int): Int {
+    if (b == 0) {
+        error(&quot;Cannot divide by zero&quot;)
+    }
+    return a / b
+}</code></pre><p id="c97ebdaf-4af4-4a33-a2db-4487a56b27a7" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Kotlin. Вопросы на собесе</mark></summary><div class="indented"><table id="2ab5101d-6385-4125-aaac-0159867271c8" class="simple-table"><tbody><tr id="c6706c45-4b16-41bc-85dc-957ea9cea8c4"><td id="dp^N" class="" style="width:518px"><strong><mark class="highlight-red">Q:</mark></strong> Чем Kotlin отличается от Java?</td></tr><tr id="9f9a01d3-0ec7-411e-b4f1-041527847fdb"><td id="dp^N" class="" style="width:518px"><strong><mark class="highlight-red">Q:</mark></strong> В чем преимущество Kotlin в Andrid-разработке?</td></tr><tr id="29ef301b-23e8-4bd7-bfe5-2e934a2c1642"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие типы есть в Kotlin?</td></tr><tr id="093ffd1c-9c53-4fb6-957e-12a64b37d5c0"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие методы есть у класса <code>Any</code> ?</td></tr><tr id="e7a575e9-b4dc-496b-9d1f-2c5638349bc8"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Что будет если вызвать <code>lateinit var</code> до объявления?</td></tr><tr id="c4b5e26b-7d99-47aa-93a6-beb71404092c"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие есть модификаторы доступа в Kotlin? В чем отличие от Java?</td></tr><tr id="361f6b3e-288f-4d90-b097-5cbe485af76a"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое <code>null safety</code> в Kotlin? Как осуществить проверку на <code>null</code> ?</td></tr><tr id="78c83801-95e6-411e-a4ab-4cf93cdd53fe"><td id="dp^N" class="" style="width:518px"><strong><mark class="highlight-red">Q:</mark></strong> Разница между === и ==?</td></tr><tr id="ba08c44f-3c89-4363-b1b2-01706f34d275"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем <code>val</code> отличается от <code>var</code> и <code>const val</code> ?</td></tr><tr id="8e66fdeb-993e-41e0-9f09-b6ade22a4e0e"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q: </strong></mark>Расскажи про типы <code>Any</code> <code>Unit</code> <code>Notning</code> ?</td></tr><tr id="308832f9-a298-4fc7-92bd-c32b5fe4317c"><td id="dp^N" class="" style="width:518px"><mark class="highlight-red"><strong>Q: </strong></mark>В чем отличие исключений в Kotlin и Java?</td></tr></tbody></table></div></details><p id="44af4f21-6910-442c-8c48-b30fb4ffd2b0" class="">
+</p><figure id="bf015efa-5042-4c2b-b165-aef89b796749" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Collection%20bf015efa50424c2bb165aef89b796749.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Collection%20bf015efa50424c2bb165aef89b796749/jetbrains-kotlin.svg"/>Collection</a></figure><figure id="4f1f3d9c-f4be-435f-9e14-0bdb6c87895f" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Generics%204f1f3d9cf4be435f9e140bdb6c87895f.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Generics%204f1f3d9cf4be435f9e140bdb6c87895f/jetbrains-kotlin.svg"/>Generics</a></figure><figure id="8cf7e495-9f00-4a17-95b4-c9030e01c4d0" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Delegates%208cf7e4959f004a1795b4c9030e01c4d0.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Delegates%208cf7e4959f004a1795b4c9030e01c4d0/jetbrains-kotlin.svg"/>Delegates</a></figure><figure id="aed79a84-6cbf-4cfa-b5ec-42141f30b902" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Object%20aed79a846cbf4cfab5ec42141f30b902.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Object%20aed79a846cbf4cfab5ec42141f30b902/jetbrains-kotlin.svg"/>Object</a></figure><figure id="0cecde5b-5e8f-48eb-85bd-fc35880afed1" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Data%20Class%200cecde5b5e8f48eb85bdfc35880afed1.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Data%20Class%200cecde5b5e8f48eb85bdfc35880afed1/jetbrains-kotlin.svg"/>Data Class</a></figure><figure id="ba10a3b9-e59e-4319-bf4f-10a5ae3de2a5" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Value%20Class%20ba10a3b9e59e4319bf4f10a5ae3de2a5.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Value%20Class%20ba10a3b9e59e4319bf4f10a5ae3de2a5/jetbrains-kotlin.svg"/>Value Class</a></figure><figure id="a852f476-8ac6-4fbe-b7e1-be369ac44b6a" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Sealed%20Class%20a852f4768ac64fbeb7e1be369ac44b6a.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Sealed%20Class%20a852f4768ac64fbeb7e1be369ac44b6a/jetbrains-kotlin.svg"/>Sealed Class</a></figure><figure id="17b5327d-980d-4989-9e00-d06563b33fd8" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Inner%20Class%2017b5327d980d49899e00d06563b33fd8.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Inner%20Class%2017b5327d980d49899e00d06563b33fd8/jetbrains-kotlin.svg"/>Inner Class</a></figure><figure id="e163c656-20dc-4145-9577-441a19bff5bc" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Inline%20Functions%20e163c65620dc41459577441a19bff5bc.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Inline%20Functions%20e163c65620dc41459577441a19bff5bc/jetbrains-kotlin.svg"/>Inline Functions</a></figure><figure id="0fe043bc-d322-4a61-aa04-6abb652d7837" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Infix%20Functions%200fe043bcd3224a61aa046abb652d7837.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Infix%20Functions%200fe043bcd3224a61aa046abb652d7837/jetbrains-kotlin.svg"/>Infix Functions</a></figure><figure id="731c9b6a-4ea2-4ada-8381-01394bce3e8f" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Extension%20Functions%20731c9b6a4ea24ada838101394bce3e8f.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Extension%20Functions%20731c9b6a4ea24ada838101394bce3e8f/jetbrains-kotlin.svg"/>Extension Functions</a></figure><figure id="8ede964c-16cb-4dfa-b23b-9b7b1196c7d7" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Scope%20Functions%208ede964c16cb4dfab23b9b7b1196c7d7.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Scope%20Functions%208ede964c16cb4dfab23b9b7b1196c7d7/jetbrains-kotlin.svg"/>Scope Functions</a></figure><figure id="e45af2a8-71bf-42d0-b966-529da090b820" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Context%20Receivers%20e45af2a871bf42d0b966529da090b820.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Context%20Receivers%20e45af2a871bf42d0b966529da090b820/jetbrains-kotlin.svg"/>Context Receivers</a></figure><figure id="98617e8e-3707-4c28-985e-7d8a537f5545" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/jetbrains-kotlin.svg"/>Coroutines →</a></figure><figure id="30fec918-1a82-497b-a48f-4a5f01e9c31c" class="link-to-page"><a href="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Multiplatform%20%E2%86%92%2030fec9181a82497ba48f4a5f01e9c31c.html"><img class="icon" src="Kotlin%20%E2%86%92%20f2d4f3ec6d3447699030b4cc9a8d99a5/Multiplatform%20%E2%86%92%2030fec9181a82497ba48f4a5f01e9c31c/jetbrains-kotlin.svg"/>Multiplatform →</a></figure><p id="dcfddc67-8619-49d4-96cc-2dbd38f2b28f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
