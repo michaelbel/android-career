@@ -1,0 +1,971 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flow</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4f959874-85c7-4f06-8131-240fd59b27b7" class="page sans"><header><img class="page-cover-image" src="Flow%204f95987485c74f068131240fd59b27b7/michaelbely_winding_river_view_from_above_purple_color_2d128b38-35fe-4a8e-acdf-e87e55d01dc0.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Flow%204f95987485c74f068131240fd59b27b7/jetbrains-kotlin.svg"/></div><h1 class="page-title"><strong>Flow</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="95e54330-6792-4af9-902e-309d80e10b76" class="simple-table"><tbody><tr id="4e5ea9b9-d475-4639-95aa-7e736090cbf4"><td id="eKr?" class="" style="width:475px"><a href="https://developer.android.com/kotlin/flow">https://developer.android.com/kotlin/flow</a></td></tr></tbody></table><h3 id="19861b96-bfde-43f6-b02a-3a6cb2728a91" class=""><strong>Типы функций над потоками?</strong></h3><p id="76c90966-4081-4962-974c-b55fc8437843" class="">В зависимости от того, возвращают они конкретное значение или обработанный поток функции делятся на: терминальные и промежуточные. Терминальные функции потоков представляют suspend-функции, которые позволяют получать объекты из потока или возвращают какое-то конечное значение: collect, toList, toSet first, firstOrNull, last, lastOrNull, single, singleOrNull, count, reduce, fold. Промежуточные функции не являются suspend, принимают поток и возвращают обработанный поток: combine, drop, filter, filterNot, filterNotNull, map, onEach, take, transform, zip.</p><p id="63c9095a-2a17-44c3-bfe2-27c058296309" class="">
+</p><h3 id="761c3d7d-0750-471f-9ecb-66f19452f4a5" class=""><code><strong>Flow</strong></code></h3><p id="5df523fa-cbfc-4762-b2ef-84b399ae2451" class="">Cold flow. Асинхронный поток данных который последовательно эмитит данные и завершается успешно или с исключением. Похож на <code>Observable</code> в RxJava.</p><p id="8ba41b96-a5d4-4869-9892-b4a9ee6ce6f2" class="">
+</p><h3 id="1d4a8650-8ced-40bc-9cfe-de3d7cc20f6a" class=""><code><strong>emit</strong></code></h3><p id="f08e5317-ed90-4bac-8256-6692e545ccad" class="">Метод передачи события, suspend function.</p><p id="59291c77-bcc3-45fa-b46a-a5f2ec6376e5" class="">
+</p><h3 id="0c8e0b3a-7d80-457d-ae6b-b2fc833f3130" class=""><code><strong>tryEmit</strong></code></h3><p id="b0a10ee4-24d5-4b8d-b8cf-44c1c9fa98f9" class="">Попытается передать событие без приостановки.</p><p id="14516845-effc-4804-9f61-eecde6575448" class="">
+</p><h3 id="c8d3e21c-b178-40ab-9800-98c7b4e8f0fa" class=""><code><strong>callbackFlow</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ddadbbdd-c5b1-402f-a4e5-64cc92870680" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val locationsSource: Flow&lt;Location&gt; = callbackFlow&lt;Location&gt; {
+    val callback = object : LocationCallback() {
+        override fun onLocationResult(result: LocationResult?) {
+            result ?: return
+            offer(result.lastLocation)
+        }
+    }
+    requestLocationUpdates(createLocationRequest(), callback, Looper.getMainLooper())
+        .addOnFailureListener { e -&gt;
+            close(e) // in case of exception, close the Flow
+        }
+    awaitClose { // clean up when Flow collection ends
+        removeLocationUpdates(callback)
+    }
+}</code></pre><p id="037d929d-7f43-47e3-9ffe-cffb21b695d2" class="">
+</p><h3 id="71023184-412c-4d60-889c-448d4e662272" class=""><code><strong>flowOf</strong></code></h3><p id="48ccc92c-a810-488b-b93f-0ace4d2d9acf" class="">Cоздает поток из набора переданных в функцию значений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="34f60848-4cde-48f2-9c42-9bf77e84bcd3" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = flowOf(1, 2, 3, 5, 8)</code></pre><p id="a38c937c-103d-4d16-a9a1-fc2b1f1026b9" class="">
+</p><h3 id="aff85afe-7401-4128-8172-a84eb52c8daf" class=""><code><strong>asFlow</strong></code></h3><p id="c3800a7e-dc35-4c31-9923-9c604828fab5" class="">Стандартные коллекции и последовательности в Kotlin имеют метод расширения asFlow(), который позволяет преобразовать коллекцию или последовательность в поток.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5067783e-ebd0-4103-96b7-dddd140a474d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = (1..5).asFlow()
+val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Sam&quot;, &quot;Bob&quot;).asFlow()</code></pre><p id="801ef9dc-9394-4fa5-876f-4e5249429269" class="">
+</p><h3 id="ff71362e-b840-4692-a44f-c99e79337e0f" class=""><code><strong>flowOn</strong></code></h3><p id="0b5bf920-dede-4c9c-acce-fe14b9d1ae9d" class="">Изменить <code>CoroutineContext</code> потока. <code>flowOn</code> изменяет <code>CoroutineContext</code> восходящего потока, то есть производитель и любые промежуточные операторы, применяемые до (или выше) <code>flowOn</code>. Если имеется несколько операторов <code>flowOn</code>, каждый из них изменяет восходящий поток относительно своего текущего местоположения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6964420c-7311-4b5c-aec4-b8e9e94c5ae0" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+    .catch { Timber.e(it) }
+    .flowOn(Dispatchers.IO)
+    .collect {}</code></pre><p id="1cbb2a79-b449-45fb-b3cd-811f636e6a13" class="">
+</p><h3 id="b84e600e-9361-4a8d-b5ff-d6a2a686f871" class=""><code><strong>collect</strong></code></h3><p id="c46f9c0b-83a1-4853-a078-61273dd81632" class="">Получить все значения в потоке по мере их создания.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20303132-0101-4e0e-8bb1-548eb51d00f0" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+    .collect {} // A, B, C</code></pre><p id="3705eccb-8278-4907-a79b-b7e3af17e395" class="">
+</p><h3 id="b7ccebe7-98f1-4f58-981c-cd19e3e0104d" class=""><code><strong>collectLatest</strong></code></h3><p id="a6a21fa8-c00a-43da-b375-a162a6a9fa4b" class="">Оператор терминального потока, который собирает данный поток с заданным действием. Принципиальное отличие от collect заключается в том, что когда исходный поток выдает новое значение, блок действий для предыдущего значения отменяется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e5a750a7-ea6c-43c6-8770-a9778ea6ca5f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flow {
+    emit(1)
+    delay(50)
+    emit(2)
+}.collectLatest { value -&gt;
+    println(&quot;collect $value&quot;)
+    delay(100)
+    println(&quot;$value collected&quot;)
+} // collect 1, collect 2, 2 collected</code></pre><p id="8fbd8de3-56fd-4263-bfdf-2f02d25f6a33" class="">
+</p><h3 id="8c2352db-05d6-4551-a606-7bb765e9d50e" class=""><code><strong>catch</strong></code></h3><p id="a65aa224-6539-467b-aaea-07ea988a878c" class="">Оператор обработки исключений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9379281-5a88-42d6-909a-54d5e7f53b7a" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">newsRepository.favoriteLatestNews
+    .catch { exception -&gt; notifyError(exception) }
+    .collect { favoriteNews -&gt;
+        // Update View with the latest favorite news
+    }</code></pre><p id="07b3f326-85b5-4122-86d3-9fc97bb90a81" class="">
+</p><h3 id="b225950b-1050-49c3-b46f-0126555bfbbe" class=""><code><strong>toList</strong></code></h3><p id="58d04e3c-0508-4268-93f2-e77b7710d825" class="">Преобразует поток значений в коллекцию List.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6c44377-f46b-4083-b724-6d53e1b56968" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = flowOf(1, 2, 3)
+val list: MutableList&lt;Int&gt; = mutableListOf()
+numberFlow.toList()
+numberFlow.toList(list)</code></pre><p id="75835cc2-ca25-435b-b1e2-94d5a3a30785" class="">
+</p><h3 id="a33a472b-7daa-435a-af78-4ef7eecd1690" class=""><code><strong>toSet</strong></code></h3><p id="98bf3c5d-caad-419d-bd8c-baabfbb5a383" class="">Преобразует поток значений в коллекцию Set.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="98e4e52c-8efd-4dbf-ad7d-6da637524649" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = flowOf(1, 2, 3)
+val set: LinkedHashSet&lt;Int&gt; = linkedSetOf()
+numberFlow.toSet()
+numberFlow.toSet(set)</code></pre><p id="e2e781fd-6758-4f0d-ad6d-f801dcbb8e3f" class="">
+</p><h3 id="2003ad1a-d6d0-4fab-a316-44d9209826be" class=""><code><strong>toCollection</strong></code><strong> </strong></h3><p id="b902227f-cc1a-4f34-9c79-28ee89d9ec71" class="">Collects given flow into a collection.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16794155-6117-47f4-876c-c7b8204234e7" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = flowOf(1, 2, 3)
+val collection: MutableList&lt;Int&gt; = mutableListOf()
+numberFlow.toCollection(collection)</code></pre><p id="810c5721-d764-43b5-bc45-0d7682851358" class="">
+</p><h3 id="439319f8-160f-47bd-80dc-6199cbbb1ce8" class=""><code><strong>first</strong></code></h3><p id="fa23f55a-0c8c-47eb-a5c8-0d90b4d8fded" class="">Получает первый объект из потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="52348245-a10e-4617-bc2f-407c60a1f2bd" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.first() // Tom
+nameFlow.first { name -&gt; name.length &gt; 3 } // Kate</code></pre><p id="744c5fdd-2e02-4898-843e-50f51ab25f11" class="">
+</p><h3 id="7b206977-85bf-48b7-bad6-86b653672cfe" class=""><code><strong>firstOrNull</strong></code></h3><p id="a48c5946-e0c0-41dc-96ca-e30193340ece" class="">Получает первый объект из потока или null, если список пустой или условию не соответствует ни один из элементов потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b10712a-a3b2-4011-980c-51d99b0b7dd4" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf&lt;String&gt;().asFlow()
+nameFlow.firstOrNull()
+nameFlow.firstOrNull { name -&gt; name.length &gt; 3 }</code></pre><p id="05152669-18ea-4d8e-8493-ebd9c2f5ca1e" class="">
+</p><h3 id="a58e0cfd-cdf8-4a56-89d7-6f3f7c888fa2" class=""><code><strong>last</strong></code></h3><p id="4d019ff4-5ca9-449e-9bd7-1221de023cb0" class="">Получает последний объект из потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f4d56784-fd0e-42ad-a1e2-f0276d5f7668" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.last() // Alice</code></pre><p id="ea6d9e39-785f-4807-855c-575c215bb47a" class="">
+</p><h3 id="e7d0b206-20b9-413c-9514-2eb82c1db0c2" class=""><code><strong>lastOrNull</strong></code></h3><p id="9807ecf2-ec3b-4ca2-b663-7206d95e25b4" class="">Получает последний объект из потока или null.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ac5b984b-9f99-4850-8760-e1c41ba8bed3" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf&lt;String&gt;().asFlow()
+nameFlow.lastOrNull() // null</code></pre><p id="55f06227-fdd6-46fd-91b0-7d8ffd31f35d" class="">
+</p><h3 id="3842c61a-b717-4747-882b-9d1b66faf84c" class=""><code><strong>single</strong></code></h3><p id="22d065c6-32b6-498a-bd49-10b05a3e49c2" class="">Возвращает единственный элемент потока, если поток содержит только один элемент. Если поток не содержит элементов генерируется исключение NoSuchElementException, а если в потоке больше одного элемента - исключение IllegalStateException.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2551fab2-8947-40de-b122-155b55f50a64" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;).asFlow()
+nameFlow.single() // Tom</code></pre><p id="7e9cbcf0-69b6-4bf4-a374-32bf19df749a" class="">
+</p><h3 id="1bb0e39d-7362-4560-a36e-06adaab57556" class=""><code><strong>singleOrNull</strong></code></h3><p id="f5ab6b86-d4be-4234-b864-a215cae9d6df" class="">Ожидает получение одного объекта из потока или null, если поток пуст или если в потоке больше одного элемента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a7d5fcec-7d9b-4d2f-ae71-db1704f63603" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;).asFlow()
+nameFlow.singleOrNull() // null</code></pre><p id="70133e1e-4fb8-4a69-a503-568423d4db1a" class="">
+</p><h3 id="d4d98ef6-1e71-4836-91ab-a7eabdbb4c49" class=""><code><strong>count</strong></code></h3><p id="eb51e965-57e8-48be-a0a7-37ae73e54e91" class="">Получить количество элементов в потоке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="64b0f1e2-2d11-46a2-8f27-49fb188c26e8" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.count() // 5
+nameFlow.count { name -&gt; name.length &gt; 3 } // 2</code></pre><p id="a691a976-9e31-4b62-a0fd-fa7b0ce672f1" class="">
+</p><h3 id="b957b2d9-3ff6-4639-9dc7-4abfbb17a651" class=""><code><strong>reduce</strong></code></h3><p id="1d4dcd14-f264-4b95-ba29-5196d8c10468" class="">Получает результат определенной операции над элементами потока. Сводит все значения потока к одному значению. Первый параметр при первом запуске представляет первый объект потока, а при последующих запусках - результат функции над предыдущими объектами. А второй параметр функции - следующий объект.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af9425a4-ee0b-4c8f-89f0-3fce61c09dcb" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = listOf(1, 2, 3).asFlow()
+numberFlow.reduce { accumulator, value -&gt; accumulator + value } // 6
+
+val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.reduce { accumulator, value -&gt; &quot;$accumulator $value&quot; } // Tom Bob Kate Sam Alice</code></pre><p id="068675d1-e1fb-4136-9516-5611980bebae" class="">
+</p><h3 id="6d6961e0-db64-448a-8582-9bbeb0786127" class=""><code><strong>fold</strong></code></h3><p id="2a7d9b5f-aa19-4bbd-901b-c661d6b49a47" class="">Получает результат определенной операции над элементами потока, в отличие от функции reduce() принимает начальное значение. Сводит все элементы потока в один.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4d049ec8-3bfb-4388-ab6d-68d92c0e5dc2" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.fold(&quot;Names:&quot;) { accumulator, value -&gt; &quot;$accumulator $value&quot; } // Names: Tom Bob Kate Sam Alice</code></pre><p id="c2937476-b2b0-4891-86ed-5a4d1f34ee83" class="">
+</p><h3 id="f1d59c51-a7f3-4b12-b2b6-c977c7fdd9b1" class=""><code><strong>combine</strong></code></h3><p id="e0d60e0d-1ac5-4ff3-bd37-96a99c30b6f7" class="">Объединяет два потока в один, после применения к их элементам функции преобразования. Последние элементы потоков всегда объединяются.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5e744685-4d35-400c-8820-e158802ec9e2" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(&quot;A&quot;, &quot;B&quot;)
+    .combine(flowOf(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;)) { a, b -&gt;
+        a + b
+    } // A1, B1, B2, B3</code></pre><p id="32e67b09-4d55-450a-aba4-4ab5970295f0" class="">
+</p><h3 id="1c4af2bd-3629-4c8c-9cfe-1dd7b92ae959" class=""><code><strong>combineTransform</strong></code></h3><p id="57a4888a-2320-4f03-ae47-84f425475e51" class="">Возвращает поток, значения которого генерируются функцией преобразования, обрабатывающей последние переданные значения каждым потоком.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="abf2ed39-eb50-4fe6-9461-1ec873c86c09" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">combineTransform(
+    flowOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),
+    flowOf(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;)
+) { letter, number -&gt;
+    val result = &quot;$letter$number&quot;
+    emit(result)
+} // A1, B1, B2, C2, C3</code></pre><p id="72d855d3-1300-4444-bac9-be7522d5782d" class="">
+</p><h3 id="a0734c1d-00dd-44df-ae78-6bf6883f7fa2" class=""><code><strong>drop</strong></code></h3><p id="40349e68-57dd-4972-b31b-c602179df5a1" class="">Удаляет из потока определенное количество элементов. В качестве параметра принимает количество элементов с начала потока, которые надо убрать.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="09db955a-6a8d-4dd7-aee1-47fcf289890e" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.drop(3) // Sam, Alice</code></pre><p id="93f54288-6c0c-48fd-ad78-e1d204078dba" class="">
+</p><h3 id="f0edde4d-240f-4dfb-afd9-ec6c733259ff" class=""><code><strong>dropWhile</strong></code></h3><p id="40b655a0-9fc0-4256-b6fe-8c3e1d36926c" class="">Удаляет из потока элементы, пока они не начнут соответствовать некоторому условию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="47cfdf1b-e7c0-46d9-b21e-594549620318" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Alice&quot;, 32),
+    Person(&quot;Bill&quot;, 5),
+    Person(&quot;Sam&quot;, 14),
+    Person(&quot;Bob&quot;, 25)
+).asFlow()
+
+peopleFlow.dropWhile { person -&gt; person.age &gt; 17 } // Bill, Sam, Bob</code></pre><p id="859e6714-b21e-47d1-867f-c9bc4be1cfb8" class="">
+</p><h3 id="e72b019f-6201-404e-860a-d8e1679a7614" class=""><code><strong>filter</strong></code></h3><p id="b46630a6-c0cf-4b3b-a034-d32c23c90788" class="">Фильтрует объекты в потоке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d1c44e7b-9794-447b-92e2-9fd96e9b1221" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Bill&quot;, 5),
+    Person(&quot;Sam&quot;, 14),
+    Person(&quot;Bob&quot;, 21)
+).asFlow()
+
+peopleFlow.filter { person -&gt; person.age &gt; 17 } // Tom, Bob</code></pre><p id="b4249d14-1ca2-490f-9719-d5ca222d6adb" class="">
+</p><h3 id="1d5b975b-1bb1-47ef-bb29-8352699eff4f" class=""><code><strong>filterNot</strong></code></h3><p id="217fe916-9721-4249-91e7-cfa3c082d8b1" class="">Фильтрует поток, оставляя те элементы, которые не соответствуют условию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3d4c8524-9804-4738-9258-a5336e3a971b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Bill&quot;, 5),
+    Person(&quot;Sam&quot;, 14),
+    Person(&quot;Bob&quot;, 21)
+).asFlow()
+
+peopleFlow.filterNot { person -&gt; person.age &gt; 17 } // Bill, Sam</code></pre><p id="0647e2ef-9319-4544-8797-ae55e3a3eb5b" class="">
+</p><h3 id="3e102b89-f13d-448c-bc73-a1b9c536dabc" class=""><code><strong>filterNotNull</strong></code></h3><p id="cfaf108d-a548-48b3-b661-53c285f954ff" class="">Фильтрует поток, удаляя все элементы, которые равны null.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="131ec847-9403-4386-a4bd-cf4ff3717f0b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person?&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    null
+    Person(&quot;Sam&quot;, 14),
+    null
+).asFlow()
+
+peopleFlow.filterNotNull() // Tom, Sam</code></pre><p id="374ea0ff-e166-4b0b-993e-59dc44ba9607" class="">
+</p><h3 id="6426348f-718e-4bea-bd88-64133c5e644e" class=""><code><strong>filterIsInstance</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d50b53c0-ef2b-4fe6-8092-f07720f24634" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val anyFlow: Flow&lt;Any&gt; = listOf(
+    &quot;Alice&quot;,
+    1,
+    &quot;Bob&quot;,
+    2
+).asFlow()
+
+anyFlow.filterIsInstance&lt;Int&gt;() // 1, 2</code></pre><p id="b863f654-da8d-4e9e-b44c-072dc42ce7f6" class="">
+</p><h3 id="93e3ebbe-c5ac-4f3d-b058-a2f16f637b16" class=""><code><strong>map</strong></code></h3><p id="7327862c-a26b-4374-9a36-0fe5f1635e8f" class="">Преобразует данные потока. В качестве параметра он принимает функцию преобразования. Функция преобразования принимает в качестве единственного параметра объект из потока и возвращает преобразованные данные.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9c547f97-55dd-4dc9-9dcf-bcf351cd3a94" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Sam&quot;, 41),
+    Person(&quot;Bob&quot;, 21),
+    Person(&quot;Bill&quot;, 5)
+).asFlow()
+
+peopleFlow.map { person -&gt; person.name } // Tom, Sam, Bob, Bill
+
+peopleFlow
+    .map { person -&gt; object {
+        val name: String = person.name
+        val isAdult: Boolean = person.age &gt; 17
+    } }</code></pre><p id="310874e1-358d-49e8-b712-ed79cd721171" class="">
+</p><h3 id="41f15e45-cb94-4c21-9671-f4f280c710ff" class=""><code><strong>mapNotNull</strong></code></h3><p id="70184f9a-3f1f-4a49-bc0a-852398e5974d" class="">Возвращает поток, содержащий только ненулевые результаты применения заданной функции преобразования к каждому значению исходного потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="99a15510-6c50-4d6d-bd39-ec6c3b768ccd" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person?&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    null,
+    Person(&quot;Sam&quot;, 41),
+    null,
+    Person(&quot;Bob&quot;, 21),
+    null,
+    Person(&quot;Bill&quot;, 5)
+).asFlow()
+
+peopleFlow.mapNotNull { person -&gt; person?.name } // Tom, Sam, Bob, Bill</code></pre><p id="33f9420c-78ba-4c59-9f69-c0ccc0e1300f" class="">
+</p><h3 id="23c6b3dd-c795-4bf3-9801-b4bac494e9fb" class=""><code><strong>onEach</strong></code></h3><p id="f1a8493b-ce7e-4980-aa0f-84348b37e66e" class="">Применяет к элементам потока определенную функцию перед тем, как они будут переданы в возвращаемый поток.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e9647ab9-0793-4892-9476-ae08a52fade7" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val numberFlow: Flow&lt;Int&gt; = flowOf(1, 2, 3)
+numberFlow.onEach { delay(1000L) }</code></pre><p id="156bbf78-d574-4e5a-8080-5667a6c83755" class="">
+</p><h3 id="9202824e-882e-4345-b68c-fc3941c2a67a" class=""><code><strong>take</strong></code></h3><p id="16f670f2-929a-442c-8e22-157a8b09c2e7" class="">Ограничивает количество элементов в потоке. В качестве параметра принимает количество элементов с начала потока, которые надо оставить.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b578b70d-4f11-484f-9bd2-c1374e725f13" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Kate&quot;, &quot;Sam&quot;, &quot;Alice&quot;).asFlow()
+nameFlow.take(3) // Tom, Bob, Kate</code></pre><p id="d0a1d91d-e8af-42cd-8ae5-b43fe70caf63" class="">
+</p><h3 id="af2e3707-f2d3-4820-b1b4-9833734dc5fa" class=""><code><strong>takeWhile</strong></code></h3><p id="caf3617f-0a00-4cd4-9b3a-9728c23189fc" class="">Выбирает из потока элементы, пока будет истино некоторое условие.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="597a533b-2664-4737-a183-1ba61b3deb6b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Alice&quot;, 32),
+    Person(&quot;Bill&quot;, 5),
+    Person(&quot;Sam&quot;, 14),
+    Person(&quot;Bob&quot;, 25)
+).asFlow()
+
+peopleFlow.takeWhile { person -&gt; person.age &gt; 17 } // Tom, Alice</code></pre><p id="d1bed59e-7e96-4f12-87ac-931a48eb08fb" class="">
+</p><h3 id="991ae764-a340-4524-b0a7-c4267da07787" class=""><code><strong>transform</strong></code></h3><p id="f3762846-6ba6-456d-8424-5daa31f66133" class="">Выполняем преобразование объектов в потоке. В отличие от map позволяет использовать функцию emit(), чтобы передавать в поток произвольные объекты.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f58b43ac-87f9-4f52-97c4-12504b76c78c" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val peopleFlow: Flow&lt;Person&gt; = listOf(
+    Person(&quot;Tom&quot;, 37),
+    Person(&quot;Bill&quot;, 5),
+    Person(&quot;Sam&quot;, 14),
+    Person(&quot;Bob&quot;, 21)
+).asFlow()
+
+peopleFlow
+    .transform { person -&gt;
+        if (person.age &gt; 17) {
+            emit(person.name)
+        }
+    } // Tom, Bob
+
+val numberFlow: Flow&lt;Int&gt; = listOf(2, 3, 4).asFlow()
+numberFlow
+    .transform { number -&gt;
+        emit(number)
+        emit(number * number)
+    } // 2, 4, 3, 9, 4, 16</code></pre><p id="a3b50805-47c3-4829-9619-9495da366b6c" class="">
+</p><h3 id="0f98d077-b8aa-4b70-ba01-49b73a5bf64a" class=""><code><strong>transformLatest</strong></code></h3><p id="ca49d766-0641-4dcd-8847-393c99980ba5" class="">Возвращает поток, который создает элемент с помощью функции преобразования каждый раз, когда исходный поток выдает значение. Когда исходный поток выдает новое значение, предыдущий блок преобразования отменяется. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c5310c9f-704d-4859-9d51-c4440bddbf4c" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flow {
+    emit(&quot;A&quot;)
+    delay(100)
+    emit(&quot;B&quot;)
+}.transformLatest { value -&gt;
+    emit(value)
+    delay(200)
+    emit(value + &quot;_last&quot;)
+} // A, B, B_last</code></pre><p id="5464211b-aa3b-4cdb-8b62-b63fb7cd92a8" class="">
+</p><h3 id="7ea6024b-56c3-4ba9-9f99-19c6cf71b3f1" class=""><code><strong>transformWhile</strong></code></h3><p id="56c944ff-598f-4045-a475-0a0075e6756e" class="">Применяет функцию преобразования к каждому значению данного потока, пока эта функция возвращает значение true. </p><p id="df202a7d-af80-4968-954c-f42b3731c93d" class="">
+</p><h3 id="b42693a2-f7af-4b0d-88c3-66e685586cc1" class=""><code><strong>zip</strong></code></h3><p id="78cd718d-ab02-4260-839d-4649394cbdc1" class="">Позволяет объединить 2 потока данных. Оператор zip принимает два параметра. Первый параметр - поток данных, с которым надо выполнить объединение. Второй параметр - собственно функция объединения. Она принимает соответствующие элементы обоих потоков в качестве параметров и возвращает результат их объединения. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="48f9d0f4-d4f3-44fb-9423-c4b2cd455f71" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Sam&quot;).asFlow()
+val ageFlow: Flow&lt;Int&gt; = listOf(37, 41, 25).asFlow()
+nameFlow
+    .zip(ageFlow) { name, age -&gt; Person(name, age) }
+    .collect { person -&gt; println(&quot;Name: ${person.name}, Age: ${person.age}&quot;) }</code></pre><p id="7747ecdd-94f5-43e7-aec0-6154bed50ad8" class="">
+</p><h3 id="2ea80957-6d72-4b04-bcba-d12ed235c55e" class=""><code><strong>debounce</strong></code></h3><p id="2400bf3a-684c-4d8c-99cc-da2b04c7e61e" class="">Не позволяет выполнить операцию, пока не истечет установленный таймер. Удобно для полей ввода текста. После получения события запускается таймер. Если новое событие приходит, когда таймер активен - таймер перезапускается. Если таймер истек, мы испускаем последний испущенный элемент. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b101f866-4c4b-4da0-8203-d87bd4bf06cf" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flow {
+    emit(1)
+    delay(90)
+    emit(2)
+    delay(90)
+    emit(3)
+    delay(1010)
+    emit(4)
+    delay(1010)
+    emit(5)
+}.debounce(1000) // 3, 4, 5</code></pre><p id="301f8612-ea39-448b-87e4-e9d72f18c0bc" class="">
+</p><h3 id="d80d65d0-a7b0-4552-86d1-eac42ef17144" class=""><code><strong>sample</strong></code></h3><p id="41f0219c-c2df-4253-8de0-4026063b5f09" class="">Подобно debounce используется для фильтрации элементов потока, но имеет отличие - вместо проверка интервала от последнего элемента запускается периодически и отправляет последний элемент за интервал. Например, поток выдает элементы каждые 50 мс, и если применить выборку в 100 мс, получим каждый второй элемент. С оператором debounce получили бы только элемент 9.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c88c4ace-59c6-4c2d-8bb8-708330c669b8" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flow {
+    repeat(10) {
+        emit(it)
+        delay(50)
+    }
+}.sample(100) // 1, 3, 5, 7, 9</code></pre><p id="32e9b1ca-cedc-4d2c-b04c-380b45999a36" class="">
+</p><h3 id="e431acd0-a9d6-4500-98aa-03535d18b9fb" class=""><code><strong>flatMapMerge</strong></code></h3><p id="1b082bc2-bd25-4efd-bd16-97a0b1bd3f99" class="">Сопоставляет каждый элемент потока с новым потоком, представленным операцией преобразования, а затем объединяет элементы этих потоков и сглаживает его. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cec2c0a3-c4b1-4e4a-a489-3b9ba1a5f1ca" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(1, 2, 3)
+    .flatMapMerge { number: Int -&gt;
+        flowOf(&quot;$number A&quot;, &quot;$number B&quot;)
+    } // 1A, 1B, 2A, 2B, 3A, 3B</code></pre><p id="b2742845-eb70-4ace-849b-2d78ae6f9e62" class="">
+</p><h3 id="5a28f612-4eb4-4839-b7ab-7e7f3f2fefc8" class=""><code><strong>flatMapConcat</strong></code></h3><p id="0c79639f-6e1a-41a6-864f-001ac3d9ab96" class="">Подобен flatMapMerge, но здесь потоки объединяются, а не сливаются. Важно: flatmapMerge имеет лучшую производительность, поскольку может обрабатывать потоки параллельно. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="66471e1d-51f0-419c-b1f0-7ef4fae6a83d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(1, 2, 3)
+    .flatMapConcat { number: Int -&gt;
+        flowOf(&quot;$number A&quot;, &quot;$number B&quot;)
+    } // 1A, 1B, 2A, 2B, 3A, 3B</code></pre><p id="362c09b3-cc81-4cac-bdf1-0dd4df4d0486" class="">
+</p><h3 id="70320617-ae25-4f8b-8f49-f50982fa6ecb" class=""><code><strong>flatMapLatest</strong></code></h3><p id="74bf1dd0-8e50-4f65-9cb4-225a9d87f513" class="">Возвращает поток, который переключается на новый поток, создаваемый функцией преобразования, каждый раз, когда исходный поток выдает значение. Когда исходный поток выдает новое значение, предыдущий поток, созданный блоком преобразования, отменяется. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e94e7691-6d70-43b2-8162-d66d0bc1bf30" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flow {
+    emit(&quot;A&quot;)
+    delay(100)
+    emit(&quot;B&quot;)
+}.flatMapLatest { value -&gt;
+    flow {
+        emit(value)
+        delay(200)
+        emit(value + &quot;_last&quot;)
+    }
+} // A, B, B_last</code></pre><p id="66b1b081-9fba-4bca-9b8f-a21c3f13b673" class="">
+</p><h3 id="8f4d222f-2f2d-4782-b803-512cd778ae0f" class=""><code><strong>buffer</strong></code></h3><p id="7a088193-682b-4aac-a3c7-6492908f93fc" class="">Не меняет поток элементов, а помогает с производительностью. Если мы добавим буфер между операторами onEach и collect, он создаст отдельную сопрограмму для параллельного сбора элементов из оператора onEach в соответствии с предоставленной емкостью буфера. Это позволит нам собрать все элементы за 300 мс, так как все операторские операции не должны выполняться последовательно. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8e257f92-b2c2-44f5-bbba-e6b0e2f83308" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">flowOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+    .onEach  { delay(300) } // Output takes 900ms as all items are processed sequentially
+
+flowOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+    .onEach  { delay(300) }
+    .buffer(3) // Output takes 300ms as all items are processed in parallel at buffer operator
+               // and delivered to collect immediately.</code></pre><p id="228e21df-dda9-482e-8ddd-6c8783abf7b7" class="">
+</p><h3 id="754248f4-6689-4e58-83eb-d4c29c607139" class=""><code><strong>onEmpty</strong></code></h3><p id="e35fe0f6-8c77-4deb-a37c-80982fadd3df" class="">Вызывает действие, если поток завершается без испускания элементов. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df97823f-8c6a-49e1-8181-cb10477fcb8a" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val nameFlow: Flow&lt;String&gt; = flowOf()
+nameFlow.onEmpty {
+    emit(&quot;Bob&quot;)
+    emit(&quot;Alice&quot;)
+} // Bob, Alice</code></pre><p id="4b7b9931-d5d0-4d64-944b-df2fbc558149" class="">
+</p><h3 id="70be0551-1f77-4f8e-aec2-14fc972f18bb" class=""><code><strong>conflate</strong></code></h3><p id="bcd2beee-e1f6-441c-91b4-7acb41254933" class="">В случае нескольких вызовов emit равно обработает все, но соберет только последний вызов. </p><p id="d7230c84-d427-4602-9587-f0445aa74856" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">StateFlow</summary><div class="indented"><h3 id="6baf4a88-995d-49b6-9e33-a7c9a7206d3f" class=""><code><strong>StateFlow</strong></code></h3><p id="bd03d653-5102-409d-ac2f-90003f223287" class="">Hot flow. Это специализация <code>SharedFlow</code>. Доставляет последнее событие только новым подписчикам<br/> • есть возможность синхронно получить value.<br/> • сравнивает предыдущее значение с новым. игнорирует если одинаковые.<br/></p><p id="bc18ea9d-3ccd-466d-a3f5-7d045fdd8ecd" class="">
+</p><h3 id="ecc5aabf-ba1a-43ec-85a8-dc30290fd93a" class=""><code><strong>MutableStateFlow</strong></code></h3><p id="b2766d69-f316-407f-8348-d5f6a0d5b879" class="">Мутабельный <code>StateFlow</code>.</p><p id="6f88cee4-b66f-4951-8df2-424301890f7b" class="">
+</p><h3 id="f3984a2f-7d3b-4d83-bf10-398a0b8098e8" class=""><code><strong>asStateFlow</strong></code></h3><p id="1fb9ea91-f03c-46e6-834e-0ad98584c3c7" class="">Конвертирует мутабельный <code>MutableStateFlow</code> в иммутабельный <code>StateFlow</code> (только для чтения).</p><p id="8a5df65a-7ec7-4c43-8a43-715616087dbc" class="">
+</p><h3 id="50783e0d-fb15-44ac-aa4c-1630f1d2a7b3" class=""><code><strong>stateIn</strong></code></h3><p id="904b0416-cf9b-45db-9fd5-c23293450b1f" class="">Преобразует холодный поток в горячий. Возвращает оператор <code>StateFlow</code>. Полезен в ситуациях, когда имеется холодный поток, предоставляющий обновления значения некоторого состояния, создание и/или обслуживание которого требует больших затрат, но имеется несколько подписчиков, которым необходимо собирать самое последнее значение состояния.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d331252a-cbae-44e3-b9c1-245e80ad0c98" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val stateFlow: StateFlow&lt;Int&gt; = flow
+    .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = 0
+    )</code></pre><p id="ac694015-7a51-4f70-844b-7345d777b6ef" class="">
+</p><h3 id="11e68d8d-2f1e-4aad-bbaf-9b2381b7a901" class=""><code>update</code></h3><p id="b256c593-1375-44ad-9509-5b580156a8e1" class="">Метод для обновления данных в <code>MutableStateFlow</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5e037ab3-b8e4-404e-96a8-cf6d4cf34c83" class="code"><code class="language-Kotlin">data class Person(
+    val name: String
+)
+
+private val personFlow = MutableStateFlow(Person(&quot;John&quot;))
+
+personFlow.update {
+    it.copy(name = &quot;Vlad&quot;)
+}</code></pre><p id="80dc5458-af4b-47f3-99a6-63fd7b89fe54" class="">
+</p><h3 id="c7e87885-6dff-4b78-b346-7be57bce39fd" class=""><code>collectAsState</code></h3><p id="af2df520-1f67-43b0-883d-a6003c0f330f" class="">Используется в Compose. Предоставляет значение этого <code>StateFlow</code> через <code>State</code>. Начальное значение - <code>StateFlow.value</code>. Каждый раз когда в <code>StateFlow</code> будет отправляться новое значение будет вызываться рекомпозиция.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="86d33426-71a9-4010-9094-8f316f9fccf5" class="code"><code class="language-Kotlin">private val _numberFlow: MutableStateFlow&lt;Int&gt; = MutableStateFlow(42)
+val numberFlow: StateFlow&lt;Int&gt; = _numberFlow.asStateFlow()
+
+val number: Int by viewModel.numberFlow.collectAsState()</code></pre><h3 id="cb626024-ab44-4015-9261-5a8dca78fcb1" class=""><br/><br/><br/><code>collectAsStateWithLifecycle</code></h3><p id="932b9b8b-36a5-4398-a39b-42a485b9aa08" class="">Предоставляет значение этого <code>StateFlow</code> через <code>State</code> учитывая жизненный цикл. Каждый раз когда в <code>StateFlow</code> будет отправляться новое значение будет вызываться рекомпозиция если жизненный цикл <code>lifecycleOwner</code> равен хотя бы <code>minActiveState</code> (<code>Lifecycle.State.STARTED</code>). Сбор данных останавливается если жизненный цикл падает ниже минимального и перезапускается если наоборот.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8ac21a7e-7d48-4c38-a61c-8270a29c62f4" class="code"><code class="language-Kotlin">private val _numberFlow: MutableStateFlow&lt;Int&gt; = MutableStateFlow(42)
+val numberFlow: StateFlow&lt;Int&gt; = _numberFlow.asStateFlow()
+
+val number: Int by viewModel.numberFlow.collectAsStateWithLifecycle()</code></pre></div></details><p id="0e4f7f8d-57f7-4b77-a232-2f867b67ad4a" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">SharedFlow</summary><div class="indented"><h3 id="603dbbf3-dd5c-427f-97d8-ac269e9449a0" class=""><code><strong>SharedFlow</strong></code></h3><p id="4fd8d147-0598-4574-807a-41c65531d3c9" class="">Hot flow. Генерирует события, даже если вы не вызываете <code>collect</code> на нем<br/> • нет возможность синхронно получить value.<br/> • всегда отправляет новые значения, даже если они одинаковые.<br/> • может иметь несколько подписчиков.<br/></p><p id="d4df2843-89d6-426b-9395-f6070fea7e2b" class="">
+</p><h3 id="8b0d932c-b542-4e1e-b558-26608244fbe2" class=""><code><strong>MutableSharedFlow</strong></code></h3><p id="94dfd96b-6468-49f6-9375-35973eba55fd" class="">Мутабельный <code>SharedFlow</code>.</p><p id="cb01cf80-8794-42c7-abb4-c1402bd6df1a" class="">
+</p><h3 id="4140496d-4df5-4adb-8ca0-5371295f7322" class=""><code><strong>asSharedFlow</strong></code></h3><p id="451e73f7-931b-4e7c-8c82-121bc9830379" class="">Конвертирует <code>MutableSharedFlow</code> в иммутабельный <code>SharedFlow</code> (только для чтения).</p><p id="88ddea1e-6a46-4570-bc79-4b3ba86a6900" class="">
+</p><h3 id="5e97e8cf-28dc-4fba-9713-55341b982df4" class=""><code><strong>shareIn</strong></code></h3><p id="018b503b-1c9d-42ef-9628-e1325dcee0d0" class="">Преобразует холодный поток в горячий. Возвращает оператор <code>SharedFlow</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bec9016d-2828-4d2e-b054-e84f27a28182" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val sharedFlow: SharedFlow&lt;Int&gt; = flow
+    .shareIn(
+        scope = viewModelScope,
+        started = SharingStarted.Lazily,
+        replay = 0
+    )</code></pre></div></details><p id="0c26e7a8-7e72-4cc6-b472-67613b66d706" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Kotlin Coroutines Flow. Вопросы на собесе</mark></summary><div class="indented"><table id="262a78f1-20bd-4798-9c64-020a54b94ff1" class="simple-table"><tbody><tr id="6494e449-1cb7-4244-9626-8aa82ba766f3"><td id="_YVu" class="" style="width:271px"><mark class="highlight-red"><strong>Q:</strong></mark> Как работает оператор <code>flowOn</code> ?</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

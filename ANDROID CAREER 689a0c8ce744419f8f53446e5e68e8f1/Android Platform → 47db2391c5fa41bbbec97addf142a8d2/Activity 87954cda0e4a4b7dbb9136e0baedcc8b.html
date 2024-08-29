@@ -1,0 +1,712 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Activity</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="87954cda-0e4a-4b7d-bb91-36e0baedcc8b" class="page sans"><header><img class="page-cover-image" src="Activity%2087954cda0e4a4b7dbb9136e0baedcc8b/michaelbely_Cats_create_origami_with_their_paws_green_color_ed3fe570-48eb-42e0-86f3-05a80e8c9629.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Activity%2087954cda0e4a4b7dbb9136e0baedcc8b/android.svg"/></div><h1 class="page-title"><strong>Activity</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="fad2f5d2-4588-4506-9305-3ee594674aec" class="simple-table"><tbody><tr id="f162f4a3-a7be-45c3-9b71-15b026c4345a"><td id="a&gt;po" class="" style="width:569px"><a href="https://d.android.com/guide/components/activities/activity-lifecycle">https://d.android.com/guide/components/activities/activity-lifecycle</a></td></tr><tr id="2cdfd90e-a32f-4143-b285-46ae1db6bf3e"><td id="a&gt;po" class="" style="width:569px"><a href="https://d.android.com/guide/components/activities/background-starts">https://d.android.com/guide/components/activities/background-starts</a></td></tr><tr id="b580c1c2-089e-4ed0-917e-09bded2f1b20"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/reference/android/app/ActivityManager">https://developer.android.com/reference/android/app/ActivityManager</a></td></tr></tbody></table><h3 id="594f7c3c-a917-4cd4-9483-b8db53d24045" class=""><code><strong>Activity</strong></code></h3><p id="3978da5f-167e-443b-a2e6-37617f483aea" class="">Представляет UI и функциональность, видимыe пользователю.</p><p id="e156a6d8-3670-484a-9ad4-c272f3ff6b31" class="">• сворачиваем приложение: <code>onPause</code> - <code>onStop</code> разворачиваем: <code>onStart</code> - <code>onResume</code></p><p id="e6827339-2845-4b86-84bb-4d8b0289acd4" class="">• смахиваем через task manager: <code>onPause</code> - <code>onStop</code> - <code>onDestroy</code></p><p id="34ca4981-1266-4577-a71e-bdc9ffb06cd4" class="">• переходим в task manager (recent menu): lifecycle methods не вызываются</p><p id="78ef88b3-a0fc-45a5-b5c0-bada262b1dab" class="">• переходим на другую activity внутри приложения методом <code>startActivity</code>: <code>onPause</code> - <code>onStop</code> возвращаемся обратно: <code>onStart</code> - <code>onResume</code></p><p id="cb61010a-8cc3-4a12-9915-911165716b9d" class="">• смена ориентации, переключение темы (activity пересоздается): <code>onPause</code> - <code>onStop</code> - <code>onDestroy</code> - <code>onCreate</code> - <code>onStart</code> - <code>onResume</code></p><p id="19b5badc-184d-4ae2-a896-25afdf18bd95" class="">• если activity будет убита из-за low memory могут не вызваться killable-методы <code>onStop</code> и <code>onDestroy</code> (<code>onPause</code> до версии 3.0)</p><p id="12e53f37-b851-4cf4-83d9-f9cfca19fc15" class="">• открываем DialogFragment: lifecycle methods не вызываются</p><p id="4c1e16ff-354b-4387-a1c4-09ce3e619b2f" class="">• открываем permission dialog: <code>onPause</code> закрываем: - <code>onResume</code></p><p id="a0de553d-d5f4-4f0c-9f81-4330413380c5" class="">• очистить бэкстек при создании activity: использовать флаг <code>FLAG_ACTIVITY_CLEAR_TOP</code>, использовать вместе <code>FLAG_ACTIVITY_CLEAR_TASK</code> и <code>FLAG_ACTIVITY_NEW_TASK</code></p><p id="25798c97-acdb-4ae7-aef5-93442d69969b" class="">
+</p><h3 id="af7aad61-47f6-4cf9-a3a6-4df0eed75a8c" class=""><strong>Activity Lifecycle</strong></h3><table id="1f2d8219-fc30-4a22-84e1-6c8e7c42f364" class="simple-table"><tbody><tr id="d6e44bef-bdc0-48ce-9a4e-4c16d3bcfb44"><td id="Rsh{" class="" style="width:93px"><code>onCreate</code></td><td id="IRb_" class="" style="width:845px">вызывается 1 раз, когда <code>Activity</code> создается. Внутри него вызывается метод <code>setContentView</code></td></tr><tr id="0b453b9a-e477-4959-9015-cf49a48e2541"><td id="Rsh{" class="" style="width:93px"><code>onStart</code></td><td id="IRb_" class="" style="width:845px">activity отрисована и видна пользователю</td></tr><tr id="21312ba5-53f8-4a7a-aa95-5fd0652d7538"><td id="Rsh{" class="" style="width:93px"><code>onResume</code></td><td id="IRb_" class="" style="width:845px">вызывается перед тем, как <code>Activity</code> станет доступна для взаимодействия с пользователем</td></tr><tr id="61ca796d-a2c3-421e-bedc-aadd17e5e173"><td id="Rsh{" class="" style="width:93px"><code>onPause</code></td><td id="IRb_" class="" style="width:845px">метод симметричный <code>onResume</code>, пользователь больше не может взаимодействовать с Activity, но она остается видимой</td></tr><tr id="a0a6aa81-ffcf-4cb0-97f0-c0506bb96386"><td id="Rsh{" class="" style="width:93px"><code>onStop</code></td><td id="IRb_" class="" style="width:845px">метод симметричный <code>onStart</code>, вызывается, когда <code>Activity</code> больше не видна пользователю</td></tr><tr id="cd4db1d0-3761-4d29-a613-1c6bde7b21b2"><td id="Rsh{" class="" style="width:93px"><code>onDestroy</code></td><td id="IRb_" class="" style="width:845px">метод симметричный <code>onCreate</code>, вызывается перед тем, как <code>Activity</code> будет уничтожена системой</td></tr></tbody></table><p id="b7810c55-693d-4316-bbf9-3c5548d98a3f" class="">
+</p><h3 id="4d473239-40c6-4aa4-bf9c-741effcd8169" class=""><strong>Launch Modes</strong></h3><table id="c0456b11-88f1-4f9e-abbd-8c1fc34d605f" class="simple-table"><tbody><tr id="9ce7f2f5-e17a-4905-8a0b-84d35f960695"><td id="cz^u" class="" style="width:130px"><code>standart</code></td><td id="[jjt" class="" style="width:972px">Режим по умолчанию. Поведение Activity, установленного в этот режим, будет всегда создавать новую Activity, чтобы работать отдельно с каждым отправленным Intent. По сути, если для составления электронного письма отправлено 10 Intent-ов, должно быть запущено 10 Activity, чтобы обслуживать каждый Intent отдельно. В результате на устройстве может быть запущено неограниченное количество таких Activity</td></tr><tr id="10b7da97-6727-4545-b44c-880614d29159"><td id="cz^u" class="" style="width:130px"><code>singleTop</code></td><td id="[jjt" class="" style="width:972px">Он ведет себя почти так же, как и standard, что означает, что экземпляров singleTop Activity можно создать столько, сколько мы захотим. Единственное отличие состоит в том, что если уже есть экземпляр Activity с таким же типом наверху стека в вызывающей задаче, не будет создано никакого нового Activity, вместо этого Intent будет отправлен существующему экземпляру Activity через метод onNewIntent()</td></tr><tr id="064a29c4-2340-41a3-82b9-80c34c885940"><td id="cz^u" class="" style="width:130px"><code>singleTask</code></td><td id="[jjt" class="" style="width:972px">Activity с singleTask разрешено иметь только один экземпляр в системе (аля синглтон). Если в системе уже существует экземпляр Activity, вся задача, удерживающая экземпляр, будет перемещен наверх, а Intent будет предоставлен через метод onNewIntent(). В противном случае будет создано новое Activity и помещено в соответствующую задачу. Если в системе еще не было экземпляра singleTask Activity, будет создан новый, и он будет просто помещен вверх стека в той же задаче</td></tr><tr id="6c956470-7605-4fd6-b336-ad94f7448666"><td id="cz^u" class="" style="width:130px"><code>singleInstance</code></td><td id="[jjt" class="" style="width:972px">Этот режим очень похож на singleTask, где в системе мог существовать только один экземпляр Activity. Разница в том, что задача, которая располагает этим Activity, может иметь только одно Activity — то, у которого атрибут singleInstance. Если из этого вида Activity вызывается другое Activity, автоматически создается новое задание для размещения этого нового Activity. Аналогичным образом, если вызывается singleInstance Activity, будет создана новая задача для размещения этого Activity</td></tr></tbody></table><p id="68ec2029-58eb-4f3e-827c-ebb501ce353f" class="">
+</p><h3 id="7f3df0c6-8d81-453a-b256-f831e8f95ec2" class=""><strong>Как пережить поворот экрана?</strong></h3><p id="06baefeb-2005-4c75-9fff-19b0272af979" class="">При повороте экрана активити уничтожается и создается заново. Вызываются коллбэки <code>onPause()</code>, <code>onStop()</code>, <code>onSaveInstanceState()</code>, <code>onDestroy()</code> – <code>onCreate()</code>, <code>onStart()</code>, <code>onRestoreInstanceState()</code>, <code>onResume()</code>. Чтобы сохранить состояние активити, вы должны переопределить метод <code>onSaveInstanceState()</code> и положить данные в <code>Bundle</code>. При реинициализации активити, Bundle с сохраненным состоянием передается в <code>onCreate()</code> и в <code>onRestoreInstanceState()</code>. Система вызывает <code>onSaveInstanceState()</code> и <code>onRestoreInstanceState()</code> только в том случае, когда необходимо сохранить состояние, например при повороте экрана или при убийстве активити для освобождения памяти. Данные коллбэки не вызываются, если пользователь выходит из активити нажав Back или если активити убивается вызовом <code>finish()</code>. <code>onSaveInstanceState()</code> вызывается после <code>onStop()</code> на версии API ≥ 28. На API &lt; 28 этот коллбэк вызывается перед <code>onStop()</code> и нет гарантий до или после <code>onPause()</code>. <code>onRestoreInstanceState()</code> вызывается после <code>onStart()</code>.</p><p id="5113d8de-fb9c-468e-9daa-fc9f83d3fffd" class="">
+</p><h3 id="df676134-a228-4190-b0f3-0189d377bdf5" class=""><strong>Когда onDestroy вызовется без onPause и onStop?</strong></h3><p id="788b3884-31c7-4f49-ab78-65d96ace8578" class=""><code>finish</code> в <code>onCreate</code></p><p id="6b2a343c-2419-4db9-b199-903d79b9a9ee" class="">
+</p><h3 id="250939b9-0b47-437d-bdf5-4a25e2ca6314" class="">Можно ли создать приложение без Activity?</h3><p id="88622c28-27d3-4cfa-b379-adb3e18131d6" class="">Можно! Приложение обои. Будить через <code>BroadcastReceiver</code> и стартовать сервис.</p><p id="e75347c3-b675-46ce-946d-e62e6e7035a4" class="">
+</p><h3 id="84767121-17d9-4d9c-82f2-b5d79dc2724b" class=""><strong>Как изменилось поведение </strong><code><strong>onResume</strong></code><strong> и </strong><code><strong>onPause</strong></code><strong> в Android 10?</strong></h3><p id="8d749a45-9a9f-482f-a32b-8ce00c435956" class="">В Android 10 добавлена <a href="https://d.android.com/guide/topics/ui/foldables">поддержка foldables</a> и девайсов с большим экраном. В связи с этим было изменено поведение коллбэков onResume() и onPause() в режиме multi-window. В Android 9 только активити, с которой взаимодействует пользователь, находилась в состоянии resumed, а все остальные активити на экране имели состояние paused. Начиная с Android 10, все видимые активити в режиме multi-window находятся в состоянии resumed. Это поведение называется <a href="https://d.android.com/guide/topics/ui/foldables#multi-resume">multi-resume</a>. Активити, с которой взаимодействует пользователь, называется topmost resumed. Для того, чтобы различать resumed и topmost resumed активити, в Android 10 добавлен коллбэк onTopResumedActivityChanged(isTopResumed: Boolean). Этот метод вызывается, когда активити получает или теряет состояние topmost. </p><p id="32f1f1b2-5817-4dae-8cef-8c3aa0b46749" class="">
+</p><h3 id="29275de0-52c6-47bd-b437-1179d7d20842" class=""><strong>Как запустить стек из нескольких активити?</strong></h3><p id="1b15c306-5fb1-439e-9241-7e57cf70fb16" class="">Для старта стека из нескольких активити используется класс <a href="https://d.android.com/reference/android/app/TaskStackBuilder">TaskStackBuilder</a>. После вызова метода startActivities() (см. картинку), стартует только activity3. Информация об activity1 и activity2 хранится в стеке. Когда пользователь нажимает «назад», или на activity3 вызывается метод finish(), создается и стартует activity2. Этот механизм полезен для реализации роутинга при запуске приложения через deep link</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bca9e811-4c0d-4364-aa77-09268d544eb2" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val taskStackBuilder = TaskStackBuilder.create(context)
+    .addNextIntent(Intent(context, Activity1::class.java))
+    .addNextIntent(Intent(context, Activity2::class.java))
+    .addNextIntent(Intent(context, Activity3::class.java))
+taskStackBuilder.startActivities()</code></pre><p id="2d92055e-9950-467b-be4a-e7dcde0b8fbf" class="">
+</p><h3 id="3fae7e8f-86b7-47a0-b644-47ec652de235" class=""><code><strong>OnBackPressedDispatcher</strong></code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff5d16d5-86e8-4417-885f-d05c223291a4" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class MyFragment: Fragment() {
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // handle action
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+}</code></pre><p id="94f84a54-ea72-4fe2-8c9c-9969e2a4032d" class="">
+</p><h3 id="2fd7c079-fd24-44bd-a5a8-7cd13192a1aa" class=""><code><strong>taskAffinity</strong></code></h3><p id="7ac43738-31d0-4947-b67c-a461a586343e" class="">Объяснение на <a href="https://stackoverflow.com/questions/17872989/android-task-affinity-explanation">StackOverflow</a>.</p><p id="eee240f6-c923-4b22-bebd-815d6991fedf" class="">
+</p><h3 id="ccf05c5d-2e97-4df8-8fd5-dbcf336ed582" class=""><code>ActivityManager</code></h3><p id="fbe3bdd5-1210-4642-a5a8-047ab249ece2" class="">Этот класс предоставляет информацию об Activity, Services и взаимодействующих с ними процессах.</p><p id="40da34f4-37fa-4ee9-9640-327d6728fafc" class="">
+</p><h3 id="efaa3b41-b2c8-4abe-a265-6c5eea75fc19" class="">Activity vs Fragment</h3><p id="9492936c-1a73-4680-b162-31fd28722a02" class="">Мы легко можем управлять стеком фрагментов. Со стеком активностей возникают проблемы: мы не можем гарантировать их порядок, активити может создастся по интенту другим приложением.</p><p id="70544376-a476-4e2c-9c42-a04ffd9796d7" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android Activity. Вопросы на собесе</mark></summary><div class="indented"><table id="37873891-f2e4-42e7-a3f9-7cf071374374" class="simple-table"><tbody><tr id="72d32d32-e0c4-4c0c-af03-f49aa9d543a9"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Жизненный цикл Activity?</td></tr><tr id="7a823f69-0b83-406c-a6a6-6acd18d57ecf"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Когда onDestroy вызовется без <code>onPause</code> и <code>onStop</code>?</td></tr><tr id="75842c2c-01d1-420d-a546-69e5674b2394"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Как пережить поворот экрана?</td></tr><tr id="c6d77eff-fe3d-48a5-a83f-e81fb1b9f1bb"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Можно ли создать приложение без Activity?</td></tr><tr id="49e7b652-6cad-4c7e-a44e-cbcdfbbd5d96"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Как изменилось поведение <code>onResume</code> и <code>onPause</code> в Android 10?</td></tr><tr id="42be6f32-7a6f-4efc-a5f8-5ceab838ba24"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Как запустить стек из нескольких активити?</td></tr><tr id="22878dbd-8a4e-4f79-a2c6-19bf09b0dbd6"><td id="kb~V" class="" style="width:465px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем Activity отличается от Fragment?</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
