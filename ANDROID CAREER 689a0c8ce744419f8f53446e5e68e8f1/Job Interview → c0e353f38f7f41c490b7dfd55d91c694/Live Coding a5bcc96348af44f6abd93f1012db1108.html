@@ -1,0 +1,1160 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Live Coding</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a5bcc963-48af-44f6-abd9-3f1012db1108" class="page sans"><header><img class="page-cover-image" src="Live%20Coding%20a5bcc96348af44f6abd93f1012db1108/michaelbely_live_coding_0dc429ee-bb9f-4f32-b2fd-87d6081d73ab.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Live%20Coding%20a5bcc96348af44f6abd93f1012db1108/code-braces.svg"/></div><h1 class="page-title"><strong>Live Coding</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="1563e923-f34b-48b9-8e98-53716fd5cb8a" class="simple-table"><tbody><tr id="3352153c-da00-4518-8ba5-c6f3629acb46"><td id="Iq|u" class="" style="width:102px"><mark class="highlight-brown"><code>17.04.2024</code></mark></td><td id="A{ti" class="" style="width:813px"><a href="https://youtu.be/kKcwi0w5c8A">https://youtu.be/kKcwi0w5c8A</a></td></tr><tr id="ce01ec64-d497-4050-b581-bd3d8fb4988b"><td id="Iq|u" class="" style="width:102px"><mark class="highlight-brown"><code>31.10.2023</code></mark></td><td id="A{ti" class="" style="width:813px"><a href="https://youtu.be/d4iq9-ZxqCw">https://youtu.be/d4iq9-ZxqCw</a></td></tr><tr id="a70d9774-4ac1-4c60-815e-5c2bc39e9b2d"><td id="Iq|u" class="" style="width:102px"><mark class="highlight-brown"><code>28.04.2023</code></mark></td><td id="A{ti" class="" style="width:813px"><a href="https://youtu.be/KH0vLN1siI8">https://youtu.be/KH0vLN1siI8</a></td></tr><tr id="770cb87c-090d-4b32-8dc8-4209f93bc052"><td id="Iq|u" class="" style="width:102px"><mark class="highlight-brown"><code>04.07.2022</code></mark></td><td id="A{ti" class="" style="width:813px"><a href="https://youtu.be/JaZ_1aXlX5A">https://youtu.be/JaZ_1aXlX5A</a></td></tr><tr id="18814767-99a0-427c-8cf3-a58ee61685a7"><td id="Iq|u" class="" style="width:102px"><mark class="highlight-brown"><code>15.03.2021</code></mark></td><td id="A{ti" class="" style="width:813px"><a href="https://youtu.be/umiL523LE94">https://youtu.be/umiL523LE94</a></td></tr></tbody></table><table id="e6ed7b9e-1076-4f78-867a-6c6dd97a152d" class="simple-table"><tbody><tr id="2cfc8dee-fb3a-4ee5-a8dd-c49f172625d0"><td id="yP`u" class="" style="width:252px"></td></tr></tbody></table><h3 id="42520cfe-e509-4151-9ec2-fae263c9688a" class="">Как себя вести?</h3><p id="53cae7b1-dcb8-4caf-9342-0ad5a6119c74" class="">• Сразу бросаться писать код - плохая идея. Сначала предложи варианты решения.</p><p id="c3f35abd-49be-44c6-9a05-72deb5602376" class="">• Не обязательно найти идеальное решение. Проверяется сама способность рассуждать.</p><p id="cb0ca289-a01c-4567-8de8-f892db458398" class="">
+</p><h3 id="008d7d96-bb27-4a06-84dc-8e156c829a73" class="">Что произойдет?</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f0195e4e-6ff7-4d3c-99a0-7ed607e13e5e" class="code"><code class="language-Java">public class Incrementer {
+		int count = 0;
+
+		public synchronized void inc() {
+				if (count &lt; 10) {
+						count++;
+						inc();
+				}
+		}
+}
+
+new Incrementer().inc();</code></pre><p id="29ca84bf-0fb8-4806-8505-fde4ad45c85b" class="">
+</p><h3 id="d8fad2cb-ea67-47da-b857-8c3f3f452106" class="">Что произойдет?</h3><p id="d6765bdd-ccb9-43aa-bb3b-1d8dde001459" class="">Ответ: <code>a</code> зайдет в вечный цикл и второй <code>launch</code> ее не остановит.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="720ab3e8-75c9-47ee-98f0-4b85777d5e8e" class="code"><code class="language-Kotlin">fun main() = runBlocking {
+    val a = launch {
+        while (true) {
+            Thread.sleep(1000)
+            println(&quot;Show Loading&quot;)
+        }
+    }
+
+    launch {
+        withContext(Dispatchers.IO) {
+            delay(5500)
+            a.cancel()
+            println(&quot;Finished&quot;)
+        }
+    }
+}</code></pre><p id="daf43f66-c565-448e-a3ea-43b939442f60" class="">
+</p><h3 id="ced11f08-618a-44a9-b298-2c1ffbde7c8b" class="">На каком потоке вызывается код в onSuccess?</h3><p id="6d9723c0-fd0d-4555-b75a-521433ebcb06" class="">Правильный ответ - на computation. Поток запустится на io. subscribeOn отвечает за методы выше. observeOn отвечает за методы ниже. Результат выведется на ближайшем observeOn.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9f9921e2-2951-485d-893f-ebe2ad719266" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.subscribeOn(Schedulers.io))
+				.observeOn(Schedulers.computation())
+				.subscribe(
+						{ regions -&gt;
+								showRegions(regions)
+						}
+				)
+｝</code></pre><p id="13856b91-585c-40b8-9a62-0784fd61cb9f" class="">
+</p><h3 id="c7e7311f-a47f-4998-a080-d121af90689d" class="">На каком потоке вызывается код в onSuccess?</h3><p id="430357f0-3ae0-4651-80b7-e498f02cc96b" class="">Правильный ответ - на том потоке, на котором мы эту функцию вызовем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3ca54f88-c258-4c63-aa6e-39e97af04bf7" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.subscribe(
+						{ regions -&gt;
+								showRegions (regions)
+						}
+}</code></pre><p id="aca04dd2-f4c1-4a24-9a74-c5b3fed2a084" class="">
+</p><h3 id="409b33ed-a39b-4ece-8c51-dfeffd2b8d2b" class="">На каком потоке вызывается код в onSuccess?</h3><p id="409ab0e5-cc2b-44b3-aa17-b4e071af9d6b" class="">Правильный ответ - io. На каком потоке находимся на том и вызовется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8855bad0-b03b-481d-acf7-d1373ad15270" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions ()
+				.subscribeOn(Schedulers.io))
+				.subscribe(
+						{ regions -&gt;
+								showRegions(regions)
+						｝
+}</code></pre><p id="f2092ee8-0e31-4358-ad00-6da596857ded" class="">
+</p><h3 id="09a15719-d14a-472d-8f56-2cb2b4796802" class="">На каком потоке вызывается код в onSuccess?</h3><p id="1cb48233-e1ba-4265-81e0-5aed0c2f42f6" class="">Правильный ответ - computation. Будет отрабатывать тот subscribeOn который находится ближе всего к источнику - остальные subscribeOn будут игнорироваться. Не имеет значения в каком месте ветки указан subscribeOn.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d5b22568-a607-4199-a572-e0df0494b1f2" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.subscribeOn(Schedulers.computation())
+				.subscribeOn (Schedulers.io())
+				.subscribe(
+					 ｛ regions -&gt;
+								showRegions (regions)
+						}
+}</code></pre><p id="1c82ef51-bf05-43c0-a1e2-bfc514efa80e" class="">
+</p><h3 id="fa9753c6-e919-4da7-a307-ee2cfac89a26" class="">На каком потоке вызывается код в onSuccess?</h3><p id="55a5343d-6bff-4749-b10f-56885291d30a" class="">Правильный ответ - io. Так как он это ближайший observeOn к нашему onSuccess.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3f2ad9a2-4625-450c-ac7b-7ca71907d755" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.observen(Schedulers.computation())
+				.observeOn(Schedulers.io))
+				.subscribe(
+						{ regions -&gt;
+								showRegions(regions)
+						}
+				)
+}</code></pre><p id="fc7a05f5-6a12-488d-83c8-10e5b61c1258" class="">
+</p><h3 id="4e33dfde-94cf-45f8-b3c8-1ee81ded1cf0" class="">На каком потоке вызывается код в flatMap?</h3><p id="697bc3f0-051a-4834-a067-67f12e2d6e67" class="">Правильный ответ - computation.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="56358489-3562-44d4-a884-4ed295d5b6ba" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.subscribeOn(Schedulers.single())
+				.observeOn(Schedulers.computation())
+				.flatMap {
+						getCity()
+				}
+				.subscribeOn(Schedulers.io))
+				.subscribe(
+						{ regions -&gt;
+								showRegions (regions)
+						}
+				)
+}</code></pre><p id="c300a136-cc25-481c-a536-3d7316b2d0f7" class="">
+</p><h3 id="b76f8ba4-54d6-44e4-a77b-366e400d4202" class="">На каком потоке вызывается код в doOnSubscribe?</h3><p id="1433ec25-f0d8-441b-b0a5-92acc394f7e6" class="">Правильный ответ - io. Поток для doOnSubscribe задается первый subscribeOn после него.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ed71865b-88ab-4702-852d-66a0389ac003" class="code"><code class="language-Kotlin">fun updateRegions() {
+		getRegions()
+				.subscribeOn(Schedulers.single())
+				.observen(Schedulers.computation())
+				.doOnSubscribe {
+						showProgress()
+				｝
+				.subscribeOn(Schedulers.io))
+				.subscribe { regions -&gt;
+						showRegions(regions)
+				｝
+｝</code></pre><p id="af3901f3-6fd2-4eb4-83da-c25504139f2e" class="">
+</p><h3 id="7ba5ab19-a5ef-40f2-a252-e7dc8de794fe" class="">Что здесь происходит? Что выводит print?</h3><p id="698432ad-ce90-47e9-bf29-2705ef6e4195" class="">flatMap не гарантирует порядок выдаваемых значений, поэтому результат может быть и true и false. Чтобы всегда было true, flatMap нужно поменять на concatMap. Он будет работать дольше. На больших данных заметно дольше. Решение: после метода toList добавить сортировку.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e9a62587-a979-4495-a47c-edb610ec1b01" class="code"><code class="language-Kotlin">fun main() {
+		val orderIds: List&lt;Long&gt; = listOf(1, 2, 3)
+		loadAllOrders(orderIds)
+				.subscribel { orders -&gt;
+						val result = orderIds = orders.map(Order::id)
+						print(result)
+				})
+}
+
+private fun loadAllOrders(orderIds: List&lt;Long&gt;): Single&lt;List&lt;Order&gt;&gt;{
+		return Observable.fromIterable(orderIds)
+				.subscribeOn(Schedulers.io))
+				.flatMapSingle(::loadOrderById)
+				.toList()
+}</code></pre><p id="c2101231-9802-452a-b658-874081319e3f" class="">
+</p><h3 id="f6ab09ca-d9cc-4d2f-8be8-58e55e9fa1b8" class="">Какую бизнес-задачу решает этот код? Как его отрефакторить?</h3><p id="df6f3657-685a-4e9e-8190-258dc37852e8" class=""> • Переименовать UseCases.<br/> • Передавать в метод listOf&lt;Item&gt; а не result.<br/> • Избавиться от return if чтобы уменьшить вложенность кода.<br/> • Mapper вынести в отдельный класс.<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45e2c1cd-74c4-4b86-971a-428b195f942f" class="code"><code class="language-Kotlin">class MainUseCase @Inject constructor(
+		private val firstUseCase: FirstUseCase,
+		private val secondUseCase: SecondUseCase
+) {
+		@CheckResult
+		fun execute(result: Result): Completable {
+				val orderedItems = result.items
+				return if (orderedItems.isEmpty()) {
+						Completable.complete()
+				} else {
+						firstUseCase.getCartItems()
+								.map { cartItems -&gt;
+										orderedItems.mapNotNull { orderItem -&gt;
+												cartItems.firstOrNull i it.id == orderItem.id }
+										}
+												.map { cartItem -&gt;
+														CartItemId(
+																cartItemId = cartItem.id,
+																skuld = cartItem.skuld,
+																bundleId = cartItem.bundleId,
+																isPrimaryBundleItem = cartItem.isPrimaryBundleItem
+														)
+												}
+										}
+								.flatMapCompletable {
+										if (it.isEmpty)) {
+												Completable.complete()
+										｝else｛
+												secondUseCase.deleteItems(it)
+										｝
+								}
+				}
+		}
+}</code></pre><p id="6a54c41e-e5b7-4f7c-8fbb-b0085044e0bf" class="">
+</p><h3 id="319bcd5c-43a2-4640-a594-75ff631c4383" class="">Написать эффективную модель для работы с разными событиями</h3><p id="7f1cdbd6-9ba0-4b5b-a097-bdc0d2c06593" class="">Есть стрим эвентов. Некоторые экраны на него подписаны и слушают нужные им события.<br/>Решение:<br/> • Реализация не должна следить сразу за всеми событиями<br/> • Скрывать реализацию фильтрации<br/> • Буферизация?<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3c9c4f53-8359-4bc2-91bb-fe3c9b0ee883" class="code"><code class="language-Kotlin">interface ServiceConnection {
+		val event(): Flow&lt;String&gt; // Emit events in JSON format
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c7a9e225-ec86-4bdd-951e-ff3d17bdef8e" class="code"><code class="language-Kotlin">interface EventFilter&lt;E: Input&gt; {
+		fun(json: String) -&gt; E?
+}
+
+class OptimizedServiceConnection(
+		private val serviceConnection: ServiceConnection
+) {
+		private val eventFilterRegister = mutableMapOf&lt;String, EventFilter&lt;*&gt;&gt;()
+		
+		fun registerFilter(type: String, eventFilter: EventFilter&lt;E: Input&gt;) {
+				...
+		}
+
+		fun &lt;E: Input&gt; ServiceConnection.subscribe(type: String): Flow&lt;E&gt; {
+				return serviceConnection.events().filter().mapNotNull { eventFilterRegister.getValue(type).filter(it) }
+		}
+}
+
+sealed class Input(
+		val type: String
+) {
+		data class LogoutInput(
+				@SerialName(&quot;type&quot;) override val type: String
+		)
+}</code></pre><p id="9932e8e6-a779-43a7-80f9-e2a00fc2d95d" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Rutube. Live-coding</summary><div class="indented"><p id="60786456-bd48-44ff-b67f-13ea282f7f5c" class="">Что произойдет при вызове данной функции?</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c2e10e2f-f04c-430b-a14a-8545faad0fdd" class="code"><code class="language-Kotlin">suspend fun unknownFunction() {
+    coroutineScope {
+        launch(Job()) {
+            delay(1000)
+            println(&quot;Hello&quot;)
+        }
+        cancel()
+    }
+}</code></pre><p id="47d01649-d56c-4db0-ba8d-01f95da1d481" class="">
+</p><p id="fb27fde3-ed69-4518-bcd0-19219cfd4bb8" class="">
+</p><figure id="1fa026ba-85a5-4f54-9b84-45ae38454c52" class="image"><a href="Live%20Coding%20a5bcc96348af44f6abd93f1012db1108/imaeege.jpeg"><img style="width:432px" src="Live%20Coding%20a5bcc96348af44f6abd93f1012db1108/imaeege.jpeg"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Tinkoff. Live-coding</summary><div class="indented"><p id="8c2fc631-ba6c-4487-a32d-9ae9f8337a61" class="">
+</p><p id="fa804445-3791-4f73-a6fd-773ec7aee7cd" class="">Рефакторинг кода:</p><p id="31cfe4ea-9fd0-49b4-9869-7baad834bc2c" class="">Понять что делает этот код.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25292dd7-7894-4b41-99e3-b6ac93ca322f" class="code"><code class="language-Kotlin">object Const {
+		val index = 1
+}
+
+private var TAG = &quot;ChatSessionController&quot;
+
+open class ChatSessionController(
+		private val accountRepository: ChatAccountRepository,
+		private val preferencesManager: ChatPreferencesManager
+) {
+		lateinit var context: Context
+		
+		companion object {
+				@Volatile
+				private var user: User? = null
+		}
+		
+		@Synchronized
+		fun initChat(): Single&lt;Boolean&gt; {
+				val success = false
+				val idPrefix = context.getString(R.string.id_prefix)
+				var range = accountRepository.getAccounts().size
+				for (i in INDEX..range) {
+						val account = accountRepository.getAccounts()[i]
+						if (account.isOwner) {
+								user = User(
+										id = idPrefix + account.id,
+										name = null,
+										phone = null
+								)
+						}
+				}
+				if (success == true) {
+						preferencesManager.initPreferences()
+				}
+				Log.d(TAG, &quot;Init Chat, User = $user&quot;)
+		}
+		
+		fun logout() {
+				Log.d(TAG, &quot;Logout Chat&quot;)
+				preferencesManager.getPreferences().edit().clear().apply()
+		}
+}
+
+class User(
+		var id: String,
+		var name: String? = null,
+		var phone: String? = null 
+)
+
+interface ChatAccountRepository {
+		fun getAccounts(): LinkedList&lt;Account&gt;
+}
+
+interface ChatPreferencesManager {
+		fun initPreferences()
+		fun getPreferences(): SharedPreferences
+}</code></pre><p id="59aa1fbe-d95a-436c-b0a9-8454624742da" class="">
+</p><p id="a00038a3-0b25-4ad2-afaf-814d0e6c3d2f" class="">Рефакторинг кода:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="95362ee4-50e5-4bc6-b4ed-8eebeeb1ed2a" class="code"><code class="language-Kotlin">private val TAG = &quot;UsersHolderSingleton&quot;
+object CONST {
+    val INDEX = 1
+}
+open class UsersHolderSingleton private constructor(
+    val usersRepo: Repository,
+    val context: Context
+) : LoggerProvider() {
+
+    companion object {
+
+        @Volatile
+        private var instance: UsersHolderSingleton? = null
+    }
+
+    @Synchronized
+    fun getInstance(context: Context, val usersRepo: Repository): UsersHolderSingleton {
+        if (instance == null) {
+            instance = UsersHolderSingleton(usersRepo)
+        }
+        return instance!!
+    }
+    var users: LinkedList&lt;UserData&gt; get() = usersRepo.get()
+    val executor: ExecutorService = Executors.newFixedThreadPool(5)
+    
+		fun update(id: String, newPhoneNumber: String) {
+        val formattedNumber = context.getString(R.id.formatted_number_pattern, newPhoneNumber)
+        val copy: (oldUserData: UserData, phoneNumber: String) -&gt; UserData = { oldUserData, phoneNumber -&gt;
+            UserData(
+                id = oldUserData.id,
+                name = oldUserData.name,
+                phoneNumber = phoneNumber
+            )
+        }
+        for (i in INDEX..users.size) {
+            if (users[i].id == id) {
+                users[i] = copy(&amp;&amp;, formattedNumber)
+                logger.tag(TAG).d(users[i])
+            }
+        }
+    }
+}
+
+class UserData(
+		var id: String, 
+		var name: String, 
+		var phoneNumber: String
+)
+
+interface Repository {
+    fun get(): LinkedList&lt;UserData&gt;
+}</code></pre><p id="50537b7e-cadd-4636-9beb-23c944345464" class="">
+</p><p id="5486f91d-be86-402b-aaa1-5f528b0ff8ca" class="">Рефакторинг кода:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3583972-f9b5-4395-befa-6b7936d2140d" class="code"><code class="language-Kotlin">class ScreenViewModel(
+    var confligs: ConfigRepository,
+    var holder: UserHolder,
+    var cards: CardRepository,
+    var analytics: AnalyticsService,
+    var context: Context,
+): ViewModel() {
+ 
+    lateinit var config: Config
+    lateinit var card: CardType
+ 
+    var liveData = MutableLiveData&lt;UiModel&gt;()
+    var successfulChecks = 0L
+ 
+    init {
+        GlobalScope.launch {
+            flowOf(configs.loadConfig()).zip(cards.observeAvailableCard(), { it1, it2 -&gt; Pair(it1, it2) })
+                .flowOn(Dispatchers.Default)
+                .filter {
+                    it.second == CardType.PREMIUM &amp;&amp; holder.getUserScore() &gt; 42
+                        || it.second != CardType.PREMIUM
+                        || it.first.specialUsers.contains(holder.getUserId())
+                }
+                .onEach {
+                    config = it.first
+                    card = it.second
+                }
+                .flatMapConcat {
+                    flowOf(
+                        config.checkBlackList(it.second, holder.getUserId())
+                            .apply {
+                                successfulChecks++
+                            }
+                    )
+                }.collect {
+                    liveData.value = UiModel(
+                        if (card == CardType.CREDIG) config.creditTitle
+                        else if (card == CardType.DEBIT) config.debitTitle
+                        else if (card == CardType.KID) config.kidTitle
+                        else if (card == CardType.PREMIUM) context.getString(R.string.congratulations)
+                        else &quot;&quot;,
+                        context.getString(
+                            R.string.description_patterns,
+                            config.kinderSurprizeCashBack
+                        )
+                    )
+                }
+        }
+    }
+ 
+    var disposables: CompositeDisposable? = CompositeDisposable()
+    override fun onCleared() {
+        GlobalScope.launch {
+            analytics.sendSuccessfulChecks(successfulChecks)
+            super.onCleared()
+        }
+    }
+}
+ 
+interface Config {
+    val debitTitle: String
+    val creditTitle: String
+    val kidTitle: String
+    val kinderSurprizeCashBack: Long
+    val specialUsers: List&lt;Long&gt;
+}
+ 
+interface ConfigRepository {
+    suspend fun loadConfig(): Config
+ 
+    /**
+     * Checks all user&#x27;s data for suspicious activity, can take up to 30 seconds
+     * @throws ForbiddenCardTypeException if user is not eligible for that card type
+     * */
+ 
+    fun checkBlackList(cardType: CardType, userId: Long) BlackList
+}
+ 
+interface BlackList {
+    var successfulChecks: Long
+}
+ 
+interface CardRepository {
+ 
+    /**
+     * Fetches most relevant available card, can change in any minute to a premium version!
+     * */
+    fun observeAvailableCard(): Flow&lt;CardType&gt;
+ 
+}
+ 
+interface UserHolder {
+    fun getUserId(): Long
+    fun getUserScore(): Long
+}
+ 
+interface AnalyticsService {
+    @FormUrlEncoded
+    @POST(&quot;v1/analytics&quot;)
+    suspend fun sendSuccessfulChecks(checks: Long)
+}
+ 
+enum class CardType {DEBIT, CREDIT, KID, PREMIUM}
+ 
+class UiModel(val title: String, val description: String)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Ozon. Live-coding</summary><div class="indented"><p id="caa7e798-89fd-4a89-a5f9-dd93ae1a02e6" class=""><mark class="highlight-red"><strong>Q:</strong></mark> Что произойдет?</p><p id="ce46ac7c-8cac-47b6-bb1f-fc607587c16c" class=""><mark class="highlight-teal"><strong>A:</strong></mark> корутина a зайдет в бесконечный цикл и будет печатать «‎Show loading»‎‎ каждую секунду. Вторая корутина не будет запущена. Если заменить <code>Thread.sleep</code> на <code>delay</code> то вторая корутина отменит первую через 5.5 сек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6250f914-3e36-4015-8063-aedacac0e819" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun main() = runBlocking {
+    val a = launch {
+        while (true) {
+            Thread.sleep(1000)
+            println(&quot;Show Loading&quot;)
+        }
+    }
+
+    launch {
+        withContext(Dispatchers.IO) {
+            delay(5500)
+            a.cancel()
+            println(&quot;Finished&quot;)
+        }
+    }
+}
+
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Avito. Live-coding</summary><div class="indented"><p id="896b0e0e-067b-405f-bca6-0e1e4d6ba16b" class=""><mark class="highlight-red"><strong>Q:</strong></mark> Что выведет код?</p><p id="b0c983ad-351a-4a73-8fd1-c3005b7470ac" class=""><mark class="highlight-teal"><strong>А:</strong></mark> Нет гарантий видимости переменных и атомарности операций, поэтому результат может любой(0 0, 1 0, 0 1, 1 1).</p><p id="f9f52b2e-4ab2-44fe-b8bb-4a0d684bce03" class=""><mark class="highlight-red"><strong>Q:</strong></mark> Почему результат можем быть 0, 0?</p><p id="e3d8eaa6-9182-49e6-a60d-f1014361cd1f" class=""><mark class="highlight-teal"><strong>А:</strong></mark> У потоков могут могут совпасть линии кэшей или может произойти реордеринг.</p><p id="3bc188ba-08f3-4144-b6e2-f1c7e8a1ea11" class=""><mark class="highlight-red"><strong>Q:</strong></mark> Как избежать результата 0, 0?</p><p id="f3feb819-3b6d-4462-a9b0-3407737ca164" class=""><mark class="highlight-teal"><strong>А:</strong></mark> Нужно использовать пометку <code>@Volatile</code> на переменных x,y и сделать и <code>@Synchronized</code> сеттеры.</p><p id="4632b245-7807-4358-9a6a-a6986327a72c" class=""><mark class="highlight-red"><strong>Q:</strong></mark> Как сделать так, чтобы код всегда выводил 1 1?</p><p id="28d92f33-a0b0-4efc-b070-2a38a0a34462" class=""><mark class="highlight-teal"><strong>А:</strong></mark> Решение: CountDownLatch</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="674c8751-7869-44b5-abfb-c18d83deadc1" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class State(
+    var x: Int = 0,
+    var y: Int = 0
+)
+
+fun main() {
+    val state = State()
+
+    val t1 = Thread {
+        state.x = 1
+        println(state.y)
+    }
+
+    val t2 = Thread {
+        state.y = 1
+        println(state.x)
+    }
+    
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+}
+
+// Решение: CountDownLatch
+class State {
+    @Volatile
+    var x: Int = 0
+        @Synchronized set
+
+    @Volatile
+    var y: Int = 0
+        @Synchronized set
+}
+
+fun main() {
+    val state = State()
+
+    val latch1 = CountDownLatch(1)
+    val latch2 = CountDownLatch(1)
+
+    val t1 = Thread {
+        state.x = 1
+        latch1.countDown()
+        latch2.await()
+        println(state.y)
+    }
+
+    val t2 = Thread {
+        state.y = 1
+        latch2.countDown()
+        latch1.await()
+        println(state.x)
+    }
+    
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+}</code></pre></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

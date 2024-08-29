@@ -1,0 +1,746 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SDK</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6bee7e52-769a-4834-af55-af64c765d240" class="page sans"><header><img class="page-cover-image" src="SDK%206bee7e52769a4834af55af64c765d240/michaelbely_whale_green_color_4c9cbc56-01ae-41d0-9565-f6ffa81189f5.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="SDK%206bee7e52769a4834af55af64c765d240/android.svg"/></div><h1 class="page-title"><strong>SDK</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="7015fa1e-e0e4-4a54-bb29-7617941d963b" class="simple-table"><tbody><tr id="8ca78c9c-6c85-4dab-812d-6dcbf1805878"><td id="zKNv" class="" style="width:575px"><a href="https://developer.android.com/guide/components/activities/parcelables-and-bundles">https://developer.android.com/guide/components/activities/parcelables-and-bundles</a></td></tr><tr id="4a9e1425-a471-4392-9b14-717347feb100"><td id="zKNv" class="" style="width:575px"><a href="https://developer.android.com/reference/androidx/annotation/RequiresPermission">https://developer.android.com/reference/androidx/annotation/RequiresPermission</a></td></tr><tr id="7a349cf0-1826-4ba1-92fa-71baf6ebdced"><td id="zKNv" class="" style="width:575px"><a href="https://developer.android.com/develop/sensors-and-location/location/permissions">https://developer.android.com/develop/sensors-and-location/location/permissions</a></td></tr></tbody></table><h3 id="b0d67c8a-e473-4c33-ab95-0dba81c2ce32" class="">Основные компоненты Android-приложения</h3><p id="07a798ba-6825-45ec-9399-e6fb4e6735d7" class=""><code>Activity</code> <code>Service</code> <code>BroadcastReceiver</code> <code>ContentProvider</code></p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Manifest</summary><div class="indented"><p id="7d05ee4b-c235-4a81-8f2a-bf9df52acd3f" class="">Важный файл в корне проекта который описывает информацию о приложении для инструментов сборки, операционной системы и Google Play.</p><p id="71fced1a-a4f9-432a-bd3a-f6abfc95a7d5" class="">• <code>BroadcastReceiver</code> можно не указывать в манифесте.</p><p id="b73549e1-07f1-4a6e-9ef0-f04aa092d0aa" class="">
+</p><h3 id="196515a3-d7f0-4a01-8f77-099fd48e2d8e" class=""><code>exported</code></h3><p id="da3eed6f-9ebe-4a80-bb8b-f8676f31c1bf" class="">Атрибут устанавливает может ли компонент запускаться компонентами других приложений.</p><p id="9996300f-c388-431f-a93b-be933f4390ed" class="">
+</p><h3 id="bca95389-f17c-42df-8a94-b6f55de72a2d" class=""><code>configChanges</code></h3><p id="28115116-36e4-4857-a177-244b6793a5e8" class="">Атрибут для перечисления конфигураций (ориентация, направление макета, клавиатура, локализация) при изменении которых компонент не пересоздается. Будет вызван метод <code>onConfigurationChanged</code>.</p><p id="03856906-9216-4149-a3a3-e5d13bc1b23b" class="">
+</p><h3 id="d55d7294-5791-4439-8732-169cef156cea" class=""><code>process</code></h3><p id="5ce46aff-b7ff-402b-a01f-16d6c183781b" class="">Устанавливает имя процесса в котором работает сервис. Обычно все компоненты приложения работают в процессе по умолчанию, созданном для приложения. Он имеет то же имя, что и пакет приложения.</p><p id="96f88af4-f68e-4cc7-8641-5ac0d96bf546" class="">• если имя назначенное этому атрибуту, начинается с двоеточия <code>:</code> при необходимости создается новый процесс, закрытый для приложения, и служба запускается в этом процессе.</p><p id="244fe90c-b51f-4ccc-8d2a-65e7e76fa949" class="">• если имя процесса начинается со строчной буквы, служба запускается в глобальном процессе с этим именем, при условии, что у нее есть разрешение на это. Это позволяет компонентам в разных приложениях совместно использовать процесс, сокращая использование ресурсов.</p><p id="d55a456a-5f39-486d-9d03-b1004a8a1123" class="">
+</p><h3 id="66bead6d-7648-4ceb-b8b0-9bf9f765b948" class=""><strong>Manifest Variables</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef48ef22-6d39-4229-8afc-994175932381" class="code"><code class="language-XML" style="white-space:pre-wrap;word-break:break-all">&lt;meta-data
+    android:name=&quot;apiKey&quot;android:value=&quot;${apiKey}&quot;/&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd2ae323-a532-48b5-a494-f0b1343f7722" class="code"><code class="language-XML" style="white-space:pre-wrap;word-break:break-all">defaultConfig {
+    manifestPlaceholders += mapOf(&quot;apiKey&quot; to &quot;key&quot;)
+}</code></pre><p id="23bbd4f4-9be9-4769-82df-7447ff52fc0b" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Context</strong></summary><div class="indented"><p id="fa1dae8a-8820-467f-8475-6b3648dc909d" class="">Божественный объект. Интерфейс к глобальной информации о среде приложения. Обеспечивает доступ к ресурсам и классам, специфичным для приложения, а также вызовы для операций на уровне приложения (запуск activity, service)</p><p id="c8fff805-d7ce-40ac-992a-a5e53aec9519" class="">
+</p><h3 id="96b96204-b89e-4c82-8577-1cf8a53bb37a" class=""><strong>Application context vs Activity context</strong></h3><p id="38a08db4-f08c-4076-9611-422fe0c50f7f" class="">Оба являются экземплярами Context, но application context привязан к жизненному циклу приложения, а activity context к жизненному циклу Activity. Имеют доступ к разной информации о среде приложения</p><p id="7d8758f7-0645-4970-8e2f-f5c368c07104" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Application</strong></summary><div class="indented"><p id="01c80b88-c2a4-498b-b43a-5b03b5a0561b" class="">Базовый класс для поддержания глобального состояния приложения. Создается перед любым другим классом при создании процесса приложения. </p><p id="557d6bbd-0d99-4842-923a-c7d03cd9c3d4" class="">
+</p><h3 id="0bcc262b-6945-4cf4-8f07-20466bb335e8" class=""><code><strong>Application.onCreate</strong></code></h3><p id="a471ed05-2a59-4756-b30e-df5aa02fa451" class="">Вызывается при запуске приложения до создания activity, service или receiver (за исключением ContentProvider). Реализации должны быть максимально быстрыми (например, с использованием ленивой инициализации), поскольку время, затраченное на эту функцию, напрямую влияет на производительность.</p><p id="88fe35b9-2091-4993-a626-ee2d34c3b96b" class="">
+</p><h3 id="1ecdb300-3eb4-4625-a599-38eaf7085ba3" class=""><code><strong>registerActivityLifecycleCallbacks</strong></code></h3><p id="8574193f-2854-4b5b-a96c-e309e43ca63e" class="">Метод, позволяющий зарегистрировать коллбэк, сообщающий о вызове методов lifecycle всех activity в приложении.</p><p id="d446230f-e7f7-4693-8275-d17d38072eeb" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">BroadcastReceiver</summary><div class="indented"><p id="607688de-c2d8-4ce8-b02f-e77ce7cef3d3" class=""><a href="https://developer.android.com/guide/components/broadcasts">Broadcasts overview</a></p><p id="e6c097d6-149b-47a9-a96c-b72865119a21" class="">
+</p><h3 id="a76e5687-7aa4-4fc2-9f38-0aea1b3d0b7e" class=""><code><strong>BroadcastReceiver</strong></code></h3><p id="13772393-5875-424c-8ceb-b88d88d938c0" class="">Используется для отправки и получения различных событий, например: загрузка системы, смена языка/способа ввода, переход в режим полета, зарядка батареи. Приложения могут уведомлять друг друга о загрузке новых данных. Приложения могут получать события 2 способами: через ресиверы, объявленные в манифесте и ресиверы, зарегистрированные в контексте. Если объявлен в манифесте, система запустит приложение при отправке рассылки. Диспетчер системных пакетов регистрирует приемник при установке приложения. Затем приемник становится отдельной точкой входа в приложение, что означает, что система может запустить приложение и доставить трансляцию, если он в данный момент не запущено. Система создает новый BroadcastReceiver объект для обработки каждой получаемой рассылки. Этот объект действителен только на время вызова onReceive(Context, Intent) (вызывается в основном потоке). Как только код возвращается из этого метода, система считает, что компонент больше не активен. Можно установить ограничения как для отправителя, так и для получателя рассылки. Разрешения позволяют ограничивать трансляции набором приложений, обладающих определенными разрешениями. В Android 4.0 и выше можно указать пакет с setPackage(String) при отправке трансляции. Система ограничивает трансляцию набором приложений, соответствующих пакету</p><p id="ea4b51a7-ef81-4431-bbc6-0923e87452fd" class="">
+</p><h3 id="cba2a561-b4f4-4acb-930a-e38ff9d3819c" class=""><code><strong>sendOrderedBroadcast</strong></code></h3><p id="dc777652-a554-409f-9ce7-972c641db478" class="">Отправляет сообщения одному получателю за раз. Поскольку каждый получатель выполняется по очереди, он может передать результат следующему получателю или полностью прервать широковещательную рассылку, чтобы она не передавалась другим получателям. Запущенными получателями заказов можно управлять с помощью атрибута android:priority соответствующего фильтра намерений; приемники с одинаковым приоритетом будут запускаться в произвольном порядке</p><p id="0ddfd65c-b31a-4a00-bc1b-4548785af695" class="">
+</p><h3 id="dde9fd3b-161c-45ad-aee3-569eecaadce1" class=""><code><strong>sendBroadcast</strong></code></h3><p id="f4fc3645-b021-4516-8f94-4fb1718779e2" class="">Отправляет сообщения всем получателям в неопределенном порядке. Это называется обычной трансляцией. Это более эффективно, но означает, что получатели не могут считывать результаты с других получателей, распространять данные, полученные от широковещательной передачи, или прерывать широковещательную рассылку</p><p id="eca72be2-8c54-44aa-98ea-376f953b55ba" class="">
+</p><h3 id="4cf804e0-92ee-401f-a19d-4bca6496c48c" class=""><code><strong>LocalBroadcastManager.sendBroadcast</strong></code></h3><p id="0b07f0d3-c578-453b-ab0a-b871a8e9ffd0" class="">Отправляет широковещательные сообщения получателям, которые находятся в том же приложении, что и отправитель. Если вам не нужно отправлять трансляции между приложениями, используйте локальные трансляции. Реализация намного эффективнее (межпроцессное взаимодействие не требуется), и вам не нужно беспокоиться о каких-либо проблемах безопасности, связанных с тем, что другие приложения могут получать или отправлять ваши трансляции</p><p id="4d8be4da-7257-4191-9f0b-2a6177f61e52" class="">
+</p><h3 id="ccdc37c1-dc88-435c-8684-1c99c45e8f7c" class=""><strong>Ограничения</strong></h3><p id="3e730572-bb4f-44ba-a89e-d8924b893205" class=""> • Начиная с Android 7.0 (API 24) не работают ACTION_NEW_PICTURE и ACTION_NEW_VIDEO, и объявление получателя в манифесте для CONNECTIVITY_ACTION<br/> • Начиная с Android 8.0 (API 26) система ограничивает получателей, объявленных в манифесте для большинства трансляций не нацеленных конкретно на приложение, можно регистрировать вручную<br/> • Начиная с Android 9 (API 28) не работает получение данных о местонахождении пользователя или данные, позволяющие установить личность (NETWORK_STATE_CHANGED_ACTION)<br/></p><p id="09a2c4eb-7901-4c61-bd40-7ab2dbcc86a0" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">ContentProvider</summary><div class="indented"><p id="36b342ef-5189-4b73-9d9e-107f7f1fa351" class=""><a href="https://d.android.com/guide/topics/providers/content-provider-basics">Content provider basics</a></p><p id="4196b03a-7527-4017-b5b8-6c94ef55044c" class=""><a href="https://d.android.com/guide/topics/providers/calendar-provider">Calendar provider</a></p><p id="f06d88e6-d453-473f-a93c-c1763037fae9" class=""><a href="https://d.android.com/guide/topics/providers/contacts-provider">Contacts Provider</a></p><p id="768fcb59-2426-4f3a-a5b8-dc4fc2d24e04" class=""><a href="https://d.android.com/reference/android/content/ContentProvider"><strong>ContentProvider</strong></a></p><p id="128e25cd-36dc-4b69-bea0-183ab8c4697f" class="">Предоставляет контент для приложений через единый интерфейс. Пример: доступ к словарям пользователя, хранилищу, контактам, календарям. ContentProvider работает как ворота: может дать доступ к файлу, или не дать, позволяет удалять файлы, проверяет permissions, которые рекомендуется использовать меньше, если это не файловый менеджер, для файлов есть специальный FileProvider, который может временно предоставлять доступ к файлу по uri, эта модель безопасна, когда в onActivityResult возвращается intent там есть флаг GRANT_URI_PERMISSION</p><p id="7ff1d45e-927e-45cf-83fc-5174e23ec27d" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Permissions</summary><div class="indented"><h3 id="db5c26c8-8276-49f9-9e61-05c38ec73db8" class=""><strong>Runtime Permissions (Dangerous)</strong></h3><p id="0828e616-d2a2-458c-856b-16f4b2c4d81f" class="">Опасные разрешения, предоставляющие доступ к данным с ограниченным доступом и действиям, которые существенно влияют на систему и другие приложения. Начиная с API 23 перед перед выполнением опасных действий нужно запросить у пользователя разрешение в runtime.<br/>• dangerous samples: <br/><code>location</code> <code>contacts</code> <code>storage</code> <code>contacts</code> <code>phone calls</code> <code>camera</code> <code>microphone</code></p><p id="bf2a7101-d931-4b43-8d13-24d69a0c44ce" class="">
+</p><h3 id="55e60d47-5322-4f27-a1b4-bc9d90e86a60" class=""><code>shouldShowRequestPermissionRationale</code></h3><p id="54ac7df4-9428-4ef3-b136-7a98345c1b9c" class="">Этот метод возвращает true, если приложение ранее запросило это разрешение, а пользователь отклонил запрос.</p><p id="16d725e0-8e6d-4b61-b723-047d10b8bb44" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Notifications</summary><div class="indented"><h3 id="d27fedd2-3eec-4646-9be7-79eea0e298bb" class=""><strong>Notification Channel</strong></h3><p id="d9839c5e-834d-4564-a2d7-4586f4f4b248" class="">Начиная с Android 8.0 (API level 26) для каждого уведомления необходимо указывать канал. Пользователь может управлять визуальным и звуковым поведением, которое будет применяться ко всем уведомлениям в канале. Например, разные каналы в приложении часы для будильников, таймеров, секундомеров</p><p id="dbf99d45-c80f-4da1-97b5-9dc3173766c9" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Bundle</summary><div class="indented"><h3 id="9f633d3c-f30d-4a1d-a999-af71d28a54db" class=""><code>Bundle</code></h3><p id="ac530afb-f389-4c34-b853-68eb5721873f" class="">Класс c массивом пар ключ-значение. Включает <code>get</code> и <code>put</code> методы для примитивов, строк и объектов, которые реализуют интерфейсы <code>Parcelable</code> и <code>Serializable</code>. Используется для передачи данных между базовыми компонентами и для сохранения состояния.</p><p id="9beb76a1-da22-4ac3-b94f-c07b1b4d76e9" class="">• указывать <code>capacity</code> для лучшего перфоманса.</p><p id="21c898af-7131-4f0f-9478-db70ad7531f5" class="">• не реализует <code>equals</code> и <code>hashCode</code>.</p><p id="bebba1ac-752b-4aef-a3d3-44e6c42d12f0" class="">• буфер транзакций Binder имеет фиксированный размер 1 MB, который используется всеми транзакциями в процессе, если размер превышен генерируется <code>TransactionTooLargeException</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f8d1f568-906a-449c-8d8c-071fae015ed7" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val bundle: Bundle = Bundle(10)
+
+val bundle: Bundle = bundleOf(
+    &quot;name&quot; to &quot;John&quot;,
+    &quot;age&quot; to 80
+)</code></pre><p id="124e2a9c-bcb8-43f5-ac88-d8c4b6c90f97" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Parcelable</summary><div class="indented"><p id="e75784e8-08b5-410a-8db7-bd7b1c3f9b90" class="">Интерфейс, который совместно с классом Parcel реализует механизм сериализации в Android. Он более оптимизирован под Android, чем Serializable и используется, чтобы гонять данные в межпроцессорном взаимодействии</p><p id="d9b8d5f7-b21a-44a2-8def-f89f7f44016a" class="">Если класс реализует интерфейс Parcelable, поля класса сериализуются в методе writeToParcel(). Также parcelable класс обязан иметь статическое ненулевое поле, названное CREATOR типа Creator. Интерфейс Creator имеет два метода createFromParcel(parcel: Parcel): T и newArray(size: Int): Array. Эти методы обратные writeToParcel() и используются для чтения данных из Parcel и создания объекта. Объект Parcelable записывается в контейнер Parcel, который имеет метод marshall(): Array для представления объекта в виде массива байтов. Parcel предназначен для передачи данных при межпроцессорной коммуникации. При изменении структуры объекта или реализации метода writeToParcel() байтовое представление, которое возвращается методом marshall(), будет изменено. Поэтому строго не рекомендуется записывать его в персистентное хранилище.</p><p id="ceaab1aa-580c-4e7c-9626-4884f283e386" class="">
+</p><h3 id="f34fb8d6-26de-4e02-a811-c42560a17096" class=""><strong>Что быстрее parcelable или serializable?</strong></h3><p id="3c1b638a-3eb1-464b-a5ba-ca418368b89e" class="">В режиме «ручного управления» быстрее Serializable, тогда он не использует reflection и сериализует поля вручную через методы writeObject() и readObject(). В другие случаях быстрее Parcelable, потому что разработчик управляет методами преобразования</p><p id="5f9ff2e6-ad2e-43c8-839c-0ecfc8c12053" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">LruCache</summary><div class="indented"><p id="b5109702-ce7a-4ad2-9404-9e1d51c89114" class="">Кэш, который содержит ссылки на ограниченное количество значений. При каждом доступе к объекту оно перемещается в начало очереди. При добавлении объекта, если кэш переполнен, значение в конце вытесняется и может быть собрано сборщиком мусора. По умолчанию размер кэша измеряется количеством записей. Следует использовать, когда загрузка ресурсов влияет на отзывчивость приложения (хранить эскизы изображений)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="65167c1b-7b0f-4336-89bc-3f0bd7466592" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val maxMemory: Long = Runtime.getRuntime().maxMemory() / 1024
+val cacheSize: Int = (maxMemory / 8).toInt()
+
+val lruCache: BitmapCache = BitmapCache(cacheSize)
+
+class BitmapCache(maxSize: Int): LruCache&lt;String, Bitmap&gt;(maxSize) {
+
+    fun getBitmapFromMemory(key: String): Bitmap? {
+        return this.get(key)
+    }
+
+    fun setBitmapToMemory(key: String, bitmap: Bitmap) {
+        if (getBitmapFromMemory(key) == null) {
+            this.put(key, bitmap)
+        }
+    }
+}</code></pre><p id="5ac66ffb-231b-483f-bc57-54365babde71" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Reflection API</summary><div class="indented"><p id="849d2710-664f-49bf-a995-39bc5f509866" class="">Механизм исследования данных о программе во время её выполнения. Рефлексия позволяет исследовать информацию о полях, методах и конструкторах классов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1b485bc4-3ffb-4083-a26f-e7380147045b" class="code"><code class="language-Kotlin">class Bank {
+    private val money = &quot;$300&quot;
+}
+
+fun main() = runBlocking {
+    val money = Bank::class
+        .memberProperties
+        .first { it.name == &quot;money&quot; }
+        .apply { isAccessible = true }
+        .get(Bank()) as String
+    println(money)
+}</code></pre><p id="844c6e3c-5746-4cfc-9313-eec8511de68b" class="">
+</p></div></details><p id="7bd9cb9c-80ce-4930-b949-df2d2f281b3a" class="">
+</p><h3 id="61b3830c-c785-4e0e-ab54-96d47b351cf4" class="">Что бы ты улучшил в OS Android?</h3><p id="f800e279-0b0d-4bbd-abf9-14622c77e8be" class="">FindMyDevice, AirDrop, общий буфер обмена, нативная реализация без виртуальной машины Java.</p><p id="da512058-13ac-4cd6-b0d0-fac8db965c60" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android SDK. Вопросы на собесе</mark></summary><div class="indented"><table id="ca2a77b3-0ccf-481e-9c52-adb43d088045" class="simple-table"><tbody><tr id="5d21f80c-886a-4842-aecb-88c21d625394"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q:</strong></mark> Для чего нужен AndroidManifest?</td></tr><tr id="711179b2-9283-4157-bf88-9fe40678ac77"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Назови основные компоненты приложения Android?</td></tr><tr id="4e3cb4ae-24fa-4f69-9354-01229be2de2f"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q:</strong></mark> Какие компоненты можно не указывать в манифесте?</td></tr><tr id="9ef11154-c091-4dd7-b4e7-7076281a2cee"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Что такое Fragment? Чем он отличается от Activity?</td></tr><tr id="c470edf1-02f5-4d17-80b3-d4c4edc3e204"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>В крэшлитике увидели TransacionTooLargeException. Что будем делать?</td></tr><tr id="6383bafe-22f4-45bc-b3c2-3fd984ed97da"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Что бы ты улучшил в OS Android?</td></tr><tr id="57436d99-ccb9-4fb0-ba6f-5a9b7b4aa318"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Чем <code>Parcelable</code> отличается от <code>Serializable</code> ?</td></tr><tr id="b8baa3cb-d6a0-41a9-b24d-aa04af224de7"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Что быстрее <code>Parcelable</code> или <code>Serializable</code> ?</td></tr><tr id="95067ecb-8035-4334-8ad2-ab97d66119fd"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>В чем разница между dangerous и normal разрешениями?</td></tr><tr id="647cdf03-54a1-4b52-b6d2-64a07449cdc5"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Можно ли отозвать полученное разрешение?</td></tr><tr id="74ba2fdc-41fb-4ef7-b781-48fcfe75c611"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q: </strong></mark>Что значит статус show rationale у разрешения?</td></tr><tr id="5efc01dd-ec5d-46f4-babc-ccad05d633fc"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем вызвано ограничение на размер Bundle?</td></tr><tr id="cbde35b0-ba47-4d52-b752-8defaa4641e3"><td id="mG?R" class="" style="width:529px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем <code>lifecycleOwner</code> отличается от <code>viewLifecycleOwner</code> ?</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

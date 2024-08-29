@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Releases</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0418d559-2576-4bce-b59c-35c341510ed5" class="page sans"><header><img class="page-cover-image" src="Releases%200418d55925764bceb59c35c341510ed5/michaelbely_bag_of_gifts_green_color_69f234da-d67c-41fb-a1b6-e58b6054d6c5.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Releases%200418d55925764bceb59c35c341510ed5/android.svg"/></div><h1 class="page-title"><strong>Releases</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="7bb034b1-fc9b-4f41-9504-49fe44721f17" class="simple-table"><tbody><tr id="679d0128-1571-4430-8de4-c3209108d83a"><td id="@sqh" class="" style="width:600px"><a href="https://d.android.com/studio/releases/platforms">https://d.android.com/studio/releases/platforms</a></td></tr><tr id="bb022a92-de46-4e57-b445-47676f4cda14"><td id="@sqh" class="" style="width:600px"><a href="https://d.android.com/jetpack/androidx/versions/all-channel">https://d.android.com/jetpack/androidx/versions/all-channel</a></td></tr></tbody></table><table id="220ece03-d8e8-46e5-827f-bf2a60472462" class="simple-table"><tbody><tr id="338dcbd0-c0b3-4eba-b7a7-b622bfd29314"><td id="@sqh" class="" style="width:600px"><a href="https://maven.google.com/">https://maven.google.com/</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://developer.android.com/about/versions/14/features">Android 14 Upside Down Cake (API Level 34)</a></summary><div class="indented"><p id="cc9d7b63-e672-463d-a1ed-0b2300387385" class=""> • <a href="https://developer.android.com/about/versions/14/features#grammatical-inflection">Grammatical Inflection API</a></p><p id="29dd8edc-389f-4186-bfee-7b0fc20d8e57" class=""> • <a href="https://developer.android.com/about/versions/14/features#regional-preferences">Regional preferences</a></p><p id="e0185ea6-c59b-4a7b-a77b-9fec61b678b9" class=""> • <a href="https://developer.android.com/about/versions/14/features#ultra-hdr">Ultra HDR for images</a></p><p id="52ce6b50-d3ae-436e-87b0-fd71fcdada43" class=""> • <a href="https://developer.android.com/about/versions/14/features#credential-manager">Credential Manager</a></p><p id="e426cab4-fd48-45fc-ba2d-c0512e05d8ab" class=""> • <a href="https://developer.android.com/about/versions/14/features#app-stores">Improvements for app stores</a></p><p id="ee388c06-8f29-4124-b785-d71480a6d019" class=""> • <a href="https://developer.android.com/about/versions/14/features#screenshot-detection">Detect when users take device screenshots</a></p><p id="14cf495b-0f18-4508-95fb-74c2beba6ec3" class=""> • <a href="https://developer.android.com/about/versions/14/features#sharesheet-improvements">Sharesheet custom actions and improved ranking</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/13/features">Android 13 Tiramisu (API Level 33)</a></summary><div class="indented"><p id="7d43c685-4ea2-4f70-9be2-30c5ee575e71" class=""> • <a href="https://developer.android.com/about/versions/13/features#themed-app-icons">Themed app icons</a></p><p id="4e0bc33c-d982-4a96-ac6c-ef7fc7642cfe" class=""> • <a href="https://developer.android.com/about/versions/13/features#quick-settings">Quick Settings placement API</a></p><p id="fc0f239d-b3fd-4f75-b03a-c05c2beda925" class=""> • <a href="https://developer.android.com/about/versions/13/features#language-support">Better support for multilingual users</a></p><p id="0e353590-1197-4d8e-aac3-dbf796574f20" class=""> • <a href="https://developer.android.com/about/versions/13/features#faster-hyphenation">Faster hyphenation</a></p><p id="5f73f2c0-2bbe-492e-984d-4523dc4f8b71" class=""> • <a href="https://developer.android.com/about/versions/13/features#color-vector-fonts">Color vector fonts</a></p><p id="6307843b-ca9c-4a02-a2e1-3a7512efb515" class=""> • <a href="https://developer.android.com/about/versions/13/features#photo-picker">Photo picker</a></p><p id="3232da4b-5577-41dd-95f3-12070c8e863e" class=""> • <a href="https://developer.android.com/about/versions/13/features#nearby-wifi-devices-permission">New runtime permission for nearby Wi-Fi devices</a></p><p id="f3170404-0bae-445c-a472-be4837c46ad7" class=""> • <a href="https://developer.android.com/about/versions/13/features#developer-downgradable-permissions">Developer downgradable permissions</a></p><p id="134fae78-abb5-49b0-b8c7-2eae3a5526aa" class=""> • <a href="https://developer.android.com/about/versions/13/features#shaders">Programmable shaders</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/12/12L/summary">Android 12L (API Level 32)</a></summary><div class="indented"><p id="82e71996-a5bb-4240-983e-be430b0ccdf5" class=""> • <a href="https://d.android.com/about/versions/12/12L/summary#system-ui">An OS optimized for large screens</a></p><p id="35135e8e-0519-4274-b119-139d89739399" class=""> • <a href="https://d.android.com/about/versions/12/12L/summary#multitasking">Powerful and intuitive multitasking</a></p><p id="e7fca8e2-783c-46bc-b44b-2f9137955f5f" class=""> • <a href="https://d.android.com/about/versions/12/12L/summary#compatibility">Improved compatibility experience</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/12/features">Android 12 S (API Level 31)</a></summary><div class="indented"><p id="f7f8d32e-d71e-4386-a84f-b67aa630285f" class=""> • <a href="https://d.android.com/about/versions/12/features/widgets">Widgets improvements</a></p><p id="06a94e3c-83d2-47be-a655-4109ca8b5c4d" class=""> • <a href="https://d.android.com/about/versions/12/features#haptics">Audio-coupled haptic effect</a></p><p id="1cc947b5-6962-4698-b962-32ae116365aa" class=""> • <a href="https://d.android.com/about/versions/12/features/splash-screen">Splash screen API</a></p><p id="d638fa21-439e-439c-951d-9dac1782c1b0" class=""> • <a href="https://d.android.com/about/versions/12/features#new-calls">New phone call notifications allowing for ranking importance of incoming calls</a></p><p id="d51f5aad-3251-4c6f-a1d9-ad9d538b4a3f" class=""> • <a href="https://d.android.com/about/versions/12/features#enriched_image_support_for_notifications">Enriched image support for notifications</a></p><p id="b5cfd10f-0d8f-45bb-8c9f-ec6c6bd44133" class=""> • <a href="https://d.android.com/about/versions/12/features#rounded_corner_apis">Rounded corner APIs</a></p><p id="da900558-1197-4242-be5b-65b6aec49b6c" class=""> • <a href="https://d.android.com/about/versions/12/features/pip-improvements">Picture in Picture (PiP) improvements</a></p><p id="48ae4891-19a9-46ee-83e3-bfccec97d12c" class=""> • <a href="https://d.android.com/about/versions/12/features#immersive-mode-improvements">Immersive mode improvements for gesture navigation</a></p><p id="21a10499-1ad8-486e-ab3f-b58278354ff3" class=""> • <a href="https://d.android.com/about/versions/12/features/unified-content-api">Rich content insertion</a></p><p id="411e9c4b-f3c6-4472-8c3e-67643205ac44" class=""> • <a href="https://d.android.com/about/versions/12/features#rendereffect">Easier blurs, color filters, and other effects</a></p><p id="0df05b7d-45f2-4cee-9bdd-a3816f48a5ca" class=""> • <a href="https://d.android.com/about/versions/12/features/audio-focus-improvements">Audio focus</a></p><p id="6ca3b909-9dc6-4ad5-bb38-eb6d023ff17c" class=""> • <a href="https://d.android.com/about/versions/12/features/bluetooth-permissions">New Bluetooth permissions</a></p><p id="231c94c0-719e-4f8c-b3ed-07d5f394b148" class=""> • <a href="https://d.android.com/about/versions/12/features#notification-secure">Secure lockscreen notification actions</a></p><p id="e9e0e9b3-4c1c-425b-be6f-f1b2616b3b2e" class=""> • <a href="https://d.android.com/about/versions/12/features#recordings-directory">New directory for voice recordings</a></p><p id="f1758f85-45ec-497e-a6c9-05be7e75d50b" class=""> • <a href="https://d.android.com/about/versions/12/features#media-management-access">Media management access</a></p><p id="c0b8087f-e726-41a0-a240-d370f927cc5d" class=""> • <a href="https://d.android.com/about/versions/12/features#app-storage-access">App storage access</a></p><p id="f7da2dcd-240c-407c-b5f4-1304f5aab705" class=""> • <a href="https://d.android.com/about/versions/12/features#extended-file-access">Extended file access support</a></p><p id="304aa097-fda0-4734-8dfb-200ab8d76a69" class=""> • <a href="https://d.android.com/about/versions/12/features#automatic-app-updates">Automatic app updates</a></p><p id="8e9b6e64-d41a-4281-88e0-b39bcd910725" class=""> • <a href="https://d.android.com/about/versions/12/features#soc-info">Device chipset information</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/11/features">Android 11 R (API Level 30)</a></summary><div class="indented"><p id="5bd35dd4-6d04-4ccf-a639-6fff6550b8de" class=""> • <a href="https://d.android.com/training/permissions/requesting#one-time">One-time permissions</a></p><p id="6ff64125-3ec3-4ea4-8102-3800c0ce1366" class=""> • <a href="https://d.android.com/training/permissions/requesting#auto-reset-permissions-unused-apps">Auto-reset permissions of unused apps</a></p><p id="d9af5e02-5f62-463a-bb7f-c94832569542" class=""> • <a href="https://d.android.com/about/versions/11/privacy/location#background-location">Background location access</a></p><p id="0b696701-e49e-4aa4-a154-e403f37a645d" class=""> • <a href="https://d.android.com/about/versions/11/privacy/storage">Scoped storage enforcement</a></p><p id="a28793af-2e76-4cdf-81f7-9db96736a5e6" class=""> • <a href="https://d.android.com/about/versions/11/privacy/data-access-auditing">Data access auditing</a></p><p id="22f7ee0f-fa35-4f4f-97f2-742e750b7225" class=""> • <a href="https://d.android.com/about/versions/11/privacy/foreground-services">Foreground services</a></p><p id="8b733aee-c4a0-449b-acae-196134afbdab" class=""> • <a href="https://d.android.com/training/package-visibility">Package visibility</a></p><p id="826901e3-4d98-4fd9-b804-08c668ae36c4" class=""> • <a href="https://d.android.com/training/package-visibility/use-cases">Fulfilling common use cases while having limited package visibility</a></p><p id="e6889caf-89dd-4d33-8607-5fbc8b059638" class=""> • <a href="https://d.android.com/guide/topics/ui/conversations">People and conversations</a></p><p id="9fa798a4-c504-4935-8e1a-550c3d8236c4" class=""> • <a href="https://d.android.com/guide/topics/ui/bubbles">Chat Bubbles</a></p><p id="47685c0d-c2ad-4050-b3cc-52d964e05729" class=""> • <a href="https://d.android.com/studio/run/device#wireless">Wireless debugging</a></p><p id="96091cbf-30dd-4642-9ebe-4746054ee9b5" class=""> • <a href="https://d.android.com/about/versions/11/features#ime-transitions">Improved IME transitions</a></p><p id="eec063d8-c5ec-464e-98dd-301f0aa3a47c" class=""> • <a href="https://d.android.com/about/versions/11/features#control-ime">Controlling the IME animation</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/10/features">Android 10 Q (API 29)</a></summary><div class="indented"><p id="0c803d06-7546-4a1c-8925-43ccaac7a38f" class=""> • <a href="https://d.android.com/guide/topics/connectivity/wifi-suggest">Wi-Fi suggestion API for internet connectivity</a></p><p id="55528da4-b673-4a1b-9cfa-97dc099e4548" class=""> • <a href="https://d.android.com/about/versions/10/features#settings-panels">Settings panels</a></p><p id="062b021e-8b3f-4b29-a231-d602415e5471" class=""> • <a href="https://d.android.com/guide/topics/ui/look-and-feel/darktheme">Dark theme</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/pie/android-9.0">Android 9 Pie (API Level 28)</a></summary><div class="indented"><p id="fa3e2d91-1ed2-49f5-a5e4-3d1107660b06" class=""> • <a href="https://d.android.com/about/versions/pie/android-9.0#cutout">Display cutout support</a></p><p id="287dffd3-1fa1-4526-b4b9-be4c14959d67" class=""> • <a href="https://developer.android.com/about/versions/pie/android-9.0#notifications">Notifications</a></p><p id="a19b22e5-7bb6-4141-ad76-447920fa7fe2" class=""> • <a href="https://d.android.com/about/versions/pie/android-9.0#camera">Multi-camera support and camera updates</a></p><p id="cbec2dff-86e9-47aa-a8d0-3c38dfc38d16" class=""> • <a href="https://d.android.com/about/versions/pie/android-9.0#decoding-images">ImageDecoder for drawables and bitmaps</a></p><p id="537bb449-3b8a-4444-8686-baafd2ad5c30" class=""> • <a href="https://d.android.com/about/versions/pie/android-9.0#animation">Animation</a></p><p id="fc3e5af9-a47c-4cd5-8bbc-af71538a00ae" class=""> • <a href="https://d.android.com/guide/topics/ui/tooltips">Interaction with tooltips</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/oreo/android-8.1">Android 8.1 Oreo (API Level 27)</a></summary><div class="indented"><p id="65486338-c020-49c1-91cb-3d681dece644" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.1#go">Go edition</a></p><p id="3dbfc8d2-29b5-4cc1-95b8-3c164e56a236" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.1#nnapi">Neural Networks API</a></p><p id="fb4614d3-f2e8-4fc8-ba27-48d5d838e202" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.1#video-thumbnail">Video thumbnail extractor</a></p><p id="9fe378a0-2464-46ce-9415-e5073a9360d7" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.1#wallpaper">WallpaperColors API</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/oreo/android-8.0">Android 8.0 Oreo (API Level 26)</a></summary><div class="indented"><p id="680bafa2-6bd6-4c33-81ad-f133c5c12127" class=""> • <a href="https://d.android.com/guide/topics/ui/picture-in-picture">Picture-in-Picture mode</a></p><p id="2f1af8c4-7b26-437c-b792-3b15f6ea50a4" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#notifications">Notifications</a></p><p id="5091cf99-0c71-454e-b6d5-6c76577b1e9b" class=""> • <a href="https://d.android.com/guide/topics/text/autofill">Autofill framework</a></p><p id="050c5502-bfdf-478b-bbb1-9c29e284a02c" class=""> • <a href="https://d.android.com/guide/topics/ui/look-and-feel/downloadable-fonts">Downloadable Fonts</a></p><p id="7c3d95af-53b0-4c63-bbd1-68793bd55f99" class=""> • <a href="https://d.android.com/guide/topics/ui/look-and-feel/fonts-in-xml">Fonts in XML</a></p><p id="af7104a6-f107-47d4-a24a-421480db7b05" class=""> • <a href="https://d.android.com/guide/topics/ui/look-and-feel/autosizing-textview">Autosizing TextViews</a></p><p id="b708d8c4-eccb-4cf2-b8d7-06969a5d3de4" class=""> • <a href="https://d.android.com/guide/practices/ui_guidelines/icon_design_adaptive">Adaptive icons</a></p><p id="70f55ea4-864f-4a50-821f-dc6215f628fb" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#cm">Color management</a></p><p id="9c3a9637-f32e-4c36-a927-16bcc6a6ccee" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#mds">Multi-display support</a></p><p id="28c258b1-9970-4171-bf54-c1624685f48f" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#ulmp">Unified layout margins and padding</a></p><p id="27ab4aaa-d70c-42fe-b299-596223653d8f" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#category">App categories</a></p><p id="74f8830e-0b1d-49e5-9086-eb34bb666624" class=""> • <a href="https://d.android.com/about/versions/oreo/android-8.0#media-af">Audio focus enhancements</a></p><p id="59154612-d4bc-4d50-aa8d-03a41b431c71" class=""> • <a href="https://d.android.com/guide/topics/ui/tooltips">Tooltips</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/nougat/android-7.1">Android 7.1 Nougat (API Level 25)</a></summary><div class="indented"><p id="a11be116-8266-4f0a-b7eb-cd263be410a0" class=""> • <a href="https://d.android.com/guide/topics/ui/shortcuts">App Shortcuts</a></p><p id="26744852-ff71-4d35-9e7c-0d50ceaa78ca" class=""> • <a href="https://d.android.com/guide/topics/text/image-keyboard">Image Keyboard Support</a></p><p id="baca1709-5f5b-40d3-83e4-0dfc47d80f11" class=""> • <a href="https://d.android.com/about/versions/nougat/android-7.1#circular-icons">Round Icon Resources</a></p><p id="af08aad0-325f-4455-9000-410db4735182" class=""> • <a href="https://d.android.com/about/versions/nougat/android-7.1#storage-mgr-intent">Storage Manager Intent</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/nougat/android-7.0">Android 7.0 Nougat (API Level 24)</a></summary><div class="indented"><p id="4be6b8a7-f334-4ba3-9d1f-07ff57d9a31a" class=""> • <a href="https://d.android.com/guide/topics/ui/multi-window">Multi-window Support</a></p><p id="dbe0c8e8-b0aa-436e-a84b-e59ae70b7766" class=""> • <a href="https://d.android.com/about/versions/nougat/android-7.0#notification_enhancements">Notification Enhancements</a></p><p id="bda7ac9c-0656-4729-8d13-dd9856d117d5" class=""> • <a href="https://d.android.com/training/basics/network-ops/data-saver">Optimize network data usage</a></p><p id="8502cc43-5dd4-46e4-b6b4-4f8269bbf34a" class=""> • <a href="https://d.android.com/ndk/guides/graphics">Vulkan graphics API</a></p><p id="95f2c5d4-95d1-42b3-93db-8e91473492f4" class=""> • <a href="https://d.android.com/about/versions/nougat/android-7.0#tile_api">Quick Settings Tile API</a></p><p id="e343fc6f-662f-4023-85c7-87c8889619c6" class=""> • <a href="https://d.android.com/guide/topics/resources/multilingual-support">Multi-locale Support, More Languages</a></p><p id="9f9c5c7e-2c0f-47ee-a886-4e810cf791a1" class=""> • <a href="https://d.android.com/training/data-storage">Scoped Directory Access</a></p><p id="95ec9547-3656-4579-8894-fd6bc27a0f74" class=""> • <a href="https://d.android.com/about/versions/nougat/android-7.0#vr">VR Support</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/marshmallow/android-6.0">Android 6.0 Marshmallow (API Level 23)</a></summary><div class="indented"><p id="927ec73b-1eb2-4ba4-a547-26f35545a878" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#fingerprint-authentication">Fingerprint Authentication</a></p><p id="714e6b82-6dfa-4636-9c56-0c8cd94c07cc" class=""> • <a href="https://d.android.com/training/app-links">App Linking</a></p><p id="30a35bd8-ae2d-466b-8825-19f84f2ad7a8" class=""> • <a href="https://d.android.com/training/backup/autosyncapi">Auto Backup for Apps</a></p><p id="4c681528-89a8-4ef2-b40d-4cce0f0fe47d" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#direct-share">Direct Share</a></p><p id="f4fe0dc7-35a4-4b52-9901-e46b92e380ae" class=""> • <a href="https://developer.google.com/voice-actions/interaction">Voice Interactions</a></p><p id="259bff2e-f604-465c-94a1-375098f25006" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#assist">Assist API</a></p><p id="4619c8b5-b491-45ba-ae41-e5857f2a8c57" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#adoptable-storage">Adoptable Storage Devices</a></p><p id="f7df2b00-3071-457f-95e6-bac376cc703d" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#notifications">Notifications</a></p><p id="183888c4-7b15-401e-bdee-b92fac5110d4" class=""> • <a href="https://d.android.com/about/versions/marshmallow/android-6.0#behavior-themeable-colorstatelists">Themeable ColorStateLists</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/lollipop/android-5.1">Android 5.1 Lollipop (API Level 22)</a></summary><div class="indented"><p id="2ac58712-ea45-4476-839f-52af6a06b81e" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.1#multisim">Multiple SIM Card Support</a></p><p id="378fae5d-6c3b-467d-a2cd-75f0f6ae82c0" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.1#http">Deprecated HTTP Classes</a></p><p id="feecb6b8-1cfd-4eb9-acd4-c553d340995b" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.1#carrier">Carrier Services</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><a href="https://d.android.com/about/versions/lollipop/android-5.0">Android 5.0 Lollipop (API Level 21)</a></summary><div class="indented"><p id="d840e31f-23fc-49fb-8579-110e4bfbce5a" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#MaterialDesign">Material design support</a></p><p id="eca706d2-5319-46e7-b68e-6c9537cffc40" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#Recents">Concurrent documents and activities in the recents screen</a></p><p id="30290523-e16f-4f7b-b31d-4dd396931c32" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#ScreenCapture">Screen capturing and sharing</a></p><p id="fd4e8ab0-c0a6-4316-98dc-5f2a5bc9e2bd" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#LockscreenNotifications">Lock screen notifications</a></p><p id="c9bdb387-68b3-4884-a002-6f1f983be4f0" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#NotificationsMetadata">Notifications metadata</a></p><p id="cb113bab-4d5b-4394-a2a8-f76655d5f9d1" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#Camera-v2">Camera API for advanced camera capabilities</a></p><p id="a44f5124-0a0e-4db4-9dfe-9b0bdeb5b2b3" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#AudioPlayback">Audio playback</a></p><p id="eed89cb1-8db8-4d95-a5f7-2d03cb333048" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#MediaPlaybackControl">Media playback control</a></p><p id="0ef6ed8a-3362-4c2b-bad7-2addfbcdcb34" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#MediaBrowsing">Media browsing</a></p><p id="8849a222-92f7-40ce-b78f-f7469dc9e66b" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#DirectorySelection">Storage: Directory selection</a></p><p id="758d52cf-bd17-40ab-933e-aec13b7834ac" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#Multinetwork">Multiple network connections</a></p><p id="9e27ae43-5eda-4801-b03b-0ec6f0a4f900" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#BluetoothBroadcasting">Bluetooth Low Energy</a></p><p id="f35d0f76-73e4-4446-8ba4-f5f1f50b64d4" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#JobScheduler">Scheduling jobs</a></p><p id="c0251e9c-b625-4d37-8a8a-5742543d851d" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#PowerMeasurementTools">Developer tools for battery usage</a></p><p id="ef36642d-46dd-438f-8bea-b1ce3b590cad" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#Enterprise">Android in the Workplace and in Education</a></p><p id="e4ec25f7-dd5f-46d3-adc6-f64c7efd3e8e" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#AppUsageStatistics">System: App usage statistics</a></p><p id="f0137b71-0539-4788-acb1-b9a4af01a54c" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#ManifestFeatures">Manifest Declarations: Declarable required features</a></p><p id="e22e91a9-2647-4efd-b818-409818fc803f" class=""> • <a href="https://d.android.com/about/versions/lollipop/android-5.0#Permissions">Manifest Declarations: User permissions</a></p></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

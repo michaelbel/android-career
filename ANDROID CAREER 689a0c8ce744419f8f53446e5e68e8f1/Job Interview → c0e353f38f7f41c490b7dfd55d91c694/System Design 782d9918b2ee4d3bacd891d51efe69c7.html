@@ -1,0 +1,702 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>System Design</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="782d9918-b2ee-4d3b-acd8-91d51efe69c7" class="page sans"><header><img class="page-cover-image" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/michaelbely_system_design_10be3438-5dc3-4432-bd7b-35a2d13014cd.png" style="object-position:center 0%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/graph.svg"/></div><h1 class="page-title"><strong>System Design</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="c1921967-af02-4aa9-8ff8-e55bec68c052" class="simple-table"><tbody><tr id="09d9e0d4-71c0-47c0-b98c-4a0041a1b8f4"><td id="I|JA" class=""></td></tr></tbody></table><table id="24310435-3a70-4a10-bf95-ccf971a714e9" class="simple-table"><tbody><tr id="165c7096-970e-443a-8e23-01e11dbe2fd8"><td id="e@te" class="" style="width:101px"><mark class="highlight-brown"><code>06.03.2024</code></mark></td><td id="mkO{" class="" style="width:680px"><a href="https://habr.com/ru/companies/vk/articles/798391/">https://habr.com/ru/companies/vk/articles/798391/</a></td></tr><tr id="8fa7dac6-9f1e-4c5f-b67b-a1c02277a03e"><td id="e@te" class="" style="width:101px"><mark class="highlight-brown"><code>13.02.2024</code></mark></td><td id="mkO{" class="" style="width:680px"><a href="https://habr.com/ru/companies/vk/articles/793200/">https://habr.com/ru/companies/vk/articles/793200/</a></td></tr><tr id="2ec60b22-fb9e-496b-b0ae-dcf95d90afbc"><td id="e@te" class="" style="width:101px"><mark class="highlight-brown"><code>18.12.2023</code></mark></td><td id="mkO{" class="" style="width:680px"><a href="https://habr.com/ru/articles/781404/">https://habr.com/ru/articles/781404/</a></td></tr></tbody></table><table id="1bdcc757-d9e9-4105-a637-6eb2a2c3d0a8" class="simple-table"><tbody><tr id="5976db04-9cf9-458b-94c6-4d0572472d39"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>19.04.2024</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/KZN654huFeQ">https://youtu.be/KZN654huFeQ</a></td></tr><tr id="ec8e61a6-7d55-4647-9757-150ad2b35573"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>20.03.2024</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/B9zOXjtHY7Q">https://youtu.be/B9zOXjtHY7Q</a></td></tr><tr id="0287a4aa-b16c-4452-a7e5-26b4f769f2cb"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>21.12.2023</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/SD3N7vyJElc">https://youtu.be/SD3N7vyJElc</a></td></tr><tr id="e5ecfa22-a56e-40ab-a1e6-e464aca12c6a"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>12.12.2023</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/OdEUqeJzrLA">https://youtu.be/OdEUqeJzrLA</a></td></tr><tr id="fb818ac6-2186-476a-bdd8-872343abdc73"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>17.05.2023</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/p7QIEzIFzdQ">https://youtu.be/p7QIEzIFzdQ</a></td></tr><tr id="ad53b32e-7c6d-4564-b0fe-dd9e1577a115"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>23.11.2022</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/FmgzRI47NiA">https://youtu.be/FmgzRI47NiA</a></td></tr><tr id="c3dd803a-d020-4808-be6b-e5cd4c38257d"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>18.11.2022</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/Wh5Ya6UFG1k">https://youtu.be/Wh5Ya6UFG1k</a></td></tr><tr id="4573670c-1c78-4d7e-a961-63a44ece191f"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>09.08.2022</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/5k7dfoOgngg">https://youtu.be/5k7dfoOgngg</a></td></tr><tr id="5e138ed0-f3bc-4ad5-acc3-88ff0cfd5195"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>09.11.2021</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/uZlOpmJLtL4">https://youtu.be/uZlOpmJLtL4</a></td></tr><tr id="374f2dbd-df6f-4a82-8330-9f2e74f0b157"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>05.10.2021</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/s9j_7byy9-c">https://youtu.be/s9j_7byy9-c</a></td></tr><tr id="39f59394-efcf-4ee9-8fc3-6561cbd5cc29"><td id="]zml" class="" style="width:101px"><mark class="highlight-brown"><code>28.07.2021</code></mark></td><td id="Gmnt" class="" style="width:850px"><a href="https://youtu.be/hsyTEQkaUAc">https://youtu.be/hsyTEQkaUAc</a></td></tr></tbody></table><h3 id="8914d848-85c6-446a-8dd2-d6211aa6c860" class="">Функциональные требования</h3><p id="186af8d5-3222-48f9-a34d-5f3417d027f7" class="">Описывают как пользователь будет взаимодействовать с приложением. Примеры:</p><p id="262c9105-58fe-4ac8-ad4f-da3a3a6d1939" class="">• возможность проскроллить приложения в каталоге или загрузить их.</p><p id="9b640167-e4dc-4c6a-9719-cb60879822f9" class="">• аутентификация пользователей: создание учётных записей, вход в систему, сброс паролей.</p><p id="40ebc377-5576-4bd7-9b16-21208034f847" class="">• корзина покупок: добавление товаров, просмотр содержимого корзины, переход к оформлению заказа.</p><p id="210f103f-7883-4ff0-ad62-41bc955d13e8" class="">• функция поиска: поиск продуктов по ключевым словам.</p><p id="0035e7f9-19f1-4b9a-ab84-03c7aca2049a" class="">
+</p><h3 id="012879d6-602c-498d-8fb3-0c6592d0be74" class="">Нефункциональные требования</h3><p id="613fdd8b-121e-4161-b1e8-ad692622b601" class="">Незаметны пользователю но влияют на его опыт взаимодействия с приложением. Примеры:</p><p id="6868e777-01eb-4f35-93f6-4194bbf18ff7" class="">• кэширование или подгрузка превью в низком разрешении для экономии трафика.</p><p id="19206e78-9035-4abb-8db2-019dddd8717a" class="">• производительность: загрузка веб-страницы менее чем за 3 секунды при одновременном использовании 100 пользователей.</p><p id="fa8bc4c6-b7d5-4bb7-b608-cd98b24f2a4c" class="">• безопасность: соответствие отраслевым стандартам безопасности и протоколам шифрования.</p><p id="1ffd1b66-b5af-4667-8f82-7e39940b0e31" class="">• масштабируемость: способность приложения справляться с увеличением пользовательского трафика.</p><p id="efc51780-e96c-4de9-9f68-bc005ee71f9c" class="">
+</p><h3 id="723340f7-33b1-44b4-95f1-31da4558bc5e" class="">Приложение тормозит. Что делать?</h3><p id="6b326e14-f9f4-48a7-a5fe-46589d0ac33c" class="">Локализуем проблему на кластере устройств. Если проблема на сильный устройствах - очень плохо, если на слабых - уже не так плохо. Запустить посмотреть, потыкать UI с помощью LayoutInspector, для compose соответственно бенчмарки, как композиция происходит, слишком много рекомпозиций, добавить аннотации. Обычно проблема в плохо написанном UI который не аффектит на сильных устройствах. Сложные анимации, грузят слишком большие картинки, выполняют запросы не на тех потоках. Тестить на устройствах среднего и слабого сегмента. Наладить перфоманс тесты. Подключить линтеры. Сделать производительность как бизнес-фичу.</p><p id="1fb0eac4-75a3-4c2a-bfbc-c380a3916678" class="">
+</p><h3 id="57bd390c-025e-40e2-b982-9b0abe97c2bb" class="">Спроектируй экран поиска?</h3><p id="3ed99a9f-4197-4ff9-81d7-0f6dbf51cf19" class="">Основные требования: поле ввода, подсказки, результаты.</p><p id="66dfb8e1-f554-4cc1-b0f0-b7a1cdcb5020" class="">Дополнительные требования: предварительный поиск в кэше, дебаунс на поле ввода.</p><p id="3c8ebe6d-28ff-4b4f-bf55-beb5dd9e7815" class="">
+</p><h3 id="5df0cde2-bbdf-4efd-ad32-8cf7df9fdf27" class="">Спроектируй приложение для интернет-магазина?</h3><p id="0c752a5d-5498-483f-89c3-38d5dcbcb5d5" class="">Будет работа с финансами. Подумать о безопасности хранении данных. Провайдеры биллинга. Категории товаров должны попадать под категории публикации в магазинах приложений требования гугла. Приложение - это витрина, продумать дизайн и бэкенд. Нужна ли авторизация? Декомпозировать главные фичи: авторизация, витрина, корзина. Чтобы фичи пилились параллельно - чистая архитектура, разбить по gradle-модулям, чтобы команды не пересекались. Один на всех database-модуль, network-модуль, core-ui модуль. У каждой фичи должен быть 1 модуль, который я подключаю и он сам внутри себя тянет нужные ему модули. Круговой зависимости не будет, общий код вынесем в другой модуль. Модуль application знает про все фичи и может вызывать их с помощью deeplinks.</p><p id="d0827172-70fe-4401-ba00-bbb9977f8a06" class="">
+</p><h3 id="3b3625ea-6e3f-488f-bdb5-d55168944fbe" class="">Как доставить пуш гарантированно?</h3><p id="0af007a5-bd54-4b66-8f9f-6f1bcad55c63" class="">Слать смс. Аналитика открытия пушей. GMS и HMS.</p><p id="855105a1-e22b-4fc8-a94c-fe84011567ef" class="">
+</p><h3 id="688707f8-88e9-4e0c-aca4-269a5424f3d9" class="">Как скачать файл гарантированно?</h3><p id="fe0b1832-a28a-454e-8882-6d637c75f58d" class="">Использовать стандартный <code>DownloadManager</code>.</p><p id="4fc68064-3009-4fc2-a665-27efd6d973dd" class="">
+</p><h3 id="74891f3f-8c4d-4cb9-8739-dcf88e4402bb" class="">Как загружать большие файлы?</h3><p id="5fca35e3-d1dd-4ca2-a8da-da9fd2ca7cdb" class="">POST-запрос через HTTP. Объект грузится по частям (чанки). Информация указывается в заголовках запроса.</p><p id="a880655e-f2b9-4c6d-a3e4-1685b5a0553c" class="">
+</p><h3 id="3f1a7c60-3670-48d2-a80e-c0879b2b9208" class="">За какими метриками приложения следить?</h3><p id="be9f6503-e556-4c70-b85a-20f199011ac4" class="">• сколько идут запросы.</p><p id="48555886-86f2-483a-92cc-9dc0297ec00d" class="">• сколько жрет оперативки.</p><p id="54fb2ece-08c5-4961-8bd0-a03041cd012c" class="">• сколько жрет заряд батареи.</p><p id="d853e636-6161-44a6-be47-08f160a186de" class="">• скипаются фремы кадры в секунду отзывчивость UI.</p><p id="2ba8b331-ed66-4c11-a605-62abe78f65e6" class="">• время старта приложения.</p><p id="b5ee785c-0d74-4723-b306-86be5e21d7cb" class="">• как забивается кэш.</p><p id="e21a5b13-3745-4f35-af67-22ecc6a0f2e1" class="">
+</p><h3 id="b0f8199f-239c-4309-8732-2894f1814b16" class="">Как улучшить время старта приложения?</h3><table id="5a97aeeb-214c-4d84-945a-9286addab1c9" class="simple-table"><tbody><tr id="cd9d4e30-360e-4486-a389-c37972c6847a"><td id="t@ux" class="" style="width:266px"><a href="https://developer.android.com/topic/performance/vitals/launch-time">AndroidDevelopers: App startup time</a></td></tr></tbody></table><p id="da7bb44f-0cc5-412e-bc5a-9601654ac3ba" class="">Следить за метриками: TTID (Time-To-Initial-Display) отрисовка 1 кадра и TTFD (Time-To-Full-Display) готов к взаимодействию с юзером.</p><p id="180c0fd9-33c0-40df-951e-0d847171af4a" class="">Метод <code>Activity.onCreate</code> оказывает наибольшее влияние на время загрузки.</p><p id="8f0e0713-3b8a-476e-90d1-b21b424d2b28" class="">• ленивая инициализация зависимостей (библиотека AppStartup).</p><p id="bb16bf3e-b498-4891-98c5-2b7225e81f14" class="">• не использовать тяжелые макеты которые долго инфлейтятся.</p><p id="4af59781-6f96-4aaa-90d2-fdc3703fc63e" class="">• у большинства телефонов 4 и больше ядер. использовать многопоточность.</p><p id="449a78f5-184f-461a-8ff8-9c7f7528723d" class="">
+</p><h3 id="b64ebf19-28ec-49b4-9187-d386fb9ac9fc" class="">Что делать если нестабильный интернет?</h3><p id="4b22d063-0ac7-42db-9e92-fdcea2e57221" class="">• кэширование.</p><p id="f78266f5-0936-43ee-b436-53dc2639ca27" class="">• отключить autoplay у медиа.</p><p id="4b56e944-0d50-4622-9d29-09e059fdf9de" class="">• грузить картинки в низком разрешении.</p><p id="3c70df1b-3e7d-45c7-bd14-86eb02b354ee" class="">• пагинацию уменьшим до 10 айтемов.</p><p id="a576678e-a288-405d-971f-b5d815934031" class="">
+</p><h3 id="86d23c97-fd23-49f3-94c0-a6aa267e034e" class="">Как спроектировать приложение с нуля?</h3><p id="6ac9372b-69d4-44aa-8d36-b40d652fcbfb" class="">• прототипирование.</p><p id="bac8d704-704c-4856-b0a8-50b04c68f8c3" class="">• UI.</p><p id="932abe5b-e738-40c5-a133-c1893aaea892" class="">• бизнес-логика.</p><p id="35604048-7ecf-4cc4-82c2-106d38e1565b" class="">Возьмем чистую архитектуру. Data (API, DB), Domain (Interactor, UseCase), Presentation (Compose). ViewModel + MVVM или MVI.</p><p id="8495a6ba-3070-413f-847f-af28cae1dd07" class="">
+</p><h3 id="8b2e1678-c714-4709-83f1-3d02a8a993fc" class="">Как работать с картинками?</h3><p id="d23d7e31-87f5-4039-9403-800a9ae5145f" class="">Картинки можно конвертировать в base64.</p><p id="c7c01125-a2cb-401e-a1d8-d3e3974843fc" class="">
+</p><h3 id="c817809d-d657-4f17-b897-f0195638f8a7" class="">Шардирование и репликация?</h3><p id="2d31ac8d-5ac4-4cc8-82d6-60d8be14fb5c" class="">Репликация - полное копирование бд на такой же сервер. Любой из этих серверов будем называть Node. Реплики будут синхронизироваться с мастером.</p><p id="1ebd946c-e5c5-426d-81a3-43c16464afe7" class="">• отказоустойчивость - если мастер умерт одна из реплик его заменит.</p><p id="0b6f8577-fc0b-4ad3-94c8-16e370c6b1a4" class="">• чтение - читать можем из любой ноды. в три раза больше.</p><p id="8e86aba4-a6d1-413d-aa31-149fa63d1aab" class="">Шардирование - не дублирует данные а разделяет их по нодам.</p><p id="6d79fc06-82b2-4e83-bc4d-836dad4ba5bb" class="">• записывать можем в 4 раза больше данных одновременно.</p><p id="33bd9919-4169-4949-b23f-5930c70a5661" class="">• диска стало тоже в 4 раза больше.</p><p id="66a682e5-9335-4d09-8b79-430d69f407ec" class="">
+</p><h3 id="02a3bd0a-b498-404e-876f-b4be6c0f7ec1" class="">Как делать пагинацию?</h3><p id="2a514914-0d73-42d3-81cf-0f812a14ef6b" class=""><code>page</code> <code>offset</code> <code>lastId</code></p><p id="dc04a532-4297-4446-a8c1-b5eecaa4bf0c" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Ozon. Проектирование</summary><div class="indented"><p id="38a87b6f-98a1-4f52-ae08-45a9c6ec7af6" class="">Нужно спроектировать 2 экрана. Выбрать технологии. При этом счетчик в корзине должен увеличиваться сразу, а кнопка в корзину должна менять цвет + counter справа. А если запрос на бэк упадет нужно вернуть все в исходное состояние и наривать какую-нибудь ошибку. Важно упомянуть, что запрос на бэк на добавление в корзину нужно запускать не из Scope Вьюмодели экрана деталей, а из такого скоупа, который гарантирует, что операция не прервется, если пользователь закроет экран деталей раньше(например из Scope MainActivity).</p><div id="717c0863-5dcf-478b-9779-22dc4e33eb88" class="column-list"><div id="e3764661-f719-48b8-accf-02faa5b65a5b" style="width:33.33333333333333%" class="column"><figure id="bb703ae1-7283-4a40-b6d7-d625f6fe75e0" class="image" style="text-align:left"><a href="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/b5a7656a6ec8044f3ba65.jpg"><img style="width:288px" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/b5a7656a6ec8044f3ba65.jpg"/></a><figcaption>Экран со списком</figcaption></figure></div><div id="d221a260-0621-4b98-966f-cd7325e9e04f" style="width:33.33333333333333%" class="column"><figure id="d8a67392-7a6e-4c5d-8b1d-1d80b9549c76" class="image"><a href="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/f466f7602f3226758906f.jpg"><img style="width:288px" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/f466f7602f3226758906f.jpg"/></a><figcaption>Экран с деталями</figcaption></figure></div><div id="93d54e61-49de-4761-8403-7609c796bc6f" style="width:33.33333333333333%" class="column"><figure id="7bfcb74a-7e68-4222-96a0-bb835de7add7" class="image"><a href="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/ba79d405d4eed703e9224.jpg"><img style="width:336px" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/ba79d405d4eed703e9224.jpg"/></a><figcaption>Экран деталей если добавить к корзину</figcaption></figure></div></div><p id="74930991-571c-4b00-997b-4b07e22def2f" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Dodo. Проектирование</summary><div class="indented"><p id="5879864c-d6e1-4ab7-8165-681de42ffb38" class="">• Какой проект или какой функциональностью горжусь?</p><p id="c210aa79-4215-4db4-9f62-f60caff86731" class="">• Как сделать этот экран? XML или Compose. Полный путь. Если бы я пришел на проект и дали такую задачу.</p><figure id="eaae408a-3259-4030-83b4-08e3c91d1b05" class="image"><a href="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/Screenshot_2024-04-12_at_21.16.46.png"><img style="width:192px" src="System%20Design%20782d9918b2ee4d3bacd891d51efe69c7/Screenshot_2024-04-12_at_21.16.46.png"/></a></figure><p id="e3717181-a1c9-4644-9987-f3deb384a68a" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Yandex. Проектирование</summary><div class="indented"><p id="ff6f83ba-8378-47b1-9364-224b7ed7141d" class="">• Потренироваться находить баги в своём коде без компиляции/исполнения.</p><p id="7c339bac-3106-4fb5-98c1-97a801e1741c" class="">• (Опционально) потренироваться в придумывании тестов для собственного кода, попробовать самостоятельно придумывать краевые случаи, для которых может потребоваться реализации отдельной логики.</p></div></details><p id="edeb863e-5a63-440e-8987-7d96ef391817" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">System Design. Вопросы на собесе</mark></summary><div class="indented"><table id="12a41098-0ba6-41db-8470-18bc19c50c4a" class="simple-table"><tbody><tr id="55db91df-73fa-4653-8e21-b03f8694e617"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое функциональные и нефункциональные требования?</td></tr><tr id="cd17ea6c-1766-4800-8753-a1ba7a61e1ee"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Как доставить пуш гарантированно?</td></tr><tr id="6ed3cb98-a9a6-4f1c-be9c-57ef2a3e4dee"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Как загрузить большой файл на сервер?</td></tr><tr id="add089b4-b5e1-4870-a02b-c3c0559cc54e"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> За какими метриками приложения следить?</td></tr><tr id="6cb5c42f-e59c-463d-ad80-ed4deb1a4961"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Как улучшить время старта приложения?</td></tr><tr id="e649e677-10f0-4d64-a6da-81db5f486c7c"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Что делать если нестабильный интернет?</td></tr><tr id="8d59bf11-2898-4f0e-a2ad-755756487130"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Как спроектировать приложение с нуля?</td></tr><tr id="6b0119a3-9da9-4d56-a83c-203d0fd95adb"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое шардирование и репликация?</td></tr><tr id="75168416-8dbf-47af-9530-aaecc3cd14b8"><td id="gWft" class="" style="width:472px"><mark class="highlight-red"><strong>Q:</strong></mark> Как сделать пагинацию?</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
