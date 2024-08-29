@@ -1,0 +1,825 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Coroutines →</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="98617e8e-3707-4c28-985e-7d8a537f5545" class="page sans"><header><img class="page-cover-image" src="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/michaelbely_paths_in_the_forest_purple_color_9ba14a06-dfbd-47f4-a64c-160bf28d35d1.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/jetbrains-kotlin.svg"/></div><h1 class="page-title"><strong>Coroutines →</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="58f4ed0c-61b1-4602-8db3-29994669c645" class="simple-table"><tbody><tr id="5c05de4c-1a55-4142-8ced-4dad7ef16b56"><td id="eKr?" class="" style="width:595px"><a href="https://developer.android.com/kotlin/coroutines">https://developer.android.com/kotlin/coroutines</a></td></tr><tr id="425df62f-15d0-48a8-808d-cb9eedff0f50"><td id="eKr?" class="" style="width:595px"><a href="https://developer.android.com/topic/libraries/architecture/coroutines">https://developer.android.com/topic/libraries/architecture/coroutines</a></td></tr><tr id="d440ea95-2b5c-4ba3-8082-8d4ef905ae36"><td id="eKr?" class="" style="width:595px"><a href="https://developer.android.com/kotlin/coroutines/coroutines-best-practices">https://developer.android.com/kotlin/coroutines/coroutines-best-practices</a></td></tr><tr id="1dab64cb-4c51-4596-8dea-f9e8c37df884"><td id="eKr?" class="" style="width:595px"><a href="https://d.android.com/kotlin/coroutines/coroutines-adv">https://d.android.com/kotlin/coroutines/coroutines-adv</a></td></tr><tr id="a35377d2-671f-4f92-9392-44ce12387c9c"><td id="eKr?" class="" style="width:595px"><a href="https://d.android.com/kotlin/coroutines#features">https://d.android.com/kotlin/coroutines#features</a></td></tr></tbody></table><table id="d4ddff36-0682-4ae3-a160-970ce82881ab" class="simple-table"><tbody><tr id="c7c1f7ed-959b-47be-aa61-e5bd8e865bb8"><td id="eKr?" class="" style="width:278px"><a href="https://kotlinlang.org/docs/coroutines-guide.html">https://kotlinlang.org/docs/coroutines-guide.html</a></td></tr></tbody></table><table id="8d7b9c57-808f-4341-a7f4-a821d69312c2" class="simple-table"><tbody><tr id="bcff532a-8551-4cd3-9260-25cd3f0be64f"><td id="SLmt" class="" style="width:102px"><mark class="highlight-brown"><code>21.01.2023</code></mark></td><td id="eKr?" class="" style="width:593px"><a href="https://youtu.be/ITLe4FIrrTg">https://youtu.be/ITLe4FIrrTg</a></td></tr><tr id="9e8fe071-6e8b-4959-830c-03a7759ed02a"><td id="SLmt" class="" style="width:102px"><mark class="highlight-brown"><code>28.09.2022</code></mark></td><td id="eKr?" class="" style="width:593px"><a href="https://youtu.be/L04cpMbNQ10">https://youtu.be/L04cpMbNQ10</a></td></tr><tr id="d38b55d5-d902-47b8-856c-1db8bcde2dce"><td id="SLmt" class="" style="width:102px"><mark class="highlight-brown"><code>24.05.2022</code></mark></td><td id="eKr?" class="" style="width:593px"><a href="https://youtu.be/arUctP5yAYc">https://youtu.be/arUctP5yAYc</a></td></tr><tr id="759857b6-d691-4fb9-821d-31f381a3be5b"><td id="SLmt" class="" style="width:102px"><mark class="highlight-brown"><code>24.05.2022</code></mark></td><td id="eKr?" class="" style="width:593px"><a href="https://www.youtube.com/playlist?list=PL0SwNXKJbuNmsKQW9mtTSxNn00oJlYOLA">https://www.youtube.com/playlist?list=PL0SwNXKJbuNmsKQW9mtTSxNn00oJlYOLA</a></td></tr></tbody></table><table id="ca4f0b49-bab9-43bc-a7ac-bb99ace60980" class="simple-table"><tbody><tr id="7f8b1ebd-fa85-4907-b369-0ef6e8022aee"><td id="B|Ly" class="" style="width:101px"><mark class="highlight-brown"><code>11.07.2024</code></mark></td><td id="mMoP" class="" style="width:352px"><a href="https://habr.com/ru/articles/827866/">https://habr.com/ru/articles/827866/</a></td></tr></tbody></table><h3 id="f87d6e1c-5ea6-4ce9-a497-955a010dab63" class=""><strong>Coroutines</strong></h3><p id="f260a7c0-37f3-43cc-8645-5dadf695f4df" class="">API для асинхронных операций, которые могут быть приостановлены.</p><p id="1a6c519d-99e8-4578-be48-a1de826dbd04" class="">• созданы для асинхронных операций (потоки - для многозадачности).</p><p id="89139b9b-b904-4ed7-b37b-f6ab8e88a4c2" class="">• возможность писать асинхронный код в синхронном стиле.</p><p id="45ac39d3-b1f7-4df0-af43-394a3a4e25ac" class="">• когда корутина приостанавливается - она освобождает поток, когда она готова - найдет первый свободный поток и продолжит работу.</p><p id="e7054779-2e84-4e04-922b-dc60c3e220f3" class="">• не гарантируется выполнение на одном и том же потоке.</p><p id="92dab9c3-8aee-4b82-b61d-b902390d41a3" class="">
+</p><h3 id="b3d8fd48-cdd2-40f5-8ad5-312be42b9488" class="">Чем отличаются от обычных потоков?</h3><p id="243ceae5-f2f2-49a6-91da-2af6c00b1afd" class="">• легко переключаться между корутинами без системных вызовов и блокировок (потоки Java блокируют ресурс и никому не дают его использовать).</p><p id="3671936e-a305-4d21-a6b2-127a2f43241b" class="">• не требуют системных ресурсов для работы, например, запуска нового потока, умно используют заданные пулы потоков (можно запустить миллиард корутин, но нельзя запустить миллиард потоков).</p><p id="7b08b9c5-3d74-4ef0-932a-cfa0f67b87ff" class="">• не требуют поддержки со стороны ОС.</p><p id="d29c6c95-ca07-4469-91c8-0c22d9edb395" class="">
+</p><h3 id="e6b95cce-7b17-443b-8d8b-d97f06480060" class=""><code><strong>suspend</strong></code></h3><p id="0bc32737-644a-4e09-a117-a2d89b69a601" class="">Помечает функцию как приостанавливаемую (используется как корутина).</p><p id="347f4c8a-9a9f-4084-8650-654de3609d27" class="">• возвращает ответ асинхронно.</p><p id="0acdbeb6-22fb-45f1-afa6-3563d783d3e1" class="">• можно вызвать из другой suspend-функции или из корутины.</p><p id="08bc0ac0-8c25-4f8d-a2c0-4c534728a04c" class="">• под капотом state machine и цикл switch-case.</p><p id="7d749219-9c3d-436f-acc5-d7dde11bd6df" class="">• не блокирует поток.</p><p id="bc2472bf-b97e-4cb6-b38f-7e70753eef88" class="">
+</p><h3 id="f7d0d823-ff06-4994-9704-c0f07dc875f5" class=""><code><strong>runCatching</strong></code></h3><p id="dfebfa01-c0fb-4861-87b5-da8123f413be" class="">Вызывает указанный функциональный блок и возвращает его инкапсулированный результат, если вызов был успешным, перехватывая любое исключение Throwable, которое было сгенерировано при выполнении функции блока, и инкапсулируя его как сбой.</p><p id="157b3512-c273-4e88-9797-9b4ddde8aa05" class="">
+</p><h3 id="6ec3291f-0b04-4dd9-b35c-949a289abd58" class=""><code><strong>runBlocking</strong></code></h3><p id="7c5c6a92-b003-4c4b-aa51-0fdcb7956834" class="">Блокирует поток, с которого запускается корутина. Не является расширением к типу <code>CoroutineScope</code>, в отличие от других билдеров. Предназначен для соединения обычного блокирующего кода с библиотеками, написанными в стиле приостановки, для использования в main-функции и тестах.</p><p id="c68edfbe-90bc-4fec-8e6d-52ed80a697f7" class="">• работает как scope но не является раcширением <code>CoroutineScope</code>.</p><p id="1ff1e87f-8a5e-4538-947f-ec18bb37dbeb" class="">
+</p><h3 id="3236f078-6d2a-4a99-9a68-e56e74ee4d4e" class=""><strong>Backpressure</strong></h3><p id="1dba8365-f443-462a-b3b1-f4570e5f7fe8" class="">У Flow backpressure заложена в Kotlin suspending functions. Если сборщик flow не может принимать новые данные в настоящий момент, он приостанавливает источник. Возобновление происходит позднее, когда сборщик flow снова сможет получать данные. Таким образом, в Kotlin нет необходимости выбирать тип источника данных, в отличие от RxJava.</p><p id="35c21df3-f359-4974-914d-61e5a6d6055e" class="">
+</p><h3 id="63f08989-fd9d-4e1d-a305-f959945ea325" class=""><code><strong>launch</strong></code></h3><p id="01a682ec-a9f3-45fc-8e26-54bef0256f20" class="">Запускает новую корутину и не возвращает результат вызывающей стороне. Любую работу, которая считается «выстрелил и забыл», можно запустить с помощью launch.</p><p id="8f64ac95-ecc3-4493-b3e3-880168d0a780" class="">• является расширением <code>CoroutineScope</code>. Может быть запущена только внутри scope.</p><p id="4e7422ff-61cb-42f5-a920-68152895021b" class="">
+</p><h3 id="87121022-cf61-4f00-85cd-b98a360ed874" class=""><code><strong>async</strong></code></h3><p id="91a25737-eb0d-4025-a677-82733dcc4f61" class="">Запускает новую корутину и позволяет вернуть результат с помощью функции приостановки await.</p><p id="21ed51e2-273c-4ad6-aa09-af26368ce2cb" class="">• является расширением CoroutineScope, может быть запущена только внутри scope.</p><p id="9af918ef-ece2-4bb3-9dfd-49c1af7cc31d" class="">• если запустить <code>async</code> внутри scope исключения не будет если не вызвать <code>await</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dae33dd2-d088-4ad9-ab9c-e67a7fffe7c5" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val jobs: List&lt;Deferred&lt;Int&gt;&gt; = List(100) {
+    async(start = CoroutineStart.LAZY) {
+        doWork()
+    }
+}
+jobs.forEach { println(it.await()) }</code></pre><p id="e99a955d-d0f0-4d37-ac5b-863596517d34" class="">
+</p><h3 id="b607b599-65c2-42ab-b9da-033806ddb597" class=""><code><strong>await</strong></code></h3><p id="22ccff7b-035a-45f2-96b1-5ca205ae0d3e" class="">Ожидает результата из объекта <code>Deferred</code>.</p><p id="69f2179e-a210-4f45-b0a3-a725d5001dde" class="">
+</p><h3 id="67bef53b-6057-478c-94e3-57962b73ad1a" class=""><code>yield</code></h3><p id="729c337a-5c6d-4565-aa0f-4a8aa5b73459" class="">Вызывается для проверки статуса отмены корутины. Уступить поток (или пул потоков) текущей корутины чтобы позволить другим корутинам работать на том же потоке (или пуле потоков).</p><p id="e7617a07-6fa6-4434-99b9-2056646e61e3" class="">Здесь мы запускаем две корутины, каждая из которых вызывает функцию <code>yield</code>, чтобы позволить другой корутине работать в потоке <code>main</code>. Мы видим вывод первой корутины, после чего она вызывает команду <code>yield</code>. Это приостанавливает работу первой корутины и позволяет выполняться второй. Аналогичным образом вторая корутина также вызывает функцию <code>yield</code> и позволяет первой корутине возобновить выполнение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8b20649c-13f9-4906-9294-4be6f77d35b7" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun main() = runBlocking{
+    try {
+        val job1 = launch {
+            repeat(20) {
+                println(&quot;processing job 1: ${Thread.currentThread().name}&quot;)
+                yield()
+            }
+        }
+        val job2 = launch {
+            repeat(20) {
+                println(&quot;processing job 2: ${Thread.currentThread().name}&quot;)
+                yield()
+            }
+        }
+        job1.join()
+        job2.join()
+    } catch (e: CancellationException) {
+        // код очистки
+    }
+}
+
+processing job 1: main
+processing job 2: main
+processing job 1: main
+processing job 2: main
+processing job 1: main</code></pre><p id="0b20303b-40fc-4ca3-ad98-89aedf8c7d95" class="">
+</p><h3 id="e6f3d430-5d2f-4263-8f3a-6db480c27483" class=""><strong>Structures cuncurrency</strong></h3><p id="816ee16d-2190-4db4-81e4-2f4143f7bab6" class="">Механизм, предоставляющий иерархическую структуру для организации работы coroutine. Все принципы строятся на основе CoroutineScope и оношения родитель-ребенок у <code>Job</code>.</p><p id="6307437d-2818-4c06-99e9-7b2b923c8c6b" class="">• scope хранит все ссылки на coroutines, запущенные в нем.</p><p id="8719f257-2c36-4623-aade-004de8ff7bbf" class="">• отмена scope - отмена coroutines.</p><p id="df251d00-7aa4-4202-b99e-eebbdbf3a0d9" class="">• отмена родительской <code>Job</code> приведет к отмене всех дочерних <code>Job</code>.</p><p id="b601f3d6-e659-4b4f-bd10-3523d3a16e39" class="">• отмена дочерней <code>Job</code> приведет к отмене родительской <code>Job</code> и отмене всех других дочерних <code>Job</code>.</p><p id="04497f5c-261f-4e16-a534-fe2ea2ccb92c" class="">
+</p><h3 id="76908002-a4a7-442c-bcb4-fd6e56c58572" class=""><code><strong>CoroutineName</strong></code></h3><p id="c600c137-a8ab-471b-94f6-143319db381d" class="">Задать осмысленное имя для корутины. Полезно при отладке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1402985-486a-4594-bf2e-50b890604dd9" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">launch(CoroutineName(&quot;LongTask&quot;))</code></pre><p id="73ec7a2a-53fb-4b54-aad3-f4428d56c443" class="">
+</p><h3 id="40f1e694-341c-4bee-80fa-f15acaa6989c" class="">Чем <code>Thread.sleep</code> отличается от <code>delay</code> ?</h3><p id="981d69a2-30b8-47c5-853a-17016261b7ad" class=""><code>Thread.sleep</code> в отличие от <code>delay</code> не блокирует поток, в котором выполняется. Вместо этого он приостанавливает выполнение только текущей корутины, позволяя другим корутинам выполняться.</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Job</summary><div class="indented"><h3 id="4629b543-8387-4160-9e30-a96dc2e94334" class=""><code><strong>Job</strong></code></h3><p id="b57a94de-6d78-4b76-9d9d-2e1ed3f20dd4" class="">Объект корутины. Идентифицирует корутину. Компонент контекста.</p><p id="0f9e4f89-9b87-4c6b-a0f2-7f5ef7a244f8" class="">• выполняемая задача, launch возвращают экземпляр Job. </p><p id="48103008-9983-4ac9-ab58-47c814d62cf1" class="">• с помощью Job можно управлять работой корутины и ее lifecycle, Job можно отменить. </p><p id="302f375c-33e3-4437-98e6-bfb52ef29a95" class="">• на основе Job можно организовать иерархию parent-child. </p><p id="1fc140d6-6ca0-4205-8429-9eae8261d3bc" class="">• lifecycle Job состоит из 6 состояний: New (при создании), Active (после старта), Completing (завершается), Completed (завершена + дочерние), Cancelling (отмена/ошибка), Canceled (отменена)</p><p id="56aaa753-9a4a-4e4d-8d62-1723a039cf02" class="">
+</p><h3 id="061c1bf0-25cd-4929-85e2-0806e530ee8b" class=""><code><strong>SupervisorJob</strong></code></h3><p id="964298fa-7ee4-4c9c-a645-95af5372eb45" class="">Сбой или отмена дочернего job не приведёт к сбою parent job и не повлияет на другие компоненты и scope. Если использовать обычный Job, то отказ дочерней приведет к немедленному отказу родительской. Приложение упадет, даже если обернуть код в блок try-catch</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Context</summary><div class="indented"><h3 id="f6fa76e5-8766-4e4a-800a-42fefc829826" class=""><code><strong>CoroutineContext</strong></code></h3><p id="d717b1a0-9e6a-4673-a724-dafa102c2aa0" class="">Определяет поведение корутины. Является набором параметров для выполнения coroutines. </p><p id="0c4c92fc-58b9-451d-bee9-1253f36a7224" class="">• каждая корутина выполняется в каком-либо контексте. </p><p id="781ac672-b168-4e10-8acc-100af457ca20" class="">• явно не создается, задается в scope либо при запуске корутины (в launch). </p><p id="f5829a29-a1b0-42e0-9253-49271c2a4c7a" class="">• можно объединить несколько контекстов в один</p><p id="3171481c-8f23-417a-826d-87b088a03b3b" class="">
+</p><h3 id="54ebeaa1-bb10-4f09-a2bc-460210e96886" class=""><code><strong>withContext</strong></code></h3><p id="3ccf5809-36c3-4256-b1f4-b7a66dc55ab0" class="">Переносит выполнение текущей корутины на новый контекст, в большинстве случаев на новый диспетчер.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Scope</summary><div class="indented"><h3 id="c9cf3591-9e40-4c9f-8707-5eb6b55bf62c" class=""><code><strong>CoroutineScope</strong></code></h3><p id="f9cf0a0f-536c-4a63-a90d-be45403821fb" class="">Отслеживает любую корутину, которую создает, используя launch или async. Scope хранит все ссылки на корутины, запущенные в нем. Scope может отменить выполнение всех дочерних корутин, если возникнет ошибка или операция будет отменена.</p><p id="c1e08b70-ce88-4993-9e8d-f81e1664f4e5" class="">• отмена дочернего scope приведет к отмене родительского scope и наоборот.</p><p id="b3d26be9-9069-43ce-9a02-07ac8955619c" class="">• scope будет завершен успешно, когда выполнятся все корутины в нем.</p><p id="075b944e-e75a-4707-8c9e-32b92f321060" class="">• если запустить бесконечный цикл внутри scope и отменить его - цикл закончит выполнение.</p><p id="f2ad7b32-01c9-4b53-9b1c-e0ac2e9721bb" class="">
+</p><h3 id="d264294a-0502-46b6-b51d-e5681a3cfcf7" class=""><code><strong>supervisorScope</strong></code></h3><p id="39ef20b0-ccaa-4357-82b2-5a3ab56543be" class="">Аналог <code>coroutineScope</code>. <code>SupervisorJob</code> для scope. Переопределяет <code><strong>Job</strong></code><strong> </strong>контекст, поэтому функция не отменяется, когда дочерний элемент выдает исключение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aa691676-08f2-4cd8-b8a1-2e44519dee29" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">supervisorScope {
+    ...
+}</code></pre><p id="0b36aba9-7cd6-476d-be07-9bfcfa19943e" class="">
+</p><h3 id="2aabbedc-2271-49af-8e4b-7090224ecfc5" class=""><mark class="highlight-red"><code>withTimeout</code></mark></h3><p id="0340a80f-5e8f-4570-a0cb-6c20b0b7c3ba" class="">Устанавливает ограничение по времени для выполнения работы. Если время вышло - корутина отменится и вызовется <code>TimeoutCancellationException</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="752b342c-80db-4610-9130-ac61effd0329" class="code"><code class="language-Kotlin">withTimeout(1_000L) {
+		...
+}</code></pre><p id="b5692aea-f1ec-45e4-b499-0c41ff87ec0d" class="">
+</p><h3 id="90b13631-23fc-4936-a3db-9fed92476480" class=""><code>withTimeoutOrNull</code></h3><p id="3bd8701e-7c14-4a38-9680-b0ddb6631394" class="">Устанавливает ограничение по времени для выполнения работы. Если время вышло вернет результат null.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c4b91fc8-f317-4912-9937-2f46dadf5b30" class="code"><code class="language-Kotlin">val result = withTimeoutOrNull(1_000L) {
+		...
+}</code></pre><p id="ed8d129c-fbd1-481a-9146-6692c377773d" class="">
+</p><h3 id="15ebe75d-3618-4235-a90c-9d6be5a43bc3" class=""><code><strong>GlobalScope</strong></code></h3><p id="a28b252c-4042-42d5-a5d1-65096761f10f" class="">Специальный CoroutineScope, который не привязан к какай-либо Job. Все корутины, запущенные в рамках него будут работать до своей остановки или остановки процесса. Использование может легко привести к утечке памяти. </p><p id="8a382640-2a74-4b88-96c3-8ce439e4a85b" class="">• этот scope невозможно отменить. </p><p id="4688f947-146e-43d0-b0a3-9c9d5ae70be0" class="">• использование нарушает принципы structured concurrency и может привести к утечке памяти.</p><p id="7452fba6-5510-44f8-a21f-8ab711ee8a75" class="">
+</p><h3 id="7fd5f0f9-d0c6-47b4-992d-723e45221c1c" class=""><code><strong>viewModelScope</strong></code></h3><p id="ebf1f440-073e-4a21-ad9b-440eda4a231b" class="">Отменяется при очистке <code>ViewModel</code>.</p><p id="ea572b72-c9eb-434f-af44-2aff90ae3afc" class="">
+</p><h3 id="039bc084-3e41-4e0e-80aa-384d5d23fdab" class=""><code><strong>rememberCoroutineScope</strong></code></h3><p id="804fe49f-1e33-45d1-81d9-2a192ef37f46" class="">Отменяется когда компонуемый объект выходит из рекомпозиции.</p><p id="cf4b9d12-8322-4dee-b4d1-4169f16e8e66" class="">
+</p><h3 id="125aaa5e-93d9-4d73-a257-36588cbfd79d" class=""><code><strong>viewLifecycleOwner.lifecycleScope</strong></code></h3><p id="f25b9727-2cdd-4296-8be6-97621ebbd3ff" class="">Отменяется по окончании жизненного цикла Android View.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Dispatchers</summary><div class="indented"><h3 id="e64f38a3-5a36-47df-ac2d-675ef4d72893" class=""><code><strong>Dispatcher</strong></code></h3><p id="89ca138e-e196-4ed6-88ec-3ecf547b1951" class="">Отвечает за то, на каком потоке будет выполняться корутина.</p><p id="8c7c224c-ca8d-4855-8088-5711b6c20c4d" class="">• диспетчеры лучше инжектить, чтобы было удобно тестировать</p><p id="239e44a1-5008-4e69-a809-30f8e6a4cd5d" class="">
+</p><h3 id="dc0dc424-9582-4062-b1a2-1f3f257ab7a3" class=""><code><strong>newSingleThreadContext</strong></code></h3><p id="93f50bda-9808-4667-bcf1-da6f3ca73d74" class="">Вручную запускает поток с указанным именем. API деликатное, использовать осторожно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aa796925-e914-4f72-abbc-50b39da2b2d2" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">launch(newSingleThreadContext(&quot;Custom Thread&quot;)) {
+    println(&quot;coroutine flow: ${Thread.currentThread().name}&quot;)&quot;}</code></pre><p id="cd58e747-81ca-4f27-a0d5-5e519ddb22dd" class="">
+</p><h3 id="f9ca95ee-67a5-4519-b701-cdf4874b9fc8" class=""><code><strong>newFixedThreadPoolContext</strong></code></h3><p id="57b1c81a-ae7d-4c22-9cc3-871338cc8166" class="">Позволяет создать собственный отдельный пул потоков. Все корутины по умолчанию выполняются в CommonPool. Все ресурсы будут освобождены после того как программа отработает. API деликатное, использовать осторожно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="336b9c2a-5716-498c-b811-a1712fadf832" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val pool: ExecutorCoroutineDispatcher = newFixedThreadPoolContext(8, &quot;myPool&quot;)</code></pre><p id="8a985619-ca60-42d8-8a53-7c485044d7a8" class="">
+</p><h3 id="7cd9ce74-bce5-4513-abad-296efd04b303" class=""><code><strong>Dispatcher.Default</strong></code></h3><p id="799af946-b72b-4ab9-bbe9-0717d0abb562" class="">Диспетчер по умолчанию используется, когда явно не указан другой диспетчер. Он представлен использует общий фоновый пул потоков. Этот диспетчер оптимизирован для выполнения задач с интенсивным использованием ЦП вне основного потока. Примеры использования включают сортировку списка и синтаксический анализ JSON.</p><p id="53c01fbc-4625-46d7-8b0d-92c393055110" class="">• под капотом FixedThreadPool.</p><p id="f3025ffb-f5a8-4f63-aca4-6e86a155054a" class="">• используется по умолчанию в launch и async.</p><p id="1f33e6a4-0ca4-41ac-99b1-956a54d195e8" class="">• если все 64 потока CommonPool заняты, может создать больше.</p><p id="aa39bd66-ba36-4fb8-9376-44e20ee14153" class="">• ограничить количество потоков: <code>Dispatchers.Default.limitedParallelism(3)</code>.</p><p id="a8238847-5b93-43a8-87c6-8151675c65a1" class="">
+</p><h3 id="20db623a-984d-40a9-a797-8c70cb6cbad6" class=""><code><strong>Dispatcher.IO</strong></code></h3><p id="63a12d55-2cc4-4cf5-807b-767c24ed51da" class="">Так же как и Default основан на пуле потоков. Оптимизирован для выполнения дискового или сетевого ввода-вывода вне основного потока. Примеры включают использование Room, чтение файлов или запись в них, а также выполнение любых сетевых операций.</p><p id="91435ece-d4d7-47e3-91e3-19314990541f" class="">• под капотом CachedThreadPool.</p><p id="3183aeff-5f15-4435-8066-57a75c9016af" class="">• максимальный размер CommonPool для использования (не создания) - 64 потока.</p><p id="4f77e8ab-5c2c-4e79-ab96-4f4cd3700b92" class="">
+</p><h3 id="21db8ed1-fc67-4612-b2da-2e364d7c6a08" class=""><code><strong>Dispatcher.Main</strong></code></h3><p id="9d4986e1-3c43-464b-bad9-150d645ad256" class="">Выполнит suspend функции и обычные функции на main потоке (основном потоке Android), отдавая предпочтение обычным функциям. Это следует использовать только для взаимодействия с пользовательским интерфейсом и выполнения быстрой работы. Пример: обновление объектов LiveData.</p><p id="9d66bece-2433-404b-8bd4-b21e9235bd58" class="">
+</p><h3 id="3db8b00c-95f7-4d9e-815b-20dcf2b96aed" class=""><code><strong>Dispatcher.Main.immediate</strong></code></h3><p id="827fd4b3-39c3-4edb-8836-80813ebf0982" class="">Выполнит suspend функции и обычные функции на main потоке по порядку.</p><p id="36278a54-3874-4988-a91a-5e68fa16d221" class="">
+</p><h3 id="082422e7-096a-4905-8ca7-2534b6732e03" class=""><code><strong>Dispatchers.Unconfined</strong></code></h3><p id="40927232-e080-485b-874f-5c6de2cde5e4" class="">Корутина не закреплена четко за определенным потоком или пулом потоков. Она запускается в текущем потоке до первой приостановки. После возобновления работы корутина продолжает работу в одном из потоков, который сторого не фиксирован. Разработчики языка Kotlin в обычной ситуации не рекомендуют использовать данный тип.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f2e4bc9b-305d-4001-b38e-b0b0101889ae" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val dispatcher: CoroutineDispatcher = Dispatchers.IO.limitedParallelism(5)</code></pre><p id="7c6fde44-de41-4696-a7d1-84b91077224e" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Exceptions</summary><div class="indented"><h3 id="ab1cb4e5-8dbc-45c5-9963-b36cff5b707a" class=""><code><strong>CancellationException</strong></code><strong> </strong></h3><p id="ab91e597-0b23-4abd-ace7-516d72466b4f" class="">Специальное исключение для обработки отмены выполнения корутин<br/> • вызов cancel приведет к этому исключению<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2406d1d1-ef0f-4574-ad6d-b63402be68c3" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">try {
+    ...
+} catch (e: CancellationException) {
+    // обязательно пробрасываем дальше
+    throw e
+} catch (e: Exception) {
+    // обрабатываем другие исключения
+}</code></pre><p id="b9905055-9c97-4997-a809-b44e62b22da6" class="">
+</p><h3 id="c054e767-2104-4ff9-9fc5-23689cf7d4b6" class=""><code><strong>CoroutineExceptionHandler</strong></code></h3><p id="a059ce41-4c8c-4b66-8457-32545f6fc820" class="">Определить поведение для всех необработанных исключений, которые происходят в текущем контексте выполнения корутин. Общий catch-блок. Если исключение захвачено, то дальше к родителю оно пробрасываться не будет. Под капотом <code>Thread.uncatchExceptionHandler</code>.</p><p id="2910fceb-162d-495b-ba14-9be3e7a53d7d" class="">• вызывается в последнюю очередь, когда произошла ошибка. на момент вызова корутина завершена.</p><p id="0d8a50e4-e666-4f83-b7a7-dd8a614112ea" class="">• может быть вызван на любом потоке. переопределять <code>Dispatchers.Main</code> если обновляем UI.</p><p id="93541054-9584-4f87-b859-fba6788c166e" class="">• не будет ловить <code>CancellationException</code> так как они не являются ошибками выполнения корутин.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="561cdf61-24bc-4192-bcc5-e8ad159a0837" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable -&gt;
+    withContext(Dispatchers.Main) {
+		    view.showError()
+    }
+}
+CoroutineScope(exceptionHandler)
+scope.launch(exceptionHandler)</code></pre><p id="aec1b8ba-8efe-4096-b9d3-a958ed872797" class="">
+</p><h3 id="9d0169a8-ad36-42a4-a97d-6a1db3c07a42" class=""><code><strong>NonCancellable</strong></code></h3><p id="a986f414-d9f9-4b9b-93fa-42df0e60fe1f" class="">Использовать для освобождения ресурсов при исключении<br/> • только для использования в withContext()<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="34cf0f4c-b641-48e9-9e97-6884b4f1dc56" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val inputStream: InputStream
+try {
+    doSomethingLong(inputStream)
+} catch (e: Exception) {
+    // обрабатываем исключение
+} finally {
+    withContext(NonCancellable) {
+        shutdown(inputStream)
+    }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="32238513-4c95-4310-9a42-4800cfb894bd" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">try {
+    coroutineScope {
+        ...
+    }
+} catch (e: Exception) {
+    // обработать все исключения scope
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a851dd4a-77d9-4d64-821b-6221e91d80f9" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">/**
+ * Не вызывается в случае CancelException и если исключение произошло до задания CompletionHandler
+ */
+job.invokeOnCompletion { cause: Throwable? -&gt;
+    if (cause != null) {
+        // произошла ошибка
+    } else {
+        // корутина успешно выполнена
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Channels</summary><div class="indented"><h3 id="9afe1b1e-7004-453e-916e-981581269998" class=""><code>Channel</code></h3><p id="e8360551-b20b-451a-87e5-049e0f9961b1" class="">Каналы позволяют передавать потоки данных от одной корутины к другой. Похожи на BlockingQueue но без блокирующих операций put и take.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="80357eaa-1b50-47a1-a84b-1883096ff27f" class="code"><code class="language-Kotlin">suspend fun main() = coroutineScope {
+    val channel = Channel&lt;String&gt;()
+    launch {
+        val users = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Sam&quot;)
+        for (user in users) {
+            println(&quot;Sending $user&quot;)
+            channel.send(user)
+        }
+    }
+    repeat(3) {
+        val user = channel.receive()
+        println(&quot;Received: $user&quot;)
+    }
+    println(&quot;End&quot;)
+}
+
+// Sending Tom
+// Received: Tom
+// Sending Bob
+// Received: Bob
+// Sending Sam
+// Received: Sam
+// End</code></pre><p id="ba6fcb07-4f06-4ac3-8eb9-0104cc24cce1" class="">
+</p><h3 id="85217210-6312-4a69-827f-a0e60cc3186c" class=""><code>send</code></h3><p id="e5242cee-2365-4d1b-a119-984dc6d9d24f" class="">Отправить объект в канал. Можно вызвать только из корутины.</p><p id="021343f5-a682-4b7f-bbb4-f02d06892873" class="">
+</p><h3 id="79b7d61d-ad20-4f5d-9424-6ead72da7080" class=""><code>receive</code></h3><p id="60bcda37-1f10-4b28-9138-83a1794a5acf" class="">Получить данные из канала.</p><p id="eaebb99c-bc99-4ad2-b595-7660f6e94ca7" class="">
+</p><h3 id="b81368df-cb5b-4e57-839b-51b24a4b80d2" class=""><code>receiveAsFlow</code></h3><p id="21a555a0-5037-4165-83e4-502265e37d45" class="">Получить данные из канала и преобразовать их во <code>Flow</code>.</p><p id="577fb74f-09b7-4d1f-884f-147e6f24d9db" class="">
+</p><h3 id="3c00a7e1-9e65-4602-be45-a6717b054860" class=""><code><strong>close(</strong></code><code>Throwable</code><code><strong>)</strong></code></h3><p id="b2b3ad43-329a-4073-86fa-49d70997ec53" class="">Закрыть канал чтобы больше не получать данные.</p><p id="07e2b716-0fed-45a2-bb86-f4ae43e27c7c" class="">
+</p><h3 id="a3f628d1-ed8f-4410-80a3-61baf412b615" class=""><code><strong>producer</strong></code></h3><p id="1963d875-a356-4177-883f-d607a8771839" class="">Представляет билдер корутины который создает корутину в которой передаются данные в канал.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ab72480-1427-47d0-aa14-93d82752b6cc" class="code"><code class="language-Kotlin">fun CoroutineScope.getUsers(): ReceiveChannel&lt;String&gt; = produce {
+    val users = listOf(&quot;Tom&quot;, &quot;Bob&quot;, &quot;Sam&quot;)
+    for (user in users) {
+        send(user)
+    }
+}</code></pre><p id="4ab391b1-ccef-4319-8e72-9aed9e49a804" class="">
+</p><h3 id="bab9c5b1-49a6-4700-9339-0df174673020" class=""><code><strong>consumeEach</strong></code></h3><p id="56f949e2-81df-4c2f-823a-45aa8b6ec8b1" class="">Нужен для получения данных из канала. Заменяет цикл <code>for</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="80d460d6-c0ec-4b1e-a8d2-a2630ac87db9" class="code"><code class="language-Kotlin">val users = getUsers()
+users.consumeEach { user -&gt; println(user) }</code></pre></div></details><p id="75ce99d9-0aec-4101-94cf-4dcbc3f247b7" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Kotlin Coroutines. Вопросы на собесе</mark></summary><div class="indented"><table id="a08cfd67-26a2-416a-ad7b-fa19741ddb4b" class="simple-table"><tbody><tr id="9465a7dd-add7-48d4-ad9d-9e3c1bc63b77"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое корутины в котлине? Для чего они нужны?</td></tr><tr id="a4eef9eb-7ebd-4778-ac9e-d6f738cf6590"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем корутины отличаются от потоков?</td></tr><tr id="4b2947cb-9d3f-455c-a87c-dcf200c5b20f"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Для чего нужно ключевое слово <code>suspend</code> ?</td></tr><tr id="ed4a1c9b-c34a-4ef8-9361-46d16a6a62d8"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Во что под капотом разворачивается suspend-функция?</td></tr><tr id="835588c4-47f3-480a-b15f-32d805ea2974"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как запустить корутину? </td></tr><tr id="e5f6f9d1-1683-4741-a635-4ec857c717d9"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> В чем разница между <code>launch</code> и <code>async</code> ?</td></tr><tr id="bbd84e63-95d1-432b-909c-269b78e4882c"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как обрабатывать исключения в корутинах?</td></tr><tr id="ff12587b-5c97-4eb1-936c-8188551a1cb0"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Что такое контекст корутины?</td></tr><tr id="8b99f8a9-172d-4dad-9104-5f4ff72f1ecd"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Для чего используются диспетчеры в корутинах?</td></tr><tr id="915d7d5a-52cc-4a28-82c1-09e7525b3147"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как отменить корутину?</td></tr><tr id="dab81e98-7d3a-4a95-9919-4de60221ee17"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как в корутинах работает структурированный параллелизм (structure cuncurrency) ?</td></tr><tr id="0c404eaa-f028-4f55-89b7-b33be60e83eb"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Для чего нужен <code>SupervisorJob</code> ?</td></tr><tr id="d66e837a-7a29-4877-85ed-e282dae5d5db"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как в корутинах работает backpressure?</td></tr><tr id="a6439644-1705-4cf1-a255-06ddf807b733"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как в корутинах запустить горячий и холодный потоки?</td></tr><tr id="0ef0581f-1ae6-4c1a-b39d-93be12c34176"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем <code>Thread.sleep</code> отличается от <code>delay</code> ?</td></tr><tr id="16addcc9-3f30-4ada-8bfe-2efff78f85b4"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Как не отменять корутину если один из ее дочерних элементов вышел из строя?</td></tr><tr id="073eb813-48cf-4174-867f-0062573c970e"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Разница между coroutineScope и supervisorScope?</td></tr><tr id="e81beb62-7c10-4885-83e8-76dfcf0d5d80"><td id="_YVu" class="" style="width:616px"><mark class="highlight-red"><strong>Q:</strong></mark> Чем <code>Dispatchers.Main</code> отличается от <code>Dispatchers.Main.immediate</code> ?</td></tr></tbody></table></div></details><p id="ca95f9bd-2265-4dc2-94a6-9232f47c9856" class="">
+</p><figure id="4f959874-85c7-4f06-8131-240fd59b27b7" class="link-to-page"><a href="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/Flow%204f95987485c74f068131240fd59b27b7.html"><img class="icon" src="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/Flow%204f95987485c74f068131240fd59b27b7/jetbrains-kotlin.svg"/>Flow</a></figure><figure id="c9386b14-c3ce-40b6-8329-8b81516b7544" class="link-to-page"><a href="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/Channels%20c9386b14c3ce40b683298b81516b7544.html"><img class="icon" src="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/jetbrains-kotlin.svg"/>Channels</a></figure><figure id="37b84409-48d7-4f50-bb95-9b76ad0209fc" class="link-to-page"><a href="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/Cases%2037b8440948d74f50bb959b76ad0209fc.html"><img class="icon" src="Coroutines%20%E2%86%92%2098617e8e37074c28985e7d8a537f5545/Cases%2037b8440948d74f50bb959b76ad0209fc/jetbrains-kotlin.svg"/>Cases</a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
