@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Merge Intervals!</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Valid Anagram</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -681,6 +681,29 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="d631e4fd-9bcc-4d1e-b4eb-c16d5a9e520e" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/bullseye_brown.svg"/></div><h1 class="page-title"><strong><strong>Merge Intervals</strong></strong>!</h1><p class="page-description"></p></header><div class="page-body"><table id="7f0628cf-c7f5-4b3a-a2d7-ef6fa83d6ab6" class="simple-table"><tbody><tr id="debfec99-89a2-428d-8411-3974ce9dfdc0"><td id="t|;p" class="" style="width:354px"><a href="https://leetcode.com/problems/merge-intervals">Merge Intervals на LeetCode</a></td><td id="xmNB" class="" style="width:75px"><mark class="highlight-yellow">Medium</mark></td></tr></tbody></table><p id="6a20d315-4d9b-4716-bfc1-7d08c3f14091" class="">
-</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bea6ebd2-bc46-45b5-8855-fe49679db1e4" class="code"><code class="language-Kotlin"></code></pre><p id="b88d5f5e-78f5-4165-ab85-32110f24c275" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+</style></head><body><article id="2ff2c0de-cb42-4427-8493-b8bb108542e2" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/></div><h1 class="page-title">Valid Anagram</h1><p class="page-description"></p></header><div class="page-body"><table id="7b93ff41-e6e9-4539-9528-ad9978a71696" class="simple-table"><tbody><tr id="994f51a6-5a3c-40c4-9179-6ef008d23d04"><td id="t|;p" class="" style="width:281px"><a href="https://leetcode.com/problems/valid-anagram">https://leetcode.com/problems/valid-anagram</a></td><td id="xmNB" class="" style="width:58px"><mark class="highlight-teal"><code><strong>Easy</strong></code></mark></td></tr></tbody></table><h3 id="49449947-f454-42d7-85fe-e5b9bed6bd2d" class="">Условие</h3><p id="794d4195-b35d-40d9-83d8-1a88a6dab35b" class="">Даны 2 строки: <strong>s</strong> и <strong>t</strong>. Вернуть <strong>true</strong>, если <strong>s</strong> является анограммой <strong>t</strong>, и <strong>false</strong> в противном случае.</p><p id="f4516c62-0ef9-4c9b-893c-c9b4719ea283" class="">Анаграмма — это слово или фраза <strong>,</strong> образованные путем перестановки букв другого слова или фразы, обычно с использованием всех исходных букв ровно один раз.</p><p id="4f23024a-2e2c-46c2-a48a-49fcc69dc69d" class="">
+</p><h3 id="ea3f3b28-14ca-4936-960f-ae6c037ef4ff" class=""><strong>Примеры</strong></h3><blockquote id="acd454aa-ee57-4005-8faf-b81e2b0e04cc" class=""><mark class="highlight-default"><code>Input:</code></mark> s = &quot;anagram&quot;, t = &quot;nagaram&quot;<br/><br/><mark class="highlight-default"><code>Output:</code></mark> true</blockquote><blockquote id="522aebb8-d6ad-4caf-b46b-688413583745" class=""><mark class="highlight-default"><code>Input:</code></mark> s = &quot;rat&quot;, t = &quot;car&quot;<br/><br/><mark class="highlight-default"><code>Output:</code></mark> false</blockquote><p id="3bca85da-7bad-4128-ba69-39fe0aa3c0a4" class="">
+</p><h3 id="0a4bac63-6a51-4bea-bb9d-380d2f0a0cce" class="">Решение</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13993cbc-b76c-461f-b21c-f66318a31bb6" class="code"><code class="language-Kotlin">fun isAnagram(s: String, t: String): Boolean {
+    // Если у строк разная длина - это 100% не анаграммы.
+    if (s.length != t.length) return false
+    
+    // Создаем массив из 26 элементов (количество англ букв) для подсчета частоты символов
+    val charCount = IntArray(26) // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+		// Итерируемся по всем символам строки s и увеличиваем значение элемента (char - &#x27;a&#x27;) для каждого символа
+		// Для &quot;rat&quot; массив станет таким: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0], позиции букв a, r, t станут 1.
+    s.forEach { char -&gt;
+        charCount[char - &#x27;a&#x27;]++
+    }
+
+    // Итерируемся по всем символам строки t и скручиваем счетчики
+    // Для &quot;cat&quot; массив станет таким: [0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], скрутили a и t, r осталась 1, c стала -1.
+    t.forEach { char -&gt;
+        charCount[char - &#x27;a&#x27;]--
+    }
+
+    // Проверяем, если все значения в массиве равны нулю - строки являются анаграммами
+    return charCount.all { it == 0 }
+}</code></pre><p id="f4d75c1d-6af5-4b35-bfe8-9527baebe555" class="">
+</p><h3 id="6f74ce50-4de9-4cb2-992d-e4059d07aae7" class=""><strong>Временная сложность</strong></h3><p id="3ce5b610-65cf-4cc8-8d41-94a0e1dce79b" class="">O(n), где n — длина строки. Мы проходим строки только по одному разу.</p><p id="0f531e87-a726-4561-8e0e-2022992feaac" class="">
+</p><h3 id="9bd017bc-1bd2-4f75-94ff-87db75036896" class=""><strong>Пространственная сложность</strong></h3><p id="36025363-c0e7-41b6-88cd-8686f7549a56" class="">O(1), так как используемый массив фиксированного размера (26 элементов).</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

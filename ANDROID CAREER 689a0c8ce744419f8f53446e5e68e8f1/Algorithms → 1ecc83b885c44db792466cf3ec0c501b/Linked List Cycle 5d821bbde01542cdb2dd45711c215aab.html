@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Running Sum of 1d Array</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linked List Cycle</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -681,10 +681,32 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="8c042478-e479-4910-b620-3c2d2cc15399" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/bullseye_brown.svg"/></div><h1 class="page-title">Running Sum of 1d Array</h1><p class="page-description"></p></header><div class="page-body"><table id="75623980-8f81-4c32-8e83-cd967b762562" class="simple-table"><tbody><tr id="1085e90d-a704-4398-a1eb-81a473a32851"><td id="t|;p" class="" style="width:269px"><a href="https://leetcode.com/problems/running-sum-of-1d-array/">Running Sum of 1d Array на LeetCode</a></td><td id="xmNB" class="" style="width:52px"><mark class="highlight-teal">Easy</mark></td></tr></tbody></table><p id="43630f3c-0a44-4138-a509-f5a8aed47bf4" class="">Дан массив чисел. Найти префиксную сумму чисел.</p><p id="52f13c51-786a-4bf9-a333-77d1d2ebbcd6" class=""><strong>Input:</strong> nums = <code>[1,2,3,4]</code>.</p><p id="81c7dd16-ba03-41db-95a0-9e6981537dea" class=""><strong>Output:</strong> <code>[1,3,6,10]</code>.</p><p id="1ef7d938-ba2b-4c6b-a214-c52f58355c92" class=""><strong>Explanation:</strong> Текущая сумма получается следующим образом: <code>[1, 1+2, 1+2+3, 1+2+3+4]</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="590b9630-cfab-4ae7-b714-cfa99ea61222" class="code"><code class="language-Kotlin">fun runningSum(nums: IntArray): IntArray {
-    for (i in 1 until nums.size) {
-        nums[i] = nums[i - 1] + nums[i]
+</style></head><body><article id="5d821bbd-e015-42cd-b2dd-45711c215aab" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/></div><h1 class="page-title"><strong>Linked List Cycle</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="99cf6ded-9024-4447-ae4f-3cb4bb21e2a4" class="simple-table"><tbody><tr id="910c8e74-232e-4733-9b12-321da4bcdc9e"><td id="t|;p" class="" style="width:298px"><a href="https://leetcode.com/problems/linked-list-cycle/description/">https://leetcode.com/problems/linked-list-cycle/description/</a></td><td id="xmNB" class="" style="width:58px"><mark class="highlight-teal"><code><strong>Easy</strong></code></mark></td></tr></tbody></table><h3 id="68b01f99-3887-4a5c-b114-addddd83aa14" class="">Условие</h3><p id="61d5bc89-3e1a-4fdb-bcdc-7f42e8592295" class="">Дана голова односвязного списка, нужно определить, есть ли в списке цикл. Цикл возникает, если какой-либо узел в списке ссылается на один из предыдущих узлов, образуя петлю. Функция должна вернуть true, если цикл существует, и false в противном случае.</p><p id="6807cff1-f0a6-4eb3-8c15-00d662d2e86f" class="">
+</p><h3 id="74ad55e9-df80-41e4-9263-89a63db08067" class=""><strong>Примеры</strong></h3><blockquote id="4420e5db-ae39-430e-8cda-42da588da127" class=""><mark class="highlight-default"><code>Input:</code></mark> head = [3, 2, 0, -4], pos = 1<br/><br/><mark class="highlight-default"><code>Output:</code></mark> true<br/><br/><mark class="highlight-default"><code>Explanation:</code></mark><mark class="highlight-default"> В этом списке цикл, так как хвост ссылается на второй узел.</mark></blockquote><blockquote id="3b91bbfe-8e63-4f19-a50c-0368de98976d" class=""><mark class="highlight-default"><code>Input:</code></mark> head = [1, 2], pos = 0<br/><br/><mark class="highlight-default"><code>Output:</code></mark> true<br/><br/><mark class="highlight-default"><code>Explanation:</code></mark><mark class="highlight-default"> Хвост ссылается на первый узел, образуя цикл.</mark></blockquote><blockquote id="02482db5-6bba-462a-b676-be2263750fc8" class=""><mark class="highlight-default"><code>Input:</code></mark> head = [1], pos = -1<br/><br/><mark class="highlight-default"><code>Output:</code></mark> false<br/><br/><mark class="highlight-default"><code>Explanation:</code></mark><mark class="highlight-default"> В списке нет цикла.</mark></blockquote><p id="81b187ea-02cc-4833-b235-47db62045a95" class="">
+</p><h3 id="831c4d0f-4b5f-423b-aea0-bb24b30c8f28" class="">Решение</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4d934dd3-4488-4957-90ff-1931ed30553a" class="code"><code class="language-Kotlin">// Определение структуры узла связанного списка
+class ListNode(var `val`: Int) {
+    var next: ListNode? = null
+}
+
+// Функция для определения, есть ли цикл в связанном списке
+fun hasCycle(head: ListNode?): Boolean {
+    // Используем два указателя - медленный (slow) и быстрый (fast)
+    var slow = head
+    var fast = head
+    
+    // Пока быстрый указатель и следующий за ним не равны null
+    while (fast != null &amp;&amp; fast.next != null) {
+        slow = slow?.next           // Медленный указатель перемещается на 1 узел
+        fast = fast.next?.next      // Быстрый указатель перемещается на 2 узла
+        
+        // Если указатели встретились, значит есть цикл
+        if (slow == fast) {
+            return true
+        }
     }
-    return nums
-}</code></pre><p id="13e6bf05-3e8b-4a4f-8462-e04fdb10b2d8" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+    
+    // Если цикл не найден, возвращаем false
+    return false
+}</code></pre><p id="af48112b-e5da-4286-b7b7-e76047245f6e" class="">
+</p><h3 id="bbbce2c5-f0bb-4187-b03c-8d809a922cf2" class=""><strong>Временная сложность</strong></h3><p id="4ec01a97-330f-4514-a0ac-52e96358b59f" class="">Временная сложность решения — <strong>O(n)</strong>, где n — количество узлов в связанном списке. В худшем случае нам нужно пройти по всем узлам списка один раз.</p><p id="624e8f32-c56e-44fc-b6ae-dde447dd9f06" class="">
+</p><h3 id="59832c2b-00d1-442d-b7fd-c70ed0920855" class=""><strong>Пространственная сложность</strong></h3><p id="d3eebaa1-215a-4c63-b107-8e2920130b61" class="">Пространственная сложность — <strong>O(1)</strong>. Мы используем два указателя (slow и fast), что требует константного дополнительного пространства.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Valid Parentheses!</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Palindrome Number</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -681,6 +681,27 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="4eb913fb-2515-4afb-922d-87c5964bc04c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/bullseye_brown.svg"/></div><h1 class="page-title"><strong>Valid Parentheses!</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="bcd33981-b9d7-4a1d-9208-ceb373997bfc" class="simple-table"><tbody><tr id="1c9b3f70-17c2-4ba1-b3d6-07ee04fc0c8c"><td id="t|;p" class="" style="width:317px"><a href="https://leetcode.com/problems/valid-parentheses">Valid Parentheses на LeetCode</a></td><td id="xmNB" class="" style="width:75px"><mark class="highlight-teal">Easy</mark></td></tr></tbody></table><p id="5957e539-d78b-4167-ade1-6d48653037e2" class="">
-</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a4ee038-eeff-4cb0-9829-fd6247592501" class="code"><code class="language-Kotlin"></code></pre><p id="3dc00cb3-b857-4fe7-86f6-309830d89e20" class="">
-</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+</style></head><body><article id="7ba10091-49a9-49f0-a963-e40c67661422" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/></div><h1 class="page-title">Palindrome Number</h1><p class="page-description"></p></header><div class="page-body"><table id="d34d33b9-96ed-4995-b242-297fc649845a" class="simple-table"><tbody><tr id="2f232107-57bf-4adf-a522-736e4b6f36ac"><td id="t|;p" class="" style="width:318px"><a href="https://leetcode.com/problems/palindrome-number">https://leetcode.com/problems/palindrome-number</a></td><td id="xmNB" class="" style="width:58px"><mark class="highlight-teal"><code><strong>Easy</strong></code></mark></td></tr></tbody></table><h3 id="f727a30e-e71b-493e-94ca-32791da17351" class="">Условие</h3><p id="332f7451-820e-426e-b8c2-6b3abbbfcd24" class="">Определите, является ли данное число палиндромом. Число считается палиндромом, если оно читается одинаково слева направо и справа налево.</p><p id="8c9d6c9b-1b21-487d-967a-e94777a4f010" class="">
+</p><h3 id="adfe26de-ba40-4ae6-a0ae-5e169e6d7de6" class=""><strong>Примеры</strong></h3><blockquote id="fbf528a3-3ec8-4e77-aa8e-4fecdc6228f7" class=""><mark class="highlight-default"><code>Input:</code></mark> 121<br/><br/><mark class="highlight-default"><code>Output:</code></mark> true</blockquote><blockquote id="fab6048b-ef36-40e5-a604-b40d97f2ccf1" class=""><mark class="highlight-default"><code>Input:</code></mark> -121<br/><br/><mark class="highlight-default"><code>Output:</code></mark> false</blockquote><blockquote id="a6af590a-80ca-4b4a-8d31-08d7ceac2be8" class=""><mark class="highlight-default"><code>Input:</code></mark> 10<br/><br/><mark class="highlight-default"><code>Output:</code></mark> false</blockquote><p id="8a348ae5-8b90-4b4a-8320-69f73c80afa5" class="">
+</p><h3 id="25ca1db9-1579-43eb-b1de-1123a72b138a" class="">Решение</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7b86a8c-be22-4bee-a380-3e8fb8f579b1" class="code"><code class="language-Kotlin">fun isPalindrome(x: Int): Boolean {
+    // Отрицательные числа не могут быть палиндромами
+    if (x &lt; 0) return false
+    
+    // Если число оканчивается на 0 и не является нулем, то оно не может быть палиндромом
+    if (x % 10 == 0 &amp;&amp; x != 0) return false
+    
+    var original = x // Сохраняем оригинальное число для последующего сравнения.
+    var reversed = 0 // Переменная для хранения инвертированного числа.
+    
+    // Инвертируем число
+    while (original &gt; 0) {
+        val digit = original % 10 // Извлекаем последнюю цифру текущего числа.
+        reversed = reversed * 10 + digit // Добавляем эту цифру к `reversed`, передвигая текущие цифры на одну позицию влево.
+        original /= 10 // Удаляем последнюю цифру из `original` путем целочисленного деления на 10.
+    }
+    
+    // Сравниваем инвертированное число с исходным
+    return reversed == x
+}</code></pre><p id="b3268b1b-0475-4a21-8765-4866239ea982" class="">
+</p><h3 id="59079046-97e5-4f4d-88fd-aa8dbff8c83a" class=""><strong>Временная сложность</strong></h3><p id="bb352bd3-cfb8-4bad-a719-6d47aa194f8a" class="">O(log n), где n — входное число. Временная сложность пропорциональна количеству цифр в числе.</p><p id="016b0eee-6639-4c8b-9a52-2812fca265b8" class="">
+</p><h3 id="40d6ac65-35fd-4ab5-a10e-0d3a89d1222c" class=""><strong>Пространственная сложность</strong></h3><p id="f2ac34f3-6e3b-4285-aef0-766464f1a989" class="">O(1). Используется фиксированное количество дополнительной памяти для хранения переменных.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

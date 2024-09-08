@@ -1,0 +1,699 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Algorithms →</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ecc83b8-85c4-4db7-9246-6cf3ec0c501b" class="page sans"><header><img class="page-cover-image" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/michaelbely_Algorithms_f4327659-838b-440d-b513-368d79ddf628.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/integral.svg"/></div><h1 class="page-title"><strong>Algorithms →</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="a8f592fd-fd98-478d-8241-56699fd1c928" class="simple-table"><tbody><tr id="503bdce3-bff3-4f8b-a739-d53fd4d7d036"><td id="``tK" class="" style="width:101px"></td><td id="]N_i" class="" style="width:610px"><a href="https://coderun.yandex.ru/catalog">Yandex: Каталог задач на алгоритмы</a></td></tr><tr id="faf7c77a-ed3d-4763-ac43-dc7e12fa547e"><td id="``tK" class="" style="width:101px"></td><td id="]N_i" class="" style="width:610px"><a href="https://practicum.yandex.ru/algorithms-interview/">Бесплатный курс Подготовка к алгоритмическому собеседованию. Яндекс Практикум</a></td></tr><tr id="8da88dc1-d9c2-4b41-b861-4efd7b3a980b"><td id="``tK" class="" style="width:101px"><mark class="highlight-brown"><code>16.01.2020</code></mark></td><td id="]N_i" class="" style="width:610px"><a href="https://academy.yandex.ru/posts/osnovnye-vidy-sortirovok-i-primery-ikh-realizatsii">Yandex: Основные виды сортировок и примеры их реализации</a></td></tr></tbody></table><table id="ae5e3cae-0e3e-45da-8309-868c1b8b4734" class="simple-table"><tbody><tr id="024f327f-bf61-4952-bd1a-02875d0b2314"><td id="``tK" class="" style="width:101px"><mark class="highlight-brown"><code>29.07.2013</code></mark></td><td id="]N_i" class="" style="width:321px"><a href="https://habr.com/ru/articles/188010/">https://habr.com/ru/articles/188010/</a></td></tr></tbody></table><table id="e254d0f2-0b35-4285-a5c4-855919b05fa6" class="simple-table"><tbody><tr id="0268cd4b-c14f-4590-994d-2b7fea60eaf8"><td id="H|Nl" class="" style="width:101px"><mark class="highlight-brown"><code>31.07.2024</code></mark></td><td id="t|;p" class="" style="width:664px"><a href="https://youtu.be/REsff9CIR1Q">https://youtu.be/REsff9CIR1Q</a></td></tr><tr id="6a7a38b5-1fd5-4907-b1a9-6588b3682609"><td id="H|Nl" class="" style="width:101px"><mark class="highlight-brown"><code>26.07.2023</code></mark></td><td id="t|;p" class="" style="width:664px"><a href="https://youtu.be/tfvm2k5c9JI">https://youtu.be/tfvm2k5c9JI</a></td></tr><tr id="22cc2c79-4e5c-4175-8550-9ae998160ed1"><td id="H|Nl" class="" style="width:101px"><mark class="highlight-brown"><code>14.05.2021</code></mark></td><td id="t|;p" class="" style="width:664px"><a href="https://youtu.be/aYuAd-IDigc">https://youtu.be/aYuAd-IDigc</a></td></tr><tr id="5dff2002-cb5e-4366-858f-c534151a3f04"><td id="H|Nl" class="" style="width:101px"><mark class="highlight-brown"><code>11.02.2021</code></mark></td><td id="t|;p" class="" style="width:664px"><a href="https://youtu.be/ou5hSWC82To">https://youtu.be/ou5hSWC82To</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Временная ложность</summary><div class="indented"><p id="41bf86ef-dd20-462e-ad57-a479ccdbcf4a" class="">Временная<strong> </strong>сложность измеряет, сколько времени потребуется алгоритму для завершения работы в зависимости от размера входных данных. Она выражается через количество базовых операций (например, сравнение, присваивание), которые выполняются алгоритмом. Временную сложность обычно записывают с использованием нотации O-большое (Big-O), которая описывает верхнюю границу времени выполнения алгоритма по мере увеличения размера входных данных. Временная сложность важна, потому что она помогает оценить, насколько быстро будет выполняться алгоритм на больших объемах данных.</p><p id="7d7912d5-7404-44a4-8e99-81d859d70c48" class="">Примеры временной сложности:</p><p id="e75022fb-a9b9-4503-996c-d681cdff10a4" class="">• <strong>O(1)</strong> — Константная сложность: время выполнения не зависит от размера входных данных.</p><p id="f388db48-448d-4bb7-88f0-0ed358c84d9d" class="">• <strong>O(n)</strong> — Линейная сложность: время выполнения растет пропорционально размеру входных данных.</p><p id="41cb4b1a-a677-42b1-9db4-f757aa31c83f" class="">• <strong>O(n^2)</strong> — Квадратичная сложность: время выполнения растет пропорционально квадрату размера входных данных.</p><p id="f93c73f8-b778-4433-8c3b-c6787e1a4ad1" class="">• <strong>O(log n)</strong> — Логарифмическая сложность: время выполнения растет пропорционально логарифму от размера входных данных.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Пространственная сложность</summary><div class="indented"><p id="7eafe9d4-65f1-4564-aada-1ebc5abfa4b0" class="">Пространственная сложность измеряет, сколько памяти потребуется алгоритму для завершения работы в зависимости от размера входных данных. Она также выражается через нотацию O-большое и описывает верхнюю границу потребления памяти алгоритмом. Пространственная сложность включает память, используемую для хранения входных данных и дополнительную память, требуемую для выполнения алгоритма (например, для хранения временных переменных, рекурсивного стека и т.д.). Пространственная сложность важна, потому что она помогает оценить, сколько памяти потребуется алгоритму, что особенно критично в условиях ограниченных ресурсов. </p><p id="18602289-c111-4c7c-936e-15fbf0e88a4b" class="">Примеры пространственной сложности:</p><p id="d9d04290-dc8b-40f6-ad68-a1a4dc8611f9" class="">• <strong>O(1)</strong> — Константная сложность: алгоритм использует фиксированное количество памяти, независимо от размера входных данных.</p><p id="e20aee73-b901-4f9c-8bcb-50fff153494c" class="">• <strong>O(n)</strong> — Линейная сложность: память, используемая алгоритмом, растет пропорционально размеру входных данных.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">О-Нотация</summary><div class="indented"><p id="17d7894b-8be4-4965-9543-ff6690ae7aa7" class="">О-нотация (Big O notation) — это способ описания асимптотической сложности алгоритмов, который показывает, как время выполнения или использование памяти алгоритма изменяется в зависимости от размера входных данных. Она позволяет оценить эффективность алгоритмов и сравнить их производительность.</p><p id="a71dfe50-5d19-48f7-ba3d-4e6d2ac9feed" class="">• <strong>Анализ алгоритмов. </strong>О-нотация позволяет определить, насколько эффективно работает алгоритм и насколько он масштабируется с увеличением объема данных.</p><p id="8f3f6534-d234-47bc-bea8-9e975f6af023" class="">• <strong>Сравнение алгоритмов. </strong>Позволяет сравнить различные алгоритмы по их эффективности и выбрать наиболее подходящий для конкретной задачи.</p><p id="b7eda2f9-6263-4a27-9f75-6e85a4819aec" class="">• <strong>Проектирование. </strong>Помогает в разработке алгоритмов и структур данных, чтобы обеспечить их эффективность и производительность.</p><p id="e54fd9c7-d1d5-4bed-881a-dd2642a6decc" class="">
+</p><h3 id="ed08144c-5995-44ce-9d9f-bcbb0aeb0247" class=""><strong>Концепции</strong></h3><p id="7e4b0d80-f1df-4492-b5ed-603eb633a312" class="">• <strong>Асимптотическая сложность. </strong>О-нотация выражает поведение алгоритма при стремлении размера входных данных к бесконечности. Она помогает понять, как изменяется сложность алгоритма с увеличением объема данных.</p><p id="efbbc80f-8d3b-4b11-83ff-382fa47e02dc" class="">• <strong>Пределы. </strong>О-нотация показывает верхнюю границу времени выполнения алгоритма, что позволяет гарантировать, что алгоритм не будет работать хуже определенного времени выполнения или использования памяти.</p><p id="2cf5b9cc-4a5c-4f9a-b2d0-499c86725de0" class="">
+</p><h3 id="a2bb1ac8-f329-4920-ae3f-2d7f42ce1a8c" class=""><strong>Классы</strong></h3><p id="d8f4243d-b2b0-4ca9-9cc6-3b2402ec0868" class="">• <strong>O(1) — Константное время</strong>: Время выполнения алгоритма не зависит от размера входных данных. Например, доступ к элементу массива по индексу имеет сложность O(1).</p><p id="83552fb6-e7cb-414d-b3ec-9398808aca0e" class="">• <strong>O(log n) — Логарифмическое время</strong>: Время выполнения алгоритма растет логарифмически по отношению к размеру входных данных. Примером является бинарный поиск в отсортированном массиве.</p><p id="8726854f-7a83-4f92-a73f-a2eacd4da239" class="">• <strong>O(n) — Линейное время</strong>: Время выполнения алгоритма растет пропорционально размеру входных данных. Например, перебор элементов массива имеет сложность O(n).</p><p id="204445fb-856b-428f-b4bd-24bed45f82a5" class="">• <strong>O(n log n) — Линейно-логарифмическое время</strong>: Время выполнения алгоритма растет быстрее, чем линейное, но медленнее, чем квадратичное. Часто встречается в алгоритмах сортировки, таких как быстрая сортировка и сортировка слиянием.</p><p id="78af63e2-f132-42aa-a516-6f139e459433" class="">• <strong>O(n^2) — Квадратичное время</strong>: Время выполнения алгоритма пропорционально квадрату размера входных данных. Примером является пузырьковая сортировка и некоторые алгоритмы поиска пар.</p><p id="c82ec927-a0d8-4378-95da-fdc9dce858a2" class="">• <strong>O(2^n) — Экспоненциальное время</strong>: Время выполнения алгоритма растет экспоненциально с увеличением размера входных данных. Такие алгоритмы часто неэффективны для больших данных и могут быть использованы в задачах, где требуется полный перебор, например, в задачах коммивояжера.</p><p id="b5485806-d94e-4616-814f-77ff5e492ea2" class="">• <strong>O(n!) — Факториальное время</strong>: Время выполнения алгоритма растет очень быстро по сравнению с размером входных данных. Это типично для задач, где требуется перебор всех возможных перестановок, например, в некоторых задачах комбинаторики.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Оптимизация алгоритма</summary><div class="indented"><p id="e9a4970d-06e8-41cd-8400-18580f99ad5a" class="">Подразумевает нахождение баланса между временной и пространственной сложностью, так как улучшение одного показателя может ухудшить другой.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Структуры данных</summary><div class="indented"><h3 id="d9fb77ea-a4b2-4580-884f-d4390999d696" class="">Массивы</h3><p id="08d68ac9-9167-45ba-adf8-d9fa40d2750d" class="">Последовательный набор элементов одного типа, доступ к которым осуществляется по индексу. Хранение данных в фиксированном размере, часто используется для реализации других структур данных (например, стека или очереди).</p><table id="9b73e8bf-0b18-4e6c-b43f-23b4f33d1660" class="simple-table"><tbody><tr id="9be54468-6d19-4b1e-b3dc-cc6991388801"><td id="Mi}v" class="" style="width:85px">Поиск</td><td id="m:x{" class="" style="width:520px">O(n) — требуется полный перебор элементов.</td></tr><tr id="e4480e45-a434-48c0-82d5-97e53f980d42"><td id="Mi}v" class="" style="width:85px">Доступ</td><td id="m:x{" class="" style="width:520px">O(1) — доступ к элементу по индексу.</td></tr><tr id="6792874d-fb4e-4664-a161-b382357c7588"><td id="Mi}v" class="" style="width:85px">Удаление</td><td id="m:x{" class="" style="width:520px">O(n) — удаление элемента требует перемещения оставшихся элементов.</td></tr></tbody></table><h3 id="6e427f2e-eebc-4819-87b2-424fa9ac6578" class=""><strong>Связанные списки</strong></h3><p id="bb9160c1-fc1a-4854-94b9-51b82c421223" class="">• Односвязные списки.<strong> </strong>Состоят из узлов, где каждый узел содержит данные и ссылку на следующий узел.</p><p id="4c50e345-1fb3-4427-9e7f-f2064a328975" class="">• Двусвязные списки. Узлы имеют ссылки как на следующий, так и на предыдущий узел.</p><p id="a63b3733-bba7-43b6-b801-7be6d17f2522" class="">• Кольцевые списки. Последний узел указывает на первый узел, образуя кольцо.</p><table id="367c028a-5cad-44de-af02-8423ef84228f" class="simple-table"><tbody><tr id="1b76e7cf-92fa-4f09-8e6e-52fd2abb33c2"><td id="@zmf" class="" style="width:86px">Поиск</td><td id="dzg&lt;" class="" style="width:549px">O(n) — необходим полный обход списка для поиска элемента.</td></tr><tr id="7c02073b-a63a-4680-8f43-62f28d67fd43"><td id="@zmf" class="" style="width:86px">Доступ</td><td id="dzg&lt;" class="" style="width:549px">O(n) — нельзя напрямую получить доступ к элементу, требуется обход.</td></tr><tr id="cf565223-3ccd-4821-806b-0388c9bec934"><td id="@zmf" class="" style="width:86px">Удаление</td><td id="dzg&lt;" class="" style="width:549px">O(n) — поиск элемента требует O(n), удаление узла — O(1) если узел найден.</td></tr></tbody></table><h3 id="8703996a-6dce-4557-a177-5c45d5baa928" class="">Стек</h3><p id="5ed2f57e-e4fb-4aa8-a49c-1581742ce602" class="">Структура данных, работающая по принципу LIFO (Last In, First Out), где последний добавленный элемент извлекается первым. Реализация функций отката, обратного обхода, алгоритмов рекурсии.</p><table id="01c8a319-b765-45bf-96e9-2f9a128efac0" class="simple-table"><tbody><tr id="cc50e9d6-1854-4e93-a560-2eb56e5c5385"><td id="AVeX" class="" style="width:84px">Поиск</td><td id="KL[U" class="" style="width:549px">O(n) — в стеке нет прямого доступа к элементам, требуется полный перебор.</td></tr><tr id="0508bd75-59d9-4054-bc80-ebbc9667e7a7"><td id="AVeX" class="" style="width:84px">Доступ</td><td id="KL[U" class="" style="width:549px">O(1) — доступ только к верхнему элементу.</td></tr><tr id="4b51a844-bef2-4238-bbc2-ccb46e788382"><td id="AVeX" class="" style="width:84px">Удаление</td><td id="KL[U" class="" style="width:549px">O(1) — удаление верхнего элемента.</td></tr></tbody></table><h3 id="166b8ac9-8e41-4103-a4cb-d5dfa50cf9b7" class="">Очередь</h3><p id="eaffb315-65f6-4e41-9177-b73e261788cf" class="">Структура данных, работающая по принципу FIFO (First In, First Out), где первый добавленный элемент извлекается первым. Реализация задач планирования, обработки задач в порядке их поступления.</p><table id="d0a9822d-712d-499e-b458-238aad88840f" class="simple-table"><tbody><tr id="22c8ef22-fbaf-4a00-a1e3-3882f4d3282f"><td id="s~n]" class="" style="width:84px">Поиск</td><td id="lNdK" class="" style="width:620px">O(n) — в очереди нет прямого доступа к элементам, требуется полный перебор.</td></tr><tr id="4cbee350-ea25-4d24-9409-2992d0acbbd2"><td id="s~n]" class="" style="width:84px">Доступ</td><td id="lNdK" class="" style="width:620px">O(1) — доступ только к элементу на фронте или в конце (в зависимости от реализации).</td></tr><tr id="34a386af-dfe3-40df-928d-551f9028d3e7"><td id="s~n]" class="" style="width:84px">Удаление</td><td id="lNdK" class="" style="width:620px">O(1) — удаление элемента из начала очереди.</td></tr></tbody></table><h3 id="f33ebb8e-a937-457f-8117-60f92cd7f54b" class=""><strong>Дек (двусторонняя очередь)</strong></h3><p id="da4f8c90-70f0-4d37-9dde-91a56d97c4cb" class="">Структура данных, которая позволяет добавлять и удалять элементы с обоих концов. Реализация алгоритмов, которые требуют двустороннего доступа к данным.</p><table id="897886fb-d3b8-498a-9013-4da72d9ee9c2" class="simple-table"><tbody><tr id="ee8fe44b-5084-4d28-a4bf-3924532cf804"><td id="ityE" class="" style="width:85px">Поиск</td><td id="CEO`" class="" style="width:544px">O(n) — в деке нет прямого доступа к элементам, требуется полный перебор.</td></tr><tr id="1dce33c1-8f49-4fa1-beb6-3e661019e236"><td id="ityE" class="" style="width:85px">Доступ</td><td id="CEO`" class="" style="width:544px">O(1) — доступ к элементам с обоих концов.</td></tr><tr id="3a867a4a-85d7-4c31-9d6a-b210574a0559"><td id="ityE" class="" style="width:85px">Удаление</td><td id="CEO`" class="" style="width:544px">O(1) — удаление элемента с обоих концов.</td></tr></tbody></table><h3 id="0f2a902e-ffc4-4f38-961c-212d7e88b11b" class=""><strong>Хэш-таблица</strong></h3><p id="79103aee-fe28-4d5f-8e7a-bc52d2b5e90e" class="">Структура данных, использующая хэш-функцию для быстрой вставки, поиска и удаления элементов. Реализация ассоциативных массивов, кэшей, для эффективного поиска данных.</p><table id="8f96d3ad-8293-4c6b-b04a-054ac06519d3" class="simple-table"><tbody><tr id="f803be01-3547-4ea2-99cc-b0b1eb39fd17"><td id="sMlC" class="" style="width:87px">Поиск</td><td id="on}A" class="" style="width:628px">O(1) — в среднем, если хорошо распределены хэш-коды и нет большого числа коллизий.</td></tr><tr id="7c8b652b-b52b-4df4-a551-f80a426be052"><td id="sMlC" class="" style="width:87px">Доступ</td><td id="on}A" class="" style="width:628px">O(1) — доступ к элементу по ключу.</td></tr><tr id="371521f6-63f7-4573-8324-45f0a395dd57"><td id="sMlC" class="" style="width:87px">Удаление</td><td id="on}A" class="" style="width:628px">O(1) — удаление элемента по ключу.</td></tr></tbody></table><h3 id="8d651140-da85-42b6-8e6b-43bb0b94cea9" class=""><strong>Дерево</strong></h3><p id="41c58b84-bc1c-433d-b8ff-886b487b3dd8" class="">Организация данных в иерархии, упорядоченный поиск, реализация кучи (heap).</p><p id="c972dfe5-26a8-467e-a1f0-0b7486e0b369" class=""><strong>Бинарное дерево поиска (BST)</strong></p><table id="6b780713-493a-4da2-ab1c-b43cae7de227" class="simple-table"><tbody><tr id="41dcc900-9642-4f27-896a-86058eb25519"><td id="n|JN" class="" style="width:87px">Поиск</td><td id="I`JH" class="" style="width:505px">O(log n) — в сбалансированном дереве; O(n) — в несбалансированном.</td></tr><tr id="78534004-1465-4752-a803-c3d34caf135f"><td id="n|JN" class="" style="width:87px">Доступ</td><td id="I`JH" class="" style="width:505px">O(log n) — в сбалансированном дереве.</td></tr><tr id="1403da56-b8b6-4586-9772-e8f6a57832f2"><td id="n|JN" class="" style="width:87px">Удаление</td><td id="I`JH" class="" style="width:505px">O(log n) — в сбалансированном дереве.</td></tr></tbody></table><p id="5b6b9dd1-ce33-40ff-b7b3-d920785bfdc6" class=""><strong>Балансированные деревья (AVL, красно-черное, B-дерево)</strong></p><table id="22fcc4b7-d862-4e58-98b5-c4db16db242e" class="simple-table"><tbody><tr id="1d0e2291-1994-4227-9313-7237d86d5314"><td id="s^EZ" class="" style="width:86px">Поиск</td><td id="P:\m" class="" style="width:258px">O(log n) — всегда сбалансировано.</td></tr><tr id="b3347514-2660-4cf5-9ce4-cd75cd8876ac"><td id="s^EZ" class="" style="width:86px">Доступ</td><td id="P:\m" class="" style="width:258px">O(log n) — всегда сбалансировано.</td></tr><tr id="561c57f1-64f7-405f-9be1-0c8ebc6c5d6d"><td id="s^EZ" class="" style="width:86px">Удаление</td><td id="P:\m" class="" style="width:258px">O(log n) — всегда сбалансировано.</td></tr></tbody></table><p id="701de664-6dda-491b-819d-c7c64aab76f7" class=""><strong>Дерево B и B+</strong></p><table id="5a65b548-0c05-4f72-9eb3-57f78d1eee30" class="simple-table"><tbody><tr id="ec058cec-8148-4388-857b-3a9eb5c3324b"><td id="_nic" class="" style="width:86px">Поиск</td><td id="wt}K" class="" style="width:263px">O(log n) — всегда сбалансировано.</td></tr><tr id="5c951b44-25f5-4b64-a054-f4940507546a"><td id="_nic" class="" style="width:86px">Доступ</td><td id="wt}K" class="" style="width:263px">O(log n) — всегда сбалансировано.</td></tr><tr id="2b18f7ef-e1b3-4e41-8bda-09aa737f3cf2"><td id="_nic" class="" style="width:86px">Удаление</td><td id="wt}K" class="" style="width:263px">O(log n) — всегда сбалансировано.</td></tr></tbody></table><h3 id="d506e1b3-0f15-40b9-914e-94c53c9fd31f" class=""><strong>Графы</strong></h3><p id="d8fe5952-ac64-4ee4-9ffc-1b06b7453b7b" class="">Моделирование сетевых структур, нахождение кратчайших путей, маршрутизация.</p><p id="93a6a413-a86c-4204-907d-aeb62d97bc57" class=""><strong>Матрица смежности</strong></p><table id="bf2a166c-5940-4ff9-a088-3cef3b6ccf30" class="simple-table"><tbody><tr id="e6c073eb-ef2d-422d-bd19-53cba10d9718"><td id="HpKz" class="" style="width:87px">Поиск</td><td id="&lt;sZo" class="" style="width:416px">O(n^2) — для всех рёбер, если граф плотный.</td></tr><tr id="390fb826-c47f-45c3-915c-c8a1cc84ab42"><td id="HpKz" class="" style="width:87px">Доступ</td><td id="&lt;sZo" class="" style="width:416px">O(1) — проверка наличия ребра между двумя вершинами.</td></tr><tr id="72ef98ab-e2d4-4dde-b8d6-723f7048efad"><td id="HpKz" class="" style="width:87px">Удаление</td><td id="&lt;sZo" class="" style="width:416px">O(1) — удаление ребра.</td></tr></tbody></table><p id="a6345367-47a1-41f3-929d-1e4f664b4a5b" class=""><strong>Список смежности</strong></p><table id="812f5cf1-cc0c-42b6-8352-43703f7cffa4" class="simple-table"><tbody><tr id="55a3b37c-96a1-4d89-9577-0a52cfc4ad15"><td id="=[?m" class="" style="width:85px">Поиск</td><td id="lnMf" class="" style="width:453px">O(n + m) — где n — количество вершин, m — количество рёбер.</td></tr><tr id="ee46cf21-d8a4-474a-b818-57b1d1696d33"><td id="=[?m" class="" style="width:85px">Доступ</td><td id="lnMf" class="" style="width:453px">O(d) — где d — степень вершины.</td></tr><tr id="d1e1d29e-e0b5-4977-98b8-d6a3ea73c558"><td id="=[?m" class="" style="width:85px">Удаление</td><td id="lnMf" class="" style="width:453px">O(d) — удаление всех рёбер, инцидентных вершине.</td></tr></tbody></table><h3 id="5e0321d1-b613-46bc-894e-f0884eab0c66" class=""><strong>Куча</strong></h3><p id="20a24913-0b78-4fd3-a884-5db538df9413" class="">Специальное дерево, где значения узлов удовлетворяют определенному свойству (макс-куча или мин-куча). Реализация алгоритмов сортировки (сортировка кучей), приоритетных очередей.</p><table id="b2f141d5-4706-432b-92fd-483e3f8a2e5f" class="simple-table"><tbody><tr id="f4a9be11-d3fb-4ed0-85cc-ce5e22504e27"><td id="Zkx{" class="" style="width:89px">Поиск</td><td id="}bSb" class="" style="width:495px">O(n) — неопределённое место элемента, требуется полный перебор.</td></tr><tr id="4162b1cb-2736-4a5d-ae18-b017bdb63579"><td id="Zkx{" class="" style="width:89px">Доступ</td><td id="}bSb" class="" style="width:495px">O(1) — к корню (в случае min- или max-кучи).</td></tr><tr id="3945b83c-48ac-40b1-9301-91d1f77c9e00"><td id="Zkx{" class="" style="width:89px">Удаление</td><td id="}bSb" class="" style="width:495px">O(log n) — удаление корня и перестройка кучи.</td></tr></tbody></table><h3 id="c4a1dc3a-4fa9-44d4-b455-c402866b6d9b" class=""><strong>Trie (Префиксное дерево)</strong></h3><p id="1e0135b8-784d-47ac-ac27-734667170757" class="">Дерево, используемое для хранения строк, где общие префиксы представляют общие ветви. Поиск строк, автозаполнение, хранение словарей.</p><table id="d9d8367f-8fd9-432e-af24-0914e914fdd0" class="simple-table"><tbody><tr id="06315bfa-3b80-4734-9e12-8145233bb4d7"><td id="Luy|" class="" style="width:93px">Поиск</td><td id="mrmZ" class="" style="width:503px">O(m) — где m — длина строки.</td></tr><tr id="011988df-8db3-49c2-98e3-8556f716b287"><td id="Luy|" class="" style="width:93px">Доступ</td><td id="mrmZ" class="" style="width:503px">O(m) — где m — длина строки.</td></tr><tr id="2e317fd7-d943-48af-866c-f407ed561577"><td id="Luy|" class="" style="width:93px">Удаление</td><td id="mrmZ" class="" style="width:503px">O(m) — где m — длина строки, если нужно удалить конкретную строку.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Бинарный поиск</summary><div class="indented"><p id="6ea5e3c2-e6b1-42a6-a22b-c17ff40c0c5f" class="">Или двоичный поиск. Эффективный алгоритм для поиска элемента в отсортированном массиве или списке. Принцип работы бинарного поиска заключается в том, что он делит отсортированный массив на две части и продолжает поиск только в той половине, где может находиться искомый элемент, исключая другую половину.</p><p id="f31cfe6d-62f3-4a60-ad98-d5a2fd0fc77f" class="">• Время работы бинарного поиска — <strong>O(log n)</strong>, где n — количество элементов в массиве. Это намного быстрее, чем линейный поиск, который работает за <strong>O(n)</strong>.</p><p id="e4ba5805-9d7d-4256-b5ac-e3064bf1bb7a" class="">• Бинарный поиск можно применять только к <strong>отсортированным</strong> массивам или спискам.</p><p id="2c799fed-a15c-4270-9708-3276dc999707" class="">• Благодаря своей эффективности, бинарный поиск часто используется для поиска в больших объемах данных.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ac3ab385-ce54-4bed-90fc-228949c1375a"><div style="width:100%"><p id="d128a63f-3b56-4998-941e-775c273badd6" class=""><strong>Как работает бинарный поиск:<br/><br/></strong></p><ol type="1" id="6917ae9f-0455-4bf9-94d5-22b95f701952" class="numbered-list" start="1"><li><strong>Инициализация границ поиска</strong>:<p id="6849be27-7a83-4a50-8c92-e0b1221fa40a" class="">• Вы устанавливаете две границы — левую (left) и правую (right), которые указывают на начало и конец массива.</p></li></ol><ol type="1" id="525af314-ba01-4019-b33f-862adeb08633" class="numbered-list" start="2"><li><strong>Проверка среднего элемента</strong>:<p id="d2d2b954-ed9c-4e95-8fe2-07a17fc103b9" class="">• Вы вычисляете индекс среднего элемента между left и right. Это элемент с индексом mid = (left + right) / 2.</p><p id="5f27d21d-c79f-4e12-b12a-accf07dfe34d" class="">• Сравниваете значение в середине массива с искомым элементом:</p><p id="20a9b900-2d4d-4a33-816e-81b5ecfb6ddc" class="">• Если средний элемент равен искомому, вы нашли его и возвращаете индекс.</p><p id="cf7d6972-a65e-434f-9c4f-df67e333f1f5" class="">• Если средний элемент больше искомого, это означает, что искомый элемент должен находиться в левой половине массива. Соответственно, правая граница сдвигается влево: right = mid - 1.</p><p id="5d6e233b-8e11-4f43-bb4c-00da00e09f05" class="">• Если средний элемент меньше искомого, это означает, что искомый элемент находится в правой половине массива. В этом случае левая граница сдвигается вправо: left = mid + 1.</p></li></ol><ol type="1" id="7903e3fe-4dac-4815-b71c-9d36be62ab5f" class="numbered-list" start="3"><li><strong>Повторение</strong>:<p id="cacfb368-5844-40b3-bb5c-37af16ad565b" class="">• Вы повторяете шаги с обновленными границами, пока не найдете элемент или пока левая граница не станет больше правой (это означает, что элемента нет в массиве).</p></li></ol></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7f0f2c2a-6003-44de-92ec-d1321141a490"><div style="width:100%"><p id="b668d824-86fb-4b28-a4b1-6b8904c4b9b1" class=""><strong>Пример:</strong></p><p id="56b696ae-ebc9-47dd-8e6b-7737f04fecfa" class="">
+</p><p id="356f550f-f42c-48e4-b889-b5709adba282" class="">Предположим, у нас есть отсортированный массив [1, 3, 5, 7, 9, 11, 13], и мы ищем элемент 9.</p><ol type="1" id="844f468d-468e-4092-8159-624180aad892" class="numbered-list" start="1"><li>Начальные границы: left = 0, right = 6 (индексы начала и конца массива).</li></ol><ol type="1" id="744eb433-6598-45ab-bc5d-ec59f88c6336" class="numbered-list" start="2"><li>Считаем mid = (0 + 6) / 2 = 3. Элемент в середине массива равен 7.</li></ol><ol type="1" id="f71f15dc-ceab-45ef-9c40-b2bc6a67511d" class="numbered-list" start="3"><li>7 &lt; 9, поэтому перемещаем левую границу: left = 4.</li></ol><ol type="1" id="6ffa03c3-c601-4fac-b0cb-5ee55db2dfd2" class="numbered-list" start="4"><li>Теперь границы: left = 4, right = 6. Считаем mid = (4 + 6) / 2 = 5. Элемент в середине равен 11.</li></ol><ol type="1" id="bcc82bdd-1d3e-47c2-a477-792772f0f9ce" class="numbered-list" start="5"><li>11 &gt; 9, значит, перемещаем правую границу: right = 4.</li></ol><ol type="1" id="a687b83c-3fe1-41dd-b468-07b2fd24310c" class="numbered-list" start="6"><li>Теперь left = 4, right = 4. Считаем mid = (4 + 4) / 2 = 4. Элемент в середине равен 9, это и есть искомый элемент.</li></ol></div></figure><p id="61bf913e-1ba8-4ec3-988d-fc7162e5bbad" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Бинарное дерево</summary><div class="indented"><p id="bafd39a8-823a-407c-a7b9-34c983feb5ee" class="">Cтруктура данных, в которой каждый узел имеет не более двух дочерних узлов (левый и правый). Используются для решения различных задач, таких как оптимизация поиска и упорядочивание данных.</p><p id="85ea0fa3-6861-4cbb-bdaf-85676983760d" class="">• <strong>Узел (Node)</strong>. Каждый узел содержит данные (значение) и ссылки на два дочерних узла (левый и правый).</p><p id="2bba0093-6ee6-4280-8461-75df923b03f5" class="">• <strong>Корень (Root)</strong>. Самый верхний узел дерева, от которого начинается все дерево. У корня нет родительского узла.</p><p id="ea60b1f2-4fe5-48ae-9ceb-ce277353aad4" class="">• <strong>Листовой узел (Leaf Node)</strong>. Узел, не имеющий дочерних узлов. Листовые узлы находятся в самом нижнем уровне дерева.</p><p id="84d54c8f-b41d-4402-94c3-466139f9e089" class="">• <strong>Внутренний узел</strong> (<strong>Internal Node</strong>). Узел, который имеет хотя бы одного дочернего узла.</p><p id="bac3dc5f-5b7a-42b5-b975-8158a2063b67" class="">• <strong>Глубина (Depth)</strong>. Расстояние от корня до узла. Глубина корня равна 0, глубина его детей — 1, и так далее.</p><p id="2606f14e-511c-45b9-8b3b-8256e51b0a21" class="">• <strong>Высота (Height)</strong>. Максимальная глубина среди всех узлов дерева. Высота листа равна 0, а высота дерева — максимальная глубина среди всех листовых узлов.</p><p id="7717a6c9-42f0-4857-b49c-0b30fba6abec" class="">
+</p><h3 id="8d4b4261-ce6e-440a-a8da-d009f8abec49" class=""><strong>Виды бинарных деревьев</strong></h3><p id="586614a4-ff92-4c36-8e33-27624f88ef7b" class="">• <strong>Бинарное дерево поиска (Binary Search Tree, BST). </strong>В этом дереве для любого узла значение левого дочернего узла меньше значения узла, а значение правого дочернего узла больше. Это свойство упрощает поиск, вставку и удаление узлов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1cae883f-e8c6-460e-bc2e-2d082da56a0d" class="code"><code class="language-Plain Text">      5
+     / \
+    3   8
+   / \
+  2   4</code></pre><p id="90613481-3e90-4cb7-a334-c0c40cfcdb5b" class="">• <strong>Сбалансированное бинарное дерево. </strong>Например, AVL-дерево или красно-черное дерево, где поддерживается балансировка, чтобы обеспечить логарифмическое время поиска, вставки и удаления.</p><p id="97178e99-2db1-465f-9ea3-aceb89e6d194" class="">• <strong>Дерево отрезков (Segment Tree). </strong>Используется для эффективных запросов диапазона и обновлений. Например, для работы с диапазонами в массиве.</p><p id="8993196c-7220-42f6-8e4f-95c87d9e2a53" class="">• <strong>Куча (Heap). </strong>Специальное бинарное дерево, которое удовлетворяет свойству кучи. В минимальной куче значение каждого узла меньше или равно значениям его дочерних узлов, а в максимальной куче — больше или равно.</p><p id="5af00329-3f6b-4f29-9a9d-b2d0bbb01860" class="">
+</p><h3 id="de46c1e9-cd2b-47ca-9b35-19225d1884b1" class=""><strong>Операции над бинарным деревом</strong></h3><p id="20866596-a808-4254-bd2f-7e68b5a384a5" class="">• <strong>Вставка (Insertion). </strong>Добавление нового узла в дерево с сохранением его свойств. Например, в BST новый узел вставляется в соответствии с его значением, чтобы сохранить порядок.</p><p id="6c7619a9-c1b0-4f9a-9ca3-be29192ff2a4" class="">• <strong>Поиск (Search). </strong>Поиск узла с определенным значением. В бинарном дереве поиска это делается по сравнению значений и перемещению по левому или правому поддереву.</p><p id="1212591d-1a72-4d62-9f48-c763d5cc3d7f" class="">• <strong>Удаление (Deletion). </strong>Удаление узла из дерева. Это может быть более сложным процессом, поскольку необходимо поддерживать свойства дерева после удаления узла.</p><p id="fe6744a7-8f91-4de8-a305-5c574e3f9190" class="">• <strong>Обход (Traversal). </strong>Проход по всем узлам дерева.</p><p id="f40ac3e4-0b8e-4331-af8c-131610772165" class="">
+</p><h3 id="f233bd41-b138-4129-a4a8-291b0a047b1b" class="">Способы обхода бинарного дерева</h3><p id="bc135e08-93d9-4c4b-9e26-202962f3935b" class="">• <strong>Прямой обход (Pre-order). </strong>Посещение корня, затем левого поддерева, затем правого поддерева.</p><p id="9c49037a-b4b4-4a67-9e3e-e22cc7b3846b" class="">• <strong>Средний обход (In-order). </strong>Посещение левого поддерева, корня, затем правого поддерева. Этот метод выводит узлы в отсортированном порядке для BST.</p><p id="60e84394-9030-41ba-9678-35d30a0cf946" class="">• <strong>Посредственный обход (Post-order). </strong>Посещение левого поддерева, правого поддерева, затем корня.</p><p id="d27ee8f2-b876-431c-8de2-783c081f3e9c" class="">• <strong>Уровневый обход (Level-order). </strong>Посещение узлов по уровням от верхнего к нижнему.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Красно-черное дерево</summary><div class="indented"><p id="f59ff3be-63fc-48e5-967a-840d6fd5dabd" class="">Cбалансированное бинарное дерево поиска, которое обеспечивает эффективные операции поиска, вставки и удаления, сохраняя при этом сбалансированность. Это достигается за счет применения набора правил, которые управляют цветами узлов и структурой дерева. Глубина дерева всегда остается логарифмической по отношению к количеству узлов, что гарантирует эффективные операции.</p><p id="2525c1e4-abb3-4784-a296-80cafd64792a" class="">
+</p><h3 id="8a58212a-6233-4b29-b2ca-518356d2aecd" class=""><strong>Свойства красно-черного дерева</strong></h3><p id="45323e4c-ba3f-4d4a-9533-64bf75a37a00" class="">• Каждый узел — либо красный, либо черный.</p><p id="dbef2219-a857-4d4c-bb0d-cea50d153efa" class="">• Корень дерева всегда черный.</p><p id="20f8ad62-e98f-49e1-ba6f-1800cf7750fa" class="">• Все листья (пустые узлы) являются черными.</p><p id="195bdd20-8cd5-467f-9313-c3258ae5937c" class="">• Если узел красный, то оба его дочерних узла должны быть черными (то есть два красных узла не могут быть соседними).</p><p id="658fd1a4-e54d-4a03-81b7-2607130d4606" class="">• Для любого узла, все пути от этого узла до его потомков-листьев содержат одинаковое количество черных узлов.</p><p id="4c4c9403-59ac-4985-b8bd-28cef76cb92d" class="">
+</p><h3 id="96bbf4d6-4ea5-4241-a04a-6b2627c572af" class=""><strong>Операции в красно-черном дереве</strong></h3><p id="497eef09-5a7f-4798-9b82-a7cd8a84839c" class="">•  <strong>Вставка (Insertion). </strong>При вставке нового узла в красно-черное дерево могут возникать нарушения правил. После вставки выполняется серия операций (повороты и перекраска), чтобы восстановить свойства дерева.</p><p id="c5eb47ba-4da2-4abf-b10c-dd5d11254f75" class="">• <strong>Удаление (Deletion). </strong>Удаление узла также может нарушить свойства дерева. После удаления выполняются операции восстановления, включая повороты и перекраску узлов.</p><p id="203cc9fb-1c9b-4244-8e81-41c34b33bb7b" class="">• <strong>Поиск (Search). </strong>Поиск выполняется как в обычном бинарном дереве поиска. В красно-черном дереве поиск эффективен благодаря поддерживаемой сбалансированности.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Алгоритмы Сортировки</summary><div class="indented"><table id="95a79ac7-9ac5-47f0-aa63-e5ef66372dc7" class="simple-table"><thead class="simple-table-header"><tr id="8a8425ca-cea9-43bd-9ae2-1b6093efafa8"><th id="VPAz" class="simple-table-header-color simple-table-header" style="width:110px"></th><th id="kTb|" class="simple-table-header-color simple-table-header" style="width:204px"></th><th id="ehs[" class="simple-table-header-color simple-table-header" style="width:126px">Асимптотика</th><th id="QNAM" class="simple-table-header-color simple-table-header" style="width:585px">Описание</th></tr></thead><tbody><tr id="73984e4f-bc07-4d74-b182-b6ea0745c95a"><td id="VPAz" class="" style="width:110px"><strong>Bubble sort</strong></td><td id="kTb|" class="" style="width:204px">Пузырьковая сортировка (сортировка музырьком)</td><td id="ehs[" class="" style="width:126px">В худшем и среднем случае – O(n2), в лучшем случае – O(n).</td><td id="QNAM" class="" style="width:585px">Идем по массиву слева направо. Если текущий элемент больше следующего, меняем их местами. Делаем так, пока массив не будет отсортирован. Почти не применяется на практике из-за низкой эффективности: медленно работает на тестах, в которых маленькие элементы («черепахи») стоят в конце массива. После первой итерации самый большой элемент будет находиться в конце массива, на правильном месте. После двух итераций на правильном месте будут стоять два наибольших элемента, и т. д.</td></tr><tr id="681e845e-7ded-4a4d-8cc8-1cef76c786cf"><td id="VPAz" class="" style="width:110px"><strong>Shaker sort</strong></td><td id="kTb|" class="" style="width:204px">Шейкерная сортировка (сортировка перемешиванием, коктейльная сортировка).</td><td id="ehs[" class="" style="width:126px">Лучший случай  (O(n))<br/>худший — отсортированный в обратном порядке (O(n2).<br/></td><td id="QNAM" class="" style="width:585px">Отличается от пузырьковой двунаправленностью: алгоритм перемещается не строго слева направо а сначала слева направо, затем справа налево. </td></tr><tr id="5d0ea40c-be2a-4692-abfd-aeb8590b6de5"><td id="VPAz" class="" style="width:110px"><strong>Comb sort</strong></td><td id="kTb|" class="" style="width:204px">Сортировка расческой.</td><td id="ehs[" class="" style="width:126px">В лучшем случае  O(nlogn), в худшем – O(n2).</td><td id="QNAM" class="" style="width:585px">Улучшение сортировки пузырьком. Идея состоит в том, чтобы «устранить» элементы с небольшими значения в конце массива, которые замедляют работу алгоритма. Если при пузырьковой и шейкерной сортировках при переборе массива сравниваются соседние элементы, то при «расчёсывании» сначала берётся достаточно большое расстояние между сравниваемыми значениями, а потом оно сужается вплоть до минимального.</td></tr><tr id="8a40fae9-9225-4a85-86af-fc190fa655cb"><td id="VPAz" class="" style="width:110px"><strong>Quick sort</strong></td><td id="kTb|" class="" style="width:204px">Быстрая сортировка</td><td id="ehs[" class="" style="width:126px">Логарифмическая. O(n log n)</td><td id="QNAM" class="" style="width:585px">Считается одним из самых быстрых алгоритмов сортировки. Как и сортировка слиянием, работает по принципу «разделяй и властвуй».</td></tr><tr id="29789dd8-9ad2-4009-8f49-49a6843becae"><td id="VPAz" class="" style="width:110px"><strong>Merge sort</strong></td><td id="kTb|" class="" style="width:204px">Сортировка слиянием</td><td id="ehs[" class="" style="width:126px">Линейная. nlog n</td><td id="QNAM" class="" style="width:585px">Следует принципу «разделяй и властвуй», согласно которому массив данных разделяется на равные части, которые сортируются по-отдельности. После они сливаются, в результате получается отсортированный массив.</td></tr></tbody></table><p id="6b59dbff-153b-4aa6-9ba6-7ae37cec0a28" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Классы задач</summary><div class="indented"><table id="16817d11-4c2c-4544-9cf3-5b3106924549" class="simple-table"><tbody><tr id="d57d3a03-acb4-4b15-9db3-e52b3b45e49d"><td id="Z]Fy" class="" style="width:279px"><strong>строки/массивы</strong></td><td id="S&lt;lD" class="" style="width:736px">могут быть решены самыми разными способами и чаще всего относятся к какому-то дополнительному классу</td></tr><tr id="d64590e9-b459-4536-ba29-ad59e73bc6bf"><td id="Z]Fy" class="" style="width:279px"><strong>жадные алгоритмы</strong></td><td id="S&lt;lD" class="" style="width:736px">задачи, решение которых подразумевает выбор наиболее эффективного для выполнения конечной цели задачи шага в каждый момент времени. Отличаются простотой реализации, но не гарантируют идеальный результат. Могут решаться разными способами: методом двух указателей, методом двух проходов, рекурсией и т.д.</td></tr><tr id="a83cc74a-3016-4c82-95c5-ac623477b7d0"><td id="Z]Fy" class="" style="width:279px"><strong>динамическое программирование</strong></td><td id="S&lt;lD" class="" style="width:736px">задачи, решение которых подразумевает разделение на более простые подзадачи и мемоизацию результатов этих подзадач (напр., нахождение числа Фибоначчи). Могут быть решены самыми разными способами, но основываясь на принципах выше</td></tr><tr id="32b33ee4-3d00-4213-8839-16093b3af6d9"><td id="Z]Fy" class="" style="width:279px"><strong>поиск с возвратом</strong></td><td id="S&lt;lD" class="" style="width:736px">задачи на полный перебор некоторого множества вариантов. Относятся к так называемым NP-полным задачам. Чаще всего решаются посредством жадных алгоритмов</td></tr><tr id="f869dd0d-23f6-4da0-8ae3-e1fed25668ca"><td id="Z]Fy" class="" style="width:279px"><strong>связные списки</strong></td><td id="S&lt;lD" class="" style="width:736px">любят давать плюсовикам. Часто решаются методом двух указателей</td></tr><tr id="43269213-725e-4be7-b35e-79db471c51eb"><td id="Z]Fy" class="" style="width:279px"><strong>деревья/графы</strong></td><td id="S&lt;lD" class="" style="width:736px">чаще встречаются у фронтендеров из-за специфики профессии. Задачи в основном на поиск в глубину</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Какие алгоритмы спрашивают на собесе в Yandex?</summary><div class="indented"><p id="1ce3f4fd-d850-4815-a225-1ba3a90b9f71" class="">• Освежить в памяти курс алгоритмов и структур данных (вспомнить основные структуры данных, их сильные и слабые стороны, особенности, базовые алгоритмы типа сортировок и обходов графов; не нужно ботать доказательство корректности, достаточно понимания как они работают).</p><p id="f303ec11-de98-4a43-b6aa-8bba04db2a16" class="">• Порешать задачки на литкоде, потренироваться доводить задачи до конца (чтобы решение проходило все тесты). Обязательно набить руку на easy (аккуратность), желательно попробовать medium (комбинация простых алгоритмов/структур данных), hard смотреть не обязательно (хардкорные алгоритмы)</p><p id="fca02f61-1779-45ab-baa5-d1b7b879dbd2" class="">• При работе с массивом демонстрировать умение итерироваться по индексу, не выходя за его пределы.</p><p id="4e49d1cf-0fc2-4a0f-a1ea-0f8d883a8406" class="">• При работе с деревом демонстрировать умение рекурсивно обходить его, не входя в бесконечную рекурсию.</p><p id="7788152b-8979-46d2-845e-db3107c31764" class="">• Демонстрировать знание и практическое умение корректно работать с массивами, хеш-таблицами, бинарными деревьями.</p><p id="3dd38f87-e402-491e-9404-49c87ed6a5f4" class="">• prefix sum: <a href="https://leetcode.com/tag/prefix-sum/">https://leetcode.com/tag/prefix-sum</a></p><p id="3665ca37-5a48-4cf4-97ca-938d11ddac04" class="">• linked lists: <a href="https://leetcode.com/problems/merge-k-sorted-lists/">https://leetcode.com/problems/merge-k-sorted-lists</a>, <a href="https://leetcode.com/problems/linked-list-cycle/">https://leetcode.com/problems/linked-list-cycle</a>, <a href="https://leetcode.com/problems/add-two-numbers/">https://leetcode.com/problems/add-two-numbers</a>, <a href="https://leetcode.com/problems/reverse-linked-list/">https://leetcode.com/problems/reverse-linked-list</a></p><p id="c308aca4-dad1-4fdf-b2d6-0781829fa679" class="">• binary search: <a href="https://leetcode.com/problems/binary-search/">https://leetcode.com/problems/binary-search</a>, <a href="https://leetcode.com/problems/guess-number-higher-or-lower/">https://leetcode.com/problems/guess-number-higher-or-lower</a>, <a href="https://leetcode.com/problems/search-a-2d-matrix/">https://leetcode.com/problems/search-a-2d-matrix</a>, <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/">https://leetcode.com/problems/search-in-rotated-sorted-array</a>, <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">https://leetcode.com/problems/find-minimum-in-rotated-sorted-array</a>, <a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/">https://leetcode.com/problems/search-in-rotated-sorted-array-ii</a></p><p id="8998ae63-9e3b-4c9c-9f00-d3315e9696b9" class="">• hash table: <a href="https://leetcode.com/problems/single-number/">https://leetcode.com/problems/single-number</a> (решить за O(1) по памяти), <a href="https://leetcode.com/problems/two-sum/">https://leetcode.com/problems/two-sum</a>, <a href="https://leetcode.com/problems/4sum/">https://leetcode.com/problems/4sum</a>, <a href="https://leetcode.com/problems/group-anagrams/">https://leetcode.com/problems/group-anagrams</a>, <a href="https://leetcode.com/problems/valid-anagram/">https://leetcode.com/problems/valid-anagram</a>, <a href="https://leetcode.com/problems/find-all-anagrams-in-a-string/">https://leetcode.com/problems/find-all-anagrams-in-a-string</a></p><p id="521b3c30-dea9-47fc-8669-522cfef44811" class="">• queue/stack: <a href="https://leetcode.com/problems/valid-parentheses/">https://leetcode.com/problems/valid-parentheses</a></p><p id="56333735-7a8d-43bd-8c2e-72d80a54d901" class="">• dfs/bfs: <a href="https://leetcode.com/problems/number-of-islands/">https://leetcode.com/problems/number-of-islands</a>, <a href="https://leetcode.com/problems/remove-invalid-parentheses/">https://leetcode.com/problems/remove-invalid-parentheses</a></p><p id="d638c73d-cb80-4103-a391-2844b6034aaf" class="">• sort: <a href="https://leetcode.com/problems/merge-intervals/">https://leetcode.com/problems/merge-intervals</a></p><p id="38670352-7d79-4267-b3db-1753e8f7cc64" class="">• heap/hash: <a href="https://leetcode.com/problems/top-k-frequent-words/">https://leetcode.com/problems/top-k-frequent-words</a>, <a href="https://leetcode.com/problems/top-k-frequent-elements/">https://leetcode.com/problems/top-k-frequent-elements</a></p><p id="b3ac8c8a-7f53-4cfb-b04a-16288aa3addb" class="">• two pointers: <a href="https://leetcode.com/problems/container-with-most-water/">https://leetcode.com/problems/container-with-most-water</a>, <a href="https://leetcode.com/problems/partition-labels/">https://leetcode.com/problems/partition-labels</a></p><p id="c128c3b7-831d-402c-99ce-7475b021bafc" class="">• sliding window: <a href="https://leetcode.com/problems/sliding-window-median/">https://leetcode.com/problems/sliding-window-median</a>, <a href="https://leetcode.com/problems/sliding-window-maximum/">https://leetcode.com/problems/sliding-window-maximum</a>, <a href="https://leetcode.com/problems/longest-repeating-character-replacement/">https://leetcode.com/problems/longest-repeating-character-replacement</a></p><p id="40a444d4-3d13-415c-9803-0176fdab1f07" class="">• tree: <a href="https://leetcode.com/problems/same-tree/">https://leetcode.com/problems/same-tree</a>, <a href="https://leetcode.com/problems/symmetric-tree/">https://leetcode.com/problems/symmetric-tree</a>, <a href="https://leetcode.com/problems/balanced-binary-tree/">https://leetcode.com/problems/balanced-binary-tree</a>, <a href="https://leetcode.com/problems/path-sum-ii/">https://leetcode.com/problems/path-sum-ii</a></p><p id="0d062319-2a6e-4513-996f-65285c03023f" class="">• greedy problems: <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock</a>, <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii</a>, <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee</a>, <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown</a></p><p id="04242737-2ef5-4481-9c88-ccde5ed693a3" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Algotithms. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="7ec1675b-0721-439d-8a3a-6c7691bd0bae" class="numbered-list" start="1"><li>Как определить временную и пространственную сложность алгоритма?</li></ol><ol type="1" id="40d000cf-89f6-47cc-b459-edbbbffac473" class="numbered-list" start="2"><li>Объясни разницу между сортировкой пузырьком, вставками, слиянием и быстрой сортировкой. Каковы их временные сложности?</li></ol><ol type="1" id="49c52508-323b-4ddd-919b-6087d9902ea1" class="numbered-list" start="3"><li>В чем разница между массивом и связным списком?</li></ol></div></details><h3 id="bfd7eaf3-d22f-4731-abbb-9dd4cc5dd79c" class="">Работа со строками</h3><figure id="46f3d3bb-9bbd-4b80-8836-992083432543" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Roman to Integer</a></figure><figure id="2ff2c0de-cb42-4427-8493-b8bb108542e2" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Valid%20Anagram%202ff2c0decb4244278493b8bb108542e2.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Valid Anagram</a></figure><figure id="6d58f6aa-0475-4d59-87ab-e6c9fefec46a" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Reverse%20String%206d58f6aa04754d5987abe6c9fefec46a.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Reverse String</a></figure><h3 id="1f40843d-b771-43ff-8fc4-03d337fd9bba" class="">Работа с массивами</h3><figure id="f5b695b8-50fe-46d4-bec8-74e1bdde71db" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Two%20Sum%20f5b695b850fe46d4bec874e1bdde71db.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Two Sum</a></figure><h3 id="79f8c80b-13bd-4e7e-917f-5fd1ba51d0c5" class=""><strong>Связанные списки</strong></h3><figure id="5d821bbd-e015-42cd-b2dd-45711c215aab" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Linked%20List%20Cycle%205d821bbde01542cdb2dd45711c215aab.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Linked List Cycle</a></figure><figure id="0f48c7b8-062c-4af0-847a-b52bd6a91350" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Merge%20Two%20Sorted%20Lists%200f48c7b8062c4af0847ab52bd6a91350.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Merge Two Sorted Lists</a></figure><figure id="2fb48b75-195d-45db-8a10-72946c0a00fd" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Reverse%20Linked%20List%202fb48b75195d45db8a1072946c0a00fd.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Reverse Linked List</a></figure><h3 id="331093e7-3f57-4d9e-9ddf-90e54ffa794e" class=""><strong>Математические задачи</strong></h3><figure id="7ba10091-49a9-49f0-a963-e40c67661422" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Palindrome%20Number%207ba1009149a949f0a963e40c67661422.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Palindrome Number</a></figure><h3 id="13646789-8804-4ace-945b-b606a0889f79" class="">Манипуляции с битами</h3><figure id="3e127233-a664-4cec-870e-a6363ac9979a" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Single%20Number%203e127233a6644cec870ea6363ac9979a.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Single Number</a></figure><h3 id="789a50cc-750f-4e8e-8f97-307c133bb406" class="">Бинарный поиск</h3><figure id="a223b3bd-8aa0-439b-8cd4-c6a081f8f48f" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Sqrt(x)%20a223b3bd8aa0439b8cd4c6a081f8f48f.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Sqrt(x)</a></figure><h3 id="805c8e29-a603-45a7-a991-71a62909d018" class="">Префиксные суммы</h3><figure id="a892b638-9f67-4c01-9b92-008a08177205" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Running%20Sum%20of%201d%20Array%20a892b6389f674c019b92008a08177205.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Running Sum of 1d Array</a></figure><h3 id="565556da-d3a2-4f74-aa18-d652742dc762" class="">Стек</h3><figure id="51cc589c-2879-4736-be0a-ee46dadf01e3" class="link-to-page"><a href="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Valid%20Parentheses%2051cc589c28794736be0aee46dadf01e3.html"><img class="icon" src="Algorithms%20%E2%86%92%201ecc83b885c44db792466cf3ec0c501b/Roman%20to%20Integer%2046f3d3bb9bbd4b808836992083432543/integral.svg"/>Valid Parentheses</a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
