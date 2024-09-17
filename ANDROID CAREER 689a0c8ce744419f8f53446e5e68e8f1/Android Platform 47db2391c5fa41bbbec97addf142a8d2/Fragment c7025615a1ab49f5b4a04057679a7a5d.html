@@ -1,0 +1,716 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fragment</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c7025615-a1ab-49f5-b4a0-4057679a7a5d" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Fragment%20c7025615a1ab49f5b4a04057679a7a5d/android.svg"/></div><h1 class="page-title">Fragment</h1><p class="page-description"></p></header><div class="page-body"><table id="cf7a61b0-6415-447b-b105-a18a18f831b8" class="simple-table"><tbody><tr id="f0f735d3-d281-4ccf-ad40-ac600f9f3d41"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments">https://developer.android.com/guide/fragments</a></td></tr><tr id="44be0491-26ba-4efb-ab6f-aa7bf0bd586c"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/lifecycle">https://developer.android.com/guide/fragments/lifecycle</a></td></tr><tr id="49238c35-9cdb-4541-9eab-3435f1687f7b"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/communicate">https://developer.android.com/guide/fragments/communicate</a></td></tr><tr id="5145c2ee-f03a-4562-801a-55bb3ea769e0"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/fragmentmanager">https://developer.android.com/guide/fragments/fragmentmanager</a></td></tr><tr id="0a083592-59ea-4414-bf8e-e649d551cf67"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/transactions">https://developer.android.com/guide/fragments/transactions</a></td></tr><tr id="ba06f513-7d2d-48f6-b2dc-5aaaa1ca7faf"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/create">https://developer.android.com/guide/fragments/create</a></td></tr></tbody></table><table id="d78b5af0-7dc1-430d-927f-a9775fe5c6b5" class="simple-table"><tbody><tr id="bae70366-02f4-4eb8-bf8f-07d0cebc819d"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>17.10.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/693794/">https://habr.com/ru/companies/tbank/articles/693794/</a></td></tr><tr id="44b37c6e-13ff-4705-8ee5-167f40027b0f"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>04.10.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/691344/">https://habr.com/ru/companies/tbank/articles/691344/</a></td></tr><tr id="dce26958-b378-4249-a3aa-b552952e593f"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>26.09.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/690134/">https://habr.com/ru/companies/tbank/articles/690134/</a></td></tr><tr id="f82f32e5-23a2-40ba-88d8-7f1c836bf1b1"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>14.09.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/688222/">https://habr.com/ru/companies/tbank/articles/688222/</a></td></tr></tbody></table><h3 id="02d83c79-c6b3-4755-bfd1-8843886f63b9" class=""><code>Fragment</code></h3><p id="ae32fd07-5d75-48d4-ad20-34fabc9f2c17" class="">Часть UI, внутри Activity со своим жизненным циклом.</p><p id="b9b897ea-ca3b-4e9f-ae32-b1c699a6afc1" class="">• нельзя создать через конструктор, так как иначе система не восстановит состояние фрагмента, когда это будет нужно.</p><p id="1c8de3dd-ee8c-4ec8-9fce-c9ca4ea47f09" class="">• получить ссылку на фрагмент из activity: <code>findFragmentByTag</code> и <code>findFragmentById</code>.</p><p id="2c1d5823-fdb4-44af-abbe-bb4851ef7ebb" class="">
+</p><h3 id="db475c8e-c039-44c5-8d8f-916ea966a65b" class=""><code><strong>setRetainInstance</strong></code></h3><p id="be8329b5-6657-49c3-bf9d-502f16d748e0" class="">Метод setRetainInstance() принимает boolean параметр. По умолчанию значение retainInstance фрагмента – false. Если retainInstance выставлен в true, то фрагмент переживает пересоздание хост-активити, например при повороте экрана. Когда активити пересоздается, фрагмент с retainInstance=true отсоединяется от старой активити и присоединяется к новой. Поэтому при пересоздании активити у фрагмента не вызываются методы <code>onDestroy</code> и <code>onCreate</code>, но вызываются <code>onDetach</code> <code>onAttach</code> и <code>onActivityCreated</code>. <code>setRetainInstance</code> может быть использован только на фрагментах, не добавленных в backstack.</p><p id="37481751-dea2-402e-9e21-49aaff708b8b" class="">
+</p><h3 id="bc1ecce5-a519-4b9c-90db-f1d7b9ac6e17" class=""><code><strong>ActivityStateLossException</strong></code></h3><p id="a75fe5df-bf7f-4f07-ad76-8d037e5cf6fa" class="">Это исключение вида: IllegalStateException: Can not perform this action after onSaveInstanceState with MyFragment. Генерируется, когда метод <code>FragmentTransaction.commit</code> вызывается после <code>Activity.onSaveInstanceState</code>. Когда пользователь уходит с активити, состояние сохраняется на случай, если активити будет уничтожена системой. Сохранение состояния происходит в методе <code>onSaveInstanceState</code>. Если транзакция применяется после сохранения состояния, то транзакция не может быть сохранена и система бросает исключение. </p><p id="3a18b51a-86aa-4421-82f3-0580e2a1510b" class="">
+</p><h3 id="9b749ffe-32c7-4439-9162-e134ded7855d" class=""><strong>Чем отличается </strong><code><strong>tag</strong></code><strong> в методах </strong><code><strong>add</strong></code><strong> и </strong><code><strong>addToBackStack</strong></code><strong> ?</strong></h3><p id="83b6e5c9-4ec5-430c-958f-399b9d23d8fe" class="">Tag в методе <code>add</code> присваивается фрагменту. <code>getTag</code> возвращает этот тег. Тег фрагмента используется в методе <code>findFragmentByTag</code>. Tag в методе <code>addToBackStack</code> это на самом деле не tag, а name. Имя транзакции, которое присваивается объекту BackStackEntry и возвращается методом <code>getName</code>.</p><p id="04c7364e-299d-4b34-b20e-daf469e88cae" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Fragment Lifecycle</strong></summary><div class="indented"><table id="6e627273-716e-4d37-86d8-f4cadf7bdcfd" class="simple-table"><tbody><tr id="fb660041-c24a-46e0-a872-7f4c7639c7e2"><td id="EoJi" class=""><code>onAttach</code></td><td id="bueE" class="" style="width:811px">когда фрагмент добавляется в <code>FragmentManager</code> и прикрепляется к <code>Activity</code>.</td></tr><tr id="e11d2b6f-e596-49b7-9228-66ea62c6a398"><td id="EoJi" class=""><code>onCreate</code></td><td id="bueE" class="" style="width:811px">когда фрагмент создается. Этот метод вызывается после вызова соответствующего метода <code>onCreate</code> у <code>Activity</code>.</td></tr><tr id="a64c90c7-e07c-4ced-93ef-790827eece61"><td id="EoJi" class=""><code>onCreateView</code></td><td id="bueE" class="" style="width:811px">создается иерархия view. В этом методе можно установить, какой именно UI будет использовать фрагмент</td></tr><tr id="80cbfed0-ea06-4ca8-9135-d80a9d7fa6d2"><td id="EoJi" class=""><code>onViewCreated</code></td><td id="bueE" class="" style="width:811px">вызывается после создания представления фрагмента</td></tr><tr id="271398e4-7d20-4937-b18c-cf47a7b22aaf"><td id="EoJi" class=""><code>onAcyivityCreated</code></td><td id="bueE" class="" style="width:811px">вызывается после того, как отрабатывает метод <code>Activity.onCreate</code></td></tr><tr id="4f30be2c-5982-4439-b603-5e60ca988f81"><td id="EoJi" class=""><code>onViewStateRestored</code></td><td id="bueE" class="" style="width:811px">вызывается, когда состояние иерархии View восстановлено</td></tr><tr id="bb68500e-a09a-4d0b-8732-08c087608ea0"><td id="EoJi" class=""><code>onStart</code></td><td id="bueE" class="" style="width:811px">вызывается, когда фрагмент становится видимым пользователю</td></tr><tr id="98d49d12-2860-4e50-9249-c327e559bf1b"><td id="EoJi" class=""><code>onResume</code></td><td id="bueE" class="" style="width:811px">вызывается, когда фрагмент становится активным для взаимодействия с пользователем</td></tr><tr id="e2fa24a0-1712-459b-8c25-bd5b5401c32c"><td id="EoJi" class=""><code>onPause</code></td><td id="bueE" class="" style="width:811px">фрагмент остается видимым, но с ним уже нельзя взаимодействовать</td></tr><tr id="0ba0b027-9820-45a5-b174-c642c3f50888"><td id="EoJi" class=""><code>onStop</code></td><td id="bueE" class="" style="width:811px">фрагмент становится не видим пользователю</td></tr><tr id="c9e87d02-e62c-412a-bac6-8e70a30585cb"><td id="EoJi" class=""><code>onDestroyView</code></td><td id="bueE" class="" style="width:811px">метод, в котором фрагмент очищает ресурсы, связанные с иерархией <code>View</code>.</td></tr><tr id="0c64f1ec-51d5-4cce-89b6-2a3f9984d28e"><td id="EoJi" class=""><code>onDestroy</code></td><td id="bueE" class="" style="width:811px">вызывается перед тем, как фрагмент будет уничтожен системой</td></tr><tr id="06ecdf48-f12d-4df9-a251-3ba36054d368"><td id="EoJi" class=""><code>onDetach</code></td><td id="bueE" class="" style="width:811px">вызывается перед тем, как фрагмент будет отсоединен от активити</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FragmentManager</strong></code></summary><div class="indented"><p id="10315285-0ae8-805d-ac29-d808c5cb6a42" class="">Класс для управления фрагментами. Он позволяет добавлять, удалять, заменять фрагменты, а также управлять их состоянием.</p><p id="473f3518-9fd5-447b-997d-e5528c6681d0" class="">
+</p><h3 id="069f6196-f136-4be8-9c11-168835c81cc4" class=""><code>add</code></h3><p id="10315285-0ae8-8024-8fea-da81149b9c59" class="">Используется для добавления фрагмента в контейнер. При добавлении нового фрагмента через <code>add</code>, предыдущий фрагмент остается активным, его жизненный цикл не меняется, он продолжает работать в <code>RESUMED</code> состоянии.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8028-b69f-edd1c803d887" class="code"><code class="language-Kotlin">val fragmentManager = supportFragmentManager
+val transaction = fragmentManager.beginTransaction()
+transaction.add(R.id.fragment_container, MyFragment(), &quot;myFragmentTag&quot;)
+transaction.commit()</code></pre><p id="10315285-0ae8-806d-88e4-dfc0f97ee197" class="">
+</p><h3 id="23c1d00f-7201-413d-b5c7-93dadf4aa330" class=""><code>replace</code></h3><p id="10315285-0ae8-80db-83d1-fb1feb9aaaaf" class="">Удаляет текущий фрагмент в контейнере и добавляет новый. Это замещает один фрагмент другим, вызывая полный жизненный цикл нового фрагмента от <code>onCreate()</code> до <code>onResume()</code> и уничтожение предыдущего фрагмента от <code>onPause()</code> до <code>onDestroy()</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80a3-9ade-ff4ab2f4e167" class="code"><code class="language-Kotlin">val fragmentManager = supportFragmentManager
+val transaction = fragmentManager.beginTransaction()
+transaction.replace(R.id.fragment_container, FragmentB())
+transaction.commit()</code></pre><p id="badebe58-4cf5-4d3b-9b50-acaa7fb02133" class="">
+</p><h3 id="ea2c0115-69a2-4062-8e73-d73838bc9770" class=""><code>remove</code></h3><p id="740a8da2-7f73-45ec-929d-3004e9de2e01" class="">Удаляет фрагмент из FragmentManager, что означает, что фрагмент больше не отображается на экране. Однако состояние фрагмента сохраняется в FragmentManager, и его можно восстановить, если это необходимо.</p><p id="f5b8f9d0-b7d4-4c80-a86b-be7a3d44c73b" class="">
+</p><h3 id="833f28a3-df9b-4114-90a2-0b650e8130ee" class=""><code>addToBackStack</code></h3><p id="d7774885-8d3e-42cf-aa69-bf0d14b6e0fa" class="">Добавляет текущую транзакцию фрагментов в стек возврата, что позволяет пользователю вернуться к предыдущему состоянию фрагментов при нажатии кнопки “Назад”.</p><p id="b8a06473-ce02-4bb2-b69f-41a0a2034689" class="">
+</p><h3 id="a338cb11-78a3-4458-8b15-19e8643fbe22" class=""><code>popBackStack</code></h3><p id="9ca27c9c-bc18-45e1-9fc9-7df529a609b2" class="">Удаляет верхний фрагмент из стека возврата. Это приводит к тому, что фрагмент, который был перед ним, становится видимым, а текущий фрагмент удаляется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e57fe4f2-a611-4063-be7b-faeea40cdeb0" class="code"><code class="language-Kotlin">// Удаление последнего фрагмента из стека возврата
+supportFragmentManager.popBackStack()
+
+// Удаление всех фрагментов до фрагмента с именем &quot;myFragmentName&quot;
+supportFragmentManager.popBackStack(&quot;myFragmentName&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></pre><p id="98b08c70-4fd1-4846-9965-f96fa63c3831" class="">
+</p><h3 id="39fdb4e7-8a25-4b64-9d6c-76f18705c7f1" class=""><code>popBackStackImmediate</code></h3><p id="2c1386f6-26d9-497b-86ee-980dc1c4bd0e" class="">Работает аналогично методу popBackStack, но выполняет операцию немедленно, а не асинхронно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b4c7b2cf-7329-464b-8dec-6aeee78a5e50" class="code"><code class="language-Kotlin">// Немедленное удаление последнего фрагмента из стека возврата
+supportFragmentManager.popBackStackImmediate()
+
+// Немедленное удаление всех фрагментов до фрагмента с именем &quot;myFragmentName&quot;
+supportFragmentManager.popBackStackImmediate(&quot;myFragmentName&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></pre><p id="252034b7-68f4-44a3-a9eb-d0ec0f760787" class="">
+</p><h3 id="0bbcdbbc-b3c5-49d4-a0c4-7ac607fac0df" class=""><code>executePendingTransactions</code></h3><p id="45ee23bd-d96f-40e5-9832-5da6498c5440" class="">Заставляет FragmentManager немедленно выполнить все ожидающие транзакции. Это отличается от методов commit или commitNow, которые фиксируют транзакции асинхронно или немедленно, но не обязательно выполняют их сразу.</p><p id="179a2d8d-9000-4a11-86de-2e49c4955a2f" class="">
+</p><h3 id="f7d93378-e39b-4a42-8f00-c5df8dc3f5e9" class=""><code>commit</code></h3><p id="785c2a04-aeb2-4170-bac5-2181a5c2dda5" class="">Фиксирует изменения в FragmentTransaction, сделанные до вызова этого метода. Это включает в себя добавление, удаление, замену или изменение фрагментов. Выполняет транзакцию асинхронно. Это значит, что изменения могут быть применены позже, в следующем цикле обновления UI. Если вызвать executePendingTransactions после метода <code>commit</code>, то транзакция станет синхронной.</p><p id="214af159-e1de-4c53-af39-bada813ae12d" class="">
+</p><h3 id="3a932aba-59b3-4eea-8a66-beef1e6d42df" class=""><code>commitNow</code></h3><p id="f775d4b4-e27e-4977-9546-a2a3215323b0" class="">Выполняет транзакцию синхронно, немедленно фиксируя изменения. Используйте этот метод, если нужно убедиться, что транзакция завершена до выполнения следующего кода.</p><p id="b3e9d27d-37f1-466c-b8a5-90888805d78b" class="">
+</p><h3 id="734c0368-4d73-4188-a14f-c01970f9f97b" class=""><code>commitAllowingStateLoss</code></h3><p id="b823d994-7c6b-44d9-971d-c9aaf04ff9dc" class="">Фиксирует транзакцию, игнорируя потенциальные потери состояния активити и фрагмента. Это может быть полезно, если состояние не критично и транзакция должна быть выполнена независимо от возможной потери состояния.</p><p id="f978b2d3-05db-4602-91d5-ad30083bb693" class="">Использование <code>commitAllowingStateLoss</code> приводит к ситуациям такого вида: Пользователь возвращается на активити, которая была уничтожена системой. Пользователь ожидает увидеть UI, который отображался перед тем как он покинул активити, но транзакция с добавлением или удалением фрагмента не сохранилась и пользователь видит пустой экран или активити в неверном состоянии. Хорошей практикой считается использование <code>commit</code>, а не <code>commitAllowingStateLoss</code>. Если вы получаете репорты о state loss крэшах, пробуйте решить корень проблемы. Для этого не вызывайте <code>commit</code> в <code>onPause</code> или следующих после него методах.</p><p id="b1d3a562-5ba0-4bce-86eb-11027e9bcef2" class="">
+</p><h3 id="381f56e8-0b03-4661-a4a9-2d10ee754b32" class=""><code>dismiss</code></h3><p id="08adafc8-45cf-48ac-977c-fcd44cd27506" class="">Используется для закрытия или удаления фрагмента, который был добавлен с помощью FragmentManager.</p><p id="866306b8-3348-4a77-8c2a-32e9e701b4bd" class="">
+</p><h3 id="e01f31c9-4c98-463f-91f5-f896f6f4e6a6" class=""><code>dismissNow</code></h3><p id="97e1031a-67e3-452a-afa3-d3c683ffd762" class="">Используется для немедленного удаления фрагмента. В отличие от <code>dismiss</code>, который может быть отложен до завершения текущего цикла событий, <code>dismissNow</code> выполнит действие сразу же.</p><p id="e48eefe1-52af-4774-854c-4345dbaf1c82" class="">
+</p><h3 id="0f0f6d2b-3a7e-4c4c-8f59-b72d0d93f8bd" class=""><code>dismissAllowingStateLoss</code></h3><p id="30998d88-45dc-434b-b273-5d45dfac31ea" class="">Используется для удаления фрагмента, игнорируя потенциальные потери состояния. Он похож на метод dismiss, но позволяет удалять фрагмент даже если это может привести к потере состояния активити или фрагмента.</p><p id="a8763e5f-0837-4632-b5a3-5c854ce6111c" class="">
+</p><h3 id="c0994fcb-0239-4a60-bc6c-30303b3478bd" class="">Что будет, если закоммитить фрагмент, когда приложение свернуто?</h3><p id="1f7e8c1a-2ca4-4b72-91a5-23958b440b4b" class="">• Transaction будет отложена. Фрагмент-менеджер не будет немедленно обрабатывать транзакцию фрагмента, если приложение находится в состоянии, когда его интерфейс не виден (например, свернуто). Однако транзакция будет сохранена в состоянии “отложенной” и выполнится, когда приложение снова станет активным.</p><p id="ff8505c6-8b2b-46c9-be5b-9cd94131a1cb" class="">•<strong> </strong>Transaction может быть отклонена. Если транзакция была выполнена после того, как активность была завершена или уничтожена, то она может не быть применена. Это связано с тем, что состояние активности может быть неактуальным, и попытка обновить UI может привести к исключениям или некорректному отображению.</p><p id="5111b06d-7cf9-4e33-bbcb-6f4bc1e8218f" class="">• Lifecycle состояния: Если приложение находится в фоновом режиме, транзакция фрагмента может быть обработана при следующем восстановлении активности. Однако важно помнить, что операции, влияющие на пользовательский интерфейс, лучше выполнять только когда активность в активном состоянии, чтобы избежать проблем с жизненным циклом.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Как создать Fragment?</summary><div class="indented"><p id="01a35e62-c092-4db1-9221-63733dda8a1a" class="">• добавить через XML используя <code>FragmentContainerView</code>.</p><p id="ed394163-6659-4a01-b181-ed5c01084b91" class="">• добавить программно через <code>FragmentTransaction</code>.</p><p id="9f3165fd-3bda-4d1c-8018-70c6c67f0e8f" class="">• создать через <code>FragmentFactory</code>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android Fragment. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="7cf2d86a-9152-4191-a63e-9d13ea4e56bd" class="numbered-list" start="1"><li>Что такое Fragment? Чем он отличается от Activity?</li></ol><ol type="1" id="0e9484e4-fbff-440e-9dd0-8633ea6b6ab7" class="numbered-list" start="2"><li>Жизненный цикл фрагмента?</li></ol><ol type="1" id="0564b21a-7b25-438a-b579-a234bb175d5b" class="numbered-list" start="3"><li>Какие есть способы создать фрагмент?</li></ol><ol type="1" id="aa680993-99b8-47f6-891c-a786529d64ad" class="numbered-list" start="4"><li>Чем Fragment отличается от View?</li></ol><ol type="1" id="237d5e62-34fb-4b17-9b86-8de7f50830a8" class="numbered-list" start="5"><li>Что будет, если мы попытаемся закоммитить фрагмент, когда приложение свернуто?</li></ol><ol type="1" id="10315285-0ae8-80b3-a89d-df17ec667b33" class="numbered-list" start="6"><li>Разница методов add и replace?<p id="10315285-0ae8-80ca-bd8c-cf9ca3ece6ed" class=""><mark class="highlight-teal">Метод </mark><mark class="highlight-teal"><code>add()</code></mark><mark class="highlight-teal"> добавляет новый фрагмент поверх существующего, оставляя предыдущий активным и в состоянии </mark><mark class="highlight-teal"><code>resumed</code></mark><mark class="highlight-teal">, тогда как метод </mark><mark class="highlight-teal"><code>replace()</code></mark><mark class="highlight-teal"> заменяет текущий фрагмент, вызывая у него полный жизненный цикл (с </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> до </mark><mark class="highlight-teal"><code>onDestroy()</code></mark><mark class="highlight-teal">) перед добавлением нового фрагмента.</mark></p></li></ol><ol type="1" id="10215285-0ae8-8044-a6c5-f15915199181" class="numbered-list" start="7"><li>Является ли метод FragmentManager.commit() синхронным?<p id="10215285-0ae8-808f-a1b7-ddd11f94fa44" class="">• <mark class="highlight-red">Да, он синхронный.</mark></p><p id="10215285-0ae8-806a-944c-f5674e11f029" class="">• <mark class="highlight-teal">Нет, он асинхронный.</mark></p><p id="10215285-0ae8-8087-b617-fd3bed49a080" class="">• <mark class="highlight-red">Такого метода нет.</mark></p></li></ol><ol type="1" id="bb20b834-0057-4bbb-9916-bcfaf25e257b" class="numbered-list" start="8"><li>Какие методы жизненого цикла фрагмента существуют?<p id="10215285-0ae8-80a3-af79-c2178703b5e9" class="">• <code>oninflate()</code></p><p id="10215285-0ae8-8050-80be-d915027faa97" class="">• <mark class="highlight-teal"><code>onResume()</code></mark></p><p id="a02f46ec-78f0-4864-a824-781b27e1690e" class="">• <code>onReload()</code></p><p id="10215285-0ae8-80b5-a24d-fd59e6e68ece" class="">• <mark class="highlight-teal"><code>onStart()</code></mark></p></li></ol><ol type="1" id="f6ae3db4-20b9-445d-a21f-b4ef5ae56dd5" class="numbered-list" start="9"><li>Какой метод жизненного цикла фрагмента вызывается, когда фрагмент больше не виден пользователю?<p id="da9a90a9-5bae-4003-867d-cdd544a3343f" class="">• <mark class="highlight-red">onDetach</mark></p><p id="e6c7f45d-0ea9-40a7-8e07-0491aa8910de" class="">• <mark class="highlight-red">onPause</mark></p><p id="9943e8bd-8551-4177-985f-997947e5a337" class="">• <mark class="highlight-red">onDestroyView</mark></p><p id="df7b953b-f902-4621-a4d9-28c581348720" class="">• <mark class="highlight-teal">onStop</mark></p></li></ol><ol type="1" id="6ae361e2-d604-4c14-bd20-37b365ac2894" class="numbered-list" start="10"><li>Какой метод следует использовать для проверки наличия фрагмента в FragmentManager по его тегу?<p id="3f010d6d-5f0d-4fa4-bc0d-de2acbf5de81" class="">• <mark class="highlight-red">locateFragmentByTag</mark></p><p id="f6eb7f14-5c63-4f57-86c5-920e358e5288" class="">• <mark class="highlight-teal">findFragmentByTag</mark></p><p id="8edfb170-9eed-4d4d-aaeb-a1241e57fb18" class="">• <mark class="highlight-red">searchFragmentByTag</mark></p><p id="69e08380-778e-49a0-b649-bab83efc2aea" class="">• <mark class="highlight-red">getFragmentByTag</mark></p></li></ol><ol type="1" id="f3310fbd-d087-4838-914b-099b48632642" class="numbered-list" start="11"><li>В каком методе фрагмент становится доступен Activity?<p id="920bbc6e-402d-4eae-a948-ce6286277424" class="">• <mark class="highlight-red">onCreate</mark></p><p id="27d0acab-f42e-4673-91ae-9c3b0e1d7011" class="">• <mark class="highlight-red">onBind</mark></p><p id="3d438cd5-e91d-4e6c-a71f-ecf6008fc805" class="">• <mark class="highlight-teal">onAttach</mark></p><p id="122385ce-2ce4-45eb-98f5-7993971c7c32" class="">• <mark class="highlight-red">onStart</mark></p></li></ol><ol type="1" id="9b751994-db3f-47b0-9dd6-5d9a31719dba" class="numbered-list" start="12"><li>Какой метод жизненного цикла фрагмента вызывается для создания иерархии пользовательского интерфейса?<p id="afae8b9a-027c-4441-9667-c52713686f7f" class="">• <mark class="highlight-teal">onCreateView</mark></p><p id="8f384907-5c25-44ea-a8bb-f2a03675cd65" class="">• <mark class="highlight-red">onAttach</mark></p><p id="4fa5a22c-ae9f-48c2-8a85-b295918ec6a8" class="">• <mark class="highlight-red">onCreate</mark></p><p id="077d4914-ab29-4974-aa02-76ec57701c29" class="">• <mark class="highlight-red">onStart</mark></p></li></ol><ol type="1" id="1eef57c9-2d01-4597-9e3c-d26e3909a7be" class="numbered-list" start="13"><li>Какой из следующих классов используется для работы с фрагментами в Android?<p id="f4240e43-74b9-43ff-a32c-7ad0e3fb1b7b" class="">• <mark class="highlight-red">FragmentController</mark></p><p id="3ae82aab-651c-40a4-9fb3-e889e21320f0" class="">• <mark class="highlight-teal">FragmentManager</mark></p><p id="e3c555ed-7ddf-4c71-9448-cb0496cc10f5" class="">• <mark class="highlight-red">FragmentHandler</mark></p><p id="f1e0e291-2ce8-4a81-b86f-3c8edd02cc87" class="">• <mark class="highlight-red">FragmentActivity</mark></p></li></ol><ol type="1" id="9ad9f931-ac51-4c89-a141-2c1ff376ab2c" class="numbered-list" start="14"><li>Какой метод используется для закрытия диалога в Android?<p id="abba2991-0330-4019-8a72-66499570e904" class="">• <mark class="highlight-teal">dismiss</mark></p><p id="f4d96ea0-b274-490d-8fc9-4b51fc73c2a5" class="">• <mark class="highlight-red">cancelDialog</mark></p><p id="da7d925e-9047-4b3b-ba36-087f4abc1683" class="">• <mark class="highlight-red">closeDialog</mark></p><p id="334617e3-6f93-4390-a2fe-aef0e32e718b" class="">• <mark class="highlight-red">dismissDialog</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

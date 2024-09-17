@@ -1,0 +1,700 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Concurrent</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8c254bb5-7576-4129-a6f9-3bc16c3b4c90" class="page sans"><header><img class="page-cover-image" src="Concurrent%208c254bb575764129a6f93bc16c3b4c90/michaelbely_programming_user_interface_green_color_c61e643e-d094-45bc-9379-3c765fcb5c88.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Concurrent%208c254bb575764129a6f93bc16c3b4c90/android.svg"/></div><h1 class="page-title"><strong>Concurrent</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="d3da9f5b-d6d2-4b16-afe1-7fba167f87a8" class="simple-table"><tbody><tr id="636c664f-222d-404b-8d3a-0e2946d72d60"><td id="BbN&gt;" class="" style="width:600px"><a href="https://developer.android.com/studio/write/annotations#thread-annotations">https://developer.android.com/studio/write/annotations#thread-annotations</a></td></tr><tr id="2dadf181-7d27-4537-aff7-d416523eddc4"><td id="BbN&gt;" class="" style="width:600px"><a href="https://developer.android.com/reference/android/os/Looper">https://developer.android.com/reference/android/os/Looper</a></td></tr><tr id="5d5dded2-fc2e-4e7a-8cb1-485fcae042ce"><td id="BbN&gt;" class="" style="width:600px"><a href="https://developer.android.com/guide/components/processes-and-threads">https://developer.android.com/guide/components/processes-and-threads</a></td></tr></tbody></table><table id="b46a38f0-c4b8-4e1c-914d-f5ec30639936" class="simple-table"><tbody><tr id="a3b56ee2-7fee-4b59-8024-d871814838a3"><td id="Rt|}" class="" style="width:101px"><mark class="highlight-brown"><code>17.05.2022</code></mark></td><td id="BbN&gt;" class="" style="width:621px"><a href="https://habr.com/ru/post/665806">https://habr.com/ru/post/665806</a></td></tr><tr id="4c5d0643-b96c-4975-975c-306cae26341e"><td id="Rt|}" class="" style="width:101px"><mark class="highlight-brown"><code>26.11.2021</code></mark></td><td id="BbN&gt;" class="" style="width:621px"><a href="https://habr.com/ru/companies/cian/articles/591877/">https://habr.com/ru/companies/cian/articles/591877/</a></td></tr><tr id="275b67c3-3398-4dd0-b657-c7caeceae198"><td id="Rt|}" class="" style="width:101px"><mark class="highlight-brown"><code>18.11.2021</code></mark></td><td id="BbN&gt;" class="" style="width:621px"><a href="https://habr.com/ru/companies/cian/articles/589827/">https://habr.com/ru/companies/cian/articles/589827/</a></td></tr><tr id="e0463905-33fd-4f2d-ade2-92be69750122"><td id="Rt|}" class="" style="width:101px"><mark class="highlight-brown"><code>10.11.2021</code></mark></td><td id="BbN&gt;" class="" style="width:621px"><a href="https://habr.com/ru/company/cian/blog/588314">https://habr.com/ru/company/cian/blog/588314</a></td></tr></tbody></table><table id="a76052d3-3583-4f47-b410-759dea8e814d" class="simple-table"><tbody><tr id="f730d657-1c02-4e63-acc2-4ff513fc5642"><td id="=oRV" class="" style="width:101px"><mark class="highlight-brown"><code>07.12.2020</code></mark></td><td id="WFOp" class="" style="width:608px"><a href="https://youtu.be/iWiSQydw1qk">https://youtu.be/iWiSQydw1qk</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Main Thread</strong></summary><div class="indented"><p id="917f75c4-5b4b-4cc9-9295-cf38ff487978" class="">Основной поток выполнения, который обрабатывает пользовательский интерфейс и выполняет все операции, связанные с отображением и взаимодействием с пользователем. Все события пользовательского ввода, такие как касания экрана, нажатия кнопок и другие взаимодействия, обрабатываются в Main Thread. Это гарантирует, что интерфейс остается отзывчивым и быстро реагирует на действия пользователя. Этот поток нельзя блокировать долгими операциями иначе выбросится ANR (Application Not Response).</p><p id="10315285-0ae8-80c8-826f-d9dcece55979" class="">
+</p><h3 id="be26ac86-5d32-4a6d-97d9-71e2f1a58a2e" class=""><code>@MainThread</code></h3><p id="10315285-0ae8-80bf-9b5a-d63950c35817" class="">Обозначает, что метод или класс должен вызываться только из основного потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8065-bbb1-f0b38bfcb0a6" class="code"><code class="language-Kotlin">@MainThread
+fun updateUI() {
+    // Код для обновления пользовательского интерфейса
+}</code></pre><p id="10315285-0ae8-8012-b2bd-d60538cfe489" class="">
+</p><h3 id="10315285-0ae8-8085-933d-dc6cfd0779bf" class=""><code>@UiThread</code></h3><p id="10315285-0ae8-8030-ac89-c6eeedab7af5" class="">Обозначает, что метод или класс должен вызываться только из UI-потока (поток пользовательского интерфейса). Более старая аннотация. Если аннотированный элемент является классом, то все методы в классе должны вызываться в потоке пользовательского интерфейса. Обычно поток пользовательского интерфейса приложения также является основным потоком. Однако при особых обстоятельствах поток пользовательского интерфейса приложения может не быть его основным потоком.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-807e-9e61-e87278920c7a" class="code"><code class="language-Kotlin">@UiThread
+fun updateUI() {
+    // Код для обновления пользовательского интерфейса
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Worker Thread</strong></summary><div class="indented"><p id="10315285-0ae8-8049-ab3a-f92f28ec7756" class="">Позволяет выполнять задачи, которые могут занять продолжительное время (например, операции ввода-вывода, сетевые запросы) без задержек в пользовательском интерфейсе.</p><p id="ed95110c-f6eb-425e-bf21-7f6ef01d266d" class="">
+</p><h3 id="05017240-af0c-4c2c-a51c-b456dc147c7d" class=""><code>@WorkerThread</code></h3><p id="10315285-0ae8-80eb-a373-eb0feeec7c3a" class="">Указывает, что метод или класс должен вызываться только из фоново́го потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80d6-aced-c0cc3a8f3866" class="code"><code class="language-Kotlin">@WorkerThread
+fun performBackgroundOperation() {
+    // Код для выполнения фоново́й задачи
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Message</strong></code></summary><div class="indented"><p id="0d6afcb2-5685-43f7-9393-196cce7608d0" class="">Сообщение содержащее описание и произвольный объект данных которое можно отправить в <code>Handler</code>. <code>Message</code> можно создать через обычный конструктор однако так лучше не делать. Для создания лучше использовать метод <code>Message.obtain</code>. <code>Message.obtain</code> возвращает объект <code>Message</code> из пула. Сделано это для оптимизации чтобы не тратить память каждый раз когда там нужен <code>Message</code>. В этом пуле может быть максимум 50 сообщений. Если все сообщения пула используются то <code>Message.obtain</code> создает и возвращает новый объект <code>Message</code>.</p><p id="01b751cc-a8da-4a8b-96c2-2219532c1ad8" class="">Методы:</p><p id="7cf3d658-dae0-4eab-b055-d888d39ee848" class="">• <code>callback</code> - runnable который выполнит Looper.</p><p id="724769f2-db9e-4e98-9403-8ebbfce6dc6c" class="">• <code>next</code> - ссылка на следующий Message.</p><p id="7488a652-e926-42f3-90e2-095054f1783a" class="">• <code>time</code> - отметка времени когда сообщение должно быть выполнено</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>MessageQueue</strong></code></summary><div class="indented"><p id="043878a8-7582-4efc-b8e3-c13a00d574fa" class="">Специальная очередь из объектов <code>Message</code> простой односвязный список. Модель построенная на очереди и сообщениях позволяет откладывать выполнение задачи, отменять не нужные задачи и самое важное: эта модель позволяет делать GUI в одном потоке. Один поток позволяет не париться о том меняет ли эту <code>View</code> какой-то другой поток или нет.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Handler</strong></code></summary><div class="indented"><p id="0335c97c-363e-42fa-9634-81df97407eda" class="">Отправляет сообщения <code>Message</code> через <code>MessageQueue</code> в <code>Looper</code>. <code>Handler</code> предоставляет удобный API для отправки <code>Message</code> в <code>Looper</code>. В примере ниже мы создаем Runnable с вызовом метод doSmth(), далее <code>Handler</code> обернет этот Runnable в <code>Message</code> и отправит в <code>Looper</code> который его выполнит. Когда вызываем метод post, переданный Runnable оборачивается в <code>Message</code> и отправляется на <code>Looper</code> потока. Асинхронность UI обусловлена вызовом методов жизненного цикла через <code>Looper</code>. Каждый раз когда мы создаем транзакцию для показа фрагмента, после вызова метода commit эта транзакция отправляется через <code>Handler</code> в <code>Looper</code> главного потока. Эта транзакция выполняется позже. Это же происходит и с показом новой <code>Activity</code> анимациями и многими другими вещами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7e097f1b-d934-47b3-afde-3aece1d2b073" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val looper: Looper = requireNotNull(Looper.myLooper())
+val handler: Handler = Handler(looper)
+handler.post {
+    doSmth()
+}</code></pre><p id="b14623fa-87b1-40b4-9d4a-3413297db441" class="">• какое-либо UI-событие посылается хэндлером в MessageQueue, оттуда достается о обрабатывается лупером.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Looper</strong></code></summary><div class="indented"><p id="c5a0d264-f5f8-4fbe-8c3f-a1940ccde5c5" class="">Бесконечный цикл который получает из очереди <code>MessageQueue</code> сообщения и выполняет их. Чтобы создать <code>Looper</code> нужно вызвать метод <code>Looper.prepare</code>. После этого метод <code>Looper.prepare</code> сохраняет созданный объект <code>Looper</code> в <code>ThreadLocal</code>. <code>Looper</code> у потока может быть только один.</p><p id="af3898b9-3f32-40fc-b2b0-5886c33e6ddb" class="">• цикл бесконечный отрисовывать UI нужно постоянно.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ThreadLocal</strong></code></summary><div class="indented"><p id="cf8c784b-d602-4088-8a24-665ebd7b12ca" class="">Это просто <code>ConcurrentHashMap&lt;Thread, T&gt;</code> коллекция в которой ключом является объект потока, а значением любой объект который нам нужен. Этот Map позволяет внутри потока достать объект предназначенный для него в любой момент времени. Из любого потока можно через <code>Looper.myLooper</code> получить <code>Looper</code> связанный с текущим потоком. При условии что <code>Looper</code> есть в этом потоке.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>runOnUiThread</strong></code></summary><div class="indented"><p id="323e3f95-3cf0-4c3b-acc1-4d095c910af2" class="">Метод <code>Activity</code>. Изменить <code>View</code> из фонового потока. Под капотом отправляет Runnable через <code>Handler</code> в <code>Looper</code> главного потока.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android Concurrent. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="fdbc196d-42a9-4981-a130-9100fe58bcf4" class="numbered-list" start="1"><li>Что такое основной поток (UI Thread) в Android, и какие задачи следует выполнять в этом потоке?</li></ol><ol type="1" id="3f56c8ae-a838-42bf-b97c-f84bcaadaf77" class="numbered-list" start="2"><li>Что такое Handler, и как он взаимодействует с Looper?</li></ol><ol type="1" id="b95b52e8-9053-440b-b6b0-f8b68f88ad1c" class="numbered-list" start="3"><li>Как создать собственный поток с Looper и Handler?</li></ol><ol type="1" id="40fb6eeb-5052-4ad7-bba8-4c91fbb37b9e" class="numbered-list" start="4"><li>Как работает MessageQueue, и как она взаимодействует с Handler и Looper?</li></ol><ol type="1" id="4abd5af1-6275-4a36-9b84-60a79e2b31d5" class="numbered-list" start="5"><li>Как передать данные между потоками через Handler?</li></ol><ol type="1" id="201eb89b-adac-47de-a182-695dbccb2214" class="numbered-list" start="6"><li>Как правильно обработать отложенные и повторяющиеся задачи с помощью Handler?</li></ol><ol type="1" id="3acb733b-248f-440c-888a-0d0dee7f6363" class="numbered-list" start="7"><li>Что такое Thread Pool, и как его использовать в Android?</li></ol><ol type="1" id="8fdd1fe3-9299-4533-a1d8-ce32b03aa7b7" class="numbered-list" start="8"><li>Какие есть способы в Android выполнить задачу в фоновом потоке?<p id="10315285-0ae8-80a6-9210-e03c92e49bcd" class="">• <mark class="highlight-teal"><code>Handler</code></mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal">и</mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal"><code>HandlerThread</code></mark></p><p id="10315285-0ae8-8069-9502-e6935ada4aa3" class="">• <mark class="highlight-teal"><code>Executor</code></mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal">и</mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal"><code>ThreadPoolExecutor</code></mark></p><p id="10315285-0ae8-80c9-9d50-eaa909fc650e" class="">• <mark class="highlight-teal"><code>Coroutines</code></mark></p><p id="10315285-0ae8-80e3-bd71-e3abb7b59e61" class="">• <mark class="highlight-teal"><code>WorkManager</code></mark></p><p id="10315285-0ae8-808d-b182-f8878e2f4cc2" class="">• <mark class="highlight-teal"><code>JobScheduler</code></mark></p><p id="10315285-0ae8-80f8-84e3-cc1495f83bf2" class="">• <mark class="highlight-teal"><code>IntentService</code></mark></p></li></ol><ol type="1" id="6fe3b51e-c86e-4711-a9f7-610c82478a08" class="numbered-list" start="9"><li>Как гарантированно вызвать метод класса на Main-потоке?<p id="3cbff238-388b-49d0-91b7-45caedc9831d" class="">• <mark class="highlight-teal">Handler.post</mark></p><p id="10315285-0ae8-8007-b879-d2eba851edf7" class="">• <mark class="highlight-teal">runOnUiThread</mark></p><p id="10315285-0ae8-801e-b093-c986cabe5e4e" class="">• <mark class="highlight-teal">View.post</mark></p><p id="10315285-0ae8-8075-b3f6-c1c6e06d6936" class="">• <mark class="highlight-teal">launch(Dispatchers.Main)</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

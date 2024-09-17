@@ -1,0 +1,956 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Architecture</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="32aee7eb-1223-4f0e-9dfc-acce0ce9adfc" class="page sans"><header><img class="page-cover-image" src="Architecture%2032aee7eb12234f0e9dfcacce0ce9adfc/michaelbely_building_house_green_color_e6cf9287-f44f-47f6-8ed2-5e6def0a760e.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Architecture%2032aee7eb12234f0e9dfcacce0ce9adfc/android.svg"/></div><h1 class="page-title"><strong>Architecture</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="73ea3b80-477b-4b89-80e6-6969e689c75f" class="simple-table"><tbody><tr id="45e66bd6-3d34-4138-86a5-8b70a08135d4"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/intro">https://developer.android.com/topic/architecture/intro</a></td></tr><tr id="f04706ab-0322-4cbb-807e-eecaed43913f"><td id="}ECX" class="" style="width:598px"><a href="https://d.android.com/jetpack/guide">https://d.android.com/jetpack/guide</a></td></tr><tr id="c6f1c4a4-1b5d-4f80-b483-4f2e483957d9"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/ui-layer">https://developer.android.com/topic/architecture/ui-layer</a></td></tr><tr id="07b4ca0b-9933-4dfb-8acf-1baf8f6ed4c9"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/ui-layer/events">https://developer.android.com/topic/architecture/ui-layer/events</a></td></tr><tr id="f5bd08c1-5d94-43d3-9b76-9fa8ad15ed96"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/ui-layer/stateholders">https://developer.android.com/topic/architecture/ui-layer/stateholders</a></td></tr><tr id="3d78a0ab-d348-4eb5-b8a7-5fc9c2905741"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/ui-layer/state-production">https://developer.android.com/topic/architecture/ui-layer/state-production</a></td></tr><tr id="e878f1dd-5b57-4b88-bea2-267b3c59d76a"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/domain-layer">https://developer.android.com/topic/architecture/domain-layer</a></td></tr><tr id="4d5b78d4-e8ad-4185-ac23-d370b816e9a4"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/data-layer">https://developer.android.com/topic/architecture/data-layer</a></td></tr><tr id="1462d3e4-c7ff-4ba4-a703-4f429daca177"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/data-layer/offline-first">https://developer.android.com/topic/architecture/data-layer/offline-first</a></td></tr><tr id="3a6458cb-0c82-4bb5-b39f-e2aa2cfc3c3f"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/architecture/recommendations">https://developer.android.com/topic/architecture/recommendations</a></td></tr><tr id="5c39b260-3d9d-43cd-97e4-eb8318b07afa"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/modularization">https://developer.android.com/topic/modularization</a></td></tr><tr id="d21a8bf2-0c31-4a83-896f-27ddcc1fa330"><td id="}ECX" class="" style="width:598px"><a href="https://developer.android.com/topic/modularization/patterns">https://developer.android.com/topic/modularization/patterns</a></td></tr></tbody></table><table id="d5182ace-1822-4b77-8357-98769d49e5c3" class="simple-table"><tbody><tr id="e928f9ab-bac2-49a9-966e-49b9ef784849"><td id="VI?z" class="" style="width:101px"><mark class="highlight-brown"><code>10.03.2021</code></mark></td><td id="}ECX" class="" style="width:547px"><a href="https://habr.com/ru/company/itelma/blog/546372">https://habr.com/ru/company/itelma/blog/546372</a></td></tr></tbody></table><table id="7a4926e1-5d91-4b74-9ddc-67fa57d38a27" class="simple-table"><tbody><tr id="1ce5d101-35dd-4717-a290-73242e420083"><td id="VI?z" class="" style="width:102px"><mark class="highlight-brown"><code>23.07.2024</code></mark></td><td id="}ECX" class="" style="width:321px"><a href="https://apptractor.ru/develop/mvi-v-eventbrite.html">https://apptractor.ru/develop/mvi-v-eventbrite.html</a></td></tr><tr id="998ac65c-5ed0-483f-a486-f59fbc32b1d4"><td id="VI?z" class="" style="width:102px"><mark class="highlight-brown"><code>13.08.2023</code></mark></td><td id="}ECX" class="" style="width:321px"><a href="https://apptractor.ru/info/articles/chto-takoe-mvvm-arhitektura.html">https://apptractor.ru/info/articles/chto-takoe-mvvm-arhitektura.html</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Структура типов</summary><div class="indented"><h3 id="ce983cb0-c3cf-47ae-86b5-8cfeb4231b69" class=""><code>class</code></h3><p id="a7b6a642-e447-462d-ae27-a10f598555ac" class="">Шаблон или схема для создания объектов. Класс определяет атрибуты (состояние) и методы (поведение), которые объекты этого класса будут иметь.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c3d0f8c0-17d4-4793-8abd-9a430154d590" class="code"><code class="language-Kotlin">class Car(val make: String, val model: String) {
+    fun drive() {
+        println(&quot;Driving $make $model&quot;)
+    }
+}</code></pre><p id="07b83398-ebda-4a48-860e-80f3b3d17957" class="">
+</p><h3 id="8e43fbd4-5fdc-4683-a41e-2565b53d8fa8" class=""><code>abstract class</code></h3><p id="b14c471e-a70d-4357-940f-fa6dcb4cab62" class="">Класс, который не может быть создан напрямую и предназначен для того, чтобы служить базой для других классов. Он может содержать как абстрактные методы (без реализации), так и методы с реализацией. Абстрактные методы должны быть реализованы в производных классах. Абстрактные классы используются для создания общего интерфейса для группы связанных классов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="69407db9-abe2-4b77-b9d7-379e951b5ffa" class="code"><code class="language-Kotlin">// Абстрактный класс
+abstract class Animal {
+    // Абстрактный метод
+    abstract fun makeSound()
+
+    // Метод с реализацией
+    fun sleep() {
+        println(&quot;This animal is sleeping&quot;)
+    }
+}
+
+// Конкретный класс, который наследует абстрактный класс
+class Dog: Animal() {
+    override fun makeSound() {
+        println(&quot;Woof&quot;)
+    }
+}
+
+// Использование
+fun main() {
+    val myDog = Dog()
+    myDog.makeSound()  // Выведет: Woof
+    myDog.sleep()      // Выведет: This animal is sleeping
+}</code></pre><p id="ca8df6cd-6fcd-4a75-8c16-285d7499494a" class="">
+</p><h3 id="1f0d05dd-35f5-406c-ae4f-0e39c7cbed98" class=""><code><strong>interface</strong></code></h3><p id="5d180121-b831-45b7-b71d-5b61743d6d31" class="">Контракт или соглашение, который определяет набор методов, которые класс должен реализовать. Интерфейсы описывают поведение, но не содержат реализации методов. Они позволяют классу реализовать несколько различных интерфейсов и служат для обеспечения гибкости и многоразового использования кода.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6735f256-f599-4463-82c7-fb0d79d09626" class="code"><code class="language-Kotlin">interface Drivable {
+    fun start()
+    fun stop()
+}
+
+class Car : Drivable {
+    override fun start() {
+        println(&quot;Car is starting&quot;)
+    }
+
+    override fun stop() {
+        println(&quot;Car is stopping&quot;)
+    }
+}</code></pre><p id="a737b212-1e7b-4910-99bd-5b1f5c4bdda8" class="">
+</p><h3 id="f5f00f80-3246-4c64-aac3-529d7608bd51" class="">Разница между наследованием (abstract class) и композицией (interface)?</h3><p id="17bdca2f-f54c-4993-bf42-fb48f3d904bc" class="">Наследование создает иерархию классов с повторным использованием кода через базовый класс, тогда как композиция строит объекты из других объектов, делегируя выполнение задач, что обеспечивает большую гибкость и меньшую связанность.</p><p id="72b8bb69-5dea-4877-b52d-aa31603ae7ec" class="">
+</p><h3 id="e472efef-e580-4354-b557-49e617111741" class=""><strong>method signature</strong></h3><p id="039a8707-7e21-42b0-ab5b-cbb95f21e8ba" class="">Сигнатура метода - это часть определения метода, которая включает его имя и список параметров (их типы и порядок).<br/>Не включает возвращаемый тип, модификаторы доступа и бросаемые исключения.<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="97b44754-8f27-49a7-9404-68b1203ffb86" class="code"><code class="language-Kotlin">fun calculate(a: Int, b: Double) // Сигнатура метода — это calculate(Int, Double).</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Clean Architecture</summary><div class="indented"><p id="885bfc18-45d3-4796-abde-9c08bcd56dad" class="">Архитектура, написанная с заботой. Код разделен на слои, по структуре похоже на лук, с одним правилом зависимости: внутренний уровень не должен зависеть от каких-либо внешних уровней. Зависимости должны указываться внутри каждого уровня, чтобы не было зависимостей между уровнями (слоями).</p><p id="9fc99888-2058-4738-840a-eaa63e08b616" class="">• облегчить дальнейшую модификацию.</p><p id="eea68c03-2a3f-4414-8907-f2704db1375f" class="">• высокий уровень абстракции.</p><p id="85fd15df-c63a-4bad-930f-d226368dba4a" class="">• слабая связанность между частями кода.</p><p id="4b82cd4a-34a8-4408-9d0f-70b44b7b1a67" class="">• легкая тестируемость.</p><table id="a6d309c9-4d6b-486b-a427-2f196309eb60" class="simple-table"><tbody><tr id="2aadb8a9-a73f-408d-9700-63af88d2fb3f"><td id="Su&lt;}" class="" style="width:115px"><code>Data</code></td><td id="V&lt;s;" class="" style="width:411px">Данные приложения.</td></tr><tr id="4627e239-54c0-4514-aedd-a58f57de17f2"><td id="Su&lt;}" class="" style="width:115px"><code>Domain</code></td><td id="V&lt;s;" class="" style="width:411px">Бизнес-логика. Дополнительный слой маппинга данных.</td></tr><tr id="709a393e-8e5e-4198-9596-950363e19911"><td id="Su&lt;}" class="" style="width:115px"><code>Presentation</code></td><td id="V&lt;s;" class="" style="width:411px">Пользовательский интерфейс.</td></tr></tbody></table><table id="9da631d3-51ca-447e-b67c-1a86111b102b" class="simple-table"><tbody><tr id="bfe6988c-e4dd-42c4-825e-ed716724b803"><td id="CeSX" class="" style="width:103px"><code>Repository</code></td><td id="RSVh" class="" style="width:800px">Объект предоставляющий доступ к данным с возможностью выбора источника данных в зависимости от условий.</td></tr><tr id="2d12d1f8-48aa-4bbf-8c66-be09cb0ea387"><td id="CeSX" class="" style="width:103px"><code>Interactor</code></td><td id="RSVh" class="" style="width:800px">Реализует сценарии использования бизнес-объектов.</td></tr><tr id="5de38d1d-5847-4ce0-8a42-8c36b8d8f1f8"><td id="CeSX" class="" style="width:103px"><code>UseCase</code></td><td id="RSVh" class="" style="width:800px">Действие, которое может совершить пользователь.</td></tr><tr id="ed7cde98-9d17-4402-b2d8-a8f144a71973"><td id="CeSX" class="" style="width:103px"><code>Entities</code></td><td id="RSVh" class="" style="width:800px">Бизнес-объекты приложения.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">MVVM</summary><div class="indented"><p id="a1a3b0d4-48ad-4543-9759-7cb1637e3d01" class="">Model-View-ViewModel. Архитектурный шаблон, используемый в разработке программного обеспечения для разделения пользовательского интерфейса (UI) от бизнес-логики и данных. ViewModel ничего не знает про View. Unidirectional data flow.</p><p id="c4d81127-14c8-4f74-9c4b-c0cc1915b3ef" class=""><mark class="highlight-red">Model</mark> отвечает за представление данных и бизнес-логику приложения. Модель может включать в себя операции с данными, хранение информации и управление состоянием приложения.</p><p id="5d78e73a-16db-42a4-8628-96ccb51cf67b" class=""><mark class="highlight-red">View</mark> отвечает за отображение данных и взаимодействие с пользователем. Это компонент, с которым пользователь взаимодействует, и он визуализирует данные, предоставляемые ViewModel.</p><p id="3261621f-af01-461d-b9d3-371c44821eee" class=""><mark class="highlight-red">ViewModel</mark> служит посредником между Model и View. ViewModel преобразует данные из Model в формат, который может быть легко отображен в View, и обрабатывает пользовательские действия, перенаправляя их в Model. ViewModel также позволяет реализовать биндинг (связывание) данных между Model и View.</p><p id="7bf3749d-927c-43ff-9408-31c77e14e6bf" class="">• способствует улучшению читаемости кода, облегчает тестирование и делает приложения более масштабируемыми, так как разделение бизнес-логики и представления делает каждый компонент более независимым.</p><p id="528bb5e8-b5e7-491f-a5b7-b325c392dee0" class=""><strong>Преимущества:</strong></p><p id="4f626136-883c-4880-b867-abeed2e1d9ea" class="">• разделение ответственности: MVVM четко разделяет бизнес-логику (Model) от представления (View) и управления представлением (ViewModel). Это способствует улучшению читаемости кода и упрощает поддержку и развитие приложения.</p><p id="c3d67893-b57a-412e-bd46-fe479640cafb" class="">• тестирование: MVVM упрощает тестирование, так как ViewModel может быть отдельно протестирована, и ее можно тестировать независимо от View. Это делает юнит-тестирование более эффективным и позволяет легче обнаруживать и исправлять ошибки.</p><p id="e5d1cf6a-6a36-4e46-bc6e-715257248b10" class="">• биндинг данных: MVVM позволяет использовать data binding между Model и View через ViewModel. Это позволяет автоматически обновлять пользовательский интерфейс при изменении данных в Model, что упрощает синхронизацию данных и представления.</p><p id="baa7f50c-a2f0-456d-9a32-d6084fd5535b" class="">• масштабируемость: Разделение компонентов MVVM делает приложение более масштабируемым. Разработчики могут работать над разными частями приложения независимо, что позволяет параллельное развитие.</p><p id="6d5518a0-a847-4d50-9faa-05b133b18597" class="">• архитектурная гибкость: MVVM дает возможность легко изменять пользовательский интерфейс без необходимости переписывать всю бизнес-логику. Также легче адаптировать приложение под разные платформы, так как ViewModel может оставаться практически неизменной.</p><p id="48c7bac9-bf76-4a23-929d-d950fe4a695c" class="">• улучшенный UX-дизайн: MVVM позволяет разделить дизайн пользовательского интерфейса и логику взаимодействия с данными. Это улучшает процесс совместной работы дизайнеров и разработчиков, позволяя им работать над интерфейсом независимо.</p><p id="e86a0541-61be-4215-9ad6-37420ae41cb5" class="">• использование реактивных подходов: MVVM хорошо сочетается с реактивным программированием, позволяя более эффективно реагировать на изменения данных и событий в приложении.</p><p id="5a6bc5d5-652a-434a-95e0-369548d87e9c" class=""><strong>Недостатки:</strong></p><p id="1b29e265-1940-4941-bbaf-c2633834e9be" class="">• комплексность: Внедрение этого шаблона может потребовать больше времени и усилий на начальном этапе разработки из-за необходимости создания ViewModel для каждого View. Это может добавить сложности, особенно для простых приложений.</p><p id="694ff020-73ae-469b-919c-a6edbaad63c5" class="">• увеличение количества классов: Использование шаблона может привести к увеличению количества классов в проекте, особенно если приложение имеет много экранов и компонентов. Это может сделать проект более громоздким и усложнить его обслуживание.</p><p id="b83c109c-6085-4c8f-bb0f-88a7f89b0f21" class="">• сложности при обработке сложной бизнес-логики: Если бизнес-логика приложения довольно сложная и требует прямого взаимодействия между Model и View, MVVM может создать дополнительный уровень абстракции (ViewModel), что может усложнить обработку таких сценариев.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>MVP</strong></summary><div class="indented"><p id="7a2af31c-8e03-4278-a5c9-46098e50af89" class="">Model-View-Presenter. Взаимодействие Presenter и View построено через интерфейс. View знает про Presenter и наоборот. Two-way binding.</p><p id="bbeb4b17-d60f-40fc-b47f-f9d4a2d8048a" class=""><mark class="highlight-red">Model</mark> представляет данные и бизнес-логику приложения.</p><p id="f908a02c-e760-43ea-b96e-d22e0bb23533" class=""><mark class="highlight-red">View</mark> отвечает за отображение данных и взаимодействие с пользователем.</p><p id="f938d1f7-10a6-435a-bf42-05ec83da1f51" class=""><mark class="highlight-red">Presenter</mark> извлекает данные из модели и уведомляет View через интерфейс, презентер управляет состоянием представления и выполняет действия в соответствии с уведомлениями пользователя из View.</p><p id="5763bd01-49bb-41a6-bf24-155b5be2c916" class="">• взаимодействие между View-Presenter и Presenter-Model происходит через интерфейс. </p><p id="d6fa6fcf-9b72-46d5-a5fc-f0c5834fe245" class="">• один класс презентера управляет одним представлением</p><p id="5fff1ad1-01e8-4222-b0e9-559757e4d01c" class="">• модель и view ничего не знают о существовании друг друга</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>MVI</strong></summary><div class="indented"><p id="c5e0e759-1955-40cc-9d4e-9c2f6a12f2e3" class="">Model-View-Intent. Intent обрабатывает события от View и передает их в Model, она обрабатывает события и возвращает новую, готовую для отображения модель, которую отобразит View.</p><p id="8074a5fb-35b9-48f0-8f62-3d9d439db1c6" class=""><mark class="highlight-red">Model</mark> представляет данные и бизнес-логику приложения. В MVI модель неизменяема и представляет собой текущее состояние приложения.</p><p id="657222de-b64e-499d-8e4b-ea583c61b753" class=""><mark class="highlight-red">View</mark> отвечает за отрисовку пользовательского интерфейса и реакцию на ввод данных пользователем. Однако, в отличие от MVVM и MVC, представление в MVI является пассивным компонентом. Он не взаимодействует с моделью напрямую и не принимает решений на основе данных. Вместо этого он получает обновления состояния и пользовательские намерения от ViewModel.</p><p id="78448b7c-e4c6-4376-8d8e-76e3a73eff3d" class=""><mark class="highlight-red">Intent</mark> представляет собой действия пользователя или события, происходящие в пользовательском интерфейсе, такие как нажатие кнопки или ввод текста. В MVI эти намерения перехватываются представлением и отправляются во ViewModel для обработки.</p><p id="9ed0bb93-f650-4815-b7f5-365fa125fe9f" class=""><mark class="highlight-red">ViewModel</mark> в MVI она отвечает за управление состоянием приложения и бизнес-логикой. Она получает пользовательские намерения от представления, обрабатывает их и соответствующим образом обновляет модель. Затем ViewModel выдает новое состояние, которое View наблюдает и отображает.<br/>• однонаправленность - с данными работает только одна сущность, и мы знаем, кто изменяет данные, зачем и почему.<br/>• неизменяемость состояния - новое состояние складывается из предыдущего и какого-то действия. Изменить данные мы не можем, можем только получить новые.<br/>• удобство логирования и отладки - легко воспроизвести, где была ошибка, и собрать все условия (отследить в crashlytics текущий state и тот, что был до краша.<br/>• удобно работать с jetpack compose.<br/></p><p id="f3b20986-6ff9-4621-8b16-b6c513e2c409" class="">
+</p><p id="2341e8d1-8e56-42d5-af7b-c35a5d319879" class=""><strong>Преимущества:</strong></p><p id="67d6043c-d546-4109-9fea-055e330e3b13" class="">• хорошо интегрируется с декларативными UI фреймворками такими как Compose и SwiftUI.</p><p id="0ede4bd3-c15c-401d-883a-425237ecdfeb" class="">• один единственный стейт, который рисуется на вьюшке.</p><p id="46829c6e-79ba-492e-b68b-6337f2476ea0" class="">• стейт меняется в одном месте. Благодаря этому легко дебажить, и на экране невозможно увидеть не консистентное состояние. То есть мы всегда видим один конкретный стейт.</p><p id="04fb4bff-1b81-429e-90ff-e6368d821743" class=""><strong>Недостатки:</strong></p><p id="4dc77f45-e37b-4ad5-93f7-2e0851c3a71b" class="">• бойлерплейт. стейт может быть большим на сложном экране, например, может быть 15 полей в стейте.</p><p id="c2d6a570-8830-45ad-b828-ee7d996fe4fd" class="">• нужно считать дифф (разницу, изменения) состояния и перерисовывать только изменения. Если не считать дифф, а каждый раз перерисовывать весь экран при обновлении стейта, то UI может подлагивать... Для этого нужно считать дифф состояния и перерисовывать только изменения.</p><p id="ff4cc413-0a48-4c4c-9fee-9e03119f4cc3" class="">
+</p><h3 id="fe216bcf-b4ec-458e-b333-ffd5eccf9055" class=""><strong>Reducer</strong></h3><p id="6acaecf2-21f7-424e-b75a-c624cd289707" class="">Обновляет состояние в зависимости от действия. Определяет, как состояние приложения должно измениться в ответ на действия пользователя (интенты). Принимает текущее состояние и действие, а затем возвращает новое состояние.</p><p id="16ec01bc-2c75-4846-89d1-0018cbb615dd" class="">
+</p><h3 id="b234e898-f0dc-436d-bfa1-522d81a34662" class=""><strong>Middleware</strong></h3><p id="701cbef1-a5a7-4448-9a08-c2fb379f86ce" class="">Обрабатывает побочные эффекты, такие как асинхронные операции или взаимодействие с внешними системами, и передает результат обратно в Reducer. Middleware может перехватывать действия и выполнять дополнительную логику до или после их обработки.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">ООП</summary><div class="indented"><p id="e5892893-471d-49af-ab57-99b1159693ed" class="">Object-Oriented Programming (OOP). Объектно-ориентированное программирование (ООП) - методология программирования основанная на представлении программы в виде совокупности объектов каждый из которых является экземпляром определенного класса а классы образуют иерархию наследования.</p><p id="3260f52b-346b-497f-9130-b4ea4459cbc8" class="">
+</p><h3 id="0f4f03d5-f547-4189-9d8d-62e0472c0aca" class=""><strong>Encapsulation</strong></h3><p id="cef0614a-b0a8-4de4-858d-d5ffed32abf8" class="">Инкапсуляция позволяет скрывать внутренние детали реализации объекта и предоставлять доступ к данным через методы. Это означает, что объект контролирует доступ к своим данным и предотвращает их неконтролируемое изменение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5e28c67b-4e6c-4a3c-b756-93b010f4b45c" class="code"><code class="language-Kotlin">// В данном примере name скрыт от прямого доступа извне и доступен только через методы setName и getName.
+class Person {
+    private var name: String = &quot;&quot;
+    
+    fun setName(name: String) {
+        this.name = name
+    }
+    
+    fun getName(): String {
+        return name
+    }
+}</code></pre><p id="efd3bd10-3250-45ca-b9d5-f10b42b8e0a3" class="">
+</p><h3 id="71250ea4-8f71-4e3c-a228-aec30ab7096d" class=""><strong>Polymorphism</strong></h3><p id="000c43b8-bb55-4db4-bf8e-813029fb6e6b" class="">Полиморфизм позволяет объектам разного типа обрабатывать вызовы методов, имеющих одно имя, но различающихся поведением. Это позволяет использовать единый интерфейс для работы с различными типами объектов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3f3058f9-b72f-427c-8fe5-6b186ec3a597" class="code"><code class="language-Kotlin">open class Animal {
+    open fun makeSound() {
+        println(&quot;Какой-то звук&quot;)
+    }
+}
+
+class Dog: Animal() {
+    override fun makeSound() {
+        println(&quot;Гав&quot;)
+    }
+}
+
+class Cat: Animal() {
+    override fun makeSound() {
+        println(&quot;Мяу&quot;)
+    }
+}
+
+fun main() {
+    val animals: List&lt;Animal&gt; = listOf(Dog(), Cat())
+    animals.forEach { it.makeSound() }
+}</code></pre><p id="e5942269-ac33-46fa-9b24-80818ceeba8f" class="">
+</p><h3 id="7c834b03-dc32-4746-a983-89e757695d1b" class=""><strong>Inheritance</strong></h3><p id="c2f4ca97-74dd-497b-92a5-bf06aeff78d2" class="">Наследование позволяет создавать новые классы на основе существующих. Новый класс (производный класс) наследует свойства и методы базового класса, что позволяет повторно использовать код и создавать иерархию классов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d65cca55-7069-49a7-ab99-62ccf2d036bf" class="code"><code class="language-Kotlin">open class Animal {
+    fun eat() {
+        println(&quot;Жрет&quot;)
+    }
+}
+
+class Dog: Animal() {
+    fun bark() {
+        println(&quot;Гавкает&quot;)
+    }
+}</code></pre><p id="5b8e80be-ef06-41ae-98da-4e50aa5d4ba6" class="">
+</p><h3 id="b22e6b2d-ccd1-4235-b4b5-48758691deeb" class="">Abstraction</h3><p id="af4bf04e-7e1e-4b15-aee3-7dc246b7e92a" class="">Абстракция позволяет выделить общие черты объектов и скрыть детали реализации. Абстрактные классы и интерфейсы используются для описания общих характеристик и поведения, которые должны быть реализованы в конкретных классах.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16e670a7-b778-454e-9d2a-43b4c8690ff3" class="code"><code class="language-Kotlin">// В данном примере Shape – абстрактный класс с абстрактным методом draw, который реализуется в конкретных классах Circle и Square.
+abstract class Shape {
+    abstract fun draw()
+}
+
+class Circle: Shape() {
+    override fun draw() {
+        println(&quot;Drawing a Circle&quot;)
+    }
+}
+
+class Square: Shape() {
+    override fun draw() {
+        println(&quot;Drawing a Square&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Development Principles</summary><div class="indented"><h3 id="136500ec-c129-4cb7-b670-210ffcacba97" class=""><strong>SOLID</strong></h3><p id="5e2ea722-02ff-45ee-b3bf-b7049e295696" class="">Пять основополагающих принципов ООП, разработанных для повышения гибкости, расширяемости и удобства поддержки кода.</p><table id="92adff9a-3ba9-423f-b0dc-ccdc3a512270" class="simple-table"><tbody><tr id="0352f456-411b-44e4-bded-323ae8f948a7"><td id="UMf?" class="">Single Responsibility</td><td id="bzGa" class="" style="width:301px">Принцип Единственной Ответственности</td><td id="xo\d" class="" style="width:666px">Каждый класс или метод должны иметь одну ответственность.<br/>Не стоит нагружать классы большой логикой.<br/>Пример: RecyclerView: <br/><code>ItemAnimator</code> <code>LayoutManager</code> <code>Adapter</code> <code>DiffUtil</code>.</td></tr><tr id="0840647f-53b7-4731-bb58-812ac62be0ff"><td id="UMf?" class="">Open-Closed</td><td id="bzGa" class="" style="width:301px">Принцип Открытости/Закрытости</td><td id="xo\d" class="" style="width:666px">Классы должны быть открыты для расширения, но закрыты для модификации.<br/>Поведение класса можно расширить без изменения существующего кода.<br/></td></tr><tr id="42e85e5f-37be-47b9-a2dd-26877aa92350"><td id="UMf?" class="">Liskov Substitution</td><td id="bzGa" class="" style="width:301px">Принцип Подстановки Лисков</td><td id="xo\d" class="" style="width:666px">Объекты базового класса должны быть заменимы объектами его подклассов без изменения корректности программы.<br/>Подклассы должны поддерживать контракт базового класса.<br/></td></tr><tr id="52605203-70b4-4285-b8e0-9a9f20e542c5"><td id="UMf?" class="">Interface Segregation</td><td id="bzGa" class="" style="width:301px">Принцип Разделения Интерфейсов</td><td id="xo\d" class="" style="width:666px">Интерфейсы должны быть специфичными и не содержать методов, которые не нужны реализациям.<br/>Это предотвращает ситуацию, когда класс вынужден реализовывать методы, которые ему не нужны.<br/></td></tr><tr id="dd7aafc8-5381-461c-bf53-fa8bb853104b"><td id="UMf?" class="">Dependency Inversion </td><td id="bzGa" class="" style="width:301px">Принцип Инверсии Зависимостей</td><td id="xo\d" class="" style="width:666px">Модули высокого уровня не должны зависеть от модулей низкого уровня.<br/>Оба типа модулей должны зависеть от абстракций (интерфейса).<br/>Абстракции не должны зависеть от деталей, детали должны зависеть от абстракций.<br/></td></tr></tbody></table><p id="01d76955-1562-4718-a884-c78308a44033" class="">
+</p><h3 id="36dd253a-4d68-486a-9c69-890297327106" class=""><strong>DRY</strong></h3><p id="53ea4e4e-221b-43c9-85e9-287b15a99873" class="">Don&#x27;t Repeat Yourself. Не повторяйся. Дублирование кода – пустая трата времени и ресурсов. Вам придется поддерживать одну и ту же логику и тестировать код сразу в двух местах, причем если вы измените код в одном месте его нужно будет изменить и в другом. В большинстве случаев дублирование кода происходит из-за незнания системы. Прежде чем что-либо писать, проявите прагматизм: осмотритесь. Возможно, эта функция где-то реализована. Возможно эта бизнес-логика существует в другом месте. Повторное использование кода – всегда разумное решение.</p><p id="00296a85-34b8-43e3-aca6-23227150509a" class="">
+</p><h3 id="3381821a-d828-4812-b521-f80bfeddcdb4" class=""><strong>KISS</strong></h3><p id="bbd24a46-9b0a-4885-b34d-a6b92f1b9a87" class="">Keep It Simple, Stupid. Будь проще. Простые системы будут работать лучше и надежнее сложных. Не придумывайте к задаче более сложного решения, чем ей требуется. Иногда самое разумное решение оказывается и самым простым. Написание производительного, эффективного и простого кода – это прекрасно. Одна из самых распространенных ошибок нашего времени – использование новых инструментов исключительно из-за того, что они блестят. Разработчиков следует мотивировать использовать новейшие технологии не потому, что они новые, а потому что они подходят для работы.</p><p id="fb8de4bc-819a-437d-b442-1f1a94973021" class="">
+</p><h3 id="4950469c-bc94-42f0-82bb-8e346ce3c204" class=""><strong>YAGNI</strong></h3><p id="b1558e6a-87a1-4ffd-bc0f-6f263ea420ab" class="">You Aren’t Gonna Need It. Вам это не понадобится. Если пишете код, будьте уверены, что он понадобится. Не пишите код, если думаете, что он пригодится позже. Принцип применим при рефакторинге. Если вы занимаетесь рефакторингом метода, класса или файла, не бойтесь удалять лишние методы. Даже если раньше они были полезны – теперь они не нужны. Может наступить день, когда они снова понадобятся – тогда вы сможете воспользоваться git-репозиторием, чтобы воскресить их из мертвых. </p><p id="d2ea3ad0-ad2c-4b1a-adfa-8020f8d1b495" class="">
+</p><h3 id="f964d834-ac6d-4cf1-8fee-3a6b90129565" class=""><strong>BDUF</strong></h3><p id="f1c3c1fa-841a-4d2a-8b2f-2d7c6a4e626f" class="">Big Design Up Front. Глобальное проектирование прежде всего. Прежде чем переходить к реализации, убедитесь, что все хорошо продумано. Составив план, вы избавите себя от необходимости раз за разом начинать с нуля.</p><p id="820ff9ec-a051-4828-b4ae-1a6431b89448" class="">
+</p><h3 id="2e7c297c-0a09-4ac3-bdd6-d5871830cb83" class=""><strong>APO</strong></h3><p id="fbc89310-fc04-4c0c-82e6-db8c561639fb" class="">Avoid Premature Optimization. Избегайте преждевременной оптимизации. Эта практика побуждает разработчиков оптимизировать код до того, как необходимость этой оптимизации будет доказана. Прежде чем вы погрузитесь в детали реализации, убедитесь, что эти оптимизации действительно полезны. Пример – масштабирование. Вы не станете покупать 40 серверов из предположения, что ваше новое приложение станет очень популярным. Вы будете добавлять серверы по мере необходимости. Преждевременная оптимизация может привести к задержкам в коде и, следовательно, увеличит затраты времени на вывод функций на рынок.</p><p id="1d8a7a8d-2fef-4962-a934-53b498eb5ba5" class="">
+</p><h3 id="a9bd06c5-8ec3-4538-b32a-01b26ba897a3" class=""><strong>Occam&#x27;s razor</strong></h3><p id="0b93a88f-bdc0-4ada-9994-10b7297f2dda" class="">Бритва Оккама. Не создавайте ненужных сущностей без необходимости. Будьте прагматичны — подумайте, нужны ли они, поскольку они могут в конечном итоге усложнить вашу кодовую базу.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Сlasses and objects relationships</summary><div class="indented"><h3 id="3e593534-9753-47f6-ac74-141f752ac6ae" class=""><strong>association</strong></h3><p id="ffa6f401-751b-4ee6-a9eb-2456f329d63f" class="">Ассоциация. Отношение, при котором объекты одного типа неким образом связаны с объектами другого типа. Например объект одного типа содержит или использует объект другого типа. Например, игрок играет в определенной команде:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e5e74f08-4865-4c82-9c56-04112ae45e1e" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class Team
+
+class Player {
+    val team: Team
+}</code></pre><p id="e4430e46-0553-4fa3-b7e8-cb0ec635b1f7" class="">
+</p><h3 id="f5130944-2670-4ce3-bd57-d947e92027a6" class=""><strong>composition</strong></h3><p id="ac30c2db-93b1-4914-93b9-874c51f63959" class="">Композиция определяет отношение HAS A, то есть отношение &quot;имеет&quot;. Например, в класс автомобиля содержит объект класса электрического двигателя. При этом класс автомобиля полностью управляет жизненным циклом объекта двигателя. При уничтожении объекта автомобиля в области памяти вместе с ним будет уничтожен и объект двигателя. И в этом плане объект автомобиля является главным, а объект двигателя - зависимой. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5cce847f-27db-4ab6-a2d6-361f310f7548" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class ElectricEngine
+
+class Car {
+    val engine: ElectricEngine = ElectricEngine()
+}</code></pre><p id="4051a032-d9e9-46d3-a6b9-2de3b1b3b85e" class="">
+</p><h3 id="d40a5454-1f8b-4f26-b06f-07a5b2b294be" class=""><strong>aggregation</strong></h3><p id="f28cd6ce-5fc4-4f90-840f-d0055fb86033" class="">Агрегация. Следует отличать от композиции. Предполагает то же отношение, но другую реализацию. При агрегации реализуется слабая связь, то есть в данном случае объекты Car и Engine будут равноправны. В конструктор Car передается ссылка на уже имеющийся объект Engine. И, как правило, определяется ссылка не на конкретный класс, а на абстрактный класс или интерфейс, что увеличивает гибкость программы. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7dac8d0a-9c2e-46f6-85b9-3ffd5edb9a1f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">abstract class Engine
+
+class Car(
+    var engine: Engine
+)</code></pre><p id="88ab219c-76c1-4bc8-bf1d-bd3cc80ed33d" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Design Patterns</summary><div class="indented"><p id="93078285-4a79-4a92-902a-f15e2095c594" class="">
+</p><p id="6b5424d2-17df-41cb-904f-cd8018d4785c" class="">Паттерны проектирования необходимы для быстрого решения типовых задач в программировании. Паттерны бывают 3 разновидностей:<br/> • архитектурные паттерны. Шаблоны высшего уровня. описывают структурную схему программной системы в целом. В этой схеме располагаются отдельные подсистемы и определяются отношения между ними. Пример: MVP.<br/> • паттерны проектирования. Они описывают схемы детализации программных подсистем и их отношений между собой. Такие паттерны никак не влияют на структуру программной системы в целом и не зависят от использования языка программирования. Пример: Adapter, Singleton.<br/> • идиомы. Паттерны низкого уровня. Реализация той или иной проблемы с учётом специфики соответствующего языка программирования.<br/></p><p id="f609e432-1c59-47a9-a4f0-6d26b3559d48" class="">
+</p><p id="811a7444-4cd6-4fc6-98df-4ea45e4bd9fe" class="">Паттерны проектирования:<br/> • порождающие. Пример: Factory, Singleton.<br/> • структурные. Пример: Decarator, Adapter.<br/> • поведенческие. Пример: Observer, Strategy.<br/></p><p id="b0850ff7-2ffb-4ea3-8c4a-56b7c6ae1995" class="">
+</p><h3 id="ba87ce05-b23f-4cee-b927-d7aaeaa1d4d9" class=""><strong>Adapter</strong></h3><p id="b4ccffb6-ab77-438d-ab6a-734fb2d9eba8" class="">Позволяет объектам с несовместимыми интерфейсами работать вместе. Адаптер предусматривает создание класса-оболочки с требуемым интерфейсом. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dc59f7f9-9a49-457a-aeaf-b9ddde4d405d" class="code"><code class="language-Kotlin">/**
+ * Совместимый интерфейс и его реализация
+ */
+interface NickName {
+    fun getNickName(person: Person): String
+}
+class NickNameImpl: NickName {
+    override fun getNickName(person: Person): String = person.name
+}
+
+/**
+ * Несовместимый интерфейс и его реализация
+ */
+interface FullName {
+    fun getFullName(person: Person): String
+}
+class FullNameImp: FullName {
+    override fun getFullName(person: Person): String = &quot;${person.name} ${person.family}&quot;
+}
+
+class Client(
+    private val nickName: NickName
+) {
+    private val person = Person(&quot;John&quot;, &quot;Marston&quot;)
+
+    val name: String
+        get() = nickName.getNickName(person)
+}
+
+class Adapter(
+    private val fullName: FullName
+): NickName {
+
+    override fun getNickName(person: Person): String {
+        return fullName.getFullName(person)
+    }
+}
+
+val nickName: NickName = NickNameImpl()
+val fullName: FullName = FullNameImp()
+val adapter: NickName = Adapter(fullName)
+
+val clientTarget = Client(nickName)
+println(clientTarget.name) // output: John
+val clientAdapter = Client(adapter)
+println(clientAdapter.name) // output: John Marston</code></pre><p id="402760e4-2101-45ba-8a2a-e56d8d01d8b5" class="">
+</p><h3 id="1c59002e-f4fb-49cb-9144-e2e607a007e7" class=""><strong>Decorator</strong></h3><p id="6aa90428-28b2-43da-aa3a-9716fd1dd40d" class="">Динамически добавляет новую функциональность объекту, используя класс-обертку. Пример: при добавлении нового ключа в HashMap, сообщать об этом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="37dd8780-6680-4fd9-a201-bee01eb6231d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">interface Name {
+    fun getName(firstName: String): String
+}
+
+class SimpleName: Name {
+    override fun getName(firstName: String): String {
+        return firstName
+    }
+}
+
+open class NameDecorator(
+    protected var name: Name
+): Name {
+    override fun getName(firstName: String): String {
+        return name.getName(firstName)
+    }
+}
+
+class FullName(
+    name: Name
+): NameDecorator(name) {
+
+    val lastName: String = &quot;Marston&quot;
+
+    override fun getName(firstName: String): String {
+        return name.getName(firstName) + &quot; &quot; + lastName
+    }
+}
+
+val firstName: String = &quot;John&quot;val name: Name = SimpleName()
+println(name.getName(firstName)) // output: John
+
+val nameDecorator: Name = NameDecorator(name)
+println(nameDecorator.getName(firstName)) // output: John
+
+val fullName: Name = FullName(name)
+println(fullName.getName(firstName)) // output: John Marston</code></pre><p id="d0b668f5-df27-4c7a-b6ec-324f5f7f1886" class="">
+</p><h3 id="fead7e84-55a5-4772-8910-8eed393cc8f5" class=""><strong>Facade</strong></h3><p id="52d147a0-bb4b-4860-b374-2b9906eca8ed" class="">Оборачивает сложную подсистему более простым интерфейсом. Предоставляет унифицированный интерфейс вместо набора интерфейсов некоторой подсистемы. Определяет интерфейс более высокого уровня, упрощающий использование подсистемы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dda9c8d-83cd-448d-ae56-82a90f9badde" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">interface Name {
+    fun getName(): String
+}
+class NameImp: Name {
+    override fun getName(): String = &quot;John&quot;
+}
+
+interface FullName {
+    fun getFullName(): String
+}
+class FullNameImp: FullName {
+    override fun getFullName(): String = &quot;John Marston&quot;
+}
+
+class FacadeName(
+    private val name: Name,
+    private val fullName: FullName
+) {
+    fun getName(): String = name.getName()
+
+    fun getFullName(): String = fullName.getFullName()
+}
+
+val name: Name = NameImp()
+val fullName: FullName = FullNameImp()
+val facade = FacadeName(name, fullName)
+println(facade.getName()) // output: John
+println(facade.getFullName()) // output: John Marston</code></pre><p id="629f915a-0752-4aa9-b35d-671a33be53f6" class="">
+</p><h3 id="d79965db-9937-42f0-8323-f8c51223133b" class=""><strong>Composite</strong></h3><p id="f89f4e72-e708-4901-a2dd-02f2aaa0d8f8" class="">Компоновщик. Позволяет обращаться к отдельным объектам и к группам объектов одинаково. Объединяет объекты в древовидную структуру для представления иерархии от частного к целому.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="120c88b3-6323-4a5a-a379-8ec8ead379b8" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">open class Person(
+    private val name: String
+) {
+    open fun getName(): String = name
+}
+
+class John: Person(&quot;John&quot;)
+class Arthur: Person(&quot;Arthur&quot;)
+
+open class Composite(
+    private val name: String
+): Person(name) {
+
+    private val persons: MutableList&lt;Person&gt; = mutableListOf()
+
+    fun add(person: Person) {
+        persons.add(person)
+    }
+
+    override fun getName(): String {
+        return name + &quot;, &quot; + persons.joinToString(&quot;, &quot;) { it.getName() }
+    }
+}
+
+val composite = Composite(&quot;Sadie&quot;)
+composite.add(John())
+composite.add(Arthur())
+println(composite.getName()) // output: Sadie, John, Arthur</code></pre><p id="dfdf7250-8120-4adb-b6ec-3c76e0c6dda4" class="">
+</p><h3 id="00fefc38-7bd6-430d-8581-3b7549290731" class=""><strong>Singleton</strong></h3><p id="b1430cbd-9217-4811-94d3-ac96d9be23e4" class="">Когда нам необходим один экземппляр объекта и глобальная точка доступа к нему. Пример: класс Application.</p><p id="ab3abbb4-ee2a-43ed-8d2d-7a6d1c8b862a" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android Architecture. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="c465886d-d225-43f8-8c23-d71021b8cab2" class="numbered-list" start="1"><li>В чем разница между наследованием и композицией? abstract class vs interface?</li></ol><ol type="1" id="8663e929-c318-4b46-a3d5-4427e13c44c6" class="numbered-list" start="2"><li>Перечисли слои чистой архитектуры в контексте Android?</li></ol><ol type="1" id="6e96d2ee-adf6-472c-bd8a-90bf3429e584" class="numbered-list" start="3"><li>Различие Interactor и UseCase?</li></ol><ol type="1" id="ffb67b15-2780-4f64-829c-fe66aac3e949" class="numbered-list" start="4"><li>Что входит в сигнатуру метода?</li></ol><ol type="1" id="fafcdf4a-9862-4e2a-b9f5-e87bbbb420ab" class="numbered-list" start="5"><li>Преимущества и недостатки MVI?</li></ol><ol type="1" id="c9a2ada2-d020-4b39-b389-de250f5f6cb6" class="numbered-list" start="6"><li>Расскажи про паттерны банды четырех?</li></ol><ol type="1" id="a170058a-ce31-4add-b6bf-dce2bd2827a1" class="numbered-list" start="7"><li>Как MVVM соотносится с Clean Architecture?<p id="9763126a-62ba-4ee7-95a3-cde2c3167f10" class=""><mark class="highlight-teal">Model ↔ Data. View ↔ Presentation. ViewModel ↔ Domain. Model будет в Presentation-слое.</mark></p></li></ol><ol type="1" id="c1e6480e-c3da-438d-8771-08da9162598b" class="numbered-list" start="8"><li>Где в Android нарушается 1 принцип SOLID?<p id="9b187e80-d7c3-4b0f-aa99-93262da1d592" class=""><mark class="highlight-teal">Бизнес-логика в Activity/Fragment. Класс ListView</mark></p></li></ol><ol type="1" id="5aa70a66-246b-45aa-8da2-be515bfd93d2" class="numbered-list" start="9"><li>Какой компонент MVI отвечает за определение нового состояния на основе текущего состояния и действия?<p id="252f137a-1f9f-41b0-a935-42dae33d3378" class="">• <mark class="highlight-red">ViewModel</mark></p><p id="01fe697a-082f-4759-b2e5-4dad065bdf02" class="">• <mark class="highlight-red">Middleware</mark></p><p id="31a6d9db-a966-4688-88b7-5525ef59837e" class="">• <mark class="highlight-teal">Reducer</mark></p><p id="347ba7c1-3f5f-454a-8ea4-6416d75544fd" class="">• <mark class="highlight-red">Controller</mark></p></li></ol><ol type="1" id="392ca348-b30f-43d9-9290-a35ccb2ec276" class="numbered-list" start="10"><li>Какой компонент MVI отвечает за обработку побочных эффектов, таких как сетевые запросы?<p id="02ab5f27-8958-49a3-a3f7-442f1b9ba44e" class="">• <mark class="highlight-red">SideEffectHandler</mark></p><p id="1f5c8c9b-3ff1-4496-86db-c4786d9608a1" class="">• <mark class="highlight-red">Interactor</mark></p><p id="4c7d5990-c4b3-4ebd-9217-e76512282953" class="">• <mark class="highlight-red">Reducer</mark></p><p id="550d3dea-df14-4d98-8a27-89fd639fa339" class="">• <mark class="highlight-teal">Middleware</mark></p></li></ol><ol type="1" id="0c730dc1-a23b-47d3-afce-9b8ceaacc3a3" class="numbered-list" start="11"><li>Какой из следующих компонентов используется для отображения данных в MVVM архитектуре?<p id="0985bd50-de1e-4c92-a14f-62c6c93671fd" class="">• <mark class="highlight-red">Controller</mark></p><p id="0a85b77a-e7f3-4e66-b5f4-4f12790385f2" class="">• <mark class="highlight-red">Model</mark></p><p id="a90b5e1e-cf33-49ac-8bad-6b8a67822153" class="">• <mark class="highlight-teal">View</mark></p><p id="0582b212-fe79-4d89-9c79-74de41e346bd" class="">• <mark class="highlight-red">ViewModel</mark></p></li></ol><ol type="1" id="a98053e3-f2f3-4387-9f96-cdcc945a8bd4" class="numbered-list" start="12"><li>Какой компонент отвечает за обеспечение реактивного обновления данных в MVVM?<p id="8fc3e71e-0d29-4d9c-832f-adf5b78610b9" class="">• <mark class="highlight-red">DataSource</mark></p><p id="8095cc2b-7d58-4296-9c27-6ccdd3ab5517" class="">• <mark class="highlight-red">Repository</mark></p><p id="5c43b1e1-d2d0-4799-bf26-a3316545d420" class="">• <mark class="highlight-red">ViewModel</mark></p><p id="ae267f60-6948-4094-bf7f-1b6029514f99" class="">• <mark class="highlight-teal">LiveData</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
