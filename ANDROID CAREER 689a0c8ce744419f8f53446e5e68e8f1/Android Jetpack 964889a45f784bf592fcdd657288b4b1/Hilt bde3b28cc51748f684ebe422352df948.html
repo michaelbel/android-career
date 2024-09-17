@@ -1,0 +1,829 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Hilt</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bde3b28c-c517-48f6-84eb-e422352df948" class="page sans"><header><img class="page-cover-image" src="Hilt%20bde3b28cc51748f684ebe422352df948/michaelbely_hilt_in_context_light_blue_color_29c9ff5e-d569-42ac-9291-19cfdbc8a7c6.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Hilt%20bde3b28cc51748f684ebe422352df948/android-jetpack.svg"/></div><h1 class="page-title">Hilt</h1><p class="page-description"></p></header><div class="page-body"><table id="afd2ca64-3330-4cd3-b2c0-f7c4270a6dde" class="simple-table"><tbody><tr id="420c5a9f-67b0-416f-bc74-a016d4a80d5a"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection">https://developer.android.com/training/dependency-injection</a></td></tr><tr id="78611167-9c70-4286-9868-6d2a22fc043a"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/manual">https://developer.android.com/training/dependency-injection/manual</a></td></tr><tr id="6f7e402a-d8d0-4a4d-848f-382272633722"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/hilt-android">https://developer.android.com/training/dependency-injection/hilt-android</a></td></tr><tr id="86b6d249-0bff-40d3-985b-2a9063f75eed"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/hilt-multi-module">https://developer.android.com/training/dependency-injection/hilt-multi-module</a></td></tr><tr id="01c38864-3f59-4c2a-a4f7-6a756d1e9a0c"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/hilt-jetpack">https://developer.android.com/training/dependency-injection/hilt-jetpack</a></td></tr><tr id="c6740725-5fe6-4530-8241-e52c3eb02a61"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/hilt-testing">https://developer.android.com/training/dependency-injection/hilt-testing</a></td></tr><tr id="8c9d62aa-7a3d-4453-8e10-b54383bced5f"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/hilt-cheatsheet">https://developer.android.com/training/dependency-injection/hilt-cheatsheet</a></td></tr><tr id="2f38cc7f-a2c9-4795-93bd-06f694fe5e62"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/dagger-basics">https://developer.android.com/training/dependency-injection/dagger-basics</a></td></tr><tr id="58fa6dcc-b3ac-4a1d-aecd-f11e7c79afa5"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/dagger-android">https://developer.android.com/training/dependency-injection/dagger-android</a></td></tr><tr id="e4fe7b12-c134-459d-adb9-ca755daac228"><td id="k_UL" class="" style="width:592px"><a href="https://developer.android.com/training/dependency-injection/dagger-multi-module">https://developer.android.com/training/dependency-injection/dagger-multi-module</a></td></tr></tbody></table><table id="ed3f0bd2-c167-4b81-90ba-0b5b0f8fceb0" class="simple-table"><tbody><tr id="21cbc33a-aa91-4737-9109-3a11e16184b0"><td id="]T\X" class="" style="width:103px"><mark class="highlight-brown"><code>03.03.2021</code></mark></td><td id="zlwp" class="" style="width:618px"><a href="https://habr.com/ru/companies/otus/articles/545222/">https://habr.com/ru/companies/otus/articles/545222/</a></td></tr><tr id="5fd34ffa-2e5e-4090-a20d-16b20e7aebf0"><td id="]T\X" class="" style="width:103px"><mark class="highlight-brown"><code>09.12.2020</code></mark></td><td id="zlwp" class="" style="width:618px"><a href="https://habr.com/ru/companies/otus/articles/532066/">https://habr.com/ru/companies/otus/articles/532066/</a></td></tr><tr id="8f08d746-ed77-4992-960a-2fe27742c3fc"><td id="]T\X" class="" style="width:103px"><mark class="highlight-brown"><code>06.02.2017</code></mark></td><td id="zlwp" class="" style="width:618px"><a href="https://habr.com/ru/articles/320676/">https://habr.com/ru/articles/320676/</a></td></tr><tr id="08c4914d-e3ef-4242-a59a-4ee88f4972a9"><td id="]T\X" class="" style="width:103px"><mark class="highlight-brown"><code>23.03.2016</code></mark></td><td id="zlwp" class="" style="width:618px"><a href="https://habr.com/ru/articles/279641/">https://habr.com/ru/articles/279641/</a></td></tr><tr id="ea1540fe-3b51-4910-ab53-1870730ab6bd"><td id="]T\X" class="" style="width:103px"><mark class="highlight-brown"><code>14.03.2016</code></mark></td><td id="zlwp" class="" style="width:618px"><a href="https://habr.com/ru/articles/279125/">https://habr.com/ru/articles/279125/</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Dagger</summary><div class="indented"><p id="759ab200-9eb6-496d-b9b0-42b4c2728404" class="">Генерирует зависимости во время сборки приложения. Если приложение большое - отжирается много времени у сборки. Очень быстрый в runtime.</p><p id="4fd6eba0-26c6-493e-a679-644dc64943d6" class="">• Внедрение зависимостей. Позволяет автоматически внедрять зависимости в объекты, уменьшая связанность кода и делая его более гибким и легким для тестирования. Зависимости могут быть классами, интерфейсами, контекстами и другими объектами, которые нужны для работы приложения.</p><p id="2a4567aa-bb6f-41c0-a3a3-a0ca89ee6d5d" class="">• Управление жизненным циклом зависимостей: Платформа предоставляет механизмы для управления временем жизни объектов, которые используются в приложении. Это позволяет эффективно использовать ресурсы и уменьшить потребление памяти.</p><p id="2940c1d9-807b-4a11-bebb-a773aeab3315" class="">• Создание синглтонов и одноразовых зависимостей: Фреймворк позволяет легко определить, что объекты должны быть синглтонами (единственными экземплярами) или одноразовыми (создаются новые экземпляры при каждом запросе).</p><p id="d69278d1-65c9-4992-bd85-ad66ad643b06" class="">• Обработка сложных зависимостей: Если ваше приложение имеет сложные зависимости, Dagger может автоматически разрешить их и обеспечить, чтобы объекты правильно создавались и использовались.</p><p id="5f4846bc-f7e0-44ec-a7b7-fd650f659919" class="">• Модульное тестирование: Dagger позволяет легко заменять реальные зависимости на фиктивные (mock) или подставные (stub) объекты при модульном тестировании. Это упрощает и ускоряет процесс тестирования приложения.</p><p id="996b448b-68b3-41aa-aa2f-151d6e6a5d31" class="">• Упрощение конфигурации: Dagger устраняет необходимость вручную создавать и настраивать зависимости, что снижает сложность кода и упрощает его поддержку.</p><p id="82f41c80-b1d0-429d-9a6c-66f7cd82942b" class="">• Уменьшение дублирования кода: Dagger позволяет определить глобальные зависимости, которые могут быть использованы в различных частях приложения, что уменьшает дублирование кода.</p><p id="c68d3a88-5d93-4561-88d3-8f8bd435a68b" class="">• Повышение читаемости кода: Использование Dagger делает зависимости явными и понятными, что повышает читаемость кода и облегчает его анализ и понимание.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Hilt</summary><div class="indented"><p id="06830849-6967-4045-a11c-ee682f46b8ee" class="">Dagger с аннотациями.</p><p id="33bd9cfb-9c5d-416a-98d5-261b5a298f67" class="">• валидация графа в момент компиляции. Если приложение запустилось, то как минимум всех зависимостей хватает.</p><p id="9968aa9c-5f6c-40c2-bfbd-82410977be86" class="">• кодогенерация замедляющая время сборки.</p><table id="3d311d03-9bfc-4927-b8e4-263c201feaec" class="simple-table"><tbody><tr id="d150393a-51ac-4e00-b0cd-546a5b273055"><td id="ktoq" class=""><code><strong><strong>@HiltAndroidApp</strong></strong></code></td><td id="g`\o" class="" style="width:673px">Запускает генерацию кода Hilt. Базовый класс приложения служит контейнером зависимостей на уровне приложения.</td></tr><tr id="81a03c7a-6b0a-4951-a5fb-e7950159ba20"><td id="ktoq" class=""><code><strong>@AndroidEntryPoint</strong></code></td><td id="g`\o" class="" style="width:673px">Создает отдельный компонент Hilt для класса и предоставляет для него зависимости. Поддерживает: Activity, Fragment, View, Service, BroadcastReceiver, ViewModel.</td></tr><tr id="a2d34cae-5e00-4439-acde-6b13a450b49a"><td id="ktoq" class=""><code><strong>@HiltViewModel</strong></code></td><td id="g`\o" class="" style="width:673px">Предоставляет зависимости для ViewModel.</td></tr><tr id="30c97aa0-9128-4500-be13-dee2ec923e49"><td id="ktoq" class=""><code><strong>@Module</strong></code></td><td id="g`\o" class="" style="width:673px">Информирует Hilt о том, как предоставлять зависимости определенных типов. Устанавливается в компонент.</td></tr><tr id="ae9ec053-caa6-4a59-8b44-9ba3356bc7cc"><td id="ktoq" class=""><code><strong>@InstallIn</strong></code></td><td id="g`\o" class="" style="width:673px">Информирует в каком классе Android будет использоваться или устанавливаться каждый модуль. SingletonComponent (Application), ViewModelComponent (ViewModel), ActivityComponent (Activity), FragmentComponent (Fragment), ViewComponent (View), ServiceComponent (Service).</td></tr><tr id="78f5cedb-dc7b-4425-a712-d60fb3424767"><td id="ktoq" class=""><code><strong>@Binds</strong></code></td><td id="g`\o" class="" style="width:673px">Сообщает Hilt какую реализацию использовать, когда ему нужно предоставить реализацию интерфейса.</td></tr><tr id="423a6c81-e8e2-419c-a686-a2296db03634"><td id="ktoq" class=""><code><strong>@Provide</strong></code></td><td id="g`\o" class="" style="width:673px">Сообщает Hilt о том, как предоставлять экземпляры этого типа. Внедрение зависимостей в конструктор невозможно, если класс получен из внешней библиотеки (Room, Retrofit).</td></tr><tr id="eb9477a2-4d7c-4d15-9908-1e59566bbd89"><td id="ktoq" class=""><code><strong>@Qualifier</strong></code></td><td id="g`\o" class="" style="width:673px">Позволяет предоставлять различные реализации одного и того же типа в качестве зависимостей.</td></tr><tr id="d5ff222b-8e78-4e99-8d38-c421136ecd9d"><td id="ktoq" class=""><code><strong>@ApplicationContext</strong></code></td><td id="g`\o" class="" style="width:673px">Переопределенный квалификатор контекста приложения.</td></tr><tr id="deb3f9f9-51d1-4fa9-9526-8e76b17224cb"><td id="ktoq" class=""><code><strong>@ActivityContext</strong></code></td><td id="g`\o" class="" style="width:673px">Переопределенный квалификатор контекста активити.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Scopes</summary><div class="indented"><p id="66dbd8fa-9389-4e9a-bff9-3f7be7b070d9" class="">Это механизм для управления временем жизни объектов, создаваемых в графе зависимостей. Они позволяют контролировать, как и когда будет создаваться и повторно использоваться объект, предоставленный в определенном контексте.</p><p id="68640d13-b2b7-413b-a429-25fdfcc3c517" class="">• <strong>Контроль времени жизни объектов</strong>: Скоупы позволяют создать объект один раз и повторно использовать его в течение определенного времени (например, пока живет Activity или приложение).</p><p id="f3ab666d-b381-44df-8f7a-9498fdffdb10" class="">• <strong>Оптимизация ресурсов</strong>: Вместо того, чтобы каждый раз создавать новый объект, вы можете использовать один и тот же экземпляр там, где это уместно.</p><p id="066d64ab-b405-437d-b9ff-5d472ef60e1b" class="">• <strong>Избежание утечек памяти</strong>: Правильное использование скоупов помогает предотвратить утечки памяти, контролируя время жизни объектов.</p><table id="514b65df-2db5-44fd-b048-a00c9bbaf0b8" class="simple-table"><thead class="simple-table-header"><tr id="fbf13af9-313b-4bba-9137-659ded692db8"><th id="s^IL" class="simple-table-header-color simple-table-header" style="width:319px"><strong>Android class</strong></th><th id="`aYK" class="simple-table-header-color simple-table-header"><strong>Generated component</strong></th><th id="Kp~x" class="simple-table-header-color simple-table-header"><strong>Scope</strong></th></tr></thead><tbody><tr id="587368ed-6d48-4135-ae4b-77874ff8afb9"><td id="s^IL" class="" style="width:319px">Application</td><td id="`aYK" class="">SingletonComponent</td><td id="Kp~x" class=""><code>@Singleton</code></td></tr><tr id="0357078a-1d82-4cf8-ba32-583a75bfec31"><td id="s^IL" class="" style="width:319px">Activity</td><td id="`aYK" class="">ActivityRetainedComponent</td><td id="Kp~x" class=""><code>@ActivityRetainedScoped</code></td></tr><tr id="09f66df8-134a-4b7e-87b2-6935a397c84f"><td id="s^IL" class="" style="width:319px">ViewModel</td><td id="`aYK" class="">ViewModelComponent</td><td id="Kp~x" class=""><code>@ViewModelScoped</code></td></tr><tr id="234d0840-4f1d-492a-ab4d-52c734b6cb4b"><td id="s^IL" class="" style="width:319px">Activity</td><td id="`aYK" class="">ActivityComponent</td><td id="Kp~x" class=""><code>@ActivityScoped</code></td></tr><tr id="5d9700b4-1060-40b2-8d61-8d63dd135b76"><td id="s^IL" class="" style="width:319px">Fragment</td><td id="`aYK" class="">FragmentComponent</td><td id="Kp~x" class=""><code>@FragmentScoped</code></td></tr><tr id="cc0fcd01-fc64-4290-b9c1-c5d85bca63c5"><td id="s^IL" class="" style="width:319px">View</td><td id="`aYK" class="">ViewComponent</td><td id="Kp~x" class=""><code>@ViewScoped</code></td></tr><tr id="9a2fbaba-06f0-4edf-9916-d3a1a58468c6"><td id="s^IL" class="" style="width:319px">View annotated with <code>@WithFragmentBindings</code></td><td id="`aYK" class="">ViewWithFragmentComponent</td><td id="Kp~x" class=""><code>@ViewScoped</code></td></tr><tr id="c0e8484d-7acf-4fb2-b29c-b75811f9b9c7"><td id="s^IL" class="" style="width:319px">Service</td><td id="`aYK" class="">ServiceComponent</td><td id="Kp~x" class=""><code>@ServiceScoped</code></td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Lazy Initialization</summary><div class="indented"><h3 id="d62b1d6c-8987-4b81-85c8-aabde58d6742" class=""><code><strong>Provider</strong></code></h3><p id="8e1837f5-fe37-421c-aae9-849342eb570a" class="">Интерфейс, который позволяет отложить создание объекта и при необходимости создавать его каждый раз заново. Provider используется для управления созданием зависимостей вручную, когда нужно иметь доступ к зависимости каждый раз, как она требуется, а не использовать один и тот же экземпляр.</p><p id="61615b82-d8a6-49bf-b4b7-43f3a44afccb" class="">• <strong>Ленивая инициализация</strong>: Provider позволяет создать объект только тогда, когда он действительно потребуется, а не в момент создания графа зависимостей.</p><p id="574d419e-5fc1-480b-8454-51e63bd0032c" class="">• <strong>Создание объектов по запросу</strong>: В отличие от обычной инъекции, при использовании Provider зависимость будет создаваться каждый раз при вызове get.</p><p id="69991f06-4c0b-4ff7-b59c-8ba53f11a571" class="">• <strong>Множественные вызовы</strong>: Каждый вызов метода get возвращает новый экземпляр зависимости, если скоуп не ограничивает это.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7eda9ac-616f-4914-83a7-db1c02a67ab7" class="code"><code class="language-Kotlin">class SomeClass @Inject constructor(
+		private val someDependencyProvider: Provider&lt;SomeDependency&gt;
+) {
+    fun useDependency() {
+        val dependency = someDependencyProvider.get() // Создаст или вернет объект SomeDependency
+        // Работа с dependency
+    }
+}</code></pre><p id="7fdd8c91-080b-4fbc-90f2-7effda2c0bc8" class="">
+</p><h3 id="e142f921-2dae-4dff-930c-6bd3a8399abc" class=""><code><strong>Lazy</strong></code></h3><p id="99ccd287-2cfe-4f36-af65-3c84fbd807ee" class="">Интерфейс, который откладывает создание объекта до момента, когда он впервые потребуется, и гарантирует, что этот объект будет создан только один раз.</p><p id="2746f17c-62b3-447b-89b8-d256d6f877d1" class="">• <strong>Ленивая инициализация</strong>: Объект создается только при первом обращении к нему через метод get.</p><p id="7f72c1a4-6232-4cd8-b446-8dae027f1641" class="">• <strong>Один и тот же экземпляр</strong>: После создания объект кешируется, и при последующих вызовах будет возвращаться один и тот же экземпляр.</p><p id="9448819f-7319-4744-a9ad-cf0c59e3a3b3" class="">• <strong>Оптимизация производительности</strong>: Использование Lazy позволяет откладывать создание объекта до тех пор, пока он реально не понадобится, что может быть полезно для тяжелых зависимостей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b6df79f4-8fac-4429-99cd-31c2a42af146" class="code"><code class="language-Kotlin">class SomeClass @Inject constructor(
+		private val someDependencyLazy: Lazy&lt;SomeDependency&gt;
+) {
+    fun useDependency() {
+        val dependency = someDependencyLazy.get() // Объект создается при первом вызове
+        // Работа с dependency
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@Named</code></summary><div class="indented"><p id="cbca64e3-c7ae-4fe3-94fb-53af5775ee83" class="">Используется для различения зависимостей одного типа при инъекции. Это позволяет указать конкретную зависимость через строковый идентификатор, если существует несколько реализаций одного и того же типа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca1bcf24-b2c8-443a-a287-4629d4f7c1de" class="code"><code class="language-Kotlin">@Module
+class NetworkModule {
+
+    @Provides
+    @Named(&quot;baseUrl&quot;)
+    fun provideBaseUrl(): String = &quot;https://api.example.com&quot;
+
+    @Provides
+    @Named(&quot;apiKey&quot;)
+    fun provideApiKey(): String = &quot;1234567890&quot;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0aba29b9-c1e2-409a-9423-0185385340e0" class="code"><code class="language-Kotlin">class NetworkService @Inject constructor(
+    @Named(&quot;baseUrl&quot;) private val baseUrl: String,
+    @Named(&quot;apiKey&quot;) private val apiKey: String
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@Qualifier</code></summary><div class="indented"><p id="8ccfccce-489c-4341-8cf7-3ad26ec7bb52" class="">Используется для создания пользовательских аннотаций, которые позволяют различать зависимости одного типа. Это более гибкий и расширяемый способ, чем использование <code>@Named</code>, позволяющий избежать ошибок, связанных с использованием строковых идентификаторов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2525d30e-d278-4479-9119-e94d575c2048" class="code"><code class="language-Kotlin">@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BaseUrl
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ApiKey</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3590439f-de8b-415a-84b0-e8423c90a4e0" class="code"><code class="language-Kotlin">@Module
+class NetworkModule {
+
+    @Provides
+    @BaseUrl
+    fun provideBaseUrl(): String = &quot;https://api.example.com&quot;
+
+    @Provides
+    @ApiKey
+    fun provideApiKey(): String = &quot;1234567890&quot;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="65e4db0c-a79a-4d6b-9a61-da358c387c3d" class="code"><code class="language-Kotlin">class NetworkService @Inject constructor(
+    @BaseUrl private val baseUrl: String,
+    @ApiKey private val apiKey: String
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@IntoSet</code></summary><div class="indented"><p id="32c29743-145c-4b80-8816-009fdd9dffed" class="">Используется для добавления зависимости в Set. Она позволяет собрать несколько объектов одного типа в одно множество (Set), где каждый объект предоставляет свой вклад. При добавлении объектов с @IntoSet, Dagger автоматически создает и управляет множеством, собирая все помеченные зависимости одного типа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0aae572d-c7b5-4c39-8629-5879b47ccd28" class="code"><code class="language-Kotlin">@Module
+class AnimalModule {
+
+    @Provides
+    @IntoSet
+    fun provideDog(): String = &quot;Dog&quot;
+
+    @Provides
+    @IntoSet
+    fun provideCat(): String = &quot;Cat&quot;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="49b97a29-e01c-468c-b2bf-364d0df557c7" class="code"><code class="language-Kotlin">class AnimalService @Inject constructor(
+    private val animals: Set&lt;String&gt;
+) {
+    fun printAnimals() {
+        animals.forEach { println(it) }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@IntoMap</code></summary><div class="indented"><p id="2ccaa436-7478-40f1-bbca-1146aea0473c" class="">Используется для добавления зависимостей в Map. Она позволяет собрать несколько объектов с различными ключами в одну карту (Map&lt;Key, Value&gt;), где каждый объект привязывается к определенному ключу. С помощью аннотации @IntoMap и соответствующего ключа можно связать объект с определенным значением ключа в мапе.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f60c0dba-c2ce-46d7-a059-55c0ff9b154d" class="code"><code class="language-Kotlin">@Module
+class AnimalModule {
+
+    @Provides
+    @IntoMap
+    @StringKey(&quot;dog&quot;)
+    fun provideDog(): String = &quot;Bark&quot;
+
+    @Provides
+    @IntoMap
+    @StringKey(&quot;cat&quot;)
+    fun provideCat(): String = &quot;Meow&quot;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b04c80e-d40b-41af-9ad4-61ad299843da" class="code"><code class="language-Kotlin">class AnimalService @Inject constructor(
+    private val animals: Map&lt;String, String&gt;
+) {
+    fun printSounds() {
+        animals.forEach { (animal, sound) -&gt;
+            println(&quot;$animal makes $sound&quot;)
+        }
+    }
+}</code></pre><p id="49dab840-9aa2-4630-aee3-d686ba418868" class="">
+</p><h3 id="d5c3984b-f120-41a2-9c7d-a02ac3b28493" class=""><code>@StringKey</code></h3><p id="1ec6fdd9-b42a-4345-a2d6-5ba69d5c1a20" class="">Задает ключ для объекта.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@Subcomponent</code></summary><div class="indented"><p id="6f7a7cae-1287-4e90-889e-2a087f4cca52" class="">Аннотация, используемая для создания вложенных компонентов, которые могут унаследовать зависимости от родительского компонента. Она позволяет организовать иерархию компонентов и управлять скоупами зависимостей для отдельных частей приложения, таких как Activity, Fragment или другие логические блоки. @Subcomponent объявляет новый компонент, который может наследовать зависимости от своего родительского компонента.</p><p id="e03c8dd2-7a7f-4ab3-8eb0-5b7905ebdffd" class="">• <strong>Наследование зависимостей:</strong> Subcomponent может использовать все зависимости родительского компонента.</p><p id="c6fa1b01-7fe3-4c78-b1ce-e358f1d70ccc" class="">• <strong>Изоляция зависимостей:</strong> Subcomponent может иметь свои собственные зависимости, которые доступны только внутри этого компонента.</p><p id="21596448-be44-475c-a51c-08fdd592d71e" class="">• <strong>Скоупы:</strong> Каждый Subcomponent может иметь свои скоупы, что полезно для управления временем жизни объектов (например, @ActivityScope).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="05b5245b-b140-4d2e-9867-7b9b7492c712" class="code"><code class="language-Kotlin">@Subcomponent
+interface LoginComponent {
+
+    // Определяем метод для инъекции зависимостей в LoginActivity
+    fun inject(loginActivity: LoginActivity)
+
+    // Builder для создания LoginComponent
+    @Subcomponent.Builder
+    interface Builder {
+        fun build(): LoginComponent
+    }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8fabede3-b460-4dd0-9469-ed1295ab30a2" class="code"><code class="language-Kotlin">// Связь с родительским компонентом
+@Component(modules = [AppModule::class])
+interface AppComponent {
+
+    // Метод для создания Subcomponent
+    fun loginComponent(): LoginComponent.Builder
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4f6e3d89-6804-49b8-977a-951bbfd500a8" class="code"><code class="language-Kotlin">// Использование Subcomponent
+class LoginActivity: AppCompatActivity() {
+    
+    @Inject
+    lateinit var viewModel: LoginViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Получение экземпляра Subcomponent через родительский компонент
+        (application as MyApp).appComponent
+            .loginComponent()
+            .build()
+            .inject(this)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@Provides</code></summary><div class="indented"><p id="880a277b-cef0-444e-8c73-11e40192837a" class="">Используется в Dagger для предоставления объектов, которые требуют специальной логики создания. Используется для указания метода, который должен предоставлять (создавать) экземпляр зависимости. Она применяется внутри модуля (класса, отмеченного аннотацией @Module) и позволяет описать логику создания объекта, который не может быть создан с помощью конструктора или требует дополнительной настройки. Метод, отмеченный @Provides, должен находиться в классе, помеченном @Module, и возвращать экземпляр зависимости, который будет добавлен в граф зависимостей Dagger.</p><p id="9fd4aa5c-9db6-4e99-9d81-e9d27d5d3a71" class="">• <strong>Модули и методы с </strong>@Provides<strong>:</strong> Модуль (@Module) содержит методы с аннотацией @Provides, которые описывают, как создавать зависимости.</p><p id="c4f8bc59-9a26-4dd2-98bb-7e85c23335e2" class="">• <strong>Взаимодействие зависимостей:</strong> В методе @Provides могут использоваться другие зависимости, которые Dagger автоматически передаст как параметры (например, OkHttpClient в методе provideApiService).</p><p id="f1d5619c-0aea-43dc-835f-5f690c988e2e" class="">• <strong>Возвращаемый объект:</strong> Метод должен возвращать объект, который требуется предоставить в графе зависимостей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3fbc48a8-585b-4abf-b2b2-4f75f05595e2" class="code"><code class="language-Kotlin">@Module
+class NetworkModule {
+
+    @Provides
+    fun provideHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .build()
+    }
+
+    @Provides
+    fun provideApiService(client: OkHttpClient): ApiService {
+        return ApiService(client)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>@Binds</code></summary><div class="indented"><p id="e1031a5d-0d8b-4d24-ad13-6bc6ad623f31" class="">Используется для связывания (приведения) интерфейса к его реализации. В отличие от @Provides, которая требует написания метода с логикой создания объекта, @Binds позволяет указать, что конкретная реализация интерфейса должна быть использована в графе зависимостей. Метод, отмеченный @Binds, должен находиться в классе, помеченном аннотацией @Module. Этот метод принимает объект реализации и возвращает его в виде интерфейса.</p><p id="d6fc4b69-56cc-496b-8db5-90f13cfe2c3c" class="">• <strong>Модули и методы с </strong>@Binds<strong>:</strong> В модуле (@Module) используется метод с @Binds для связывания интерфейса с конкретной реализацией. Метод должен быть абстрактным и возвращать интерфейс, а параметр метода — реализацию.</p><p id="98fb6655-a6af-403c-a408-ffbcafe5b23a" class="">• <strong>Интерфейс и реализация:</strong> Метод с @Binds указывает Dagger, что при запросе зависимости типа интерфейса ApiService следует использовать реализацию ApiServiceImpl.</p><p id="7d4f3c70-737e-4ea1-99e1-cdb9de22d32b" class="">• <strong>Краткость:</strong> @Binds используется, когда реализация создается и управляется другим способом, а метод просто связывает интерфейс с реализацией без дополнительной логики создания.</p><p id="a561870c-b286-44df-8270-c9ed63a1a3ec" class="">• <strong>Чистота кода:</strong> Упрощает модуль, избегая избыточного кода создания объектов и конфигурации.</p><p id="85332bc9-0e69-4191-9e54-88169fc73541" class="">• <strong>Скорость:</strong> Менее затратный способ связывания зависимостей по сравнению с @Provides.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="393dfab0-4b74-409d-8ce7-f5c7fc2ad729" class="code"><code class="language-Kotlin">interface ApiService {
+    fun getData(): String
+}
+
+class ApiServiceImpl: ApiService {
+    override fun getData(): String {
+        return &quot;Data from API&quot;
+    }
+}
+
+@Module
+abstract class ApiModule {
+
+    @Binds
+    abstract fun bindApiService(impl: ApiServiceImpl): ApiService
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Hilt. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="a8bf115d-afe1-4372-a325-a32ada60f358" class="numbered-list" start="1"><li>Как создать разные реализации одного типа?</li></ol><ol type="1" id="3d6f1582-df2f-4bc5-841c-e00e4e63496b" class="numbered-list" start="2"><li>Что такое Component и Module?</li></ol><ol type="1" id="c1f83abe-a16f-4e59-827d-772aebfb52fa" class="numbered-list" start="3"><li>Для чего нужна аннотация @Singleton?</li></ol><ol type="1" id="b8f2047c-992c-4dd4-8d01-7387d448138c" class="numbered-list" start="4"><li>Что такое multibinding? Какие аннотации? Когда полезно использовать?</li></ol><ol type="1" id="2458fff2-0c53-429a-a42d-465324025af4" class="numbered-list" start="5"><li>Что такое subcomponents?</li></ol><ol type="1" id="acc496c2-c816-485b-ba41-98473af72e1b" class="numbered-list" start="6"><li>Скоупы в Dagger что это и зачем они нужны?</li></ol><ol type="1" id="4da860e4-430e-4df0-87f3-1fcb0521fcc1" class="numbered-list" start="7"><li>Чем @Binds отличается от @Provides?<p id="22e571da-6ef9-4649-98d2-a18fab968c20" class=""><mark class="highlight-teal"><code>@Binds</code></mark><mark class="highlight-teal"> связывает интерфейс с реализацией без создания объекта и требует абстрактного метода, тогда как </mark><mark class="highlight-teal"><code>@Provides</code></mark><mark class="highlight-teal"> создает и предоставляет экземпляры объектов, включая логику создания, и требует обычного метода</mark></p></li></ol><ol type="1" id="18f8bd99-cce2-4eef-8cde-de3f122e5f42" class="numbered-list" start="8"><li>Что происходит с даггером, когда нажимаешь кнопку собрать проект?<p id="7edd1b2b-330e-49f0-8d2b-21f04a3cdf92" class=""><mark class="highlight-teal">При сборке создается граф зависимостей. Приложение получает доступ к графу через четко определенный набор корней.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
