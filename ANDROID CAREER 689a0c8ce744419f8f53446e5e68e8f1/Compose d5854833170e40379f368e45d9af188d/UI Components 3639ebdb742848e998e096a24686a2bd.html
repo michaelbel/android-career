@@ -1,0 +1,1254 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>UI Components</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3639ebdb-7428-48e9-98e0-96a24686a2bd" class="page sans"><header><img class="page-cover-image" src="UI%20Components%203639ebdb742848e998e096a24686a2bd/michaelbely_compose_snowballs_blue_color_d9f5b505-533e-4bea-b2ad-4af548a6f823.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="UI%20Components%203639ebdb742848e998e096a24686a2bd/compose.svg"/></div><h1 class="page-title">UI Components</h1><p class="page-description"></p></header><div class="page-body"><table id="9e8d2f9e-0614-48e0-adff-d2a69eacb587" class="simple-table"><tbody><tr id="641805fc-9b63-4b7c-bb28-b10bc70142cc"><td id="ToC_" class="" style="width:610px"><a href="https://developer.android.com/develop/ui/compose/layouts/flow">https://developer.android.com/develop/ui/compose/layouts/flow</a></td></tr><tr id="5337bc94-6da1-41f5-9720-fc551a3f9635"><td id="ToC_" class="" style="width:610px"><a href="https://developer.android.com/develop/ui/compose/layouts/pager">https://developer.android.com/develop/ui/compose/layouts/pager</a></td></tr><tr id="e7075586-704c-40be-a8a8-f5d0d135eacc"><td id="ToC_" class="" style="width:610px"><a href="https://developer.android.com/develop/ui/compose/layouts/constraintlayout">https://developer.android.com/develop/ui/compose/layouts/constraintlayout</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>Text</code></summary><div class="indented"><p id="758e01c2-66d2-4f24-a8e3-2688c06d0cd8" class="">Отображает текст на экране.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="607ce85b-dbd9-4e4b-a110-8b41edc81f5f" class="code"><code class="language-Kotlin">Text(text = &quot;Hello, Compose!&quot;)</code></pre><p id="6a08a83a-7d19-4af3-8ef4-3f5be00bf5e5" class="">
+</p><h3 id="013c14fe-345d-49c3-ac8f-604c4e859188" class=""><strong>Текст фиксированной высоты c расположением center_vertical</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f82e2e09-3ac2-4201-8614-70171e982c1d" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Text(
+    text = stringResource(R.string.text),
+    modifier = Modifier
+        .constrainAs(anyText) {
+            width = Dimension.wrapContent
+            height = Dimension.value(48.dp)
+            start.linkTo(parent.start)
+            top.linkTo(parent.top)
+        }
+        .wrapContentHeight(Alignment.CenterVertically)
+)</code></pre><p id="a9c16bfd-a3bc-4d4b-8553-48eb6bd499fd" class="">
+</p><h3 id="55462e7a-3c40-441f-a646-0b27754acb97" class=""><strong>Enforcing constraints. Текст сокращается в зависимости от контента рядом</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e5c800bb-849e-41d8-8f74-b59ec01c070f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Row {
+    Text(
+        text = &quot;Text&quot;,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        modifier = Modifier.weight(weight = 1F, fill = false)
+    )
+
+    Icon(
+        painter = painterResource(R.drawable.ic_icon),
+        contentDescription = null
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>BasicText</strong></code></summary><div class="indented"><p id="d5f8b478-6802-4d5f-a2af-05daa29e4959" class="">Базовый компонент для отображения текста.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fc742bc9-5418-4d4f-b348-bd6f9b30bbef" class="code"><code class="language-Kotlin">BasicText(&quot;Hello, World!&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ClickableText</strong></code></summary><div class="indented"><p id="59e138ab-290c-46b0-b647-71de904bff09" class="">Текст, который реагирует на клики.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="43d5cce3-88de-4d01-8d3f-9194c017a71a" class="code"><code class="language-Kotlin">ClickableText(
+    text = AnnotatedString(&quot;Click me&quot;),
+    onClick = { offset -&gt; /* handle click */ }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Button</strong></code></summary><div class="indented"><p id="a207fbde-7efa-45af-b2bb-3e2692e95a4e" class="">Кнопка, которая выполняет действие при нажатии.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e564245a-6ec5-437e-8a8d-32e831279800" class="code"><code class="language-Kotlin">Button(onClick = { /* Действие при нажатии */ }) {
+    Text(&quot;Click Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TextButton</strong></code></summary><div class="indented"><p id="cadb16e3-c8e5-4d6d-8e18-79f9d913516b" class="">Кнопка с текстом, без фона и границ.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ac1bae3-9b78-4e74-b711-25d4e966a155" class="code"><code class="language-Kotlin">TextButton(onClick = { /* Handle click */ }) {
+    Text(&quot;Click Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>OutlinedButton</strong></code></summary><div class="indented"><p id="582954bb-25c1-497a-a108-1885ae510b68" class="">Кнопка с контуром вместо заполнения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a40487-4f5d-48c6-af3e-4c8dfb8e40f8" class="code"><code class="language-Kotlin">OutlinedButton(onClick = { /* Действие */ }) {
+    Text(&quot;Outlined Button&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>IconButton</strong></code></summary><div class="indented"><p id="e07d55a6-d788-43b4-8149-581e36630d92" class="">Кнопка, которая содержит только иконку.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a43a47b2-67af-47ca-be71-9260971fbff3" class="code"><code class="language-Kotlin">IconButton(onClick = { /* Действие */ }) {
+    Icon(Icons.Default.Favorite, contentDescription = &quot;Like&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledIconButton</strong></code></summary><div class="indented"><p id="25292321-ef65-49c0-91bc-b5489b8d51b7" class="">Кнопка с иконкой и заполненным фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="389afb87-cc41-4b70-9a7b-e1c569e93b08" class="code"><code class="language-Kotlin">FilledIconButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledTonalIconButton</strong></code></summary><div class="indented"><p id="80cd6a68-4865-406c-83f2-5d10e08bc985" class="">Кнопка с иконкой и менее ярким фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96396d90-60db-4c9e-9aa1-b9caf169ee5c" class="code"><code class="language-Kotlin">FilledTonalIconButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>OutlinedIconButton</strong></code></summary><div class="indented"><p id="695a38a3-9a6b-4cab-ab35-59d8409aed62" class="">Кнопка с иконкой и обводкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9db039c4-ffd1-4de6-8314-8855ed7bdd9e" class="code"><code class="language-Kotlin">OutlinedIconButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>CircleIconButton</strong></code></summary><div class="indented"><p id="f31f52a2-d9a2-44d1-afb4-c35ce04d5f1e" class="">Круглая кнопка с иконкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28353451-1cf4-4f10-8959-774fd2d1c02f" class="code"><code class="language-Kotlin">CircleIconButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ElevatedButton</strong></code></summary><div class="indented"><p id="331dc4ed-5ff9-4f34-b4f1-7d9ff72ca163" class="">Кнопка с тенью.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a5198e3-e26f-4ebd-8cac-7cab7d06410c" class="code"><code class="language-Kotlin">ElevatedButton(onClick = { /* Handle click */ }) {
+    Text(&quot;Click Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledButton</strong></code></summary><div class="indented"><p id="a87821df-cf15-4c5d-843a-f8eedf0bb9ab" class="">Кнопка с заполненным фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="99856170-de7c-4f8d-b038-1ae45bafa70b" class="code"><code class="language-Kotlin">FilledButton(onClick = { /* Handle click */ }) {
+    Text(&quot;Click Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledTonalButton</strong></code></summary><div class="indented"><p id="d9649cf3-4242-4701-a148-ec9ee44d52a6" class="">Кнопка с заполненным, но менее ярким фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2f8fc23b-0baf-4cb1-bc9b-ba7473552d37" class="code"><code class="language-Kotlin">FilledTonalButton(onClick = { /* Handle click */ }) {
+    Text(&quot;Click Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>InlineSliderButton</strong></code></summary><div class="indented"><p id="dc698eed-0317-4ccc-86df-0b248f920a3a" class="">Кнопка для управления значениями ползунка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c89be20c-e531-4f84-b391-f542250b6770" class="code"><code class="language-Kotlin">InlineSliderButton(onClick = { /* Handle click */ }) {
+    Text(&quot;Slider Button&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>IconToggleButton</strong></code></summary><div class="indented"><p id="e2eecb62-dafe-4bbe-a8b4-7d2df328f521" class="">Кнопка-переключатель с иконкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="536d7c8d-9998-40f8-96fd-85da3e142201" class="code"><code class="language-Kotlin">IconToggleButton(checked = false, onCheckedChange = { /* Handle check change */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledIconToggleButton</strong></code></summary><div class="indented"><p id="21dd922e-0407-4ae5-a982-f0e669be3263" class="">Кнопка-переключатель с заполненным фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd288197-af18-4850-bb9a-d93242c78693" class="code"><code class="language-Kotlin">FilledIconToggleButton(checked = false, onCheckedChange = { /* Handle check change */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilledTonalIconToggleButton</strong></code></summary><div class="indented"><p id="b1dae204-1993-4529-8b32-92a6f026dad4" class="">Кнопка-переключатель с менее ярким фоном.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="93c5bd5c-a250-408d-b8a9-126ae9dfa4f7" class="code"><code class="language-Kotlin">FilledTonalIconToggleButton(checked = false, onCheckedChange = { /* Handle check change */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>OutlinedIconToggleButton</strong></code></summary><div class="indented"><p id="f3817110-4f2c-4d1e-9e75-9c0b1a0ac5da" class="">Кнопка-переключатель с обводкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ead6b5ec-ea6c-43ea-8291-70d0d567aa5a" class="code"><code class="language-Kotlin">OutlinedIconToggleButton(checked = false, onCheckedChange = { /* Handle check change */ }) {
+    Icon(Icons.Filled.Favorite, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>Image</code></summary><div class="indented"><p id="5b544777-c82b-4bba-9ecd-659afe86f9a4" class="">Отображает изображение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cb1aa4a2-ed90-43c7-954c-d80fc18f1711" class="code"><code class="language-Kotlin">Image(
+		painter = painterResource(id = R.drawable.image),
+		contentDescription = &quot;Example Image&quot;
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Icon</strong></code></summary><div class="indented"><p id="291e53d6-6228-43f6-9b37-68a81b7f2398" class="">Отображает иконку, например из набора Material Icons.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fa2211c6-a413-4906-9d73-103fe906b9dc" class="code"><code class="language-Kotlin">Icon(imageVector = Icons.Default.Home, contentDescription = &quot;Home Icon&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>TextField</code></summary><div class="indented"><p id="98ea4f1e-c608-42f2-ad2a-c01c6ed58126" class="">Поле для ввода текста.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7f17f47-b650-4d10-9efc-4cb2359560e6" class="code"><code class="language-Kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
+TextField(
+		value = text, 
+		onValueChange = { text = it }, 
+		label = { Text(&quot;Enter text&quot;) }
+)</code></pre><p id="272ea160-01b6-4aa5-b752-cdcf2f0a6450" class="">
+</p><h3 id="1448c48f-da81-4269-bc64-851f2008cb69" class=""><strong>Floating Suffix</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6c953a31-52f2-440e-937a-bb39564d3039" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">internal class SuffixTransformation(
+    private val suffix: String
+): VisualTransformation {
+
+    override fun filter(text: AnnotatedString): TransformedText {
+        val result = text + AnnotatedString(
+            text = suffix
+        )
+
+        val textWithSuffixMapping = object: OffsetMapping {
+            override fun originalToTransformed(offset: Int): Int {
+                return offset
+            }
+
+            override fun transformedToOriginal(offset: Int): Int {
+                if (text.isEmpty()) return 0
+                if (offset &gt;= text.length) return text.length
+                return offset
+            }
+        }
+
+        return TransformedText(result, textWithSuffixMapping )
+    }
+}
+
+TextField(
+    value = text,
+    onValueChange = { value: String -&gt;
+        text = value
+    },
+    visualTransformation = if (text.isNotEmpty()) SuffixTransformation(suffix = &quot;₽&quot;) else VisualTransformation.None
+)</code></pre><p id="0bbc5652-d0af-439b-ab7c-5064d379b647" class="">
+</p><h3 id="47b6e9d7-fc31-439f-9589-0c540d0f79f0" class="">Password Field</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="83207acb-784e-49b9-a40f-358fe996b08f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">var password by remember { mutableStateOf(&quot;&quot;) }
+var passwordVisible by rememberSaveable { mutableStateOf(false) }
+
+TextField(
+    value = titleText,
+    onValueChange = { value: String -&gt;
+        password = value
+    },
+    trailingIcon = {
+        AnimatedVisibility(
+            visible = password.isNotEmpty()
+        ) {
+            IconButton(
+                onClick = {
+                    passwordVisible = !passwordVisible
+                }
+            ) {
+                Icon(
+                    imageVector = if (passwordVisible) MoviesIcons.Visibility else MoviesIcons.VisibilityOff,
+                    contentDescription = null
+                )
+            }
+        }
+    },
+    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>OutlinedTextField</strong></code></summary><div class="indented"><p id="f088b38b-4f07-497a-a457-0085ad5dada8" class="">Текстовое поле с обводкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6c65c7f-afc1-4f23-9103-a438f9d3546e" class="code"><code class="language-Kotlin">var text by remember { mutableStateOf(&quot;&quot;) }
+OutlinedTextField(
+    value = text,
+    onValueChange = { text = it },
+    label = { Text(&quot;Enter text&quot;) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Checkbox</strong></code></summary><div class="indented"><p id="0c234818-d904-4148-b5ac-18bf1ffaffee" class="">Компонент для выбора “включено/выключено”.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1009815d-e088-428b-897b-ab40f1c3087d" class="code"><code class="language-Kotlin">var checked by remember { mutableStateOf(false) }
+Checkbox(
+		checked = checked, 
+		onCheckedChange = { checked = it }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Switch</strong></code></summary><div class="indented"><p id="1d023135-1438-4a8f-8e0b-8f877b77bc7a" class="">Переключатель для изменения состояния (аналог чекбокса, но в стиле тумблера).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="082ef186-464d-4255-b5a0-7ba7a4a141b6" class="code"><code class="language-Kotlin">var switched by remember { mutableStateOf(false) }
+Switch(
+		checked = switched, 
+		onCheckedChange = { switched = it }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Slider</strong></code></summary><div class="indented"><p id="0033f9e3-af58-474a-9eaf-77b174b1c32e" class="">Ползунок для выбора значения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d72bb727-777c-4397-ac20-7b6866fd8c67" class="code"><code class="language-Kotlin">var sliderValue by remember { mutableStateOf(0f) }
+Slider(
+		value = sliderValue, 
+		onValueChange = { sliderValue = it }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>RangeSlider</strong></code></summary><div class="indented"><p id="eb0a695f-8269-4855-9a98-a728d678e28b" class="">Ползунок с диапазоном значений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9836a871-1953-41f5-9016-303693bf4bde" class="code"><code class="language-Kotlin">var range by remember { mutableStateOf(0f..100f) }
+RangeSlider(values = range, onValueChange = { range = it })</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>InlineSlider</strong></code></summary><div class="indented"><p id="6390d73f-cda7-421b-be25-c1b3b546ca23" class="">Ползунок для выбора значений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9d9a060b-f29f-417d-bed5-fa8a1950e58a" class="code"><code class="language-Kotlin">InlineSlider(value = 0.5f, onValueChange = { /* Handle change */ })</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>RadioButton</strong></code></summary><div class="indented"><p id="64381c7d-c803-4a22-b9a7-1b26b4b7cc30" class="">Радио-кнопка для выбора одного элемента из группы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e9c7b515-3623-4bba-86b0-9fbb3787c953" class="code"><code class="language-Kotlin">var selected by remember { mutableStateOf(false) }
+RadioButton(
+		selected = selected, 
+		onClick = { selected = !selected }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>RadioGroup</strong></code></summary><div class="indented"><p id="b29ae278-3778-40bc-8a59-e1c1b51252d3" class="">Группа радиокнопок для выбора одного варианта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5d0224c0-aa19-40f3-b3cf-27221460dacf" class="code"><code class="language-Kotlin">Column {
+    RadioButton(selected = true, onClick = { /* Действие */ })
+    RadioButton(selected = false, onClick = { /* Действие */ })
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Divider</strong></code></summary><div class="indented"><p id="d270adb0-90e7-4ea2-b025-1e9c83e3ca92" class="">Линия-разделитель между элементами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ac803a6e-2375-4560-bfc1-64ee4a193fb8" class="code"><code class="language-Kotlin">Divider()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Spacer</strong></code></summary><div class="indented"><p id="3c2aa6ae-9ac8-45d0-8ff3-4e8b689d9644" class="">Невидимый элемент, используемый для создания отступов между элементами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b4baf144-025a-4422-97f4-45e7781d8af6" class="code"><code class="language-Kotlin">Spacer(modifier = Modifier.height(16.dp))</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>CircularProgressIndicator</strong></code></summary><div class="indented"><p id="52c2729d-fb25-4a3a-a05e-c1bce599ee04" class="">Индикатор выполнения в виде круга.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="37f66eb8-8595-467b-9825-15c9c70f5ec8" class="code"><code class="language-Kotlin">CircularProgressIndicator()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>LinearProgressIndicator</strong></code></summary><div class="indented"><p id="4c933d71-be9c-4a81-bd26-0b43877fcb37" class="">Индикатор выполнения в виде полосы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b4f1a0a-10e0-4ab3-8e2f-058ca6ee7845" class="code"><code class="language-Kotlin">LinearProgressIndicator()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Card</strong></code></summary><div class="indented"><p id="6e6ecc1b-3051-4d17-b438-44ea7e1b3922" class="">Карточка с закругленными углами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9acc764-3ed4-4cdc-8bbf-a405cd49ad3e" class="code"><code class="language-Kotlin">Card(elevation = 4.dp) {
+    Text(&quot;This is a card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ElevatedCard</strong></code></summary><div class="indented"><p id="3d3d27a9-f56e-49e4-abf5-519ebccc8f66" class="">Карточка с тенью.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a5e263e-b64a-4be4-9863-d7ea2e77c4c3" class="code"><code class="language-Kotlin">ElevatedCard {
+    Text(&quot;Elevated Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>OutlinedCard</strong></code></summary><div class="indented"><p id="00d91720-9880-453e-8504-c45c4f37abbf" class="">Карточка с обводкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="78164920-c02a-4e6a-be62-068878f82754" class="code"><code class="language-Kotlin">OutlinedCard {
+    Text(&quot;Outlined Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AppCard</strong></code></summary><div class="indented"><p id="dd667aa2-feb9-44f7-b8b5-0a9b44b5eb3e" class="">Карточка для отображения информации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="95ce8ba8-7bef-4687-abd8-1a646512af36" class="code"><code class="language-Kotlin">AppCard {
+    Text(&quot;App Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TitleCard</strong></code></summary><div class="indented"><p id="2b89d1c1-7c5d-49b2-9ec1-3cc8e55143eb" class="">Карточка с заголовком.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1a2078a0-d8e5-403e-b348-b5c440d8013a" class="code"><code class="language-Kotlin">TitleCard {
+    Text(&quot;Title Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ClassicCard</strong></code></summary><div class="indented"><p id="c0d2bc4f-b795-4b53-b674-433f3797a15d" class="">Классическая карточка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3a9cdb5e-6862-4c7b-96ad-704819c35812" class="code"><code class="language-Kotlin">ClassicCard {
+    Text(&quot;Classic Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>WideClassicCard</strong></code></summary><div class="indented"><p id="bb65196d-8721-4dec-b04a-5efdc9a1c387" class="">Широкая классическая карточка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="133e8529-729e-487d-9dd1-f609cf382abc" class="code"><code class="language-Kotlin">WideClassicCard {
+    Text(&quot;Wide Classic Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>CompactCard</strong></code></summary><div class="indented"><p id="6b997fc1-9342-460e-8581-db07351d52ba" class="">Компактная карточка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45a796c2-4481-43c2-adcc-64adc57b729c" class="code"><code class="language-Kotlin">CompactCard {
+    Text(&quot;Compact Card&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SwipeToRevealCard</strong></code></summary><div class="indented"><p id="68cbebf3-86b0-487a-b9f7-95f73a0904c2" class="">Карточка с функцией свайпа для раскрытия.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="86804020-717b-46bb-a0f3-0d194fe2c10c" class="code"><code class="language-Kotlin">SwipeToRevealCard(
+    swipeThreshold = 100.dp,
+    onSwipe = { /* Handle swipe action */ }
+) {
+    Text(&quot;Swipe Me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FloatingActionButton (FAB)</strong></code></summary><div class="indented"><p id="02cd1dbd-e362-45ef-8307-1ba0ea2c98b7" class="">Плавающая кнопка для важных действий.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a2c299ac-26d2-4152-a2df-3236cb5de85d" class="code"><code class="language-Kotlin">FloatingActionButton(onClick = { /* Действие */ }) {
+    Icon(Icons.Default.Add, contentDescription = &quot;Add&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SmallFloatingActionButton</strong></code></summary><div class="indented"><p id="858c4257-13a2-4cda-b1d7-69e78d0eb132" class="">Небольшая плавающая кнопка действия.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eb150386-ada4-48bb-b686-5ffd2f28b4fe" class="code"><code class="language-Kotlin">SmallFloatingActionButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Add, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>LargeFloatingActionButton</strong></code></summary><div class="indented"><p id="d42ddddc-592f-49b9-aafc-d1b30f2b48eb" class="">Большая плавающая кнопка действия.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="acfe1715-b953-4b83-8141-93300014fbd9" class="code"><code class="language-Kotlin">LargeFloatingActionButton(onClick = { /* Handle click */ }) {
+    Icon(Icons.Filled.Add, contentDescription = null)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ExtendedFloatingActionButton</strong></code></summary><div class="indented"><p id="23abd72f-ff27-438f-9e79-dd13e3dc0f59" class="">Расширенная версия FloatingActionButton с текстом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="87c00948-7115-4bee-94ef-7916902b41e7" class="code"><code class="language-Kotlin">ExtendedFloatingActionButton(
+    text = { Text(&quot;Action&quot;) },
+    onClick = { /* Handle click */ }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TopAppBar</strong></code></summary><div class="indented"><p id="ee449a6c-1451-4ebf-bb92-490755818c0b" class="">Компонент для верхней панели приложения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6243fe36-c078-419e-b55a-ee5950a0856e" class="code"><code class="language-Kotlin">TopAppBar(title = { Text(&quot;App Title&quot;) })</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>BottomAppBar</strong></code></summary><div class="indented"><p id="0ad1cdee-673d-4208-8d4f-469987c08917" class="">Нижняя панель приложения, часто используется с FAB.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0c827c9-4dd6-4368-ac0e-4f72342b45c9" class="code"><code class="language-Kotlin">BottomAppBar {
+    Text(&quot;Bottom App Bar&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>BottomNavigation</strong></code></summary><div class="indented"><p id="5a61ca9c-4bbb-4365-990f-f2f890619371" class="">Нижняя панель для навигации по приложению.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ad27a42e-d886-451d-8af7-104b854f40cf" class="code"><code class="language-Kotlin">BottomNavigation {
+    BottomNavigationItem(icon = { Icon(Icons.Default.Home, contentDescription = null) }, selected = false, onClick = { /* Действие */ })
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>NavigationDrawer</strong></code></summary><div class="indented"><p id="a9525b06-49be-40a1-b8c7-b09dda2e9460" class="">Панель навигации сбоку, используемая для отображения меню.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8c48b98e-51c6-4ca1-830a-7216c949d059" class="code"><code class="language-Kotlin">ModalDrawer(
+    drawerContent = { Text(&quot;Drawer content&quot;) },
+    content = { Text(&quot;Main content&quot;) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TabRow</strong></code></summary><div class="indented"><p id="43d79c11-4635-4a1b-a5bf-070858e245e1" class="">Компонент для создания вкладок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5243a60f-e805-4753-807c-512300da6003" class="code"><code class="language-Kotlin">var selectedTabIndex by remember { mutableStateOf(0) }
+TabRow(selectedTabIndex = selectedTabIndex) {
+    Tab(selected = selectedTabIndex == 0, onClick = { selectedTabIndex = 0 }) {
+        Text(&quot;Tab 1&quot;)
+    }
+    Tab(selected = selectedTabIndex == 1, onClick = { selectedTabIndex = 1 }) {
+        Text(&quot;Tab 2&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ScrollableTabRow</strong></code></summary><div class="indented"><p id="dc384542-d81a-4b47-9c13-0017205d718d" class="">Панель с вкладками, которая поддерживает горизонтальную прокрутку.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="077926b1-e811-46ad-86ce-731cf9506bae" class="code"><code class="language-Kotlin">ScrollableTabRow(selectedTabIndex = 0) {
+    Text(&quot;Tab 1&quot;)
+    Text(&quot;Tab 2&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>PrimaryTabRow</strong></code></summary><div class="indented"><p id="c4e8577b-5eb5-48d2-8d68-33a1cb95663c" class="">Панель вкладок без прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4df4d6da-b3d7-4839-9ca3-e701fc72b81e" class="code"><code class="language-Kotlin">PrimaryTabRow(selectedTabIndex = 0) {
+    Tab(selected = true, onClick = { /* Handle click */ }) {
+        Text(&quot;Tab 1&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>PrimaryScrollableTabRow</strong></code></summary><div class="indented"><p id="50171fd6-c9bb-4ece-8774-dcfcf219acd0" class="">Панель вкладок с возможностью прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd9de059-e6b1-44b5-94e7-1218273f3e5d" class="code"><code class="language-Kotlin">PrimaryScrollableTabRow(selectedTabIndex = 0) {
+    Tab(selected = true, onClick = { /* Handle click */ }) {
+        Text(&quot;Tab 1&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SecondaryTabRow</strong></code></summary><div class="indented"><p id="b82526b0-ea48-4859-8657-9abb4590e5af" class="">Дополнительная панель вкладок без прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2902cd51-6b36-4ca1-8994-eb4804264ad4" class="code"><code class="language-Kotlin">SecondaryTabRow(selectedTabIndex = 0) {
+    Tab(selected = true, onClick = { /* Handle click */ }) {
+        Text(&quot;Tab 1&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SecondaryScrollableTabRow</strong></code></summary><div class="indented"><p id="ee4e2891-5283-437a-b738-224b057d61d0" class="">Дополнительная панель вкладок с прокруткой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4a8b192a-25e9-42d7-acbb-c5fd7cadd15d" class="code"><code class="language-Kotlin">SecondaryScrollableTabRow(selectedTabIndex = 0) {
+    Tab(selected = true, onClick = { /* Handle click */ }) {
+        Text(&quot;Tab 1&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Surface</strong></code></summary><div class="indented"><p id="9fc98546-4dba-4aa1-8cd5-55db1cdeff44" class="">Контейнер для отображения компонентов с поддержкой стилей, таких как elevation и фоны.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd6d79df-445b-4ad3-b8c3-1cc4e4e2b6f8" class="code"><code class="language-Kotlin">Surface(elevation = 4.dp, shape = RoundedCornerShape(8.dp)) {
+    Text(&quot;Surface with elevation&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Chip</strong></code></summary><div class="indented"><p id="7fe22d04-53f9-44d3-9a15-c0f9d0449406" class="">Элемент для отображения маленьких блоков текста или иконок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a4383e4-f3c7-4bc2-b5d9-83964646943e" class="code"><code class="language-Kotlin">Chip(onClick = { /* Handle click */ }) {
+    Text(&quot;Chip&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AssistChip</strong></code></summary><div class="indented"><p id="05417cc6-0881-4321-9d02-c784161893d0" class="">Чип для дополнительных действий или помощи.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5dd6d02e-864b-405d-84af-5ec36453ce22" class="code"><code class="language-Kotlin">AssistChip(onClick = { /* Handle click */ }) {
+    Text(&quot;Assist Chip&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FilterChip</strong></code></summary><div class="indented"><p id="488c5f97-18fb-45c2-acd2-3bae4d5a4ada" class="">Чип для фильтрации данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aa3f4b38-31e7-492a-a255-54f4d11d6bc4" class="code"><code class="language-Kotlin">FilterChip(onClick = { /* Handle click */ }) {
+    Text(&quot;Filter Chip&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>InputChip</strong></code></summary><div class="indented"><p id="0a268f03-5d0c-4c31-96b7-0ce2db28fa0c" class="">Чип для ввода данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2cbf412d-28ad-4b4a-a7d9-f6fe1549312a" class="code"><code class="language-Kotlin">InputChip(onClick = { /* Handle click */ }) {
+    Text(&quot;Input Chip&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SuggestionChip</strong></code></summary><div class="indented"><p id="9d816b2f-76f2-4365-bd9f-f4f963c6b344" class="">Чип для предложений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fc42b3d0-cc7e-4ad9-8ae8-ae1fc344ddd2" class="code"><code class="language-Kotlin">SuggestionChip(onClick = { /* Handle click */ }) {
+    Text(&quot;Suggestion Chip&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Badge</strong></code></summary><div class="indented"><p id="fa5c2845-af34-42f2-85eb-94c3923dcbe2" class="">Отображает небольшой значок или метку.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="17b20df6-1a9a-4aec-b1a0-9b65e9e8c501" class="code"><code class="language-Kotlin">Badge {
+    Text(&quot;New&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Carousel</strong></code></summary><div class="indented"><p id="bc11ce14-b5b4-4f70-b861-4a901e301aa6" class="">Компонент для прокрутки элементов в виде карусели.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="27d18126-712e-46a9-93ba-53f92a1c8ad0" class="code"><code class="language-Kotlin">Carousel(
+    items = listOf(&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;),
+    content = { item -&gt; Text(item) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>DatePicker</strong></code></summary><div class="indented"><p id="34d97ad5-12b3-4dd1-abf4-79ffb4f69005" class="">Выбор даты.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e68c2b2f-93fc-4df1-89c2-2fbfcd969f1a" class="code"><code class="language-Kotlin">DatePickerDialog(
+    onDateSelected = { /* Handle date selection */ }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TimePicker</strong></code></summary><div class="indented"><p id="e8f169ac-7328-4ddf-8789-cc14a35fc72b" class="">Выбор времени.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="54efa126-b8f6-48bd-bdc5-499885ce55f1" class="code"><code class="language-Kotlin">TimePickerDialog(
+    onTimeSelected = { /* Handle time selection */ }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>NavigationRail</strong></code></summary><div class="indented"><p id="8d73c636-5f33-4c2b-bb8b-1ae8ff0fbdeb" class="">Боковая панель для навигации</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5c4ff374-fe73-4004-95e2-9b1410a001f1" class="code"><code class="language-Kotlin">NavigationRail {
+    NavigationRailItem(
+        icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+        label = { Text(&quot;Home&quot;) },
+        selected = false,
+        onClick = { /* Handle click */ }
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SearchBar</strong></code></summary><div class="indented"><p id="850f0039-d4f7-4ded-a7ed-4ccf7b993a70" class="">Панель для поиска.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ed62b610-01f1-4418-8b71-0c947d7f0bb3" class="code"><code class="language-Kotlin">SearchBar(onSearch = { /* Handle search */ }) {
+    Text(&quot;Search&quot;)
+}</code></pre><p id="4ac2dc4e-a2ae-45ce-b656-10098d74bf27" class="">
+</p></div></details><p id="9c650acf-4916-4751-b191-f48ae823b726" class="">
+</p><h3 id="f847e02c-48e9-4230-95d1-59c6cb0219ad" class=""><strong>Layouts</strong></h3><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Column</strong></code></summary><div class="indented"><p id="3e12c9dd-fbc9-4f9d-b998-8c55434068e4" class="">Размещает элементы вертикально.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3d24cf10-59fb-4093-939b-48b92f525f4a" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Column {
+    Text(&quot;Item 1&quot;)
+    Text(&quot;Item 2&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Row</strong></code></summary><div class="indented"><p id="0732ac0c-93a5-4261-8cd1-f796eb5e67b0" class="">Размещает элементы горизонтально.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="53074510-c63c-4cf9-ab35-578920257dcd" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Row {
+    Text(&quot;Item 1&quot;)
+    Text(&quot;Item 2&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Box</strong></code></summary><div class="indented"><p id="faed7806-5157-4e09-bd3e-e5fc5a679481" class="">Контейнер, который накладывает элементы друг на друга.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e9d611c7-6c0f-4c2b-8077-0a0ff0731627" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Box {
+    Text(&quot;First item&quot;)
+    Text(&quot;Second item&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FlowRow</strong></code></summary><div class="indented"><p id="45ef125d-c5ad-4f03-a7b6-1975c8f3ce99" class="">Располагает элементы в строках, которые автоматически переносятся на новую строку при переполнении ширины.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="501bc188-7cb6-425e-b3b5-348a2379eda8" class="code"><code class="language-Kotlin">FlowRow {
+    repeat(10) { index -&gt;
+        Text(&quot;Item $index&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>FlowColumn</strong></code></summary><div class="indented"><p id="d7eac843-12fc-46fd-b62c-b7964a5631af" class="">Аналог FlowRow, но с вертикальной ориентацией.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c68ac8ad-be29-4330-a6c0-7a4ead7e87fd" class="code"><code class="language-Kotlin">FlowColumn {
+    repeat(10) { index -&gt;
+        Text(&quot;Item $index&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ContextualFlowRow</strong></code></summary><div class="indented"><p id="b903e408-ecdd-4b83-861f-1a17623f151a" class="">Компонент для размещения элементов в строку с поддержкой контекстного управления.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afd134e6-de3d-45e1-88e2-d4a4708b010b" class="code"><code class="language-Kotlin">ContextualFlowRow(
+    context = /* Provide context */,
+    modifier = Modifier.padding(8.dp)
+) {
+    items(/* List of items */) { item -&gt;
+        Text(text = item)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ContextualFlowColumn</strong></code></summary><div class="indented"><p id="a070e06d-cc53-49cd-83be-104cf0119fbc" class="">Компонент для размещения элементов в колонку с поддержкой контекстного управления.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="09880543-80f3-4c09-b3c0-3feae42e5744" class="code"><code class="language-Kotlin">ContextualFlowColumn(
+    context = /* Provide context */,
+    modifier = Modifier.padding(8.dp)
+) {
+    items(/* List of items */) { item -&gt;
+        Text(text = item)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>LazyColumn</strong></code></summary><div class="indented"><p id="eb5b0e1a-0a83-44c5-a97c-d560b2a3eeaa" class="">Вертикальный список с возможностью прокрутки (аналог RecyclerView).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7b1ff04-2421-4baa-b813-19945456d49b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">LazyColumn {
+    items(10) { index -&gt;
+        Text(&quot;Item $index&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>LazyRow</strong></code></summary><div class="indented"><p id="e1c5e07d-771d-4e25-8201-550bfe9cf4fb" class="">Горизонтальный список с возможностью прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e4e2a40d-f803-4dff-9681-4ac9b7c44f87" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">LazyRow {
+    items(10) { index -&gt;
+        Text(&quot;Item $index&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>LazyVerticalGrid</code></summary><div class="indented"><p id="7735aa41-9383-4e4e-aeaf-01cb48814db5" class="">Отображает элементы в виде сетки с возможностью прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7db31528-4f20-4227-a186-f63eb6b36fbb" class="code"><code class="language-Kotlin">LazyVerticalGrid(cells = GridCells.Fixed(2)) {
+    items(10) { index -&gt;
+        Text(&quot;Item $index&quot;)
+    }
+}</code></pre><p id="4324462f-98eb-457c-a0d8-d356e6d5aacf" class="">
+</p><h3 id="bc0e5bec-4b28-4b2a-b54b-118a040cb30c" class="">Добавить Header</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c4cf3109-8bc3-4628-b5b0-1d9a819dcb9e" class="code"><code class="language-Kotlin">LazyVerticalGrid(
+    columns = GridCells.Fixed(count = 8),
+) {
+    item(
+        span = { GridItemSpan(maxLineSpan) }
+    ) {
+        Text(
+            text = &quot;Header&quot;,
+        )
+    }
+
+    items(list) { item -&gt;
+        ...            
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>LazyStaggeredGrid</strong></code></summary><div class="indented"><p id="37d0e580-86c0-403e-a97e-fda08dc4d28e" class="">Прокручиваемая сетка с переменной высотой элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8056c92c-ce01-4330-a4b8-2343c0d3fb61" class="code"><code class="language-Kotlin">LazyStaggeredGrid(columns = StaggeredGridCells.Fixed(2)) {
+    items(100) { index -&gt;
+        Text(&quot;Item #$index&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Scaffold</strong></code></summary><div class="indented"><p id="4324a4e8-04cb-49ce-b11c-c9b29fc4a29e" class="">Структурный компонент для создания макетов с верхними панелями, навигацией, FAB и контентом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f8ffdcfe-18b7-4b2e-a3f3-d238b08b6554" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Scaffold(
+    topBar = { TopAppBar(title = { Text(&quot;AppBar Title&quot;) }) },
+    floatingActionButton = { FloatingActionButton(onClick = { /* Действие */ }) { Text(&quot;+&quot;) } },
+    content = { Text(&quot;Hello, Scaffold!&quot;) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>BackdropScaffold</strong></code></summary><div class="indented"><p id="fa596b68-0350-42fb-a113-a159afbc50b6" class="">Специальный макет, где один элемент (фоновый) может быть скрыт или отображен позади другого контента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="909ebaaa-2df9-414c-8afa-01d65c860cac" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">BackdropScaffold(
+    appBar = { TopAppBar(title = { Text(&quot;Backdrop Scaffold&quot;) }) },
+    backLayerContent = { Text(&quot;Back Layer&quot;) },
+    frontLayerContent = { Text(&quot;Front Layer&quot;) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>HorizontalPager</strong></code></summary><div class="indented"><p id="7cdca1ae-22c3-41d6-987b-950a01064147" class="">Пейджер для горизонтальной прокрутки страниц.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b39a5dc-dc48-4238-97bc-44e06cd3b7eb" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">HorizontalPager(count = 5) { page -&gt;
+    Text(&quot;Page $page&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>VerticalPager</strong></code></summary><div class="indented"><p id="076bba17-553a-4312-8080-26b448c1772a" class="">Пейджер для вертикальной прокрутки страниц (как и HorizontalPager, но с вертикальной ориентацией).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d588fd81-1d41-4e70-864a-44ab32ad1850" class="code"><code class="language-Kotlin">VerticalPager(count = 5) { page -&gt;
+    Text(&quot;Page $page&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ConstraintLayout</code></summary><div class="indented"><h3 id="face7d77-66b5-4366-807e-ea18d378212a" class=""><strong>Chain</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2f9d44f1-dc46-4c51-bea3-8051d76106d4" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">ConstraintLayout {
+    val (icon, text) = createRefs()
+    createHorizontalChain(icon, text, chainStyle = ChainStyle.Packed)
+
+    Icon(
+        modifier = Modifier
+            .constrainAs(icon) {
+                width = Dimension.wrapContent
+                height = Dimension.wrapContent
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+                end.linkTo(text.start)
+                bottom.linkTo(parent.bottom)
+            }
+    )
+
+    Text(
+        modifier = Modifier
+            .constrainAs(text) {
+                width = Dimension.wrapContent
+                height = Dimension.wrapContent
+                start.linkTo(icon.end)
+                top.linkTo(parent.top)
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            }
+            .padding(start = 8.dp)
+    )
+}</code></pre><figure id="38e4580b-3faf-4dc6-acb0-7632983ebad8" class="image"><a href="UI%20Components%203639ebdb742848e998e096a24686a2bd/twolines.png"><img style="width:336px" src="UI%20Components%203639ebdb742848e998e096a24686a2bd/twolines.png"/></a></figure><p id="14a77938-ad6a-4d06-a1f9-471e5fee40ab" class="">
+</p><h3 id="19f2d8d4-b164-4c46-b02d-5609c8b9fda7" class="">Flow</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e868db82-2861-4672-972f-2604e996d0aa" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">FlowRow {
+    Text(
+        text = &quot;Text 1&quot;,
+        modifier = Modifier.padding(end = 8.dp)
+    )
+
+		Text(
+        text = &quot;Text 2&quot;,
+        modifier = Modifier.padding(end = 8.dp)
+    )
+
+    Text(
+        text = &quot;Text 3&quot;
+    )       
+}</code></pre><figure id="b2605f64-1444-490a-b547-ce5c54119938" class="image"><a href="UI%20Components%203639ebdb742848e998e096a24686a2bd/Screenshot_2024-03-13_at_20.57.01.png"><img style="width:336px" src="UI%20Components%203639ebdb742848e998e096a24686a2bd/Screenshot_2024-03-13_at_20.57.01.png"/></a></figure><p id="b5f36171-c25b-4831-810a-769b403761bd" class="">
+</p><h3 id="b3ab6738-5cbe-475b-b6aa-c0ad1ac6a5bb" class=""><mark class="highlight-red">Fatal Exception: java.lang.IllegalStateException</mark><mark class="highlight-red"><strong> </strong></mark><mark class="highlight-red">Size(1080 x 2147483647) is out of range. Each dimension must be between 0 and 16777215</mark></h3><p id="4c6379be-ea2e-4128-a371-4b2fe011661f" class="">Проблема возникает когда внутри ConstraintLayout лежит Text с пустой строкой. Такой виджет не нужно отображать вовсе.</p></div></details><p id="991efbaa-0ef1-4d10-923a-40d3dace6600" class="">
+</p><h3 id="8d8e5c37-7f7f-48e2-a65c-34eb1964ec3c" class="">Adaptive Layouts</h3><table id="4146b569-d387-4c61-a219-1c2846c0bc11" class="simple-table"><tbody><tr id="b0f6ef71-204d-478d-a31a-f8f9f6bd3a2f"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive">https://developer.android.com/develop/ui/compose/layouts/adaptive</a></td></tr><tr id="1afee7f4-ee05-43a9-a927-83ad64095bf3"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/adaptive-dos-and-donts">https://developer.android.com/develop/ui/compose/layouts/adaptive/adaptive-dos-and-donts</a></td></tr><tr id="00bc316a-c1c9-4e0a-84f4-2596bfa0d7a8"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/support-different-screen-sizes">https://developer.android.com/develop/ui/compose/layouts/adaptive/support-different-screen-sizes</a></td></tr><tr id="aa02405c-cdaa-4aab-9f39-d7ee3e773b33"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/window-size-classes">https://developer.android.com/develop/ui/compose/layouts/adaptive/window-size-classes</a></td></tr><tr id="fd1de14e-345e-49e2-9194-54cc2006bfb0"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/support-multi-window-mode">https://developer.android.com/develop/ui/compose/layouts/adaptive/support-multi-window-mode</a></td></tr><tr id="93e39bab-2ceb-4d26-8eef-165bbc0f23d5"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/build-adaptive-navigation">https://developer.android.com/develop/ui/compose/layouts/adaptive/build-adaptive-navigation</a></td></tr><tr id="5479a7b4-56c5-4c54-b4d3-bb8db8a2d1f1"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/list-detail">https://developer.android.com/develop/ui/compose/layouts/adaptive/list-detail</a></td></tr><tr id="c4d43bb6-55fe-45cb-b22b-207b8a2cdb25"><td id="^sAA" class="" style="width:606px"><a href="https://developer.android.com/develop/ui/compose/layouts/adaptive/build-a-supporting-pane-layout">https://developer.android.com/develop/ui/compose/layouts/adaptive/build-a-supporting-pane-layout</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>BoxWithConstraints</code></summary><div class="indented"><p id="07975402-dc2d-4414-b502-1cef6aca7795" class="">Контейнер, который может изменять свою компоновку в зависимости от доступных размеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="73f0178a-588c-4bfc-af33-b984a6e57135" class="code"><code class="language-Kotlin">BoxWithConstraints { constraints -&gt;
+    if (constraints.maxWidth &lt; 600.dp) {
+        // Компоновка для узкого экрана
+        Column {
+            Text(&quot;Узкий экран&quot;)
+            // Дополнительные элементы
+        }
+    } else {
+        // Компоновка для широкого экрана
+        Row {
+            Text(&quot;Широкий экран&quot;)
+            // Дополнительные элементы
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>NavigationSuiteScaffold</code></summary><div class="indented"><p id="4de50140-8730-4c8b-9ef1-58d873ad8db1" class="">Интегрируется с NavController для навигации между экранами и поддерживает стандартные элементы интерфейса, такие как TopAppBar и BottomNavigation.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0295d461-f63a-498f-886f-b4aa1a042b6d" class="code"><code class="language-Kotlin">val navController = rememberNavController()
+    
+NavigationSuiteScaffold(
+    navController = navController,
+    topBar = { TopAppBar(title = { Text(&quot;MyApp&quot;) }) },
+    bottomBar = {
+        BottomNavigation {
+            // Навигационные элементы
+        }
+    }
+) { innerPadding -&gt;
+    NavHost(
+        navController = navController,
+        startDestination = &quot;home&quot;,
+        Modifier.padding(innerPadding)
+    ) {
+        composable(&quot;home&quot;) { HomeScreen(navController) }
+        composable(&quot;details/{itemId}&quot;) { backStackEntry -&gt;
+            DetailsScreen(navController, itemId = backStackEntry.arguments?.getString(&quot;itemId&quot;))
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ListDetailPaneScaffold</code></summary><div class="indented"><p id="00572b3d-e35a-4831-8e69-88fdf52cb42f" class="">Управляет макетом, разделяя экран на две основные панели: список и детальную информацию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a0249fe-7f49-4891-8edd-41809ba3f699" class="code"><code class="language-Kotlin">ListDetailPaneScaffold(
+    listContent = { innerPadding -&gt;
+        LazyColumn(
+            Modifier.padding(innerPadding)
+        ) {
+            items(items = itemsList) { item -&gt;
+                ListItem(
+                    modifier = Modifier.clickable { /* Отображаем детальную информацию */ },
+                    text = { Text(item.title) }
+                )
+            }
+        }
+    },
+    detailContent = { innerPadding -&gt;
+        // Отображение детальной информации о выбранном элементе
+        DetailView(
+            modifier = Modifier.padding(innerPadding),
+            item = selectedItem
+        )
+    }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>SupportingPaneScaffold</code></summary><div class="indented"><p id="f87031f1-e42a-4c8f-b770-db5594b93ad2" class="">Создает интерфейсы с двумя панелями — основной и вспомогательной.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0c36456e-4810-4957-8267-8466ef4fc0b9" class="code"><code class="language-Kotlin">SupportingPaneScaffold(
+    mainContent = { innerPadding -&gt;
+        // Основной контент
+        Column(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            Text(&quot;Основной контент&quot;)
+            // Дополнительные элементы
+        }
+    },
+    supportingContent = { innerPadding -&gt;
+        // Вспомогательный контент
+        Column(
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            Text(&quot;Вспомогательный контент&quot;)
+            // Дополнительные элементы
+        }
+    }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>NavigableListDetailPaneScaffold</code></summary><div class="indented"><p id="92881f69-4622-40ad-a45b-f75f9595c4a8" class="">Обеспечивает структуру для приложений с навигацией между списком элементов и детализированным просмотром выбранного элемента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a714b16-edb0-4f5c-a619-d2167b649771" class="code"><code class="language-Kotlin">val navigator = rememberListDetailPaneScaffoldNavigator&lt;Any&gt;()
+
+NavigableListDetailPaneScaffold(
+    navigator = navigator,
+    listPane = {},   // панель списка
+    detailPane = {}, // Панель деталей
+)</code></pre><p id="fbc49072-a363-4ff7-9849-3375ce792f0e" class="">
+</p></div></details><p id="99234e3e-1cad-4c9a-a63d-3901479fb0e4" class="">
+</p><h3 id="fe0c4524-d136-4d04-8260-13add538007d" class=""><strong>Диалоги</strong></h3><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Popup</strong></code></summary><div class="indented"><p id="1a579e04-c665-44b9-bca3-c2c0dd48d30d" class="">Всплывающее окно для отображения временного контента поверх текущего интерфейса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="74a98c5b-d4d5-4ab9-a1f6-b464d50021f5" class="code"><code class="language-Kotlin">Popup {
+    Text(&quot;Popup content&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>DropdownMenu</strong></code></summary><div class="indented"><p id="2e814327-0a93-4a2d-a9af-b22919a085fb" class="">Выпадающее меню для выбора из нескольких вариантов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5821bb4e-7ffc-42b2-a3d7-a4360ce31939" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+    DropdownMenuItem(onClick = { /* Действие */ }) {
+        Text(&quot;Option 1&quot;)
+    }
+    DropdownMenuItem(onClick = { /* Действие */ }) {
+        Text(&quot;Option 2&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AlertDialog</strong></code></summary><div class="indented"><p id="6713eddc-3aee-48af-827a-d590b84dd3ec" class="">Диалоговое окно для отображения сообщений и взаимодействия с пользователем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b3efabe5-cb57-4ef7-998b-05d863efb27f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">AlertDialog(
+    onDismissRequest = { /* Закрыть диалог */ },
+    title = { Text(&quot;Title&quot;) },
+    text = { Text(&quot;Dialog content goes here&quot;) },
+    confirmButton = {
+        Button(onClick = { /* Действие подтверждения */ }) {
+            Text(&quot;OK&quot;)
+        }
+    }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ModalBottomSheet</strong></code></summary><div class="indented"><p id="5e017729-3264-4313-b201-684a5398813b" class="">Модальное нижнее окно, которое появляется снизу экрана и блокирует взаимодействие с остальными элементами, пока не будет закрыто.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="017470d8-eef8-4c3a-b7db-bd69d2ee5713" class="code"><code class="language-Kotlin">@Composable
+fun ExampleModalBottomSheet() {
+    val sheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+    val scope = rememberCoroutineScope()
+
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetContent = {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(&quot;Title&quot;)
+                Button(onClick = { scope.launch { sheetState.hide() } }) {
+                    Text(&quot;Close Bottom Sheet&quot;)
+                }
+            }
+        }
+    ) {
+        Button(onClick = { scope.launch { sheetState.show() } }) {
+            Text(&quot;Open Bottom Sheet&quot;)
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>ModalBottomSheetLayout</strong></code></summary><div class="indented"><p id="7c49a9f5-ef59-4953-9715-f5159ed4ebb6" class="">Открывает листовое окно снизу для отображения контента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dfe1ec2-bf01-4db3-8020-ce4f3bf9da7b" class="code"><code class="language-Kotlin">ModalBottomSheetLayout(
+    sheetContent = { Text(&quot;Bottom Sheet Content&quot;) },
+    content = { Text(&quot;Main Content&quot;) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>TooltipBox</strong></code></summary><div class="indented"><p id="03b77808-4641-40d2-bb1d-c51432e49060" class="">Контейнер для отображения подсказок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9a1e9523-309c-40f1-99b1-9ffbc37d338e" class="code"><code class="language-Kotlin">TooltipBox(tooltip = { Text(&quot;Tooltip&quot;) }) {
+    Text(&quot;Hover me&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>BasicTooltipBox</strong></code></summary><div class="indented"><p id="0a5d52f8-1de3-4d09-ac8d-ae9f9c77e25b" class="">Простой контейнер для подсказок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bd87b336-98d2-4191-bd83-a954ab7b1837" class="code"><code class="language-Kotlin">BasicTooltipBox(tooltip = { Text(&quot;Tooltip&quot;) }) {
+    Text(&quot;Hover me&quot;)
+}</code></pre></div></details><p id="fb4b9b8c-2cd2-4547-bc2d-8ef67039515b" class="">
+</p><p id="e46e27f6-0612-45c9-b308-8d6fcddb5c9c" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>Canvas</code></summary><div class="indented"><p id="63e18e28-36a8-41f1-82b2-ee63bbdb5cf2" class="">Компонент для рисования 2D-графики.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="05ee18c0-4106-45a8-aeff-a5e509bc84fb" class="code"><code class="language-Kotlin">Canvas(modifier = Modifier.size(100.dp)) {
+    drawCircle(Color.Red)
+}</code></pre><p id="0dd7099b-08d9-412f-bdfa-db820b81b3f7" class="">
+</p><h3 id="5b055137-c9dd-4c60-b080-9f6debd48547" class=""><strong>Gradient</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0c2f2bfb-1b4a-418e-b07b-0511241e4746" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val gradientBrush = Brush.horizontalGradient(listOf(MaterialTheme.colorScheme.red, MaterialTheme.colorScheme.blue))
+
+Canvas(
+    modifier = Modifier,
+    onDraw = { drawRect(gradientBrush) }
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AnimatedVisibility</strong></code></summary><div class="indented"><p id="962bce5e-55b9-4a2e-888d-61205af00dab" class="">Компонент для плавного отображения или скрытия контента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="84550f2b-fc60-4bfe-b4f9-59a56687e07f" class="code"><code class="language-Kotlin">var visible by remember { mutableStateOf(true) }
+AnimatedVisibility(visible = visible) {
+    Text(&quot;Animated Content&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Crossfade</strong></code></summary><div class="indented"><p id="5be2ad12-41de-4301-9106-fd8da4159048" class="">Компонент для анимации плавной смены контента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79fe0a03-5728-460c-b4f5-f42f1953e653" class="code"><code class="language-Kotlin">Crossfade(targetState = selectedScreen) { screen -&gt;
+    when (screen) {
+        Screen.Home -&gt; HomeScreen()
+        Screen.Profile -&gt; ProfileScreen()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Placeholder</strong></code></summary><div class="indented"><p id="91258226-d996-44f6-a520-29ae31191cef" class="">Контейнер для отображения placeholder-заполнителя (например, для состояния загрузки).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79776834-ebef-4161-903f-40bebecf36ab" class="code"><code class="language-Kotlin">Placeholder(visible = true, modifier = Modifier.size(100.dp))</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AndroidView</strong></code></summary><div class="indented"><p id="47b44994-ff1f-4440-8792-0bcefcfa5614" class="">Позволяет встроить классический Android View в Compose.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c7739dd0-fc93-41bd-8f86-2c1f5ed667d7" class="code"><code class="language-Kotlin">AndroidView(factory = { context -&gt; TextView(context).apply { text = &quot;Hello, View!&quot; } })</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>Snackbar</code></summary><div class="indented"><p id="998f35ab-97fe-421e-86fc-d58213ad69f7" class="">Всплывающее уведомление в нижней части экрана.</p><p id="27d67546-f4eb-4ec2-8cce-d14753c06402" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b103bda4-84b7-449c-8a4a-a28cb0a610f2" class="code"><code class="language-Kotlin">class MyViewModel: ViewModel() {
+
+    var isSnackbarShowed: Boolean by mutableStateOf(false)
+
+		fun showSnackbarMessage() {
+			  isSnackbarShowed = true
+		}
+
+    fun hideSnackbarMessage() {
+        isSnackbarShowed = false
+    }
+}
+
+@Composable
+fun Composable(
+		viewModel: MyViewModel = hiltViewModel()
+) {
+		val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+		val isSnackbarShowed = viewModel.isSnackbarShowed
+
+		val onShowSnackbar: (String) -&gt; Unit = { message -&gt;
+        scope.launch {
+            snackbarHostState.currentSnackbarData?.dismiss()
+						val snackbarResult = snackbarHostState.showSnackbar(
+                message = message,
+                duration = SnackbarDuration.Short
+            )
+            if (snackbarResult == SnackbarResult.Dismissed) {
+                viewModel.hideSnackbarMessage()
+            }
+        }
+    }
+
+		if (isSnackbarShowed) {
+        onShowSnackbar(stringResource(R.string.message))
+    }
+}
+
+Scaffold(
+		snackbarHost = {
+        SnackbarHost(
+            hostState = snackbarHostState
+        )
+    }
+) { innerPadding -&gt; 
+    
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Get Widget Height</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="459d10bb-6088-4c53-abd2-d55eaf79c346" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val density: Density = LocalDensity.current
+
+var columnHeightPx: Float by remember { mutableStateOf(0F) }
+var columnHeightDp: Dp by remember { mutableStateOf(0.dp) }
+
+Box(
+    modifier = Modifier
+        .onGloballyPositioned { layoutCoordinates -&gt;
+            columnHeightPx = layoutCoordinates.size.height.toFloat()
+            columnHeightDp = with(density) { layoutCoordinates.size.height.toDp() }
+        }
+)</code></pre><p id="bac41286-6821-4e18-bf5e-a339bfc74d1c" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Compose UI Components. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="46d4405a-9650-4410-b10c-cd39f652a66f" class="numbered-list" start="1"><li>Лагает список LazyList. Что будем делать?</li></ol><ol type="1" id="ecfc25f7-b56c-4d54-aab3-8a141346844e" class="numbered-list" start="2"><li>Как сделать отступ у Box?</li></ol><ol type="1" id="6382c35e-1a33-4109-9746-e0eb1b49defc" class="numbered-list" start="3"><li>Какие основные Layout есть в Compose?<p id="eb76ed86-4f2e-4cd5-87e6-d7ca80626c7c" class=""><mark class="highlight-teal">Box</mark><mark class="highlight-default">,</mark><mark class="highlight-teal"> Row</mark><mark class="highlight-default">,</mark><mark class="highlight-teal"> Column</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"><hr/><details open="" style="padding-top:1em"><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Page comments</summary><div class="indented"><div><ul class="toggle"><li><div><span class="user" style="padding:0.2em"><img src="https://s3-us-west-2.amazonaws.com/public.notion-static.com/1beda931-c01e-45c5-8b18-9fcd7f728f99/2022-08-19_17.12.52.jpg" class="icon user-icon"/><span><b>Михаил Белый</b> <time style="font-size:0.8em">Nov 29, 2023, 12:04 PM</time></span></span></div><div style="padding:0.2em">Все виджеты взяты из темы Material3. Старый дизайн мне не нравится, хули его поддерживать</div><div style="padding:0.3em"></div></li></ul></div><hr/></div></details></span></body></html>
