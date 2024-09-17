@@ -1,0 +1,887 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Compose</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d5854833-170e-4037-9f36-8e45d9af188d" class="page sans"><header><img class="page-cover-image" src="Compose%20d5854833170e40379f368e45d9af188d/michaelbely_compose_blue_color_f52c8d91-f3fc-49f5-b88c-8269f6e44e00.webp" style="object-position:center 64.97%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Compose%20d5854833170e40379f368e45d9af188d/compose.svg"/></div><h1 class="page-title">Compose</h1><p class="page-description"></p></header><div class="page-body"><figure id="d75720a3-e985-414f-9ee4-b7dd9842d4c9" class="link-to-page"><a href="Compose%20d5854833170e40379f368e45d9af188d/Side%20Effects%20d75720a3e985414f9ee4b7dd9842d4c9.html"><img class="icon" src="Compose%20d5854833170e40379f368e45d9af188d/Side%20Effects%20d75720a3e985414f9ee4b7dd9842d4c9/compose.svg"/>Side Effects</a></figure><figure id="3639ebdb-7428-48e9-98e0-96a24686a2bd" class="link-to-page"><a href="Compose%20d5854833170e40379f368e45d9af188d/UI%20Components%203639ebdb742848e998e096a24686a2bd.html"><img class="icon" src="Compose%20d5854833170e40379f368e45d9af188d/UI%20Components%203639ebdb742848e998e096a24686a2bd/compose.svg"/>UI Components</a></figure><hr id="934428cf-f980-4cd0-8b25-655cdef540e9"/><table id="69b2def5-badb-43b7-b8fa-ed6a89e7f0e2" class="simple-table"><tbody><tr id="1d62f9ed-109d-4ccd-95b5-75bfca20ee5e"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/compose">https://developer.android.com/compose</a></td></tr><tr id="c74c80a2-d9c8-40d2-941b-a86a2e06450e"><td id="oOt\" class="" style="width:616px"><a href="https://d.android.com/jetpack/compose/documentation">https://d.android.com/jetpack/compose/documentation</a></td></tr><tr id="846002ba-734b-458d-8d39-3270b7e879c9"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/mental-model">https://developer.android.com/jetpack/compose/mental-model</a></td></tr><tr id="95d2a410-d096-4687-ad2e-6918675c37b6"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/phases">https://developer.android.com/jetpack/compose/phases</a></td></tr><tr id="a7e9d5e5-e830-4c35-b295-659d90c85c3f"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/layering">https://developer.android.com/jetpack/compose/layering</a></td></tr><tr id="1cb783f6-2080-4929-b799-406cf3b340e7"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/performance">https://developer.android.com/jetpack/compose/performance</a></td></tr><tr id="280cc91d-df49-41cf-9c2a-825e3e8d00b8"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/semantics">https://developer.android.com/jetpack/compose/semantics</a></td></tr><tr id="4c7280b2-a1e4-4e3c-a213-265f2102de86"><td id="oOt\" class="" style="width:616px"><a href="https://developer.android.com/jetpack/compose/compositionlocal">https://developer.android.com/jetpack/compose/compositionlocal</a></td></tr><tr id="ad27834d-d4a4-436e-875e-26ff6190fabc"><td id="oOt\" class="" style="width:616px"><a href="https://d.android.com/jetpack/compose/performance/stability">https://d.android.com/jetpack/compose/performance/stability</a></td></tr></tbody></table><table id="f45e98ba-5189-4fbd-a72f-fa0ea058a8d0" class="simple-table"><tbody><tr id="dd499acb-7ce1-4fa8-802e-84c234595f23"><td id="z?a}" class="" style="width:101px"><mark class="highlight-brown"><code>08.08.2024</code></mark></td><td id="oOt\" class="" style="width:614px"><a href="https://habr.com/ru/companies/clevertec/articles/834052/">https://habr.com/ru/companies/clevertec/articles/834052/</a></td></tr><tr id="33f6ec14-cf87-4ab6-b619-38fbfb18f99a"><td id="z?a}" class="" style="width:101px"><mark class="highlight-brown"><code>24.07.2024</code></mark></td><td id="oOt\" class="" style="width:614px"><a href="https://habr.com/ru/companies/alfa/articles/827510/">https://habr.com/ru/companies/alfa/articles/827510/</a></td></tr><tr id="8d1e7ba8-5afd-40f1-99ce-cef275dfce15"><td id="z?a}" class="" style="width:101px"><mark class="highlight-brown"><code>15.03.2024</code></mark></td><td id="oOt\" class="" style="width:614px"><a href="https://habr.com/ru/companies/otus/articles/800521/">https://habr.com/ru/companies/otus/articles/800521/</a></td></tr><tr id="70b756f8-8fd0-4430-9cfb-93143857cf75"><td id="z?a}" class="" style="width:101px"><mark class="highlight-brown"><code>28.02.2024</code></mark></td><td id="oOt\" class="" style="width:614px"><a href="https://habr.com/ru/articles/796437/">https://habr.com/ru/articles/796437/</a></td></tr><tr id="be5dd734-a93e-4e4f-a9eb-36008e6432d7"><td id="z?a}" class="" style="width:101px"><mark class="highlight-brown"><code>23.06.2023</code></mark></td><td id="oOt\" class="" style="width:614px"><a href="https://habr.com/ru/companies/ozontech/articles/742854/">https://habr.com/ru/companies/ozontech/articles/742854/</a></td></tr></tbody></table><table id="42a781c9-9645-4fcd-899a-7d2a40f01963" class="simple-table"><tbody><tr id="97f7ad8f-20fc-4263-b0c8-db16c046c65b"><td id="QDu]" class="" style="width:103px"><mark class="highlight-brown"><code>25.01.2023</code></mark></td><td id="bqKq" class="" style="width:618px"><a href="https://youtu.be/qb0Ezy-WO_k">https://youtu.be/qb0Ezy-WO_k</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Compose</summary><div class="indented"><p id="10015285-0ae8-8055-832b-e55d97f3a569" class="">Cовременная, декларативная библиотека для создания пользовательских интерфейсов в Android. Compose значительно упрощает разработку UI, заменяя традиционную императивную модель (основанную на Views и XML) на декларативный подход.</p><p id="716de1fa-c0a8-488a-a731-388032b36126" class="">• <strong>Декларативный UI</strong>: В Compose UI описывается как функция. Вы определяете, как интерфейс должен выглядеть в зависимости от текущего состояния данных, а библиотека автоматически обновляет UI при изменении этих данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10015285-0ae8-805d-a2e5-da6cbfa7dd7b" class="code"><code class="language-Kotlin">@Composable
+fun Greeting(name: String) {
+    Text(text = &quot;Hello, $name!&quot;)
+}</code></pre><p id="16332fca-e717-420e-a2ad-20834e92133e" class="">• <strong>Состояние и управление</strong>: Compose использует состояние для обновления интерфейса. Если изменяется состояние, вызов функции обновляет только измененные части интерфейса — это называется рекомпозицией. Состояние в Compose управляется с помощью таких функций, как remember, mutableStateOf, rememberSaveable.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="477b0756-ee2d-4b14-a81f-64e6af6f1bd3" class="code"><code class="language-Kotlin">@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+    Button(onClick = { count++ }) {
+        Text(&quot;Clicked $count times&quot;)
+    }
+}</code></pre><p id="bf5bbd69-f6c1-4ef8-8dc7-e64334772d37" class="">• <strong>Без XML</strong>: Compose полностью устраняет необходимость в XML-файлах для описания интерфейсов. Всё создается и управляется на уровне кода.</p><p id="92a6eb7f-a970-49a6-8680-3c29d13a12ec" class="">• <strong>Модульность и многократное использование</strong>: Compose предлагает возможность создавать небольшие, независимые и переиспользуемые компоненты. Это упрощает создание и поддержку сложных интерфейсов.</p><p id="10015285-0ae8-8062-ad87-c5f740ed43f3" class="">• <strong>Совместимость с View</strong>: Compose и традиционные Views могут взаимодействовать друг с другом. Вы можете встраивать Views в Compose или использовать Compose в существующих проектах с Views.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10015285-0ae8-801d-87fd-eb05c9251179" class="code"><code class="language-Kotlin">@Composable
+fun CustomView() {
+    AndroidView(factory = { context -&gt; 
+        TextView(context).apply {
+            text = &quot;This is a traditional Android View!&quot;
+        }
+    })
+}</code></pre><p id="10015285-0ae8-802b-b5da-e0ee589c444c" class="">• <strong>Упрощенная анимация</strong>: В Compose встроена поддержка анимаций, которая позволяет легко добавлять динамичные эффекты в интерфейс.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10015285-0ae8-8028-8455-cd838d460e87" class="code"><code class="language-Kotlin">@Composable
+fun AnimatedBox() {
+    var expanded by remember { mutableStateOf(false) }
+    val size by animateDpAsState(if (expanded) 200.dp else 100.dp)
+
+    Box(
+        Modifier
+            .size(size)
+            .clickable { expanded = !expanded }
+            .background(Color.Blue)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Lifecycle</summary><div class="indented"><p id="a7422c04-c981-44c0-87d7-db04de712e93" class="">Жизненный цикл Compose отличается от традиционных View-систем в Android, так как он основан на декларативном подходе к построению интерфейсов. В Compose нет привычных методов жизненного цикла, таких как onCreate, onStart и onDestroy. Вместо этого, основной механизм работы с UI — это рекомпозиция и управление состоянием.</p><p id="34b20652-1d51-4ff5-880e-c1149148b8f5" class="">
+</p><h3 id="4ace7372-10d6-4a6c-a68c-786652eee1fe" class=""><strong>Этапы жизненного цикла в Compose</strong></h3><p id="10015285-0ae8-80ed-a940-e4863ce7d213" class="">• Composition (Композиция)</p><p id="93633ae0-8ed1-4619-930c-047ef6269904" class="">• Recomposition (Рекомпозиция)</p><p id="7e39bd4d-b85c-4e3e-ab0f-6ae938ecb4f3" class="">• Disposal (Уничтожение)</p><p id="10015285-0ae8-8006-ab42-fd46b591cede" class="">
+</p><h3 id="5290e78a-78eb-4d77-bb97-37e1a3b1a2fa" class=""><strong>Composition</strong></h3><p id="50a4f81b-b575-4ee3-964a-dd5c5f7b067f" class="">• Это процесс создания и отображения UI на основе данных (состояния).</p><p id="46ce746f-4a62-4efe-86fc-43de545766bd" class="">• Когда функция с аннотацией <code>@Composable</code> вызывается, Compose создает дерево компонентов и отображает его на экране.</p><p id="099b93f2-e0a4-4db9-a6b7-b5fcb7e6bb85" class="">• Происходит единовременное построение интерфейса на основе начальных значений состояния.</p><p id="93d11623-6b20-48d9-a447-1ad62ad95da4" class="">
+</p><h3 id="10015285-0ae8-8068-bd18-e5352ff2b3db" class=""><strong>Recomposition</strong></h3><p id="10015285-0ae8-80ef-a779-c75a7ddd7df6" class="">• После начальной композиции, когда изменяется состояние (например, с помощью <code>mutableStateOf</code>), происходит рекомпозиция.</p><p id="10015285-0ae8-80d2-8a0e-f4c193f3e307" class="">• Compose повторно вызывает функции <code>@Composable</code>, которые зависят от изменившихся данных, и обновляет только ту часть интерфейса, которая изменилась.</p><p id="7705c280-f327-4df3-8985-29a096a4c6ac" class="">• Это позволяет эффективно управлять изменениями UI без полной перерисовки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e90b9976-a1a9-41a3-987e-644468789b6a" class="code"><code class="language-Kotlin">// При изменении значения count, Compose перерисует только часть интерфейса, связанную с этой переменной, вызывая рекомпозицию для компонента Text.
+
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+
+    Button(onClick = { count++ }) {
+        Text(&quot;Clicked $count times&quot;)
+    }
+}</code></pre><p id="175daebc-4c4f-4f24-951c-06e794487a02" class="">
+</p><h3 id="68c3b3eb-cdbd-4a43-b7f5-97a55cd4b586" class=""><strong>Disposal</strong></h3><p id="4d17c669-9d11-419c-a303-4a78c4500ea6" class="">• Когда элемент UI больше не нужен (например, пользователь ушел с экрана или компонент был удален), Compose выполняет его уничтожение.</p><p id="10015285-0ae8-80a0-ae53-e1cd02c96600" class="">• Это освобождает ресурсы, такие как анимации или асинхронные задачи, связанные с данным UI.</p><p id="10015285-0ae8-8039-9c67-cd20f86211ff" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Annotations</summary><div class="indented"><h3 id="b4ef10f3-9eec-4de3-a8f3-dc36d489175c" class=""><code><strong>@Composable</strong></code></h3><p id="93468154-fa6d-48d3-9d4d-0a30f3b41cac" class="">Эта аннотация сообщает компилятору Compose, что эта функция предназначена для преобразования данных в пользовательский интерфейс. Функция ничего не возвращает.</p><p id="10015285-0ae8-80c8-81c5-e1ad5b04446b" class="">
+</p><h3 id="984d3b58-34eb-477d-8979-b70070635859" class=""><code>@Preview</code></h3><p id="ae526d3e-498c-40d9-8cb5-ae8e5801ccdb" class="">Позволяет наблюдать изменение виджета прямо в IDE без необходимости перезапускать приложение на устройстве.</p><p id="1ff35571-b2f1-48c2-81a9-31bdad24531a" class="">
+</p><h3 id="1ad458b1-0b3a-4473-8eb5-44583e5c7aa3" class=""><code>@</code><code><strong>ReadOnlyComposable</strong></code></h3><p id="66662b10-df38-4ae1-ae23-cbdbc5e0ea2c" class="">Если composable-функция выполняет только операции чтения, то можно пометить её аннотацией <code>@ReadOnlyComposable</code>. Это даст небольшой прирост производительности. Основной сценарий использования - функция, которой аннотация <code>@Composable</code> нужна только для чтения <code>CompositionLocal</code> (например, чтение цвета из темы), а не для вызова других composable-функций.</p><p id="a7fb94e8-112a-4217-8e82-e392842b66f7" class="">
+</p><h3 id="bb402722-dd23-4445-8b60-f8435c1ce124" class=""><code>@Stable</code> </h3><p id="10215285-0ae8-8046-ac9e-ea9b0d425eea" class="">Указывает, что объект стабилен и его свойства не изменяются неожиданно. Это важно для оптимизации процессов компоновки (composition) и перерисовки (recomposition). Когда объект помечен как <code>@Stable</code>, Compose может не перерисовывать его повторно, если его свойства явно не изменились, что помогает избежать лишних перерисовок и улучшить производительность приложения. Изменения состояния могут происходить, но будут управляемыми.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e566b8a5-9f18-4fc0-9481-4952ebf855ad" class="code"><code class="language-Kotlin">// В этом примере класс User помечен как @Stable, что говорит Compose, что объект не изменяется неожиданно. 
+// Даже если UserInfo будет вызываться несколько раз в процессе композиции, если свойства User не изменились, перерисовка не будет выполнена.
+
+@Stable
+class User(val name: String, val age: Int)
+
+@Composable
+fun UserInfo(user: User) {
+    Text(text = &quot;Name: ${user.name}, Age: ${user.age}&quot;)
+}</code></pre><p id="7bede085-4d24-4cfc-a05e-0b7bd5874b99" class="">
+</p><h3 id="40ad4e74-70cb-4e66-abff-f21b83f361ee" class=""><code>@Immutable</code></h3><p id="066b75f5-6f8d-4e76-a350-393be049d51a" class="">Указывает, что объект неизменяемый (immutable), то есть все его поля являются неизменяемыми (final). Если объект помечен как <code>@Immutable</code>, это означает, что его состояние никогда не изменится после инициализации, что позволяет Compose не выполнять повторные перерисовки, когда он используется в UI.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ce51edb-4c32-4294-895e-5a19e9bfd364" class="code"><code class="language-Kotlin">@Immutable
+data class Person(val name: String, val age: Int)
+
+@Composable
+fun PersonInfo(person: Person) {
+    Text(text = &quot;Name: ${person.name}, Age: ${person.age}&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">State Functions</summary><div class="indented"><h3 id="e5b59ba8-3bd4-4df1-ab1b-d390a8c55b40" class=""><code><strong>key</strong></code></h3><p id="08016519-7c87-45f4-9575-8e24b8faac5e" class="">remember создает объект один раз и возвращает нам его все последующие вызовы. Но иногда нам необходимо пересоздать объект из remember. Если приводить аналогию с кэшем, то нам надо сбросить кэш и заново получить данные. Пока key не меняется, remember каждый раз возвращает нам ранее созданный объект. Но если при очередном вызове remember у нас сменился key, то remember снова выполняет код по созданию объекта. И теперь каждый раз будет возвращать нам этот новый объект, пока key снова не поменяется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="23ace613-9de9-4aa1-80d8-25757f1b747f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val exampleWithKey: Example = remember(paramKey) { Example() }</code></pre><p id="9817c4bc-46a3-4e1e-949a-0ab5fad5e2c2" class="">
+</p><h3 id="091ddc84-8449-4547-a9db-07b2df2eee44" class=""><code><strong>by</strong></code></h3><p id="5b9e7ad4-cdcd-4bd5-b836-b217f3ed8969" class="">Сейчас для работы с значением State мы используем его поле value. Но это можно сделать немного проще с помощью специальных делегатов. Теперь State можно использовать как обычную var переменную и для чтения значения и для записи.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a153438d-c8ac-428d-bcaa-2386922a264f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
+val checked: Boolean by remember { mutableStateOf(false) }
+println(checked)</code></pre><p id="10015285-0ae8-80b0-a0dc-ed6456cfd968" class="">
+</p><h3 id="c19960b1-56c7-4476-8ec9-d9870e5841aa" class=""><code>remember</code></h3><p id="fb9f9893-00f9-45e1-b7d4-24034a5ec199" class="">С помощью этой функции мы создаем объект внутри Composable-функции только 1 раз при первом запуске. Получаем этот объект во всех последующих перезапусках. Работает как кэш. Если объекта еще нет, то она его создаст. А если он уже был создан, она его вернет нам. При каждом перезапуске мы получаем и используем один и тот же объект.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d4f9155c-8bd9-483a-8319-dfec82cff303" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class Example
+
+@Composable
+fun ComposeFunc(
+		paramKey: Boolean
+) {
+		val example: Example = remember { Example() }
+}</code></pre><p id="b96368ba-73a2-4560-bf4e-9124e16b83be" class="">
+</p><h3 id="3bff0630-be48-4f00-b682-0ebbc7d70414" class=""><code><strong>rememberSaveable</strong></code></h3><p id="a496249b-1f1c-419b-a28c-6498d0b5f744" class="">Версия remember которая сохраняет значение при изменении конфигурации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fb409e8b-1983-4189-80da-7ca8279e699c" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">var checked: Boolean by rememberSaveable { mutableStateOf(false) }</code></pre><p id="02584701-f07b-4165-8fe5-139ab1bd1da2" class="">
+</p><h3 id="e2b14363-d513-4cdf-9ed6-8685cac30478" class=""><code><strong>rememberUpdateState</strong></code><strong> </strong></h3><p id="b5bb3c46-ddfd-4519-bedb-afeb591101bd" class="">Используется когда мы хотим сохранить обновленную ссылку на переменную в длительном side effect без необходимости перезапуска при рекомпозиции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4dffaeb2-88c4-40aa-b98e-c51b83e780b5" class="code"><code class="language-Kotlin">@Composable
+fun TwoButtonScreen() {
+    var buttonColour by remember { mutableStateOf(&quot;Unknown&quot;) }
+		Button(onClick = { buttonColour = &quot;Red&quot; })  
+    Button(onClick = { buttonColour = &quot;Black&quot; })
+		Timer(buttonColor = buttonColour)
+}
+
+@Composable
+fun Timer(
+    buttonColour: String
+) {
+    println(&quot;Composing timer with colour : $buttonColour&quot;)
+    val buttonColorUpdated by rememberUpdatedState(newValue = buttonColour)
+    LaunchedEffect(key1 = Unit) {
+        startTimer(5000L) {
+            println(&quot;Timer ended&quot;)
+            println(&quot;[1] Last pressed button color is $buttonColour&quot;) // bad
+            println(&quot;[2] Last pressed button color is $buttonColorUpdated&quot;) // good
+        }
+    })
+}
+
+suspend fun startTimer(time: Long, onTimerEnd: () -&gt; Unit) {
+    delay(timeMillis = time)
+    onTimerEnd()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">State Builders</summary><div class="indented"><h3 id="fb9a40af-81f5-427d-b01f-178edf3ac9fa" class=""><strong><code>mutableStateOf</code></strong></h3><p id="c5fdb3e3-27ec-4cf2-8803-0a303b8fcd15" class="">В комбинации remember + mutableStateOf, функция mutableStateOf создает State, а функция remember делает, так, чтобы этот State не сбрасывался при каждом перезапуске функции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="42606d2f-3235-4935-9ada-410b13ae2935" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val checked: MutableState&lt;Boolean&gt; = remember { mutableStateOf(false) }
+println(checked.value)</code></pre><p id="234f314c-04f3-4977-9e60-3242d65f6348" class="">
+</p><h3 id="1a822cf5-4022-41ea-b3fa-f89a35e14ddc" class=""><strong><code>mutableIntStateOf</code></strong></h3><p id="d521bd41-f21f-4fcd-88f9-61972a8a7a3f" class="">Держатель значения для примитивного типа Int.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="30ace265-d57b-483f-9fb6-9fe1886bb9a4" class="code"><code class="language-Kotlin">var page: Int by remember { mutableIntStateOf(0) }</code></pre><p id="10015285-0ae8-8000-802f-fe58930bbbc7" class="">
+</p><h3 id="3a0aa132-cf9f-4830-acbf-fc646bf9a0ea" class=""><strong><code>mutableLongStateOf</code></strong></h3><p id="2a78ac92-5134-4849-beb3-8ff97390009e" class="">Держатель значения для примитивного типа Long.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3bd25714-2576-49bb-a2fc-8d39a58969cf" class="code"><code class="language-Kotlin">var time: Long by remember { mutableLongStateOf(0L) }</code></pre><p id="4d0035e7-0b65-48f3-84f4-ed069e4e11bc" class="">
+</p><h3 id="4ad8f3c1-f226-46b4-8b26-2cc48a9123ec" class=""><strong><code>mutableFloatStateOf</code></strong></h3><p id="ea1a181e-fccf-4bee-8302-f87a0bf25887" class="">Держатель значения для примитивного типа Float.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7d3c7890-b3c1-402e-9a95-28ffd0ec3fd4" class="code"><code class="language-Kotlin">var value: Float by remember { mutableFloatStateOf(0F) }</code></pre><p id="a74d1e85-b386-4b4c-b1fe-61c52799dab1" class="">
+</p><h3 id="f6cdfa0b-6d08-4370-90bc-934e72d89061" class=""><strong><code>mutableDoubleStateOf</code></strong></h3><p id="53771eb0-05a2-4108-b074-48cd0b1adee4" class="">Держатель значения для примитивного типа Double.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d4947e70-4d58-4235-84a3-023b00e88c3f" class="code"><code class="language-Kotlin">var value: Double by remember { mutableDoubleStateOf(0.0) }</code></pre><p id="10015285-0ae8-80eb-9f13-dcf010ab32f3" class="">
+</p><h3 id="e11599e1-5ba8-4c3e-9d21-b52f4e43a533" class=""><code>mutableStateListOf</code></h3><p id="6dde6cd0-9fa4-43a3-a3cd-45eb85ed532e" class="">Cоздает мутируемый список, который поддерживает реактивное обновление пользовательского интерфейса при изменении элементов внутри этого списка. Этот список является аналогом стандартного <code>MutableList</code>, но с возможностью интеграции в реактивную систему Compose. Когда вы используете список, созданный с помощью <code>mutableStateListOf</code>, любые изменения в списке (добавление, удаление или изменение элементов) автоматически вызывают перерисовку тех частей интерфейса, которые зависят от этого списка. Это полезно для создания динамических интерфейсов, где состояние списка влияет на отображение UI-компонентов.</p><p id="bca3ad66-bb2f-43c6-9c2d-12f4a8e8d63e" class="">• Время доступа к элементам списка и выполнения операций, таких как добавление или удаление, аналогично обычному ArrayList, то есть время доступа к элементам — O(1), добавление в конец — O(1), удаление — O(n).</p><p id="5162c5b1-27b0-470b-b560-67ada1e69df3" class="">• Пространственная сложность зависит от количества элементов в списке, как и в обычном списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ddae2b4f-89dc-4f4a-8172-93f9cbab27b8" class="code"><code class="language-Kotlin">@Composable
+fun DynamicListExample() {
+    // Создаем состояние списка с помощью mutableStateListOf
+    val items: SnapshotStateList&lt;String&gt; = remember { mutableStateListOf(&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;) }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        // Отображаем каждый элемент списка
+        items.forEach { item -&gt;
+            Text(text = item, modifier = Modifier.padding(4.dp))
+        }
+
+        // Добавляем кнопку для добавления нового элемента в список
+        Button(onClick = { 
+            items.add(&quot;Item ${items.size + 1}&quot;) 
+        }) {
+            Text(&quot;Add Item&quot;)
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><code>derivedStateOf</code></strong></summary><div class="indented"><p id="55634bee-bcfa-441f-b417-d9f69f5c0311" class="">Использовать когда входные данные меняются чаще чем нужна рекомпозиция. Пример: изменение положения скролла. Действует анологично оператору <code>distinctUntilChanged</code> в Kotlin Flow. Подписывается на изменения состояний, которые были прочитаны за первый проход. Примеры:</p><p id="10015285-0ae8-80a4-93a8-ed0eb5658d36" class="">• порог прокрутки (scrollPosition &gt; 0).</p><p id="10015285-0ae8-8013-992c-f6264c54717d" class="">• количество элементов больше порог(items &gt; 0).</p><p id="55fbbd05-0497-47bb-a0d4-148a8ad66c34" class="">• валидация формы (username.isValid)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b902293f-33b9-445e-be80-0cb9af2b22e0" class="code"><code class="language-Kotlin">val listState = rememberLazyListState()
+val showButton by remember { derivedStateOf { listState.firstVisibleItemIndex &gt; 0 } }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Snapshot</strong></code></summary><div class="indented"><p id="838cd0bb-eda3-42f3-88cf-8b463ecb5f7c" class="">Концепция, которая используется в Compose для управления состоянием и его отслеживания. Она обеспечивает механизм для наблюдения за изменениями данных и синхронизирует эти изменения с интерфейсом пользователя (UI). Основная цель механизма снапшотов — сделать работу с состоянием в Compose реактивной, то есть когда данные изменяются, UI автоматически обновляется. Снимки состояния позволяют изолировать и отслеживать изменения, сделанные в реактивных данных, и гарантируют, что эти изменения будут безопасно применяться, особенно в многопоточных приложениях.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="407422b6-0f22-4e15-9f9d-2621d5231cae" class="code"><code class="language-Kotlin">// Compose позволяет вручную управлять снапшотами, используя методы вроде Snapshot.takeSnapshot, 
+// чтобы работать с состоянием более тонко, когда это необходимо.
+
+@Composable
+fun ManualSnapshotExample() {
+    val state = remember { mutableStateOf(&quot;Initial&quot;) }
+
+    Column {
+        Text(text = &quot;Current state: ${state.value}&quot;)
+
+        Button(onClick = {
+            // Создаём новый снапшот
+            Snapshot.takeSnapshot {
+                state.value = &quot;Changed in Snapshot&quot;
+            }
+        }) {
+            Text(&quot;Change State in Snapshot&quot;)
+        }
+    }
+}</code></pre><p id="18e47b14-cab2-4e03-a3f0-5607b03b7e3e" class="">
+</p><h3 id="7adf48a8-d80f-4dad-bb0f-a192356c3f4b" class=""><code>SnapshotStateList</code></h3><p id="885d521f-2076-4e6b-be05-e6f171dec53d" class="">Это специальный тип списка, созданный для работы с системой состояния Compose. По сути, <code>mutableStateListOf</code> возвращает <code>SnapshotStateList</code>, который отслеживает изменения и интегрируется с Compose. Обычные списки <code>List</code><strong> </strong>или<strong> </strong><code>MutableList</code> не будут автоматически обновлять пользовательский интерфейс при изменении данных. Например, если вы измените элементы внутри обычного List, вам нужно будет вручную обновить состояние, чтобы заставить Compose перерисовать элементы UI. <code>SnapshotStateList</code> поддерживает систему снимков (<code>Snapshot</code>) в Compose, чтобы отслеживать изменения состояния.</p><p id="10015285-0ae8-80c0-bfe6-d16511088462" class="">
+</p><h3 id="d4f34906-3abf-46ac-b6c1-229067e88e2f" class=""><code><strong>snapshotFlow</strong></code></h3><p id="225d01bb-8f5b-4acf-8262-dbb4dee59771" class="">Специальная функция в Compose, которая позволяет наблюдать за изменениями состояния в системе снапшотов и преобразовывать эти изменения в поток данных (Flow). Это полезный механизм для интеграции состояния Compose с асинхронной моделью потоков, например, с Flow, когда вам нужно реагировать на изменения состояния и обрабатывать их в асинхронных операциях, таких как сетевые запросы, обновления UI и другие задачи. Когда вы используете реактивное состояние в Compose, например, через mutableStateOf, изменения этого состояния автоматически управляются системой снапшотов. С помощью snapshotFlow можно следить за этими изменениями и отправлять их как элементы Flow, что даёт вам больше гибкости для работы с состоянием в асинхронной среде.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6707c601-9279-477d-bcdb-8ec9c39fc893" class="code"><code class="language-Kotlin">@Composable
+fun SnapshotFlowExample() {
+    val count = remember { mutableStateOf(0) }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        // Преобразуем изменения состояния в Flow с помощью snapshotFlow
+        snapshotFlow { count.value }
+            .collect { newValue -&gt;
+                // Обрабатываем новое значение из snapshotFlow
+                println(&quot;Collected new value: $newValue&quot;)
+            }
+    }
+
+    Column {
+        Text(text = &quot;Counter: ${count.value}&quot;)
+
+        Button(onClick = {
+            count.value += 1
+        }) {
+            Text(&quot;Increase Counter&quot;)
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>CompositionLocal</code></summary><div class="indented"><p id="389a4151-4ccf-4fd2-ae6b-68f132597c40" class="">Неявный способ передавать поток данных через дерево композиций. Модель передачи данных через параметры функций не всегда подходит и может быть громоздкой и неработоспособной для данных, которые необходимы большому количеству компонентов или когда компонентам необходимо передавать данные друг другу но сохранять детали реализации конфиденциальными.</p><p id="69323704-5899-4e15-ae87-55bef78c293c" class="">Компонент который хочет использовать значение CompositionLocal может использовать текущее свойство ключа <code>CompositionLocal</code> которое возвращает текущее значение <code>CompositionLocal</code> и подписывает компонент на его изменения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d096d73a-fa7b-4722-b60e-6a986368c89f" class="code"><code class="language-Kotlin">val ActiveUser = compositionLocalOf&lt;User&gt; { error(&quot;No active user found!&quot;) }
+
+@Composable
+fun App(user: User) {
+    CompositionLocalProvider(ActiveUser provides user) {
+        SomeScreen()
+    }
+}
+
+@Composable
+fun SomeScreen() {
+    UserPhoto()
+}
+
+@Composable
+fun UserPhoto() {
+    val user = ActiveUser.current
+    ProfileIcon(src = user.profilePhotoUrl)
+}</code></pre><p id="c9260ea2-06f2-40be-ac39-7d236f327074" class="">
+</p><h3 id="3a56025e-c0c3-4e96-96c4-c04d65ff343a" class=""><code>staticCompositionLocalOf</code></h3><p id="c48a00fe-3c62-480f-ae97-9c9ee8f46bb7" class="">Чтение значения не отслеживается Compose. Изменение значения приводит к перекомпоновке всего <code>content</code> где предоставляется, а не только мест, где значение считывается в композиции. Если значение, предоставленное для <code>CompositionLocal</code> никогда не изменится используй <code>staticCompositionLocalOf</code> для лучшей  производительности.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ViewCompositionStrategy</code></summary><div class="indented"><p id="7fe84091-74e5-4309-ac03-21c41d032c83" class="">Определяет стратегию автоматического удаления композиции. Для <code>ComposeView</code> и <code>AbstractComposeView</code>. Нужен для интеропа Compose и View.</p><p id="8c0daeb8-192a-41be-9d08-85d1e27797a5" class="">• <code>DisposeOnDetachedFromWindowOrReleasedFromPool</code>. Используется по умолчанию. Композиция будет автоматически удалена при отсоединении View от Window если только она не является частью контейнера пула такого как RecyclerView.</p><p id="2b196917-28f4-485c-94f8-c1ca0f793c75" class="">• <code>DisposeOnDetachedFromWindow</code> - композиция будет автоматически удалена при отсоединении View от Window.</p><p id="79dae8ff-57ac-4fdf-ab16-a9f1f33a77fd" class="">• <code>DisposeOnLifecycleDestroyed(LifecycleOwner)</code> - удаляет композицию когда возвращенный LifecycleOwner уничтожается.</p><p id="9d1a4517-a74a-4587-bacf-4b1746f54d75" class="">• <code>DisposeOnViewTreeLifecycleDestroyed</code> - удаляет композицию при переходе Lifecycle в состояние Destroyed.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>BackHandler</code></summary><div class="indented"><p id="10315285-0ae8-8038-a802-cefe04046e8f" class="">Позволяет перехватывать и обрабатывать нажатие кнопки “Назад” внутри @Composable-функции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8045-a906-d5a5b188a8d1" class="code"><code class="language-Kotlin">@Composable
+fun MyScreen() {
+    // Обработка нажатия кнопки &quot;Назад&quot;
+    BackHandler(enabled = isHandlerEnabled) {
+        // Действия, которые должны выполниться при нажатии кнопки &quot;Назад&quot;
+    }
+
+    // Основное содержимое экрана
+    Text(text = &quot;Текст&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>nestedScrollConnection</code></summary><div class="indented"><p id="5981ef61-31c3-4504-962f-4a7930ed06fd" class="">Сспособ реагировать на фазы цикла вложенной прокрутки.</p><p id="ef9f0ca6-ec82-4b7a-aa25-4985a90940c0" class="">• пример: дочерний экран со списком внутри Pager на родительском экране с AppBar. При скролле будет прокручиваться список дочернего экрана, когда перемотка будет завершена - будет прокручиваться AppBar родительского экрана.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="439a4db9-a8c2-469c-9342-3b81a31d8e3d" class="code"><code class="language-Kotlin">val nestedScrollConnection = rememberNestedScrollInteropConnection()
+
+Scaffold(
+    modifier = Modifier.nestedScroll(nestedScrollConnection)
+) {}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Compose. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="aa9d652a-8660-4c51-aac2-41d075748ccc" class="numbered-list" start="1"><li>Для чего нужен nestedScrollConnection?</li></ol><ol type="1" id="f6eaf382-635d-49e6-9896-710a28a52d99" class="numbered-list" start="2"><li>Отличия remember и rememberSaveable?</li></ol><ol type="1" id="4e79c9e2-7253-485b-a9f2-255334b30f4f" class="numbered-list" start="3"><li>Для чего нужен CompositionLocal?</li></ol><ol type="1" id="ae6fae00-28cc-4854-bc3b-5846b66e6257" class="numbered-list" start="4"><li>Как Compose понимает, что стейт поменялся?</li></ol><ol type="1" id="ad9b9ec9-1b2e-4cc1-82bd-c93b0d3fc637" class="numbered-list" start="5"><li>Как LocalContext работает под капотом?</li></ol><ol type="1" id="90ded85c-ed29-4c1d-992e-fffab972f31c" class="numbered-list" start="6"><li>Разница между compositionLocalOf и staticCompositionLocalOf?</li></ol><ol type="1" id="bbdade79-7373-4e6a-b7e5-43c2883bbbd1" class="numbered-list" start="7"><li>Число лежит в mutableState без remember при клике увеличивается. Что произойдет через 3 нажатия?</li></ol><ol type="1" id="9d8f9459-cbc7-4386-baef-0fb24d2f0141" class="numbered-list" start="8"><li>Для чего нужен mutableState?</li></ol><ol type="1" id="bd801687-af2d-4494-8f75-48a1f05869ac" class="numbered-list" start="9"><li>Как понять, что код на Compose оптимально написан?</li></ol><ol type="1" id="10215285-0ae8-809d-aa15-d90feb20d756" class="numbered-list" start="10"><li>Что из себя представляет remember?<p id="10215285-0ae8-8041-af92-fd65a72d07dc" class=""><mark class="highlight-teal">Функция, которая сохраняет результат вычисления в памяти, чтобы избежать повторных вычислений при перерисовке компонента, сохраняя значение между составными вызовами.</mark></p></li></ol><ol type="1" id="10215285-0ae8-80ac-a665-d9b73e8f7f1a" class="numbered-list" start="11"><li>Как работают аннотации @Stable и @Immutable?<p id="10215285-0ae8-8034-ad6f-e427f196624e" class=""><mark class="highlight-teal"><code>@Immutable</code></mark><mark class="highlight-teal"> указывает, что объект полностью неизменен и его состояние не изменится после создания, что позволяет Compose оптимизировать рендеринг.</mark></p><p id="10215285-0ae8-801d-8344-f8fea151dab0" class=""><mark class="highlight-teal"><code>@Stable</code></mark><mark class="highlight-teal"> обозначает, что объект может изменяться, но изменения управляются контролируемо, что позволяет Compose правильно отслеживать такие изменения и обновлять UI при необходимости.</mark></p></li></ol><ol type="1" id="10215285-0ae8-8062-8f35-d108dbad35c7" class="numbered-list" start="12"><li>Как работает @Composable-функция?<p id="10215285-0ae8-80e5-8f34-dcefee817182" class=""><mark class="highlight-teal">Функция с аннотацией </mark><mark class="highlight-teal"><code>@Composable</code></mark><mark class="highlight-teal"> описывает часть UI, которая добавляется в дерево композиций и может реагировать на изменения состояния. При каждом изменении состояния система вызывает функцию заново, чтобы обновить соответствующие элементы интерфейса.</mark></p></li></ol><ol type="1" id="10215285-0ae8-8059-bbb1-e755567fb867" class="numbered-list" start="13"><li>Как часто вызывается @Composable-функция?<p id="10215285-0ae8-8009-a021-e41457163cdf" class=""><mark class="highlight-teal">Функция </mark><mark class="highlight-teal"><code>@Composable</code></mark><mark class="highlight-teal"> вызывается каждый раз, когда изменяется её состояние или параметры. Если параметры функции изменяются, она будет вызвана снова для обновления пользовательского интерфейса, даже без изменения состояния.</mark></p></li></ol><ol type="1" id="10015285-0ae8-8049-95de-cc05e5ca5c8d" class="numbered-list" start="14"><li>Как ускорить Compose?<p id="303bed5e-2d7a-4c73-99c8-46111e5a0f90" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">Заменить XML-иконки на </mark><mark class="highlight-teal"><code>ImageVector</code></mark><mark class="highlight-teal">.</mark></p><p id="10015285-0ae8-8074-8bb3-fcafc7b8c55b" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">Заменить Modifier.composed на </mark><mark class="highlight-teal"><code>Modifier.Node</code></mark><mark class="highlight-teal">.</mark></p><p id="f2d7235c-f0f8-4680-9f3a-2ec7dc133ecc" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">Использовать специальные типы для </mark><mark class="highlight-teal"><code>MutableState</code></mark><mark class="highlight-teal">.</mark></p><p id="10015285-0ae8-80ce-871e-d5e009901af1" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">Использовать аннотации </mark><mark class="highlight-teal"><code>@Stable</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>@Immutable</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>@ReadOnlyComposable</code></mark><mark class="highlight-teal">.</mark></p><p id="10015285-0ae8-806d-9fc9-e12c8db83256" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">Подключить линтеры.</mark></p></li></ol><ol type="1" id="a18c42cc-f66f-4197-9f00-a635a12edcca" class="numbered-list" start="15"><li>Чем Compose отличается от View?<p id="a3623af4-ee23-4263-8001-ce5c88ff416b" class=""><mark class="highlight-teal">Декларативный подход</mark>, <mark class="highlight-teal">интеллектуальная перекомпановка</mark>, <mark class="highlight-teal">типобезопасность Kotlin</mark>.</p></li></ol></div></details><p id="dfdc7539-6d74-4e3a-9985-150ffdc798f7" class="">
+</p><figure id="6dda9d6a-5230-447e-9a6c-65fd10c69473" class="image"><a href="Compose%20d5854833170e40379f368e45d9af188d/f316e2a3b3392fa443ebfd7ac3a6e76b.png"><img style="width:3043px" src="Compose%20d5854833170e40379f368e45d9af188d/f316e2a3b3392fa443ebfd7ac3a6e76b.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
