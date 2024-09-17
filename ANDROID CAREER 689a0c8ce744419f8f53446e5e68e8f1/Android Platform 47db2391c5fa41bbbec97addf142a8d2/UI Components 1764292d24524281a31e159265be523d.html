@@ -1,0 +1,873 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>UI Components</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1764292d-2452-4281-a31e-159265be523d" class="page sans"><header><img class="page-cover-image" src="UI%20Components%201764292d24524281a31e159265be523d/michaelbely_various_plastic_figures_green_color_81447ec9-28ba-427e-b711-b8ed9def3e28.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="UI%20Components%201764292d24524281a31e159265be523d/android.svg"/></div><h1 class="page-title">UI Components</h1><p class="page-description"></p></header><div class="page-body"><table id="e4a5c142-5a52-4f28-8abe-9a2ec301ffa5" class="simple-table"><tbody><tr id="1acffa02-3fb5-4ca0-b13b-d391df72131c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/declaring-layout">https://developer.android.com/develop/ui/views/layout/declaring-layout</a></td></tr><tr id="b3382935-802b-49a5-b78d-7cab64285c55"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/responsive-adaptive-design-with-views">https://developer.android.com/develop/ui/views/layout/responsive-adaptive-design-with-views</a></td></tr><tr id="0e5acde2-1321-43f5-9513-4e9b01e5ead0"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/window-size-classes">https://developer.android.com/develop/ui/views/layout/window-size-classes</a></td></tr><tr id="a85216ff-539d-4daf-974e-a5c2c61344bb"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/support-multi-window-mode">https://developer.android.com/develop/ui/views/layout/support-multi-window-mode</a></td></tr><tr id="a8d2d106-e3e1-4e2d-bd89-8c66f7e748a8"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/constraint-layout">https://developer.android.com/develop/ui/views/layout/constraint-layout</a></td></tr><tr id="170eea46-aa9a-4383-943c-7934bc74bb1c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/recyclerview">https://developer.android.com/develop/ui/views/layout/recyclerview</a></td></tr><tr id="6cc28da9-c11f-4a50-af25-b29454d8b275"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/recyclerview-custom">https://developer.android.com/develop/ui/views/layout/recyclerview-custom</a></td></tr><tr id="099f3416-e3fc-44b0-9938-81397fff46ec"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/cardview">https://developer.android.com/develop/ui/views/layout/cardview</a></td></tr><tr id="4f196a55-b63a-41ef-89b8-93746b4f3a70"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/twopane">https://developer.android.com/develop/ui/views/layout/twopane</a></td></tr><tr id="47aba64e-846d-4a90-8c04-60f2c276233c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/linear">https://developer.android.com/develop/ui/views/layout/linear</a></td></tr><tr id="a401fdae-a4fa-4585-aa68-a47085385d13"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/binding">https://developer.android.com/develop/ui/views/layout/binding</a></td></tr><tr id="43211940-40c8-4bf6-bb28-66480357ea57"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/relative">https://developer.android.com/develop/ui/views/layout/relative</a></td></tr><tr id="48e57aa6-0454-4485-ad10-0afb5bbb10e3"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/reference/kotlin/android/widget/RemoteViews">https://developer.android.com/reference/kotlin/android/widget/RemoteViews</a></td></tr><tr id="761e72e5-1b0f-48b7-a009-a1fa09b0a97b"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/reference/kotlin/android/widget/FrameLayout">https://developer.android.com/reference/kotlin/android/widget/FrameLayout</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ViewStub</code></summary><div class="indented"><p id="10315285-0ae8-80c4-bd7f-d1c9b487712e" class="">Используется для отложенного включения и инициализации другого представления (или макета) в UI. Предназначен для оптимизации производительности при запуске приложения, когда нужно отложить загрузку или отображение некоторых частей интерфейса до тех пор, пока они действительно не понадобятся. Представляет собой невидимый элемент в макете, который содержит ссылку на другой макет, который нужно загрузить.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-800a-9d61-f1fc9d1f6e6d" class="code"><code class="language-XML">&lt;LinearLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ViewStub
+        android:id=&quot;@+id/view_stub&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout=&quot;@layout/your_layout_to_inflate&quot; /&gt;
+        
+&lt;/LinearLayout&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-806d-ac2a-ddbf54ba7db8" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Получаем ViewStub
+        val viewStub: ViewStub = findViewById(R.id.view_stub)
+
+        // Загружаем макет
+        viewStub.inflate()
+    }
+}</code></pre><p id="10315285-0ae8-80d1-879a-e05cd90ff01d" class="">
+</p><h3 id="10315285-0ae8-8010-9e6f-e3664f2bb985" class=""><code>inflate</code></h3><p id="024f844d-94ed-471d-8a65-3b7d489f9337" class="">Когда вызывается метод <code>inflate()</code>, ViewStub заменяется указанным макетом, и этот макет становится частью интерфейса пользователя.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>FrameLayout</code></summary><div class="indented"><p id="55b17f4a-379d-4093-89ed-b0887d7ce92c" class="">Легкий достаточно одного measure-прохода чтобы понять как отображать своих детей внутри себя.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>LinearLayout</code></summary><div class="indented"><p id="af83a266-828c-4496-bee1-d312602e26ca" class="">Легкий если не использовать веса, достаточного одного прохода для отображения детей. Если использовать веса нужно 2 прохода: узнать веса и расставить относительно друг друга.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ConstraintLayout</code></summary><div class="indented"><p id="6d7410d4-76f6-4b41-b2f3-c7bfd2e309cd" class="">Умеет делать что угодно, один из тяжелых, нужно 2 прохода, внутри себя решает систему линейных уравнений чтобы размещать детей.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>MotionLayout</code></summary><div class="indented"><p id="10315285-0ae8-8065-bcd9-efecfb738d83" class="">Предоставляет возможность создания сложных анимаций и переходов между различными состояниями пользовательского интерфейса. Является частью ConstraintLayout. Позволяет синхронизировать анимации нескольких элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afe4f48f-e481-4431-bc4a-ac2eefff3989" class="code"><code class="language-XML">&lt;androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;!-- Элементы интерфейса --&gt;
+    &lt;androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;&gt;
+
+        &lt;View
+            android:id=&quot;@+id/myView&quot;
+            android:layout_width=&quot;100dp&quot;
+            android:layout_height=&quot;100dp&quot;
+            android:background=&quot;@android:color/holo_blue_light&quot;/&gt;
+            
+    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+
+    &lt;!-- MotionScene для определения анимаций --&gt;
+    &lt;androidx.constraintlayout.motion.widget.MotionScene
+        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+
+        &lt;Transition
+            app:constraintSetStart=&quot;@id/start&quot;
+            app:constraintSetEnd=&quot;@id/end&quot;
+            app:duration=&quot;1000&quot;&gt;
+            &lt;OnSwipe
+                app:dragDirection=&quot;dragUp&quot;
+                app:touchAnchorId=&quot;@id/myView&quot;
+                app:touchAnchorSide=&quot;top&quot;
+                app:touchRegionId=&quot;@id/myView&quot;/&gt;
+        &lt;/Transition&gt;
+
+        &lt;ConstraintSet android:id=&quot;@+id/start&quot;&gt;
+            &lt;Constraint
+                android:id=&quot;@id/myView&quot;
+                android:layout_width=&quot;100dp&quot;
+                android:layout_height=&quot;100dp&quot;
+                app:layout_constraintTop_toTopOf=&quot;parent&quot;
+                app:layout_constraintLeft_toLeftOf=&quot;parent&quot;/&gt;
+        &lt;/ConstraintSet&gt;
+
+        &lt;ConstraintSet android:id=&quot;@+id/end&quot;&gt;
+            &lt;Constraint
+                android:id=&quot;@id/myView&quot;
+                android:layout_width=&quot;100dp&quot;
+                android:layout_height=&quot;100dp&quot;
+                app:layout_constraintTop_toBottomOf=&quot;parent&quot;
+                app:layout_constraintLeft_toRightOf=&quot;parent&quot;/&gt;
+        &lt;/ConstraintSet&gt;
+
+    &lt;/androidx.constraintlayout.motion.widget.MotionScene&gt;
+    
+&lt;/androidx.constraintlayout.motion.widget.MotionLayout&gt;</code></pre><p id="10315285-0ae8-8082-883a-d6b4d7242286" class="">
+</p><h3 id="10315285-0ae8-8088-8a3e-ee6cc06f0874" class=""><code>MotionScene</code></h3><p id="d138f281-62c5-4fcb-bbfd-361c26dfde73" class="">Определяет анимации и переходы, включая состояния и переходы между ними.</p><p id="10315285-0ae8-80c5-8c5b-f2e8cf2bec6c" class="">
+</p><h3 id="be8ac194-0a06-4b68-b6d8-57b4e3db244c" class=""><code>Transition</code></h3><p id="962c5307-a641-4a14-afc8-38b77beb51df" class="">Описывает, как и когда происходит переход между двумя состояниями.</p><p id="10315285-0ae8-8092-8295-f7da5eeb4f71" class="">
+</p><h3 id="10315285-0ae8-80d7-a5ab-d640fbe7c83a" class=""><code>OnSwipe</code></h3><p id="10315285-0ae8-80fe-af06-e1e99ea80326" class="">Обработчик для начала перехода на основе жеста.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>RelativeLayout</code></summary><div class="indented"><p id="7be5e136-0ad7-4000-8bd7-4e61fc3e7a4d" class="">Нужно 2 прохода чтобы отобразить детей. Динозавр.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>RemoteViews</code></summary><div class="indented"><p id="6fccc4ca-fb1a-4226-b869-084b6a8ca4bc" class="">View которая может отображаться в другом процессе. Поддерживает ограниченное количество виджетов. Используется для виджетов или уведомлений. Клики обрабатываются через <code>PendingIntent</code>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>TextView</code></summary><div class="indented"><h3 id="d6b684ff-1fa1-4122-9b99-f7f51dd36c12" class=""><code><strong>PrecomputedText</strong></code></h3><p id="f71bbc4e-faa7-4a76-8f79-643b43db0a94" class="">Возможность выполнить все измерения текста в любом потоке. Добавлен в Android 9.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11af158a-9c37-453b-92a9-746c4eccee51" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun TextView.setTextAsync(longString: String) {
+    val params = this.textMetricsParams
+    val ref = WeakReference(this)
+
+    CoroutineScope.launch(Dispatchers.Default) {
+        val precomputedText = PrecomputedText.create(longString, params)
+        withContext(Dispatchers.Main) {
+            ref.get()?.let { textView -&gt;
+                textView.text = precomputedText
+            }
+        }
+    }
+}</code></pre><p id="a3f8e911-dc37-467e-b91f-3749bae1d091" class="">
+</p><h3 id="351623e7-0ec8-489a-9701-378cef27a37e" class=""><code><strong>Spannable</strong></code></h3><p id="0894df01-91e3-4dcb-9e34-48b8d3d4b774" class="">Spannable – это интерфейс, характеризующий текст, который имеет стилистическую разметку. Например с помощью Spannable можно создать текст, часть которого окрашена в иной цвет. Метод Spannable.setSpan() принимает произвольный объект типа Object, который используется для разметки. Этот метод не бросает исключений. Классы, которые реализуют интерфейс Spannable, должны игнорировать неподдерживаемые объекты разметки. Пример: ForegroundColorSpan для изменения цвета текста.</p><p id="30cb978d-adb2-4326-97f0-4816c4ea759b" class="">
+</p><h3 id="c031ed5c-5b38-42ca-a28c-f1103eb67017" class=""><code><strong>Compound Drawable</strong></code></h3><p id="fde49da0-f460-42bf-891a-6c0871d0a080" class="">Это drawable который можно добавить в TextView. Эффективнее чем использовать LinearLayout.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>RecyclerView</strong></code></summary><div class="indented"><p id="38664f14-d0bc-4c34-98b1-73badbe1e733" class="">Улучшенная замена ListView. Bмеет более гибкий API, хороший дизайн, соответствует принципу единственной ответственности. Переиспользует viewholders при скролле. Разделяет хранение и отображение данных. Можно изменить UI в runtime с помощью LayoutManager. Логика анимаций вынесена в ItemAnimator.</p><p id="cfd6644e-de10-446f-b590-5d964d6c8527" class="">
+</p><h3 id="9d540e31-9e75-4ff2-a249-bcef7374ad00" class=""><strong>Несколько recyclerview внутри scrollview отображают количество элементов максимум с высоту девайса</strong></h3><p id="c91b2b00-f9ce-402b-8a91-5bff704cea3a" class="">Заменить ScrollView на NestedScrollView.</p><p id="b595d2ab-9658-4a38-9e93-7b8dbe3baa9b" class="">
+</p><h3 id="806cc4ad-977e-45b0-829f-1d0d824bed46" class=""><code><strong>DiffUtil</strong></code></h3><p id="96676ed4-6255-4410-bcad-d42d3001d2b7" class="">Для оптимизации: метод areContentTheSame проверяет только те поля объекта, которые видны на экране.</p><p id="afb8d8ee-7212-4d31-850a-739812eb0e8b" class="">
+</p><h3 id="f8904657-1229-462f-bbd7-adf2e6c60173" class=""><code><strong>RecycledViewPool</strong></code></h3><p id="577a38a9-1660-494f-9b4c-1f0a675b0fb8" class="">Позволяет обмениваться представлениями между несколькими RecyclerView.</p><p id="c7fea644-386b-4b55-b8d0-85df3e69e1d6" class="">
+</p><h3 id="9fe03973-7f20-42e5-a8f0-175c45eeadcb" class=""><code><strong>AdapterDataObserver</strong></code></h3><p id="fdac94bc-5164-4b9f-88ff-bdc6b62bb0a5" class="">В методе <code>onItemRangeInserted</code> отслеживать загрузку списка.</p><p id="298dbd15-375b-49da-bfc8-024a04fe54e0" class="">
+</p><h3 id="280a5127-6c7b-46b5-8621-1dbd612afbf8" class=""><code><strong>setHasFixedSize</strong></code></h3><p id="3afc4834-f7c2-4e0f-b3c5-798cd51aa05c" class="">Если true - никакой контент или дочерние view внутри RecyclerView не влияют на его высоту или ширину. Владея этой информацией, RecyclerView не выполнит лишние измерения. </p><p id="d5fa4b0c-0c51-4c27-8d44-d850238f76da" class="">
+</p><h3 id="6f24c00b-5b41-4ac8-83cf-1f3137cb5738" class=""><code><strong>setHasStableIds</strong></code></h3><p id="1d78a867-41f2-4821-857c-bb9cfa0d8f8e" class="">Если true - сообщает RecyclerView, что нужно ориентироваться, помимо позиций, ещё и на stableId элементов. Рекомендуется использовать stableId для каждого ViewHolder — это помогает RecyclerView переиспользовать view, если меняется список. </p><p id="db46112d-f448-42b8-8444-8c620d358b8b" class="">
+</p><h3 id="d779f60b-b4e0-4f68-b2e2-24972bff6048" class=""><code><strong>setNestedScrollingEnabled</strong></code></h3><p id="41981d0e-61a0-465b-8387-3b8999a06e23" class="">Если вам не нужно, чтобы этот контейнер прокручивался внутри другого скролла, тогда передавайте false. Отключение позволяет не выполнять дополнительные вычисления для жестов.</p><p id="e915afdf-5485-46bf-8cdb-d36f6e84dfcc" class="">
+</p><h3 id="089192b3-3e56-492a-885b-d1d716afae64" class="">Лагает прокрутка. Что делать?</h3><p id="d53d2021-1a75-44dd-971c-c465468dbd67" class=""> - не выполнять тяжелые операции в <code>onBindViewHolder</code>.<br/> - использовать <br/><code>DiffUtil</code> вместо <code>notifyDataSetChanged</code> обновлять одну строку вместо отрисовки всего списка.<br/> - использовать <br/><code>RecycledViewPool</code> для вложенных списков.<br/> - использовать <br/><code>ViewStub</code> для ленивого создания view в случае если нужно отобразить ошибку вместо хранения в памяти целого view.<br/> - в XML использовать merge чтобы не добавлять лищние view в иерархию.<br/> - использовать <br/><code>VectorDrawable</code> вместо тяжелых PNG и JPG, использовать nine-patch для background.<br/> - явно указывать размер view если он фиксирован чтобы не тратить ресурсы на вычисление.<br/> - использовать <br/><code>setHasFixedSize</code> <code>setHasStableIds</code> <code>setItemViewCacheSize</code>.<br/> - обновлять индикаторы через <br/><code>findViewHolderForAdapterPosition</code> а не через <code>DiffUtil</code>.</p><p id="c34ae5b3-de91-4856-b72e-f4272ed9fb70" class="">
+</p><h3 id="afd185df-cb03-4faa-bcc5-cafe455f0b48" class=""><code><strong>AdapterDelegates</strong></code></h3><p id="c6f0d424-0954-457f-a919-ad6ef4b7c38c" class="">Favor composition over inheritance for RecyclerView Adapters. </p><p id="fc3d94c7-83b1-4dc6-8268-7a2c0f720c3f" class="">
+</p><h3 id="d41ca752-2ff7-4637-8210-b1a66d377746" class=""><code><strong>FastAdapter</strong></code></h3><p id="7e71c10f-ae1e-463a-a9d9-a4c0f5381c9b" class="">The bullet proof fast and easy to use adapter library which minimizes developing time to a fraction.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ScrollView</code></summary><div class="indented"><h3 id="91dc42f0-0d62-441f-8ced-afe6c23d2342" class=""><code><strong>fillViewport</strong></code></h3><p id="882adb1d-dd01-45e6-b205-713336d2bb4d" class="">Определяет должно ли ScrollView растягивать свое содержимое для заполнения области просмотра.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>Constraintlayout</strong></code></summary><div class="indented"><p id="dd37ba69-0242-480a-ab8e-5cc791f9abf2" class="">ViewGroup которая позволяет гибко размещать и изменять размеры виджетов.</p><p id="f8136e0e-6004-4d91-924b-aae0ed0b1044" class="">
+</p><h3 id="4b1d8410-4d21-407b-a0cf-444ddfb54f9a" class=""><code><strong>Guideline</strong></code></h3><p id="6308c84b-3d64-426e-9e1f-567c61cc74a6" class="">Вспомогательный класс работающий внутри Constraintlayout. Виджеты могут использовать Guideline для позиционирования.</p><p id="fe550db2-cb0a-426e-9db3-d8b50efda680" class="">
+</p><h3 id="f1d1a937-7774-458e-bd93-8da022251889" class=""><code><strong>Flow</strong></code></h3><p id="80a83ca9-d532-4a09-bdc6-84f3397d3109" class="">Позволяет размещать виджеты на которые есть ссылки, горизонтально или вертикально подобно цепочке.</p><p id="d678708f-1390-4839-a9f2-4fbeacf6c85a" class="">
+</p><h3 id="c8060e13-49a5-43f5-8dc3-1c46f6349874" class=""><code><strong>chain</strong></code></h3><p id="d2734003-e6a5-4053-8e25-6e3a56c2baa0" class="">Группа виджетов связанных друг с другом двунаправленными ограничениями.</p><p id="32808f09-7c14-4bac-8825-7cae399a565f" class="">
+</p><h3 id="5155e76d-b884-44b5-9204-0202a12be48c" class=""><code><strong>barrier</strong></code></h3><p id="2e1dea42-ba9d-4460-a065-b627d7436605" class="">Ограничить view набором других view.</p><p id="484c7eb0-8adb-457b-9ed8-8754d8d0b956" class="">
+</p><h3 id="34220f99-275a-465d-bde8-043212b4c0e7" class=""><code><strong>baseline</strong></code></h3><p id="6bafe2b9-c6ea-41a8-a317-56b898862def" class="">Выровнять view по базовой линии текста.</p><p id="a73c2582-64b1-47e0-8472-52e1aaa91ea4" class="">
+</p><h3 id="6214abbf-95c4-4429-9263-8195284ffdd2" class=""><code><strong>guideline</strong></code></h3><p id="23a555f8-9eb4-47b3-9770-1ae155308f2c" class="">Добавить горизонтальную или вертикальную направляющую по которой можно выровнять другие view. </p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>CoordinatorLayout</strong></code></summary><div class="indented"><p id="b3d9c780-6158-4a11-a636-883948d0343d" class="">Сверхмощный FrameLayout. Предназначен для взаимодействия дочерних виджетов между собой например: <code>DrawerLayout</code> <code>FloatingActionButton</code>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>ViewPager2</code></summary><div class="indented"><h3 id="1946d8d9-2fa5-4370-b6aa-dd24eaa04855" class="">Передать currentItem как аргумент фрагменту.</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7b706f6-4e20-4d0d-a91b-141fedd4486b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class PagerViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle
+): ViewModel() {
+    val tabLiveData: LiveData&lt;Int&gt; = savedStateHandle.getLiveData&lt;Int&gt;(&quot;tab&quot;)
+}
+
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    viewModel.tabLiveData.observe(viewLifecycleOwner) { tab -&gt;
+        view.post { binding.viewPager.setCurrentItem(tab, false) }
+    }
+}
+
+companion object {
+    fun create(tab: Int) = PagerFragment().apply {
+        arguments = bundleOf(&quot;tab&quot; to tab)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>WebView</code></summary><div class="indented"><p id="31a2fbbd-a8d2-476e-9eec-f705ca14480d" class="">Позволяет отображать веб-страницы внутри вашего приложения.</p><p id="c08462b8-ae0a-4180-beb1-66d1944c6e10" class="">• Использование WebView может представлять потенциальные угрозы безопасности, так как оно позволяет выполнять JavaScript и обрабатывать веб-контент.</p><p id="90be6654-a9f2-4194-9488-846ff73815f9" class="">• Важно правильно управлять жизненным циклом WebView, например, освобождать ресурсы и сохранять состояние, если это необходимо</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2620d04d-6178-4abd-bca3-213c2d94b554" class="code"><code class="language-XML">&lt;WebView
+    android:id=&quot;@+id/my_webview&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;/&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff92b127-3054-4b19-9add-1981175bee09" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       
+        val webView: WebView = findViewById(R.id.my_webview)
+        webView.settings.javaScriptEnabled = true  // Включение JavaScript
+        webView.webViewClient = WebViewClient()    // Обработка ссылок внутри WebView
+        webView.loadUrl(&quot;https://www.example.com&quot;) // Загрузка веб-страницы
+    }
+    
+    override fun onPause() {
+		    super.onPause()
+		    webView.onPause()
+		}
+
+		override fun onResume() {
+		    super.onResume()
+		    webView.onResume()
+		}
+
+		override fun onDestroy() {
+		    super.onDestroy()
+		    webView.destroy()
+		}
+}</code></pre><p id="7909441c-57a7-4d34-9cf8-463744eeb8f1" class="">
+</p><h3 id="d784d71d-7466-40a8-9d04-b2dba245c763" class=""><code>javaScriptEnabled</code></h3><p id="19e02d10-9f89-47d7-9b31-789ab53e8648" class="">Включает или отключает поддержку JavaScript.</p><p id="2d56968f-9006-4f5e-a545-980543adbdac" class="">
+</p><h3 id="6c21939e-3926-42f7-813d-6453d26dabed" class=""><code>setDomStorageEnabled</code></h3><p id="88c560bf-6ee0-4a61-8b6a-57d9bb414860" class="">Включает или отключает поддержку DOM-хранилища.</p><p id="9a72b059-bca2-47e8-aa79-29370b3b3dbd" class="">
+</p><h3 id="6bf1db3b-3165-405e-b79d-d6dd2c8a51de" class=""><code>setSupportZoom</code></h3><p id="d721be11-4d0e-49b6-9c0b-8e5fe7385412" class="">Включает или отключает поддержку масштабирования.</p><p id="e99c8918-0a28-4cf7-9703-f35bcd50dce4" class="">
+</p><h3 id="b3640e0d-6f24-427a-a152-ea29c3c2b161" class=""><code>goBack</code></h3><p id="56b1b672-cbe0-493b-90fc-4105856d9394" class="">Управлять возвратом на предыдущие страницы в WebView.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="747c7cfa-e27e-4e1a-a22e-aa17e430238c" class="code"><code class="language-Kotlin">if (webView.canGoBack()) {
+    webView.goBack()
+} else {
+    super.onBackPressed()
+}</code></pre><p id="2500291d-eef2-4109-8e5b-50a7eb5740a2" class="">
+</p><h3 id="c64ed772-8135-44fb-bb22-f82919787ae4" class=""><code>WebViewClient</code></h3><p id="e941bd50-44aa-4bb2-b10e-cfc37e951a72" class="">По умолчанию, ссылки, которые пользователь нажимает в WebView, открываются в браузере. Чтобы ссылки открывались внутри WebView, нужно установить WebViewClient.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="287d4be9-6e4e-447f-bb4a-7ad4575cbc1b" class="code"><code class="language-Kotlin">webView.webViewClient = object: WebViewClient() {
+    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+        view.loadUrl(url)
+        return true
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android UI Components. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="cc4bd331-ab4e-49e5-80df-9b25c7a4204f" class="numbered-list" start="1"><li>Для чего нужен CoordinatorLayout?</li></ol><ol type="1" id="eef34d16-307a-416d-9690-eacded33ec6a" class="numbered-list" start="2"><li>Ранжируй Layouts по производительности?<p id="1b05baa2-69d2-4983-8243-58a4fa681506" class=""><mark class="highlight-teal">FrameLayout </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> LinearLayout </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> ConstraintLayout </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> RelativeLayout</mark></p></li></ol><ol type="1" id="06ede6c2-0e63-4b8f-99fd-b8296cec1081" class="numbered-list" start="3"><li>С помощью какого компонента RecyclerView можно добавить разделители?<p id="88641bf9-c7f1-423c-bbdf-9ae9e5b3211b" class=""><mark class="highlight-teal">ItemDecoration</mark></p></li></ol><ol type="1" id="10215285-0ae8-80f1-8847-e1c06d0aebb1" class="numbered-list" start="4"><li>С помощью какого компонента лучше выполнять отложенный (по запросу) inflate дочерней View?<p id="10215285-0ae8-8060-a2bc-fde039537f87" class="">• <mark class="highlight-red">LazyView</mark></p><p id="10215285-0ae8-8016-b3d9-e57cbe4e3175" class="">• <mark class="highlight-red">AsnycLayoutinflater</mark></p><p id="fe596f1a-058c-40c0-b83d-e451fff29f5f" class="">• <mark class="highlight-teal">ViewStub</mark></p></li></ol><ol type="1" id="e6fa70c1-808c-429b-bc90-8fb36ce7d534" class="numbered-list" start="5"><li>Сколько дочерних элементов может содержать ScrollView?<p id="4f73e7b2-d52c-4ee4-ae5d-b99e379e47f9" class="">• <mark class="highlight-red">2</mark></p><p id="54bc4512-f681-45dc-889b-a960adb57b48" class="">• <mark class="highlight-teal">1</mark></p><p id="3f993e21-f418-4ec3-b30c-971ddcd547eb" class="">• <mark class="highlight-red">3</mark></p><p id="fbb5f372-9355-4dce-ae95-91c9e2b3f995" class="">• <mark class="highlight-red">Сколько угодно</mark></p></li></ol><ol type="1" id="9dcd0bdf-cdea-4891-9799-05fe61c3dc9c" class="numbered-list" start="6"><li>Какой метод используется для обновления содержимого AdapterView?<p id="f40db534-1d56-486a-b680-b5f8b29e3972" class="">• <mark class="highlight-teal">notifyDataSetChanged</mark></p><p id="ced19d29-daa7-4bb5-bd0c-4042b48c5490" class="">• <mark class="highlight-red">updateAdapter</mark></p><p id="161edf8a-f4b6-4711-a9ce-83e84aa6796c" class="">• <mark class="highlight-red">refreshAdapter</mark></p><p id="8f4538f2-3df9-4b56-9d3f-5ddd333ff6d7" class="">• <mark class="highlight-red">invalidateAdapter</mark></p></li></ol><ol type="1" id="b3e9a1dd-9848-4408-a8ae-10a4439dede1" class="numbered-list" start="7"><li>Какой метод используется для настройки слушателя нажатий в View?<p id="1fdfed98-5575-4265-baa0-69384533c521" class="">• <mark class="highlight-red">setOnTouchListener</mark></p><p id="b1960d45-6e0e-4271-813e-9633f7c9137f" class="">• <mark class="highlight-teal">setOnClickListener</mark></p><p id="0b9e1b12-db4f-4108-84b5-5c9373efd3d7" class="">• <mark class="highlight-red">setClickListener</mark></p><p id="cd80ea00-6c0b-4be9-86e9-9c8f2fe1ba6a" class="">• <mark class="highlight-red">setOnClick</mark></p></li></ol><ol type="1" id="10215285-0ae8-80fa-a90f-c406174c7f7f" class="numbered-list" start="8"><li>Какой из следующих атрибутов XML используется для установки стиля текста в TextView?<p id="4d8bdf56-726b-47f1-8964-04eb9066e199" class="">• <mark class="highlight-red">textStyle</mark></p><p id="37e57fa5-f79b-4a21-88c5-4e06392753fd" class="">• <mark class="highlight-teal">textAppearance</mark></p><p id="5493da3a-1680-41e3-af2b-a471e48f70ad" class="">• <mark class="highlight-red">textFont</mark></p><p id="8e7ad19f-6821-4c2a-a317-62d7b2c7db0d" class="">• <mark class="highlight-red">textSize</mark></p></li></ol><ol type="1" id="30ca5d8e-e522-462f-b755-067bf9fb4abe" class="numbered-list" start="9"><li>Что отрисуется на экране при inflate этого XML?<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10215285-0ae8-80d5-a51f-c74fa373b711" class="code"><code class="language-XML">&lt;LinearLayout
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+		android:layout_width=&quot;match_parent&quot;
+		android:layout_height=&quot;match_parent&quot;
+		android:gravity=&quot;center&quot;
+		android:orientation=&quot;horizontal&quot;&gt;
+		
+		&lt;Button
+				android:layout_width=&quot;wrap_content&quot;
+				android:layout_height=&quot;wrap_content&quot;
+				android:text=&quot;Button&quot; /&gt;
+				
+		&lt;Button
+				android:layout_width=&quot;wrap_content&quot;
+				android:layout_height=&quot;wrap_content&quot;
+				android:text=&quot;Button&quot; /&gt;
+
+&lt;/LinearLayout&gt;</code></pre><figure id="10215285-0ae8-807b-bd0e-d9ea1f65599d" class="image"><a href="UI%20Components%201764292d24524281a31e159265be523d/Screenshot_2024-09-15_at_14.14.10.png"><img style="width:288px" src="UI%20Components%201764292d24524281a31e159265be523d/Screenshot_2024-09-15_at_14.14.10.png"/></a></figure><p id="10215285-0ae8-80ad-aaf6-ce426f892dec" class="">• <mark class="highlight-teal">left-top</mark></p><p id="b7b9874b-8ff5-4239-b2eb-cbe77a1c6dd0" class="">• <mark class="highlight-red">right-top</mark></p><p id="10215285-0ae8-8057-9b77-fe5fddf60953" class="">• <mark class="highlight-red">left-bottom</mark></p><p id="10215285-0ae8-80cb-9ba9-c22f32cb00b7" class="">• <mark class="highlight-red">right-bottom</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

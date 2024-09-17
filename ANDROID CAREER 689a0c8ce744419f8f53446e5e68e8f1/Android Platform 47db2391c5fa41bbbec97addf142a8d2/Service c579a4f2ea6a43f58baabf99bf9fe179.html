@@ -1,0 +1,756 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Service</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c579a4f2-ea6a-43f5-8baa-bf99bf9fe179" class="page sans"><header><img class="page-cover-image" src="Service%20c579a4f2ea6a43f58baabf99bf9fe179/michaelbely_robots_green_color_88391289-33e8-42ea-a8ca-7b173613f07c.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Service%20c579a4f2ea6a43f58baabf99bf9fe179/android.svg"/></div><h1 class="page-title"><strong>Service</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="ff56baf2-ee5d-4713-a364-3a9555677d46" class="simple-table"><tbody><tr id="2a5e617f-f27f-4824-a651-80c829e4cfc7"><td id="TlCp" class="" style="width:587px"><a href="https://developer.android.com/about/versions/14/changes/fgs-types-required">https://developer.android.com/about/versions/14/changes/fgs-types-required</a></td></tr><tr id="fe9ce052-5063-46d0-a246-a5a343b3ab11"><td id="TlCp" class="" style="width:587px"><a href="https://developer.android.com/about/versions/15/changes/foreground-service-types">https://developer.android.com/about/versions/15/changes/foreground-service-types</a></td></tr><tr id="3d8644f4-4480-4f95-a6e5-343493f5bc30"><td id="TlCp" class="" style="width:587px"><a href="https://developer.android.com/reference/android/app/DownloadManager">https://developer.android.com/reference/android/app/DownloadManager</a></td></tr></tbody></table><table id="41139f95-a526-46ba-a623-34198dbff09a" class="simple-table"><tbody><tr id="9ae59025-cf5c-4014-b939-d4dd2f6cc713"><td id="R@gL" class="" style="width:101px"><mark class="highlight-brown"><code>16.06.2023</code></mark></td><td id="TlCp" class="" style="width:613px"><a href="https://habr.com/ru/companies/broadcast/articles/734236/">https://habr.com/ru/companies/broadcast/articles/734236/</a></td></tr><tr id="761a90ca-03cc-41c7-af3a-7c862ac186d6"><td id="R@gL" class="" style="width:101px"><mark class="highlight-brown"><code>14.02.2018</code></mark></td><td id="TlCp" class="" style="width:613px"><a href="https://habr.com/ru/post/349102">https://habr.com/ru/post/349102</a></td></tr></tbody></table><table id="e52e1c92-7e43-41b1-ac75-0ca8082a9024" class="simple-table"><tbody><tr id="f6f6fe9b-2ba4-4291-96b9-3edff5dae24a"><td id="R@gL" class="" style="width:101px"><mark class="highlight-brown"><code>28.06.2024</code></mark></td><td id="TlCp" class="" style="width:834px"><a href="https://youtu.be/DgCmmL4FNAs">https://youtu.be/DgCmmL4FNAs</a></td></tr><tr id="f3b3b4cb-0ec3-4d4d-8a38-72bd6ec46dca"><td id="R@gL" class="" style="width:101px"><mark class="highlight-brown"><code>16.06.2023</code></mark></td><td id="TlCp" class="" style="width:834px"><a href="https://youtu.be/Ovzc2kaeSCY">https://youtu.be/Ovzc2kaeSCY</a></td></tr></tbody></table><h3 id="cd2cf60d-5243-42f0-9aaf-497daad223fd" class=""><code><strong>Service</strong></code></h3><p id="c25bcea4-99da-400c-9aa9-1e682a397343" class="">Компонент для выполнения длительных операций в фоновом режиме. Пример: проигрывание музыки, загрузка файла.</p><p id="6406d662-f79a-4070-a1be-aa50c214057c" class="">• по умолчанию работают в главном потоке (UI thread, не main thread, так как он хоть и главный, но не всегда является потоком пользовательского интерфейса).</p><p id="742757d8-4402-4bc7-8f62-3ee371623d93" class="">• сервисы нужны, чтобы связать их lifecycle с lifecycle приложения, так как обычные потоки не всегда совпадут с activity lifecycle (+возможность запуститься не только из activity).</p><p id="9e7c54c7-6bad-49b2-9cf5-be6d3fd77c70" class="">• как работает: в момент создания сервиса вызывается <code>onCreate</code>, затем запускается thread или executor, который после завершения дает знать сервису, чтобы тот вызвал <code>stopSelf</code>. Наша задача: сообщить сервису о начале и завершении работы.</p><p id="d8a74158-82df-429b-a0b8-dca6fe3c06ba" class="">• чтобы сервис работал после закрытия activity нужно в течение 5 секунд после его запуска отобразить уведомление, иначе ANR.</p><p id="86240d96-1cf2-45c3-a33d-ad3ec445d924" class="">• <code>stopSelf</code> - завершить работу сервиса.</p><p id="12ecd9d6-25f4-418c-9518-cdc262bfee96" class="">• <code>Intent.stopService</code> - завершить работу сервиса через intent, вызовется <code>stopSelf</code> - <code>onDestroy</code>.</p><p id="1f66547c-e648-498c-b236-a32b15dc5120" class="">
+</p><h3 id="fa675c25-fe36-49bb-904e-0af9c4417ca7" class="">Запуск в отдельном процессе?</h3><p id="eedfc557-fbbb-413d-9853-3642bb76754f" class="">Чтобы запустить сервис в отдельном процессе нужно указать в манифесте:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3dffe290-4f98-4777-96d6-969cc39f3e7b" class="code"><code class="language-Java">android:process=&quot;:someProcess&quot;</code></pre><p id="bfa9eb7e-7b8f-4d5e-91ad-c3d0e5803904" class="">Плюсы:</p><p id="f062f5bb-4ced-491b-9e63-35f86c2232a5" class="">• кейс с пушами. если приложение не работает, при получении пуша не вызывался App.onCreate.</p><p id="76805bfc-dd07-4089-b1f5-6b53e2e422d3" class="">• независимость от ЖЦ приложения, если упадет сможем закончить работу (например библиотека с крашлитикой).</p><p id="8765ef94-2e0d-414d-bbb4-877eb7b5b9b2" class="">• больше ресурсов, например если хотим вынести тяжелую операцию из основного процесса.</p><p id="d2613e2e-8bff-4255-b2ac-eb36f48307ca" class="">Минусы:</p><p id="0a101041-ea9d-4c70-84f7-10846d88922f" class="">• напрямую привязаться к сервису в другом процессе можно только через AIDL.</p><p id="a83610c5-9913-4b66-8a50-a2b9974b815b" class="">
+</p><h3 id="bcbcff86-8c68-4f58-956e-aac423e117e0" class=""><strong>Background</strong></h3><p id="ed36da36-a49e-437d-8b23-1be46857cca5" class="">Выполняется в фоновом потоке. Начиная с API 26, приложения в фоне не могут создавать фоновые сервисы, решением в этом случае может быть WorkManager. В Android 8.0 (API level 26) введены ограничения на работу с фоновыми сервисами. Эти ограничения касаются приложений с targetSdkVersion ≥ 26, но пользователь может включить ограничения для всех приложений в настройках. Начиная с Android 8.0, Фоновые сервисы работают пока пользователь взаимодействует с приложением. Система убивает все фоновые сервисы через несколько минут после того, как пользователь покидает приложение. Нельзя запустить фоновый сервис для приложения, с которым не взаимодействует пользователь. Вместо фоновых сервисов рекомендуется использовать JobScheduler или видимые сервисы. Чтобы запустить видимый сервис, нужно сначала запустить фоновый сервис методом <code>startService</code> а потом вызвать метод startForeground() на этом сервисе. Но, начиная с Android 8.0, нельзя запустить фоновый сервис, если пользователь не взаимодействует с приложением. Поэтому в API level 26 был добавлен метод <code>startForegroundService</code> который делает то же, что и startService(), но обещает системе, что метод <code>startForeground</code> будет вызван сразу после старта сервиса. Если не вызывать <code>startForeground</code> то система убьет сервис через несколько секунд.</p><p id="f2757bd9-8398-4bec-9c42-0206dd01503b" class="">
+</p><h3 id="ab9a5b60-51dc-4fd9-be33-3ec809926171" class=""><strong>Lifecycle</strong></h3><p id="97ebbb98-f91b-4ff7-8ffb-8b27cef2fbea" class="">Различается для started и bound сервисов.</p><p id="8597a799-5e8a-46fb-9a0d-b444ddaf90dc" class="">• <code>onCreate</code> вызывается один раз, когда сервис создается системой. Для создания started сервиса используется метод <code>startService</code> или <code>bindService</code>.</p><p id="d82436e7-e2df-4fc4-9e37-980ee16dd2d5" class="">• <code>onStartCommand</code> вызывается, когда сервис переходит в активное состояние. Код, который выполняет сервис, должен быть написан в этом методе. Вызовется столько раз, сколько был запущен сервис. </p><p id="9b36bf77-1daa-4b56-9894-47ad4b7df8d2" class="">• <code>onBind</code> вызывается системой, когда первый клиент присоединяется к сервису вызовом метода <code>bindService</code>. После вызова этого метода bound сервис переходит в активное состояние.</p><p id="727fb9f8-8ff2-4d77-9a0b-fd85f777c1e9" class="">• <code>onUnbind</code> вызывается системой, когда все клиенты отсоединились от сервиса вызовом метода <code>unbindService</code>.</p><p id="4c153289-c4e4-499e-9820-b7b36280d9cf" class="">• <code>onDestroy</code> вызывается, когда сервис уничтожается системой. Это происходит после вызова <code>stopSelf</code> или <code>stopService</code>. Также система может убить процесс с фоновым сервисом когда не хватает ресурсов или, начиная с Android 8.0, для ограничения фоновых работы или вызывается после <code>onUnbind</code> перед тем как система уничтожит сервис.</p><p id="d8afee8d-3751-435c-b356-40d2cb8d22c5" class="">
+</p><h3 id="ac5f4062-b5ac-4c66-a533-1c5867f9d648" class=""><code><strong>onStartCommand</strong></code></h3><p id="33db56a5-aa4e-4144-bcf7-c2965118f6e4" class="">После того, как мы вызываем <code>startService</code> срабатывает <code>onStartCommand</code> который возвращает одну из констант</p><p id="3f4923fd-68a0-43fe-9994-5c04310f34c2" class="">• <code>START_NOT_STICKY</code> сервис не будет перезапущен после того, как был убит системой</p><p id="3d55f45b-6634-483f-9423-ca5bbf9be2bd" class="">• <code>START_STICKY</code> сервис будет перезапущен после того, как был убит системой</p><p id="e833743a-a565-4695-8b35-47d1c301b3c0" class="">• <code>START_REDELIVER_INTENT</code> сервис будет перезапущен после того, как был убит системой. Кроме этого, сервис снова получит все вызовы <code>startService</code> которые не были завершены методом <code>stopSelf</code>.</p><p id="8dbf01d8-475d-4d2d-b5ac-7ab5d9b4a373" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Foreground Service</strong></summary><div class="indented"><p id="6fad503c-a1e5-4362-bc84-abe2ccc9f166" class="">Сервис, о котором пользователь уведомлен. Выполняется в UI thread. Во время выполнения отображает уведомление. Пример: аудиоплеер. Приоритет больше, чем background.</p><p id="f51a9a7e-2732-484b-94c4-acf4e9f0f9fd" class="">• <code>stopForeground</code> завершит выполнение сервиса на переднем плане и опционально удалит уведомление.</p><p id="78383b8a-dbe7-41f5-b3b0-bc25f3241476" class="">
+</p><h3 id="c60f219a-451e-44df-bf43-14d5c77e199a" class=""><strong>Foreground Service Type</strong></h3><p id="96972a1d-431b-40f5-a84a-16da1eb1984e" class="">Этот атрибут дает понять системе к какой категории отнести сервис. Указывается внутри элемента &lt;service&gt; в AndroidManifest. Можно комбинировать несколько типов.</p><p id="1c1309ef-c477-460f-8cdc-f189d805dccb" class="">• Android 10 (API 29) - добавлен необязательный атрибут <code>android:foregroundServiceType</code>.</p><p id="7aff6654-ead3-4926-b4a0-70378f1df225" class="">• Android 14 (API 34) - указание типа стало обязательным. Если приложение предназначенное для Android 14 не определяет типы для данной службы в <code>AndroidManifest</code> система выкинет <code>MissingForegroundServiceTypeException</code> при вызове <code>startForeground</code>. Также нужно объявить определенные permissions на основе типа сервиса иначе получим <code>SecurityException</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="efb4b135-5a89-4302-a275-3b0272c6cb18" class="code"><code class="language-Kotlin">&lt;service
+    android:name=&quot;.MyMediaPlaybackService&quot;
+    android:foregroundServiceType=&quot;mediaPlayback&quot;
+    android:exported=&quot;false&quot;&gt;
+&lt;/service&gt;</code></pre><table id="ae70b0b8-f2db-4ebc-954e-5f9f997cf570" class="simple-table"><thead class="simple-table-header"><tr id="b042f74b-f3a7-41bd-a389-fc90899a3fad"><th id="avHa" class="simple-table-header-color simple-table-header"><strong>Foreground service type</strong></th><th id="ixd&gt;" class="simple-table-header-color simple-table-header" style="width:230px"><strong>Описание</strong></th><th id="sQ^R" class="simple-table-header-color simple-table-header" style="width:281px"><strong>Permission in AndroidManifest</strong></th><th id="=Ipa" class="simple-table-header-color simple-table-header" style="width:96px"><strong>Появился</strong></th></tr></thead><tbody><tr id="1a3e7ac7-6b75-4fda-890f-21746f025ea0"><td id="avHa" class=""><code>camera</code></td><td id="ixd&gt;" class="" style="width:230px">доступ к камере, видеочат</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_CAMERA</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="949a6da9-5459-4e50-a1c3-5094e243b598"><td id="avHa" class=""><code>connectedDevice</code></td><td id="ixd&gt;" class="" style="width:230px">устройства, фитнес-трекер</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_CONNECTED_DEVICE</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="cc89db37-0ff8-4448-9517-b3a0e7b38e9d"><td id="avHa" class=""><code>dataSync</code></td><td id="ixd&gt;" class="" style="width:230px">синхронизация данных</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_DATA_SYNC</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="a10226d2-d491-4c51-955c-978c6726bd6b"><td id="avHa" class=""><code>location</code></td><td id="ixd&gt;" class="" style="width:230px">доступ к локации, навигация</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_LOCATION</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="439a18c4-36e9-48b7-bc90-f0fa3d43767b"><td id="avHa" class=""><code>mediaPlayback</code></td><td id="ixd&gt;" class="" style="width:230px">воспроизведение аудио</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="8983dee1-8704-4423-825a-617080ed4f29"><td id="avHa" class=""><code>mediaProjection</code></td><td id="ixd&gt;" class="" style="width:230px">проекция контента</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_MEDIA_PROJECTION</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="e8058d98-424c-4e42-bf8c-7cc71e6da82f"><td id="avHa" class=""><code>microphone</code></td><td id="ixd&gt;" class="" style="width:230px">диктофон</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_MICROPHONE</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="fd8abc74-1d47-4618-9721-a4fe28a49d3c"><td id="avHa" class=""><code>phoneCall</code></td><td id="ixd&gt;" class="" style="width:230px">телефонный звонок</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_PHONE_CALL</code></td><td id="=Ipa" class="" style="width:96px">Android 10</td></tr><tr id="4d52e606-6de1-4b96-affb-88db03d71fc9"><td id="avHa" class=""><code>health</code></td><td id="ixd&gt;" class="" style="width:230px">фитнес, трекер тренировок</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_HEALTH</code></td><td id="=Ipa" class="" style="width:96px">Android 14</td></tr><tr id="613c4e55-d09e-44fb-8a67-5fe5aa20b2ff"><td id="avHa" class=""><code>remoteMessaging</code></td><td id="ixd&gt;" class="" style="width:230px">обмен смс</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_REMOTE_MESSAGING</code></td><td id="=Ipa" class="" style="width:96px">Android 14</td></tr><tr id="ec2d9a09-fd9e-4db7-bb26-de4d7c60c7a7"><td id="avHa" class=""><code>shortService</code></td><td id="ixd&gt;" class="" style="width:230px">таска на 3 мин</td><td id="sQ^R" class="" style="width:281px">-</td><td id="=Ipa" class="" style="width:96px">Android 14</td></tr><tr id="8d310a18-f9da-4bb7-be42-15d1c5c855db"><td id="avHa" class=""><code>specialUse</code></td><td id="ixd&gt;" class="" style="width:230px">любая таска</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_SPECIAL_USE</code></td><td id="=Ipa" class="" style="width:96px">Android 14</td></tr><tr id="ea61def2-b3ba-487a-8f3c-7a175df8e599"><td id="avHa" class=""><code>systemExempted</code></td><td id="ixd&gt;" class="" style="width:230px">зарезервировано для системы</td><td id="sQ^R" class="" style="width:281px"><code>FOREGROUND_SERVICE_SYSTEM_EXEMPTED</code></td><td id="=Ipa" class="" style="width:96px">Android 14</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Bound Service</strong></summary><div class="indented"><p id="0e6aedb4-ce26-4a54-b335-3a20c955fc96" class="">Особый тип сервиса в Android, который позволяет другим компонентам (например, Activity) взаимодействовать с ним через интерфейс IBinder. Он предоставляет механизм для клиентов, чтобы подключаться к сервису и выполнять операции на его экземпляре.</p><p id="b0b4b940-94e7-4257-8be5-49b5ccc828cb" class="">• В отличие от обычных Started Services, которые могут работать независимо от клиентских запросов, Bound Services существуют до тех пор, пока хотя бы один клиент к ним привязан.<br/>• Как только все клиенты отключаются, сервис может быть автоматически остановлен системой.<br/></p><p id="19f34243-b23b-4a25-bddc-13c663803c0e" class="">• С помощью IBinder интерфейса клиент может взаимодействовать с сервисом. Это позволяет клиенту вызывать методы сервиса напрямую.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5883367f-7165-4dc1-89b0-4d52b7f01036" class="code"><code class="language-Kotlin">class MyBoundService: Service() {
+
+    // Класс для взаимодействия с клиентами
+    private val binder = LocalBinder()
+
+    // Метод для получения экземпляра сервиса
+    inner class LocalBinder: Binder() {
+        fun getService(): MyBoundService = this@MyBoundService
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        return binder
+    }
+
+    // Пример метода, доступного клиентам
+    fun getData(): String {
+        return &quot;Some data&quot;
+    }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9e1c418b-beb0-47f6-bd2e-8ac934a49a3e" class="code"><code class="language-Kotlin">// Привязка к Bound Service из Activity
+
+class MainActivity: AppCompatActivity() {
+    private var myService: MyBoundService? = null
+    private var isBound = false
+    
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as MyBoundService.LocalBinder
+            myService = binder.getService()
+            isBound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            isBound = false
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Привязка к сервису
+        Intent(this, MyBoundService::class.java).also { intent -&gt;
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Отвязка от сервиса
+        if (isBound) {
+            unbindService(connection)
+            isBound = false
+        }
+    }
+
+    fun useService() {
+        if (isBound) {
+            val data = myService?.getData()
+            // Использовать данные
+        }
+    }
+}</code></pre><p id="bebea1cf-ff7f-4b3f-9521-7a7553982b43" class="">
+</p><h3 id="21e7b10d-ff44-4f42-891f-98391463927e" class=""><code><strong>IBinder</strong></code></h3><p id="2ac339b4-acba-4bc9-845f-53de9ed482f8" class="">Служит для реализации связи между компонентами приложения и сервисом. Пример: переключение треков в плеере. С обычным сервисом можно взаимодействовать только через методы Intent <code>startService</code> и <code>stopService</code> которые обработаются в <code>onStartCommand</code>.</p><p id="f5869cbf-91a6-407d-b1cd-ba9a8ab7fa99" class="">
+</p><h3 id="46a04e87-36ff-4b7b-ae2e-dc2ce3301480" class=""><code>onBind</code></h3><p id="ab1b7460-abeb-4f9d-882d-8f3c4dd14cab" class="">Вызывается системой, когда клиент вызывает bindService для привязки к сервису. Возвращает объект, реализующий интерфейс IBinder. Этот объект позволяет клиенту взаимодействовать с сервисом. Если сервис не предоставляет интерфейс для взаимодействия, метод должен вернуть null.</p><p id="38f7abb0-0807-45e8-8abd-cad072dc434c" class="">
+</p><h3 id="7122ed95-6555-4d26-b14b-6120fb5c384b" class=""><code>onUnbind</code></h3><p id="d90064d3-2058-41e4-bf15-2638d4b7af99" class="">Вызывается системой, когда последний клиент, который был привязан к сервису, вызывает unbindService. Если метод возвращает true, это означает, что система может повторно привязать клиента к сервису, и в этом случае onBind будет вызван снова. Если возвращается false, система не будет повторно привязывать клиента к сервису.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>JobIntentService</strong></code></summary><div class="indented"><p id="0327277e-9adf-48cb-a241-ebaf94bcb78c" class="">Используется для тех же целей, что и <code>IntentService</code> и имеет похожий API. Для старта используется статический метод <code>enqueueWork</code> который использует <code>Context.startService</code> для API level &lt; 26 и <code>JobScheduler.enqueue</code> для API level ≥ 26. После этого система стартует сервис и вызывает в фоновом потоке метод <code>onHandleWork</code>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>IntentService</strong></code></summary><div class="indented"><p id="ba2eac97-a186-46e1-9c09-9e4ca0cdaa86" class="">Запускается и работает в фоновом потоке из коробки, в отличие от обычных сервисов, работающих в главном потоке. Выполняют работу в методе <code>onHandleIntent</code> после чего останавливается. Операции в <code>onHandleIntent</code> не могут быть прерваны, связь с основным потоком отсутствует, можно вернуть результат через уведомление или broadcast receiver. На IntentService распространяются все ограничения на работу фоновых сервисов, введенные в API 26. Начиная с API 30 - является устаревшим, рекомендуется заменить на WorkManager или JobIntentService.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>JobScheduler</strong></code></summary><div class="indented"><p id="acfd66c2-0ed6-4671-830b-05be61bc27da" class="">API для планирования различных типов заданий в рамках платформы, которые будут выполняться в собственном процессе приложения. В версии для Android 5.0 максимальное время выполнения заданий составляло одну минуту. Начиная с версии Android 6.0 и заканчивая версией Android 11, максимальное время выполнения заданий составляло 10 минут. Начиная с версии Android 12, задания по-прежнему будут останавливаться через 10 минут, если система занята или нуждается в ресурсах, но в противном случае задания могут продолжать выполняться дольше 10 минут.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>AlarmManager</strong></code></summary><div class="indented"><p id="048f8ed4-3408-4f7b-b345-950ea7157b3b" class="">Доступ к службам системной сигнализации. Они позволяют запланировать запуск вашего приложения в какой-то момент в будущем. При срабатывании будильника система транслирует зарегистрированное для него сообщение, автоматически запуская целевое приложение, если оно еще не запущено. Зарегистрированные будильники сохраняются, пока устройство находится в спящем режиме (и могут дополнительно разбудить устройство, если они сработают в это время), но будут удалены, если оно будет выключено и перезагружено. AlarmManager предназначен для случаев, когда вы хотите, чтобы код вашего приложения выполнялся в определенное время, даже если ваше приложение в данный момент не запущено. Для обычных операций синхронизации (тиков, тайм-аутов и т.д.) проще и эффективнее использовать Handler.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>DownloadManager</code></summary><div class="indented"><p id="b81c6808-523a-4ef8-88fa-2df2a52aaa1a" class="">Системный сервис для обработки длительных загрузок. Клиенты могут запросить загрузку URI в конкретный целевой файл. <code>DownloadManager</code> будет выполнять загрузку в фоновом режиме заботясь о взаимодействии HTTP и повторяя загрузку после сбоев или при изменении подключения и перезагрузке системы.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>WakeLock</strong></summary><div class="indented"><p id="d2019427-ca69-42ab-8704-43d5a6ae6c10" class="">Чтобы не разрядить аккумулятор, Android-устройство, которое не используется, быстро засыпает. Однако бывают случаи, когда приложению необходимо разбудить экран или ЦП и поддерживать его в активном состоянии, чтобы выполнить некоторую работу.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Как сделать обмен данных между Activity и Service?</summary><div class="indented"><ol type="1" id="43c2351f-5b70-4280-b064-b47f5bdd124c" class="numbered-list" start="1"><li>Через BroadcastReceiver. Он позволяет отправлять и получать данные между компонентами. Подходит для простых случаев, когда необходимо отправить данные от Service к Activity или наоборот.</li></ol><ol type="1" id="d25f0087-f016-4ea3-a222-e8cc51902f7c" class="numbered-list" start="2"><li>Через Messenger и IncomingHandler. Подходит для обмена более структурированными данными и для взаимодействия между Activity и Service в том же процессе.</li></ol><ol type="1" id="216ca8de-27cb-4747-986c-883d7e12a548" class="numbered-list" start="3"><li>Используя Bound Service и AIDL. Используется для более сложного и высокоуровневого обмена данными, особенно когда Service и Activity находятся в разных процессах.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Android Service. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="5a70546e-ed2f-4a4a-9a72-68d316bf7c55" class="numbered-list" start="1"><li>Как ОS Android понимает какой процесс сейчас приоритетнее, а какой можно остановить?</li></ol><ol type="1" id="cde08522-8dcd-4a7b-9757-37de0d55b056" class="numbered-list" start="2"><li>С чем связаны ограничения на запуск сервисов?</li></ol><ol type="1" id="8b1f737a-0437-4ceb-9ccd-4f8d513dfc8d" class="numbered-list" start="3"><li>Как запустить сервис в отдельном процессе?</li></ol><ol type="1" id="cf2c15a8-ce4c-42fb-86fb-bb1498404525" class="numbered-list" start="4"><li>В чем отличие Service и IntentService?</li></ol><ol type="1" id="000036af-fe06-49be-b7ac-4692d5673463" class="numbered-list" start="5"><li>Зачем нужен метод onBind?</li></ol><ol type="1" id="9c01dfa3-012e-4c0d-8d84-39b577fed2bd" class="numbered-list" start="6"><li>Как сделать обмен данных между Activity и Service?</li></ol><ol type="1" id="74e13811-d300-4ad5-b957-4f7247adc873" class="numbered-list" start="7"><li>Какое исключение возникает при долгой работе сервиса?</li></ol><ol type="1" id="f667376e-245b-45c9-8c20-4196abb5669c" class="numbered-list" start="8"><li>Какие есть варианты запуска сервисов?</li></ol><ol type="1" id="2bf50503-9039-45da-b4a4-0214248fdd8d" class="numbered-list" start="9"><li>Жизненный цикл сервиса?<p id="3e70141b-f32c-46c2-a64e-05891947335f" class=""><mark class="highlight-teal">Различается для обычных и Bound-сервисов.</mark></p><p id="a11dcc53-77be-4094-9f83-2f518a1da1bb" class=""><mark class="highlight-teal">Для обычных: </mark><mark class="highlight-teal"><code>onCreate</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onStartCommand</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onDestroy</code></mark><mark class="highlight-teal">.</mark></p><p id="f01efb90-7d64-4d96-97c8-73f43a892f98" class=""><mark class="highlight-teal">Для Bound: </mark><mark class="highlight-teal"><code>onCreate</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onStartCommand</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onBind</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onUnbind</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onDestroy</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="ab3c0a1f-2dce-4329-93cf-5f6e52961822" class="numbered-list" start="10"><li>Какие бывают типы сервисов?<p id="344a7e49-f445-4365-b05f-b811e83768c0" class=""><mark class="highlight-teal">1. Foreground Service (видим через уведомление)</mark></p><p id="0af95f2c-0a87-4921-9288-68a239b941bc" class=""><mark class="highlight-teal">2. Background Service (не взаимодействует с пользователем)</mark></p><p id="b2149d81-7124-43c8-ab23-5608e682e9f5" class=""><mark class="highlight-teal">3. Bound Service (можно привязаться из другого компонента и взаимодействовать с ним через IBinder, может быть как Foreground так и Background)</mark></p></li></ol><ol type="1" id="7781a2fd-68c1-4313-8101-127680d706d3" class="numbered-list" start="11"><li>На каком потоке вызывается метод Service.onStartCommand?<p id="d72c3b04-16bd-40cd-9a3d-1ebefb5e2086" class=""><mark class="highlight-teal">На клавном (UI) потоке приложения</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
