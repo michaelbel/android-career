@@ -1,0 +1,838 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RxJava</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3c21bf52-b794-4fb5-9a38-0f20b52c44f1" class="page sans"><header><img class="page-cover-image" src="RxJava%203c21bf52b7944fb59a380f20b52c44f1/michaelbely_deep_pink_dragons_f3ee27a5-2929-46cf-aac5-906cdaad2a08.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="RxJava%203c21bf52b7944fb59a380f20b52c44f1/rx.svg"/></div><h1 class="page-title"><strong>RxJava</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="9549f9bc-8224-4a15-9806-125b676ab977" class="simple-table"><tbody><tr id="5bcc9a85-3fb2-4c1e-9874-4b6529645f8c"><td id=";ixU" class="" style="width:116px"></td></tr></tbody></table><h3 id="7749597f-57b3-4ee6-a8e3-69a185d04596" class=""><code>RxJava</code></h3><p id="0aabc8d1-8ff5-4f50-b1d5-cf992ac151da" class="">Библиотека для асинхронного программирования на Java, основанная на концепциях функционального программирования и реактивного программирования. Основная цель RxJava — облегчить работу с асинхронными потоками данных и событиями.</p><p id="f4580ef5-8a23-4b47-900d-60f02b86cd87" class="">• Cold observable. Создаются по запросу и выдают данные при подписке на них. Пример: retrofit.</p><p id="b53118e3-f7c7-4c51-b082-cd70f7c49349" class="">• Hot observable. Всегда активны и выдают данные независимо от того подписаны на них или нет. Пример: обработка жестов view.</p><p id="c53ce084-c0df-4851-92c7-6ac07f601dbd" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Threading Operators</strong></summary><div class="indented"><h3 id="1eddc01d-2028-4580-9f82-3cc78bc7f5e3" class=""><code><strong>subscribeOn</strong></code></h3><p id="410141e6-d417-4f67-a94e-89c77c0acdde" class="">Определяет поток, на котором будет выполнено создание Observable и запуск его операций. Влияет на операторы выше. Если указан только subscribeOn - все операторы будут выполняться в указанном потоке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="50da303c-155c-4fc2-a21d-ef64d53d61c5" class="code"><code class="language-Java">Observable.just(&quot;item&quot;)
+    .subscribeOn(Schedulers.io()) // Выполнение Observable на IO-потоке
+    .observeOn(AndroidSchedulers.mainThread()) // Обработка результатов на основном потоке
+    .subscribe(
+        item -&gt; System.out.println(&quot;Received: &quot; + item),
+        Throwable::printStackTrace
+    );</code></pre><p id="297adc9f-81d7-411c-a2d3-c370a46193f7" class="">
+</p><h3 id="40c7a1b5-9b3f-42d6-bbec-33c18994eb43" class=""><code><strong>observeOn</strong></code></h3><p id="df7bc8c0-a2db-4486-b53d-afd9aa19d7db" class="">Определяет поток, на котором будет производиться обработка элементов и уведомление об их изменении. Влияет на операторы ниже. Если указан только observeOn - все операторы будут выполняться в текущем потоке, а операторы, расположенные ниже observeOn будут переключаться на поток, указанный в observeOn.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="815318ae-7bdd-4e03-8e10-bd05e186d836" class="code"><code class="language-Java">Observable.just(&quot;item&quot;)
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.computation()) // Обработка результатов на вычислительном потоке
+    .map(item -&gt; item.toUpperCase())
+    .observeOn(AndroidSchedulers.mainThread()) // Обработка окончательных результатов на основном потоке
+    .subscribe(
+        item -&gt; System.out.println(&quot;Processed: &quot; + item),
+        Throwable::printStackTrace
+    );</code></pre><p id="9ffd9538-9eb4-40d0-a230-de0e50462f54" class="">
+</p><h3 id="5c1a0090-3073-44ce-bf46-96d6af1bb1a1" class=""><code>doOnNext</code></h3><p id="8199bfdf-4e44-4fd4-b67e-3e4a8ed76a10" class="">Действие с каждым элементом. Выполняет указанное действие для каждого элемента, который проходит через Observable, перед тем как он будет передан дальше.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ddec7d2b-05cd-442a-ac8b-a1a2381b8508" class="code"><code class="language-Kotlin">observable.doOnNext { item -&gt; println(&quot;Item: $item&quot;) }</code></pre><p id="103e4553-62a6-4fae-a02c-f9114d94c9dd" class="">
+</p><h3 id="f100afea-ae2f-47e0-8672-21d381ef01f0" class=""><code>doOnComplete</code></h3><p id="b35f664c-c4dc-4078-94b7-116026c48fda" class="">Действие при завершении потока. Выполняет указанное действие, когда Observable завершает эмитирование всех элементов. Не вызывается, если поток был прерван с ошибкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7543654c-e50f-4e35-8eca-4a33e1d0eb97" class="code"><code class="language-Kotlin">observable.doOnComplete { println(&quot;Stream completed&quot;) }</code></pre><p id="21aace6c-2eeb-4a02-834d-939bb1845d42" class="">
+</p><h3 id="2b69de82-533d-4afa-a4e8-043a1416f9b7" class=""><code>doOnError</code></h3><p id="e04e88a2-4f26-4ed4-a56e-0d2cd933a88a" class="">Действие при ошибке. Выполняет указанное действие, когда возникает ошибка в процессе работы Observable.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="46f69157-e4c5-4349-b963-4ea5c04000fc" class="code"><code class="language-Kotlin">observable.doOnError { error -&gt; println(&quot;Error occurred: $error&quot;) }</code></pre><p id="a29ad72f-8bcf-4625-b227-e683f79c01bc" class="">
+</p><h3 id="1827d50e-6c3b-4c88-9c1b-7541d50c397f" class=""><code>doOnSubscribe</code></h3><p id="343d54f7-97f1-43e0-b19a-e19131fc4570" class="">Действие при подписке. Выполняет указанное действие, когда подписка на Observable начинается.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="61c44ea0-135c-433b-8144-8a2d5431efad" class="code"><code class="language-Kotlin">observable.doOnSubscribe { disposable -&gt; println(&quot;Subscribed: $disposable&quot;) }</code></pre><p id="f7c4b9cd-5349-4f3e-aa87-57c7c6a91ece" class="">
+</p><h3 id="c7176d41-faae-4f3a-9740-cc0caba718de" class=""><code>doAfterTerminate</code></h3><p id="190de7d6-f88a-4783-bf5a-fe2e7b0c6319" class="">Действие после завершения работы Observable. Выполняет указанное действие после завершения работы Observable, независимо от того, завершился ли поток успешно или с ошибкой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="36ef28f8-b7ad-477e-9b5e-915ed05ca27d" class="code"><code class="language-Kotlin">observable.doAfterTerminate { println(&quot;Stream terminated&quot;) }</code></pre><p id="5973688e-2a6d-4d5e-b78f-2d6da3436c27" class="">
+</p><h3 id="95d9bff3-b9c4-408c-ac0a-d3d3bc34217c" class=""><code>doOnDispose</code></h3><p id="4f76a179-4aee-4764-b37d-c6bf24d36115" class="">Действие при отписке. Выполняет указанное действие, когда Disposable объект используется для отписки от Observable.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7e95e286-6f74-46c7-808c-5b27d61adc77" class="code"><code class="language-Kotlin">observable.doOnDispose { println(&quot;Disposed&quot;) }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Transformation Operators</summary><div class="indented"><p id="2850cc44-9d42-4f65-8238-f13584f9fadf" class="">Функции, которые позволяют трансформировать, фильтровать и управлять потоками данных, поступающими из <code>Observable</code>.</p><p id="44e4e48d-af83-4f38-8b32-0f36d48060a6" class="">
+</p><h3 id="a1b42f7d-596d-42cd-ad44-c2fb6a86fa87" class=""><code>just</code></h3><p id="e6363057-bf7f-4c5d-bfd6-f6ccb25d3b7a" class="">Создает Observable, который излучает один элемент.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9386dfc3-6c0f-4597-9ec7-79bc70a33e6a" class="code"><code class="language-Java">Observable.just(&quot;Hello, World!&quot;)
+    .subscribe(System.out::println);</code></pre><p id="a739293c-d9b5-473d-a6e1-7c5dc2aaf67d" class="">
+</p><h3 id="78d9ca09-a1b2-4b47-85a7-8319d8b14eb6" class=""><code>fromIterable</code></h3><p id="d384cfdd-f3fd-40bd-8441-d6e7eb0f00be" class="">Создает Observable из коллекции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ce98f874-7d62-40d8-a171-2c18c2a40ae0" class="code"><code class="language-Java">List&lt;String&gt; list = Arrays.asList(&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;);
+Observable.fromIterable(list)
+    .subscribe(System.out::println);</code></pre><p id="74b83644-af19-43a3-9500-c440d6867111" class="">
+</p><h3 id="145f4ea0-dad7-49f7-ad39-3b9d5f440097" class=""><code>map</code></h3><p id="91c39f01-0f25-48ce-b57a-fdc399d98704" class="">Применяет функцию к каждому элементу.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cdbbc579-50d1-43c3-9e13-751c85cbdebb" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .map(i -&gt; i * 2)
+    .subscribe(System.out::println);  // Output: 2, 4, 6</code></pre><p id="57e7be8f-de6c-4155-810d-78e3d6524482" class="">
+</p><h3 id="54b89ff9-77da-4a05-92d1-67e36f389fee" class=""><code>flatMap</code></h3><p id="00bdef07-9703-4c60-877f-1cd15882fdcd" class="">Преобразует каждый элемент в Observable и объединяет результаты. Порядок генерированных элементов не гарантируется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="473eaa71-a5a3-4a0c-9976-1cc6000fb845" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .flatMap(i -&gt; Observable.just(i, i * 2))
+    .subscribe(System.out::println);  // Output: 1, 2, 2, 4, 3, 6</code></pre><p id="9c046f6e-f26a-484c-a164-dd3ec1c5e3de" class="">
+</p><h3 id="2e0a0272-8ade-4732-8212-0f089ad7239c" class=""><code>concatMap</code></h3><p id="9a9f27da-a617-4ed5-a137-d27d4c0ab1b7" class="">Преобразует каждый элемент в Observable и объединяет результаты, сохраняя порядок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2aa06db-b753-445b-b7b1-f717d8f7eb1d" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .concatMap(i -&gt; Observable.just(i, i * 2))
+    .subscribe(System.out::println);  // Output: 1, 2, 2, 4, 3, 6</code></pre><p id="b7d22c53-e964-4d80-bf26-4de6606befee" class="">
+</p><h3 id="4948ec81-e0af-4359-8672-c3bf2d62b38e" class=""><code>switchMap</code></h3><p id="44e168c1-ac97-43f7-814f-b2e6be64c755" class="">Переключается на новый Observable каждый раз, когда приходит новый элемент, отменяя предыдущие Observable.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bcfdc846-452a-4873-9efd-3e999401b59d" class="code"><code class="language-Java">Observable&lt;String&gt; searchRequests = Observable.just(&quot;query1&quot;, &quot;query2&quot;, &quot;query3&quot;);
+
+searchRequests
+    .switchMap(query -&gt; performSearch(query))
+    .subscribe(
+        result -&gt; System.out.println(&quot;Result: &quot; + result),
+        Throwable::printStackTrace,
+        () -&gt; System.out.println(&quot;Completed&quot;)
+    );
+
+Observable&lt;String&gt; performSearch(String query) {
+    return Observable.just(&quot;Results for &quot; + query)
+                     .delay(1, TimeUnit.SECONDS);
+}</code></pre><p id="1749d932-0dc2-41a4-9427-12d0670d8e7c" class="">
+</p><h3 id="ec5ea221-ef01-4950-8bba-101ace6015c2" class=""><code>filter</code></h3><p id="10226627-9cd5-4e16-b7bf-ff428069f3c6" class="">Пропускает элементы, которые не удовлетворяют условию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="46f093a2-96eb-487e-9480-61497fe0c224" class="code"><code class="language-Java">Observable.just(1, 2, 3, 4, 5)
+    .filter(i -&gt; i % 2 == 0)
+    .subscribe(System.out::println);  // Output: 2, 4</code></pre><p id="a57316d0-91b9-4e7f-b893-58a5bb2c7f4c" class="">
+</p><h3 id="08dd39f5-cc41-4bd4-856d-378987d2b399" class=""><code><strong>skip</strong></code></h3><p id="b28e1fc5-9ea7-46df-83f7-9b205b6b3630" class="">Пропускает первые N элементов в Observable и затем передает оставшиеся элементы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a36452b-c268-42b1-b108-f83ca0d75f51" class="code"><code class="language-Java">Observable&lt;Integer&gt; source = Observable.range(1, 5);
+source.skip(2) // Пропускает первые 2 элемента
+    .subscribe(System.out::println); // Output: 3, 4, 5</code></pre><p id="c6163801-5ff4-4302-917b-dc59417afddc" class="">
+</p><h3 id="e53a35d1-2cf9-402f-a480-0899b37a2b22" class=""><code>skipLast</code></h3><p id="eb66a217-f656-456f-86bf-286673fa85e9" class="">Этот оператор пропускает последние N элементов в Observable и передает все остальные.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9ca4059a-fdcb-45d5-ae10-9b3f957fef51" class="code"><code class="language-Java">Observable&lt;Integer&gt; source = Observable.range(1, 5);
+source.skipLast(2) // Пропускает последние 2 элемента
+    .subscribe(System.out::println); // Output: 1, 2, 3</code></pre><p id="5e943a71-0502-47e2-a542-83e184093ff3" class="">
+</p><h3 id="25ed363c-b9ea-4927-802d-0ccf7a89f877" class=""><code>take</code></h3><p id="d16320ba-d5cd-4c6f-b38a-40144e430bb5" class="">Берет только первые count элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8a8e7caa-03ac-4a87-b150-29779c8fe1a4" class="code"><code class="language-Java">Observable.just(1, 2, 3, 4, 5)
+    .take(3)
+    .subscribe(System.out::println);  // Output: 1, 2, 3</code></pre><p id="f3d5e4b0-a678-4d58-8e71-2ed6cf7df818" class="">
+</p><h3 id="c7cc67e8-cc14-4489-b3bc-83c386c7ee70" class=""><code>takeLast</code></h3><p id="b64dab09-1e4b-4d22-9781-9e8fe62e93ca" class="">Берет последние count элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd327929-c0e7-46e9-9587-10aafd88753f" class="code"><code class="language-Java">Observable.just(1, 2, 3, 4, 5)
+    .takeLast(3)
+    .subscribe(System.out::println);  // Output: 3, 4, 5</code></pre><p id="91003f1f-61c3-40ea-a1d9-506f01f9e41a" class="">
+</p><h3 id="67bb2a77-6b55-4baa-98f4-cca527317b95" class=""><code>merge</code></h3><p id="047aed7a-932e-4023-8947-a886f0e76546" class="">Объединяет несколько Observable в один.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="841dc72e-4c08-456e-bc97-2225abb9c31c" class="code"><code class="language-Java">Observable.merge(
+    Observable.just(1, 2),
+    Observable.just(3, 4)
+).subscribe(System.out::println);  // Output: 1, 2, 3, 4</code></pre><p id="11ba5c0f-7489-4598-b465-c9d787d6f2c9" class="">
+</p><h3 id="10cb7eb3-6a7a-4af7-b7a8-3dbe4d378d93" class=""><code>concat</code></h3><p id="bbf23edc-e611-425c-91b0-a831b0b2823c" class="">Объединяет несколько Observable последовательно, сохраняя порядок элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="775b344d-e0f6-450b-bc0e-04f975fe8f14" class="code"><code class="language-Java">Observable.concat(
+    Observable.just(1, 2),
+    Observable.just(3, 4)
+).subscribe(System.out::println);  // Output: 1, 2, 3, 4</code></pre><p id="7fa9d914-c684-4ff8-991b-2b5d4f0abfe4" class="">
+</p><h3 id="e74965ff-2024-4a77-85fa-ab44c3777216" class=""><code>zip</code></h3><p id="fa430055-3dd7-4ff6-bac2-ed5ec2fe7e03" class="">Объединяет элементы из нескольких Observable в пары.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e73e506-3532-4ce5-80ac-76e456243fe8" class="code"><code class="language-Java">Observable.zip(
+    Observable.just(1, 2),
+    Observable.just(&quot;A&quot;, &quot;B&quot;),
+    (i, s) -&gt; i + s
+).subscribe(System.out::println);  // Output: 1A, 2B</code></pre><p id="e15a57d5-f571-4cd9-8670-84c2bc5c5c6d" class="">
+</p><h3 id="470b665c-8212-4e9c-b7f9-6cb390e0f8cb" class=""><code>combineLatest</code></h3><p id="3836af4e-b34f-4d6a-ac5f-859e4cf8e779" class="">Комбинирует последние значения из нескольких Observable при каждом обновлении любого из них.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aa45e73d-f2f7-42ba-9c22-0043abb15c01" class="code"><code class="language-Java">Observable.combineLatest(
+    Observable.just(1, 2).startWith(0),
+    Observable.just(&quot;A&quot;, &quot;B&quot;),
+    (i, s) -&gt; i + s
+).subscribe(System.out::println);  // Output: 0A, 1A, 1B, 2B</code></pre><p id="fb72b82e-3260-4623-96ac-43708a75ab5f" class="">
+</p><h3 id="e3d24d2d-9ba4-4ba1-8223-06c22b9f8c7f" class=""><code>join</code></h3><p id="0da71c33-3adf-4738-9e56-c34c00b10946" class="">Объединяет элементы из двух Observable на основе определенного условия.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f1e5bc2c-13cc-4f32-90f3-29a431acd702" class="code"><code class="language-Java">Observable&lt;String&gt; source1 = Observable.just(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;);
+Observable&lt;Integer&gt; source2 = Observable.just(1, 2, 3);
+
+source1.join(
+    source2,
+    item -&gt; Observable.timer(1, TimeUnit.SECONDS), // Соединение через Observable
+    item -&gt; Observable.timer(1, TimeUnit.SECONDS), // Соединение через Observable
+    (s, i) -&gt; s + i // Комбинирование элементов
+).subscribe(System.out::println);</code></pre><p id="6ee21cad-41ef-4e1f-800c-65376f3c51ec" class="">
+</p><h3 id="551e1db2-6219-481a-8b37-d9add62b95e0" class=""><code>onErrorResumeNext</code></h3><p id="6e0900f6-3328-4adf-8bb9-068ceb276a29" class="">Возвращает новый Observable при возникновении ошибки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8957a5b2-bed1-4a92-aa34-8a9c5dbdf4d2" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .map(i -&gt; {
+        if (i == 2) throw new RuntimeException(&quot;Error!&quot;);
+        return i;
+    })
+    .onErrorResumeNext(Observable.just(10, 20))
+    .subscribe(System.out::println);  // Output: 1, 10, 20</code></pre><p id="15926099-36b8-469d-8527-9b8b2663cff1" class="">
+</p><h3 id="a05843b8-3c26-49e5-a69f-e384831bce67" class=""><code>onErrorReturnItem</code></h3><p id="eddf8188-20a3-4654-9be9-ee798361b098" class="">Возвращает заданный элемент при возникновении ошибки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="77281069-eab4-44b1-89ad-4857dab9f971" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .map(i -&gt; {
+        if (i == 2) throw new RuntimeException(&quot;Error!&quot;);
+        return i;
+    })
+    .onErrorReturnItem(-1)
+    .subscribe(System.out::println);  // Output: 1, -1</code></pre><p id="624154b0-d06c-419f-bbf2-a3451db4f964" class="">
+</p><h3 id="6fca00c4-7ff7-4980-8cbf-f1846f6c4a72" class=""><code>retry</code></h3><p id="0d3cc130-0d63-4dcb-bc5a-6eb72dea3556" class="">Повторяет попытку при возникновении ошибки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3910961a-c165-44db-9d13-ce1332aa8630" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .map(i -&gt; {
+        if (i == 2) throw new RuntimeException(&quot;Error!&quot;);
+        return i;
+    })
+    .retry(1)
+    .subscribe(System.out::println);  // Output: 1, 2, 3</code></pre><p id="0a7db437-462e-4c7e-87e7-348ada656a12" class="">
+</p><h3 id="14484113-18cf-4e24-aff4-351a1cecb00f" class=""><code>retryWhen</code></h3><p id="96800b9a-6903-4909-861f-1ffe1d9ef6ae" class="">Позволяет управлять повторными попытками при возникновении ошибки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="136a4be3-b5aa-4652-86d9-9b0ec85f6715" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .map(i -&gt; {
+        if (i == 2) throw new RuntimeException(&quot;Error!&quot;);
+        return i;
+    })
+    .retryWhen(errors -&gt; errors.take(1).flatMap(error -&gt; Observable.just(4)))
+    .subscribe(System.out::println);  // Output: 1, 2, 4, 3</code></pre><p id="148542e4-6ad8-45e6-90fe-cac6ded67ce7" class="">
+</p><h3 id="da7e1f1e-8190-42a8-a617-f854a47cc5fe" class=""><code>delay</code></h3><p id="d1acd9f5-5aef-4bbf-9b3f-185706445892" class="">Задерживает эмиссию элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="08f0b82a-a2d2-4ba0-9721-20aefa25d6ea" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .delay(1, TimeUnit.SECONDS)
+    .subscribe(System.out::println);  // Output: 1, 2, 3 (через 1 секунду)</code></pre><p id="61bdf71d-36cf-44a2-a34a-3f2a17d01e0a" class="">
+</p><h3 id="a239726e-de56-48fa-822a-a30932225e63" class=""><code>debounce</code></h3><p id="d36b1ae4-a170-4d20-96bb-de53edbcbfe6" class="">Эмитирует элементы, которые не были заменены другим элементом в течение заданного времени.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7d975156-e204-4cfd-92c0-9da50548bf17" class="code"><code class="language-Java">Observable.create(emitter -&gt; {
+    emitter.onNext(&quot;A&quot;);
+    Thread.sleep(100);
+    emitter.onNext(&quot;B&quot;);
+    Thread.sleep(100);
+    emitter.onNext(&quot;C&quot;);
+    emitter.onComplete();
+}).debounce(150, TimeUnit.MILLISECONDS)
+  .subscribe(System.out::println);  // Output: C</code></pre><p id="fc83eb42-8b3b-4a01-8c15-e41301581474" class="">
+</p><h3 id="e3b4aae8-1ac3-4de9-bc14-5e905a2447a1" class=""><code>scan</code></h3><p id="e4a059e8-cabf-4a55-9869-20021ab7e34c" class="">Применяет функцию накопления к каждому элементу и предыдущему результату.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="146beeb4-bed6-432a-bda0-df4106434a1b" class="code"><code class="language-Java">Observable.just(1, 2, 3)
+    .scan(0, (total, next) -&gt; total + next)
+    .subscribe(System.out::println);  // Output: 0, 1, 3, 6</code></pre><p id="9c4d5517-f254-4bba-95ee-e82d3902fd73" class="">
+</p><h3 id="80816f00-1575-44b7-9e35-9dad627ec650" class=""><code>distinct</code></h3><p id="e3b98379-c6bc-4b18-b44e-7d4a912aad3c" class="">Удаляет дублирующиеся элементы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="43aba82e-c697-480f-bd01-b4d965bf1249" class="code"><code class="language-Java">Observable.just(1, 1, 2, 2, 3, 3)
+    .distinct()
+    .subscribe(System.out::println);  // Output: 1, 2, 3</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Streams</summary><div class="indented"><h3 id="b3693bca-76bf-4863-85a6-fb06d5b44978" class=""><code>Observable</code></h3><p id="34ac0e5f-a7f1-458b-adab-1d7d7cc1904f" class="">Представляет стрим объектов. Подписчики на Observable имеют коллбэки onNext(value), onComplete(), onError(throwable). onNext() может не вызываться, или вызываться произвольное количество раз. При завершении стрима вызывается onComplete() или onError().</p><p id="c9036600-d2a7-4bbd-94d5-f587b5d06830" class="">
+</p><h3 id="5630781e-5435-4040-a2ae-ea80f6b136b3" class=""><code>Single</code></h3><p id="4ef8ba80-80fc-45e7-b736-41435d34d920" class="">Отправляет объект, который принимается в коллбэке onSuccess(value), или бросает исключение в коллбэк onError(throwable) в случае ошибки. </p><p id="95c3609f-a36a-45ec-8224-031fd95e8a65" class="">
+</p><h3 id="8fdcb696-e11b-40f6-a4f7-1338bd78b425" class=""><code>Completable</code></h3><p id="b3b9c86c-eb2c-408e-bc79-9c17eb9214bd" class="">Не возвращает никакого значения. На подписчиках вызывается onComplete() при удачном завершении или onError(throwable) в случае ошибки. </p><p id="20957930-2286-4874-938e-8fa6a546f686" class="">
+</p><h3 id="d8db1259-80b6-4eb1-b97d-ff3d1e71643f" class=""><code>Maybe</code></h3><p id="dd217112-cc45-4b1f-883e-c65af3dfc12c" class="">Может отработать как Single или как Completable. На подписчиках вызывается один из трех коллбэков: onSuccess(value), onComplete() без какого-либо значения, или onError(throwable). Каждый из коллбэков может быть вызван один раз или не вызван вообще. </p><p id="9d1122c8-d290-41d5-a8f4-0e76c921431c" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Schedulers</summary><div class="indented"><p id="cb003991-4020-4977-a8b8-a0cccb21c67e" class="">Потоки в RxJava выполняются с помощью планировщиков. Scheduler управляет одним или несколькими потоками. Когда планировщику необходимо выполнить задачу он берет поток из своего пула и запускает в нем задачу.</p><p id="7ae2e8ad-7992-4d5f-a415-88924dc9781d" class="">
+</p><h3 id="99307bc2-1d28-4e58-8dde-fa088cb6124e" class=""><code><strong>Schedulers.io</strong></code></h3><p id="cf8ea707-b6b8-462f-a4d7-a1b4f327e0ba" class="">Поддерживается неограниченным пулом потоков. Используется для операций ввода-вывода, не требующих интенсивного использования ЦП (взаимодействие с файловой системой, сетевые вызовы, базы данных). </p><p id="165095a0-c16e-41f2-ba4f-5f6aa0866e92" class="">
+</p><h3 id="1249aefb-b467-4b61-bd87-960e6dd1f8c1" class=""><code><strong>Schedulers.computation</strong></code></h3><p id="bc94d688-b6a9-456b-bf8e-044c5a7ea142" class="">Поддерживается ограниченным пулом потоков, размер которого не больше количества доступных процессоров (Runtime.availableProcessors). Использовать для вычислительных и ресурсоемких работ (изменение размера изображений, обработка больших наборов данных). Не делать таких потоков больше, чем доступно ядер, иначе производительность будет снижаться из-за переключения контекста и накладных расходов на создание потоков. </p><p id="0166ab40-8140-432a-a574-bcc0c283062d" class="">
+</p><h3 id="1daaa892-49ee-4917-b1c2-de7af3057b5d" class=""><code><strong>Schedulers.newThread</strong></code></h3><p id="3df5666e-67fd-4544-91ba-687fb4a56bb0" class="">Создает новый поток для каждой запланированной задачи. Это планировщик стоит дорого, так как не происходит повторного переиспользования потока. </p><p id="daf440ae-fc73-4e8f-9aa4-87171e8b3f99" class="">
+</p><h3 id="90fbe93e-ee03-42bf-bbad-5db4b8602929" class=""><code><strong>Schedulers.from(Executor)</strong></code></h3><p id="89849dd2-20a3-4671-9405-cd178a81e11f" class="">Создает настраиваемый планировщик, поддерживаемый указанным executor. Если задача запланирована, когда все потоки заняты - будет поставлена в очередь. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8fcd6993-32b8-4fe9-9971-b2eb090f3bd8" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Scheduler.from(Executors.newFixedThreadPool(n)) // ограничить количество одновременных потоков в пуле</code></pre><p id="38d014fc-74f2-4d0c-9eb3-7605e47e1b4a" class="">
+</p><h3 id="23c102e5-4403-4998-a3a9-7561be729d57" class=""><code><strong>Schedulers.single</strong></code></h3><p id="3f4de52e-d420-4200-a63c-013b826c07ea" class="">Поддерживается одним потоком, выполняет задачи последовательно в указанном порядке. </p><p id="6f60c11e-289c-494f-84ba-69761b133108" class="">
+</p><h3 id="39e5ce0e-c28f-4eda-8c61-e65cf19aa123" class=""><code><strong>Schedulers.trampoline</strong></code></h3><p id="cdf4ae01-835f-4e81-be54-d851b698ff3f" class="">Выполняет задачи в порядке FIFO (first in first out) одним из рабочих потоков. Используется при реализации рекурсии, чтобы не увеличивался стек вызовов. </p><p id="8daf2597-e380-4257-b4e6-a7fecd807703" class="">
+</p><h3 id="ef9749f1-dcd7-4354-8ee5-b701485bf197" class=""><code><strong>AndroidSchedulers.mainThread</strong></code></h3><p id="10e33038-1c54-4c2f-853d-dfd4b34bc388" class="">Основной поток - место, где происходит взаимодействие с пользователем.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Disposable</summary><div class="indented"><h3 id="996e2bbe-06f1-40ef-8bef-eb9204a68573" class=""><code><strong>Disposable</strong></code></h3><p id="e91752b2-20a3-4476-8034-c2e8694b2b3b" class="">Интерфейс с методами dispose() и isDisposed(). Работае как оболочка над другими операторами. </p><p id="54c0232b-f06e-4b17-9fc9-bbcb955c4aab" class="">
+</p><h3 id="864c6fce-be4f-4a59-af20-b08ba34dc5ff" class=""><code><strong>CompositeDisposable</strong></code></h3><p id="602068bf-367b-4b92-96dc-e88e7a39a39a" class="">Объединяет несколько disposable, которые могут быть удалены одновременно.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Flowable</summary><div class="indented"><h3 id="e2625c56-807e-46f2-bab2-671aef374f1a" class=""><code>Flowable</code></h3><p id="1faffe8c-602a-4638-93be-2454734189a1" class="">Работает как Observable, но поддерживает backpressure по умолчанию.</p><p id="9799a038-c4d4-4888-b866-ef9fd884c50f" class="">
+</p><h3 id="a84de5cd-f130-4ee9-838f-6fd2f451c8fb" class=""><strong>Backpressure</strong></h3><p id="a48ceb36-e934-476e-9c25-55c0010bc540" class="">Ситуация, когда observable выдает элементы быстрее, чем оператор или подписчик может использовать. Observable имеет бесконечный буфер, в который будут добавляться элементы до тех пор, пока не случится OutOfMemoryError. BackpressureStrategy – это enum, который задает стратегию обработки backpressure.</p><table id="45eab099-2f36-4bca-aff4-47bebd0cf5b6" class="simple-table"><tbody><tr id="6a2ea2f1-813d-4d83-8d41-f97197d6adad"><td id="I}`}" class=""><code>BackpressureStrategy.MISSING</code></td><td id="fyoR" class="" style="width:765px">стратегия не установлена</td></tr><tr id="8c526375-4fc0-408e-a2a4-316c236c7511"><td id="I}`}" class=""><code>BackpressureStrategy.ERROR</code></td><td id="fyoR" class="" style="width:765px">в случае backpressure бросает исключение MissingBackpressureException</td></tr><tr id="05b3662f-33d4-4ac6-a499-056dd48c6246"><td id="I}`}" class=""><code>BackpressureStrategy.BUFFER</code></td><td id="fyoR" class="" style="width:765px">буфер будет расширяться каждый раз, когда ему потребуется больше памяти. Его первоначальный размер составляет 128 элементов</td></tr><tr id="ea4a3c6a-a0d9-4fa1-8372-a5a9421badbf"><td id="I}`}" class=""><code>BackpressureStrategy.DROP</code></td><td id="fyoR" class="" style="width:765px">если потребитель занят обработкой данных, эта стратегия буквально отбрасывает все значения, которые не могут быть обработаны</td></tr><tr id="db8823ce-0811-47c4-bcbe-1afb6b67c098"><td id="I}`}" class=""><code>BackpressureStrategy.LATEST</code></td><td id="fyoR" class="" style="width:765px">также отбрасывает неиспользуемые значения, но кэширует последнее. Его можно сравнить с БУФЕРОМ с постоянным размером в 1 элемент. Благодаря этому, когда потребитель запрашивает новое значение, он всегда получает самое последнее</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2012bf84-eeaa-47e2-9a7d-e495c463ac18" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">Flowable.create&lt;Int&gt;({ emitter: FlowableEmitter&lt;Int&gt; -&gt;
+    repeat(1_000) { count -&gt; emitter.onNext(count) }
+}, BackpressureStrategy.BUFFER)
+    .subscribe { println(it) }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Subjects</summary><div class="indented"><p id="31076fa8-08c4-4b01-809b-05f4297e16ee" class="">Subject – это абстрактный класс в RxJava, одновременно расширяющий класс <code>Observable</code> и реализующий интерфейс <code>Observer</code>. Subject – это hot observable. Виды: Publish, Replay, Behavior, Async, Unicast.</p><table id="7cd7e350-7ca3-417d-ab6b-2acfc8a0032b" class="simple-table"><tbody><tr id="af97f402-d1bb-4680-b7fd-54206c0367cc"><td id="jz`Y" class="" style="width:140px"><code>PublishSubject</code></td><td id="he;G" class="" style="width:867px">Подписчики получают новые данные с момента подписки. <code>PublishSubject</code> не кэширует и не рассылает прошлые элементы (студент слушает лекцию с того момента, как вошел в аудиторию).</td></tr><tr id="5275cbd2-bb46-4ad9-a629-503334fd0fc9"><td id="jz`Y" class="" style="width:140px"><code>ReplaySubject</code></td><td id="he;G" class="" style="width:867px">Подписчики получают все данные, отправленные до подписки и все новые данные с момента подписки (студент опоздал на лекцию, но получает ее содержимое с самого начала). Если <code>ReplaySubject</code> создается фабричным методом createWithSize(size: Int), то подписчики будут получать только заданное количество элементов, отправленных в прошлом.</td></tr><tr id="0d559589-b67e-47da-8407-179c291b1214"><td id="jz`Y" class="" style="width:140px"><code>BehaviorSubject</code></td><td id="he;G" class="" style="width:867px">Подписчики получат последний элемент данных, разосланный до подписки и все новые данные с момента подписки.</td></tr><tr id="457e5f67-a97a-417b-ba8e-d64a7a9f8dca"><td id="jz`Y" class="" style="width:140px"><code>AsyncSubject</code></td><td id="he;G" class="" style="width:867px">Подписчики получат только самый последний элемент данных, который был отправлен перед вызовом <code>onComplete</code> (студент пришел на пару и получил только домашку).</td></tr><tr id="73e0fe4c-be19-4eae-acee-d31002891758"><td id="jz`Y" class="" style="width:140px"><code>UnicastSubject</code></td><td id="he;G" class="" style="width:867px">Работает также как <code>ReplaySubject</code> но может иметь только одного подписчика. Все последующие подписчики получают <code>onError</code> с <code>IllegalStateException</code>.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">RxJava. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="2e92bb30-1c47-4ec0-ad8f-c33fcae2b0e7" class="numbered-list" start="1"><li>Какие основные операторы существуют в RxJava?</li></ol><ol type="1" id="73726224-e147-4032-b759-894bcbfe9f4b" class="numbered-list" start="2"><li>Что такое Observable и как оно работает?</li></ol><ol type="1" id="63e6004d-74f4-4f53-8715-833e1147ec13" class="numbered-list" start="3"><li>В чем разница между Observable и Single?</li></ol><ol type="1" id="c3c63537-1817-42b0-838b-01b51bdf5a4d" class="numbered-list" start="4"><li>Что такое Subject и чем оно отличается от Observable?</li></ol><ol type="1" id="eda512f1-0654-4ce2-a613-cc8b55065434" class="numbered-list" start="5"><li>Как объединить несколько Observable потоков в один?</li></ol><ol type="1" id="8deceeaa-9f56-4629-8d13-d4fd2d455d78" class="numbered-list" start="6"><li>Как обрабатывать ошибки в RxJava?</li></ol><ol type="1" id="4f27c462-6f42-4c7b-a243-016be5541ec8" class="numbered-list" start="7"><li>Что такое backpressure и как его обрабатывать в RxJava?</li></ol><ol type="1" id="2eef272b-07ba-437e-b654-668b846e3641" class="numbered-list" start="8"><li>Что такое Disposable и как управлять жизненным циклом Observable?</li></ol><ol type="1" id="769f8bd8-4710-4305-aca6-c25612b8d23c" class="numbered-list" start="9"><li>Какой оператор используется для объединения данных из двух Observable на основе условия?<p id="b458dfd7-6fda-4259-a5a5-5c86b84e3511" class="">• <mark class="highlight-teal">join</mark></p><p id="33bd79c5-4200-4978-8f0f-f83bbc61034e" class="">• <mark class="highlight-red">combineLatest</mark></p><p id="13b7bc34-6667-43fb-91b4-47256cc2826c" class="">• <mark class="highlight-red">merge</mark></p><p id="f2743798-44a4-46cd-a8a0-77123ae3bb81" class="">• <mark class="highlight-red">zip</mark></p></li></ol><ol type="1" id="caa19f79-990c-4e25-83f3-3c65f541a3e7" class="numbered-list" start="10"><li>Какой тип Subject хранит только последний элемент и передает его новым подписчикам?<p id="869a975a-9c55-4df5-a4c1-a625c39298f0" class="">• <mark class="highlight-red">PublishSubject</mark></p><p id="fc3a0b21-20c2-478b-b176-d8796309b8a4" class="">• <mark class="highlight-teal">BehaviorSubject</mark></p><p id="3fbfe652-6119-4942-ad67-f8c9c40bb511" class="">• <mark class="highlight-red">ReplaySubject</mark></p><p id="1fe0aa5b-1048-451b-bfd0-ec078476ff5b" class="">• <mark class="highlight-red">AsyncSubject</mark></p></li></ol><ol type="1" id="3800aad1-2a91-4bd6-b703-53e3f6ec10e3" class="numbered-list" start="11"><li>Какой оператор используется для объединения нескольких Observable, при этом дожидаясь завершения всех источников?<p id="0b1892aa-fdf8-4343-9bbd-36a564aabccd" class="">• <mark class="highlight-teal">zip</mark></p><p id="2c7c64e3-0dd2-4d59-948a-10d17d04e5b1" class="">• <mark class="highlight-red">combineLatest</mark></p><p id="08960ed4-f889-4997-a62e-7c82368e393b" class="">• <mark class="highlight-red">concat</mark></p><p id="0ba7c1bf-8d70-4d44-80ef-e67a28782e08" class="">• <mark class="highlight-red">merge</mark></p></li></ol><ol type="1" id="9c41b122-0b19-47fd-b1f1-b887c12b1cae" class="numbered-list" start="12"><li>Какой из следующих классов позволяет управлять подписками в RxJava?<p id="d52350bb-fac2-4879-b8a6-aafc9366e0b2" class="">• <mark class="highlight-teal">Disposable</mark></p><p id="9ed77b3f-e974-43b0-b186-2965b648dff5" class="">• <mark class="highlight-red">Observer</mark></p><p id="cdae40fc-76b4-4276-9668-856f37f593d7" class="">• <mark class="highlight-red">Publisher</mark></p><p id="189ebf5c-3ecf-4648-a94f-a8810df5bfc5" class="">• <mark class="highlight-red">Subscriber</mark></p></li></ol><ol type="1" id="37b46486-4c38-4682-abd3-b039352b90d5" class="numbered-list" start="13"><li>Какой оператор используется для выполнения действия после окончания работы Observer?<p id="31337617-eaa0-4f36-a867-4c0ff4791c15" class="">• <mark class="highlight-red">doAfterComplete</mark></p><p id="7e560353-f1a9-41f0-a8c2-5aab0793514b" class="">• <mark class="highlight-red">doOnNext</mark></p><p id="e1b4821b-256f-46e1-a0a6-350b4547670d" class="">• <mark class="highlight-teal">doOnComplete</mark></p><p id="e47ada7b-ea3b-42e9-98b0-d11a82eb9e7b" class="">• <mark class="highlight-red">doOnTerminate</mark></p></li></ol><ol type="1" id="a7f9bdce-c916-4c8e-b7dd-2fdf99a1608e" class="numbered-list" start="14"><li>Какой оператор используется для пропуска первых N элементов, излучаемых Observable?<p id="1eaf7247-2b47-4369-8c09-6c88efce47f6" class="">• <mark class="highlight-red">ignore</mark></p><p id="9debb868-403e-43f8-9616-4b9d79ead680" class="">• <mark class="highlight-red">filter</mark></p><p id="300a59f6-d158-47a5-bbd5-5fab380e26a5" class="">• <mark class="highlight-red">take</mark></p><p id="1b6a79e0-b785-460c-8359-3cc1fa0ed988" class="">• <mark class="highlight-teal">skip</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

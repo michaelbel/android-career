@@ -1,0 +1,691 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>GC</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1345b917-7e18-4724-8e02-1b585ccf3910" class="page sans"><header><img class="page-cover-image" src="GC%201345b9177e1847248e021b585ccf3910/michaelbely_garbage_collector_orange_dd0a7efb-b0aa-45a8-b598-7bbd78353a65.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="GC%201345b9177e1847248e021b585ccf3910/java.svg"/></div><h1 class="page-title"><strong>GC</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="f073d046-a80f-427e-876d-1e4b6f08270b" class="simple-table"><tbody><tr id="ea851f35-7fd8-4ee1-9517-76f0091b5aa2"><td id="HrLQ" class="" style="width:101px"><mark class="highlight-brown"><code>30.03.2022</code></mark></td><td id="LQVs" class="" style="width:664px"><a href="https://habr.com/ru/companies/otus/articles/658219/">https://habr.com/ru/companies/otus/articles/658219/</a></td></tr><tr id="af9156b3-2564-4617-9d62-2891f4a501a8"><td id="HrLQ" class="" style="width:101px"><mark class="highlight-brown"><code>19.02.2013</code></mark></td><td id="LQVs" class="" style="width:664px"><a href="https://habr.com/ru/post/169883">https://habr.com/ru/post/169883</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Garbage Collector (GC)</summary><div class="indented"><p id="d4129c4a-2e8f-45c2-8f3c-4cdcddc1bb9a" class="">Сборка мусора  —  процесс восстановления заполненной памяти среды выполнения путем уничтожения неиспользуемых объектов. Сборщик мусора запускается виртуальной машиной Java (JVM). В таких языках, как C и C++, программист отвечает и за создание и за уничтожение объектов. В Java сборщик мусора управляет памятью автоматически. Сборщик мусора — низкоприоритетный процесс, который запускается периодически и освобождает память использованную объектами которые больше не нужны. Если забыть уничтожить бесполезные объекты - выделенная им память не будет освобождаться, будет расходоваться все больше и больше системной памяти, и в конечном итоге перестанет выделяется. Такие приложения страдают от «утечек памяти». После определенного момента памяти уже не хватает для создания новых объектов, и программа нештатно завершается с <code>OutOfMemoryError</code>. GC строит дерево с рутами - уничтожает все до чего может дотянуться.</p><p id="90426532-04cd-46ef-aa18-0f67ce86686a" class="">Память в JVM делится на 3 части:</p><p id="8dca08f9-81fe-4b9d-975f-d922b5342406" class="">• young generation (молодое поколение).</p><p id="cffbfab1-361a-4c4d-abc0-f215e7c6b780" class="">• old generation (старое поколение).</p><p id="5a3a533d-3a1d-4cd0-9b3c-c657fa871d48" class="">• metaspace (perm gen).</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Young Generation</summary><div class="indented"><p id="6a540f7f-d624-422b-8774-451f7ad9b75e" class="">Область памяти для новых, вновь создаваемых объектов.</p><p id="0b20afa4-bdd6-4542-8905-70b22f681b3e" class="">• когда область Young Generation заполняется, запускается минорная сборка мусора (Minor GC).</p><p id="1affebd8-9bdd-4299-9787-5bf4bc14922a" class="">• при Minor GC &quot;мертвые&quot; объекты удаляются из Young Generation.</p><p id="d30bc556-4d7c-401b-8de3-c2fcb0fcbce1" class="">• чем больше &quot;мертвых&quot; объектов в Young Generation, тем быстрее выполняется Minor GC.</p><p id="782c5b5a-6951-4ba5-b083-a009c2759880" class="">• при Minor GC происходит &quot;остановка мира&quot; (stop the world) — все потоки в приложении останавливаются.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Old Generation</summary><div class="indented"><p id="f8f20e08-f420-48c1-9f14-a59dd494666d" class="">Область памяти для долгоживущих объектов.</p><p id="b3c5542e-8433-499e-8ec3-e341c09e46ab" class="">• как правило, эта область больше, чем область для Young Generation.</p><p id="ff441407-5ead-4a5e-862b-9cde2e3aca42" class="">• при заполнении (или достижении заданного порога) происходит Major GC.</p><p id="6e4d8667-9ca9-48bc-b100-66f7354c1bb6" class="">• обычно Major GC выполняются медленнее и реже, чем minor GC.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>GC roots</strong></summary><div class="indented"><p id="c6d587a6-524a-463a-b874-9893fccbc531" class="">Все объекты на которые прямо или косвенно ссылаются из gc roots не будут удалены.</p><p id="6f12c949-7999-48d9-823a-947daf95c263" class="">• типы gs roots: классы, локальные переменные, активные потоки, ссылки JNI, некоторые другие объекты.</p><p id="8cf721d4-69be-44b0-8df8-b1fd17f85998" class="">• если два объекта ссылаются друг на друга и больше на них никто не ссылается, то они будут удалены сборщиком мусора.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Reference Counting</strong></summary><div class="indented"><p id="7498acd4-10b7-41d2-89b2-54bc4fb5743d" class="">Подсчет ссылок - техника управления памятью, которая используется в некоторых языках (не Java) для отслеживания того, сколько раз на объект ссылаются.</p><p id="1bdac328-71c0-4617-852d-f0c1ee0dfef1" class="">• Каждый объект имеет счетчик ссылок — переменную, которая увеличивается, когда объекту присваивают ссылку, и уменьшается, когда эта ссылка теряется.</p><p id="d83c5ee4-f414-49d5-a044-8d35e8e86a65" class="">• Когда счетчик ссылок объекта становится нулевым, он может быть удален из памяти, так как на него больше нет ссылок.</p><p id="d0196f38-f95f-4571-a82d-ea3ebe5a953c" class="">• Основная проблема с подсчетом ссылок — это циклические зависимости. Если два объекта ссылаются друг на друга, но больше нигде не используются, они не будут удалены, так как их счетчики ссылок не будут равны нулю.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>finalize</strong></code></summary><div class="indented"><p id="c0d294df-0ee5-4d89-a2e4-4edabf994505" class="">Метод класса <code>Object</code> который вызывается перед удалением объекта из памяти (перед сборкой мусора). Его можно переопределить и в теле метода указать те действия которые должны быть выполнены перед уничтожением объекта.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>StrongReference</code></summary><div class="indented"><p id="3ffc90b8-7e07-4ade-8190-9e004fbdd232" class="">Объект запрещен для удаления сборщиком мусора.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7338b5d5-bc59-48a3-bc29-60592e1b2746" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">String s = &quot;abc&quot; // переменная s и есть strong-ссылка.</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>WeakReference</strong></code></summary><div class="indented"><p id="0cd700ca-e577-4ea7-a747-67156c03ea67" class="">Объект уничтожится при ближайшей сборке мусора. Подходит для хранения ссылки на ClassLoader. Если нет классов для загрузки то нет смысла хранить ссылку.</p><p id="a4ec4945-cb7d-4769-91a6-010435299e11" class="">• применение в Android - ссылка на <code>Context</code>.</p><p id="8098e6db-be28-4855-9c41-d4f2ad5af347" class="">• <code>get</code> возвращает ссылку на объект.</p><p id="0ab08fb4-c2cb-4e3c-ba23-c9e27f6b6eb2" class="">• <code>clear</code> удаляет ссылку на объект.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0adc2f06-5c0d-4ee3-bdd3-d1ba670bbaeb" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Counter counter = new Counter(); // strong reference
+WeakReference&lt;Counter&gt; weakCounter = new WeakReference(counter); // weak reference
+counter = null; // объект доступен для удаления сборщиком мусора</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>SoftReference</strong></code></summary><div class="indented"><p id="d672e0dd-a19a-402b-8495-a592a184f941" class="">Уничтожится сборщиком мусора когда JVM потребуется память. Подходит для реализации кэшей. Может пережить несколько сборок мусора.</p><p id="227ed59d-7d2d-4286-8ddf-7bc4446cc422" class="">• применение в Android - кэш для картинок <code>Bitmap</code>.</p><p id="e4195df0-ffa2-415a-83e4-6b14bdf1cfbf" class="">• <code>get</code> возвращает ссылку на объект.</p><p id="93131e71-ac40-4396-9919-d92ec0c6bd1c" class="">• <code>clear</code> удаляет ссылку на объект.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fc6d8ef9-0213-4b66-9f62-a187fcbd9c48" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Counter counter = new Counter(); // strong reference
+SoftReference&lt;Counter&gt; softCounter = new SoftReference(counter); // soft reference
+counter = null; // объект доступен для сборщика мусора. будет удален когда потребуется память</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code>PhantomReference</code></summary><div class="indented"><p id="a3de9f07-e9f8-45c6-af0e-cb10d949ec4c" class="">Используется в комбинации с <code>ReferenceQueue</code>. Используется для определения того, когда объект был удален из памяти, что помогает планировать задачи, чувствительные к памяти (дождаться удаления большого объекта, прежде чем загружать другой). Вручную улучшить процесс финализации, контролировать процесс очистки. Объект умер в JVM, но не исчез, а остался в нем “призраком” - на него хранится ссылка в <code>ReferenceQueue</code>.</p><p id="03e6c4f5-004b-4fd5-9bdf-793a2459f979" class="">• объект не удаляется из памяти пока его фантомная ссылка находится в очереди <code>ReferenceQueue</code>.</p><p id="12b9e4fc-e6bd-4644-b264-037aee6a7d35" class="">• <code>get</code> возвращает null. объект фантомной ссылки всегда недоступен.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="993d794e-d4e2-4c43-bd28-4280ee76101b" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">ReferenceQueue referenceQueue = new ReferenceQueue(); // ссылка будет храниться в этой очереди для очистки
+Counter counter = new Counter(); // strong reference
+PhantomReference&lt;Counter&gt; phantomCounter = new PhantomReference(counter, referenceQueue); // phantom reference
+counter = null; // объект доступен для сборщика мусора. будет удален в любой момент</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><code><strong>WeakHashMap</strong></code></summary><div class="indented"><p id="f45ddce5-dfd4-4be8-8a8d-26a02ec1c3b8" class=""><code>HashMap</code> у которого ключи – это слабые ссылки – <code>WeakReference</code>. Пока на объекты которые ты хранишь в <code>WeakHashMap</code> в качестве ключей есть обычные (сильные или мягкие) ссылки, эти объекты будут живы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0b99d5e4-e178-4542-a082-4055ace7ca92" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">WeakHashMap&lt;Int, String&gt; map = new WeakHashMap&lt;Int, String&gt;();</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Java GC. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="b6410e9f-85f5-4593-9235-338c70e961e8" class="numbered-list" start="1"><li>Что такое сборщик мусора?</li></ol><ol type="1" id="969cc543-9081-4ed3-a79f-0bd955633c42" class="numbered-list" start="2"><li>Как работает сборщик мусора?</li></ol><ol type="1" id="a6a44a7c-3d8e-4d7a-b849-c423b1b30226" class="numbered-list" start="3"><li>Что такое stop the world?</li></ol><ol type="1" id="10215285-0ae8-805a-ae56-f5752a151d91" class="numbered-list" start="4"><li>Что триггерит запуск GC?<p id="10215285-0ae8-80ae-8dcb-de418581e6fa" class=""><mark class="highlight-teal">GC может быть запущен при нехватке памяти, по запросу через </mark><mark class="highlight-teal"><code>System.gc()</code></mark><mark class="highlight-teal">, или по достижении определенных порогов использования памяти (отслеживает создание новых объектов).</mark></p></li></ol><ol type="1" id="ffbc3f25-8631-4761-bc87-4485da851124" class="numbered-list" start="5"><li>Как GC проверяет, что объекты недоступны для сборки?<p id="10215285-0ae8-80cf-a699-d16f5d157824" class=""><mark class="highlight-teal">GC проверяет доступность объектов, используя граф достижимости от корней (GC roots). Если объект не доступен из корней, он считается недоступным для использования и может быть собран.</mark></p></li></ol><ol type="1" id="10215285-0ae8-8050-9395-fba770378dba" class="numbered-list" start="6"><li>Если 2 объекта в Java ссылаются только друг на друга и не имеют ссылок из других объектов, будут ли они собраны сборщиком мусора?<p id="10215285-0ae8-807a-b9bd-c357719bdead" class=""><mark class="highlight-teal">Да. GC может обнаруживать и собирать объекты, которые образуют циклические ссылки между собой, если они не достижимы из корней.</mark></p></li></ol><ol type="1" id="10215285-0ae8-80b0-967e-f033f7ef0801" class="numbered-list" start="7"><li>Какие существуют типы ссылок?<p id="10215285-0ae8-8057-bf68-d1dd1a51e0ff" class=""><mark class="highlight-teal">StrongReference </mark><mark class="highlight-teal"><code><strong>WeakReference</strong></code></mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal"><code><strong>SoftReference</strong></code></mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal"><code>PhantomReference</code></mark></p></li></ol><ol type="1" id="10215285-0ae8-8020-9541-ed86c62cd533" class="numbered-list" start="8"><li>Что такое утечка памяти?<p id="10215285-0ae8-8021-b3e2-ef670ba97571" class=""><mark class="highlight-teal">Ситуация когда объект больше не используется, но память под него остается выделенной.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
