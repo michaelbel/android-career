@@ -1,0 +1,813 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Collection</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fa1e6663-6c9a-43e6-963d-011ec3fe5a4e" class="page sans"><header><img class="page-cover-image" src="Collection%20fa1e66636c9a43e6963d011ec3fe5a4e/cover-java-collection.webp" style="object-position:center 8.809999999999995%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Collection%20fa1e66636c9a43e6963d011ec3fe5a4e/icon-java.svg"/></div><h1 class="page-title">Collection</h1><p class="page-description"></p></header><div class="page-body"><table id="56438de6-38e9-408b-ada3-261f586ecb13" class="simple-table"><tbody><tr id="079c10a6-cbc8-47ce-8fad-68f92204f916"><td id="pbUZ" class="" style="width:101px"><mark class="highlight-brown"><code>01.12.2021</code></mark></td><td id="EkVy" class="" style="width:582px"><a href="https://javastudy.ru/interview/collections">https://javastudy.ru/interview/collections</a></td></tr></tbody></table><table id="d5dd1fce-5681-46a8-8be4-26083327a4c0" class="simple-table"><tbody><tr id="50b3c66a-628d-48dd-b566-3b24e22e61ab"><td id="pbUZ" class="" style="width:102px"><mark class="highlight-brown"><code>11.12.2012</code></mark></td><td id="EkVy" class="" style="width:394px"><a href="https://habr.com/ru/post/162017">https://habr.com/ru/post/162017</a></td></tr><tr id="46fb453d-5036-452a-800a-c3953dae36ba"><td id="pbUZ" class="" style="width:102px"><mark class="highlight-brown"><code>12.09.2011</code></mark></td><td id="EkVy" class="" style="width:394px"><a href="https://habr.com/ru/post/128269">https://habr.com/ru/post/128269</a></td></tr><tr id="c35fd966-4016-4bc9-bccd-222817447bc0"><td id="pbUZ" class="" style="width:102px"><mark class="highlight-brown"><code>22.09.2011</code></mark></td><td id="EkVy" class="" style="width:394px"><a href="https://habr.com/ru/post/127864">https://habr.com/ru/post/127864</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Iterator</code></mark></summary><div class="indented"><p id="14615285-0ae8-809c-80dd-cf688a195349" class="">Интерфейс для поэлементного обхода коллекций в Java. Позволяет безопасно удалять элементы во время обхода.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14615285-0ae8-8047-89de-c071d389b255" class="code"><code class="language-Java">List&lt;String&gt; list = Arrays.asList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;);
+Iterator&lt;String&gt; iterator = list.iterator();
+
+while (iterator.hasNext()) {
+    String item = iterator.next();
+    System.out.println(item);
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>hasNext</code></mark></summary><div class="indented"><p id="14615285-0ae8-80f5-9ac8-df4a6bb42320" class="">Проверяет, есть ли следующий элемент.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>next</code></mark></summary><div class="indented"><p id="14615285-0ae8-8033-b0c5-e4c6a8afff79" class="">Возвращает следующий элемент.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>remove</code></mark></summary><div class="indented"><p id="14615285-0ae8-8083-8002-f7525b0fedb7" class="">Удаляет текущий элемент.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Collection</code></mark></summary><div class="indented"><p id="8dce84ee-11c8-487b-a6f1-033c1dce6678" class="">Базовый интерфейс для работы с коллекциями в Java.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>List</code></mark></summary><div class="indented"><p id="9f6e7457-d77c-4d6b-8c0a-12c6ad0f5df4" class="">Интерфейс коллекций, представляющий упорядоченный список элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e7969c39-27a7-4f73-b1bf-5f0e85464734" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">List&lt;String&gt; list = List.of(&quot;one&quot;, &quot;two&quot;); // Только для чтения</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ArrayList</code></mark></summary><div class="indented"><p id="9f031279-c6e3-4440-86b6-ae8138dc9d53" class="">Реализован внутри в виде обычного массива. Поэтому при вставке элемента в середину, приходится сначала сдвигать на один все элементы после него, а уже затем в освободившееся место вставлять новый элемент. Минусы в скорости вставки/удаления элементов находящихся не в конце списка, так как при этой операции все элементы правее добавляемого/удаляемого сдвигаются. Размер по умолчанию - 10</p><p id="86e7316e-ba8d-43c3-b900-9c5526cfba7f" class="">• Начальный размер (<mark class="highlight-default"><code>capacity</code></mark>) равен 10, при добавлении размер увеличивается в среднем в 1.5 раз и элементы копируются, старый удаляется gc.</p><p id="8adba07e-0297-43e6-ab2d-e21679b9cb54" class="">• При удалении элемента размер массива не уменьшается, <mark class="highlight-default"><code>capacity</code></mark> не меняется (есть метод <mark class="highlight-default"><code>trimToSize()</code></mark>).</p><p id="f64a7368-94e8-463a-87ad-34a0b56a6ee6" class="">• Если известно примерное количество элементов, указать <mark class="highlight-default"><code>capacity</code></mark>, чтобы не тратить ресурсы на расширение списка.</p><table id="8e474966-352d-452e-92c6-21d33b5d6d7b" class="simple-table"><tbody><tr id="8dd80c8e-05c2-48fa-a323-a4e5d3394b03"><td id="Fv_[" class="" style="width:288px">get</td><td id="NNzY" class="" style="width:563px">O(1) - константное время</td></tr><tr id="397ebeed-29e0-4406-8efc-7f379fea8f6c"><td id="Fv_[" class="" style="width:288px">add в конец списка</td><td id="NNzY" class="" style="width:563px">O(1) - в среднем случае</td></tr><tr id="a0866dc6-c423-45bb-ae33-781381af2e63"><td id="Fv_[" class="" style="width:288px">add в начало или середину списка</td><td id="NNzY" class="" style="width:563px">O(n), где n — количество элементов, так как требуется сдвинуть часть массива</td></tr><tr id="d07a2d4a-7f67-4221-a9b4-12ba0303f92f"><td id="Fv_[" class="" style="width:288px">remove из конца списка</td><td id="NNzY" class="" style="width:563px">O(1), так как сдвигать ничего не нужно.</td></tr><tr id="0b1c313f-9699-4e60-bc01-5fa1a12616f7"><td id="Fv_[" class="" style="width:288px">remove из начала или середины списка</td><td id="NNzY" class="" style="width:563px">O(n), так как требуется сдвигать элементы.</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="64a0a6f7-34b4-411b-aa70-38f0cf8a28fc" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+List&lt;String&gt; unmodifiableList = Collections.unmodifiableList(list); // только для чтения</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LinkedList</code></mark></summary><div class="indented"><p id="f9f993c9-73cb-4fd5-a0d0-84856cc90941" class="">Реализован в виде связного списка: набора отдельных элементов, каждый из которых хранит ссылку на следующий и предыдущий элементы. Чтобы вставить элемент в середину списка, достаточно поменять ссылки его будущих соседей. А вот чтобы получить элемент с номером 130, нужно пройтись последовательно по всем объектам от 0 до 130. Другими словами операции <mark class="highlight-default"><code>set</code></mark> и <mark class="highlight-default"><code>get</code></mark> очень медленные. Если необходимо вставлять (или удалять) в середину коллекции много элементов и гарантировать время этих операций, то лучше использовать <mark class="highlight-default"><code>LinkedList</code></mark>, в остальных случаях – <mark class="highlight-default"><code>ArrayList</code></mark>. <mark class="highlight-default"><code>LinkedList</code></mark> требует больше памяти для хранения такого же количества элементов, потому что кроме самого элемента хранятся еще указатели на соседей, тогда как в ArrayList элементы просто идут по порядку. <mark class="highlight-default"><code>LinkedList</code></mark> - вагоны поезда, сцепленные последовательно. Операции доступа по индексу производятся перебором с начала или конца (смотря что ближе) до нужного элемента. Как в <mark class="highlight-default"><code>LinkedList</code></mark> вставить новый элемент в середину списка: сначала проверяем наш capacity сдвигаем все что справа элементы и вставляем туда новый. если места не хватает выделяется память в 2 раза больше нынешнего <mark class="highlight-default"><code>capacity</code></mark> создается новый массив и все элементы копируются. чтобы оптимизировать память нужно задавать размер списка capacity изначально</p><p id="af60d474-c4eb-4dec-9716-67b8cb34532c" class="">• <mark class="highlight-default"><code>LinkedList</code></mark> не синхронизирован.</p><p id="f947b5f4-b911-463a-92a2-eab91a450499" class="">• Позволяет хранить любые объекты, в том числе null и повторяющиеся.</p><table id="5b54efcf-efd8-408d-a4ad-59a438a215c5" class="simple-table"><tbody><tr id="cb677ebc-03f8-4996-94f5-82c0d7245c9e"><td id="Fv_[" class="" style="width:288px">get</td><td id="NNzY" class="" style="width:563px">O(n) — требуется пройти список до нужного индекса.</td></tr><tr id="9d9bd375-ca2d-42a6-ada4-6e5beab50055"><td id="Fv_[" class="" style="width:288px">add в начало или конец списка</td><td id="NNzY" class="" style="width:563px">O(1) — вставка нового узла.</td></tr><tr id="ebf4e7f1-aaca-4004-8e64-e1fe303eba72"><td id="Fv_[" class="" style="width:288px">add в середину списка</td><td id="NNzY" class="" style="width:563px">O(n) — требуется найти позицию, затем вставить элемент.</td></tr><tr id="5835cd19-6526-4ac0-8e9f-97035eaeaf01"><td id="Fv_[" class="" style="width:288px">remove из начала или конца списка</td><td id="NNzY" class="" style="width:563px">O(1) — удаление узла.</td></tr><tr id="0b934b7a-bc59-454a-ae82-c905a315b11f"><td id="Fv_[" class="" style="width:288px">remove из середины списка</td><td id="NNzY" class="" style="width:563px">O(n) — требуется найти узел, затем удалить его.</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d80e8380-f3cf-4b95-b6d9-695ff5a73cea" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">LinkedList&lt;String&gt; list = new LinkedList&lt;&gt;();</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Set</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8007-a6f6-ca76abb97392" class="">Интерфейс, который предоставляет коллекцию уникальных элементов, не допускающих дубликатов.</p><p id="10f15285-0ae8-800c-81da-c326b54570c0" class="">• Элементы уникальны — нельзя добавить дубликат.</p><p id="10f15285-0ae8-80f9-8f9e-db97e24583d8" class="">• Порядок хранения элементов зависит от реализации.</p><p id="10f15285-0ae8-80ae-b30c-dc51974956cd" class="">• Реализации: <mark class="highlight-default"><code>HashSet</code></mark> <mark class="highlight-default"><code>LinkedHashSet</code></mark> <mark class="highlight-default"><code>TreeSet</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d2699de8-e77e-4f3f-9812-603301b40c44" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Set set = new HashSet();
+
+// Добавление элементов
+set.add(&quot;Apple&quot;);
+set.add(&quot;Banana&quot;);
+
+// Проверка наличия элемента
+boolean hasApple = set.contains(&quot;Apple&quot;); // true
+
+// Удаление элемента
+set.remove(&quot;Apple&quot;);
+
+// Размер множества
+int size = set.size(); // 1, после удаления Apple
+
+// Очистка множества
+set.clear();</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>HashSet</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8062-91fb-dfb6def3e46e" class="">Коллекция, которая хранит уникальные элементы без сохранения порядка. Она основана на хэш-таблице, что позволяет быстро выполнять операции вставки, удаления и поиска за O(1) в среднем случае.</p><p id="10f15285-0ae8-803b-aa39-c04f5497004e" class="">• Элементы уникальны — нельзя добавить дубликат.</p><p id="10f15285-0ae8-8029-8c91-f6ec89981416" class="">• Порядок элементов не гарантируется.</p><p id="10f15285-0ae8-80a7-9296-ee02c8f9ed7a" class="">• Использует хэш-функции: для быстрого доступа к элементам и их распределения по хэш-таблице.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-806d-a909-e8804df357d3" class="code"><code class="language-Java">Set&lt;String&gt; hashSet = new HashSet&lt;&gt;();
+hashSet.add(&quot;Dog&quot;);
+hashSet.add(&quot;Cat&quot;);
+hashSet.add(&quot;Bird&quot;);
+
+System.out.println(hashSet); // Порядок может быть любым, например: [Bird, Cat, Dog]</code></pre><p id="10f15285-0ae8-802e-aaed-c0da28b49149" class="">
+</p><h3 id="10f15285-0ae8-8011-82cc-d7db901f5a2a" class="">Алгоритмическая сложность операций</h3><table id="10f15285-0ae8-80d3-b99f-eaed08af2c6d" class="simple-table"><tbody><tr id="a092e131-33bd-49a1-beb0-4907ed245bd4"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>add</code></mark> (вставка)</td><td id="iK`;" class="" style="width:640px">O(1) — элементы добавляются в хэш-таблицу по их хэш-коду, если не возникает коллизий.</td></tr><tr id="c77b4249-6a24-49dd-9aed-48c184d3bf18"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>remove</code></mark> (удаление)</td><td id="iK`;" class="" style="width:640px">O(1) — аналогично добавлению, поиск элемента и его удаление происходит по хэш-коду.</td></tr><tr id="486dcca7-b837-4a17-9c2d-65e9c5d2f19c"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>contains</code></mark> (поиск)</td><td id="iK`;" class="" style="width:640px">O(1) — элемент находится по хэш-коду, что обеспечивает быстрый доступ.</td></tr><tr id="10f15285-0ae8-800a-951e-d2eb2f926737"><td id="ggQo" class="" style="width:158px">итерация</td><td id="iK`;" class="" style="width:640px">O(n) — так как требуется пройти по всем элементам в множестве.</td></tr></tbody></table><p id="10f15285-0ae8-800b-b21b-f0734160ea93" class="">В худшем случае, при коллизиях (когда хэш-функция распределяет элементы неравномерно), сложность этих операций может возрасти до O(n), где n — количество элементов в множестве.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LinkedHashSet</code></mark></summary><div class="indented"><p id="10f15285-0ae8-803c-8d91-da1047f513fa" class="">Реализация интерфейса <mark class="highlight-default"><code>Set</code></mark>, основанная на хэш-таблице с двухсвязным списком для поддержания порядка добавления элементов. Это означает, что <mark class="highlight-default"><code>LinkedHashSet</code></mark> сочетает в себе преимущества быстрого доступа за счет использования хэш-таблицы, как у <mark class="highlight-default"><code>HashSet</code></mark>, и сохранения порядка вставки элементов, как у списка.</p><p id="10f15285-0ae8-80bb-b1f6-d5d2477289ef" class="">• Элементы уникальны — нельзя добавить дубликат.</p><p id="10f15285-0ae8-8087-aaaa-d945f469c8d8" class="">• Элементы сохраняются в порядке добавления.</p><p id="10f15285-0ae8-80c4-8a88-e5675c006e8f" class="">• Несмотря на порядок вставки, прямой доступ к элементам по индексу, как в списках, невозможен. Для работы с элементами LinkedHashSet нужно использовать итераторы или циклы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80f7-8ed8-e4b0f9292465" class="code"><code class="language-Java">Set&lt;String&gt; linkedHashSet = new LinkedHashSet&lt;&gt;();
+linkedHashSet.add(&quot;Dog&quot;);
+linkedHashSet.add(&quot;Cat&quot;);
+linkedHashSet.add(&quot;Bird&quot;);
+
+System.out.println(linkedHashSet); // Порядок: [Dog, Cat, Bird]</code></pre><p id="10f15285-0ae8-80df-850c-e53c8bd25b2b" class="">
+</p><h3 id="10f15285-0ae8-8058-bcdb-d47277438fc3" class="">Алгоритмическая сложность операций</h3><table id="10f15285-0ae8-8059-aecb-ed7c84c243f2" class="simple-table"><tbody><tr id="a061ae6c-a648-4261-be92-190ad6721a2d"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>add</code></mark> (вставка)</td><td id="iK`;" class="" style="width:640px">O(1) в среднем - элемент добавляется в хэш-таблицу и в двухсвязный список.</td></tr><tr id="b53149cb-5305-462d-875f-60e5ca420d27"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>remove</code></mark> (удаление)</td><td id="iK`;" class="" style="width:640px">O(1) в среднем - доступ к элементу по хэшу и удаление из списка.</td></tr><tr id="b4293614-8970-41c1-b3a8-9814f3e05638"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>contains</code></mark> (поиск)</td><td id="iK`;" class="" style="width:640px">O(1) в среднем - быстрый доступ через хэш-таблицу.</td></tr><tr id="a3548487-76af-4f84-b038-19fa5c4fd2a6"><td id="ggQo" class="" style="width:158px">итерация</td><td id="iK`;" class="" style="width:640px">O(n) - проход по элементам в порядке вставки, где <em>n</em> — количество элементов.</td></tr></tbody></table><p id="10f15285-0ae8-8009-bb19-fa60ea4b55d0" class="">В худшем случае сложность может возрасти до O(n) из-за коллизий, но это редко происходит при хороших хэш-функциях.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>TreeSet</code></mark></summary><div class="indented"><p id="10f15285-0ae8-80d1-8fbc-c5546225b7b1" class="">Реализация интерфейса <mark class="highlight-default"><code>Set</code></mark>, которая хранит элементы в отсортированном порядке. Он основан на красно-черном дереве, что обеспечивает логарифмическое время для основных операций.</p><p id="10f15285-0ae8-801a-af01-fbc2dd111c1d" class="">• Элементы уникальны — нельзя добавить дубликат.</p><p id="10f15285-0ae8-8089-adb2-d2bffbe1f6df" class="">• Элементы хранятся в естественном порядке (или согласно заданному компаратору).</p><p id="10f15285-0ae8-804e-a6e9-e3f5b81fa715" class="">• Реализует интерфейсы <mark class="highlight-default"><code>NavigableSet</code></mark> и <mark class="highlight-default"><code>SortedSet</code></mark>.</p><p id="10f15285-0ae8-8029-a6cb-c97e0f65706f" class="">• Не позволяет хранить null элементы, так как не может определить их порядок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e8c7d114-2c84-443b-aea3-3c6a56d24075" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Set&lt;Integer&gt; treeSet = new TreeSet&lt;&gt;();
+treeSet.add(5);
+treeSet.add(2);
+treeSet.add(9);
+
+System.out.println(treeSet); // Порядок: [2, 5, 9]</code></pre><h3 id="10f15285-0ae8-80e8-b42d-cbacd4984470" class="">Алгоритмическая сложность операций</h3><table id="10f15285-0ae8-80c3-94ea-faa89d1acb12" class="simple-table"><tbody><tr id="57e144f1-b73d-4983-9240-30939813aad4"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>add</code></mark> (вставка)</td><td id="iK`;" class="" style="width:565px">O(log n) - при добавлении элемента необходимо поддерживать баланс дерева.</td></tr><tr id="9e28ee7b-96ec-4553-bef7-43a47a970f52"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>remove</code></mark> (удаление)</td><td id="iK`;" class="" style="width:565px">O(log n) - аналогично, требуется сбалансировать дерево после удаления.</td></tr><tr id="a643a4fc-5686-4353-9234-ca6ba42b4e4f"><td id="ggQo" class="" style="width:158px"><mark class="highlight-default"><code>contains</code></mark> (поиск)</td><td id="iK`;" class="" style="width:565px">O(log n) - поиск выполняется с использованием бинарного поиска.</td></tr><tr id="8a201fe3-2998-4ac8-9feb-e1ca8fe05093"><td id="ggQo" class="" style="width:158px">итерация</td><td id="iK`;" class="" style="width:565px">O(n) - проход по элементам в отсортированном порядке.</td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>SortedSet</code></mark></summary><div class="indented"><p id="10f15285-0ae8-80fc-8e5b-e596281c7cd0" class="">Расширение интерфейса <mark class="highlight-default"><code>Set</code></mark>, который гарантирует, что элементы в наборе будут храниться в отсортированном порядке. Он предоставляет дополнительные методы для работы с сортированными данными.</p><p id="10f15285-0ae8-8043-bb04-d7150572ebe4" class="">• <mark class="highlight-default"><code>first()</code></mark> — возвращает первый (наименьший) элемент.</p><p id="10f15285-0ae8-80a5-973a-dd65c098a8a6" class="">• <mark class="highlight-default"><code>last()</code></mark> — возвращает последний (наибольший) элемент.</p><p id="10f15285-0ae8-8041-960f-f2343c3b79a5" class="">• <mark class="highlight-default"><code>headSet(E toElement)</code></mark> — возвращает часть набора, содержащую элементы, меньше чем <mark class="highlight-default"><code>toElement</code></mark>.</p><p id="10f15285-0ae8-804a-b974-e4d457aa9faa" class="">• <mark class="highlight-default"><code>tailSet(E fromElement)</code></mark> — возвращает часть набора, содержащую элементы, больше или равные <mark class="highlight-default"><code>fromElement</code></mark>.</p><p id="10f15285-0ae8-80b1-af6e-ddb13a0f194b" class="">• <mark class="highlight-default"><code>subSet(E fromElement, E toElement)</code></mark> — возвращает часть набора, содержащую элементы между <mark class="highlight-default"><code>fromElement</code></mark> (включительно) и <mark class="highlight-default"><code>toElement</code></mark> (исключительно).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80fa-bbd2-ea75eddf7d48" class="code"><code class="language-Java">public static void main(String[] args) {
+    // Создаем отсортированный набор
+    SortedSet&lt;Integer&gt; sortedSet = new TreeSet&lt;&gt;();
+
+    // Добавление элементов
+    sortedSet.add(5);
+    sortedSet.add(1);
+    sortedSet.add(3);
+    sortedSet.add(7);
+    sortedSet.add(2);
+
+    // Печатаем элементы в отсортированном порядке
+    System.out.println(&quot;SortedSet: &quot; + sortedSet); // Output: SortedSet: [1, 2, 3, 5, 7]
+
+    // Получение первого и последнего элемента
+    Integer first = sortedSet.first(); // 1
+    Integer last = sortedSet.last(); // 7
+    System.out.println(&quot;First element: &quot; + first); // Output: First element: 1
+    System.out.println(&quot;Last element: &quot; + last); // Output: Last element: 7
+
+    // Получение подмножества
+    SortedSet&lt;Integer&gt; subSet = sortedSet.subSet(2, 6);
+    System.out.println(&quot;SubSet (2 to 6): &quot; + subSet); // Output: SubSet (2 to 6): [2, 3, 5]
+
+    // Получение части набора до определенного элемента
+    SortedSet&lt;Integer&gt; headSet = sortedSet.headSet(5);
+    System.out.println(&quot;HeadSet (up to 5): &quot; + headSet); // Output: HeadSet (up to 5): [1, 2, 3]
+
+    // Получение части набора от определенного элемента
+    SortedSet&lt;Integer&gt; tailSet = sortedSet.tailSet(3);
+    System.out.println(&quot;TailSet (from 3): &quot; + tailSet); // Output: TailSet (from 3): [3, 5, 7]
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>NavigableSet</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8015-bbba-c7c881be612a" class="">Расширение <mark class="highlight-default"><code>SortedSet</code></mark>, которое добавляет методы для навигации по элементам набора. Он предоставляет более сложные операции поиска и манипуляции элементами.</p><p id="10f15285-0ae8-80bd-b268-ded109c2d18a" class="">• Позволяет находить элементы, которые ближайшие к заданному значению.</p><p id="10f15285-0ae8-8095-b10e-c7295e564b65" class="">• <mark class="highlight-default"><code>lower(E e)</code></mark> — возвращает наибольший элемент, меньший, чем <mark class="highlight-default"><code>e</code></mark>.</p><p id="10f15285-0ae8-80c6-85ce-c2755f6134bd" class="">• <mark class="highlight-default"><code>floor(E e)</code></mark> — возвращает наибольший элемент, меньший или равный <mark class="highlight-default"><code>e</code></mark>.</p><p id="10f15285-0ae8-800b-9380-ef65c8dddc01" class="">• <mark class="highlight-default"><code>ceiling(E e)</code></mark> — возвращает наименьший элемент, больший или равный <mark class="highlight-default"><code>e</code></mark>.</p><p id="10f15285-0ae8-808f-8efc-e40a494f9c14" class="">• <mark class="highlight-default"><code>higher(E e)</code></mark> — возвращает наименьший элемент, больший, чем <mark class="highlight-default"><code>e</code></mark>.</p><p id="10f15285-0ae8-80f3-9af3-e3a6404e8fe4" class="">• <mark class="highlight-default"><code>pollFirst()</code></mark> — удаляет и возвращает первый элемент, или null, если набор пустой.</p><p id="10f15285-0ae8-80ef-9ff8-c53777022153" class="">• <mark class="highlight-default"><code>pollLast()</code></mark> — удаляет и возвращает последний элемент, или null, если набор пустой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80e9-979d-ec63db1864b1" class="code"><code class="language-Java">public static void main(String[] args) {
+    NavigableSet&lt;Integer&gt; navigableSet = new TreeSet&lt;&gt;();
+
+    // Добавление элементов
+    navigableSet.add(5);
+    navigableSet.add(3);
+    navigableSet.add(8);
+    navigableSet.add(1);
+
+    // Получение первого и последнего элемента
+    Integer first = navigableSet.first(); // 1
+    Integer last = navigableSet.last(); // 8
+
+    // Получение элементов, соседних с 5
+    Integer lower = navigableSet.lower(5); // 3
+    Integer higher = navigableSet.higher(5); // 8
+
+    // Удаление первого элемента
+    Integer removedFirst = navigableSet.pollFirst(); // 1
+
+    // Итерация по элементам
+    for (Integer number : navigableSet) {
+        System.out.println(number); // 3, 5, 8
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Queue</code></mark></summary><div class="indented"><p id="14615285-0ae8-80b3-8c75-d6379049c099" class="">Интерфейс в Java, представляющий структуру данных «очередь». Она основана на принципе FIFO (First-In-First-Out).</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>add(E e)</code></mark></summary><div class="indented"><p id="14615285-0ae8-80ad-9cc0-c882ba4878b9" class="">Добавляет элемент в очередь. Если место ограничено, выбрасывает исключение <mark class="highlight-default"><code>IllegalStateException</code></mark>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>offer(E e)</code></mark></summary><div class="indented"><p id="14615285-0ae8-8068-a0ca-c8e131ce97ba" class="">Добавляет элемент в очередь, возвращ<mark class="highlight-default">ает </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, если успешно, иначе </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default">.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>remove()</code></mark></summary><div class="indented"><p id="14615285-0ae8-80e6-8643-d45809c2096f" class="">Удаляет и возвращает первый элемент. Если очередь пуста, выбрасывает исключение <mark class="highlight-default"><code>NoSuchElementException</code></mark>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>poll()</code></mark></summary><div class="indented"><p id="14615285-0ae8-8074-8194-fdc96188f0bb" class="">Удаляет и возвращает первый элемент или <mark class="highlight-default"><code>null</code></mark>, если очередь пуста.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>element()</code></mark></summary><div class="indented"><p id="14615285-0ae8-8061-be31-d80ec5a87dbf" class="">Возвращает первый элемент без удаления. Если очередь пуста, выбрасывает исключение <mark class="highlight-default"><code>NoSuchElementException</code></mark>.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>peek()</code></mark></summary><div class="indented"><p id="14615285-0ae8-807b-85d8-fd37a9b159c2" class="">Возвращает первый элемент без удаления или <mark class="highlight-default"><code>null</code></mark>, если очередь пуста.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ArrayDeque</code></mark></summary><div class="indented"><p id="14615285-0ae8-8051-b25c-ff4266c5f4f1" class="">Класс в Java для работы с двусторонней очередью. Удобен для операций добавления и удаления элементов с начала и конца. Быстрее, <mark class="highlight-default">чем </mark><mark class="highlight-default"><code>LinkedList</code></mark><mark class="highlight-default">, и гибче, чем </mark><mark class="highlight-default"><code>Stack</code></mark><mark class="highlight-default">. Не син</mark>хронизирован, поэтому не подходит для многопоточных задач без внешней синхронизации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14615285-0ae8-8001-a95c-ff3d865d6de8" class="code"><code class="language-Java">import java.util.ArrayDeque;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayDeque&lt;String&gt; deque = new ArrayDeque&lt;&gt;();
+
+        // Добавляем элементы
+        deque.addFirst(&quot;First&quot;);
+        deque.addLast(&quot;Last&quot;);
+
+        // Получаем элементы
+        System.out.println(deque.peekFirst()); // First
+        System.out.println(deque.peekLast());  // Last
+
+        // Удаляем элементы
+        System.out.println(deque.pollFirst()); // First
+        System.out.println(deque.pollLast());  // Last
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PriorityQueue</code></mark></summary><div class="indented"><p id="14615285-0ae8-8005-a8fc-ea07f139a892" class="">Класс в Java, реализующий очередь с приоритетом. Элементы обрабатываются не в порядке добавления, а в порядке их приоритета. По умолчанию используется естественный порядок элементов, но можно задать свой компаратор.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14615285-0ae8-80ac-a750-f3433bbb280c" class="code"><code class="language-Java">import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();
+
+        // Добавляем элементы
+        pq.add(5);
+        pq.add(1);
+        pq.add(3);
+
+        // Обрабатываем по приоритету (минимум первым)
+        while (!pq.isEmpty()) {
+            System.out.println(pq.poll()); // 1, 3, 5
+        }
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Map</code></mark></summary><div class="indented"><p id="14615285-0ae8-80f3-af0f-ce94c198e5ad" class="">Интерфейс в Java для работы с коллекцией пар «ключ-значение». Каждый ключ уникален, а значения могут повторяться.</p><p id="14615285-0ae8-8075-a676-d9ae92d47852" class="">• Не наследуется от <mark class="highlight-default"><code>Collection</code></mark> - это отдельная структура данных.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>TreeMap</code></mark></summary><div class="indented"><p id="14615285-0ae8-8057-8b5e-fef9c10e0a1d" class="">Реализация интерфейса <mark class="highlight-default"><code>Map</code></mark>, основанная на красно-черном дереве. Элементы упорядочены по ключам в соответствии с их естественным порядком или переданным компаратором.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e933c46f-2a39-4b99-8218-15e250d4fc82" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">TreeMap&lt;String, Integer&gt; treeMap = new TreeMap&lt;&gt;();</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Hashtable</code></mark></summary><div class="indented"><p id="14615285-0ae8-80f0-9610-edfd42e84771" class="">Класс в Java для работы с коллекцией пар «ключ-значение». Он похож на <mark class="highlight-default"><code>HashMap</code></mark>, но синхронизирован, что делает его потокобезопасным, хотя и менее производительным.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14615285-0ae8-80ad-b26f-ea50f2993788" class="code"><code class="language-Java">Hashtable&lt;String, Integer&gt; table = new Hashtable&lt;&gt;();</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (33)</mark></summary><div class="indented"><ul id="10f15285-0ae8-80ec-8bd9-dfd0852f19d0" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>List (9)</strong></mark></summary><ol type="1" id="10415285-0ae8-807f-8875-fc028203f466" class="numbered-list" start="1"><li>На чем основана реализация ArrayList и LinkedList?<p id="47ec0aa6-622a-4f73-8cee-57480b62df76" class=""><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal"> - на массиве. </mark><mark class="highlight-teal"><code>LinkedList</code></mark><mark class="highlight-teal"> - на связном списке.</mark></p></li></ol><ol type="1" id="c9773a53-6faf-4e2b-8ae3-e4ceee094c9b" class="numbered-list" start="2"><li>Разница между List и ArrayList?<p id="10815285-0ae8-8075-b14c-e64eb957a9c8" class=""><mark class="highlight-teal"><code>List</code></mark><mark class="highlight-teal"> — это интерфейс, представляющий упорядоченные коллекции, тогда как </mark><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal"> — его реализация, основанная на массиве. </mark><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal"> предоставляет динамический размер и методы для работы с элементами, а </mark><mark class="highlight-teal"><code>List</code></mark><mark class="highlight-teal"> — лишь общие контракты для различных реализаций списка.</mark></p></li></ol><ol type="1" id="c0ce306d-132f-4996-a9b6-7da97e3e22ee" class="numbered-list" start="3"><li>В чем разница между ArrayList и LinkedList?<p id="10415285-0ae8-8039-b49e-c7609c8e3b74" class=""><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal"> хранит элементы в виде динамического массива, обеспечивая быстрый доступ по индексу O(1), но вставка и удаление элементов в середине списка может быть медленной O(n), так как требует сдвига элементов.</mark></p><p id="10415285-0ae8-80f2-b855-f29093eeb54a" class=""><mark class="highlight-teal"><code>LinkedList</code></mark><mark class="highlight-teal"> реализован как двусвязный список, где каждый элемент содержит ссылку на следующий и предыдущий. Это позволяет эффективно вставлять и удалять элементы O(1), но доступ к элементам по индексу медленный O(n), так как нужно последовательно проходить список.</mark></p></li></ol><ol type="1" id="323f88be-b54c-41c2-90ad-2b6d87be37f2" class="numbered-list" start="4"><li>Где доступ к элементу быстрее в ArrayList или в LinkedList?<p id="7d50e3c5-e7ac-478b-9bab-44537b5ff569" class=""><mark class="highlight-teal">Быстрее в </mark><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal">, так как он реализован на основе массива, и доступ к элементам осуществляется за O(1). В </mark><mark class="highlight-teal"><code>LinkedList</code></mark><mark class="highlight-teal"> доступ (кроме first и last) требует обхода списка и выполняется за O(n), так как это двусвязный список.</mark></p></li></ol><ol type="1" id="11015285-0ae8-8051-88f9-ec8c4bfa2b97" class="numbered-list" start="5"><li>Когда в Android удобнее применять LinkedList?<p id="11015285-0ae8-80e8-93ff-c159ed6ac9f5" class="">• <mark class="highlight-teal">Когда требуется частое добавление и удаление элементов из середины списка.</mark></p><p id="11015285-0ae8-80ae-b2be-ee673743a8ec" class="">• <mark class="highlight-teal">Когда размер списка непредсказуем и необходимо минимизировать затраты на перераспределение памяти.</mark></p></li></ol><ol type="1" id="11015285-0ae8-8092-a0a3-c735d8d727ac" class="numbered-list" start="6"><li>Какова скорость базовых операций у ArrayList?<p id="11015285-0ae8-80df-b466-d33eb2f0a6fb" class="">• <mark class="highlight-teal"><code>get</code></mark><mark class="highlight-teal"> O(1).</mark></p><p id="11015285-0ae8-80a0-b27d-d83c3adbd64b" class="">• <mark class="highlight-teal"><code>add</code></mark><mark class="highlight-teal"> в конец списка O(1). в начало или в середину O(n).</mark></p><p id="11015285-0ae8-809a-81fa-d5d19e3ddb76" class="">• <mark class="highlight-teal"><code>remove</code></mark><mark class="highlight-teal"> из конца списка O(1). из начала или середины O(n).</mark></p></li></ol><ol type="1" id="11015285-0ae8-8011-9999-d703a821d66a" class="numbered-list" start="7"><li>Какова скорость базовых операций у LinkedList?<p id="11015285-0ae8-80ab-a9dd-c974b75d748e" class="">• <mark class="highlight-teal"><code>get</code></mark><mark class="highlight-teal"> O(n).</mark></p><p id="11015285-0ae8-802c-a01d-f717f58b9bf1" class="">• <mark class="highlight-teal"><code>add</code></mark><mark class="highlight-teal"> в начало или конец списка O(1). в середину списка O(n).</mark></p><p id="11015285-0ae8-8018-8150-da7d1d7d42ff" class="">• <mark class="highlight-teal"><code>remove</code></mark><mark class="highlight-teal"> из начала или конца списка O(1). из середины списка O(n).</mark></p></li></ol><ol type="1" id="11015285-0ae8-80c2-8a71-eef5a5811a07" class="numbered-list" start="8"><li>Как происходит вставка нового элемента в ArrayList?<p id="11015285-0ae8-80bd-b6f4-ca41f81a2c2f" class="">• <mark class="highlight-teal">Проверка размера: Если размер массива меньше capacity, элемент добавляется в следующую свободную позицию.</mark></p><p id="11015285-0ae8-807c-a9ec-c7ba996e30f2" class="">• <mark class="highlight-teal">Увеличение емкости: Если размер равен capacity, создается новый массив с удвоенной емкостью, и элементы копируются в него.</mark></p><p id="11015285-0ae8-80dd-8c2f-f6c3aa9e1252" class="">• <mark class="highlight-teal">Сдвиг элементов: При вставке не в конец сдвигаются элементы вправо.</mark></p><p id="11015285-0ae8-80c2-9ab5-f11d6eaefc27" class="">• <mark class="highlight-teal">Добавление элемента: Элемент помещается в нужную позицию, и размер списка увеличивается.</mark></p></li></ol><ol type="1" id="11515285-0ae8-805e-a941-eb40c1383da4" class="numbered-list" start="9"><li>Какая сложность поиска элемента в LinkedList по идексу?<p id="7a96d289-a0f5-47a3-b4a8-127314a62713" class="">• <mark class="highlight-red">0(1) (константная)</mark></p><p id="e4bcfb72-7a25-4fc9-b99c-6427e3094109" class="">• <mark class="highlight-teal">0(n) (линейная)</mark></p><p id="85c4f161-7293-4750-b869-68c761e08020" class="">• <mark class="highlight-red">0(log n) (логарифмическая)</mark></p><p id="18cb30d8-64e2-4c14-aba0-38956a2e80df" class="">• <mark class="highlight-red">0 (n^2) (квадратичная)</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-8072-9f10-c40557ce28de" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Set (8)</strong></mark></summary><ol type="1" id="45c1b964-33a4-4340-84d0-119bb88646c7" class="numbered-list" start="1"><li>Как устроен HashSet?<p id="399fe3ea-a1ed-4ffc-b0bc-69a3e7b50563" class=""><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> реализован на основе </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">, где каждый элемент хранится как ключ, а значение по умолчанию — это константа. Для хранения элементов используется хэширование, чтобы быстро определять их наличие. </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> не допускает дубликатов, так как для каждого добавляемого элемента проверяется, существует ли уже такой ключ в соответствующем </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80a5-80ba-c32baa9fc417" class="numbered-list" start="2"><li>Как HashSet выглядит под капотом?<p id="10f15285-0ae8-8089-bc08-ebbcb65fec7b" class=""><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> в исходниках Java представляет собой коллекцию, построенную на основе </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">. Ключи хранятся в </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">, а значения всегда равны фиксированной константе </mark><mark class="highlight-teal"><code>PRESENT</code></mark><mark class="highlight-teal"> (просто </mark><mark class="highlight-teal"><code>new Object()</code></mark><mark class="highlight-teal">). Операции </mark><mark class="highlight-teal"><code>add()</code></mark><mark class="highlight-teal">, </mark><mark class="highlight-teal"><code>remove()</code></mark><mark class="highlight-teal"> и другие опираются на методы </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="f01f84ca-502b-4f32-ac43-b0411a54d3cf" class="numbered-list" start="3"><li>Как реализована TreeMap?<p id="a11ad682-1993-4305-ae4c-5f6e88c06c0a" class=""><mark class="highlight-teal">Реализован на основе красно-черного дерева.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-80fb-a0ba-f6ec647b3355" class="numbered-list" start="4"><li>Разница между HashSet и LinkedHashSet?<p id="12a15285-0ae8-805c-8d65-c3f9abeb82be" class=""><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> не сохраняет порядок элементов и использует хэш-таблицу для хранения, что обеспечивает быструю проверку на наличие. </mark><mark class="highlight-teal"><code>LinkedHashSet</code></mark><mark class="highlight-teal"> сохраняет порядок вставки, используя связанный список, что делает его более подходящим, если важен порядок. Оба класса не допускают дубликатов, но </mark><mark class="highlight-teal"><code>LinkedHashSet</code></mark><mark class="highlight-teal"> обеспечивает предсказуемость итерации.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80dc-88e3-c3c8a5415f6b" class="numbered-list" start="5"><li>Гарантирует ли HashSet порядок элементов?<p id="10f15285-0ae8-800a-954c-e344668fad80" class=""><mark class="highlight-teal">Нет, элементы в </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> хранятся в произвольном порядке, который может изменяться при добавлении или удалении элементов. Если нужен порядок добавления элементов, следует использовать </mark><mark class="highlight-teal"><code>LinkedHashSet</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-8040-ab78-f8084c881ec0" class="numbered-list" start="6"><li>Как разрешаются коллизии в HashSet?<p id="10f15285-0ae8-8061-9598-fa632178ece1" class=""><mark class="highlight-teal">В </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> коллизии разрешаются с помощью внутренней структуры данных — </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">. Если два элемента имеют одинаковый хэшкод, они попадают в один и тот же бакет. Если ключи неравны по методу </mark><mark class="highlight-teal"><code>equals</code></mark><mark class="highlight-teal">, оба элемента будут храниться в этом бакете в виде цепочки. Если ключи одинаковы, второй элемент заменит первый.</mark></p></li></ol><ol type="1" id="11015285-0ae8-80e0-ae94-d599a103f85b" class="numbered-list" start="7"><li>Почему в HashSet одинаковые значения игнорируются а в HashMap перетираются?<p id="11015285-0ae8-80d4-a343-c5a9ccf1edbd" class=""><mark class="highlight-teal">Потому что в </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal"> хранятся только ключи, а они не перезаписываются.</mark></p></li></ol><ol type="1" id="11b15285-0ae8-80eb-a0e3-f2d3688c52c2" class="numbered-list" start="8"><li>Нужно ли переопределять оба метода - equals и hashCode для объектов HashSet?<p id="11b15285-0ae8-8006-b9b0-e699b1888396" class=""><mark class="highlight-teal">Да, необходимо переопределять оба метода </mark><mark class="highlight-teal"><code>equals</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>hashCode</code></mark><mark class="highlight-teal"> для объектов, используемых в </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal">, чтобы гарантировать корректное поведение коллекции. Если два объекта считаются равными по методу </mark><mark class="highlight-teal"><code>equals</code></mark><mark class="highlight-teal">, они должны иметь одинаковый хэш-код, чтобы избежать проблем с хранением и поиском в </mark><mark class="highlight-teal"><code>HashSet</code></mark><mark class="highlight-teal">.</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-8066-86a4-f80b53e99457" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Map (6)</strong></mark></summary><ol type="1" id="aa56e306-0f46-4dbe-9dc5-a48731f5f165" class="numbered-list" start="1"><li>Как устроен Map?<p id="fb62b9c2-861f-449f-8b7f-a3a7120e946e" class=""><mark class="highlight-teal">Это коллекция пар «ключ-значение», где каждому ключу соответствует одно значение. Наиболее распространённая реализация — это </mark><mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-8060-a2df-ee95c1afbaca" class="numbered-list" start="2"><li>Почему Map не наследуется от Collection?<p id="12a15285-0ae8-800a-9d82-e5a35de09f86" class=""><mark class="highlight-teal"><code>Map</code></mark><mark class="highlight-teal"> не наследуется от </mark><mark class="highlight-teal"><code>Collection</code></mark><mark class="highlight-teal"> потому, что оперирует парами «ключ-значение», а </mark><mark class="highlight-teal"><code>Collection</code></mark><mark class="highlight-teal"> работает с отдельными элементами, их структуры различны.</mark></p></li></ol><ol type="1" id="12115285-0ae8-804a-893d-c736343b44d2" class="numbered-list" start="3"><li>Гарантирует ли Map порядок элементов?<p id="12115285-0ae8-80d0-9b6a-de8ad7e3210a" class="">• <mark class="highlight-teal"><code>HashMap</code></mark><mark class="highlight-teal"> не гарантирует порядок элементов.</mark></p><p id="12115285-0ae8-800c-87df-ec68d1c88131" class="">• <mark class="highlight-teal"><code>LinkedHashMap</code></mark><mark class="highlight-teal"> сохраняет порядок вставки элементов.</mark></p><p id="12115285-0ae8-80a8-a82c-eb22bdd15e41" class="">• <mark class="highlight-teal"><code>TreeMap</code></mark><mark class="highlight-teal"> упорядочивает элементы по возрастанию ключей.</mark></p></li></ol><ol type="1" id="12115285-0ae8-8098-834e-cd46f287d8ed" class="numbered-list" start="4"><li>Как расположить элементы в Map в порядке добавления?<p id="12115285-0ae8-8071-bb6d-c13746cc1d1b" class=""><mark class="highlight-teal">Использовать </mark><mark class="highlight-teal"><code>LinkedHashMap</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11b15285-0ae8-8032-9a53-f49bb8d95e95" class="numbered-list" start="5"><li>Что такое TreeMap?<p id="11b15285-0ae8-807c-9b8d-dcb67f61dec4" class=""><mark class="highlight-teal"><code>TreeMap</code></mark><mark class="highlight-teal"> реализует интерфейс </mark><mark class="highlight-teal"><code>NavigableMap</code></mark><mark class="highlight-teal"> и представляет собой отсортированную по ключам структуру данных на основе красно-черного дерева. Он обеспечивает логарифмическую сложность для операций поиска, вставки и удаления. Ключи в </mark><mark class="highlight-teal"><code>TreeMap</code></mark><mark class="highlight-teal"> всегда находятся в отсортированном порядке, что позволяет легко выполнять операции диапазонных запросов.</mark></p></li></ol><ol type="1" id="d2c72bea-9526-4f57-ac45-396443d25ef7" class="numbered-list" start="6"><li>Разница между HashMap и Hashtable?<p id="e1043659-c1e9-4bc3-8f48-9f5373559404" class=""><mark class="highlight-teal"><code>Hashtable</code></mark><mark class="highlight-teal"> потокобезопасен, не допускает null, наследуется от </mark><mark class="highlight-teal"><code>Dictionary</code></mark><mark class="highlight-teal">, синхронизирован.</mark></p></li></ol></details></li></ul><ul id="11b15285-0ae8-8004-80a4-ced8eaab8d9b" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Stack (3)</strong></mark></summary><ol type="1" id="12315285-0ae8-80df-aa3d-df2a76493b4e" class="numbered-list" start="1"><li>Как устроен стек?<p id="12315285-0ae8-8020-905a-fc8411632ceb" class=""><mark class="highlight-teal">Это структура данных с принципом «последний пришёл — первый вышел» (LIFO), где операции добавления (</mark><mark class="highlight-teal"><code>push</code></mark><mark class="highlight-teal">) и удаления (</mark><mark class="highlight-teal"><code>pop</code></mark><mark class="highlight-teal">) выполняются только с верхним элементом. Он хранит указатель на верхний элемент и может быть реализован с помощью массива или связного списка. Стек используется для управления памятью, например, в рекурсии, и для реализации алгоритмов.</mark></p></li></ol><ol type="1" id="11515285-0ae8-800e-981f-ca25988e5a73" class="numbered-list" start="2"><li>Стек это LIFO или FIFO?<p id="11515285-0ae8-8025-bf83-d20724ceec79" class=""><mark class="highlight-teal">Стек — это структура данных, работающая по принципу LIFO (Last In, First Out), то есть последний добавленный элемент будет извлечён первым.</mark></p></li></ol><ol type="1" id="11515285-0ae8-805e-81bf-cb6d8bcdd625" class="numbered-list" start="3"><li>Сколько стеков может быть в процессе?<p id="11515285-0ae8-800e-8060-cadda42a101b" class=""><mark class="highlight-teal">В процессе может быть только один стек вызовов. Он используется для отслеживания активных функций, методов и объектов, а также для управления памятью.</mark></p></li></ol></details></li></ul><ul id="12315285-0ae8-8032-9ead-fef24d1b4081" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Queue (2)</strong></mark></summary><ol type="1" id="12315285-0ae8-8037-ab08-ca0e0e55e7a5" class="numbered-list" start="1"><li>Как устроена очередь?<p id="12315285-0ae8-800e-9abf-eef98744bbfb" class=""><mark class="highlight-teal">Это структура данных, работающая по принципу «первый пришёл — первый вышел» (FIFO). В очереди элементы добавляются в конец (</mark><mark class="highlight-teal"><code>enqueue</code></mark><mark class="highlight-teal">) и удаляются из начала (</mark><mark class="highlight-teal"><code>dequeue</code></mark><mark class="highlight-teal">). Она поддерживает два основных указателя: один на начало, другой на конец. Очередь может быть реализована с помощью массива или связного списка. Эта структура часто используется в задачах, связанных с управлением задачами, обработкой данных и реализацией алгоритмов, таких как обход графов.</mark></p></li></ol><ol type="1" id="12315285-0ae8-80e0-9948-c2c2cb50fef3" class="numbered-list" start="2"><li>Какие типы очередей бывают?<p id="12315285-0ae8-80ea-b684-f7519898e8ad" class="">• <mark class="highlight-teal"><code>ArrayDeque</code></mark><mark class="highlight-teal"> двусторонняя очередь.</mark></p><p id="12315285-0ae8-8085-9824-da2eeb415528" class="">• <mark class="highlight-teal"><code>PriorityQueue</code></mark><mark class="highlight-teal"> приоритетная очередь.</mark></p></li></ol></details></li></ul><ul id="11015285-0ae8-8099-8efb-e101fbb25371" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (5)</strong></mark></summary><ol type="1" id="a8c1a7f5-45f3-47eb-92b3-59c7e63b9a06" class="numbered-list" start="1"><li>Какие коллекции есть в Java?<p id="f428b7c8-dbf5-42ee-980d-992fcad9e402" class="">• <mark class="highlight-teal"><code>List</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>ArrayList</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>LinkedList</code></mark></p><p id="10815285-0ae8-8038-a409-e35b87d6bd47" class="">• <mark class="highlight-teal"><code>Set</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>HashSet</code></mark></p><p id="93367026-4d23-4602-9908-caf680773389" class="">• <mark class="highlight-teal"><code>Map</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>HashMap</code></mark></p></li></ol><ol type="1" id="12a15285-0ae8-80af-b820-e820b7b0078e" class="numbered-list" start="2"><li>Какие методы есть у Collection?<p id="12a15285-0ae8-8041-8015-c60514ded3d1" class="">• <mark class="highlight-teal"><code>add(E e)</code></mark><mark class="highlight-teal"> добавляет элемент в коллекцию.</mark></p><p id="12a15285-0ae8-80ac-bcce-c190ff2f7ebc" class="">• <mark class="highlight-teal"><code>remove(Object o)</code></mark><mark class="highlight-teal"> удаляет элемент, если он присутствует.</mark></p><p id="12a15285-0ae8-80f5-93e9-fac1722c7f9c" class="">• <mark class="highlight-teal"><code>size()</code></mark><mark class="highlight-teal"> возвращает количество элементов.</mark></p><p id="12a15285-0ae8-8018-b69a-e7c4df5d82d4" class="">• <mark class="highlight-teal"><code>clear()</code></mark><mark class="highlight-teal"> удаляет все элементы.</mark></p><p id="12a15285-0ae8-80a5-82ff-f928c14d2a6c" class="">• <mark class="highlight-teal"><code>contains(Object o)</code></mark><mark class="highlight-teal"> проверяет наличие элемента.</mark></p><p id="12a15285-0ae8-8071-9087-f507e29bd3fc" class="">• <mark class="highlight-teal"><code>isEmpty()</code></mark><mark class="highlight-teal"> проверяет, пуста ли коллекция.</mark></p><p id="12a15285-0ae8-805d-ae5b-eb7ecf37a728" class="">• <mark class="highlight-teal"><code>iterator()</code></mark><mark class="highlight-teal"> возвращает итератор для обхода элементов.</mark></p><p id="12a15285-0ae8-80fd-b885-e3c6a0941773" class="">• <mark class="highlight-teal"><code>toArray()</code></mark><mark class="highlight-teal"> преобразует коллекцию в массив.</mark></p><p id="12a15285-0ae8-80bd-a919-e6453179f068" class="">• <mark class="highlight-teal"><code>addAll(Collection&lt;? extends E&gt; c)</code></mark><mark class="highlight-teal"> добавляет все элементы другой коллекции.</mark></p></li></ol><ol type="1" id="12115285-0ae8-80d8-a3a1-d7115f2e8537" class="numbered-list" start="3"><li>Чем между собой отличаются Set, Map и List?<p id="12115285-0ae8-8053-af33-faa5a67b8077" class="">• <mark class="highlight-teal"><code>List</code></mark><mark class="highlight-teal"> хранит элементы в упорядоченном виде, допускает дублирование.</mark></p><p id="12115285-0ae8-8027-97fd-f8a676fe29e3" class="">• <mark class="highlight-teal"><code>Set</code></mark><mark class="highlight-teal"> хранит уникальные элементы без дубликатов, порядок не гарантирован (в некоторых реализациях, как </mark><mark class="highlight-teal"><code>LinkedHashSet</code></mark><mark class="highlight-teal">, сохраняется порядок).</mark></p><p id="12115285-0ae8-802c-abf2-d715003d777a" class="">• <mark class="highlight-teal"><code>Map</code></mark><mark class="highlight-teal"> хранит пары «ключ-значение», где ключи уникальны, а значения могут повторяться.</mark></p></li></ol><ol type="1" id="d6f647c1-c10e-48aa-a230-7920725b0c27" class="numbered-list" start="4"><li>Расскажи про паттерн Iterator?<p id="a58d05b8-c2fb-4b90-86a9-1fe9c86deef1" class=""><mark class="highlight-teal">Паттерн </mark><mark class="highlight-teal"><code>Iterator</code></mark><mark class="highlight-teal"> предоставляет способ последовательного доступа к элементам коллекции без раскрытия ее внутренней структуры. В этом паттерне используется объект-итератор, который реализует методы для перебора элементов (например, </mark><mark class="highlight-teal"><code>hasNext()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>next()</code></mark><mark class="highlight-teal">) и отделяет логику обхода от структуры данных, позволяя абстрагироваться от конкретного типа коллекции.</mark></p></li></ol><ol type="1" id="12315285-0ae8-80b8-90b5-f665e468a394" class="numbered-list" start="5"><li>Являются ли деревья и графы одним семейством структур данных?<p id="12315285-0ae8-80f1-9f56-c6429e1c773c" class=""><mark class="highlight-teal">Да, деревья и графы относятся к одному семейству структур данных. Деревья являются частным случаем графов с ограничениями, такими как отсутствие циклов и единственный корень. Оба типа структур помогают организовать данные в виде узлов и рёбер.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

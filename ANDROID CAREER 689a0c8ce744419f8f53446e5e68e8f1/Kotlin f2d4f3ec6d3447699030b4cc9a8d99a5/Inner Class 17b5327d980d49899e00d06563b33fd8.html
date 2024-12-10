@@ -560,7 +560,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .highlight-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .highlight-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -631,7 +631,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .block-color-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .block-color-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -658,7 +658,7 @@ blockquote {
 .select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
 .select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
 .select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
 .select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
 .select-value-color-pageGlass { background-color: undefined; }
 .select-value-color-washGlass { background-color: undefined; }
@@ -681,18 +681,19 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="17b5327d-980d-4989-9e00-d06563b33fd8" class="page sans"><header><img class="page-cover-image" src="Inner%20Class%2017b5327d980d49899e00d06563b33fd8/cover-kotlin-inner-class.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Inner%20Class%2017b5327d980d49899e00d06563b33fd8/icon-kotlin.svg"/></div><h1 class="page-title"><strong>Inner Class</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="4c2dc2e7-24cb-4c36-b1b1-9f88dcc6d304" class="simple-table"><tbody><tr id="78851013-170b-454a-b6e7-bdbbbed5e4f2"><td id="{Il|" class="" style="width:331px"><a href="https://kotlinlang.org/docs/nested-classes.html">https://kotlinlang.org/docs/nested-classes.html</a></td></tr></tbody></table><h3 id="d8f8dc1e-1a5a-4be2-8e42-06af62adf959" class=""><code><strong>inner</strong></code></h3><p id="50a8e7c3-6b45-442c-a275-002f70b8a46b" class="">Вложенный класс по умолчанию не имеет доступа к свойствам и функциям внешнего класса. Чтобы вложенный класс мог иметь доступ к свойствам и функциям внешнего класса, необходимо определить вложенный класс с ключевым словом inner</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6b6a4f7c-c5d1-44a9-8c31-e9a826bcf6e1" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class A {
-    private val n: Int = 1
+</style></head><body><article id="17b5327d-980d-4989-9e00-d06563b33fd8" class="page sans"><header><img class="page-cover-image" src="Inner%20Class%2017b5327d980d49899e00d06563b33fd8/cover-kotlin-inner-class.webp" style="object-position:center 15.649999999999997%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Inner%20Class%2017b5327d980d49899e00d06563b33fd8/icon-kotlin.svg"/></div><h1 class="page-title"><strong>Inner Class</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="4c2dc2e7-24cb-4c36-b1b1-9f88dcc6d304" class="simple-table"><tbody><tr id="78851013-170b-454a-b6e7-bdbbbed5e4f2"><td id="{Il|" class="" style="width:331px"><a href="https://kotlinlang.org/docs/nested-classes.html">https://kotlinlang.org/docs/nested-classes.html</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>inner</code></mark></summary><div class="indented"><p id="14815285-0ae8-8061-9180-cf2b032949aa" class="">Используется для обозначения вложенного класса, который имеет доступ к полям и методам внешнего класса. Без <mark class="highlight-default"><code>inner</code></mark> вложенные классы в Kotlin являются статическими.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6b6a4f7c-c5d1-44a9-8c31-e9a826bcf6e1" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class Outer {
+    private val name = &quot;Outer&quot;
 
-    inner class B {
-        private val n: Int = 1
-
-        fun action() {
-            println(n)        // n из класса B
-            println(this.n)   // n из класса B
-            println(this@B.n) // n из класса B
-            println(this@A.n) // n из класса A
+    inner class Inner {
+        fun printName() {
+            println(&quot;Accessing: $name&quot;)
         }
     }
-}</code></pre><p id="d379a402-a340-45a5-ad5c-24a62c17cba9" class="">
-</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Kotlin Inner Class. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="9d5a06d0-77d5-4fb5-ad61-7bb182fa99ab" class="numbered-list" start="1"><li>Что такое inner class в Kotlin и чем она отличается от обычного класса?</li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+}
+
+fun main() {
+    val outer = Outer()
+    val inner = outer.Inner()
+    inner.printName() // Accessing: Outer
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (5)</mark></summary><div class="indented"><ol type="1" id="d4815a84-cecc-49ca-8a39-0d33a3ce8f68" class="numbered-list" start="1"><li>Для чего используется inner class?<p id="10815285-0ae8-8017-9511-ff2478175fc1" class=""><mark class="highlight-teal">Позволяет классу получить доступ к свойствам и методам внешнего класса, что удобно для работы с связанными данными и логикой.</mark></p></li></ol><ol type="1" id="eef4996e-4f8c-491a-bf35-8d36d9ef73bc" class="numbered-list" start="2"><li>Разница между inner class и обычным nested классом?<p id="10815285-0ae8-80ed-b4b1-c3324d737280" class=""><mark class="highlight-teal"><code>inner class</code></mark><mark class="highlight-teal"> имеет доступ к полям и методам внешнего класса, обычный класс этого не может. Кроме того, </mark><mark class="highlight-teal"><code>inner class</code></mark><mark class="highlight-teal"> создается внутри внешнего класса и связан с его экземпляром, а обычный класс может существовать независимо.</mark></p></li></ol><ol type="1" id="10b15285-0ae8-8082-b709-ef5b31610b4a" class="numbered-list" start="3"><li>Почему inner-class имеет доступ к полям родительского класса?<p id="10b15285-0ae8-809d-9867-dd779eaf6336" class=""><mark class="highlight-teal">Потому что он неявно содержит ссылку на его экземпляр. Это позволяет внутреннему классу обращаться к переменным и методам внешнего класса, как если бы они были его собственными.</mark></p></li></ol><ol type="1" id="10b15285-0ae8-80e1-8434-c56bce911224" class="numbered-list" start="4"><li>Имеет ли inner-class доступ к приватным полям родительского класса?<p id="10b15285-0ae8-8047-b964-cfdb597a021e" class=""><mark class="highlight-teal">Да, через неявную ссылку на его экземпляр.</mark></p></li></ol><ol type="1" id="10b15285-0ae8-8038-8d70-df1ae71bdb9a" class="numbered-list" start="5"><li>Имеет ли родительский класс доступ к приватным полям inner-класса?<p id="10b15285-0ae8-80aa-b44c-fca5ecd73515" class=""><mark class="highlight-teal">Нет.</mark></p><p id="10b15285-0ae8-8082-9e80-dac02749199d" class="">
+</p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

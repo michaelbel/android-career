@@ -1,0 +1,901 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Gradle</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="41f8119a-0368-43f9-9f94-c2329dd4fdc1" class="page sans"><header><img class="page-cover-image" src="Gradle%2041f8119a036843f99f94c2329dd4fdc1/cover-gradle.webp" style="object-position:center 74.95%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Gradle%2041f8119a036843f99f94c2329dd4fdc1/icon-gradle.svg"/></div><h1 class="page-title"><strong>Gradle</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="1ce8fd38-a41d-414d-9003-5df96502b299" class="simple-table"><tbody><tr id="d20da865-a7d6-42ef-b7ab-c2f37dd09b2f"><td id="EsbJ" class="" style="width:273px"><a href="https://docs.gradle.org/current/userguide/compatibility.html">https://docs.gradle.org/current/userguide/compatibility.html</a></td></tr><tr id="bf614a27-e66d-4d59-ba97-947e0b724dc4"><td id="EsbJ" class="" style="width:273px"><a href="https://docs.gradle.org/current/userguide/build_environment.html">https://docs.gradle.org/current/userguide/build_environment.html</a></td></tr></tbody></table><table id="11b15285-0ae8-80dc-96bd-d8011d471def" class="simple-table"><tbody><tr id="8b4e7c76-363b-491a-aa76-c4c5f1454f33"><td id="yJiD" class="" style="width:259px"><a href="https://r8-docs.preemptive.com/">https://r8-docs.preemptive.com/</a></td></tr></tbody></table><table id="10d15285-0ae8-80b8-86a8-cfaa9e9852ab" class="simple-table"><tbody><tr id="0d1ea15e-258d-4c79-9c5c-195c838fe20c"><td id="NJmw" class="" style="width:102px"><mark class="highlight-brown"><code>17.09.2024</code></mark></td><td id="pZfN" class="" style="width:552px"><a href="https://habr.com/ru/companies/tbank/articles/843648/">https://habr.com/ru/companies/tbank/articles/843648/</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Gradle</summary><div class="indented"><p id="14a15285-0ae8-805e-bb0e-c04abbd3dafe" class="">Инструмент автоматизации сборки.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>libs.versions.toml</code></mark></summary><div class="indented"><p id="13515285-0ae8-80e0-9a80-f76eb2a7ee09" class="">Файл конфигурации для Version Catalogs в Gradle, который помогает централизованно управлять зависимостями и версиями библиотек в проекте. Этот файл позволяет создавать алиасы для зависимостей, устанавливать их версии и описывать наборы библиотек, что упрощает управление версиями в многомодульных проектах.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-80d4-8571-d0909685f9a8" class="code"><code class="language-TOML">[versions]
+kotlin = &quot;2.0.21&quot;
+coroutines = &quot;1.9.0&quot;
+
+[libraries]
+coroutines-core = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core&quot;, version.ref = &quot;coroutines&quot; }
+coroutine-android = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android&quot;, version.ref = &quot;coroutines&quot; }
+
+[bundles]
+coroutines = [&quot;coroutines-core&quot;, &quot;coroutines-android&quot;]
+
+[plugins]
+kotlin-android = { id = &quot;org.jetbrains.kotlin.android&quot;, version.ref = &quot;kotlin&quot; }</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>[versions]</code></mark></summary><div class="indented"><p id="13515285-0ae8-8072-9fb7-c6cb1cc486e2" class="">Задаёт версии для библиотек, чтобы их можно было ссылаться по имени.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8040-885b-dbbd4407ba92" class="code"><code class="language-TOML">[versions]
+agp = &quot;8.7.2&quot;
+kotlin = &quot;2.0.21&quot;
+androidx-activity = &quot;1.9.3&quot;
+androidx-collection = &quot;1.4.5&quot;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>[libraries]</code></mark></summary><div class="indented"><p id="13515285-0ae8-80d7-9d22-d2d054ae4c6f" class="">Создаёт алиасы для зависимостей с указанием версии из <mark class="highlight-default"><code>[versions]</code></mark> или напрямую.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8043-8766-d63432cb6c6c" class="code"><code class="language-TOML">[libraries]
+kotlin-test = { module = &quot;org.jetbrains.kotlin:kotlin-test&quot;, version.ref = &quot;kotlin&quot; }
+androidx-activity-compose = { module = &quot;androidx.activity:activity-compose&quot;, version.ref = &quot;androidx-activity&quot; }
+androidx-collection = { module = &quot;androidx.collection:collection&quot;, version.ref = &quot;androidx-collection&quot; }</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>[bundles]</code></mark></summary><div class="indented"><p id="13515285-0ae8-8050-a6bc-e40a6f7e1ec6" class="">Объединяет несколько зависимостей в один набор для удобного подключения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80bb-8cfa-c527915b466e" class="code"><code class="language-TOML">[bundles]
+androidx = [&quot;androidx-activity-compose&quot;, &quot;androidx-collection&quot;]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>[plugins]</code></mark></summary><div class="indented"><p id="13515285-0ae8-80ee-b3f8-d107b4584cf6" class="">Определяет плагины с их ID и версией, чтобы подключать их централизованно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8010-aa51-d89f593aba71" class="code"><code class="language-TOML">[plugins]
+android-application = { id = &quot;com.android.application&quot;, version.ref = &quot;agp&quot; }
+android-library = { id = &quot;com.android.library&quot;, version.ref = &quot;agp&quot; }
+kotlin-android = { id = &quot;org.jetbrains.kotlin.android&quot;, version.ref = &quot;kotlin&quot; }</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>build.gradle.kts</code></mark> (top level)</summary><div class="indented"><p id="13515285-0ae8-80b1-8c8e-c19149afe2c6" class="">Главный файл Gradle-сборки, находящийся в корневой директории проекта Android. Он настраивает параметры, которые применяются ко всему проекту, такие как подключение плагинов, репозиториев и зависимостей, и позволяет управлять глобальными настройками, которые будут доступны всем модулям проекта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-80c7-9f30-f5d492aaddb6" class="code"><code class="language-Kotlin">plugins {
+}
+
+allprojects {
+}
+
+subprojects {
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>plugins</code></mark></summary><div class="indented"><p id="13515285-0ae8-808c-a9ba-d958f01dce30" class="">Подключаются плагины необходимые для проекта.</p><p id="13515285-0ae8-80f3-9b40-ea415b9d4988" class="">• <mark class="highlight-default"><code>apply false</code></mark> означает, что плагины не будут автоматически применены ко всему проекту, но они будут доступны для применения в каждом модуле. Это помогает избежать конфликта версий плагинов и позволяет лучше контролировать, где именно используются плагины.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80c5-9f97-c7ff93f3d924" class="code"><code class="language-Kotlin">plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>allprojects</code></mark></summary><div class="indented"><p id="13515285-0ae8-8044-9c92-d23a773ed051" class="">Позволяет задать настройки, которые применяются ко всем подпроектам.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8078-b986-f12e966418bb" class="code"><code class="language-Kotlin">allprojects {
+    ...
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>subprojects</code></mark></summary><div class="indented"><p id="3e175182-40b3-4f78-a758-264d42c36538" class="">Позволяет задать настройки, которые применяются ко всем модулям.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5df397f9-4f8f-40b5-9575-0d6d56f7334b" class="code"><code class="language-Kotlin">subprojects {
+    ...
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>build.gradle.kts</code></mark> (module level)</summary><div class="indented"><p id="13515285-0ae8-8071-99ac-f32cb12de4b8" class="">Конфигурационный файл Gradle, который определяет настройки и зависимости для конкретного модуля в Android-проекте. Он управляет параметрами сборки, подключением библиотек и плагинов, а также настройками, специфичными для этого модуля.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-8094-a9b1-fc1964348875" class="code"><code class="language-Kotlin">plugins {}
+
+kotlin {}
+
+android {}
+
+dependencies {}
+
+base {}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>plugins</code></mark></summary><div class="indented"><p id="13515285-0ae8-802c-b5e9-fe465816411a" class="">Подключает необходимые плагины.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80ba-adca-ebac39657e3a" class="code"><code class="language-Kotlin">plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>kotlin</code></mark></summary><div class="indented"><p id="13715285-0ae8-80fa-8468-c517fdaf98cf" class="">Используется для настройки параметров компилятора Kotlin на уровне модуля.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-80dc-bb99-f3ddcbc9c8c9" class="code"><code class="language-Kotlin">kotlin {
+    ...
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>jvmToolchain</code></mark></summary><div class="indented"><p id="13715285-0ae8-8039-b8b2-e3a1e6bfab9a" class="">Задает версию JVM, на которой будет работать компилятор Kotlin.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-80de-bf48-d01d48990e7d" class="code"><code class="language-Kotlin">kotlin {
+    jvmToolchain(17)
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android</code></mark></summary><div class="indented"><p id="13515285-0ae8-804c-8999-d084821f9ade" class="">Содержит конфигурации, специфичные для Android.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8081-97be-c9c365f9fc63" class="code"><code class="language-Kotlin">android {
+    namespace = &quot;org.michaelbel.app&quot;
+    compileSdk = 35
+
+    defaultConfig {}
+
+    buildFeatures {}
+    
+    kotlinOptions {}
+    
+    compileOptions {}
+    
+    buildTypes {}
+    
+    signingConfigs {}
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>namespace</code></mark></summary><div class="indented"><p id="13515285-0ae8-80cd-9946-ec493959f58c" class="">Определяет пространство имён (package name) для сгенерированного кода (например, <mark class="highlight-default"><code>R</code></mark>-классы для ресурсов или <mark class="highlight-default"><code>BuildConfig</code></mark>). Позволяет разделить пространство имён приложения и его модуля. Также помогает избежать дублирования пространства имён при многомодульной структуре, так как каждый модуль может иметь своё уникальное пространство имён.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8087-99a2-ebb4240d6118" class="code"><code class="language-Kotlin">android {
+    namespace = &quot;org.michaelbel.app&quot;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>compileSdk</code></mark></summary><div class="indented"><p id="13615285-0ae8-8007-9084-eaba505772b6" class="">Задает версию API Android, с которой компилируется приложение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-809a-925a-d2363dde9880" class="code"><code class="language-Kotlin">android {
+    compileSdk = 35
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>defaultConfig</code></mark></summary><div class="indented"><p id="13515285-0ae8-8069-85b8-eff4e84a90b5" class="">Определяет базовые параметры для всех сборок в модуле (например, debug, release и других кастомных).</p><p id="13615285-0ae8-8067-9719-df878e83c7f7" class="">• <mark class="highlight-orange"><code>applicationId</code></mark> уникальный идентификатор приложения в формате пакета Java (например, com.example.myapp).</p><p id="13615285-0ae8-8011-8dec-e1e8027d5d92" class="">• <mark class="highlight-orange"><code>minSdk</code></mark> минимальная версия API Android, которую поддерживает приложение.</p><p id="13615285-0ae8-80dd-a989-e19d820f6cd6" class="">• <mark class="highlight-orange"><code>targetSdk</code></mark> версия API Android, на которую нацелено приложение.</p><p id="13615285-0ae8-80c8-a79b-e62ff14f747b" class="">• <mark class="highlight-orange"><code>versionCode</code></mark> целочисленный внутренний номер версии приложения.</p><p id="13615285-0ae8-80ee-a1f1-e8d1d2d44342" class="">• <mark class="highlight-orange"><code>versionName</code></mark> строка, представляющая пользовательскую версию приложения.</p><p id="13615285-0ae8-8003-a948-c341ad6e4cc2" class="">• <mark class="highlight-orange"><code>testInstrumentationRunner</code></mark> указывает на класс, который запускает инструментальные тесты Android.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80d8-b0d1-ef7aab7f92b7" class="code"><code class="language-Kotlin">android {
+    defaultConfig {
+        applicationId = &quot;org.michaelbel.app&quot;
+        minSdk = 21
+        targetSdk = 35
+        versionCode = 1
+        versionName = &quot;1.0.0&quot;
+        testInstrumentationRunner = &quot;androidx.test.runner.AndroidJUnitRunner&quot;
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>buildFeatures</code></mark></summary><div class="indented"><p id="13515285-0ae8-80ca-9be5-e011f682177e" class="">Позволяет включать или отключать некоторые функции Android.</p><p id="13615285-0ae8-800f-906e-c26a0a5947e9" class="">• <mark class="highlight-orange"><code>resValues</code></mark> отключает генерацию значений ресурсов в модуле.</p><p id="13615285-0ae8-80eb-b57e-dda2dbc7c083" class="">• <mark class="highlight-orange"><code>shaders</code></mark> отключает обработку шейдеров <mark class="highlight-default"><code>GLSL</code></mark> в модуле.</p><p id="13615285-0ae8-8027-83f3-c8ff45aceeea" class="">• <mark class="highlight-orange"><code>aidl</code></mark> отключает поддержку <mark class="highlight-default"><code>AIDL</code></mark><mark class="highlight-default"> в модуле</mark>.</p><p id="13615285-0ae8-808a-9988-c54ef8821347" class="">• <mark class="highlight-orange"><code>renderScript</code></mark> отключает поддержку <mark class="highlight-default"><code>RenderScript</code></mark><mark class="highlight-default"> в модуле</mark>.</p><p id="13615285-0ae8-80ca-b51b-fdfede9e9cd0" class="">• <mark class="highlight-orange"><code>viewBinding</code></mark> включает <mark class="highlight-default"><code>ViewBinding</code></mark> в модуле.</p><p id="13615285-0ae8-8011-bbff-f0071f4c7273" class="">• <mark class="highlight-orange"><code>dataBinding</code></mark> отключает <mark class="highlight-default"><code>DataBinding</code></mark> в модуле.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-803e-9421-d4767ee6c89c" class="code"><code class="language-Kotlin">android {
+    buildFeatures {
+        resValues = true
+        shaders = false
+        aidl = false
+        renderScript = false
+        buildConfig = true
+        compose = true
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>kotlinOptions</code></mark></summary><div class="indented"><p id="13615285-0ae8-807d-9042-da589b0afc23" class="">Используется для настройки различных параметров компиляции кода на Kotlin.</p><p id="13615285-0ae8-8056-a23f-dd2ebe26cadd" class="">• <mark class="highlight-orange"><code>jvmTarget</code></mark> определяет версию JVM, на которую будет компилироваться код Kotlin.</p><p id="13615285-0ae8-8023-8f38-d4c56077967f" class="">• <mark class="highlight-orange"><code>freeCompilerArgs</code></mark> список дополнительных аргументов для компилятора Kotlin. Здесь можно задать флаги для оптимизации, включения специфических фич или устранения предупреждений.</p><p id="13615285-0ae8-8005-b016-c48d2b802a00" class="">• <mark class="highlight-orange"><code>allWarningsAsErrors</code></mark> делает так, что все предупреждения компилятора Kotlin считаются ошибками.</p><p id="13615285-0ae8-80ae-928f-fcd4fb264a9c" class="">• <mark class="highlight-orange"><code>apiVersion</code></mark> задает минимальную версию API Kotlin.</p><p id="13615285-0ae8-8029-957f-dc68184b6ae5" class="">• <mark class="highlight-orange"><code>languageVersion</code></mark> задает используемую версии языка Kotlin.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8074-bee6-cb70e2bd2424" class="code"><code class="language-Kotlin">android {
+    kotlinOptions {
+        jvmTarget = &quot;1.8&quot;
+        freeCompilerArgs = freeCompilerArgs + listOf(
+		        &quot;-Xopt-in=kotlin.RequiresOptIn&quot;,
+            &quot;-Xjvm-default=all&quot;,
+		        &quot;-opt-in=androidx.compose.material3.ExperimentalMaterial3Api&quot;
+		    )
+        allWarningsAsErrors = true
+        apiVersion = &quot;1.5&quot;
+        languageVersion = &quot;1.5&quot;
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>compileOptions</code></mark></summary><div class="indented"><p id="13615285-0ae8-80b4-9e59-d2c7bb0e1a9f" class="">Используется для настройки параметров компиляции Java в Android проекте, чтобы управлять совместимостью с различными версиями Java.</p><p id="13615285-0ae8-80cf-a6d0-f15d60f3226c" class="">• <mark class="highlight-orange"><code>sourceCompatibility</code></mark> задает минимальную версию Java, с которой будет совместим исходный код.</p><p id="13615285-0ae8-8038-8c3a-f0bf7133adcb" class="">• <mark class="highlight-orange"><code>targetCompatibility</code></mark> указывает версию Java для выходного файла. Обычно задается такая же версия, как sourceCompatibility, чтобы скомпилированный код работал на выбранной целевой версии JVM.</p><p id="13615285-0ae8-804c-8cea-dedbf13684ba" class="">• <mark class="highlight-orange"><code>encoding</code></mark> устанавливает кодировку для компиляции. Обычно используется &quot;UTF-8&quot;, чтобы избежать проблем с символами в строках и комментариях.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80e5-914a-e2ddeec38ddf" class="code"><code class="language-Kotlin">android {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+        encoding = &quot;UTF-8&quot;
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>buildTypes</code></mark></summary><div class="indented"><p id="13615285-0ae8-8097-830d-fed7bd64d349" class="">Определяет различные типы сборок (например, debug и release), каждая из которых имеет свои настройки и параметры.</p><p id="13615285-0ae8-8070-9321-c5ff1c0138c8" class="">• <mark class="highlight-orange"><code>applicationIdSuffix</code></mark> добавляет суффикс к <mark class="highlight-default"><code>applicationId</code></mark>, чтобы отличать разные типы сборок. Например, для <mark class="highlight-default"><code>debug</code></mark> можно установить суффикс <mark class="highlight-default"><code>.debug</code></mark>, чтобы отличать его от <mark class="highlight-default"><code>release</code></mark>.</p><p id="13615285-0ae8-8013-8224-ec5348d184b4" class="">• <mark class="highlight-orange"><code>versionNameSuffix</code></mark> добавляет суффикс к <mark class="highlight-default"><code>versionName</code></mark>, что позволяет отличить версию сборки, например, <mark class="highlight-default"><code>1.0.0-debug</code></mark>.</p><p id="13615285-0ae8-807c-acd8-d4f8db820234" class="">• <mark class="highlight-orange"><code>isMinifyEnabled</code></mark> указывает, нужно ли уменьшать размер кода с помощью обфускации и удаления неиспользуемого кода. Обычно включается для <mark class="highlight-default"><code>release</code></mark> сборок, чтобы минимизировать размер APK.</p><p id="13615285-0ae8-807e-8f32-c5b4ec3ade3a" class="">• <mark class="highlight-orange"><code>isShrinkResources</code></mark> позволяет уменьшить размер APK за счет удаления неиспользуемых ресурсов, таких как изображения, строки и другие ресурсы, которые не используются в приложении. Это особенно полезно для <mark class="highlight-default"><code>release</code></mark>-сборок, где важен минимальный размер приложения.</p><p id="13615285-0ae8-80db-ac26-f3276d64224a" class="">• <mark class="highlight-orange"><code>isDebuggable</code></mark> указывает, может ли сборка запускаться с отладчиком. Обычно для <mark class="highlight-default"><code>debug</code></mark>-сборки выставляется в <mark class="highlight-default"><code>true</code></mark>, чтобы включить отладочные возможности.</p><p id="13615285-0ae8-80de-a7f6-d6bcfc5abcdd" class="">• <mark class="highlight-orange"><code>proguardFiles</code></mark> cписки файлов <mark class="highlight-default"><code>ProGuard</code></mark>, которые используются для обфускации и оптимизации кода. Обычно для <mark class="highlight-default"><code>release</code></mark>-сборки указываются специальные файлы <mark class="highlight-default"><code>ProGuard</code></mark><mark class="highlight-default">, такие как </mark><mark class="highlight-default"><code>proguard-android-optimize.txt</code></mark><mark class="highlight-default"> и </mark><mark class="highlight-default"><code>proguard-rules.pro</code></mark><mark class="highlight-default">.</mark></p><p id="13615285-0ae8-8038-adc6-d7e7161ee524" class="">• <mark class="highlight-orange"><code>signingConfig</code></mark> задает конфигурацию подписывания приложения. Для <mark class="highlight-default"><code>release</code></mark> обычно используется <mark class="highlight-default"><code>signingConfig</code></mark>, чтобы подписывать приложение для публикации.</p><p id="13615285-0ae8-809f-804f-d9711924999a" class="">• <mark class="highlight-orange"><code>initWith</code></mark> инициализирует <mark class="highlight-default"><code>buildType</code></mark> настройками другого <mark class="highlight-default"><code>buildType</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8027-b78e-c2729b62adb2" class="code"><code class="language-Kotlin">android {
+    buildTypes {
+        debug {
+            applicationIdSuffix = &quot;.debug&quot;
+            versionNameSuffix = &quot;.debug&quot;
+            isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+            proguardFiles(getDefaultProguardFile(&quot;proguard-android-optimize.txt&quot;), &quot;proguard-rules.pro&quot;)
+            signingConfig = signingConfigs.getByName(&quot;release&quot;)
+        }
+        create(&quot;qa&quot;) {
+            initWith(buildTypes.getByName(&quot;release&quot;))
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>signingConfigs</code></mark></summary><div class="indented"><p id="13615285-0ae8-807b-8587-d88b20ee6397" class="">Используется для определения конфигураций подписи приложения в Android. Подпись приложения обязательна для публикации в Google Play и позволяет обеспечить целостность и безопасность приложения, поскольку только подписанное приложение может обновляться на устройстве.</p><p id="13615285-0ae8-80e1-90ea-d950ecb579a7" class="">• <mark class="highlight-orange"><code>storeFile</code></mark> путь к файлу хранилища ключей (обычно <mark class="highlight-default"><code>.keystore</code></mark>-файл), используемого для подписи.</p><p id="13615285-0ae8-809a-a992-d3e692cd5621" class="">• <mark class="highlight-orange"><code>storePassword</code></mark> пароль для доступа к хранилищу ключей.</p><p id="13615285-0ae8-80de-9d45-e53d57d950fc" class="">• <mark class="highlight-orange"><code>keyAlias</code></mark> псевдоним ключа, под которым хранится конкретный ключ внутри хранилища.</p><p id="13615285-0ae8-80f0-add9-c3e7d8091081" class="">• <mark class="highlight-orange"><code>keyPassword</code></mark> пароль для доступа к ключу внутри хранилища.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-800f-803d-f2137584470a" class="code"><code class="language-Kotlin">android {
+    signingConfigs {
+        create(&quot;release&quot;) {
+            storeFile = file(&quot;path/to/your/keystore.jks&quot;)
+            storePassword = &quot;storePassword&quot;
+            keyAlias = &quot;yourKeyAlias&quot;
+            keyPassword = &quot;keyPassword&quot;
+        }
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dependencies</code></mark></summary><div class="indented"><p id="13515285-0ae8-80c3-a118-fd4abc4dc677" class="">Определяет зависимости, необходимые для работы модуля.</p><p id="14a15285-0ae8-8060-ba38-dcf75024b4c6" class="">• <mark class="highlight-orange"><code>implementation</code></mark><mark class="highlight-default"> зависимость доступна только в текущем модуле.</mark></p><p id="14a15285-0ae8-8006-9141-d812ea29c75e" class="">• <mark class="highlight-orange"><code>api</code></mark><mark class="highlight-default"> зависимость передаётся в модули, которые зависят от текущего.</mark></p><p id="14a15285-0ae8-80fa-b0b3-d082e4a9364c" class="">• <mark class="highlight-orange"><code>compileOnly</code></mark><mark class="highlight-default"> зависимость доступна при компиляции, но не включается в APK. </mark></p><p id="14a15285-0ae8-8042-af5d-f0e4f1053653" class="">• <mark class="highlight-orange"><code>runtimeOnly</code></mark><mark class="highlight-default"> зависимость добавляется только в рантайм, без компиляции.</mark></p><p id="14a15285-0ae8-80b2-a503-de01cb1105b1" class="">• <mark class="highlight-orange"><code>kapt</code></mark><mark class="highlight-default"> используется для Java-аннотаций.</mark></p><p id="14a15285-0ae8-802b-9a62-fedfe15f670a" class="">• <mark class="highlight-orange"><code>ksp</code></mark><mark class="highlight-default"> генерирует код напрямую, не создавая Java-байткод.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800d-b5ff-fd9359f8d286" class="code"><code class="language-Kotlin">dependencies {
+    implementation(project(&quot;:core&quot;))
+    api(libs.androidx.appcompat)
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>exclude</code></mark></summary><div class="indented"><p id="15015285-0ae8-80b3-a697-c2f637b58bec" class="">Исключает определенные транзитивные зависимости, чтобы предотвратить конфликты или уменьшить размер сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80cb-8c39-f6b7f7dbc4bc" class="code"><code class="language-Kotlin">dependencies {
+    implementation(&quot;com.example:library:1.0&quot;) {
+        exclude(group = &quot;com.unwanted&quot;, module = &quot;unnecessary-lib&quot;) // Исключает модуль
+        exclude(group = &quot;com.unwanted&quot;) // Исключает всю группу
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>base</code></mark></summary><div class="indented"><p id="14c15285-0ae8-80a0-8747-e79d1638f01b" class="">Используется для настройки имени выходных архивов.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>archivesName</code></mark></summary><div class="indented"><p id="14c15285-0ae8-8013-8d99-f74ef3759796" class="">Задаёт имя артефакта, который будет создан в процессе сборки проекта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14c15285-0ae8-8094-a505-f524aa753216" class="code"><code class="language-Kotlin">base {
+    archivesName.set(&quot;Mobile-Template-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})&quot;)
+}</code></pre></div></details></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>settings.gradle.kts</code></mark></summary><div class="indented"><p id="13515285-0ae8-8000-8151-fa77bb35c1f6" class="">Файл конфигурации для Gradle, который используется для настройки проекта и его модулей. Определяет структуру и особенности самого проекта и управляет загрузкой модулей, плагинов и репозиториев. В многомодульных проектах он особенно важен, так как помогает Gradle понять, какие модули включены и как они связаны друг с другом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-8062-8935-dce3daa27345" class="code"><code class="language-Kotlin">pluginManagement {
+}
+
+dependencyResolutionManagement {
+}
+
+include(&quot;:app&quot;)
+
+rootProject.name = &quot;MyApp&quot;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>pluginManagement</code></mark></summary><div class="indented"><p id="13515285-0ae8-80f9-b42d-d1d0680378d9" class="">Используется для управления подключением и конфигурацией плагинов на уровне проекта. Он позволяет централизованно определить репозитории для загрузки плагинов и указать их версии, что особенно полезно в многомодульных проектах, так как избавляет от необходимости задавать плагины и их версии в каждом модуле отдельно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80af-98e8-e131bc5c8ec9" class="code"><code class="language-Kotlin">pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dependencyResolutionManagement</code></mark></summary><div class="indented"><p id="13515285-0ae8-802d-a31e-fc3793c505a1" class="">Позволяет централизованно управлять зависимостями и репозиториями для всех модулей проекта. Это особенно полезно для многомодульных проектов, так как упрощает настройку репозиториев и версий зависимостей, делая их единообразными для всех модулей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-803e-a1c8-d4039af1765e" class="code"><code class="language-Kotlin">dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>include</code></mark></summary><div class="indented"><p id="13515285-0ae8-80bc-8bfd-d222892af530" class="">Позволяет указать, какие модули включены в сборку.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80ec-8952-cdc452712bda" class="code"><code class="language-Kotlin">include(&quot;:app&quot;, &quot;:library&quot;, &quot;:feature_module&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>rootProject.name</code></mark></summary><div class="indented"><p id="13515285-0ae8-80a2-9caa-f8e3f93fa121" class="">Определяет имя корневого проекта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80a2-82bb-ef223854135b" class="code"><code class="language-Kotlin">rootProject.name = &quot;MyApp&quot;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>gradle.properties</code></mark></summary><div class="indented"><p id="13515285-0ae8-805d-a655-f3a6a7d0c69e" class="">Файл конфигурации <mark class="highlight-default"><code>Gradle</code></mark>, в котором можно задавать параметры, влияющие на сборку Android-приложения. Этот файл используется для управления поведением сборки, настройки переменных и оптимизации производительности.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14c15285-0ae8-805c-b6c5-f9f80aa685c5" class="code"><code class="language-Shell">org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8
+org.gradle.daemon=true
+org.gradle.parallel=true
+org.gradle.configureondemand=true
+org.gradle.caching=true
+org.gradle.warning.mode=all
+org.gradle.logging.level=info
+android.useAndroidX=true
+android.enableJetifier=false
+android.enableR8=true
+android.enableBuildCache=false
+android.defaults.buildFeatures.resValues=true
+android.defaults.buildFeatures.shaders=false
+android.defaults.buildFeatures.aidl=false
+android.defaults.buildFeatures.renderscript=false
+android.defaults.buildFeatures.viewBinding=false
+android.defaults.buildFeatures.dataBinding=false
+CI=true</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.jvmargs</code></mark></summary><div class="indented"><p id="13515285-0ae8-80f5-b818-c1112388d52d" class="">Параметры JVM для процесса <mark class="highlight-default"><code>Gradle</code></mark>.</p><p id="13515285-0ae8-8022-b7f8-ec642fb8289e" class="">• <mark class="highlight-orange"><code>Xmx8192m</code></mark> задаёт максимальный размер кучи памяти JVM, которую может использовать <mark class="highlight-default"><code>Gradle</code></mark>, равный 8192 МБ (8 ГБ).</p><p id="13515285-0ae8-80d0-90c0-f62eead50525" class="">• <mark class="highlight-orange"><code>Dfile.encoding=UTF-8</code></mark> устанавливает кодировку файлов, используемую JVM, в UTF-8.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8096-81cb-e790a2f5f6d0" class="code"><code class="language-Kotlin">org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.daemon</code></mark></summary><div class="indented"><p id="13515285-0ae8-8010-9087-dd3b5236af6e" class="">Позволяет использовать Gradle Daemon, который ускоряет повторные сборки за счёт использования демона в фоне.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800b-9f9c-d23bb016b134" class="code"><code class="language-Kotlin">org.gradle.daemon=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.parallel</code></mark></summary><div class="indented"><p id="13515285-0ae8-80c2-a1e7-ed8179d10594" class="">Включает параллельную сборку модулей, что сокращает время сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80d0-98eb-dbc36e3900c1" class="code"><code class="language-Kotlin">org.gradle.parallel=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.configureondemand</code></mark></summary><div class="indented"><p id="13515285-0ae8-8051-833e-f7ebfa7fbad3" class="">Конфигурация по требованию, активирует только те модули, которые необходимы для сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80d5-bda8-c642f70cb5b9" class="code"><code class="language-Kotlin">org.gradle.configureondemand=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.caching</code></mark></summary><div class="indented"><p id="13515285-0ae8-80d4-86ff-fc90ff75695e" class="">Включает кэширование задач <mark class="highlight-default"><code>Gradle</code></mark> для более быстрой сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8086-94ea-c68b0414e42a" class="code"><code class="language-Kotlin">org.gradle.caching=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.warning.mode</code></mark></summary><div class="indented"><p id="13515285-0ae8-8079-8214-e938adb32fca" class="">Выводит все предупреждения <mark class="highlight-default"><code>Gradle</code></mark>, что полезно для отладки проблем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8087-a0e1-d7176cf7d93e" class="code"><code class="language-Kotlin">org.gradle.warning.mode=all</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>org.gradle.logging.level</code></mark></summary><div class="indented"><p id="13515285-0ae8-80e0-b920-eb3dd045ed8a" class="">Задаёт уровень логирования для вывода в консоль.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80f6-b2d8-d5daf8e5b2ac" class="code"><code class="language-Kotlin">org.gradle.logging.level=info</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android.useAndroidX</code></mark></summary><div class="indented"><p id="13515285-0ae8-8010-a336-d943faa82b38" class="">Переводит проект на AndroidX, чтобы использовать новые библиотеки поддержки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8005-b71e-cd429e8165c7" class="code"><code class="language-Kotlin">android.useAndroidX=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android.enableJetifier</code></mark></summary><div class="indented"><p id="13515285-0ae8-8081-9fed-ebcff2707c7a" class="">Автоматически конвертирует зависимости, использующие старые библиотеки поддержки, на AndroidX. Полезно при миграции проекта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8047-ae73-c8c8eefddf7c" class="code"><code class="language-Kotlin">android.enableJetifier=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android.enableR8</code></mark></summary><div class="indented"><p id="13515285-0ae8-806c-9283-e1aad03dfc73" class="">Включает использование R8 для обфускации и минимизации кода. R8 — это замена ProGuard, которая является более производительной.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-801b-a538-f68fb33a47d4" class="code"><code class="language-Kotlin">android.enableR8=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android.enableBuildCache</code></mark></summary><div class="indented"><p id="13515285-0ae8-801d-bde3-ff7f105403a3" class="">Включает кэширование сборки, что позволяет сократить время при повторных сборках.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80a9-ac5f-d55f1892067a" class="code"><code class="language-Kotlin">android.enableBuildCache=true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>android.defaults.buildFeatures</code></mark></summary><div class="indented"><p id="13515285-0ae8-806e-b350-e3b1e8550dcb" class="">Управляют включением и отключением различных функций сборки в Android Gradle Plugin.</p><p id="13515285-0ae8-804a-b851-eb5ed3fca13f" class="">• <mark class="highlight-orange"><code>resValues</code></mark> отключает генерацию значений ресурсов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8090-8878-fd6795a64128" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.resValues=false</code></pre><p id="13515285-0ae8-8026-82e1-e0b55ce3f9f2" class="">• <mark class="highlight-orange"><code>shaders</code></mark> отключает обработку шейдеров <mark class="highlight-default"><code>GLSL</code></mark> в проекте.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-804c-a309-ccfa4acc2811" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.shaders=false</code></pre><p id="13515285-0ae8-8059-bedb-d14297a49c50" class="">• <mark class="highlight-orange"><code>aidl</code></mark> отключает поддержку <mark class="highlight-default"><code>AIDL</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-806e-b594-e784a7df970f" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.aidl=false</code></pre><p id="13515285-0ae8-8046-91ab-f8345ec8a1d8" class="">• <mark class="highlight-orange"><code>renderscript</code></mark> отключает поддержку <mark class="highlight-default"><code>RenderScript</code></mark>, который используется для вычислений и обработки изображений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8096-9434-e5b31dd61f8f" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.renderscript=false</code></pre><p id="13515285-0ae8-8049-b5f8-ed3fdce7b78a" class="">• <mark class="highlight-orange"><code>viewBinding</code></mark> включает <mark class="highlight-default"><code>ViewBinding</code></mark>, который генерирует привязки для каждого <mark class="highlight-default"><code>layout</code></mark>-файла.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80a1-a8d1-c9419fb8fc61" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.viewBinding=true</code></pre><p id="13515285-0ae8-80bf-a01b-ff6292ce9eea" class="">• <mark class="highlight-orange"><code>dataBinding</code></mark> отключает <mark class="highlight-default"><code>DataBinding</code></mark>, который позволяет связывать данные в XML-файлах с логикой в Kotlin или Java.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80a9-acb7-c0e286d531d5" class="code"><code class="language-Kotlin">android.defaults.buildFeatures.dataBinding=false</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>CI</code></mark></summary><div class="indented"><p id="13515285-0ae8-80c7-b868-cb113bf5d87e" class="">Используется как индикатор того, что проект собирается на CI/CD. Может влиять на логику сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8024-aa08-e44499ca7358" class="code"><code class="language-Kotlin">CI=true</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>gradle-wrapper.properties</code></mark></summary><div class="indented"><p id="13515285-0ae8-80aa-87fa-d783d943cf55" class="">Файл, который конфигурирует Gradle Wrapper для проекта. Gradle Wrapper — это скрипт, который позволяет автоматически загрузить нужную версию <mark class="highlight-default"><code>Gradle</code></mark>, если она не установлена на локальной машине. Это полезно для унификации версий <mark class="highlight-default"><code>Gradle</code></mark> между разработчиками и в CI/CD средах, так как все будут использовать одну и ту же версию <mark class="highlight-default"><code>Gradle</code></mark>, настроенную в проекте.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14c15285-0ae8-80a3-b624-fe20985adbef" class="code"><code class="language-Shell">distributionBase=GRADLE_USER_HOME
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.9-bin.zip
+distributionPath=wrapper/dists
+zipStorePath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>distributionBase</code></mark></summary><div class="indented"><p id="13515285-0ae8-8038-b9a8-e59d0cda4997" class="">Определяет основное местоположение, где будет храниться загруженный дистрибутив <mark class="highlight-default"><code>Gradle</code></mark> (файл .zip), необходимый для работы Gradle Wrapper.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80a0-8ad4-f3c1f810dbf4" class="code"><code class="language-Kotlin">distributionBase=GRADLE_USER_HOME</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>distributionUrl</code></mark></summary><div class="indented"><p id="13515285-0ae8-8085-a3a9-fb868f6a5d22" class="">Определяет URL для загрузки конкретной версии <mark class="highlight-default"><code>Gradle</code></mark>. Здесь можно указать стабильную версию, nightly-сборку или версию из канала предварительных релизов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80c4-9840-e3e6e2596fd1" class="code"><code class="language-Kotlin">distributionUrl=https\://services.gradle.org/distributions/gradle-8.9-bin.zip</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>distributionPath</code></mark></summary><div class="indented"><p id="13515285-0ae8-808d-9bd4-cde6bb05d439" class="">Указывает путь для сохранения загруженной версии <mark class="highlight-default"><code>Gradle</code></mark>. По умолчанию этот параметр сохраняет Gradle в кэш в директории <mark class="highlight-default"><code>.gradle</code></mark> в домашней папке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800a-9434-d6f70ad25d60" class="code"><code class="language-Kotlin">distributionPath=wrapper/dists</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>zipStorePath</code></mark></summary><div class="indented"><p id="13515285-0ae8-801d-aafb-decb3add610d" class="">Определяет путь, где сохраняются файлы <mark class="highlight-default"><code>Gradle</code></mark> после загрузки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-809b-aff2-d112555f6d9a" class="code"><code class="language-Kotlin">zipStorePath=wrapper/dists</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>zipStoreBase</code></mark></summary><div class="indented"><p id="13515285-0ae8-8026-a0cc-cc810adc9a68" class="">Определяет местоположение, где будет храниться уже распакованный архив с дистрибутивом <mark class="highlight-default"><code>Gradle</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80dd-a5fd-d61fb5a25d64" class="code"><code class="language-Kotlin">zipStoreBase=GRADLE_USER_HOME</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>local.properties</code></mark></summary><div class="indented"><p id="13515285-0ae8-8072-b886-cb8efa8bbfb4" class="">Конфигурационный файл в Android-проектах, который хранит настройки и параметры, специфичные для локальной среды разработки. Этот файл не попадает в систему контроля версий. Автоматически создаётся при запуске Android Studio или Gradle.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14c15285-0ae8-80e3-af2d-e97cda7116fe" class="code"><code class="language-Shell">sdk.dir=/Users/mihailbelyj/Library/Android/sdk</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>sdk.dir</code></mark></summary><div class="indented"><p id="13515285-0ae8-8074-b971-d53c27e172a3" class="">Указывает путь к Android SDK на локальной машине. Gradle использует это значение для поиска и работы с SDK, поэтому этот параметр обязателен для сборки Android-проектов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-806a-9d89-e905114af700" class="code"><code class="language-Kotlin">sdk.dir=/Users/michaelbel/Library/Android/sdk</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ndk.dir</code></mark></summary><div class="indented"><p id="13515285-0ae8-8093-8712-f7232db506ab" class="">Указывает путь к Android NDK, если проект использует нативный код на C/C++. Это позволяет Gradle находить NDK и использовать его для сборки нативных библиотек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8060-b7ec-d642e7dea839" class="code"><code class="language-Kotlin">ndk.dir=/Users/username/Library/Android/ndk</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>cmake.dir</code></mark></summary><div class="indented"><p id="13515285-0ae8-8046-aa16-e6826f6f468c" class="">Задаёт путь к CMake, если проект использует сборку нативного кода с помощью CMake. Указание пути к CMake позволяет Gradle использовать правильную версию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80f4-a0ea-d63934382854" class="code"><code class="language-Kotlin">cmake.dir=/Users/username/Library/Android/cmake</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig</code></mark></summary><div class="indented"><p id="12315285-0ae8-8009-8109-fd58f3a17ac3" class="">Автоматически сгенерированный класс в Android-проектах, который содержит информацию о конфигурации сборки приложения. Он создается Gradle при сборке проекта и включает в себя различные поля, такие как версию приложения, его идентификатор пакета, тип сборки и другие параметры, которые можно использовать в коде.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig.BUILD_TYPE</code></mark></summary><div class="indented"><p id="12315285-0ae8-80bf-9183-e71d79f2301d" class="">Строка, показывающая тип сборки, напр<mark class="highlight-default">имер, </mark><mark class="highlight-default"><code>debug</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>release</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-805c-85db-d8fec16b82ac" class="code"><code class="language-Kotlin">val buildType = BuildConfig.BUILD_TYPE</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig.DEBUG</code></mark></summary><div class="indented"><p id="12315285-0ae8-80da-9a04-ec88cb84713a" class="">Логическое значение, которое указывает, выполняется ли приложение в режиме отладки (для сб<mark class="highlight-default">орок </mark><mark class="highlight-default"><code>debug</code></mark><mark class="highlight-default"> это </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, для </mark><mark class="highlight-default"><code>release</code></mark><mark class="highlight-default"> — </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default">).</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-8010-b6f8-d48d736b452f" class="code"><code class="language-Kotlin">val isDebug = BuildConfig.DEBUG</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig.VERSION_CODE</code></mark></summary><div class="indented"><p id="12315285-0ae8-805d-ab94-e2ead2f12b0c" class="">Целочисленное значение, представляющее версию сборки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-803e-9161-cc317f595834" class="code"><code class="language-Kotlin">val versionCode = BuildConfig.VERSION_CODE</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig.VERSION_NAME</code></mark></summary><div class="indented"><p id="12315285-0ae8-8089-a1a7-cd97f1f9cae4" class="">Строковое значение, представляющее версию приложения (например, «1.0»).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-8040-97ec-eef23613712b" class="code"><code class="language-Kotlin">val versionName = BuildConfig.VERSION_NAME</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BuildConfig.APPLICATION_ID</code></mark></summary><div class="indented"><p id="12315285-0ae8-8015-86b4-e372bfd70c67" class="">Уникальный идентификатор пакета приложения, определённый в файле <mark class="highlight-default"><code>build.gradle</code></mark>. Используется для идентификации приложения в системе Android.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-809b-8e94-c49108253b0b" class="code"><code class="language-Kotlin">val appId = BuildConfig.APPLICATION_ID</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Настройка собственных параметров в BuildConfig</summary><div class="indented"><p id="12315285-0ae8-8031-af5c-d018fb27edab" class="">• В модуль <mark class="highlight-default"><code>build.gradle.kts</code></mark> добавить:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-807c-ba2d-f25cd0d0302c" class="code"><code class="language-Kotlin">android {
+    defaultConfig {
+        buildConfigField(&quot;String&quot;, &quot;API_URL&quot;, &quot;\&quot;https://api.example.com\&quot;&quot;)
+    }
+    
+    buildFeatures {
+        buildConfig = true
+    }
+}</code></pre><p id="12315285-0ae8-80c8-9e5d-f3b3b89ef9c2" class="">• Использовать в коде:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-80d1-8c1b-c8b9d33d7b74" class="code"><code class="language-Kotlin">val apiUrl = BuildConfig.API_URL</code></pre><p id="12315285-0ae8-8056-bcf4-edd9deb22b72" class="">• Пример использования параметров из <mark class="highlight-default"><code>local.properties</code></mark> или из GitHub Secrets variables (для CI):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-8062-99f1-d3826a11cdce" class="code"><code class="language-PowerShell"># Переменная в файле local.properties
+API_KEY=8j9f-3c3d-490eh-f9j3-kfk9</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12315285-0ae8-8093-8319-f10fcc48040b" class="code"><code class="language-Kotlin">import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
+private val apiKey: String by lazy {
+    gradleLocalProperties(rootDir, providers).getProperty(&quot;API_KEY&quot;).orEmpty().ifEmpty { System.getenv(&quot;API_KEY&quot;).orEmpty() }
+}
+
+android {
+    defaultConfig {
+        buildConfigField(&quot;String&quot;, &quot;API_KEY&quot;, &quot;\&quot;$apiKey\&quot;&quot;)
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Commands</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">build warning mode all</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80dc-9800-e81d118e3231" class="code"><code class="language-Kotlin">./gradlew build --warning-mode=all</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">dependencies</summary><div class="indented"><p id="13515285-0ae8-803f-a08a-d863bf7da355" class="">Выводит список всех зависимостей проекта, их версии и зависимости внутри модулей, а также разрешённые и транзитивные зависимости. Это помогает увидеть полную структуру иерархии зависимостей проекта и выявить возможные конфликты версий.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800b-a767-d3bd51bd5f73" class="code"><code class="language-Kotlin">./gradlew dependencies</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">signinReport</summary><div class="indented"><p id="13515285-0ae8-808b-bf06-ceff2a6ae7ed" class="">Генерирует отчет о ключах подписи приложения, включая отпечатки (SHA-1 и SHA-256) для всех buildType и flavor. Эти отпечатки часто требуются для интеграции с сервисами, такими как Firebase или Google API, чтобы обеспечить аутентификацию приложений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80f1-8a85-d4614987e8ea" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">./gradlew signinReport</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">tasks</summary><div class="indented"><p id="13515285-0ae8-8093-8e61-de40c43d62cb" class="">Выводит список всех доступных задач Gradle в проекте, сгруппированных по категориям (например, сборка, проверка, сборка документации). Она помогает узнать, какие задачи можно запустить для сборки, тестирования, чистки и других действий в проекте.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80ee-844b-e22577d1df37" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">./gradlew tasks</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">lint</summary><div class="indented"><p id="13515285-0ae8-8089-9cd0-d05de06f2813" class="">Запускает анализ кода (Lint) в Android-проекте. Lint проверяет код на наличие потенциальных ошибок, проблем с производительностью, нарушений стиля, возможных утечек памяти и других проблем. Результаты анализа выводятся в виде отчёта, что помогает улучшить качество кода и следовать лучшим практикам.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800d-a20b-feacd1dfd458" class="code"><code class="language-Kotlin">./gradlew lint</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">assembleDebug</summary><div class="indented"><p id="13515285-0ae8-808c-912c-f38dcf0b45cd" class="">Cобирает APK для debug-сборки приложения. Эта сборка предназначена для тестирования и отладки, поэтому она включает отладочную информацию и не подписана релизным ключом. Сгенерированный APK находится в папке build/outputs/apk/debug и может быть установлен на устройство для тестирования.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-804f-8a9f-f4a49e05cc05" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">./gradlew assembleDebug</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">assembleRelease</summary><div class="indented"><p id="13515285-0ae8-8059-9acc-d84d98b325e0" class="">Cобирает release-сборку APK. Эта сборка оптимизирована для выпуска: она может быть обфусцирована, сжата и подписана релизным ключом (если настроено). Release-версия APK находится в папке build/outputs/apk/release и готова для распространения, например, через Google Play или другие магазины приложений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80c5-9c1d-c627435f893c" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">./gradlew assembleRelease</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">installDebug</summary><div class="indented"><p id="13515285-0ae8-8000-9d59-e54530bc2359" class="">Cобирает и устанавливает debug-сборку APK на подключённое устройство или эмулятор. Эта версия приложения включает отладочную информацию и позволяет быстро тестировать последние изменения. APK автоматически устанавливается и запускается на устройстве, если это предусмотрено настройками.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-807e-83aa-d4db3e77c593" class="code"><code class="language-Kotlin">./gradlew installDebug</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">installRelease</summary><div class="indented"><p id="13515285-0ae8-801e-80ed-d65aac9cf2de" class="">Cобирает и устанавливает release-сборку APK на подключённое устройство или эмулятор. Эта версия оптимизирована для выпуска, без отладочной информации. Поскольку это release-сборка, её установка возможна только при наличии подходящего ключа подписи или если устройство позволяет установку неподписанных APK для тестирования.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80e1-bc30-cb16c327beae" class="code"><code class="language-Kotlin">./gradlew installRelease</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">java version</summary><div class="indented"><p id="13515285-0ae8-80e1-a834-d7588f5766f5" class="">Отображает текущую версию установленной Java.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80cb-98ac-fbf0860d33cd" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">java -version</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">printenv</summary><div class="indented"><p id="13515285-0ae8-80d6-b8d4-cbd5df16deb2" class="">Отображает все текущие переменные окружения и их значения в вашей системе. Переменные окружения содержат информацию, такую как пути к системным каталогам, текущий пользователь, настройки языка, переменные конфигурации для приложений и сервисов и многое другое.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800b-81bc-d16ce8ac7941" class="code"><code class="language-Kotlin">printenv</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">export env</summary><div class="indented"><p id="13515285-0ae8-805d-b3db-edde40e15225" class="">Устанавливает переменную окружения JAVA_HOME для текущей сессии терминала.</p><p id="13515285-0ae8-80b6-a9ca-fbf18a1b99b0" class="">• Переменная среды хранится в <mark class="highlight-default"><code>/usr/libexec/java_home</code></mark>. Там указана последняя версия Java.</p><p id="13515285-0ae8-80dd-a8ca-c66a91ba45b4" class="">• Чтобы последней была 17 нужно удалить новые версии в <mark class="highlight-default"><code>Library/Java/JavaVirtualMachines</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80c6-9d52-d72fba181b2e" class="code"><code class="language-Kotlin">export JAVA_HOME=&quot;/Users/mihailbelyj/Library/Java/JavaVirtualMachines/corretto-17.0.10/Contents/Home&quot;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе</mark></summary></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

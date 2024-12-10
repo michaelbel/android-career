@@ -560,7 +560,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .highlight-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .highlight-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -631,7 +631,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .block-color-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .block-color-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -658,7 +658,7 @@ blockquote {
 .select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
 .select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
 .select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
 .select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
 .select-value-color-pageGlass { background-color: undefined; }
 .select-value-color-washGlass { background-color: undefined; }
@@ -681,14 +681,12 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="37b84409-48d7-4f50-bb95-9b76ad0209fc" class="page sans"><header><img class="page-cover-image" src="Cases%2037b8440948d74f50bb959b76ad0209fc/cover-kotlin-coroutines-cases.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Cases%2037b8440948d74f50bb959b76ad0209fc/icon-kotlin.svg"/></div><h1 class="page-title"><strong>Cases</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="228d84e9-34a4-4d92-a3a7-83e1ce09c3a8" class="">
-</p><h3 id="414bf616-36d8-4768-99fa-4155bf3a750f" class="">Не работает подписка на Flow из Room</h3><p id="36489bbe-9a39-49d9-a179-f3374c7e2c38" class="">Решение: если ожидается результат nullable - сделать <code>initialValue</code> = null.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b43724e7-e3d1-4f19-9b68-dbceb4d25a29" class="code"><code class="language-Kotlin">val userFlow: StateFlow&lt;UserDb?&gt; = userInteractor.userFlow()
+</style></head><body><article id="37b84409-48d7-4f50-bb95-9b76ad0209fc" class="page sans"><header><img class="page-cover-image" src="Cases%2037b8440948d74f50bb959b76ad0209fc/cover-kotlin-coroutines-cases.webp" style="object-position:center 44.82000000000001%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Cases%2037b8440948d74f50bb959b76ad0209fc/icon-kotlin.svg"/></div><h1 class="page-title"><strong>Cases</strong></h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Не работает подписка на Flow из Room</summary><div class="indented"><p id="36489bbe-9a39-49d9-a179-f3374c7e2c38" class="">Решение: если ожидается результат nullable - сде<mark class="highlight-default">лать </mark><mark class="highlight-default"><code>initialValue</code></mark><mark class="highlight-default"> = null.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b43724e7-e3d1-4f19-9b68-dbceb4d25a29" class="code"><code class="language-Kotlin">val userFlow: StateFlow&lt;UserDb?&gt; = userInteractor.userFlow()
     .stateIn(
         scope = this,
         started = SharingStarted.Lazily,
         initialValue = null // Если сделать User.Empty то результат всегда будет User.Empty
-    )</code></pre><p id="3123fdfe-a074-4c5e-a04c-99a1868674da" class="">
-</p><h3 id="ea88a1e3-cefd-44d5-b6e7-4793a21dfe99" class="">Отправить только новые данные из ViewModel в Presentation. Синхронно получить value.</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45fed471-d0ea-490c-b352-11a88f3c77d5" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">valueStateFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
+    )</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Отправить только новые данные из ViewModel в Presentation. Синхронно получить value.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45fed471-d0ea-490c-b352-11a88f3c77d5" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">valueStateFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
 		// handle value
 }
 
@@ -700,8 +698,7 @@ init {
 		_valueStateFlow.value = 1
 		
 		val result: Int = valueStateFlow.value
-}</code></pre><p id="4c7220cc-4ca2-4174-b6dd-f8299dfdd728" class="">
-</p><h3 id="ed28a32a-4d80-4eeb-9056-26084de57a1f" class="">Всегда отправлять новые значения даже если они одинаковые.</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ae758b7-0f14-4c5f-b3aa-ae7ff4040b01" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">valueStateFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Всегда отправлять новые значения даже если они одинаковые.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ae758b7-0f14-4c5f-b3aa-ae7ff4040b01" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">valueStateFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
 		// handle value
 }
 
@@ -713,8 +710,7 @@ init {
 		launch {
         _valueStateFlow.emit(1)
     }
-}</code></pre><p id="845ccfff-3553-4175-b375-57582a808a62" class="">
-</p><h3 id="e090db09-fa37-498f-b200-138af4d792b7" class="">Отправить событие 1 раз (навигация). Работает как SingleLiveEvent.</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="88ab8e44-c1ca-47e0-b62b-d55e47084f68" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">eventFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Отправить событие 1 раз (навигация). Работает как SingleLiveEvent.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="88ab8e44-c1ca-47e0-b62b-d55e47084f68" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">eventFlow.launchAndCollectIn(viewLifecycleOwner) { value -&gt; 
 		// handle value
 }
 
@@ -726,8 +722,7 @@ init {
 		launch {
         _eventChannel.send(Unit)
     }
-}</code></pre><p id="b7bd02ea-6314-4fbd-9686-d04e29021549" class="">
-</p><h3 id="58e23fab-c3f2-453d-8794-db081df71784" class=""><strong>Run Coroutines in Parallel Using </strong><code><strong>launch</strong></code></h3><p id="b3cb7f9c-731e-437f-a838-b6aec45db0a8" class="">Обе корутины запустятся одновременно. Первая корутина выполнится через 1 сек. Вторая корутина выполнится через 5 сек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fe5c7250-6f8d-4e9f-9018-b5621e151a8c" class="code"><code class="language-Kotlin">fun main() = runBlocking {
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Run Coroutines in Parallel Using launch</strong></summary><div class="indented"><p id="b3cb7f9c-731e-437f-a838-b6aec45db0a8" class="">Обе корутины запустятся одновременно. Первая корутина выполнится через 1 сек. Вторая корутина выполнится через 5 сек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fe5c7250-6f8d-4e9f-9018-b5621e151a8c" class="code"><code class="language-Kotlin">fun main() = runBlocking {
     val job1 = launch { doWork1() }
     val job2 = launch { doWork2() }
 }
@@ -738,8 +733,7 @@ suspend fun doWork1() {
 
 suspend fun doWork2() {
     delay(5000)
-}</code></pre><p id="9e02051e-fd96-4dd4-baec-88484ac5a3e7" class="">
-</p><h3 id="c0943e14-d0e3-49d4-aeb0-98752a6f2832" class="">Запустить 2 операции параллельно и собрать результат?</h3><p id="7971c8cb-b3bb-49e4-88c5-401fa7c1acdb" class="">Используем функцию <code>awaitAll</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6e17c732-5b10-44ab-9947-4b33d6a751e0" class="code"><code class="language-Kotlin">fun main() = runBlocking {
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Запустить 2 операции параллельно и собрать результат?</summary><div class="indented"><p id="7971c8cb-b3bb-49e4-88c5-401fa7c1acdb" class="">Используем функ<mark class="highlight-default">цию </mark><mark class="highlight-default"><code>awaitAll</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6e17c732-5b10-44ab-9947-4b33d6a751e0" class="code"><code class="language-Kotlin">fun main() = runBlocking {
     val job1 = async { doWork1() }
     val job2 = async { doWork2() }
     val result = awaitAll(job1, job2)
@@ -751,4 +745,4 @@ suspend fun doWork1() {
 
 suspend fun doWork2() {
     delay(5000)
-}</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+}</code></pre></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

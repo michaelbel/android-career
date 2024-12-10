@@ -1,0 +1,733 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Glance</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="10c15285-0ae8-807f-a567-ddd21db79ecf" class="page sans"><header><img class="page-cover-image" src="Glance%2010c152850ae8807fa567ddd21db79ecf/cover-jetpack-glance.webp" style="object-position:center 30.55%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="ViewBinding%202c240f15fc1b46da87efeda8556a731f/icon-android-jetpack.svg"/></div><h1 class="page-title">Glance</h1><p class="page-description"></p></header><div class="page-body"><table id="33ec1914-c9e7-4d6c-ba93-01385df4181b" class="simple-table"><tbody><tr id="4c0a44dd-6767-47aa-a23c-5039eb43dab4"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance">https://developer.android.com/develop/ui/compose/glance</a></td></tr><tr id="10c15285-0ae8-8099-bd26-d0fa3a5b518b"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/setup">https://developer.android.com/develop/ui/compose/glance/setup</a></td></tr><tr id="10c15285-0ae8-8033-bee2-d6955175ebd0"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/create-app-widget">https://developer.android.com/develop/ui/compose/glance/create-app-widget</a></td></tr><tr id="10c15285-0ae8-80a6-b934-c8d8c3f1dc46"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/error-handling">https://developer.android.com/develop/ui/compose/glance/error-handling</a></td></tr><tr id="10c15285-0ae8-805f-ac28-c30f164e7356"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/testing">https://developer.android.com/develop/ui/compose/glance/testing</a></td></tr><tr id="10c15285-0ae8-8003-b6ae-f36bc408c992"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/user-interaction">https://developer.android.com/develop/ui/compose/glance/user-interaction</a></td></tr><tr id="10c15285-0ae8-8099-8c5f-cf3b8f169822"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/glance-app-widget">https://developer.android.com/develop/ui/compose/glance/glance-app-widget</a></td></tr><tr id="10c15285-0ae8-8038-ac28-da6a8d1582e1"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/build-ui">https://developer.android.com/develop/ui/compose/glance/build-ui</a></td></tr><tr id="10c15285-0ae8-8044-a21a-f0c6f9a5aaed"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/theme">https://developer.android.com/develop/ui/compose/glance/theme</a></td></tr><tr id="10c15285-0ae8-8073-917a-e573394bb34a"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/interoperability">https://developer.android.com/develop/ui/compose/glance/interoperability</a></td></tr><tr id="10c15285-0ae8-801f-ae95-e413b82fe161"><td id="Ce~a" class="" style="width:623px"><a href="https://developer.android.com/develop/ui/compose/glance/additional-resources">https://developer.android.com/develop/ui/compose/glance/additional-resources</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>&lt;appwidget-provider/&gt;</code></mark></summary><div class="indented"><p id="13915285-0ae8-8091-a2f2-d967d8429d48" class="">XML-файл, описывающий конфигурацию виджета в Android. Он содержит метаданные, указывающие системе, как должен работать виджет.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80dd-9c13-c197c5b13695" class="code"><code class="language-XML">&lt;appwidget-provider
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:autoAdvanceViewId=&quot;@id/view_flipper&quot;
+    android:configure=&quot;.WidgetConfigActivity&quot;
+    android:description=&quot;@string/widget_description&quot;
+    android:initialLayout=&quot;@layout/widget_loading&quot;
+    android:initialKeyguardLayout=&quot;@layout/widget_loading&quot;
+    android:previewLayout=&quot;@layout/widget_preview&quot;
+    android:previewImage=&quot;@drawable/widget_preview&quot;
+    android:minWidth=&quot;120dp&quot;
+    android:minHeight=&quot;64dp&quot;
+    android:minResizeWidth=&quot;120dp&quot;
+    android:minResizeHeight=&quot;64dp&quot;
+    android:maxResizeWidth=&quot;480dp&quot;
+    android:maxResizeHeight=&quot;120dp&quot;
+    android:targetCellWidth=&quot;2&quot;
+    android:targetCellHeight=&quot;1&quot;
+    android:resizeMode=&quot;horizontal|vertical&quot;
+    android:updatePeriodMillis=&quot;1800000&quot;
+    android:widgetCategory=&quot;home_screen|keyguard&quot;
+    android:widgetFeatures=&quot;reconfigurable|configuration_optional|hide_from_picker&quot; /&gt;</code></pre><p id="13915285-0ae8-8001-b6d2-cc3c2ff3a273" class="">• <mark class="highlight-orange"><code>autoAdvanceViewId</code></mark> используется для указания <mark class="highlight-default"><code>View</code></mark>, который будет автоматически анимироваться системой. Обычно это <mark class="highlight-default"><code>AdapterView</code></mark>, такой как <mark class="highlight-default"><code>StackView</code></mark> или <mark class="highlight-default"><code>ViewFlipper</code></mark>, который поддерживает автоматическое переключение содержимого.</p><p id="13915285-0ae8-80e7-a84f-ecd9d822bfd2" class="">• <mark class="highlight-orange"><code>configure</code></mark> класс <mark class="highlight-default"><code>Activity</code></mark>, который будет использоваться для настройки виджета при его добавлении на экран. Это позволяет открыть экран настроек, где пользователь может выбрать параметры виджета перед его созданием.</p><p id="13915285-0ae8-80a1-986b-ffeecc515582" class="">• <mark class="highlight-orange"><code>description</code></mark> текстовое описание виджета. Отображается пользователю в системном интерфейсе при выборе виджета на домашнем экране.</p><p id="13915285-0ae8-8027-9da9-e0fb393aa42b" class="">• <mark class="highlight-orange"><code>initialLayout</code></mark> используется для отображения виджета сразу после его добавления на экран. Это первый макет, который пользователь видит до обновления виджета данными из приложения.</p><p id="13915285-0ae8-80f6-b536-de5be0c310ad" class="">• <mark class="highlight-orange"><code>initialKeyguardLayout</code></mark> используется для указания макета, который будет отображаться на экране блокировки (<mark class="highlight-default"><code>keyguard</code></mark>) сразу после добавления виджета. Это аналог параметра <mark class="highlight-default"><code>initialLayout</code></mark>, но для экрана блокировки.</p><p id="13915285-0ae8-8039-9c93-c1db093a1668" class="">• <mark class="highlight-orange"><code>previewLayout</code></mark> отображается в интерфейсе выбора виджетов (widget picker). Это ресурс макета, показывающей пользователю, как будет выглядеть виджет на экране до его добавления.</p><p id="13915285-0ae8-8064-aa3e-ddb09a776378" class="">• <mark class="highlight-orange"><code>previewImage</code></mark> отображается в интерфейсе выбора виджетов (widget picker). Это статическая картинка, показывающая пользователю, как будет выглядеть виджет на экране до его добавления.</p><p id="13915285-0ae8-80e5-be54-e86c17757801" class="">• <mark class="highlight-orange"><code>minWidth</code></mark> минимальная ширина виджета в <mark class="highlight-default"><code>dp</code></mark>.</p><p id="13915285-0ae8-807b-b673-f22fdc3fe8c3" class="">• <mark class="highlight-orange"><code>minHeight</code></mark> минимальная высота виджета в <mark class="highlight-default"><code>dp</code></mark>.</p><p id="13915285-0ae8-80c7-afa2-d3f9dcc8065f" class="">• <mark class="highlight-orange"><code>minResizeWidth</code></mark> минимальная ширина в <mark class="highlight-default"><code>dp</code></mark>, до которой можно уменьшить виджет при изменении его размера.</p><p id="13915285-0ae8-80e7-866f-d235a6beb3ea" class="">• <mark class="highlight-orange"><code>minResizeHeight</code></mark> минимальная высота в <mark class="highlight-default"><code>dp</code></mark>, до которой можно уменьшить виджет.</p><p id="13915285-0ae8-8084-af54-d35f7fa92ad4" class="">• <mark class="highlight-orange"><code>maxResizeWidth</code></mark> максимальная ширина в <mark class="highlight-default"><code>dp</code></mark>, до которой можно растянуть виджет.</p><p id="13915285-0ae8-8072-b9cf-e6c2179f427d" class="">• <mark class="highlight-orange"><code>maxResizeHeight</code></mark> максимальная высота в <mark class="highlight-default"><code>dp</code></mark>, до которой можно растянуть виджет.</p><p id="13915285-0ae8-801d-acf8-f67f2e343bef" class="">• <mark class="highlight-orange"><code>targetCellWidth</code></mark> количество ячеек по ширине, которые должен занимать виджет (например, 2 клетки).</p><p id="13915285-0ae8-80c6-b011-e0e76eb20067" class="">• <mark class="highlight-orange"><code>targetCellHeight</code></mark> количество ячеек по высоте (например, 1 клетка).</p><p id="13915285-0ae8-80e8-9e91-e7821d6b5029" class="">• <mark class="highlight-orange"><code>resizeMode</code></mark> указывает, можно ли изменять размер виджета, и если да, то в каком направлении. Этот параметр позволяет пользователю растягивать или уменьшать виджет после его добавления на экран.</p><p id="13915285-0ae8-8055-b76f-c50f0c482f8d" class="">• <mark class="highlight-orange"><code>updatePeriodMillis</code></mark> интервал в миллисекундах, через который виджет будет автоматически обновляться системой. Минимальное значение — 30 минут (1800000 мс).</p><p id="13915285-0ae8-808e-af57-eda733739303" class="">• <mark class="highlight-orange"><code>widgetCategory</code></mark> указывает, где может отображаться виджет: на домашнем экране (<mark class="highlight-default"><code>home_screen</code></mark>), на экране блокировки (<mark class="highlight-default"><code>keyguard</code></mark>) или в обоих местах.</p><p id="13915285-0ae8-80d5-a99e-d62627cb28bb" class="">• <mark class="highlight-orange"><code>widgetFeatures</code></mark> используется для указания специальных возможностей виджета, поддерживаемых хостом виджетов. Это позволяет системе понимать, какие функции можно использовать для улучшения взаимодействия с виджетом.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GlanceAppWidget</code></mark></summary><div class="indented"><p id="13915285-0ae8-8086-9f82-dee2a0b5022b" class="">Базовый класс в Jetpack Glance, который используется для создания виджетов в Android. Вместо традиционного XML-макета, интерфейс виджета создаётся с помощью декларативного подхода, схожего с Jetpack Compose.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-8047-9314-ddf273309a11" class="code"><code class="language-Kotlin">class MyGlanceWidget: GlanceAppWidget() {
+    override suspend fun provideGlance(context: Context, id: GlanceId) {}
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>provideGlance</code></mark></summary><div class="indented"><p id="13915285-0ae8-80fe-9971-e13202246089" class="">Позволяет динамически генерировать содержимое виджета.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-8013-896b-f18c9ee7dbf3" class="code"><code class="language-Kotlin">override suspend fun provideGlance(context: Context, id: GlanceId) {
+    provideContent {
+        GlanceTheme {
+            Column(
+                modifier = GlanceModifier.fillMaxSize().padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = &quot;Привет, мир!&quot;, style = TextStyle(fontSize = 18.sp))
+                Button(text = &quot;Обновить&quot;, onClick = actionRunCallback&lt;UpdateCallback&gt;())
+            }
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>sizeMode</code></mark></summary><div class="indented"><p id="13915285-0ae8-806c-90c4-f4b5c8d547b5" class="">Определяет, как виджет реагирует на изменение размеров.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>SizeMode.Single</code></mark></summary><div class="indented"><p id="13915285-0ae8-8007-a6e3-c4e7b6a5a110" class="">Виджет имеет фиксированный размер, не реагирует на изменения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80e7-9aaa-f34f311f457d" class="code"><code class="language-Kotlin">override val sizeMode: SizeMode
+    get() = SizeMode.Single</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>SizeMode.Exact</code></mark></summary><div class="indented"><p id="13915285-0ae8-8085-b301-e5b80f8738bf" class="">Виджет реагирует на изменение размеров, и система передаёт точные значения ширины и высоты.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80dd-968a-cc93399c4831" class="code"><code class="language-Kotlin">override val sizeMode: SizeMode
+    get() = SizeMode.Exact</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>SizeMode.Responsive</code></mark></summary><div class="indented"><p id="13915285-0ae8-80e3-a0bd-d68d6b023b6c" class="">Позволяет адаптировать виджет к нескольким предустановленным размерам, обеспечивая разные макеты для разных диапазонов размеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-803d-9816-e1a88c043b64" class="code"><code class="language-Kotlin">override val sizeMode: SizeMode
+    get() = SizeMode.Responsive(
+        sizes = setOf(
+            DpSize(120.dp, 56.dp),
+            DpSize(480.dp, 120.dp)
+        )
+    )</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>stateDefinition</code></mark></summary><div class="indented"><p id="13915285-0ae8-807e-9e31-e042fe795e26" class="">Определяет, как виджет сохраняет и получает данные состояния, такие как настройки или данные, специфичные для каждого экземпляра виджета. Он позволяет сохранять состояние виджета между обновлениями и даже перезагрузками устройства.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80b7-8784-df87bb8404ac" class="code"><code class="language-Kotlin">override val stateDefinition: GlanceStateDefinition&lt;*&gt;
+    get() = MyGlanceStateDefinition</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDelete</code></mark></summary><div class="indented"><p id="13915285-0ae8-8033-9056-dfb127f3b37c" class="">Вызывается, когда пользователь удаляет виджет с домашнего экрана.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-8040-b374-fbed87bb9ba5" class="code"><code class="language-Kotlin">override suspend fun onDelete(context: Context, glanceId: GlanceId) {
+    super.onDelete(context, glanceId)
+    Log.d(&quot;MyWidget&quot;, &quot;Виджет удалён: $glanceId&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCompositionError</code></mark></summary><div class="indented"><p id="13915285-0ae8-8096-9347-cb1dc4acc12b" class="">Вызывается, если при создании содержимого виджета (<mark class="highlight-default"><code>provideGlance()</code></mark>) произошла ошибка композиции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80bc-9b22-d18fb2c0f7bc" class="code"><code class="language-Kotlin">override fun onCompositionError(context: Context, glanceId: GlanceId, appWidgetId: Int, throwable: Throwable) {
+    super.onCompositionError(context, glanceId, appWidgetId, throwable)
+    Timber.e(&quot;Ошибка композиции виджета $glanceId: ${throwable.message}&quot;)
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GlanceStateDefinition</code></mark></summary><div class="indented"><p id="13915285-0ae8-802b-8f87-d5967eb559bc" class="">Интерфейс, определяющий, как сохраняется состояние виджета. Он позволяет задать механизм хранения данных для <mark class="highlight-default"><code>GlanceAppWidget</code></mark>, обеспечивая сохранение и восстановление состояния между обновлениями и перезагрузками устройства.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PreferencesGlanceStateDefinition</code></mark></summary><div class="indented"><p id="13915285-0ae8-8096-980f-cdeec08bbd2c" class=""><mark class="highlight-default">Реализация интерфейса </mark><mark class="highlight-default"><code>GlanceStateDefinition</code></mark><mark class="highlight-default">, используемая для хранения состояния виджета с помощью </mark><mark class="highlight-default"><code>DataStore</code></mark><mark class="highlight-default"> и </mark><mark class="highlight-default"><code>Preferences</code></mark><mark class="highlight-default">. Она позволяет сохранять данные в формате «ключ-значение» и обеспечивает их восстановление при обновлении или перезагрузке виджета. Позволяет сохранять простые типы данных: </mark><mark class="highlight-default"><code>String</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>Int</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>Long</code></mark><mark class="highlight-default"> </mark><mark class="highlight-default"><code>Boolean</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13915285-0ae8-80dc-92ba-c14f3f8905a6" class="code"><code class="language-Kotlin">override val stateDefinition = PreferencesGlanceStateDefinition</code></pre></div></details></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,699 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Computer Science</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="10715285-0ae8-80a1-89e1-f75a4e2adf22" class="page sans"><header><img class="page-cover-image" src="Computer%20Science%20107152850ae880a189e1f75a4e2adf22/cover-computer-science.webp" style="object-position:center 69.26%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Computer%20Science%20107152850ae880a189e1f75a4e2adf22/icon-computer-science.svg"/></div><h1 class="page-title">Computer Science</h1><p class="page-description"></p></header><div class="page-body"><table id="15515285-0ae8-80b5-a26e-f7ffa96e83f5" class="simple-table"><tbody><tr id="54aa5266-e821-414b-92d4-fcd175bd7190"><td id="RUcK" class=""></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">CPU</summary><div class="indented"><p id="10715285-0ae8-8063-a264-c5044d2bd26a" class="">Центральный процессор (CPU, Central Processing Unit) — это основной компонент компьютера, который выполняет вычисления и управляет выполнением программ. Он отвечает за выполнение инструкций программного обеспечения, обрабатывая данные, выполняя арифметические и логические операции и координируя работу других компонентов системы.</p><p id="10b15285-0ae8-8042-8743-c91ee12e01b3" class="">
+</p><h3 id="ad840ba0-9136-4459-a422-0c0991bcda46" class="">Такт процессора</h3><p id="04b54c4e-8ba9-4158-b32f-4c5f75b44f62" class="">Такт процессора — это минимальный интервал времени, за который процессор может выполнить одну операцию или часть операции. Частота процессора измеряется в тактах в секунду (герцах), и чем выше эта частота, тем больше операций процессор может выполнить за единицу времени.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>RAM</strong></summary><div class="indented"><p id="873b1499-0093-41f5-aaf2-028b6e8afb62" class="">RAM (Random Access Memory) — это оперативная память компьютера, которая используется для временного хранения данных, с которыми работает процессор. Доступ к данным в RAM осуществляется быстро и напрямую (по адресам), но информация в ней хранится только во время работы системы и теряется после отключения питания.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">ORM</summary><div class="indented"><p id="10715285-0ae8-807a-8cda-e2a50cacfca0" class="">ORM (Object-Relational Mapping) — это технология, которая позволяет преобразовывать данные между объектами в программном коде и реляционными базами данных. ORM автоматически управляет операциями с базой данных (CRUD) на основе объектных моделей, что упрощает взаимодействие с базой данных, не требуя прямого написания SQL-запросов.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Асинхронность</strong></summary><div class="indented"><p id="3026d7ab-2e4c-4b96-9d3c-0640d53dac25" class="">Концепция программирования, когда события происходят независимо от главного потока и способ взаимодействия не является последовательным, а происходит через коллбэки.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Параллельность</strong></summary><div class="indented"><p id="53669ac1-b89e-4229-a655-52da3498453f" class="">Тип вычислений, когда множество операций выполняются параллельно. Современные процессоры способствуют этому, так как имеют множество ядер.</p><p id="13115285-0ae8-8059-921f-dbd0e5ae0b7f" class="">
+</p><h3 id="13115285-0ae8-8088-bfc6-d76d9a675ebc" class="">Псевдопараллельность</h3><p id="13115285-0ae8-8047-b438-f987709bb19e" class="">Метод выполнения нескольких задач почти одновременно, создавая впечатление параллельного исполнения, хотя на самом деле задачи выполняются поочередно, но с высокой скоростью переключения. Этот подход часто используется в системах с одним процессором или ядром, где параллельная обработка невозможна в физическом смысле.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Синхронизация</strong></summary><div class="indented"><p id="683cb21d-2f20-4aeb-a7e3-e9571b0996b1" class="">Механизм, который используется для управления доступом нескольких потоков к общим ресурсам, чтобы предотвратить конфликты данных. Она гарантирует, что только один поток может изменять или читать общий ресурс в определённый момент времени, таким образом предотвращая такие проблемы, как гонки данных и некорректное обновление состояния.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Потокобезопасность</summary><div class="indented"><p id="11d15285-0ae8-807c-8d52-cb7ea78b89d7" class="">Thread-safe (потокобезопасность) означает, что код или объект может корректно работать в многопоточной среде, где несколько потоков выполняют его одновременно, без возникновения ошибок, связанных с одновременным доступом к общим данным.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Шифрование</summary><div class="indented"><p id="13515285-0ae8-80ef-b7d5-f2ef77370de2" class="">Процесс преобразования данных в зашифрованный формат, чтобы сделать их нечитабельными для посторонних лиц. Основная цель шифрования — защитить конфиденциальную информацию при передаче или хранении.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Симметричное шифрование</summary><div class="indented"><p id="13515285-0ae8-8010-b09c-e8d72839c3f8" class="">Использует один и тот же ключ для шифрования и дешифрования. Быстрое и эффективно для больших объёмов данных, но требует безопасного обмена ключами. Примеры: AES, DES.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Асимметричное шифрование</summary><div class="indented"><p id="13515285-0ae8-808e-ac17-c5843dc4325b" class="">Использует пару ключей — открытый (для шифрования) и закрытый (для дешифрования). Открытый ключ можно делиться, а закрытый хранится в секрете. Это более безопасно, но медленнее, чем симметричное шифрование. Примеры: RSA, ECC.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Хеширование</summary><div class="indented"><p id="12415285-0ae8-80aa-ae4a-f1f8df967a3b" class="">Процесс преобразования входных данных произвольной длины в фиксированное значение (хеш) с помощью хеш-функции. Хеш-функции используются в различных областях, включая безопасность, хранение данных и алгоритмы. Это математическая функция, которая принимает входные данные и возвращает фиксированное значение (хеш).</p><p id="12415285-0ae8-80b4-ba52-e9abd7c88b6c" class="">• Детерминированность: Один и тот же вход всегда дает один и тот же хеш.</p><p id="12415285-0ae8-80e8-8166-cfa7e8e46727" class="">• Производительность: Быстрая обработка входных данных.</p><p id="12415285-0ae8-8091-a184-d0f95388ab76" class="">• Равномерность: Разные входные данные должны давать разные хеши (минимизация коллизий).</p><p id="12415285-0ae8-80c9-8a90-c21bbfa48818" class="">• Необратимость: По хешу не должно быть возможно восстановить исходные данные.</p><p id="12415285-0ae8-80b4-ba2c-ede1e2b90343" class="">
+</p><h3 id="12415285-0ae8-80f9-9864-d6fda18bd465" class="">SHA-256</h3><p id="12415285-0ae8-80e8-84f0-f570c0465e7b" class="">SHA-256 (Secure Hash Algorithm 256-bit) — это криптографическая хеш-функция, которая генерирует хеш фиксированной длины (256 бит или 64 шестнадцатеричных символа) из произвольного объема входных данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12415285-0ae8-80a4-9d8a-e91a3f2428ce" class="code"><code class="language-Kotlin">import java.security.MessageDigest
+
+fun sha256(input: String): String {
+    val digest = MessageDigest.getInstance(&quot;SHA-256&quot;)
+    val hashBytes = digest.digest(input.toByteArray())
+    return hashBytes.joinToString(&quot;&quot;) { String.format(&quot;%02x&quot;, it) }
+}
+
+fun main() {
+    val input = &quot;Hello, World!&quot;
+    val hash = sha256(input)
+    println(&quot;SHA-256 Hash: $hash&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">TCP</summary><div class="indented"><p id="12d15285-0ae8-80ea-963d-e2424e76839a" class="">TCP (Transmission Control Protocol) — протокол транспортного уровня, который обеспечивает надежную передачу данных в сетях. Он гарантирует, что данные будут доставлены получателю в правильном порядке и без ошибок, используя такие механизмы, как контроль потока, управление перегрузкой, и повторная передача потерянных пакетов. TCP устанавливает соединение между отправителем и получателем с помощью трехэтапного рукопожатия (three-way handshake), что делает передачу данных более устойчивой и надежной.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">UDP</summary><div class="indented"><p id="12d15285-0ae8-8068-b6a7-d0f88891ce0f" class="">UDP (User Datagram Protocol) — протокол транспортного уровня, который обеспечивает быструю, но ненадежную передачу данных в сетях. UDP не устанавливает соединение перед передачей данных и не гарантирует доставку или порядок получения пакетов, что делает его легким и быстрым по сравнению с TCP. Он используется в случаях, когда важна скорость передачи данных, а не их надежность.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Cookies</summary><div class="indented"><p id="12a15285-0ae8-8075-ad24-e37cea859263" class="">Это небольшие файлы, которые веб-сайты сохраняют на устройстве пользователя. Они содержат данные, такие как настройки сайта или информацию о сессии, и используются для сохранения состояния между визитами, аутентификации и персонализации контента. Cookies помогают веб-сайтам «запоминать» пользователя при повторных посещениях.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">User-Agent</summary><div class="indented"><p id="12a15285-0ae8-8041-ad1e-d7c5b5692459" class="">Это строка, которую веб-браузер или другое приложение отправляет на сервер при запросе веб-страницы. Она содержит информацию о браузере, операционной системе и устройстве пользователя, что позволяет серверу адаптировать содержимое под конкретное устройство или браузер.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (11)</mark></summary><div class="indented"><ul id="12415285-0ae8-8006-a587-cc6abd832e19" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Хеширование (1)</strong></mark></summary><ol type="1" id="12415285-0ae8-8065-9fc8-d89cf2dc6a6e" class="numbered-list" start="1"><li>Что такое хеширование?<p id="12415285-0ae8-8046-a8cc-c60760f8a340" class=""><mark class="highlight-teal">Преобразование данных произвольной длины в фиксированное значение (хеш) с помощью хеш-функции. Используется для обеспечения целостности данных и в безопасности, например, для хранения паролей.</mark></p></li></ol></details></li></ul><ul id="12415285-0ae8-801e-9072-d4243158046b" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Шифрование (4)</strong></mark></summary><ol type="1" id="10915285-0ae8-807b-a315-cf1b1860f466" class="numbered-list" start="1"><li>Какие существуют типы шифрования?<p id="10915285-0ae8-806d-85ce-dde8ed15cf7b" class="">• <mark class="highlight-teal">Симметричное шифрование: использует один и тот же ключ для шифрования и дешифрования данных (например AES).</mark></p><p id="10915285-0ae8-80d6-b227-e94c19f9b074" class="">• <mark class="highlight-teal">Асимметричное шифрование: использует пару ключей — открытый для шифрования и закрытый для дешифрования (например RSA).</mark></p></li></ol><ol type="1" id="12415285-0ae8-8064-8bfd-c18ba08340ee" class="numbered-list" start="2"><li>Где используется хеширование?<p id="12415285-0ae8-808c-9c4d-e0425796e23a" class="">• <mark class="highlight-teal">Безопасность (хранение паролей).</mark></p><p id="12415285-0ae8-808d-b0dd-c46c48674228" class="">• <mark class="highlight-teal">Структуры данных (хеш-таблицы).</mark></p><p id="12415285-0ae8-80ba-8e00-ff3fb73ae66a" class="">• <mark class="highlight-teal">Проверка целостности данных (контрольные суммы).</mark></p><p id="12415285-0ae8-8053-a740-f6fd71f54d45" class="">• <mark class="highlight-teal">Криптография (цифровые подписи, блокчейн).</mark></p></li></ol><ol type="1" id="12415285-0ae8-80db-87e0-f9a673df70f6" class="numbered-list" start="3"><li>Разница между хешированием и шифрованием?<p id="12415285-0ae8-8007-af80-f66c3a024006" class=""><mark class="highlight-teal">Хеширование необратимо и используется для проверки целостности данных, тогда как шифрование обратимо и предназначено для защиты конфиденциальности данных. Хеши имеют фиксированную длину, а зашифрованные данные могут быть переменной длины.</mark></p></li></ol><ol type="1" id="12415285-0ae8-809a-bf23-d4d86de023dc" class="numbered-list" start="4"><li>Можно ли расхешировать объект?<p id="12415285-0ae8-80e8-807c-fc1219437bbd" class=""><mark class="highlight-teal">Нет. Хеш-функции являются необратимыми, что означает, что по хешу невозможно восстановить исходные данные.</mark></p></li></ol></details></li></ul><ul id="12415285-0ae8-801e-87c7-d124551756d5" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Цифровая подпись (1)</strong></mark></summary><ol type="1" id="73f2cec3-10ef-4b08-b137-1fdf5c274137" class="numbered-list" start="1"><li>Что такое цифровая подпись?<p id="10915285-0ae8-802f-97a2-d32c1637dd7b" class=""><mark class="highlight-teal">Цифровая подпись подтверждает подлинность и целостность сообщения, создавая ее с помощью закрытого ключа отправителя и проверяя с открытым ключом.</mark></p></li></ol></details></li></ul><ul id="12415285-0ae8-8019-8b2f-c6a9c32d73d2" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Асинхронность и параллельность (2)</strong></mark></summary><ol type="1" id="11e15285-0ae8-80d5-a40f-fe81bfbef060" class="numbered-list" start="1"><li>В чем разница между асинхронностью и параллельностью в потоках?<p id="11e15285-0ae8-8069-8892-c1d86719f362" class="">• <mark class="highlight-teal">Асинхронность — это выполнение задач, которые могут приостанавливаться для выполнения других задач без блокировки основного потока, что позволяет эффективно использовать ресурсы.</mark></p><p id="11e15285-0ae8-808b-a65f-c003085f8d75" class="">• <mark class="highlight-teal">Параллельность — это одновременное выполнение нескольких задач на разных потоках или процессорах, что требует больше вычислительных ресурсов, но ускоряет выполнение.</mark></p></li></ol><ol type="1" id="11e15285-0ae8-80d4-8ed0-efea73f248e6" class="numbered-list" start="2"><li>Есть вагоны от 3 поездов A, B и C: A1, A2, B1, B2, C1, C2. Мы решили по одному туннелю асинхронно пустить вагоны от этих поездов. В каком порядке они приедут, какая закономерность будет соблюдаться?<p id="11e15285-0ae8-80b9-89dd-ef4be06a1bda" class=""><mark class="highlight-teal">Сохранится последовательность вагонов в рамках одного поезда.</mark></p></li></ol></details></li></ul><ul id="12d15285-0ae8-8086-acd1-d714ad7482b3" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (3)</strong></mark></summary><ol type="1" id="12a15285-0ae8-805c-94db-d5b9c0a110b3" class="numbered-list" start="1"><li>Что такое куки?<p id="12a15285-0ae8-8027-bef4-ef6b8ee10521" class=""><mark class="highlight-teal">Это небольшие файлы с данными, которые веб-сайты сохраняют на устройстве пользователя для хранения информации, например, о сессии или настройках.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-809c-b5bf-e5143c9d9e89" class="numbered-list" start="2"><li>Что такое User-Agent?<p id="12a15285-0ae8-806d-ac10-f0d0fd5962f0" class=""><mark class="highlight-teal">Это строка с информацией о браузере и устройстве, которую приложение отправляет серверу для адаптации содержимого под пользователя.</mark></p></li></ol><ol type="1" id="12d15285-0ae8-8041-bff2-f312ea16a423" class="numbered-list" start="3"><li>Различие между TCP и UDP?<p id="12d15285-0ae8-803a-96c4-fdb53cf9fdad" class=""><mark class="highlight-teal">TCP — надежный протокол с установлением соединения, гарантирующий доставку и порядок передачи данных, но более медленный из-за проверок и подтверждений. UDP — быстрый и ненадежный протокол без установления соединения, не гарантирующий порядок доставки, но подходящий для приложений, где важна скорость.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,901 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fragment</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c7025615-a1ab-49f5-b4a0-4057679a7a5d" class="page sans"><header><img class="page-cover-image" src="Fragment%20c7025615a1ab49f5b4a04057679a7a5d/cover-android-fragment.webp" style="object-position:center 62.349999999999994%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Fragment%20c7025615a1ab49f5b4a04057679a7a5d/icon-android-platform.svg"/></div><h1 class="page-title">Fragment</h1><p class="page-description"></p></header><div class="page-body"><table id="cf7a61b0-6415-447b-b105-a18a18f831b8" class="simple-table"><tbody><tr id="f0f735d3-d281-4ccf-ad40-ac600f9f3d41"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments">https://developer.android.com/guide/fragments</a></td></tr><tr id="44be0491-26ba-4efb-ab6f-aa7bf0bd586c"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/lifecycle">https://developer.android.com/guide/fragments/lifecycle</a></td></tr><tr id="49238c35-9cdb-4541-9eab-3435f1687f7b"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/communicate">https://developer.android.com/guide/fragments/communicate</a></td></tr><tr id="5145c2ee-f03a-4562-801a-55bb3ea769e0"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/fragmentmanager">https://developer.android.com/guide/fragments/fragmentmanager</a></td></tr><tr id="0a083592-59ea-4414-bf8e-e649d551cf67"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/transactions">https://developer.android.com/guide/fragments/transactions</a></td></tr><tr id="ba06f513-7d2d-48f6-b2dc-5aaaa1ca7faf"><td id="HAz\" class="" style="width:521px"><a href="https://developer.android.com/guide/fragments/create">https://developer.android.com/guide/fragments/create</a></td></tr></tbody></table><table id="d78b5af0-7dc1-430d-927f-a9775fe5c6b5" class="simple-table"><tbody><tr id="bae70366-02f4-4eb8-bf8f-07d0cebc819d"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>17.10.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/693794/">https://habr.com/ru/companies/tbank/articles/693794/</a></td></tr><tr id="44b37c6e-13ff-4705-8ee5-167f40027b0f"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>04.10.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/691344/">https://habr.com/ru/companies/tbank/articles/691344/</a></td></tr><tr id="dce26958-b378-4249-a3aa-b552952e593f"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>26.09.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/690134/">https://habr.com/ru/companies/tbank/articles/690134/</a></td></tr><tr id="f82f32e5-23a2-40ba-88d8-7f1c836bf1b1"><td id="DoJ`" class="" style="width:103px"><mark class="highlight-brown"><code>14.09.2022</code></mark></td><td id="{J\r" class="" style="width:606px"><a href="https://habr.com/ru/companies/tbank/articles/688222/">https://habr.com/ru/companies/tbank/articles/688222/</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Fragment</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80c5-b8c3-f6cf1d585088" class="">Представляет часть пользовательского интерфейса или логики, который может быть встроен в <mark class="highlight-default"><code>Activity</code></mark>. Фрагменты помогают создавать динамичные и многоразовые интерфейсы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80b6-9c11-ce961bb8e585" class="code"><code class="language-Kotlin">class MyFragment: Fragment(R.layout.fragment_my) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onAttach</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8030-80a4-cdb4eca2f205" class=""><mark class="highlight-default">Вызывается, когда фрагмент прикрепляется к </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-809d-9f4c-d077817f25c9" class="code"><code class="language-Kotlin">override fun onAttach(context: Context) {
+    super.onAttach(context)
+    println(&quot;Fragment attached to Activity&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCreate</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8023-89c7-fc2202e5f85c" class="">Инициализация фрагмента, настройка данных, которые сохраняются при пересоздании.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8065-9a47-fb7825f70362" class="code"><code class="language-Kotlin">override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    println(&quot;Fragment created&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCreateView</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80e3-92d8-c88837a0082c" class=""><mark class="highlight-default">Создание иерархии </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80fa-9cfc-ccfacfa3cd66" class="code"><code class="language-Kotlin">override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+): View? {
+    println(&quot;Creating fragment view&quot;)
+    return inflater.inflate(R.layout.fragment_layout, container, false)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onViewCreated</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80fe-a232-e69eb144ba7a" class=""><mark class="highlight-default">Вызывается сразу после </mark><mark class="highlight-default"><code>onCreateView</code></mark><mark class="highlight-default">. Инициализация компонентов </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-802e-91e4-c2c880380c6b" class="code"><code class="language-Kotlin">override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    println(&quot;View created&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onAcyivityCreated</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8046-a095-d6be904a7ea4" class=""><mark class="highlight-default">Вызывается, когда </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> завершила </mark><mark class="highlight-default"><code>onCreate</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-802f-8e85-c28566f26141" class="code"><code class="language-Kotlin">override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    println(&quot;Activity created for fragment&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onViewStateRestored</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8045-b5a0-c375a5df03ea" class=""><mark class="highlight-default">Восстановление состояния </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default"> фрагмента.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8017-9aaf-f2bad1062302" class="code"><code class="language-Kotlin">override fun onViewStateRestored(savedInstanceState: Bundle?) {
+    super.onViewStateRestored(savedInstanceState)
+    println(&quot;View state restored&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onStart</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80bc-a91d-eb2e84ca8e29" class="">Фрагмент становится видимым для пользователя.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8074-bbd3-d7baa201bd88" class="code"><code class="language-Kotlin">override fun onStart() {
+    super.onStart()
+    println(&quot;Fragment started&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onResume</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80fe-ae04-c33ce33ef06b" class="">Фрагмент становится активным и начинает взаимодействовать с пользователем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-800b-bd86-f8cf018ddedd" class="code"><code class="language-Kotlin">override fun onResume() {
+    super.onResume()
+    println(&quot;Fragment resumed&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onPause</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80a6-a3cd-c19386c248c2" class="">Вызывается перед тем, как фрагмент перестанет быть активным.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80d1-8070-cb667227398e" class="code"><code class="language-Kotlin">override fun onPause() {
+    super.onPause()
+    println(&quot;Fragment paused&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onStop</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8037-a965-cd872f9ff4fa" class="">Фрагмент больше не видим.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-805c-ac75-f0eaa4b83d22" class="code"><code class="language-Kotlin">override fun onStop() {
+    super.onStop()
+    println(&quot;Fragment stopped&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDestroyView</code></mark></summary><div class="indented"><p id="14a15285-0ae8-800b-936f-caa9de9c8d20" class="">Освобождение ресурсов, связанных с <mark class="highlight-default"><code>View</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8073-9739-e2d645e91397" class="code"><code class="language-Kotlin">override fun onDestroyView() {
+    super.onDestroyView()
+    println(&quot;Fragment view destroyed&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDestroy</code></mark></summary><div class="indented"><p id="14a15285-0ae8-800d-8dae-faf122e68f18" class="">Фрагмент уничтожается. Очищение ресурсов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8076-ada6-d4fe88dfc623" class="code"><code class="language-Kotlin">override fun onDestroy() {
+    super.onDestroy()
+    println(&quot;Fragment destroyed&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDetach</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80d0-b014-e3a78b3774d3" class=""><mark class="highlight-default">Фрагмент отсоединяется от </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8007-859a-de9ed6d5926e" class="code"><code class="language-Kotlin">override fun onDetach() {
+    super.onDetach()
+    println(&quot;Fragment detached from Activity&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setRetainInstance</code></mark></summary><div class="indented"><p id="be8329b5-6657-49c3-bf9d-502f16d748e0" class=""><mark class="highlight-default">Позволяет сохранить экземпляр фрагмента при пересоздании </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">, например, при повороте экрана. Это удобно для хранения долгоживущих объектов или фоновых задач, которые не должны пересоздаваться.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80b9-9baf-db27afa7a233" class="code"><code class="language-Kotlin">class MyFragment: Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>FragmentManager</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8071-9aa0-d6cfc840779d" class="">Управляет фрагментами в Android. С его помощью можно добавлять, удалять и заменять фрагменты в активности или другом фрагменте через <mark class="highlight-default"><code>childFragmentManager</code></mark>. Это позволяет создавать гибкие интерфейсы, которые меняются во время работы приложения.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>supportFragmentManager</code></mark></summary><div class="indented"><p id="13515285-0ae8-80e3-a85d-c0bf8da9603e" class=""><mark class="highlight-default">Поле класса </mark><mark class="highlight-default"><code>AppCompatActivity</code></mark><mark class="highlight-default">, которое предоставляет доступ к экземпляру </mark><mark class="highlight-default"><code>FragmentManager</code></mark><mark class="highlight-default">, совместимому Support Library. Оно используется для управления фрагментами в приложениях, которые используют компоненты из библиотеки поддержки, что позволяет обеспечивать совместимость с более старыми версиями Android.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-809c-b4c6-f532dbc96846" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, FirstFragment())
+            .commit()
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>parentFragmentManager</code></mark></summary><div class="indented"><p id="13515285-0ae8-801f-bed5-c16482864d4e" class=""><mark class="highlight-default">Поле класса </mark><mark class="highlight-default"><code>Fragment</code></mark><mark class="highlight-default">, которое предоставляет доступ к </mark><mark class="highlight-default"><code>FragmentManager</code></mark><mark class="highlight-default"> родительского фрагмента. Оно используется, когда есть вложенные фрагменты (child fragments) и необходимо взаимодействовать с родительским </mark><mark class="highlight-default"><code>FragmentManager</code></mark><mark class="highlight-default">, а не с </mark><mark class="highlight-default"><code>childFragmentManager</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80e3-b7f7-ebeb6fd56c63" class="code"><code class="language-Kotlin">class ChildFragment: Fragment() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, NewParentFragment())
+            .addToBackStack(null)
+            .commit()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>childFragmentManager</code></mark></summary><div class="indented"><p id="13515285-0ae8-80ee-b685-df5da17e8bc1" class=""><mark class="highlight-default">Поле класса </mark><mark class="highlight-default"><code>Fragment</code></mark><mark class="highlight-default">, которое предоставляет доступ к </mark><mark class="highlight-default"><code>FragmentManager</code></mark><mark class="highlight-default"> для управления дочерними фрагментами. Оно используется, когда есть фрагмент, который содержит другие фрагменты внутри себя (вложенные фрагменты), и нужно управлять их жизненным циклом и взаимодействием.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80dd-830a-e33c982eb73b" class="code"><code class="language-Kotlin">class ParentFragment: Fragment() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        childFragmentManager
+            .beginTransaction()
+            .add(R.id.child_fragment_container, ChildFragment())
+            .commit()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>add</code></mark></summary><div class="indented"><p id="10315285-0ae8-8024-8fea-da81149b9c59" class="">Используется для добавлени<mark class="highlight-default">я фрагмента в контейнер. При добавлении нового фрагмента через </mark><mark class="highlight-default"><code>add</code></mark><mark class="highlight-default">, предыдущий фрагмент остается активным, его жизненный цикл не меняется, он продолжает работать в </mark><mark class="highlight-default"><code>RESUMED</code></mark><mark class="highlight-default"> состояни</mark>и.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8028-b69f-edd1c803d887" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .add(R.id.fragment_container, MyFragment(), &quot;myFragmentTag&quot;)
+    .commit()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>replace</code></mark></summary><div class="indented"><p id="10315285-0ae8-80db-83d1-fb1feb9aaaaf" class="">Удаляет текущий фрагмент в контейнере и доба<mark class="highlight-default">вляет новый. Это замещает один фрагмент другим, вызывая полный жизненный цикл нового фрагмента от </mark><mark class="highlight-default"><code>onCreate()</code></mark><mark class="highlight-default"> до </mark><mark class="highlight-default"><code>onResume()</code></mark><mark class="highlight-default"> и уничтожение предыдущего фрагмента от </mark><mark class="highlight-default"><code>onPause()</code></mark><mark class="highlight-default"> до </mark><mark class="highlight-default"><code>onDestroy()</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80a3-9ade-ff4ab2f4e167" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .replace(R.id.fragment_container, FragmentB())
+    .commit()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>remove</code></mark></summary><div class="indented"><p id="740a8da2-7f73-45ec-929d-3004e9de2e01" class="">Удаляет фрагмент из <mark class="highlight-default"><code>FragmentManager</code></mark>, что означает, что фрагмент больше не отображается на экране. Однако состояние фрагмента сохраняется в <mark class="highlight-default"><code>FragmentManager</code></mark>, и его можно восстановить, если это необходимо.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8000-9121-e002332f2107" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .remove(fragment)
+    .commit()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>addToBackStack</code></mark></summary><div class="indented"><p id="d7774885-8d3e-42cf-aa69-bf0d14b6e0fa" class="">Добавляет текущую транзакцию фрагментов в стек возврата, что позволяет пользователю вернуться к предыдущему состоянию фрагментов при нажатии кнопки «Назад».</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8019-b1c2-c88af56a68a2" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .replace(R.id.fragment_container, secondFragment)
+    .addToBackStack(null)
+    .commit()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>popBackStack</code></mark></summary><div class="indented"><p id="9ca27c9c-bc18-45e1-9fc9-7df529a609b2" class="">Удаляет верхний фрагмент из стека возврата. Это приводит к тому, что фрагмент, который был перед ним, становится видимым, а текущий фрагмент удаляется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e57fe4f2-a611-4063-be7b-faeea40cdeb0" class="code"><code class="language-Kotlin">// Удаление последнего фрагмента из стека возврата
+supportFragmentManager.popBackStack()
+
+// Удаление всех фрагментов до фрагмента с именем &quot;myFragmentName&quot;
+supportFragmentManager.popBackStack(&quot;myFragmentName&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>popBackStackImmediate</code></mark></summary><div class="indented"><p id="2c1386f6-26d9-497b-86ee-980dc1c4bd0e" class="">Работает аналогично методу <mark class="highlight-default"><code>popBackStack</code></mark>, но выполняет операцию немедленно, а не асинхронно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b4c7b2cf-7329-464b-8dec-6aeee78a5e50" class="code"><code class="language-Kotlin">// Немедленное удаление последнего фрагмента из стека возврата
+supportFragmentManager.popBackStackImmediate()
+
+// Немедленное удаление всех фрагментов до фрагмента с именем &quot;myFragmentName&quot;
+supportFragmentManager.popBackStackImmediate(&quot;myFragmentName&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>executePendingTransactions</code></mark></summary><div class="indented"><p id="45ee23bd-d96f-40e5-9832-5da6498c5440" class="">Заставляет <mark class="highlight-default"><code>FragmentManager</code></mark> немедленно выполнить все ожидающие транзакции. Это отличается от методов <mark class="highlight-default"><code>commit</code></mark> или <mark class="highlight-default"><code>commitNow</code></mark>, которые фиксируют транзакции асинхронно или немедленно, но не обязательно выполняют их сразу.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-800c-8aa3-e8041dcb8cdd" class="code"><code class="language-Kotlin">supportFragmentManager.executePendingTransactions()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>commit</code></mark></summary><div class="indented"><p id="785c2a04-aeb2-4170-bac5-2181a5c2dda5" class="">Фиксирует изменения в <mark class="highlight-default"><code>FragmentTransaction</code></mark>, сделанные до вызова этого метода. Это включает в себя добавление, удаление, замену или изменение фрагментов. Выполняет транз<mark class="highlight-default">акцию асинхронно. Это значит, что изменения могут быть применены позже, в следующем цикле обновления UI. Если вызвать </mark><mark class="highlight-default"><code>executePendingTransactions</code></mark><mark class="highlight-default"> после метода </mark><mark class="highlight-default"><code>commit</code></mark><mark class="highlight-default">, то тра</mark>нзакция станет синхронной.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8083-8d8d-e882d93e3443" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .replace(R.id.fragment_container, fragment)
+    .commit()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>commitNow</code></mark></summary><div class="indented"><p id="f775d4b4-e27e-4977-9546-a2a3215323b0" class="">Выполняет транзакцию синхронно, немедленно фиксируя изменения. Используйте этот метод, если нужно убедиться, что транзакция завершена до выполнения следующего кода.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80d2-89a7-ceeb4f4c2371" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .replace(R.id.fragment_container, fragment)
+    .commitNow()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>commitAllowingStateLoss</code></mark></summary><div class="indented"><p id="b823d994-7c6b-44d9-971d-c9aaf04ff9dc" class="">Фиксиру<mark class="highlight-default">ет транзакцию, игнорируя потенциальные потери состояния активити и фрагмента. Это может быть полезно, если состояние не критично и транзакция должна быть выполнена независимо от возможной потери состояния. Использование </mark><mark class="highlight-default"><code>commitAllowingStateLoss</code></mark><mark class="highlight-default"> приводит к ситуациям такого вида: Пользователь возвращается на </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">, которая была уничтожена системой. Пользователь ожидает увидеть UI, который отображался перед тем как он покинул активити, но транзакция с добавлением или удалением фрагмента не сохранилась и пользователь видит пустой экран или активити в неверном состоянии. Хорошей практикой считается использование </mark><mark class="highlight-default"><code>commit</code></mark><mark class="highlight-default">, а не </mark><mark class="highlight-default"><code>commitAllowingStateLoss</code></mark><mark class="highlight-default">. Если вы получаете репорты о state loss крэшах, пробуйте решить корень проблемы. Для этого не вызывайте </mark><mark class="highlight-default"><code>commit</code></mark><mark class="highlight-default"> в </mark><mark class="highlight-default"><code>onPause</code></mark><mark class="highlight-default"> или следующих после него мет</mark>одах.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-807b-a146-f7595d0782d0" class="code"><code class="language-Kotlin">supportFragmentManager
+    .beginTransaction()
+    .replace(R.id.fragment_container, fragment)
+    .commitAllowingStateLoss()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dismiss</code></mark></summary><div class="indented"><p id="13515285-0ae8-8090-818d-e90366d1dda1" class="">Используется для закрытия <mark class="highlight-default"><code>DialogFragment</code></mark>. Закрывает диалог с анимацией и планирует удаление фрагмента в следующей доступной транзакции, что позволяет избежать потенциальных проблем с состоянием фрагмента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-801e-ab1b-e10a0f4c9038" class="code"><code class="language-Kotlin">class MyDialogFragment: DialogFragment() {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(requireContext())
+            .setTitle(&quot;Title&quot;)
+            .setMessage(&quot;Message&quot;)
+            .setPositiveButton(&quot;OK&quot;) { _, _ -&gt;
+                // Закрываем диалог с анимацией
+                dismiss()
+            }
+            .setNegativeButton(&quot;Cancel&quot;) { _, _ -&gt; }
+            .create()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dismissNow</code></mark></summary><div class="indented"><p id="97e1031a-67e3-452a-afa3-d3c683ffd762" class="">Используется <mark class="highlight-default">для немедленного удаления фрагмента. В отличие от </mark><mark class="highlight-default"><code>dismiss</code></mark><mark class="highlight-default">, который может быть отложен до завершения текущего цикла событий, </mark><mark class="highlight-default"><code>dismissNow</code></mark><mark class="highlight-default"> выполнит действие сразу же.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-8006-9e13-f6685c10f3c4" class="code"><code class="language-Kotlin">class MyDialogFragment: DialogFragment() {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(requireContext())
+            .setTitle(&quot;Title&quot;)
+            .setMessage(&quot;Message&quot;)
+            .setPositiveButton(&quot;OK&quot;) { _, _ -&gt;
+                // Закрываем диалог немедленно
+                dismissNow()
+            }
+            .setNegativeButton(&quot;Cancel&quot;) { _, _ -&gt; }
+            .create()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dismissAllowingStateLoss</code></mark></summary><div class="indented"><p id="30998d88-45dc-434b-b273-5d45dfac31ea" class="">Используется для удаления фрагмента, игнорируя потенциальные потери состояния. Он похож на метод <mark class="highlight-default"><code>dismiss</code></mark>, но позволяет удалять фрагмент даже если это может привести к потере состояния активити или фрагмента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13515285-0ae8-80f2-b399-fac8f516574f" class="code"><code class="language-Kotlin">class MyDialogFragment: DialogFragment() {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(requireContext())
+            .setTitle(&quot;Title&quot;)
+            .setMessage(&quot;Message&quot;)
+            .setPositiveButton(&quot;OK&quot;) { _, _ -&gt; }
+            .setNegativeButton(&quot;Cancel&quot;) { _, _ -&gt;
+                // Закрываем диалог, позволяя потерю состояния
+                dismissAllowingStateLoss()
+            }
+            .create()
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>POP_BACK_STACK_INCLUSIVE</code></mark></summary><div class="indented"><p id="12115285-0ae8-803a-b65b-e2ddedeafef4" class="">Удаляет все фрагменты из стека возврата до указанного фрагмента и включает его в удаление. Используется, когда необходимо удалить фрагмент, соответствующий имени или ID, а также все фрагменты, добавленные после него.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-80a6-a8ad-d5ee11996940" class="code"><code class="language-Kotlin">// Добавляем фрагменты в стек возврата
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, FirstFragment())
+    .addToBackStack(&quot;firstFragment&quot;)
+    .commit()
+
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, SecondFragment())
+    .addToBackStack(&quot;secondFragment&quot;)
+    .commit()
+
+// Вернуться к FirstFragment и удалить SecondFragment
+supportFragmentManager.popBackStack(&quot;firstFragment&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>POP_BACK_STACK_EXCLUSIVE</code></mark></summary><div class="indented"><p id="12115285-0ae8-809a-8aba-fa52371b6de5" class="">Удаляет все фрагменты из стека возврата до указанного фрагмента, но не включает его в удаление. Используется, когда нужно оставить указанный фрагмент на вершине стека.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-804a-9f44-f9224fa7686c" class="code"><code class="language-Kotlin">// Добавляем фрагменты в стек возврата
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, FirstFragment())
+    .addToBackStack(&quot;firstFragment&quot;)
+    .commit()
+
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, SecondFragment())
+    .addToBackStack(&quot;secondFragment&quot;)
+    .commit()
+
+// Вернуться к FirstFragment, оставляя его на вершине стека
+supportFragmentManager.popBackStack(&quot;firstFragment&quot;, FragmentManager.POP_BACK_STACK_EXCLUSIVE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>findFragmentByTag</code></mark></summary><div class="indented"><p id="14a15285-0ae8-805b-b8ad-f45e60e7e250" class=""><mark class="highlight-default">Ищет фрагмент по заданному тегу. Используется, если фрагмент добавлен в </mark><mark class="highlight-default"><code>FragmentTransaction</code></mark><mark class="highlight-default"> с помощью метода </mark><mark class="highlight-default"><code>add</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>replace</code></mark><mark class="highlight-default"> и ему присвоен тег.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80d2-acc8-c7769e8ac976" class="code"><code class="language-Kotlin">val fragment = supportFragmentManager.findFragmentByTag(&quot;MY_FRAGMENT&quot;)
+if (fragment != null) {
+    // Фрагмент найден
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>findFragmentById</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8081-af9d-cdb4da6381b9" class=""><mark class="highlight-default">Ищет фрагмент, привязанный к указанному ресурсу </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default"> по его ID. Используется, если фрагмент был добавлен через XML-разметку или динамически с помощью </mark><mark class="highlight-default"><code>FragmentTransaction</code></mark><mark class="highlight-default"> и указан ID контейнера.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8022-aee9-c9333f4dd63f" class="code"><code class="language-Kotlin">val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+if (fragment != null) {
+    // Фрагмент найден
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>FragmentFactory</code></mark></summary><div class="indented"><p id="14a15285-0ae8-803f-add8-e9d86ec30182" class="">Управляет созданием фрагментов, упрощая их кастомную инициализацию. Вместо пустого конструктора используется метод <mark class="highlight-default"><code>instantiate</code></mark>, который можно переопределить для передачи параметров или внедрения зависимостей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11e15285-0ae8-80be-b21d-d5259aaaeb0f" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val repository = MyRepository()
+        supportFragmentManager.fragmentFactory = MyFragmentFactory(repository)
+    }
+}
+
+class MyFragmentFactory(
+		private val repository: MyRepository
+): FragmentFactory() {
+    override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
+        return when (className) {
+            MyFragment::class.java.name -&gt; MyFragment(repository)
+            else -&gt; super.instantiate(classLoader, className)
+        }
+    }
+}
+
+class MyFragment(
+		private val repository: MyRepository
+): Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val data = repository.getData()
+        return inflater.inflate(R.layout.fragment_my, container, false)
+    }
+}</code></pre><p id="11e15285-0ae8-8022-b934-f09aa0121fc6" class="">• С <mark class="highlight-default"><code>FragmentFactory</code></mark> удобно использовать DI-фреймворки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11e15285-0ae8-8020-aba6-f59c9de803e3" class="code"><code class="language-Kotlin">class MyFragmentFactory @Inject constructor(
+    private val repository: MyRepository
+): FragmentFactory() {
+    override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
+        return when (className) {
+            MyFragment::class.java.name -&gt; MyFragment(repository)
+            else -&gt; super.instantiate(classLoader, className)
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (34)</mark></summary><div class="indented"><ul id="10915285-0ae8-80e8-89a3-ffd8df0e1244" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Lifecycle (13)</strong></mark></summary><ol type="1" id="10815285-0ae8-8079-9c9a-cbbdc4129720" class="numbered-list" start="1"><li>Жизненный цикл фрагмента?<p id="10815285-0ae8-80be-a301-eb3c16b19315" class=""><mark class="highlight-teal"><code>onAttach()</code></mark> → <mark class="highlight-teal"><code>onCreate()</code></mark> → <mark class="highlight-teal"><code>onCreateView()</code></mark> → <mark class="highlight-teal"><code>onActivityCreated()</code></mark> → <mark class="highlight-teal"><code>onStart()</code></mark> → <mark class="highlight-teal"><code>onResume()</code></mark> → <mark class="highlight-teal"><code>onPause()</code></mark> → <mark class="highlight-teal"><code>onStop()</code></mark> → <mark class="highlight-teal"><code>onDestroyView()</code></mark> → <mark class="highlight-teal"><code>onDestroy()</code></mark> → <mark class="highlight-teal"><code>onDetach()</code></mark></p></li></ol><ol type="1" id="12415285-0ae8-80ff-b45e-c9bb676db226" class="numbered-list" start="2"><li>В каком методе жизненного цикла фрагмента становится доступен Context?<p id="12415285-0ae8-8064-803a-c4002c5b2eab" class=""><mark class="highlight-teal"><code>onAttach()</code></mark></p></li></ol><ol type="1" id="10815285-0ae8-80c1-a107-e66757d520c4" class="numbered-list" start="3"><li>Вызовется ли метод onDetach() при замене одного фрагмента другим?<p id="3e24a73f-6e38-4baa-a335-4348bf4c4d66" class=""><mark class="highlight-teal">Да. Когда фрагмент удаляется из </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> (включая замену), он проходит через все этапы жизненного цикла, включая </mark><mark class="highlight-teal"><code>onDetach()</code></mark><mark class="highlight-teal">, что означает, что он отвязывается от </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10815285-0ae8-8086-93a1-faa7a23a7910" class="numbered-list" start="4"><li>Зачем введено разделение на onDestroy(), onDestroyView() и onDetach()?<p id="5f869f88-6d41-4ed8-886d-5fa9a180d791" class=""><mark class="highlight-teal">Разделение на </mark><mark class="highlight-teal"><code>onDestroy()</code></mark><mark class="highlight-teal">, </mark><mark class="highlight-teal"><code>onDestroyView()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onDetach()</code></mark><mark class="highlight-teal"> позволяет точно управлять жизненным циклом и ресурсами фрагмента:</mark></p><p id="ae611788-5928-49f1-bfcb-f674cd7edca2" class="">•<mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onDestroyView()</code></mark><mark class="highlight-teal"> вызывается при уничтожении пользовательского интерфейса, позволяя освободить ресурсы, связанные с представлением.</mark></p><p id="c550b898-d539-432a-8a7a-5a59a4535215" class="">•<mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onDestroy()</code></mark><mark class="highlight-teal"> вызывается при полном уничтожении фрагмента для выполнения завершающих действий.</mark></p><p id="113ee3d3-717c-473c-b8e5-33761a9e6da2" class="">•<mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onDetach()</code></mark><mark class="highlight-teal"> вызывается при отвязывании фрагмента от активности, что важно для предотвращения утечек памяти.</mark></p></li></ol><ol type="1" id="12115285-0ae8-808b-b9a8-d12882a9d4a7" class="numbered-list" start="5"><li>Почему у фрагментов есть метод onDestroyView(), а у Activity нет?<p id="12115285-0ae8-80b9-ba78-f1cea899dd30" class=""><mark class="highlight-teal">Потому что в жизненном цикле фрагментов </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> может быть уничтожено отдельно от самого фрагмента. Это происходит, когда фрагмент убирается с экрана, но его экземпляр продолжает существовать. У </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> нет такого метода, потому что его </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> уничтожается вместе с самой </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> при завершении, и нет необходимости разделять уничтожение </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> и объекта </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-8058-be0d-fcb9d70fe3dd" class="numbered-list" start="6"><li>Когда у фрагмента вызывается метод onCreate?<p id="11c15285-0ae8-802d-84d9-e796b94aa552" class=""><mark class="highlight-teal"><code>onCreate</code></mark><mark class="highlight-teal"> вызывается, когда фрагмент создается, но еще не связался с пользовательским интерфейсом.</mark></p></li></ol><ol type="1" id="12415285-0ae8-8054-80b9-ed1c57d59c62" class="numbered-list" start="7"><li>Какие методы жизненного цикла вызовутся у старого фрагмента при replace?<p id="12415285-0ae8-8081-98cd-d52d13456454" class=""><mark class="highlight-teal"><code>onPause()</code></mark> → <mark class="highlight-teal"><code>onStop()</code></mark> → <mark class="highlight-teal"><code>onDestroyView()</code></mark> → <mark class="highlight-teal"><code>onDestroy()</code></mark> → <mark class="highlight-teal"><code>onDetach()</code></mark></p></li></ol><ol type="1" id="12415285-0ae8-80c3-b6aa-fcc9fc20e10a" class="numbered-list" start="8"><li>В каком методе жизненного цикла фрагмента следует подписываться на Flow?<p id="12415285-0ae8-80dc-a04b-c4314cec3138" class=""><mark class="highlight-teal">В </mark><mark class="highlight-teal"><code>onViewCreated()</code></mark><mark class="highlight-teal">. В этом методе </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> фрагмента уже создана и доступна для использования, что позволяет безопасно обновлять UI на основе получаемых данных.</mark></p></li></ol><ol type="1" id="12415285-0ae8-8083-8aa9-ff61d9753676" class="numbered-list" start="9"><li>Какой lifecycle owner фрагмента следует использовать для подписки на Flow?<p id="12415285-0ae8-8011-a323-f73a5a4513f7" class=""><mark class="highlight-teal"><code>viewLifecycleOwner</code></mark><mark class="highlight-teal">. Это позволяет автоматически управлять подпиской в соответствии с жизненным циклом представления фрагмента, предотвращая утечки памяти и исключая вызовы на уже уничтоженных вьюхах.</mark></p></li></ol><ol type="1" id="bb20b834-0057-4bbb-9916-bcfaf25e257b" class="numbered-list" start="10"><li>Какие методы жизненого цикла фрагмента существуют?<p id="10215285-0ae8-80a3-af79-c2178703b5e9" class="">• <code>oninflate()</code></p><p id="10215285-0ae8-8050-80be-d915027faa97" class="">• <mark class="highlight-teal"><code>onResume()</code></mark></p><p id="a02f46ec-78f0-4864-a824-781b27e1690e" class="">• <code>onReload()</code></p><p id="10215285-0ae8-80b5-a24d-fd59e6e68ece" class="">• <mark class="highlight-teal"><code>onStart()</code></mark></p></li></ol><ol type="1" id="f6ae3db4-20b9-445d-a21f-b4ef5ae56dd5" class="numbered-list" start="11"><li>Какой метод жизненного цикла фрагмента вызывается, когда фрагмент больше не виден пользователю?<p id="da9a90a9-5bae-4003-867d-cdd544a3343f" class="">• <mark class="highlight-red"><code>onDetach()</code></mark></p><p id="e6c7f45d-0ea9-40a7-8e07-0491aa8910de" class="">• <mark class="highlight-red"><code>onPause()</code></mark></p><p id="9943e8bd-8551-4177-985f-997947e5a337" class="">• <mark class="highlight-red"><code>onDestroyView()</code></mark></p><p id="df7b953b-f902-4621-a4d9-28c581348720" class="">• <mark class="highlight-teal"><code>onStop()</code></mark></p></li></ol><ol type="1" id="f3310fbd-d087-4838-914b-099b48632642" class="numbered-list" start="12"><li>В каком методе фрагмент становится доступен Activity?<p id="920bbc6e-402d-4eae-a948-ce6286277424" class="">• <mark class="highlight-red"><code>onCreate()</code></mark></p><p id="27d0acab-f42e-4673-91ae-9c3b0e1d7011" class="">• <mark class="highlight-red"><code>onBind()</code></mark></p><p id="3d438cd5-e91d-4e6c-a71f-ecf6008fc805" class="">• <mark class="highlight-teal"><code>onAttach()</code></mark></p><p id="122385ce-2ce4-45eb-98f5-7993971c7c32" class="">• <mark class="highlight-red"><code>onStart()</code></mark></p></li></ol><ol type="1" id="9b751994-db3f-47b0-9dd6-5d9a31719dba" class="numbered-list" start="13"><li>Какой метод жизненного цикла фрагмента вызывается для создания иерархии пользовательского интерфейса?<p id="afae8b9a-027c-4441-9667-c52713686f7f" class="">• <mark class="highlight-teal"><code>onCreateView()</code></mark></p><p id="8f384907-5c25-44ea-a8bb-f2a03675cd65" class="">• <mark class="highlight-red"><code>onAttach()</code></mark></p><p id="4fa5a22c-ae9f-48c2-8a85-b295918ec6a8" class="">• <mark class="highlight-red"><code>onCreate()</code></mark></p><p id="077d4914-ab29-4974-aa02-76ec57701c29" class="">• <mark class="highlight-red"><code>onStart()</code></mark></p></li></ol></details></li></ul><ul id="10915285-0ae8-801c-840b-c157645f37b1" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>FragmentManager (14)</strong></mark></summary><ol type="1" id="10e15285-0ae8-80b2-84a4-c455d149f4fe" class="numbered-list" start="1"><li>Для чего нужен FragmentManager?<p id="10e15285-0ae8-8078-af9a-c08abd3749c5" class=""><mark class="highlight-teal"><code>FragmentManager</code></mark><mark class="highlight-teal"> управляет фрагментами, позволяя добавлять, удалять и заменять их, а также обрабатывать транзакции для изменения интерфейса. Он сохраняет состояние фрагментов при изменении конфигурации и управляет стеком возврата, обеспечивая взаимодействие между фрагментами и хост-активити.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-801a-9de6-ce1136a754fb" class="numbered-list" start="2"><li>Как работают транзакции у фрагментов?<p id="11c15285-0ae8-80c6-8d3a-e852b9f14e32" class=""><mark class="highlight-teal">Транзакции фрагментов управляют их добавлением, заменой и удалением через </mark><mark class="highlight-teal"><code>FragmentManager</code></mark><mark class="highlight-teal">. </mark><mark class="highlight-teal"><code>commitNow()</code></mark><mark class="highlight-teal"> выполняет изменения сразу, а </mark><mark class="highlight-teal"><code>commit()</code></mark><mark class="highlight-teal"> — с задержкой; с помощью </mark><mark class="highlight-teal"><code>addToBackStack()</code></mark><mark class="highlight-teal"> можно вернуться к предыдущему состоянию.</mark></p></li></ol><ol type="1" id="237d5e62-34fb-4b17-9b86-8de7f50830a8" class="numbered-list" start="3"><li>Что будет, если мы попытаемся закоммитить фрагмент, когда приложение свернуто?<p id="6bd56091-1efb-4970-a24c-a4d29f33dc82" class=""><mark class="highlight-teal">Это может вызвать исключение </mark><mark class="highlight-teal"><code>IllegalStateException</code></mark><mark class="highlight-teal">, так как фрагменты не могут быть изменены, когда </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> не находится в состоянии </mark><mark class="highlight-teal"><code>RESUMED</code></mark><mark class="highlight-teal">. Для безопасного добавления или замены фрагментов лучше проверять состояние активности и использовать методы, такие как </mark><mark class="highlight-teal"><code>isStateSaved()</code></mark><mark class="highlight-teal">, чтобы избежать ошибок.</mark></p></li></ol><ol type="1" id="10415285-0ae8-8017-b0a4-c51d328559a0" class="numbered-list" start="4"><li>Для чего нужен метод commitAllowingStateLoss?<p id="10415285-0ae8-806d-9650-d67abea4eb12" class=""><mark class="highlight-teal">Выполняет транзакцию фрагмента, даже если состояние </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> потеряно, что предотвращает исключение при коммите.</mark></p></li></ol><ol type="1" id="10315285-0ae8-80b3-a89d-df17ec667b33" class="numbered-list" start="5"><li>Разница методов add и replace?<p id="10315285-0ae8-80ca-bd8c-cf9ca3ece6ed" class=""><mark class="highlight-teal">Метод </mark><mark class="highlight-teal"><code>add()</code></mark><mark class="highlight-teal"> добавляет новый фрагмент поверх существующего, оставляя предыдущий активным и в состоянии </mark><mark class="highlight-teal"><code>resumed</code></mark><mark class="highlight-teal">, тогда как метод </mark><mark class="highlight-teal"><code>replace()</code></mark><mark class="highlight-teal"> заменяет текущий фрагмент, вызывая у него полный жизненный цикл (с </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> до </mark><mark class="highlight-teal"><code>onDetach()</code></mark><mark class="highlight-teal">) перед добавлением нового фрагмента.</mark></p></li></ol><ol type="1" id="10e15285-0ae8-80a5-8f56-ea3daf71f4f4" class="numbered-list" start="6"><li>Чем отличается tag в методах add и addToBackStack?<p id="10e15285-0ae8-80b2-a594-f82ac90cdc06" class=""><mark class="highlight-teal"><code>tag</code></mark><mark class="highlight-teal"> в методе </mark><mark class="highlight-teal"><code>add</code></mark><mark class="highlight-teal"> используется для уникальной идентификации фрагмента в </mark><mark class="highlight-teal"><code>FragmentManager</code></mark><mark class="highlight-teal">. Это позволяет позже получить доступ к фрагменту с помощью </mark><mark class="highlight-teal"><code>findFragmentByTag</code></mark><mark class="highlight-teal">.</mark></p><p id="10e15285-0ae8-80f9-9d9d-e0c2933e558e" class=""><mark class="highlight-teal"><code>addToBackStack</code></mark><mark class="highlight-teal"> создает запись в стек возврата, позволяя пользователю вернуться к предыдущему состоянию интерфейса. Здесь </mark><mark class="highlight-teal"><code>tag</code></mark><mark class="highlight-teal"> не имеет значения, но его можно использовать для более удобной идентификации при работе со стеком.</mark></p></li></ol><ol type="1" id="11015285-0ae8-801a-991b-c35bd6ba24a9" class="numbered-list" start="7"><li>Как закрыть сразу n фрагментов в стеке?<p id="11015285-0ae8-80e8-800a-ff414d5c4e4f" class=""><mark class="highlight-teal">Удалить все фрагменты до определенного можно методом </mark><mark class="highlight-teal"><code>fragmentManager.popBackStack(&quot;targetFragmentTag&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-8013-ae60-ca9efeefd3c8" class="numbered-list" start="8"><li>Есть стек фрагментов A-B-C-D, как из D вернутьс в A?<p id="11c15285-0ae8-808b-b691-c284b570c1b3" class=""><mark class="highlight-teal">Чтобы вернуться с D к A, вызови </mark><mark class="highlight-teal"><code>fragmentManager.popBackStack(&quot;A&quot;, FragmentManager.POP_BACK_STACK_INCLUSIVE)</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="12115285-0ae8-802e-ba4a-cc09949b591f" class="numbered-list" start="9"><li>Если в контейнер добавлено 5 фрагментов и выполняем replace, сколько фрагментов удалится?<p id="12115285-0ae8-80f3-bec3-ed367ef8cc6e" class=""><mark class="highlight-teal">Удалятся все 5 фрагментов, потому что </mark><mark class="highlight-teal"><code>replace</code></mark><mark class="highlight-teal"> сначала удаляет все существующие фрагменты в указанном контейнере, а затем добавляет новый фрагмент.</mark></p></li></ol><ol type="1" id="12315285-0ae8-8066-b078-f65ea341024e" class="numbered-list" start="10"><li>Как работает FragmentManager.<mark class="highlight-default">POP_BACK_STACK_INCLUSIVE?</mark><p id="12315285-0ae8-80bd-91a2-d6afbce23428" class="block-color-default"><mark class="highlight-teal">Удаляет все фрагменты из стека возврата до указанного фрагмента и включает его в удаление. Используется, когда необходимо удалить фрагмент, соответствующий имени или ID, а также все фрагменты, добавленные после него.</mark></p></li></ol><ol type="1" id="11515285-0ae8-8024-a777-f18ca966ff26" class="numbered-list" start="11"><li>Какие из перечисленных методов для коммита у FragmentTansaction не позволяют добавлять фрагменты в backstack?<p id="8a2002b1-ca9f-47b0-b728-6a1a6fb5bea3" class="">• <mark class="highlight-teal"><code>commitNow()</code></mark></p><p id="cc7113af-db9a-482e-bc82-a263e6d30e23" class="">• <code>commit()</code></p><p id="2035a777-b539-46ac-bc1c-8afc521d1de8" class="">• <code>commitAllowingStateLoss()</code></p></li></ol><ol type="1" id="1eef57c9-2d01-4597-9e3c-d26e3909a7be" class="numbered-list" start="12"><li>Какой из следующих классов используется для работы с фрагментами в Android?<p id="f4240e43-74b9-43ff-a32c-7ad0e3fb1b7b" class="">• <mark class="highlight-red"><code>FragmentController</code></mark></p><p id="3ae82aab-651c-40a4-9fb3-e889e21320f0" class="">• <mark class="highlight-teal"><code>FragmentManager</code></mark></p><p id="e3c555ed-7ddf-4c71-9448-cb0496cc10f5" class="">• <mark class="highlight-red"><code>FragmentHandler</code></mark></p><p id="f1e0e291-2ce8-4a81-b86f-3c8edd02cc87" class="">• <mark class="highlight-red"><code>FragmentActivity</code></mark></p></li></ol><ol type="1" id="10215285-0ae8-8044-a6c5-f15915199181" class="numbered-list" start="13"><li>Является ли метод FragmentManager.commit() синхронным?<p id="10215285-0ae8-808f-a1b7-ddd11f94fa44" class="">• <mark class="highlight-red">Да, он синхронный.</mark></p><p id="10215285-0ae8-806a-944c-f5674e11f029" class="">• <mark class="highlight-teal">Нет, он асинхронный.</mark></p><p id="10215285-0ae8-8087-b617-fd3bed49a080" class="">• <mark class="highlight-red">Такого метода нет.</mark></p></li></ol><ol type="1" id="6ae361e2-d604-4c14-bd20-37b365ac2894" class="numbered-list" start="14"><li>Какой метод следует использовать для проверки наличия фрагмента в FragmentManager по его тегу?<p id="3f010d6d-5f0d-4fa4-bc0d-de2acbf5de81" class="">• <mark class="highlight-red"><code>locateFragmentByTag</code></mark></p><p id="f6eb7f14-5c63-4f57-86c5-920e358e5288" class="">• <mark class="highlight-teal"><code>findFragmentByTag</code></mark></p><p id="8edfb170-9eed-4d4d-aaeb-a1241e57fb18" class="">• <mark class="highlight-red"><code>searchFragmentByTag</code></mark></p><p id="69e08380-778e-49a0-b649-bab83efc2aea" class="">• <mark class="highlight-red"><code>getFragmentByTag</code></mark></p></li></ol></details></li></ul><ul id="11015285-0ae8-8058-81af-c135a11a1fb4" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (7)</strong></mark></summary><ol type="1" id="7cf2d86a-9152-4191-a63e-9d13ea4e56bd" class="numbered-list" start="1"><li>Для чего нужен Fragment?<p id="10815285-0ae8-8039-bf41-df4f032c7543" class=""><mark class="highlight-teal"><code>Fragment</code></mark><mark class="highlight-teal"> нужен для создания многоэкранных интерфейсов и управления компонентами пользовательского интерфейса внутри </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal">. Он позволяет переиспользовать интерфейсные элементы, управлять состоянием и взаимодействием, а также обеспечивает более гибкую архитектуру приложений, особенно на устройствах с большими экранами.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-801e-85a0-c360fa606f6e" class="numbered-list" start="2"><li>Является ли Fragment основным компонентом Android?<p id="12a15285-0ae8-801d-8831-d7aed88f6c15" class=""><mark class="highlight-teal">Нет.</mark></p></li></ol><ol type="1" id="10815285-0ae8-800b-8df1-e9f7837b2c31" class="numbered-list" start="3"><li>Чем Fragment отличается от Activity?<p id="10815285-0ae8-8081-a4eb-f9ab8a2baa5a" class=""><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> — один из основных Android-компонентов с полным жизненным циклом, представляющий экран, а </mark><mark class="highlight-teal"><code>Fragment</code></mark><mark class="highlight-teal"> — это часть пользовательского интерфейса внутри </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal">, зависимая от его жизненного цикла и позволяющая переиспользовать интерфейсные элементы.</mark></p></li></ol><ol type="1" id="aa680993-99b8-47f6-891c-a786529d64ad" class="numbered-list" start="4"><li>Чем Fragment отличается от View?<p id="10815285-0ae8-80a0-99b5-ed9d108d868b" class=""><mark class="highlight-teal"><code>Fragment</code></mark><mark class="highlight-teal"> — это компонент с собственным жизненным циклом, который управляет несколькими </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal">, тогда как </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> — это базовый элемент интерфейса, зависящий от активности или фрагмента.</mark></p></li></ol><ol type="1" id="10815285-0ae8-80ad-8c6a-f02ffb4a76f2" class="numbered-list" start="5"><li>Какие есть способы создать фрагмент?<p id="10815285-0ae8-800f-b81a-c61c6c8a0920" class="">• <mark class="highlight-teal">Использовать статический метод </mark><mark class="highlight-teal"><code>newInstance()</code></mark><mark class="highlight-teal"> для создания экземпляра и передачи данных через </mark><mark class="highlight-teal"><code>Bundle</code></mark><mark class="highlight-teal"> (является безопасным и правильным подходом).</mark></p><p id="10815285-0ae8-80e1-bd5f-cec09b871307" class="">• <mark class="highlight-teal">Через XML.</mark></p><p id="10e15285-0ae8-80e5-873f-df660c1faf0e" class="">• <mark class="highlight-teal">Через </mark><mark class="highlight-teal"><code>FragmentFactory</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="12615285-0ae8-8028-8586-c6b5b3446545" class="numbered-list" start="6"><li>Какие есть способы передать данные между фрагментами?<p id="12615285-0ae8-80bb-b11b-f554d06c3ddc" class="">• <mark class="highlight-teal">Arguments</mark></p><p id="12615285-0ae8-8037-96f4-d0d5c092b806" class="">• <mark class="highlight-teal">Shared ViewModel</mark></p><p id="12615285-0ae8-80af-a676-dc886e61b179" class="">• <mark class="highlight-teal">Singleton</mark></p></li></ol><ol type="1" id="9ad9f931-ac51-4c89-a141-2c1ff376ab2c" class="numbered-list" start="7"><li>Какой метод используется для закрытия диалога в Android?<p id="abba2991-0330-4019-8a72-66499570e904" class="">• <mark class="highlight-teal"><code>dismiss()</code></mark></p><p id="f4d96ea0-b274-490d-8fc9-4b51fc73c2a5" class="">• <mark class="highlight-red"><code>cancelDialog</code></mark></p><p id="da7d925e-9047-4b3b-ba36-087f4abc1683" class="">• <mark class="highlight-red"><code>closeDialog</code></mark></p><p id="334617e3-6f93-4390-a2fe-aef0e32e718b" class="">• <mark class="highlight-red"><code>dismissDialog</code></mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

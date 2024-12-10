@@ -1,0 +1,760 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DevOps</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="12015285-0ae8-8088-8c91-f777b6c3a1ef" class="page sans"><header><img class="page-cover-image" src="DevOps%20120152850ae880888c91f777b6c3a1ef/cover-devops.webp" style="object-position:center 64.21%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="DevOps%20120152850ae880888c91f777b6c3a1ef/icon-ci-cd.svg"/></div><h1 class="page-title"><strong>DevOps</strong></h1><p class="page-description"></p></header><div class="page-body"><figure id="13515285-0ae8-80ec-b3cd-e61ccdb96875" class="link-to-page"><a href="DevOps%20120152850ae880888c91f777b6c3a1ef/Detekt%20135152850ae880ecb3cde61ccdb96875.html">Detekt</a></figure><hr id="13515285-0ae8-80e8-b179-db68b5060c57"/><table id="15315285-0ae8-8084-b4d6-d368800c3489" class="simple-table"><tbody><tr id="3b524635-1348-4cbf-94de-e735123960a6"><td id="bxdT" class="" style="width:520px"><a href="https://developer.android.com/training/testing/continuous-integration">https://developer.android.com/training/testing/continuous-integration</a></td></tr><tr id="f68ea90d-4f00-4486-9781-e2fd639326f9"><td id="bxdT" class="" style="width:520px"><a href="https://developer.android.com/training/testing/continuous-integration/automation">https://developer.android.com/training/testing/continuous-integration/automation</a></td></tr><tr id="e3832145-04ae-4987-8b02-ba9e4f9de8f7"><td id="bxdT" class="" style="width:520px"><a href="https://developer.android.com/training/testing/continuous-integration/features">https://developer.android.com/training/testing/continuous-integration/features</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">CI (Continuous Integration)</summary><div class="indented"><p id="12115285-0ae8-806a-9b54-cde5d0de3457" class="">Подразумевает регулярное слияние изменений в общий репозиторий, что позволяет выявлять ошибки на ранних стадиях. Каждый раз, когда разработчик вносит изменения, автоматически запускаются тесты, что позволяет обеспечить высокое качество кода.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">CD (Continuous Delivery)</summary><div class="indented"><p id="12115285-0ae8-8072-a98e-ef87b2462e72" class="">Подразумевает автоматизацию процесса доставки кода в продакшен, обеспечивая возможность развертывания в любое время. Ускорение процесса развертывания и уменьшение количества ошибок, связанных с ручным развертыванием.</p></div></details><p id="12b15285-0ae8-8038-a4b0-f4ad5e8bf496" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">GitHub Actions</summary><div class="indented"><table id="12a15285-0ae8-80fc-92de-c6e2a833f943" class="simple-table"><tbody><tr id="14a9245d-1dad-449a-a6ef-100e74e42535"><td id="\JQg" class="" style="width:90px"></td></tr></tbody></table><p id="12015285-0ae8-8025-8a44-de69cb03ebeb" class="">GitHub Actions — встроенный CI/CD инструмент на GitHub, который позволяет автоматизировать сборку, тестирование и развертывание проектов прямо из репозитория. Поддерживает контейнеры и серверные задачи, а также легко интегрируется с другими сервисами GitHub.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>on</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8024-ae3c-ecfce4fa074c" class="">Содержит события, которые будут триггерить запуск workflow. Этот раздел позволяет задать как автоматические события (например, push, pull_request), так и вручные (workflow_dispatch).</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>push</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80e1-a92b-f7593bef140f" class="">Запускает workflow при пуше в репозиторий. Можно настроить для определённых веток, тегов или типов файлов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80a6-ba0a-c59acb0271d3" class="code"><code class="language-YAML">on:
+  push:
+    branches:
+      - main
+    tags:
+      - &#x27;v*&#x27; # Срабатывает при пуше тегов, начинающихся с &quot;v&quot;
+    paths:
+      - &#x27;src/**&#x27; # Срабатывает при изменении файлов в папке src</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>pull_request</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80bb-9e18-e91eac389a97" class="">Запускает workflow при создании или обновлении pull request. Как и с <mark class="highlight-default"><code>push</code></mark>, можно ограничить запуск для определённых веток или типов файлов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8032-b9dd-f4936a55d719" class="code"><code class="language-YAML">on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - &#x27;**/*.md&#x27; # Игнорирует изменения только в .md файлах</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>workflow_dispatch</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80b9-92e0-faa38cca3b3b" class="">Добавляет возможность вручного запуска workflow.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80f1-b536-fcd4343d07ac" class="code"><code class="language-YAML">on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: &#x27;Deployment environment&#x27;
+        required: true
+        default: &#x27;production&#x27;
+        type: choice
+        options:
+          - development
+          - staging
+          - production</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>schedule</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8070-92e6-c2697238c1cd" class="">Позволяет настроить запуск по расписанию, используя cron-формат.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-803f-9d38-d6047ef67494" class="code"><code class="language-YAML">on:
+  schedule:
+    - cron: &#x27;0 3 * * *&#x27; # Запускается ежедневно в 3:00 UTC</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>release</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80d3-9dc5-ef943c0c623a" class="">Запускает workflow при создании, публикации или изменении релиза.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80bc-b769-e63fb6b40d81" class="code"><code class="language-YAML">on:
+  release:
+    types: 
+      - created # Срабатывает при создании релиза
+      - published # Срабатывает при публикации</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>issues</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80ee-be11-e966796eafea" class="">Позволяет запускать workflow при действиях с <mark class="highlight-default"><code>issue</code></mark> (например, открытие, закрытие, комментарий и т.д.).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-806c-a277-cf7010720b15" class="code"><code class="language-YAML">on:
+  issues:
+    types: [opened, edited]</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>concurrency</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80d6-b10b-fafe83383e8e" class="">Используется для управления параллельным выполнением workflow, чтобы избежать одновременного запуска конфликтующих задач, оптимизировать использование ресурсов и предотвратить избыточные запуски. Этот параметр позволяет объединять workflow в группы и при необходимости отменять уже выполняющиеся задачи.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>group</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80e0-8f5c-ce11c9397b2b" class="">Определяет группу для workflow, которые не должны выполняться одновременно. Задав группу, можно указать, что workflow из этой группы не могут быть запущены параллельно. Значение группы может быть статическим или динамическим с использованием переменных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8071-83a0-e28b39fd963a" class="code"><code class="language-YAML">concurrency:
+  group: build-${{ github.ref }}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>cancel-in-progress</code></mark></summary><div class="indented"><p id="12f15285-0ae8-807f-b50b-d2e055e0c3bc" class="">Контролирует, должны ли уже запущенные workflow в этой группе быть отменены при запуске нового.</p><p id="12f15285-0ae8-808f-a0d8-e5e0a58d9754" class="">• <mark class="highlight-default"><code>true</code></mark> отменяет текущие выполняющиеся workflow из этой группы при запуске нового.</p><p id="12f15285-0ae8-803d-9ae2-ef4400cc80ce" class="">• <mark class="highlight-default"><code>false</code></mark> оставляет текущие запущенные workflow в группе, не отменяя их.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80f6-a614-ee63b8243020" class="code"><code class="language-YAML">concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>jobs</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8016-8320-f449290cc1f8" class="">Представляют собой отдельные задачи, которые выполняются в рамках одного workflow. Каждый <mark class="highlight-default"><code>job</code></mark> содержит набор шагов (steps), определяющих, что должно быть выполнено в рамках этого задания. Задачи могут быть независимыми или зависеть друг от друга, и GitHub предоставляет гибкие возможности для их настройки.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Название задания</summary><div class="indented"><p id="12f15285-0ae8-807e-b3e1-f384a88652c5" class="">Каждый <mark class="highlight-default"><code>job</code></mark> может иметь уникальное имя, которое помогает организовать и понять назначение задачи в workflow.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8044-9faa-f82614dd2bfa" class="code"><code class="language-YAML">jobs:
+  build:</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>runs-on</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8070-bfbe-d8791e57c84f" class="">Указывает, на каком типе виртуальной машины (runner) будет выполняться <mark class="highlight-default"><code>job</code></mark>. Например, <mark class="highlight-default"><code>ubuntu-latest</code></mark>, <mark class="highlight-default"><code>macos-latest</code></mark>, или <mark class="highlight-default"><code>windows-latest</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80cd-bc13-f9be8c97f110" class="code"><code class="language-YAML">jobs:
+  build:
+    runs-on: ubuntu-latest</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>steps</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80be-81aa-ee9133af2b6d" class="">Задаёт последовательность шагов, выполняемых в рамках <mark class="highlight-default"><code>job</code></mark>. Шаги могут включать команды, действия, сценарии и проверки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-806f-8866-d61be26e5276" class="code"><code class="language-YAML">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: ./gradlew test</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>needs</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8057-b78e-e76ccc4341f5" class="">Позволяет задать зависимость одного задания от другого. Например, ес<mark class="highlight-default">ли </mark><mark class="highlight-default"><code>deploy</code></mark><mark class="highlight-default"> должен выполняться только после успешного выполнения </mark><mark class="highlight-default"><code>build</code></mark><mark class="highlight-default">, можно указать </mark><mark class="highlight-default"><code>needs</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-80eb-b0af-e5775809df27" class="code"><code class="language-YAML">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build code
+        run: ./gradlew build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy application
+        run: ./deploy.sh</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>if</code></mark></summary><div class="indented"><p id="12f15285-0ae8-80a6-b274-c37ca26e530c" class="">Позволяет указать, при каких условиях <mark class="highlight-default"><code>job</code></mark> должен выполняться. Например, можно запускать <mark class="highlight-default"><code>job</code></mark> только при выполнении определённых условий (например, при пуше в основную ветку).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8088-a0e3-dec9db040bb0" class="code"><code class="language-YAML">jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == &#x27;refs/heads/main&#x27;
+    steps:
+      - name: Build code
+        run: ./gradlew build</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>timeout-minutes</code></mark></summary><div class="indented"><p id="12f15285-0ae8-8087-a20d-f5321ebc34c4" class="">Устанавливает максимальное время выполнения для <mark class="highlight-default"><code>job</code></mark>, после которого выполнение будет прервано, чтобы избежать бесконечных циклов или задержек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8007-8b60-defa882a3375" class="code"><code class="language-YAML">jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Build code
+        run: ./gradlew build</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>env</code></mark></summary><div class="indented"><p id="12f15285-0ae8-809a-9520-f4dff5d7734c" class="">Можно передавать секретные данные или переменные окружения, которые будут использоваться только в рамках этого <mark class="highlight-default"><code>job</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f15285-0ae8-8004-ac8c-ed94ec156c40" class="code"><code class="language-YAML">jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+    steps:
+      - name: Deploy code
+        run: ./deploy.sh</code></pre></div></details></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">GitLab CI</summary><div class="indented"><table id="12a15285-0ae8-8065-b97c-d2e1f3be3aab" class="simple-table"><tbody><tr id="698eac24-fe8e-49c9-b701-5ccd1129395c"><td id="\JQg" class="" style="width:293px"><a href="https://docs.gitlab.com/ee/ci/">https://docs.gitlab.com/ee/ci/</a></td></tr></tbody></table><p id="12015285-0ae8-80b4-915f-c8db8ea43e4d" class="">GitLab CI — встроенная система CI/CD в GitLab, которая позволяет автоматизировать процессы сборки, тестирования и развертывания кода. Полностью интегрирован с системой управления версиями, что делает его удобным для проектов, хостящихся в GitLab.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Bitrise</summary><div class="indented"><table id="12a15285-0ae8-806f-930f-c3ae073b79fb" class="simple-table"><tbody><tr id="f6da0fa0-be75-4cde-8f75-47b37f1d4279"><td id="\JQg" class="" style="width:453px"><a href="https://bitrise.io/">https://bitrise.io/</a></td></tr></tbody></table><p id="12015285-0ae8-80a2-9447-db15798399d0" class="">Bitrise — облачная CI/CD платформа, оптимизированная для мобильной разработки. Предоставляет преднастроенные шаги для тестирования и развертывания iOS и Android приложений.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Fastlane</summary><div class="indented"><table id="12a15285-0ae8-806b-b853-d8261c861a57" class="simple-table"><tbody><tr id="d51bc1f9-3d5f-4e51-8f1c-daf613a2d3d8"><td id="\JQg" class="" style="width:340px"><a href="https://fastlane.tools/">https://fastlane.tools/</a></td></tr></tbody></table><p id="12015285-0ae8-80bd-a67f-c6608a9c7dd6" class="">Fastlane — инструмент, ориентированный на автоматизацию рутинных задач в мобильной разработке, таких как сборка, тестирование, публикация и управление сертификатами. Часто используется вместе с другими CI/CD системами, такими как Jenkins или Bitrise.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">CircleCI</summary><div class="indented"><table id="12a15285-0ae8-80cf-80ad-c8a7d9b2efa2" class="simple-table"><tbody><tr id="ae684255-97e9-47aa-a6d1-45176ade70d4"><td id="\JQg" class="" style="width:332px"><a href="https://circleci.com/">https://circleci.com/</a></td></tr></tbody></table><p id="12015285-0ae8-80f7-aacf-eb1f0cc976ce" class="">CircleCI — популярная платформа для CI/CD, которая предлагает как облачные, так и локальные решения. Хорошо интегрируется с GitHub и Bitbucket и поддерживает параллельное выполнение задач для ускорения процессов.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Jenkins</summary><div class="indented"><table id="12a15285-0ae8-8082-8710-c0ca35d75b10" class="simple-table"><tbody><tr id="d7c2ceee-a8e2-4a17-88eb-9487100437f0"><td id="\JQg" class="" style="width:149px"><a href="https://www.jenkins.io/">https://www.jenkins.io/</a></td></tr></tbody></table><p id="12015285-0ae8-8056-8f4a-f0597818b978" class="">Jenkins — open-source CI/CD сервер с широкими возможностями кастомизации через плагины. Поддерживает различные языки программирования и инструменты, что делает его одним из наиболее гибких решений.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Travis CI</summary><div class="indented"><table id="12a15285-0ae8-805e-8516-c0aeba4fadb4" class="simple-table"><tbody><tr id="39359e22-5aa2-4993-b8c3-c5b45803b3f9"><td id="\JQg" class="" style="width:453px"><a href="https://www.travis-ci.com/">https://www.travis-ci.com/</a></td></tr></tbody></table><p id="12015285-0ae8-80b7-ac4e-e70f19140c94" class="">Travis CI — облачная платформа CI/CD, которая предоставляет простую конфигурацию через файл .travis.yml. Хорошо интегрируется с GitHub, и часто используется для open-source проектов.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">TeamCity</summary><div class="indented"><table id="12a15285-0ae8-8013-aa58-e05a4aea6a18" class="simple-table"><tbody><tr id="b3d652c1-31ba-4510-9f05-88c113b9d580"><td id="\JQg" class="" style="width:453px"><a href="https://www.jetbrains.com/teamcity/">https://www.jetbrains.com/teamcity/</a></td></tr></tbody></table><p id="12015285-0ae8-80f7-ada6-f4dae7aa3152" class="">TeamCity — мощный CI/CD инструмент от JetBrains, поддерживающий гибкую настройку билдов и интеграцию с различными IDE и системами контроля версий. Хорошо подходит для больших команд благодаря своим функциям для параллельных билдов и отчетности.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (1)</mark></summary><div class="indented"><ol type="1" id="12a15285-0ae8-802b-b26a-c58f7859d3cc" class="numbered-list" start="1"><li>Для чего используется CI?<p id="12a15285-0ae8-8014-a3c7-d0d2541acf84" class=""><mark class="highlight-teal">Для автоматизации сборки и тестирования кода при каждом изменении, чтобы быстро выявлять ошибки и поддерживать стабильность проекта.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

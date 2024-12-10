@@ -1,0 +1,770 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Activity</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="87954cda-0e4a-4b7d-bb91-36e0baedcc8b" class="page sans"><header><img class="page-cover-image" src="Activity%2087954cda0e4a4b7dbb9136e0baedcc8b/cover-android-activity.webp" style="object-position:center 46.14%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Activity%2087954cda0e4a4b7dbb9136e0baedcc8b/icon-android-platform.svg"/></div><h1 class="page-title"><strong>Activity</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="fad2f5d2-4588-4506-9305-3ee594674aec" class="simple-table"><tbody><tr id="1946128f-2409-4cf3-8409-bbb9447f23c4"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/guide/components/activities/intro-activities">https://developer.android.com/guide/components/activities/intro-activities</a></td></tr><tr id="f162f4a3-a7be-45c3-9b71-15b026c4345a"><td id="a&gt;po" class="" style="width:569px"><a href="https://d.android.com/guide/components/activities/activity-lifecycle">https://d.android.com/guide/components/activities/activity-lifecycle</a></td></tr><tr id="f8616d4d-25fc-4925-b363-7fc6db7325dd"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/guide/components/activities/state-changes">https://developer.android.com/guide/components/activities/state-changes</a></td></tr><tr id="a44ad3e8-3e53-4902-a226-17c60dc05953"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/guide/components/activities/testing">https://developer.android.com/guide/components/activities/testing</a></td></tr><tr id="3a5dc871-f4a9-48da-967c-e43485664087"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/guide/components/activities/tasks-and-back-stack">https://developer.android.com/guide/components/activities/tasks-and-back-stack</a></td></tr><tr id="c524227d-ce35-44fb-a18d-ec381d93afc9"><td id="a&gt;po" class="" style="width:569px"><a href="https://developer.android.com/guide/components/activities/recents">https://developer.android.com/guide/components/activities/recents</a></td></tr><tr id="2cdfd90e-a32f-4143-b285-46ae1db6bf3e"><td id="a&gt;po" class="" style="width:569px"><a href="https://d.android.com/guide/components/activities/background-starts">https://d.android.com/guide/components/activities/background-starts</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Activity</code></mark></summary><div class="indented"><p id="14815285-0ae8-80ac-89ea-dee4028d8ec5" class="">Основной компонент Android, представляющий экран приложения. Она управляет UI, жизненным циклом и взаимодействием с пользователем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-80a8-92ed-f66273110ca1" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCreate</code></mark></summary><div class="indented"><p id="14815285-0ae8-8097-88e2-f8439cc7cae6" class="">Вызывается при создании <mark class="highlight-default"><code>Activity</code></mark>. В нём задаётся интерфейс и начальная логика.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-80db-beb8-f48d24c14bfd" class="code"><code class="language-Kotlin">override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onStart</code></mark></summary><div class="indented"><p id="7f6e46fe-f52f-4277-9116-997c3e96209d" class="">Вызывается, когда <mark class="highlight-default"><code>Activity</code></mark> становится видимой для пользователя.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-8048-9ff5-e037313008c5" class="code"><code class="language-Kotlin">override fun onStart() {
+    super.onStart()
+    dataObserver.startObserving()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onResume</code></mark></summary><div class="indented"><p id="a6c0fbde-c8e7-4fd4-b074-a6cfbe95e294" class="">Вызывается, когда <mark class="highlight-default"><code>Activity</code></mark> переходит в активное состояние и готова взаимодействовать с пользователем.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-800f-9dea-d01d7c6a0e29" class="code"><code class="language-Kotlin">override fun onResume() {
+    super.onResume()
+    startRefreshingData()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onPause</code></mark></summary><div class="indented"><p id="a9344987-40f9-41ed-ae51-c9fc08dee015" class="">Вызывается, когда <mark class="highlight-default"><code>Activity</code></mark> уходит на второй план, но всё ещё частично видима.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-80c2-b281-cf840dd9cec2" class="code"><code class="language-Kotlin">override fun onPause() {
+    super.onPause()
+    pauseAnimations()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onStop</code></mark></summary><div class="indented"><p id="1acc74e5-f239-47b0-9582-8e935b852727" class="">Вызывается, когда <mark class="highlight-default"><code>Activity</code></mark> перестаёт быть видимой.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-803b-99f3-c6b5b5d3f586" class="code"><code class="language-Kotlin">override fun onStop() {
+    super.onStop()
+    dataObserver.stopObserving()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDestroy</code></mark></summary><div class="indented"><p id="02b3610d-9398-4584-899d-12fecbb41c65" class="">Вызывается перед уничтожением <mark class="highlight-default"><code>Activity</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14815285-0ae8-80ff-b3b8-f7c5d332b8e8" class="code"><code class="language-Kotlin">override fun onDestroy() {
+    super.onDestroy()
+    cleanupResources()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>isFinishing</code></mark></summary><div class="indented"><p id="11415285-0ae8-8022-bfd5-f56a78839183" class=""><mark class="highlight-default">Используется для проверки, находится ли активность в процессе завершения. Он возвращает </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, если активность была запущена для завершения (например, из-за вызова </mark><mark class="highlight-default"><code>finish()</code></mark><mark class="highlight-default"> или по завершению жизненного цикла </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">), и false, если активность все еще активно работает. Вы можете использовать </mark><mark class="highlight-default"><code>isFinishing()</code></mark><mark class="highlight-default"> перед выполнением операций, которые требуют, чтобы активность была активна, чтобы избежать потенциальных ошибок, связанных с обращением к UI, если активность уже завершена.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-80c9-82e2-d5154b11a90e" class="code"><code class="language-Kotlin">override fun onPause() {
+    super.onPause()
+    if (!isFinishing) {
+        // Выполняем действия только если Activity не завершается
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Launch Modes</strong></summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>standart</code></mark></summary><div class="indented"><p id="10315285-0ae8-803f-840b-ed24cba8d61e" class=""><mark class="highlight-default">Режим запуска </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> по умолчанию в Android. В этом режиме каждый раз, когда </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> запускается, создается новый экземпляр этой </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">, и каждый новый экземпляр помещается в стек задач. При этом </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> может быть создано несколько раз, даже если уже существует экземпляр этой </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> в стеке. Каждый новый экземпляр </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> в режиме standard получает уникальный task и back stack, что позволяет сохранить состояние и историю переходов, обеспечивая независимость между различными экземплярами </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8010-bbb4-e968fb78d5fa" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;standart&quot; /&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>singleTop</code></mark></summary><div class="indented"><p id="10315285-0ae8-8081-806c-dbed1cdf5c34" class=""><mark class="highlight-default">Режим запуска </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">, при котором только один экземпляр </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> может быть в стеке задач. Если </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> с </mark><mark class="highlight-default"><code>singleTop</code></mark><mark class="highlight-default"> уже находится на вершине стека, новая попытка её запуска не создаст новый экземпляр, а вызовет метод </mark><mark class="highlight-default"><code>onNewIntent()</code></mark><mark class="highlight-default">. Если </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> не на вершине стека, будет создан новый экземпляр.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="146371a0-778c-4878-8bdb-8671cbcdabec" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleTop&quot; /&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>singleTask</code></mark></summary><div class="indented"><p id="b4487997-ba9d-42fa-944c-03a1d1978a56" class=""><mark class="highlight-default">Режим запуска </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">, при котором в одной задаче может существовать только один экземпляр </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default">. Если </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> с </mark><mark class="highlight-default"><code>singleTask</code></mark><mark class="highlight-default"> уже существует, она будет показана, и все </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> в текущем стеке выше её будут удалены; если нет, она будет создана в новой задаче.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80b9-b86a-c15bf4d96049" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleTask&quot; /&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>singleInstance</code></mark></summary><div class="indented"><p id="1fc541c7-0800-4555-b56d-c007ab727def" class=""><mark class="highlight-default">Устанавливает, что </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> будет существовать только в одном экземпляре в своей собственном, отдельном стеке задач (</mark><mark class="highlight-default"><code>task</code></mark><mark class="highlight-default">). Это означает, что если такая </mark><mark class="highlight-default"><code>Activity</code></mark><mark class="highlight-default"> уже существует, то новая задача не создаст её экземпляр, а вместо этого вернёт существующий экземпляр.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-804e-9d01-f5065cabfecb" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleInstance&quot; /&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>singleInstancePerTask</code></mark></summary><div class="indented"><p id="12615285-0ae8-80bb-bad6-e884b2249982" class="">Когда активность запускается в режиме <mark class="highlight-default"><code>singleInstancePerTask</code></mark>, система создает единственный экземпляр этой <mark class="highlight-default"><code>Activity</code></mark> для каждой задачи. Это означает, что если активность уже существует в другой задаче, новый экземпляр не будет создан. Вместо этого пользователь будет перенаправлен к существующему экземпляру. В отличие от других режимов запуска (например, <mark class="highlight-default"><code>singleTask</code></mark>), этот режим обеспечивает, что <mark class="highlight-default"><code>Activity</code></mark> всегда будет единственной в своей задаче, и только одна задача может содержать этот экземпляр. Если <mark class="highlight-default"><code>Activity</code></mark> вызывается из другой задачи, она будет перемещена в фокус, а не создана заново.</p><p id="12615285-0ae8-80a7-9b5a-f1d18d0f272f" class="">• Добавлен в Android 12 (API 31).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-802e-bd61-e61a25a19d5b" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:launchMode=&quot;singleInstancePerTask&quot; /&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>taskAffinity</code></mark></summary><div class="indented"><p id="10315285-0ae8-80eb-be18-fc2aeb66f8ac" class="">Определяет,<mark class="highlight-default"> к какой задаче (task) принадлежит активность. По умолчанию все активности приложения имеют одинаковую задачу, но с помощью </mark><mark class="highlight-default"><code>taskAffinity</code></mark><mark class="highlight-default"> можно задать для активности принадлежность к другой задаче. Task (Задача) — это стек активностей, с которыми взаимодействует пользователь. Если активность имеет другую </mark><mark class="highlight-default"><code>taskAffinity</code></mark><mark class="highlight-default">, она может быть запущена в отдельной задаче или присоединиться к задаче другого приложения с таким же значением </mark><mark class="highlight-default"><code>taskAffinity</code></mark><mark class="highlight-default">. Это полезно, когда нужно контролировать, как активности взаимодействуют с задачами и как они отображаются в списке последних приложений.</mark></p><p id="10315285-0ae8-8033-8850-ec72fd1479d7" class=""><mark class="highlight-default">• Работает в связке с </mark><mark class="highlight-default"><code>launchMode</code></mark><mark class="highlight-default"> активности (например, </mark><mark class="highlight-default"><code>singleTask</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>singleTop</code></mark><mark class="highlight-default">). Например, если </mark><mark class="highlight-default"><code>taskAffinity</code></mark><mark class="highlight-default"> изменён, а </mark><mark class="highlight-default"><code>launchMode</code></mark><mark class="highlight-default"> задан как </mark><mark class="highlight-default"><code>singleTask</code></mark><mark class="highlight-default">, активность будет запускаться в своей задаче и перезапускаться, если она уже существует.</mark></p><p id="7ac43738-31d0-4947-b67c-a461a586343e" class="">• Хорошее объяснение на <strong><a href="https://stackoverflow.com/questions/17872989/android-task-affinity-explanation">StackOverflow</a></strong>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8040-b15a-fa1c07f1d076" class="code"><code class="language-XML">&lt;activity
+    android:name=&quot;.MainActivity&quot;
+    android:taskAffinity=&quot;&quot; /&gt;
+    
+&lt;activity
+    android:name=&quot;.SettingsActivity&quot;
+    android:taskAffinity=&quot;com.example.differenttask&quot; /&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>TaskStackBuilder</code></mark></summary><div class="indented"><p id="10315285-0ae8-804f-b122-e7bad4a174ce" class="">Позволяет создавать и управлять стеком задач для запуска активностей. Он помогает организовать задачи и их историю, чтобы обеспечить правильное поведение навигации при запуске новых активностей. <mark class="highlight-default"><code>TaskStackBuilder</code></mark> упрощает создание и запуск стека активностей, который будет отображаться в правильном порядке, когда пользователь возвращается к предыдущим активностям.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80c0-88f9-d0d2b4377f9e" class="code"><code class="language-Kotlin">// Создаем TaskStackBuilder для запуска нового Activity
+val stackBuilder = TaskStackBuilder.create(context)
+
+// Добавляем Intent для нового Activity
+stackBuilder.addNextIntentWithParentStack(newIntent)
+
+// Запускаем Activity
+stackBuilder.startActivities()</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>addNextIntent</code></mark></summary><div class="indented"><p id="14815285-0ae8-8087-98d7-ef2d9a632cb1" class="">Добавляет новый <mark class="highlight-default"><code>Intent</code></mark> в back stack без учета родительских экранов.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>addNextIntentWithParentStack</code></mark></summary><div class="indented"><p id="14815285-0ae8-80d8-abac-cdeb1b9c2cde" class="">Добавляет новый <mark class="highlight-default"><code>Intent</code></mark> в back stack с учетом иерархии родительских экранов.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ActivityManager</code></mark></summary><div class="indented"><p id="10315285-0ae8-8084-8758-f850f0b0f1f0" class="">Системный сервис в Android, который управляет жизненным циклом активностей и задач, а также отслеживает состояние процессов в системе. <mark class="highlight-default"><code>ActivityManager</code></mark> отслеживает все активные, видимые и фоновые активности на устройстве.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-801a-b30d-c35344f805de" class="code"><code class="language-Kotlin">val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getRunningTasks</code></mark></summary><div class="indented"><p id="10315285-0ae8-800e-9415-df51ddb90ae5" class="">Возвращает список задач, которые в настоящее время запущены. Можно указать максимальное количество задач, которые нужно вернуть.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8053-869e-d52706d30d16" class="code"><code class="language-Kotlin">val runningTasks = activityManager.getRunningTasks(10)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getRunningAppProcesses</code></mark></summary><div class="indented"><p id="10315285-0ae8-80c4-9847-f3381ed31361" class="">Возвращает список всех запущенных процессов в системе.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80a6-86c2-ecef5b531e04" class="code"><code class="language-Kotlin">val runningAppProcesses = activityManager.runningAppProcesses</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getRecentTasks</code></mark></summary><div class="indented"><p id="438e0b8a-9b4a-48fb-a2d7-5b2a0340b3f8" class="">Возвращает список недавних задач, которые можно открыть из недавнего меню приложений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-80b7-9a38-d1fd4f3d5359" class="code"><code class="language-Kotlin">val recentTasks = activityManager.getRecentTasks(10, ActivityManager.RECENT_IGNORE_UNAVAILABLE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getRunningServices</code></mark></summary><div class="indented"><p id="10315285-0ae8-8096-9577-dd49abe6c4bc" class="">Возвращает список всех запущенных служб.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8095-a6bd-c4b26bc763a4" class="code"><code class="language-Kotlin">val runningServices = activityManager.getRunningServices(10)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getMemoryInfo</code></mark></summary><div class="indented"><p id="db1c6c73-1fde-48f7-833c-31f2cc08baed" class="">Заполняет объект <mark class="highlight-default"><code>ActivityManager.MemoryInfo</code></mark> информацией о текущем состоянии памяти.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a593ef7f-b603-49fd-8057-39ca55d07130" class="code"><code class="language-Kotlin">val memoryInfo = ActivityManager.MemoryInfo()
+activityManager.getMemoryInfo(memoryInfo)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getProcessMemoryInfo</code></mark></summary><div class="indented"><p id="10315285-0ae8-8091-a46a-cd81304c1d4a" class="">Возвращает информацию о потреблении памяти для процессов с указанными идентификаторами процессов (PID).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8082-8161-e0ca3565d3c2" class="code"><code class="language-Kotlin">val processMemoryInfo = activityManager.getProcessMemoryInfo(intArrayOf(pid))</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>killBackgroundProcesses</code></mark></summary><div class="indented"><p id="10315285-0ae8-800a-b0f1-e20b21c50c19" class="">Завершает все фоновые процессы, связанные с указанным пакетом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8029-bd09-ebe687951889" class="code"><code class="language-Kotlin">activityManager.killBackgroundProcesses(&quot;com.example.myapp&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getAppTasks</code></mark></summary><div class="indented"><p id="a6182f1e-e1a8-408d-bc53-f4d2774edcb2" class="">Возвращает список задач, связанных с текущими приложениями.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a3903745-b06f-4885-b6da-dff793ef0e56" class="code"><code class="language-Kotlin">val appTasks = activityManager.appTasks</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getLauncherActivities</code></mark></summary><div class="indented"><p id="f05f2a5b-d415-4e94-a934-92df05afdd21" class="">Возвращает список активностей, которые могут быть запущены из лаунчера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e35e6a98-23f1-4693-b4d5-f49aeb3930a3" class="code"><code class="language-Kotlin">val launcherActivities = activityManager.launcherActivities</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>OnBackPressedDispatcher</code></mark></summary><div class="indented"><p id="10315285-0ae8-8091-be22-e55ebad30e7c" class="">Управляет обработкой нажатия к<mark class="highlight-default">нопки «Назад» (Back) в приложении. Позволяет разным частям приложения регистрировать свои обработчики, которые будут вызваны при нажатии кнопки. Пришел на замену методу </mark><mark class="highlight-default"><code>onBackPressed</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff5d16d5-86e8-4417-885f-d05c223291a4" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Регистрируем обработчик нажатия кнопки &quot;Назад&quot;
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Логика при нажатии кнопки &quot;Назад&quot;
+                println(&quot;Кнопка &#x27;Назад&#x27; нажата&quot;)
+            }
+        })
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (33)</mark></summary><div class="indented"><ul id="10915285-0ae8-80bb-8e01-f5b172adfb3f" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Lifecycle (14)</strong></mark></summary><ol type="1" id="10215285-0ae8-802d-a8d2-e0bb4444a690" class="numbered-list" start="1"><li>Жизненный цикл Activity?<p id="717fddaa-8346-4c43-8884-23ba727797ef" class=""><mark class="highlight-teal"><code>onCreate()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onStart()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onResume()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onPause()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onStop()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onDestroy()</code></mark></p></li></ol><ol type="1" id="10315285-0ae8-807f-a899-ccf31168ffac" class="numbered-list" start="2"><li>Какие методы жизненного цикла Activity вызываются при переходе на следующую Activity?<p id="10315285-0ae8-80cd-b682-ee5b229d201f" class="">• <mark class="highlight-teal">Переходим вперед: </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onStop()</code></mark></p><p id="10315285-0ae8-8012-8b5b-df65dea1c352" class="">• <mark class="highlight-teal">Возвращаемся обратно: </mark><mark class="highlight-teal"><code>onStart()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onResume()</code></mark></p></li></ol><ol type="1" id="12015285-0ae8-80b7-a9c7-f4723567a80b" class="numbered-list" start="3"><li>В какой момент жизненного цикла Activity виден экран?<p id="12015285-0ae8-8086-824c-ddb9d0a1f9fb" class=""><mark class="highlight-teal"><code>onStart()</code></mark></p></li></ol><ol type="1" id="10315285-0ae8-80f5-92e3-c63fb9d4a215" class="numbered-list" start="4"><li>Какие методы жизненного цикла Activity вызываются при отображении DialogFragment?<p id="10315285-0ae8-8050-b98e-cbbd177a48a0" class=""><mark class="highlight-teal">Жизненный цикл не изменяется.</mark></p></li></ol><ol type="1" id="10315285-0ae8-80bc-ba54-e09ad3bf0429" class="numbered-list" start="5"><li>Какие методы жизненного цикла Activity вызываются при отображении/закрытии permission dialog?<p id="10315285-0ae8-8003-a098-de95f5cf5a1f" class=""><mark class="highlight-teal"><code>onPause()</code></mark> ↔ <mark class="highlight-teal"><code>onResume()</code></mark></p></li></ol><ol type="1" id="10315285-0ae8-8027-8d55-f9127fc591ac" class="numbered-list" start="6"><li>Какие методы жизненного цикла Activity вызываются при переходе в task manager (recent menu)?<p id="10315285-0ae8-808e-ae64-e75b04b8232f" class=""><mark class="highlight-teal">Жизненный цикл не изменяется.</mark></p></li></ol><ol type="1" id="4f4906b0-7c19-4ef2-af41-1a5ed450fea6" class="numbered-list" start="7"><li>Какие методы жизненного цикла Activity вызываются при смахивании приложения?<p id="10315285-0ae8-801b-8465-d11a6f93d9e5" class=""><mark class="highlight-teal"><code>onPause()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onStop()</code></mark> <mark class="highlight-default">→ </mark><mark class="highlight-teal"><code>onDestroy()</code></mark></p></li></ol><ol type="1" id="960f0575-b436-4f4c-88f0-2899c2b6351a" class="numbered-list" start="8"><li>Какие методы жизненного цикла Activity вызываются при сворачивании/разворачивании приложения?<p id="b0f5d025-0aa8-415f-813b-83881f6b85cf" class="">• <mark class="highlight-teal">При сворачивании: </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onStop()</code></mark></p><p id="10315285-0ae8-805c-abd4-c5f850c20cbd" class="">• <mark class="highlight-teal">При разворачивании: </mark><mark class="highlight-teal"><code>onStart()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>onResume()</code></mark></p></li></ol><ol type="1" id="3a18147a-58af-4e9a-b1b1-725f85854c33" class="numbered-list" start="9"><li>Какие методы жизненного цикла Activity вызываются при смене ориентации экрана (изменении конфигурации)?<p id="10315285-0ae8-80f5-b235-d84c75dde2c9" class="">• <mark class="highlight-teal">Activity пересоздается: </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> </mark>→ <mark class="highlight-teal"><code>onStop()</code></mark> → <mark class="highlight-teal"><code>onDestroy()</code></mark> → <mark class="highlight-teal"><code>onCreate()</code></mark> → <mark class="highlight-teal"><code>onStart()</code></mark> → <mark class="highlight-teal"><code>onResume()</code></mark></p><p id="10f15285-0ae8-8086-87a8-e0b87849649a" class="">• <mark class="highlight-teal">При сохранении состояния:</mark> <mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> </mark>→ <mark class="highlight-teal"><code>onStop()</code></mark> → <mark class="highlight-teal"><code>onSaveInstanceState()</code></mark><mark class="highlight-default"> </mark>→ <mark class="highlight-teal"><code>onDestroy()</code></mark> → <mark class="highlight-teal"><code>onCreate()</code></mark> → <mark class="highlight-teal"><code>onStart()</code></mark> → <mark class="highlight-teal"><code>onRestoreInstanceState()</code></mark> → <mark class="highlight-teal"><code>onResume()</code></mark> </p></li></ol><ol type="1" id="10215285-0ae8-8050-a6c9-f55a16748ba5" class="numbered-list" start="10"><li>Если запустить Activity2 которая частично перекрывает Activity1, какие коллбэки вызовутся у Activity1?<p id="10215285-0ae8-8053-bcb4-cf30577e6704" class=""><mark class="highlight-teal"><code>onPause()</code></mark></p></li></ol><ol type="1" id="10215285-0ae8-80b7-b87d-cc9e06784b8f" class="numbered-list" start="11"><li>Когда onDestroy вызовется без onPause и onStop?<p id="db51cb97-2d8a-4106-ada6-9d4730d299c2" class=""><mark class="highlight-teal"><code>finish()</code></mark><mark class="highlight-teal"> в </mark><mark class="highlight-teal"><code>onCreate()</code></mark></p></li></ol><ol type="1" id="10f15285-0ae8-80ec-9f75-e2cb60923d69" class="numbered-list" start="12"><li>В каком случае вызов onDestroy() не гарантирован?<p id="10f15285-0ae8-8052-9681-e567c83e19cc" class=""><mark class="highlight-teal">В случае внезапного завершения процесса системы, например, если система убивает приложение для освобождения ресурсов, когда недостаточно памяти. В таких ситуациях система может не вызвать методы жизненного цикла, включая </mark><mark class="highlight-teal"><code>onDestroy()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="458b672e-a9c4-46c0-9d88-32fee838fdd5" class="numbered-list" start="13"><li>Как изменилось поведение onResume и onPause в Android 10?<p id="10315285-0ae8-8025-bd6b-cd9699f90f59" class=""><mark class="highlight-teal">В Android 10 добавлена поддержка foldables и изменено поведение коллбэков </mark><mark class="highlight-teal"><code>onResume()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onPause()</code></mark><mark class="highlight-teal"> в режиме multi-window: все видимые активити находятся в состоянии resumed, а Activity, с которой взаимодействует пользователь, называется topmost resumed. Введен коллбэк </mark><mark class="highlight-teal"><code>onTopResumedActivityChanged(isTopResumed: Boolean)</code></mark><mark class="highlight-teal"> для различия между resumed и topmost resumed Activity.</mark></p></li></ol><ol type="1" id="11f15285-0ae8-8020-acc0-df63b9862e84" class="numbered-list" start="14"><li>В каком из случаев вызов onDestroy() в Activity не гарантирован?<p id="11f15285-0ae8-8001-b958-d2f191170bf8" class="">• <mark class="highlight-red">Переворот экрана.</mark></p><p id="11f15285-0ae8-802b-85a9-faa4c4857c1b" class="">• <mark class="highlight-red">Вызов метода </mark><mark class="highlight-red"><code>finish()</code></mark><mark class="highlight-red">.</mark></p><p id="11f15285-0ae8-806c-868c-f6fc1bd247aa" class="">• <mark class="highlight-teal">Приложение свернуто, система ”убила” процесс приложения.</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-800c-a7c4-d94ebb0f02ba" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Launch Modes (8)</strong></mark></summary><ol type="1" id="10215285-0ae8-800c-9177-eb1821599eeb" class="numbered-list" start="1"><li>Какие есть Launch Modes у Activity?<p id="410a3cb5-7fd2-432b-a639-dd923a8e19b4" class=""><mark class="highlight-teal"><code>standart</code></mark> <mark class="highlight-teal"><code>singleTop</code></mark> <mark class="highlight-teal"><code>singleTask</code></mark> <mark class="highlight-teal"><code>singleInstance</code></mark></p></li></ol><ol type="1" id="11f15285-0ae8-80c8-a0e9-ea6834abadee" class="numbered-list" start="2"><li>Для чего нужно задавать параметр launchMode у Activity?<p id="11f15285-0ae8-8096-9905-c107c5437724" class=""><mark class="highlight-teal">Параметр </mark><mark class="highlight-teal"><code>launchMode</code></mark><mark class="highlight-teal"> задает, как будет вести себя новая </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> при запуске, управляя созданием экземпляров в стеке задач и предотвращая дублирование.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-805f-8205-eff85e6d0190" class="numbered-list" start="3"><li>Как работает launchMode SingleTop?<p id="11c15285-0ae8-8086-b75c-c4a979c08c5a" class=""><mark class="highlight-teal"><code>SingleTop</code></mark><mark class="highlight-teal"> запускает </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> только в том случае, если она не находится на вершине стека. Если </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> уже открыта, система вызывает метод </mark><mark class="highlight-teal"><code>onNewIntent()</code></mark><mark class="highlight-teal"> существующего экземпляра, передавая ему новые намерения, что позволяет обновить данные без создания нового экземпляра.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-8059-9874-ed0130e86374" class="numbered-list" start="4"><li>Как работает launchMode SingleInstance?<p id="11c15285-0ae8-8011-8613-f54516ce438b" class=""><mark class="highlight-teal"><code>SingleInstance</code></mark><mark class="highlight-teal"> создает уникальный экземпляр </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> в своем собственном стекe задач. Если такая </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> уже существует, при запуске вызовется </mark><mark class="highlight-teal"><code>onNewIntent()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11c15285-0ae8-8054-8d19-e853b3deb2f1" class="numbered-list" start="5"><li>Есть стек из Activity A-B-C-A-B, запускаем Activity C c launchMode SingleTop, что произойдет в системе?<p id="11c15285-0ae8-80a5-811b-df4d56a84cb4" class=""><mark class="highlight-teal">У </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> C вызовется метод </mark><mark class="highlight-teal"><code>onNewIntent()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11e15285-0ae8-80e4-9f81-f9667236b66f" class="numbered-list" start="6"><li>Ты находишься внутри Activity A и опять вызываешь Activity A c launch mode SingleTop, что произойдет в Activity A?<p id="11e15285-0ae8-80f5-9dee-deea90b4f95a" class=""><mark class="highlight-teal">Вместо создания нового экземпляра будет переиспользован текущий, и вызовется метод </mark><mark class="highlight-teal"><code>onNewIntent()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11e15285-0ae8-80d2-848b-f889509aa206" class="numbered-list" start="7"><li>Есть Activity А, ты запустил Activity B с launch mode SingleTask и в ней произошел краш, что произойдет с приложением и что увидит юзер?<p id="11e15285-0ae8-804f-83ef-d6f25db47f73" class=""><mark class="highlight-teal">Приложение завершится, и пользователь увидит системное сообщение о том, что приложение остановилось. Activity A также будет уничтожена вместе с приложением.</mark></p></li></ol><ol type="1" id="11f15285-0ae8-80c5-9300-c13ef72c8d54" class="numbered-list" start="8"><li>Эффект какого из launch mode Activity описан ниже? Если экземпляр Activity уже существует на вершине текущего Task, новый экземпляр не будет сгенерирован, а новые данные для Activity будут оправлены через onNewlntent().<p id="11f15285-0ae8-807c-95ed-f71d75248466" class="">• <code>singleTask</code></p><p id="11f15285-0ae8-80c0-9573-de3891805e9d" class="">• <mark class="highlight-teal"><code>singleTop</code></mark></p><p id="11f15285-0ae8-8058-b255-fed42e5c30c7" class="">• <mark class="highlight-red"><code>singlelnstance</code></mark></p><p id="11f15285-0ae8-80f4-92de-c2d82c12dd41" class="">• <mark class="highlight-red"><code>standard</code></mark></p></li></ol></details></li></ul><ul id="11015285-0ae8-8039-9775-fbed82a29dfb" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (11)</strong></mark></summary><ol type="1" id="10b15285-0ae8-8073-af9b-f0181d9dac42" class="numbered-list" start="1"><li>Как сделать Activity главной?<p id="10b15285-0ae8-80a3-9464-cdac5f66b622" class=""><mark class="highlight-teal">Указать для нее в </mark><mark class="highlight-teal"><code>AndroidManifest</code></mark><mark class="highlight-teal"> intent-фильтр с </mark><mark class="highlight-teal"><code>action</code></mark><mark class="highlight-teal"> MAIN и </mark><mark class="highlight-teal"><code>category</code></mark><mark class="highlight-teal"> LAUNCHER.</mark></p></li></ol><ol type="1" id="10b15285-0ae8-804a-b01e-f4b0a6901cde" class="numbered-list" start="2"><li>Что будет если сделать 2 Activity главными?<p id="8e835bce-edc0-44fb-834e-bf52c8b4ad76" class=""><mark class="highlight-teal">Обе будут отображаться в списке приложений, и пользователь сможет выбрать, какую из них запустить.</mark></p></li></ol><ol type="1" id="7e2260ad-4679-46ea-9800-4e442ea41ad3" class="numbered-list" start="3"><li>Как пережить поворот экрана? (Смену конфигурации)<p id="8fffc457-773e-4ec2-923d-c4d71cb7e8c5" class="">• <mark class="highlight-teal">Переопределить </mark><mark class="highlight-teal"><code>onSaveInstanceState(Bundle outState)</code></mark><mark class="highlight-teal"> и восстановить в </mark><mark class="highlight-teal"><code>onCreate()</code></mark><mark class="highlight-teal">.</mark></p><p id="19eb12fb-2adf-492d-a871-6d20700a9712" class="">• <mark class="highlight-teal">Использовать </mark><mark class="highlight-teal"><code>ViewModel</code></mark><mark class="highlight-teal"> для сохранения данных.</mark></p><p id="b47b5fbb-353a-4291-8e85-274123e3f2e5" class="">• <mark class="highlight-teal">Добавить </mark><mark class="highlight-teal"><code>configChanges</code></mark><mark class="highlight-teal"> в манифест (не рекомендуется).</mark></p></li></ol><ol type="1" id="10915285-0ae8-80a9-8006-e33503d556f8" class="numbered-list" start="4"><li>Есть ли смысл сохранять данные если поддерживаем только портретную ориентацию?<p id="10915285-0ae8-801c-99d9-f2343e131a07" class=""><mark class="highlight-teal">Да. В приложении может произойти сбой. Существуют другие способы изменения конфигурации (смена локали).</mark></p></li></ol><ol type="1" id="728459cb-78bc-4d6e-9e8e-1de53de24ccc" class="numbered-list" start="5"><li>Как запустить стек из нескольких Activity?<p id="10315285-0ae8-80dc-a5c3-f945266b078b" class=""><mark class="highlight-teal">Через </mark><mark class="highlight-teal"><code>TaskStackBuilder</code></mark><mark class="highlight-teal"> в виде стека одним вызовом.</mark></p></li></ol><ol type="1" id="10215285-0ae8-8086-a3d5-cf6c29009a6a" class="numbered-list" start="6"><li>Как запустить Activity в отдельном процессе?<p id="10315285-0ae8-804a-8fc4-ea2049341b5a" class=""><mark class="highlight-teal">Указать атрибут </mark><mark class="highlight-teal"><code>android:process</code></mark><mark class="highlight-teal"> в манифесте для этой </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="66c72bef-74c6-4e7b-acc8-a1b85a7b0800" class="numbered-list" start="7"><li>Чем Activity отличается от Fragment?<p id="64a925ee-5172-49fc-a861-def1738e1e9d" class=""><mark class="highlight-teal">Мы легко можем управлять стеком фрагментов. Со стеком активностей возникают проблемы: мы не можем гарантировать их порядок, активити может создастся по интенту другим приложением.</mark></p></li></ol><ol type="1" id="10915285-0ae8-8039-addb-ebc4077c97f6" class="numbered-list" start="8"><li>Если не вызовем setContentView или поместим туда null что увидим?<p id="10915285-0ae8-802e-b1ec-e9393b8efb96" class=""><mark class="highlight-teal">Цвет установленный в </mark><mark class="highlight-teal"><code>windowBackground</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-8014-bb61-e543096e05a8" class="numbered-list" start="9"><li>Как запустить приложение без Activity?<p id="10a15285-0ae8-80d9-8cd6-d8f2abb4d4dc" class=""><mark class="highlight-teal">Через </mark><mark class="highlight-teal"><code>BroadcastReceiver</code></mark><mark class="highlight-teal">, который реагирует на системные события (например, загрузку устройства), или через </mark><mark class="highlight-teal"><code>Service</code></mark><mark class="highlight-teal">, запущенный при старте системы. В этом случае интерфейса у приложения не будет, но фоновые задачи могут выполняться.</mark></p></li></ol><ol type="1" id="11015285-0ae8-801d-9e43-c10a7b425e8d" class="numbered-list" start="10"><li>Как закрыть сразу n активити в стеке?<p id="11015285-0ae8-8063-9c33-c281dcb051c6" class=""><mark class="highlight-teal">Удалить все </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> выше запущенной в стеке можно через флаг </mark><mark class="highlight-teal"><code>flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="a3819969-6620-4ae7-bea3-ab2eac866388" class="numbered-list" start="11"><li>Можно ли создать приложение без Activity?<p id="10215285-0ae8-802d-9ffd-c35557aece8d" class="">• <mark class="highlight-teal">Да, можно. (Приложение Android WebView. Системный сервис для просмотра web-страниц)</mark></p><p id="10215285-0ae8-8084-9022-f3a78f7ab907" class="">• <mark class="highlight-red">Нет, у приложения всегда должна быть хотя бы одна активити.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

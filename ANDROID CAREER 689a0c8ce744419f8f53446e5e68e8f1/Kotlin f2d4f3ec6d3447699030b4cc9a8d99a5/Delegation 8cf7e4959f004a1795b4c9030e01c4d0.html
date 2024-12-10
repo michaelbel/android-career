@@ -1,0 +1,792 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Delegation</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8cf7e495-9f00-4a17-95b4-c9030e01c4d0" class="page sans"><header><img class="page-cover-image" src="Delegation%208cf7e4959f004a1795b4c9030e01c4d0/cover-kotlin-delegates.webp" style="object-position:center 64.4%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Delegation%208cf7e4959f004a1795b4c9030e01c4d0/icon-kotlin.svg"/></div><h1 class="page-title">Delegation</h1><p class="page-description"></p></header><div class="page-body"><table id="ce02b91c-231b-40ea-89ab-4bcfc8eec860" class="simple-table"><tbody><tr id="b023fc85-604b-4b37-9814-285fba98dd77"><td id="MhLQ" class="" style="width:305px"><a href="https://kotlinlang.org/docs/delegation.html">https://kotlinlang.org/docs/delegation.html</a></td></tr><tr id="6239e75e-433e-40f4-98d8-557443fcf8f6"><td id="MhLQ" class="" style="width:305px"><a href="https://kotlinlang.org/docs/delegated-properties.html">https://kotlinlang.org/docs/delegated-properties.html</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Delegates</summary><div class="indented"><p id="959de3b5-1b44-4e20-9499-7d0f4734c6d9" class="">Делегирование представляет паттерн объектно-ориентированного программирования, который позволяет одному объекту делегировать/перенаправить все запросы другому объекту. В определенной степени делегирование может выступать альтернативой наследованию.</p><p id="1f93ec0d-075f-406a-a54b-5e6445d4126a" class="">• Бывают 2 видов: на класс и на поле.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b63abf7e-0c8d-43b3-a474-d7ee6e5a9298" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">interface Messenger {
+    fun send(message: String)
+}
+
+class InstantMessenger: Messenger {
+    override fun send(message: String) {
+        println(message)
+    }
+}
+
+class SmartPhone(name: String, messenger: Messenger): Messenger by messenger
+
+val telegram = InstantMessenger()
+val pixel = SmartPhone(&quot;Pixel 9&quot;, telegram)
+pixel.send(&quot;Hello World&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Delegated Properties</summary><div class="indented"><p id="bb73c2d3-4009-4a5c-bd8b-65fca1b415a6" class="">Делегированные свойства позволяют делегировать получение или присвоение их значения во вне - другому классу. Это позволяет нам добавить некоторую дополнительную логику при операции со свойствами, например, логгирование, какую-то предобработку и т.д</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dc9d5604-33d1-4694-a38c-6483021e140c" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class Person(personName: String) {
+    var name: String by LoggerDelegate(personName)
+}
+
+class LoggerDelegate(private var personName: String) {
+
+    operator fun getValue(thisRef: Person, property: KProperty&lt;*&gt;): String {
+        return personName
+    }
+
+    operator fun setValue(thisRef: Person, property: KProperty&lt;*&gt;, value: String) {
+        personName = value
+    }
+}
+
+val tom = Person(&quot;Tom&quot;)
+tom.name = &quot;Bob&quot;
+println(tom.name)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ReadOnlyProperty</code></mark></summary><div class="indented"><p id="13115285-0ae8-80d9-bcb7-f40b516f4d56" class="">Используется для создания делегатов только для чтения (для свойств <mark class="highlight-default"><code>val</code></mark>).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80e3-83a8-f117c2f88d25" class="code"><code class="language-Kotlin">class LazyStringDelegate: ReadOnlyProperty&lt;Any?, String&gt; {
+    override fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): String {
+        return &quot;Computed Value&quot;
+    }
+}
+
+val myProperty by LazyStringDelegate()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ReadWriteProperty</code></mark></summary><div class="indented"><p id="13115285-0ae8-80af-95cf-ec2ec07adfc9" class="">Используется для создания делегатов для свойств с возможностью записи (<mark class="highlight-default"><code>var</code></mark>). Наследуется от <mark class="highlight-default"><code>ReadOnlyProperty</code></mark> и добавляет метод <mark class="highlight-default"><code>setValue</code></mark> для управления записью данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-805e-9cd2-d1684785fb56" class="code"><code class="language-Kotlin">class ObservableProperty(var value: Int): ReadWriteProperty&lt;Any?, Int&gt; {
+    override fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): Int {
+        return value
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty&lt;*&gt;, value: Int) {
+        println(&quot;Value of ${property.name} is changing from $this.value to $value&quot;)
+        this.value = value
+    }
+}
+
+var myVar by ObservableProperty(10)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PropertyDelegateProvider</code></mark></summary><div class="indented"><p id="13115285-0ae8-80b4-ba38-da9686287e60" class="">Интерфейс, позволяющий создать делегаты, которые могут учитывать дополнительные параметры на этапе инициализации. Это полезно, когда нужно передать начальные данные в делегат или выполнить дополнительную логику для настройки делегата в зависимости от контекста.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8097-bcbf-e8384c6a0a20" class="code"><code class="language-Kotlin">class ConfigurableDelegateProvider(
+    private val initialValue: Int
+): PropertyDelegateProvider&lt;Any?, ReadWriteProperty&lt;Any?, Int&gt;&gt; {
+    
+    override fun provideDelegate(thisRef: Any?, property: KProperty&lt;*&gt;): ReadWriteProperty&lt;Any?, Int&gt; {
+        println(&quot;Initializing property &#x27;${property.name}&#x27; with initial value $initialValue&quot;)
+        return ConfigurableDelegate(initialValue)
+    }
+}
+
+class ConfigurableDelegate(
+    var value: Int
+): ReadWriteProperty&lt;Any?, Int&gt; {
+
+    override fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): Int = value
+
+    override fun setValue(thisRef: Any?, property: KProperty&lt;*&gt;, value: Int) {
+        this.value = value
+    }
+}
+
+class Example {
+    var prop1 by ConfigurableDelegateProvider(10)
+    var prop2 by ConfigurableDelegateProvider(20)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>by</code></mark></summary><div class="indented"><p id="7c960e3c-dd99-4e3c-b9c5-94dbb7073ae5" class="">Используется для делегирования свойств или функций к другим объектам. Оно позволяет передать ответственность за реализацию или хранение значения другому объекту, минимизируя дублирование кода и повышая гибкость.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12b15285-0ae8-80e2-afeb-c1b9ea3b8b95" class="code"><code class="language-Kotlin">val lazyValue: String by lazy {
+    println(&quot;Computed!&quot;)
+    &quot;Hello, Kotlin&quot;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>lazy</code></mark></summary><div class="indented"><p id="99212d23-525f-4c13-a8ef-d139013b389f" class="">Инициал<mark class="highlight-default">изирует свойство лениво. Это значит, что свойство будет инициализировано только при первом обращении к нему.</mark></p><p id="90903354-efee-4d24-b5c8-902006bfdec3" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>LazyThreadSafetyMode.SYNCHRONIZED</code></mark><mark class="highlight-default"> Используется по умолчанию. Значение вычисляется только в одном потоке выполнения, и все остальные потоки могут видеть одно и то же значение.</mark></p><p id="0b02e3c8-34ee-4d04-af12-3275a5f4604e" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>LazyThreadSafetyMode.PUBLICATION</code></mark><mark class="highlight-default"> Используется, когда синхронизация не требуется, тогда несколько потоков смогут исполнять вычисление одновременно.</mark></p><p id="2fb3b528-9b60-4710-b929-87a735323871" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>LazyThreadSafetyMode.NONE</code></mark><mark class="highlight-default"> Используется, если инициализация всегда будет происходить в одном потоке исполнения. Не гарантирует никакой потокобезопасности и связанных с этим дополнительных затрат.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c47ad8dd-ff49-4c64-a03c-702db7697e8f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">val name: String by lazy(::getName)
+val name: String by lazy(LazyThreadSafetyMode.PUBLICATION) {
+    getName()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>observable</code></mark></summary><div class="indented"><p id="292d0adc-b77f-4b61-8d35-edafe2538155" class="">Позволяет следить за изменениями свойства и выполнять определенные действия при каждом изменении.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf664d0a-57d7-48c8-bba5-d74d9261e0fa" class="code"><code class="language-Kotlin">var observableValue: String by Delegates.observable(&quot;Initial&quot;) { prop, old, new -&gt;
+    println(&quot;Property ${prop.name} changed from $old to $new&quot;)
+}
+
+observableValue = &quot;Changed&quot; // Property observableValue changed from Initial to Changed</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>vetoable</code></mark></summary><div class="indented"><p id="efd582a3-de70-42c5-9fec-eecef09e1afe" class="">Позволяет проверять новые значения свойства перед его изменением и решать, следует ли принять это значение или нет.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8682c1a8-2154-49e1-a8ee-f9f4b3210e4e" class="code"><code class="language-Kotlin">var vetoableValue: Int by Delegates.vetoable(0) { _, old, new -&gt;
+    new &gt;= 0 // Разрешаем только положительные значения
+}
+
+vetoableValue = 10 // Успешно изменено
+println(vetoableValue) // 10
+
+vetoableValue = -1 // Не изменяется, так как значение отрицательное
+println(vetoableValue) // 10</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>notNull</code></mark></summary><div class="indented"><p id="12b15285-0ae8-8096-a425-fe3a7a8b2e66" class="">Используется для свойств, которые будут инициализированы позже, но которые никогда не должны быть <mark class="highlight-default"><code>null</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ec36c3bd-aa2b-49f6-8529-dbc82b96b581" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">var name: String by Delegates.notNull()
+
+fun initializeName(value: String) {
+    name = value
+}
+
+fun printName() {
+    println(name) // Если name не инициализирован, произойдет ошибка
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>map</code></mark></summary><div class="indented"><p id="c922f2f0-a6f9-4168-b720-c270825519bf" class="">Позволяет связывать свойства объекта с элементами <mark class="highlight-default"><code>Map</code></mark>. Это удобно для динамического маппинга данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="52525c05-41b4-4c03-8f4f-e54dc02620b5" class="code"><code class="language-Kotlin">class User(val map: MutableMap&lt;String, Any?&gt;) {
+    val name: String by map
+    val age: Int by map
+}
+
+val user = User(mutableMapOf(&quot;name&quot; to &quot;John&quot;, &quot;age&quot; to 30))
+println(user.name) // John
+println(user.age) // 30
+
+user.name = &quot;Jane&quot;
+println(user.map[&quot;name&quot;]) // Jane</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (6)</mark></summary><div class="indented"><ol type="1" id="b26f0549-f98c-4558-877d-044cd4eb64ca" class="numbered-list" start="1"><li>Какие виды делегатов есть в Kotlin?<p id="81c3980f-bb2d-4d2c-8545-6b9fbe270a31" class=""><mark class="highlight-teal">На класс и на поле.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80bb-83d2-ec4ee3c3e640" class="numbered-list" start="2"><li>Какие стандартные делегаты есть в Kotlin?<br/>• <br/><mark class="highlight-teal"><code>lazy()</code></mark><p id="10f15285-0ae8-8024-bd67-f83a5481b084" class="">• <mark class="highlight-teal"><code>observable()</code></mark></p><p id="10f15285-0ae8-8049-ad69-c3d180802473" class="">• <mark class="highlight-teal"><code>vetoable()</code></mark></p><p id="10f15285-0ae8-8050-8c2b-ddbb721863c9" class="">• <mark class="highlight-teal"><code>notNull()</code></mark></p><p id="10f15285-0ae8-806d-abb3-deb100c56d02" class="">• <mark class="highlight-teal"><code>map()</code></mark></p></li></ol><ol type="1" id="25806cd8-3bb1-480c-8b56-d2005e5c2ee5" class="numbered-list" start="3"><li>Как работает делегат на класс?<p id="5755ae10-d4df-4691-8da4-e5fb95b5e76a" class=""><mark class="highlight-teal">Позволяет делегировать реализацию свойств или методов другому объекту. Для этого нужно использовать ключевое слово </mark><mark class="highlight-teal"><code>by</code></mark><mark class="highlight-teal">, указывая на делегирующий объект.</mark></p></li></ol><ol type="1" id="cc361c6f-b6db-4cb6-a365-e98d50dfc0fe" class="numbered-list" start="4"><li>На каком потоке исполняется lazy?<p id="10815285-0ae8-80b3-96a9-d607d00fdb60" class=""><mark class="highlight-teal">По умолчанию инициализация </mark><mark class="highlight-teal"><code>lazy</code></mark><mark class="highlight-teal"> выполняется на том потоке, где впервые запрашивается его значение. Однако, если используется </mark><mark class="highlight-teal"><code>LazyThreadSafetyMode.PUBLICATION</code></mark><mark class="highlight-teal"> или </mark><mark class="highlight-teal"><code>LazyThreadSafetyMode.SYNCHRONIZED</code></mark><mark class="highlight-teal">, инициализация может быть потокобезопасной.</mark></p></li></ol><ol type="1" id="09a8f4e0-3a7f-4516-b1e5-9de8f1e06f83" class="numbered-list" start="5"><li>Является ли lazy потокобезопасным?<p id="10815285-0ae8-80c1-94a7-de155622f941" class=""><mark class="highlight-teal">Да, </mark><mark class="highlight-teal"><code>lazy</code></mark><mark class="highlight-teal"> является потокобезопасным по умолчанию, используя </mark><mark class="highlight-teal"><code>LazyThreadSafetyMode.SYNCHRONIZED</code></mark><mark class="highlight-teal">. Это означает, что при первом доступе к значению инициализация будет безопасной для потоков.</mark></p></li></ol><ol type="1" id="21ea54be-cf3c-4ec1-8229-725999c6689c" class="numbered-list" start="6"><li>Как создать свой собственный делегат?<p id="10815285-0ae8-80e8-8262-e3ae3806cc11" class=""><mark class="highlight-teal">Реализовать интерфейс </mark><mark class="highlight-teal"><code>ReadOnlyProperty</code></mark><mark class="highlight-teal"> или </mark><mark class="highlight-teal"><code>ReadWriteProperty</code></mark><mark class="highlight-teal">. Затем необходимо определить методы </mark><mark class="highlight-teal"><code>getValue</code></mark><mark class="highlight-teal"> и (при необходимости) </mark><mark class="highlight-teal"><code>setValue</code></mark><mark class="highlight-teal">.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Getting Started</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="10c15285-0ae8-80d8-b1e6-e279e1c6ce8b" class="page sans"><header><img class="page-cover-image" src="Getting%20Started%2010c152850ae880d8b1e6e279e1c6ce8b/cover-getting-started.webp" style="object-position:center 40.410000000000004%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Getting%20Started%2010c152850ae880d8b1e6e279e1c6ce8b/icon-getting-started.svg"/></div><h1 class="page-title">Getting Started</h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Android</summary><div class="indented"><table id="12115285-0ae8-8031-9f9c-c0f5f39eb62d" class="simple-table"><tbody><tr id="5c250de0-304a-432d-a456-f4dd687bc730"><td id="ph?[" class="" style="width:544px"><a href="https://education.tbank.ru/school/basic/android/">https://education.tbank.ru/school/basic/android/</a></td><td id="S|&lt;o" class="" style="width:513px">Бесплатная программа обучения, направленная на освоение основ разработки приложений для операционной системы Android.</td></tr><tr id="14c15285-0ae8-80c9-8740-db8aebb549c5"><td id="ph?[" class="" style="width:544px"><a href="https://hyperskill.org/courses/95-introduction-to-android-with-kotlin">https://hyperskill.org/courses/95-introduction-to-android-with-kotlin</a></td><td id="S|&lt;o" class="" style="width:513px">Сделай первый шаг к карьере в мобильной разработке. Освой базовые навыки создания, дизайна и публикации простых приложений.</td></tr><tr id="14c15285-0ae8-805b-aeee-c5a33defc572"><td id="ph?[" class="" style="width:544px"><a href="https://hyperskill.org/courses/16-android-developer-with-kotlin">https://hyperskill.org/courses/16-android-developer-with-kotlin</a></td><td id="S|&lt;o" class="" style="width:513px">Изучи дизайн интерфейсов, хранение данных, создание динамических экранов и возможности Android Studio, чтобы начать карьеру в мобильной разработке.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Kotlin</summary><div class="indented"><table id="14c15285-0ae8-8002-9dcf-f6d575c61c5f" class="simple-table"><tbody><tr id="14c15285-0ae8-807c-a055-ef45fd5da24e"><td id="{pws" class="" style="width:257px"><a href="https://hyperskill.org/courses/69-introduction-to-kotlin">https://hyperskill.org/courses/69-introduction-to-kotlin</a></td><td id="cqYy" class="" style="width:713px">Начни увлекательное путешествие с программированием на Kotlin! Изучи работу с переменными, управление потоком кода и основы объектно-ориентированного программирования.</td></tr><tr id="f4e02cda-6b01-4280-92ac-726b30cede4a"><td id="{pws" class="" style="width:257px"><a href="https://hyperskill.org/courses/3-kotlin-developer">https://hyperskill.org/courses/3-kotlin-developer</a></td><td id="cqYy" class="" style="width:713px">Изучи Kotlin для разработки бэкенда, фронтенда и Android-приложений, чтобы расширить свои возможности на различных платформах с лаконичным языком, созданным JetBrains.</td></tr><tr id="14c15285-0ae8-8009-a332-f5f59f5dce4b"><td id="{pws" class="" style="width:257px"><a href="https://hyperskill.org/courses/18-kotlin-core">https://hyperskill.org/courses/18-kotlin-core</a></td><td id="cqYy" class="" style="width:713px">Kotlin, разработанный JetBrains, является предпочтительным языком Google для разработки Android-приложений. Освой его под руководством создателей.</td></tr><tr id="14c15285-0ae8-804a-8941-f77a1e17ca35"><td id="{pws" class="" style="width:257px"><a href="https://hyperskill.org/courses/107-advanced-kotlin-libraries-and-techniques">https://hyperskill.org/courses/107-advanced-kotlin-libraries-and-techniques</a></td><td id="cqYy" class="" style="width:713px">Пройди курс, чтобы освоить продвинутые возможности Kotlin, писать профессиональный код и получить востребованные навыки для сложных задач разработки.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Java</summary><div class="indented"><table id="14c15285-0ae8-8028-b036-e1089a60658c" class="simple-table"><tbody><tr id="22eecf59-15bd-4547-904d-2d0f73c123f5"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/8-introduction-to-java">https://hyperskill.org/courses/8-introduction-to-java</a></td><td id="zFij" class="" style="width:700px">Пойми язык, стоящий за миллионами приложений. Освой ключевые концепции, напиши простые программы и сделай первый шаг к карьере в IT.</td></tr><tr id="14c15285-0ae8-80eb-aae8-d943f38c9e9c"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/17-java-developer">https://hyperskill.org/courses/17-java-developer</a></td><td id="zFij" class="" style="width:700px">Освой ключевые навыки разработки: от базового синтаксиса до продвинутых возможностей. Создай прочную основу для работы с любыми фреймворками.</td></tr><tr id="fafe4e39-4098-4010-af7a-19df521f2524"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/35-advanced-java">https://hyperskill.org/courses/35-advanced-java</a></td><td id="zFij" class="" style="width:700px">Разберись в низкоуровневых механизмах Java. Получи практические знания о отказоустойчивости, высокой нагрузке и редких функциях Java для решения сложных задач.</td></tr><tr id="14c15285-0ae8-803b-98df-c42faa4811be"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/39-java-full-stack-developer">https://hyperskill.org/courses/39-java-full-stack-developer</a></td><td id="zFij" class="" style="width:700px">Освой навыки создания веб-приложений и дизайна красивых интерфейсов. Объедини бэкенд и фронтенд с помощью Java и JavaScript.</td></tr><tr id="8157e9c4-6c88-4073-9eb1-57d629c20ed7"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/9-java-desktop-application-developer">https://hyperskill.org/courses/9-java-desktop-application-developer</a></td><td id="zFij" class="" style="width:700px">Расширь знания Java и создай настоящее приложение с использованием фреймворка Swing. Этот курс — лучший выбор для тех, кто хочет стать мастером разработки десктопных приложений.</td></tr><tr id="14c15285-0ae8-8022-9ca2-fd03799312d7"><td id="xDP@" class="" style="width:379px"><a href="https://hyperskill.org/courses/47-algorithmic-thinking-for-java-developers">https://hyperskill.org/courses/47-algorithmic-thinking-for-java-developers</a></td><td id="zFij" class="" style="width:700px">Овладей искусством решения задач с этим курсом Java без проектов, подходящим для разработчиков, студентов, ученых и всех, кто ищет эффективные решения.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Jetpack Compose</summary><div class="indented"><table id="14c15285-0ae8-809c-b505-fc9ddad99209" class="simple-table"><tbody><tr id="a330a430-2462-4f8f-8b7c-9117b2e13c3d"><td id="eXXF" class="" style="width:436px"><a href="https://hyperskill.org/courses/66-jetpack-compose-for-android-developers">https://hyperskill.org/courses/66-jetpack-compose-for-android-developers</a></td><td id="Um[x" class="" style="width:582px">Выбери этот курс и изучи основы Jetpack Compose — современного инструмента от Google для создания нативного Android UI с Material Design на Kotlin.</td></tr><tr id="15315285-0ae8-80f6-95c5-d51e4e10e9d5"><td id="eXXF" class="" style="width:436px"><a href="https://developer.android.com/courses/android-basics-compose/course">https://developer.android.com/courses/android-basics-compose/course</a></td><td id="Um[x" class="" style="width:582px">Android Basics with Compose — это онлайн-курс с самостоятельным темпом обучения, посвящённый созданию Android-приложений с использованием современных лучших практик. Курс охватывает основы разработки приложений с Jetpack Compose, рекомендованным набором инструментов для создания пользовательских интерфейсов на Android.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Ktor</summary><div class="indented"><table id="14c15285-0ae8-80e4-9536-cec3af3d35b1" class="simple-table"><tbody><tr id="8f68ff67-e152-4b3b-b3a2-e16a9e3e2ab3"><td id="j`;Q" class=""><a href="https://hyperskill.org/courses/45-introduction-to-ktor">https://hyperskill.org/courses/45-introduction-to-ktor</a></td><td id="mxR[" class="" style="width:557px">Погрузись в мир Kotlin и овладей бэкенд-разработкой с курсом по Ktor. Изучи основы Kotlin, принципы веб-приложений и создание REST-сервисов.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по алгоритмам и структурам данных</summary><div class="indented"><table id="14c15285-0ae8-80e6-8bfb-d08e840b6a2f" class="simple-table"><tbody><tr id="fb6aaebf-3d87-4207-9290-bf083aa55edb"><td id="YmWg" class="" style="width:390px"><a href="https://hyperskill.org/courses/41-computer-algorithms-and-data-structures">https://hyperskill.org/courses/41-computer-algorithms-and-data-structures</a></td><td id="TwDQ" class="" style="width:588px">Практическая подготовка по алгоритмам для успешных собеседований. Освой алгоритмическое мышление, работу с данными и улучшай навыки решения задач.</td></tr><tr id="897a7833-38b4-4791-8cab-aea6a554b703"><td id="YmWg" class="" style="width:390px"><a href="https://hyperskill.org/courses/84-algorithms-for-interviews">https://hyperskill.org/courses/84-algorithms-for-interviews</a></td><td id="TwDQ" class="" style="width:588px">Освой алгоритмы для технических собеседований. Узнай отличия схожих алгоритмов и отточишь навыки решения стандартных задач.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по SQL</summary><div class="indented"><table id="14c15285-0ae8-803d-a47b-c571da74d568" class="simple-table"><tbody><tr id="66813788-e278-487e-9aa8-fc6babe95273"><td id="?n^i" class=""><a href="https://hyperskill.org/courses/31-introduction-to-sql">https://hyperskill.org/courses/31-introduction-to-sql</a></td><td id="\@W|" class="" style="width:732px">Присоединяйся к курсу, чтобы освоить основы SQL и научиться эффективно собирать и анализировать данные — полезно для маркетологов, продукт-менеджеров, аналитиков и разработчиков.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по Git</summary><div class="indented"><table id="14c15285-0ae8-80db-a418-eccc842b39c1" class="simple-table"><tbody><tr id="58e4935f-bd73-4985-8356-a3c0c251a11a"><td id="\yuD" class=""><a href="https://hyperskill.org/courses/48-introduction-to-git">https://hyperskill.org/courses/48-introduction-to-git</a></td><td id="rqOQ" class="" style="width:909px">Хочешь узнать, как Git может изменить твою работу? Освой основы работы с репозиториями кода, версиирование и публикацию.</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Курсы по AI</summary><div class="indented"><table id="14c15285-0ae8-8023-a204-c48a63200c45" class="simple-table"><tbody><tr id="f9aa1bca-94e0-4b45-97f2-638155719f0e"><td id="VctW" class="" style="width:239px"><a href="https://hyperskill.org/courses/126-chatgpt-for-work">https://hyperskill.org/courses/126-chatgpt-for-work</a></td><td id="mp:U" class="" style="width:926px">Попрощайся с рутиной: научись использовать ChatGPT и LLM для упрощения рабочих задач и добавь больше удовольствия в свой день.</td></tr><tr id="1b611b5b-9f8e-412b-aa1c-2ae2a317e31c"><td id="VctW" class="" style="width:239px"><a href="https://hyperskill.org/courses/135-ai-tools-for-developers">https://hyperskill.org/courses/135-ai-tools-for-developers</a></td><td id="mp:U" class="" style="width:926px">Изучи использование ИИ-инструментов для улучшения рабочего процесса разработки. Применяй ИИ для генерации кода, отладки, тестирования и ускорения создания качественного ПО. Учти: курс в раннем доступе и пока содержит ограниченный контент.</td></tr></tbody></table></div></details><p id="14e15285-0ae8-803d-b471-d7f179f9499d" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Школа Мобильной Разработки</summary><div class="indented"><table id="14e15285-0ae8-806f-817e-f0056d990a4d" class="simple-table"><tbody><tr id="ee34b9d6-4568-4ebb-bc24-2c272e5518ea"><td id="gjDw" class="" style="width:456px"><a href="https://www.youtube.com/playlist?list=PLXtiZNKIobF7dtH0dVaEKuFTTk7KYG305">https://www.youtube.com/playlist?list=PLXtiZNKIobF7dtH0dVaEKuFTTk7KYG305</a></td><td id="yrcI" class="" style="width:83px">56 видео</td></tr><tr id="f4bbb0df-0c18-4528-8e04-b542bb545563"><td id="gjDw" class="" style="width:456px"><a href="https://www.youtube.com/playlist?list=PLXtiZNKIobF5E1JgDaisqnVJfbZeUFYkm">https://www.youtube.com/playlist?list=PLXtiZNKIobF5E1JgDaisqnVJfbZeUFYkm</a></td><td id="yrcI" class="" style="width:83px">19 видео</td></tr></tbody></table></div></details><p id="14e15285-0ae8-80fc-a8af-eeb28d622f5e" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Примеры проектов</summary><div class="indented"><table id="14c15285-0ae8-800d-9fb1-c656c8aa0789" class="simple-table"><tbody><tr id="14c15285-0ae8-802e-ac93-fc24d55deffc"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Этот пример приложения демонстрирует использование Google AI Edge SDK для работы с Gemini Nano на Android.</td></tr><tr id="14c15285-0ae8-80a8-b4e6-e94be8af56c1"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики анимации на Android.</td></tr><tr id="14c15285-0ae8-8011-a70a-e1100f1351a0"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры использования компонентов архитектуры Android.</td></tr><tr id="14c15285-0ae8-807a-88c4-e788330290f2"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Коллекция примеров для демонстрации инструментов и архитектурных паттернов Android</td></tr><tr id="14c15285-0ae8-8043-bb87-c75cfc121456"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с app bundles на Android.</td></tr><tr id="14c15285-0ae8-807f-8fe3-c746aed976a7"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Multiple samples showing the best practices in camera APIs on Android.</td></tr><tr id="14c15285-0ae8-80f9-9b67-e78abf687999"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры лучших практик для разработки на Android Auto и Android Automotive OS</td></tr><tr id="14c15285-0ae8-80ca-8cf7-e49dd848263c"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Официальные примеры Jetpack Compose</td></tr><tr id="14c15285-0ae8-803e-8095-fa082da284c8"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с подключением на Android.</td></tr><tr id="14c15285-0ae8-8045-8bc8-db0ef007efb9"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с идентификацией на Android.</td></tr><tr id="14c15285-0ae8-80d8-bbbc-f4e186c5e3a1"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с вводом на Android.</td></tr><tr id="14c15285-0ae8-80ce-9aa3-f1073e96bcf0"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики использования Fit API на Android.</td></tr><tr id="14c15285-0ae8-80d3-b409-fc3201f5f10a"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Коллекция примеров для обсуждения и демонстрации игр в Android-приложениях.</td></tr><tr id="14c15285-0ae8-80a7-87bf-dc38884fb95e"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с графикой на Android.</td></tr><tr id="14c15285-0ae8-801c-bd1d-c65023a63bc3"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Набор проектов для Android Studio, которые помогут начать разработку приложений для здоровья на Android и Wear OS.</td></tr><tr id="4a5e2123-6ce5-4e3c-9203-644a2b851c46"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры демонстрации экспериментальных библиотек Jetpack для Kotlin Multiplatform.</td></tr><tr id="14c15285-0ae8-80a4-98e3-d252e65a374b"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с медиа API на Android (аудио, видео и др.).</td></tr><tr id="14c15285-0ae8-8030-b1d8-ca485eb71f1f"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры, демонстрирующие лучшие практики работы с MIDI на Android.</td></tr><tr id="14c15285-0ae8-80a0-a8aa-d21804c57763"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Набор проектов для Android Studio, чтобы начать разработку с Neural Networks API.</td></tr><tr id="bb80937b-e4b9-4192-a558-a06fa60a6059"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры использования Android NDK с Android Studio.</td></tr><tr id="14c15285-0ae8-8078-9837-d5d191d6603c"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих работу с Package Manager на Android.</td></tr><tr id="14c15285-0ae8-8078-b0d6-fa825012ae3a"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Примеры, демонстрирующие API и лучшие практики повышения производительности на Android.</td></tr><tr id="14c15285-0ae8-8003-befd-cf7f35d89d7c"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Коллекция примеров различных API платформы Android OS.</td></tr><tr id="e22d826b-0519-480f-81ca-f062e252950e"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Список проектов для Android Studio, чтобы начать разработку с SDK Runtime и Privacy Preserving APIs (PPAPIs)</td></tr><tr id="14c15285-0ae8-80ca-aa0e-e44e56ac0d5a"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих использование Search API на Android.</td></tr><tr id="14c15285-0ae8-800c-936b-e4f622d5d9a1"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с датчиками на Android.</td></tr><tr id="14c15285-0ae8-804e-b9cf-d69326e8f14a"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с API для хранения данных на Android.</td></tr><tr id="14c15285-0ae8-8032-9853-c978c4093cfc"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с API безопасности на Android.</td></tr><tr id="14c15285-0ae8-8053-a240-e8ce02df62de"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Коллекция примеров, демонстрирующих различные фреймворки и техники автоматизированного тестирования.</td></tr><tr id="14c15285-0ae8-8097-ac60-c663b93502e0"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики разработки приложений для Android TV.</td></tr><tr id="14c15285-0ae8-804c-bcd3-ef4ae8d9a375"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики создания пользовательского интерфейса на Android.</td></tr><tr id="14c15285-0ae8-8012-b821-f14f208519c8"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики работы с View и виджетами на Android.</td></tr><tr id="14c15285-0ae8-80a9-a2a7-dca8437251fe"><td id="_]TY" class="" style="width:286px"></td><td id="`&gt;tG" class="" style="width:870px">Несколько примеров, демонстрирующих лучшие практики разработки приложений и циферблатов для Wear OS.</td></tr></tbody></table></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

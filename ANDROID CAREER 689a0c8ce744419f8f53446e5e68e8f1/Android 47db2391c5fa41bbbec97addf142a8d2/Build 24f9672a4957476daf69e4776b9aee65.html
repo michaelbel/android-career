@@ -1,0 +1,702 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Build</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="24f9672a-4957-476d-af69-e4776b9aee65" class="page sans"><header><img class="page-cover-image" src="Build%2024f9672a4957476daf69e4776b9aee65/cover-android-build.webp" style="object-position:center 4.820000000000002%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Build%2024f9672a4957476daf69e4776b9aee65/icon-android-platform.svg"/></div><h1 class="page-title">Build</h1><p class="page-description"></p></header><div class="page-body"><table id="caebd58d-107b-4ec3-880d-2250a2101b4a" class="simple-table"><tbody><tr id="62164ffa-1e92-4fd4-8b82-23b6328b256a"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build">https://developer.android.com/build</a></td></tr><tr id="dc7b307e-65af-407d-a892-2da964af6a16"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/annotation-processors">https://developer.android.com/build/annotation-processors</a></td></tr><tr id="13f65b4a-25a9-4c0a-b97f-89c4e2f1dd8b"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/jdks">https://developer.android.com/build/jdks</a></td></tr><tr id="f97d1347-14f0-470a-af09-a8427a59b446"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/configure-app-module">https://developer.android.com/build/configure-app-module</a></td></tr><tr id="e87faafa-6e9b-4c96-a4cc-0570d2531e52"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/manage-manifests">https://developer.android.com/build/manage-manifests</a></td></tr><tr id="b401671f-2b5a-48ac-8d04-3e7f2f78ceed"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/custom-build-logic">https://developer.android.com/build/custom-build-logic</a></td></tr><tr id="0b208fa0-c32d-4c6f-83ad-67c7e11feb7e"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/build-variants">https://developer.android.com/build/build-variants</a></td></tr><tr id="419c98a2-c6a3-408b-bef2-9a6943993e43"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/agp-upgrade-assistant">https://developer.android.com/build/agp-upgrade-assistant</a></td></tr><tr id="9491983d-34f1-4615-b1b7-2cb3618b93bb"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/sdk-upgrade-assistant">https://developer.android.com/build/sdk-upgrade-assistant</a></td></tr><tr id="7fcfd3eb-79b9-4995-b8f3-a1618620fd9a"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/sdk-upgrade-assistant">https://developer.android.com/build/sdk-upgrade-assistant</a></td></tr><tr id="61cc07f4-9421-47e8-b68e-563ae936cf87"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/build-analyzer">https://developer.android.com/build/build-analyzer</a></td></tr><tr id="4ef90eeb-dcfc-48b2-8632-1c164142458a"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/profile-your-build">https://developer.android.com/build/profile-your-build</a></td></tr><tr id="fede5c4b-8726-4d54-ba43-15fc103306ee"><td id="EsbJ" class="" style="width:592px"><a href="https://d.android.com/studio/build/shrink-code">https://d.android.com/studio/build/shrink-code</a></td></tr><tr id="38e5842b-bba6-4538-81ff-40a4372b39d2"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/kotlin-support">https://developer.android.com/build/kotlin-support</a></td></tr><tr id="477a022b-9c8e-477c-8863-402c12cef746"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/multidex">https://developer.android.com/build/multidex</a></td></tr><tr id="b0ffab79-4f5e-4603-9680-60079ffd0732"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/tools/adb">https://developer.android.com/tools/adb</a></td></tr><tr id="6ce11159-6709-4157-a213-ecb82a2bea94"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/dependencies">https://developer.android.com/build/dependencies</a></td></tr><tr id="7021025d-eeb5-4008-85b7-126b4393910b"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/native-dependencies">https://developer.android.com/build/native-dependencies</a></td></tr><tr id="fdcc87ea-eecc-459d-a03e-7796c596df49"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/build/remote-repositories">https://developer.android.com/build/remote-repositories</a></td></tr><tr id="377b6d73-894f-4289-b47c-5bd6f34730ef"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/studio/write/lint">https://developer.android.com/studio/write/lint</a></td></tr><tr id="10815285-0ae8-807e-8313-f1a33eb0d4f3"><td id="EsbJ" class="" style="width:592px"><a href="https://developer.android.com/google/play/requirements/target-sdk">https://developer.android.com/google/play/requirements/target-sdk</a></td></tr></tbody></table><table id="024c3997-7720-49f0-aa70-616b08706cf8" class="simple-table"><tbody><tr id="68cc51f9-18a8-499c-8520-92234bc9e7f2"><td id="{FOP" class="" style="width:101px"><mark class="highlight-brown"><code>03.04.2024</code></mark></td><td id="]kaS" class="" style="width:464px"><a href="https://habr.com/ru/companies/cian/articles/804835/">https://habr.com/ru/companies/cian/articles/804835/</a></td></tr><tr id="73e1d365-92f0-47ea-9809-36dcbe26fb37"><td id="{FOP" class="" style="width:101px"><mark class="highlight-brown"><code>01.10.2020</code></mark></td><td id="]kaS" class="" style="width:464px"><a href="https://habr.com/ru/articles/521522/">https://habr.com/ru/articles/521522/</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">NDK</summary><div class="indented"><p id="824a4b98-db7c-4e24-82de-95d33e22c780" class="">Native Development Kit – набор инструментов, которые помогают работать с кодом, написанным на языках C и C++. NDK предоставляет API для доступа к физическим компонентам девайса, таким как сенсоры. Кроме того NDK позволяет скомпилировать и включить в APK C/C++ код, используя Gradle. NDK часто используется в геймдеве для увеличения производительности и для ручного управления памятью. Для взаимодействия нативного и Java-кода используется собственный интерфейс Java - JNI, он определяет способ взаимодействия байт-кода, который Android компилирует из управляемого кода (написанного на языках программирования Java или Kotlin), с собственным кодом (написанным на C/C++).</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">JNI</summary><div class="indented"><p id="8c86efb8-68dd-4d60-897d-46523ab134b0" class="">Java Native Interface. Стандартный механизм для запуска кода под управлением JVM, который написан на языках C/C++ или Ассемблере и скомпонован в виде динамических библиотек; позволяет не использовать статическое связывание. Это даёт возможность вызова функции C/C++ из программы на Java, и наоборот.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Android</summary><div class="indented"><p id="4fd75f01-5550-4bc8-a9a1-1d3e17147fe9" class="">ОС для смартфонов, планшетов, носимой электроники и бытовых устройств с открытым исходным кодом. Основана на ядре Linux. Android использует собственную реализацию виртуальной машины Java - ART. Позволяет запускать Java-приложения, управляющие устройством через разработанные Google библиотеки.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">ART</summary><div class="indented"><p id="e2258b82-f551-46f8-9fab-b3fc6b8a3ff5" class="">Android Runtime (ART) - среда выполнения приложений Android, замена Dalvik, преобразовывает байт-код приложений в собственные инструкции, которые выполняются на устройстве.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">jar</summary><div class="indented"><p id="a859f2c0-cccd-431f-b2ec-3d313e386360" class="">Java Archive. Содержит классы Java, может использоваться как в Android-приложениях, так и в чистой Java. </p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">aar</summary><div class="indented"><p id="d1654780-3620-405f-9bfc-0f5138fc80f1" class="">Android Archive. Аналогичен модулю приложения Android. Может включать исходный код (классы и методы Java), файлы ресурсов, манифест. Может содержать библиотеки C/C++. </p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">APK (Android Package)</summary><div class="indented"><p id="e69856be-960a-497c-b328-bf44cdab7a00" class="">Формат пакета для приложений на платформе Android. Он содержит все необходимые файлы и ресурсы, которые требуются для установки и запуска приложения на устройстве Android. APK-файл представляет собой архив, который можно рассматривать как “упакованный” контейнер для всего, что нужно для работы приложения.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Компоненты APK-файла</summary><div class="indented"><p id="584a0e58-e7c9-4ace-a625-49e9ae8beb3c" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>META-INF</code></mark><mark class="highlight-default"> Содержит метаданные о приложении, включая цифровые подписи и сертификаты, которые используются для проверки целостности и подлинности APK.</mark><div class="indented"><p id="231b62a9-f916-418b-adde-299ef98352ac" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>MANIFEST.MF</code></mark><mark class="highlight-default"> Файл манифеста, который содержит общую информацию о содержимом архива, например, метаданные подписи.</mark></p><p id="970dd6aa-93c8-4413-bcd9-2ef8c34810a0" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>CERT.RSA</code></mark><mark class="highlight-default"> Цифровая подпись для проверки целостности файла.</mark></p><p id="79d31b5f-dd69-4c8e-a856-28d34d9652dc" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>CERT.SF</code></mark><mark class="highlight-default"> Файл, который содержит список файлов в APK и их хэши для проверки целостности.</mark></p></div></p><p id="cf43f198-4a9d-4a45-9daf-b57cfac2cc48" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>res</code></mark><mark class="highlight-default"> Содержит ресурсы приложения, такие как файлы разметки (XML), изображения и другие ресурсы, которые не являются кодом. Эти файлы упакованы в формат, оптимизированный для быстрого доступа.</mark></p><p id="89a397e9-ce93-4a74-8b0c-fb2594bd51e9" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>assets</code></mark><mark class="highlight-default"> Содержит произвольные файлы и папки, которые приложение может использовать в процессе выполнения. В отличие от ресурсов в папке res, файлы в папке assets не обрабатываются системой Android и могут быть любого формата.</mark></p><p id="513e9f80-64f6-4dac-b9d6-74bc34cff1af" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>lib</code></mark><mark class="highlight-default"> Содержит скомпилированные библиотеки и файлы .so (shared objects) для различных архитектур процессора (например, ARM, x86). Эти библиотеки могут использоваться приложением для выполнения задач на низком уровне или взаимодействия с платформенными функциями.</mark></p><p id="4cadee3a-322a-46ad-9139-79acf57a32a7" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>classes.dex</code></mark><mark class="highlight-default"> Содержит скомпилированные байт-коды Java (в формате Dalvik Executable) или Kotlin, которые выполняются виртуальной машиной Android (ART/Dalvik). Это основной исполняемый код приложения.</mark></p><p id="efefcaa8-7a7d-4d91-ab66-f2f58a35c93c" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>AndroidManifest.xml</code></mark><mark class="highlight-default"> Основной файл конфигурации, который описывает компоненты приложения (активности, службы, приемники, провайдеры контента) и задает разрешения, необходимые приложению. Этот файл также содержит информацию о версии приложения и других свойствах.</mark></p><p id="c4f4f9d9-8622-49fe-9254-53836ca061ef" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>resources.arsc</code></mark><mark class="highlight-default"> Содержит предварительно скомпилированные ресурсы (например, строки, стили, размеры) в бинарном формате, который позволяет быстро извлекать их во время выполнения приложения.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Структура APK-файла</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e75b0c1-bffe-46a6-bdb9-d2b2cd043a00" class="code"><code class="language-Plain Text">MyApp.apk
+├── AndroidManifest.xml
+├── classes.dex
+├── res/
+│   ├── drawable/
+│   ├── layout/
+│   ├── mipmap/
+│   └── values/
+├── assets/
+│   └── some_file.txt
+├── lib/
+│   ├── armeabi/
+│   └── x86/
+└── META-INF/
+    ├── CERT.RSA
+    ├── CERT.SF
+    └── MANIFEST.MF</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Как уменьшить APK</summary><div class="indented"><p id="c9346412-22f9-4825-a64a-316a9e1017d7" class="">• <strong>Оптимизация ресурсов. </strong>Удалите ненужные ресурсы, используйте форматы изображений с меньшим размером (WebP), не включаете ресурсы для всех разрешений экранов, если они не нужны.</p><p id="527d662b-f688-448f-9d69-48f4cd7e37a0" class="">• <strong>Использование ProGuard и R8. </strong>Удалите неиспользуемый код и оптимизируйте его. Обфусцируй и сожми код.</p><p id="3d434294-dd7e-4223-b493-ef4e8fbba4e5" class="">• <strong>Разделение APK на модули. С</strong>оздать разные APK для различных архитектур процессоров или разрешений экрана.</p><p id="3d25310a-733e-4adc-9ffe-43ad8e0f4063" class="">• <strong>Оптимизация библиотек.</strong> Удалите лишние зависимости.</p><p id="9022625e-9be8-44f9-a6ec-cba2c0222665" class="">• <strong>Упрощение кода.</strong> Не оставляете неиспользуемый код в проекте.</p><p id="261d815b-6e79-44f9-9d20-944961e527a5" class="">• <strong>Сжатие файлов. </strong>Используйте инструменты для сжатия ресурсов и файлов, такие как pngcrush или jpegoptim для изображений.</p><p id="a3fa29c9-a9e8-45ad-8ee4-45ef49dfa7f0" class="">• <strong>Использование shrinkResources.</strong> Этот флаг удаляет неиспользуемые ресурсы из APK.</p><p id="1cf7c56e-a177-4314-b60d-985c3d08f2d5" class="">• <strong>Использование Android App Bundle. П</strong>озволяет Google Play автоматически генерировать APK для различных конфигураций устройств. Это помогает сократить размер скачиваемого APK для конечного пользователя.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Как взломать APK</summary><div class="indented"><p id="757c8254-c189-4f2c-89ee-2c7a34b49055" class="">• Распаковать APK. Сразу можно посмотреть AndroidManifest (exported=true). Запустить компоненты. Узнать установлено ли приложение на телефон.</p><p id="ffb13339-de43-4ac5-8aec-fd77bdbf885c" class="">• Просмотреть strings.xml. Там могут лежать ключи.</p><p id="82a391e8-72d4-47ee-af13-3bac04546fe3" class="">• Украсть сертификат SSL Pinning из папки raw.</p><p id="54dc4c73-8e0e-4ab9-8717-e116b17fdfe1" class="">• Перевести .dex в .jar утилитой dex2jar.</p><p id="8421e928-9f14-44fe-9c50-f94a2ac7e2e8" class="">• Найти методы Retrofit и получить доступ к коду всех методов работы с сервером. </p><p id="b61b07d7-458c-4ec1-8bbe-0bbf37cbbc33" class="">• Включить debug-меню если разработчики не удаляют его код из release-версии.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">.dex</summary><div class="indented"><p id="23665722-f109-4c26-9736-2e531f0720a2" class="">DEX файл – результат компиляции кода Android-приложения. Расшифровывается как Dalvik Executable, но несмотря на это используется и на устройствах со средой исполнения ART. В Java-программах каждый .java файл компилируется в отдельный .class файл. DEX аналогичен файлам .class, но содержит байткод всего приложения (или части приложения в случае Multidex), а не одного класса.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Проблема 64k методов</summary><div class="indented"><p id="41432c91-6d78-47ef-9984-778e7050b662" class="">Это ограничение на количество методов в одном .dex-файле. Максимальное количество методов в .dex-файле равно 65536. На ранних версиях Андроида приложение могло иметь только один .dex-файл. Проблема 64К ограничивала количество методов в приложении. Один класс в Java может иметь максимум 64К методов. В Андроиде .dex-файл сделан по образу .class и поэтому наследует это ограничение. Причина ограничения в том, что под индексы ссылок на методы в java- и dalvik-байткоде выделено 16 бит. Т.е. максимальное число 2^16 = 65536. На ранних версиях Андроида единственным решением было уменьшение количества методов. Для этого использовался Proguard. Сейчас проблема решается включением Multidex. В этом случае приложение может иметь более одного .dex-файла.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">AAB (Android App Bundle)</summary><div class="indented"><p id="1017f140-c583-432b-8e2b-7e655cb99a42" class="">AAB - файловый формат публикации приложений для Android. AAB содержит код и ресурсы, необходимые для конфигурации конкретного устройства. Если пользователь изменит язык устройства или набор функций, магазин приложений может запросить дополнительные разделенные APK для удовлетворения изменившихся требований.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Zygote</summary><div class="indented"><p id="9d15cdf5-6dc0-4cef-8878-92c59595a310" class="">Ключевой процесс, который служит для создания новых процессов приложений. Он работает как предзагруженный процесс, из которого создаются копии для каждого приложения с помощью механизма форка (forking). Это позволяет значительно ускорить запуск приложений и сэкономить память.</p><p id="ad0a3ca9-c7ec-406e-944b-ba3253b9f00a" class="">• <strong>Инициализация. </strong>При загрузке системы Zygote запускается и загружает все необходимые библиотеки, компоненты и классы, общие для всех приложений Android.</p><p id="ea5640ba-c642-4046-8022-d3bb9ece0036" class="">• <strong>Fork (разветвление). </strong>Когда нужно запустить новое приложение, Zygote делает “fork” — создаёт новый процесс, который является копией самого процесса Zygote. Это копирование позволяет новому процессу использовать уже загруженные системные ресурсы.</p><p id="019cb3b1-91b1-429f-bcc5-d77c90cf53b9" class="">• <strong>Оптимизация. </strong>За счёт предзагрузки общих ресурсов и быстрого разветвления процесс Zygote существенно ускоряет запуск приложений и снижает использование оперативной памяти, так как часть данных (например, классы и библиотеки) остаётся общей для всех приложений.</p><p id="10315285-0ae8-80da-aa35-f8b4c16562ed" class="">
+</p><h3 id="10315285-0ae8-8076-87d6-f26f53053bde" class=""><strong>Приоритеты процессов</strong></h3><ol type="1" id="d93de663-4327-4769-8971-e02a504fc937" class="numbered-list" start="1"><li><strong>Foreground Process (Процесс переднего плана)</strong>: <strong>Наивысший приоритет</strong>. Содержит активные пользовательские приложения и процессы, которые напрямую взаимодействуют с пользователем. Всегда остается в памяти и не подвержен убийству системой при нехватке ресурсов.</li></ol><ol type="1" id="080b1d6a-3676-4905-a90d-722a53dfa206" class="numbered-list" start="2"><li><strong>Visible Process (Процесс видимого приложения)</strong>: <strong>Высокий приоритет</strong>. Содержит процессы приложений, которые видимы пользователю, но не активны. Может быть убит системой, если ей нужно освободить память, но только после более низко приоритетных процессов.</li></ol><ol type="1" id="018cf77d-b0f2-4768-baed-f5a592833ed3" class="numbered-list" start="3"><li><strong>Service Process (Процесс службы)</strong>: <strong>Средний приоритет</strong>. Содержит процессы, которые выполняют фоновую работу (например, службы, выполняющие долгие задачи). Убиваются только в последнюю очередь, если система нуждается в освобождении ресурсов.</li></ol><ol type="1" id="35a12285-2415-46da-a49d-fa97969e32e3" class="numbered-list" start="4"><li><strong>Background Process (Процесс фонового приложения)</strong>: <strong>Низкий приоритет</strong>. Содержит приложения, которые не видны пользователю и не выполняют активные задачи. Могут быть убиты системой в первую очередь при нехватке памяти.</li></ol><ol type="1" id="026ae4ec-6726-461a-b135-c090ff8d1c92" class="numbered-list" start="5"><li><strong>Empty Process (Пустой процесс)</strong>: <strong>Наименьший приоритет</strong>. Содержит процессы, которые больше не используются и освободили всю память. Убиваются первой, когда системе нужно освободить ресурсы.</li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Doze Mode</summary><div class="indented"><p id="3e499822-2eae-45c9-b91a-061784094cd7" class="">Функция управления энергопотреблением в Android, предназначенная для увеличения времени работы устройства от батареи. Была впервые представлена в Android 6.0 и значительно улучшает управление энергией, снижая потребление батареи для приложений, которые не находятся в активном использовании.</p><p id="ac9707fa-ca41-4d07-91ed-1d2732f5b5c1" class="">• <strong>Активирование. </strong>Doze Mode активируется, когда устройство находится в состоянии покоя. Это происходит, когда экран выключен, и устройство не перемещается в течение определенного времени.</p><p id="5a48dacf-daa1-43b9-8ab2-08c4b4aabd5b" class="">• <strong>Режимы работы. </strong>Когда устройство находится в покое в течение более длительного времени, Doze Mode переходит в более строгий режим экономии энергии, при котором доступ к сети и частичным пробуждениям ограничен еще больше.</p><p id="2eefa761-f478-4dbd-ba1e-b483b455b6b4" class="">• <strong>Ограничение фоновых операций. </strong>Doze Mode ограничивает фоновые операции, такие как синхронизация данных и сетевые запросы, чтобы снизить энергопотребление.</p><p id="f607df36-dbe2-4fe9-ae29-9bfe36c8ff12" class="">• <strong>Ограничение активности. </strong>Приложения не могут выполнять фоновую работу или получать сообщения до тех пор, пока не произойдут запланированные интервалы пробуждения (standby maintenance windows).</p><p id="7a67bb2f-e06d-4db6-b732-c328ae23c40a" class="">• <strong>Смарт-уведомления. </strong>Приложения могут обрабатывать уведомления в рамках ограничений Doze Mode, но время их доставки может быть отложено до следующего пробуждения устройства.</p><p id="c1712797-b91b-49c3-ab4d-8fe79b84dff1" class="">• <strong>Пробуждение устройства. </strong>Doze Mode не влияет на высоко приоритетные события, такие как входящие вызовы и сообщения, которые могут пробудить устройство. Также может быть пробуждено с помощью действий пользователя, таких как нажатие кнопок или взаимодействие с экраном.</p><p id="2bed7bf9-80f6-4431-b947-e74619f567cc" class="">• <strong>Настройки и исключения. </strong>Пользователи могут управлять некоторыми аспектами Doze Mode через настройки устройства, но основное поведение управляется системой. Приложения могут запрашивать исключения от Doze Mode через механизм “whitelist”, если они требуют постоянного фона для критичных задач (например, для приложений для отслеживания местоположения или уведомлений о сообщениях).</p><p id="3e4199ce-3cdc-4ed7-a33b-091a714a814b" class="">• <strong>Старые устройства. </strong>На устройствах, работающих под управлением Android 5.1 или ниже, аналогичные функции экономии энергии называются “App Standby” и имеют более ограниченные возможности по сравнению с Doze Mode.</p><p id="8241a7d1-1995-4df0-9e4f-e0ce529c2102" class="">• Если ваше приложение не выполняет критически важные задачи в фоновом режиме, оно может быть приостановлено в Doze Mode, и система выполнит фоновые операции (такие как синхронизацию данных) только в рамках определенных интервалов. Это помогает сохранить заряд батареи и улучшить общую производительность устройства.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>AIDL</strong></summary><div class="indented"><p id="44e37b37-f630-445e-beaa-02f0f1494cfa" class="">Android Interface Definition Language. Язык межпроцессного взаимодействия. Разные процессы не имеют общего пространства памяти, поэтому данные между процессами передаются через сообщения. Интерфейс передачи данных создается на языке AIDL. AIDL поддерживает передачу<mark class="highlight-default"> объектов </mark><mark class="highlight-default"><code>Parcelable</code></mark><mark class="highlight-default"> и </mark><mark class="highlight-default"><code>Serializable</code></mark><mark class="highlight-default">.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>ANR</strong></summary><div class="indented"><p id="6d2b84f1-82d4-4929-934c-b7f18a5edcfb" class="">Application Not Responding – системный диалог для пользователя, когда приложение зависает. Отображается если: не поступает ответа от UI (нажатие на экран) за 5 сек, broadcastReceiver не завершил выполнение за 10 сек. Частая причина ANR – IO-операции в главном потоке (чтение/запись в бд). </p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>R8</code></mark></summary><div class="indented"><p id="13715285-0ae8-80f0-ad35-cc9bf55545c5" class="">Инструмент оптимизации и уменьшения размера APK в Android, который объединяет функции обфускации (сокрытия исходного кода), оптимизации, уменьшения количества кода (minification) и сжатия ресурсов. Он заменил <mark class="highlight-default"><code>ProGuard</code></mark> и теперь используется по умолчанию в Android Studio для обработки кода, начиная с Android Studio 3.4. <mark class="highlight-default"><code>R8</code></mark> берет на вход <mark class="highlight-default"><code>.class</code></mark>-файлы, библиотеки, и ресурсы, а затем анализирует их, обфусцирует и оптимизирует, в результате создавая уменьшенную версию APK. Он также поддерживает правила конфигурации (обычно <mark class="highlight-default"><code>.pro</code></mark>-файлы), с помощью которых можно настраивать, какие классы, методы и поля должны быть исключены из обфускации или минификации.</p><p id="13715285-0ae8-80e7-95da-c0a4c1f1d2ef" class="">• Обфускация — <mark class="highlight-default"><code>R8</code></mark> переименовывает классы, методы и переменные, делая их имена нечитаемыми. Это затрудняет понимание кода при обратной разработке и увеличивает защиту от реверс-инжиниринга.</p><p id="13715285-0ae8-80ca-83a9-c966e9170fbe" class="">• Минификация кода — удаление неиспользуемых классов, методов и полей из кода приложения. <mark class="highlight-default"><code>R8</code></mark> анализирует весь код и исключает то, что не влияет на функциональность.</p><p id="13715285-0ae8-80df-9716-fb4f2be5b0c7" class="">• Оптимизация — <mark class="highlight-default"><code>R8</code></mark> анализирует код и улучшает его, удаляя лишние операции, упрощая выражения и т.д. Это снижает нагрузку на процессор и уменьшает потребление памяти.</p><p id="13715285-0ae8-8098-b076-d6cc3857eece" class="">• Сжатие ресурсов — <mark class="highlight-default"><code>R8</code></mark> также может уменьшить размер файлов ресурсов, удаляя неиспользуемые или дублирующиеся ресурсы.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Правила конфигурации для R8</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>-keep</code></mark></summary><div class="indented"><p id="13715285-0ae8-8032-9741-e951a44a5c73" class="">Cохраняет классы, методы или поля от обфускации и удаления. Часто используется для классов, которые требуются при рефлексии или которые вызываются из сторонних библиотек.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-80ee-82cb-ed558b014027" class="code"><code class="language-PowerShell">-keep class com.example.myapp.MainActivity</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>-dontobfuscate</code></mark></summary><div class="indented"><p id="13715285-0ae8-800d-b8b8-f8a6e41554e4" class="">Полностью отключает обфускацию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-805e-8539-cb8caa0149e0" class="code"><code class="language-PowerShell">-dontobfuscate</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>-dontoptimize</code></mark></summary><div class="indented"><p id="13715285-0ae8-808b-bae1-d555528bd657" class="">Отключает оптимизацию (может быть полезно при отладке).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13715285-0ae8-8018-a5e7-d4b450089d7b" class="code"><code class="language-PowerShell">-dontoptimize</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@Keep</code></mark></summary><div class="indented"><p id="14a15285-0ae8-802c-bff2-d91bd3e8ec7f" class="">Исклает класс или метод из обфускации R8. Инструмент сборки сохраняет оригинальные имена классов, методов или полей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8046-8baf-f7d153a7b04e" class="code"><code class="language-Kotlin">@Keep
+data class User(val id: Int, val name: String)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ProGuard</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80b6-afd6-eb67bdbb1b7f" class="">Инструмент для оптимизации, обфускации и уменьшения размера APK в Android.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (20)</mark></summary><div class="indented"><ol type="1" id="04e9c4c6-6cd2-4026-8118-826c744ec6ba" class="numbered-list" start="1"><li>Для чего нужен ProGuard?<p id="10915285-0ae8-80e0-a952-e6fc4ad1b7cf" class=""><mark class="highlight-teal">ProGuard используется для оптимизации и минификации кода Android-приложений, а также для защиты от реверс-инжиниринга, уменьшая размер APK и затрудняя анализ кода.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-8082-a89a-c8129c5c2d85" class="numbered-list" start="2"><li>Что такое R8?<p id="12a15285-0ae8-80f1-8c56-da28e9ad05b2" class=""><mark class="highlight-teal">Инструмент оптимизации и обфускации кода для Android, заменивший </mark><mark class="highlight-teal"><code>ProGuard</code></mark><mark class="highlight-teal">. Он уменьшает размер APK, удаляя неиспользуемый код и ресурсы, сокращает имена классов, методов и полей для повышения безопасности, а также улучшает производительность приложения.</mark></p></li></ol><ol type="1" id="553e020a-c00b-4884-b7a2-308598353fa5" class="numbered-list" start="3"><li>Что такое проблема 64k методов?<p id="886e8cee-d387-495e-aca9-01554d8d6931" class=""><mark class="highlight-teal">Проблема 64k методов возникает, когда количество методов в приложении Android превышает лимит в 65,536, что приводит к ошибке сборки. Это связано с ограничением формата DEX, используемого в Android для компиляции байт-кода.</mark></p></li></ol><ol type="1" id="e6743dac-da81-4cd5-abe5-05bb1d9cd41b" class="numbered-list" start="4"><li>Разница между implementation и api?<p id="10915285-0ae8-803e-95f8-c3b8a7a9de8e" class=""><mark class="highlight-teal"><code>implementation</code></mark><mark class="highlight-teal"> используется для обозначения зависимостей, которые необходимы только для компиляции и не доступны другим модулям, тогда как </mark><mark class="highlight-teal"><code>api</code></mark><mark class="highlight-teal"> позволяет другим модулям видеть и использовать эти зависимости, включая их публичные API.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-804a-81ee-f3bde1eef114" class="numbered-list" start="5"><li>Зачем нужна обфускация кода?<p id="12a15285-0ae8-8049-a220-d3c663edb1b6" class=""><mark class="highlight-teal">Обфускация кода в Android нужна для защиты от реверс-инжиниринга. Она делает код трудночитаемым, скрывая логику приложения и предотвращая его взлом или кражу данных, при этом уменьшая размер APK, так как удаляет неиспользуемый код и ресурсы.</mark></p></li></ol><ol type="1" id="c0234272-bee2-44bb-9f1a-63f86169bfc8" class="numbered-list" start="6"><li>Как уменьшить APK?<p id="10915285-0ae8-80a8-bf01-f3e174d2ddda" class="">• <mark class="highlight-teal">Применять ProGuard или R8 для минификации и обфускации кода.</mark></p><p id="10915285-0ae8-80c8-8308-c1b6f214c3ce" class="">• <mark class="highlight-teal">Удалять неиспользуемые ресурсы с помощью инструмента </mark><mark class="highlight-teal"><code>resConfigs</code></mark><mark class="highlight-teal">.</mark></p><p id="10915285-0ae8-80d6-924f-e234f8415d8b" class="">• <mark class="highlight-teal">Сжимать изображения и использовать форматы WebP.</mark></p><p id="10915285-0ae8-8071-bcc8-fd6fd53fa422" class="">• <mark class="highlight-teal">Разделять APK на разные версии для разных архитектур с помощью </mark><mark class="highlight-teal"><code>abiFilters</code></mark><mark class="highlight-teal">.</mark></p><p id="10915285-0ae8-809f-a8ac-cb89f312158e" class="">• <mark class="highlight-teal">Использовать динамическую загрузку функций (Dynamic Delivery).</mark></p><p id="10915285-0ae8-8030-9b3c-f21713dd1ccc" class="">• <mark class="highlight-teal">Оптимизировать зависимости, избегая избыточных библиотек.</mark></p></li></ol><ol type="1" id="a25ac171-3cde-46d0-8519-6b3354fbecaf" class="numbered-list" start="7"><li>Что такое Doze Mode?<p id="f027971f-0f8e-4d4b-b81d-00f91957d72b" class=""><mark class="highlight-teal">Doze Mode — это режим экономии батареи в Android, который ограничивает фоновую активность приложений, когда устройство не используется, продлевая время работы от батареи.</mark></p></li></ol><ol type="1" id="02fc4917-50c1-4720-943b-5c2c3744a2f1" class="numbered-list" start="8"><li>Уменьшилась скорость сборки проекта, в чем может быть проблема?<p id="10915285-0ae8-807f-99c9-c7f73e9c69fa" class="">• <mark class="highlight-teal">Увеличения числа зависимостей.</mark></p><p id="a0e01707-acd5-4e3a-9ad3-06eaddba48f7" class="">• <mark class="highlight-teal">Использования тяжелых плагинов.</mark></p><p id="10915285-0ae8-8066-a046-cda162c55a90" class="">• <mark class="highlight-teal">Неэффективных задач в Gradle.</mark></p><p id="10915285-0ae8-80b6-8789-e1e389efc1b8" class="">• <mark class="highlight-teal">Отсутствия кэша сборки.</mark></p><p id="701a0261-befc-4b2e-b63b-655009964424" class="">• <mark class="highlight-teal">Изменений в конфигурациях сборки.</mark></p></li></ol><ol type="1" id="4879b707-e417-4ced-bbda-232eafb6f4b4" class="numbered-list" start="9"><li>Зачем нужен атрибут targetSdk?<p id="10815285-0ae8-8041-8a53-d5ef1161b7c0" class=""><mark class="highlight-teal">Таргетинг на последний уровень API гарантирует, что пользователи смогут воспользоваться новыми улучшениями, в то время как приложение по-прежнему сможет работать на старых версиях Android.</mark></p></li></ol><ol type="1" id="10915285-0ae8-80ef-9617-c75f99c0aaf3" class="numbered-list" start="10"><li>Различие между compileSdk и targetSdk?<p id="10915285-0ae8-80c2-834b-faa9b18a4b58" class=""><mark class="highlight-teal"><code>compileSdk</code></mark><mark class="highlight-teal"> указывает версию SDK, с которой компилируется проект, а </mark><mark class="highlight-teal"><code>targetSdk</code></mark><mark class="highlight-teal"> определяет, для какой версии SDK приложение оптимизировано. </mark><mark class="highlight-teal"><code>compileSdk</code></mark><mark class="highlight-teal"> позволяет использовать новые API, а </mark><mark class="highlight-teal"><code>targetSdk</code></mark><mark class="highlight-teal"> сообщает системе, как вести себя при взаимодействии с приложением.</mark></p></li></ol><ol type="1" id="10515285-0ae8-80e0-9b2a-c5f315df2fa0" class="numbered-list" start="11"><li>Что происходит когда пользователь нажимает на иконку приложения и до вызова Application.onCreate?<p id="10515285-0ae8-8017-8433-efee0b8b22f3" class=""><mark class="highlight-teal">Когда пользователь нажимает на иконку приложения, система создает новый процесс через форк процесса Zygote, загружает ресурсы и компоненты приложения, создает объект </mark><mark class="highlight-teal"><code>Application</code></mark><mark class="highlight-teal">, а затем вызывает метод </mark><mark class="highlight-teal"><code>Application.onCreate()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10515285-0ae8-8087-a3aa-cbe5503af365" class="numbered-list" start="12"><li>Как ускорить холодный старт приложения?<p id="10515285-0ae8-80ac-b34a-f6a0fb397973" class=""><mark class="highlight-teal">Отложить инициализацию тяжелых ресурсов в </mark><mark class="highlight-teal"><code>Application.onCreate</code></mark><mark class="highlight-teal">, делать инициализацию ленивой, использовать библиотеку </mark><mark class="highlight-teal"><code>AppStartup</code></mark><mark class="highlight-teal">, оптимизовать код с помощью </mark><mark class="highlight-teal"><code>ProGuard</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>R8</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="fb1e0461-17f4-4ef4-81aa-db664a0bbfad" class="numbered-list" start="13"><li>В чем преимущества многомодульности?<p id="10415285-0ae8-80cf-a253-ddb8f29c5de3" class="">• <mark class="highlight-teal">Улучшает структуру проекта.</mark></p><p id="10f15285-0ae8-8026-a937-f3de76ac393e" class="">• <mark class="highlight-teal">Ускоряет сборку</mark></p><p id="10f15285-0ae8-80ce-8a49-d4dfabdd081e" class="">• <mark class="highlight-teal">Облегчает повторное использование кода и тестирование.</mark></p><p id="10f15285-0ae8-80a0-828a-f31e83b96a5f" class="">• <mark class="highlight-teal">Упрощает управление зависимостями и параллельную разработку.</mark></p></li></ol><ol type="1" id="10915285-0ae8-8085-a7f9-e7ace06db186" class="numbered-list" start="14"><li>Какой путь проделывает сборка от запуска сборки до установки APK?<p id="10915285-0ae8-8083-88c3-d83307cd4453" class="">• <mark class="highlight-teal">Запуск сборки: Инициализация </mark><mark class="highlight-teal"><code>Gradle</code></mark><mark class="highlight-teal">, считывание конфигураций из </mark><mark class="highlight-teal"><code>build.gradle</code></mark><mark class="highlight-teal">.</mark></p><p id="10915285-0ae8-80ed-9925-eff0f4eacc87" class="">• <mark class="highlight-teal">Компиляция кода: Компиляция Java/Kotlin кода в байт-код, обработка ресурсов.</mark></p><p id="10915285-0ae8-806a-af9f-dcdf29eff2db" class="">• <mark class="highlight-teal">Объединение ресурсов: Объединение ресурсов (XML, изображения) в один пакет.</mark></p><p id="10915285-0ae8-800f-a3f4-cdb745b50237" class="">• <mark class="highlight-teal">Создание APK: Компиляция всех артефактов в APK-файл.</mark></p><p id="10915285-0ae8-8077-aa1f-c66f139939ea" class="">• <mark class="highlight-teal">Подпись APK: Подпись APK для обеспечения безопасности.</mark></p><p id="10915285-0ae8-8095-b407-f91cea95b853" class="">• <mark class="highlight-teal">Установка: APK копируется на устройство и устанавливается.</mark></p></li></ol><ol type="1" id="10915285-0ae8-80d6-bc4a-d0277fa5cb76" class="numbered-list" start="15"><li>Как код приложения превращается в исходники .dex?<p id="10915285-0ae8-802e-8d7b-cc2c5fa1d3df" class=""><mark class="highlight-teal">Код приложения компилируется в байт-код с помощью компилятора, а затем преобразуется в формат Dalvik Executable (DEX) с помощью инструмента </mark><mark class="highlight-teal"><code>dx</code></mark><mark class="highlight-teal"> или </mark><mark class="highlight-teal"><code>d8</code></mark><mark class="highlight-teal">. Этот процесс включает оптимизацию и упаковку кода в </mark><mark class="highlight-teal"><code>.dex</code></mark><mark class="highlight-teal"> файлы, которые затем помещаются в APK для выполнения на Android-устройстве.</mark></p></li></ol><ol type="1" id="10915285-0ae8-80ed-9abf-c69ef7a10e28" class="numbered-list" start="16"><li>Какие есть приоритеты процессов?<p id="10915285-0ae8-8061-8bc9-f42adb4b59ef" class="">• <mark class="highlight-teal">Foreground Process -  Наивысший приоритет, активные приложения, не убивается.</mark></p><p id="10915285-0ae8-8056-832d-d33beca91168" class="">• <mark class="highlight-teal">Visible Process - Высокий приоритет, видимые, но неактивные приложения, может быть убит.</mark></p><p id="10915285-0ae8-8083-b436-dbfd383b46fe" class="">• <mark class="highlight-teal">Service Process - Средний приоритет, фоновые службы, убивается последними.</mark></p><p id="10915285-0ae8-806e-bd33-c1c91d66eda2" class="">• <mark class="highlight-teal">Background Process - Низкий приоритет, не видимые приложения, убивается первым.</mark></p><p id="10915285-0ae8-8092-8fa4-eedcb432d797" class="">• <mark class="highlight-teal">Empty Process - Наименьший приоритет, неиспользуемые процессы, убивается первым.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-802a-bced-c58328721e00" class="numbered-list" start="17"><li>Какие существуют инструменты для отладки и профилирования Android-приложений?<p id="d1c8b7fe-c74c-4f4e-b9a1-70e43445d2f1" class="">• <mark class="highlight-teal"><code>Android Studio Debugger</code></mark><mark class="highlight-teal"> - позволяет устанавливать точки останова, просматривать переменные и управлять выполнением кода.</mark></p><p id="428d8ea7-180e-4ac7-8ce3-77c1b1186766" class="">• <mark class="highlight-teal"><code>Logcat</code></mark><mark class="highlight-teal"> - инструмент для вывода логов, который помогает отслеживать выполнение приложения и диагностировать ошибки.</mark></p><p id="88b57a10-6e84-4f57-b9ea-c6c95d1e86a7" class="">• <mark class="highlight-teal"><code>Android Profiler</code></mark><mark class="highlight-teal"> - включает инструменты для анализа производительности, памяти, использования CPU и сети.</mark></p><p id="06b1ede2-0061-4dd1-9123-27038e5d93f2" class="">• <mark class="highlight-teal"><code>StrictMode</code></mark><mark class="highlight-teal"> - позволяет обнаруживать потенциальные проблемы, такие как операции на основном потоке.</mark></p><p id="bfd1409a-e882-45cf-991d-7fb0729b511e" class="">• <mark class="highlight-teal"><code>LeakCanary</code></mark><mark class="highlight-teal"> - библиотека для обнаружения утечек памяти.</mark></p><p id="cfbd120a-e7c5-40ee-9640-8a5bc409f187" class="">• <mark class="highlight-teal"><code>Stetho</code></mark><mark class="highlight-teal"> - инструмент для отладки, который предоставляет интерфейс Chrome DevTools для работы с приложением.</mark></p><p id="c91936b9-80f2-4cf2-8867-8cdfd49f96c1" class="">• <mark class="highlight-teal"><code>Firebase Performance Monitoring</code></mark><mark class="highlight-teal"> - инструмент для мониторинга производительности приложения в реальном времени.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-80d4-8054-df027ef0854a" class="numbered-list" start="18"><li>Как настроить CI/CD?<p id="10a15285-0ae8-8091-b88a-e2fe1d5efc67" class=""><mark class="highlight-teal">Выбрать инструмент: GitHub Actions, GitLab CI, Travis CI, CircleCI, Jenkins и настроить деплой.</mark></p></li></ol><ol type="1" id="11f15285-0ae8-80e8-a640-de3f5960826f" class="numbered-list" start="19"><li>Какой инструмент используется для уменьшения размера APK?<p id="11f15285-0ae8-808b-b85f-e1bdaae783be" class=""><mark class="highlight-default">• </mark><mark class="highlight-red">Dalvik</mark></p><p id="11f15285-0ae8-8069-94ef-e40b8fa36752" class=""><mark class="highlight-default">• </mark><mark class="highlight-red">Jack</mark></p><p id="11f15285-0ae8-80bb-aaf5-e9aa00303d49" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal">ProGuard</mark></p><p id="11f15285-0ae8-804b-9a93-c18b0abde8be" class=""><mark class="highlight-default">• </mark><mark class="highlight-red">Lint</mark></p></li></ol><ol type="1" id="0f04eedd-59c3-4049-a8d2-422f6c8cf02c" class="numbered-list" start="20"><li>Что такое ANR?<p id="1f4c01dd-4133-4ffe-88b3-1a7fe55ec664" class="">• <mark class="highlight-red">App nothing to request</mark></p><p id="7e64c770-d3e9-451e-bedf-7cd527779c03" class="">• <mark class="highlight-teal">Application not responding</mark></p><p id="89527da2-caed-4800-9698-85b048288de7" class="">• <mark class="highlight-red">Application nobody request</mark></p><p id="5314647f-3db6-4f95-8e67-09579af53195" class="">• <mark class="highlight-red">Android not responding</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
