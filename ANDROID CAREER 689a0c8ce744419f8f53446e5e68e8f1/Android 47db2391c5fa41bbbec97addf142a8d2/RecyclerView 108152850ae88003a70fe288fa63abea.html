@@ -1,0 +1,997 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RecyclerView</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="10815285-0ae8-8003-a70f-e288fa63abea" class="page sans"><header><img class="page-cover-image" src="RecyclerView%20108152850ae88003a70fe288fa63abea/cover-android-recyclerview.webp" style="object-position:center 33.58%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="UI%20Components%201764292d24524281a31e159265be523d/icon-android-platform.svg"/></div><h1 class="page-title">RecyclerView</h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>RecyclerView</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8009-8265-fb740b9af240" class="">RecyclerView — это расширяемый <mark class="highlight-default"><code>View</code></mark> для отображения больших наборов данных, который обеспечивает высокую производительность и гибкость.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setHasFixedSize</code></mark></summary><div class="indented"><p id="10c15285-0ae8-80ab-8e85-c32b00aef50d" class=""><mark class="highlight-default">Используется для оптимизации производительности, указывая, что размеры </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> не будут изменяться при добавлении или удалении элементов. </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> может пропустить некоторые расчеты, связанные с изменением размеров, что улучшает производительность, особенно в случаях, когда содержимое списка не влияет на размеры самого </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Если у вас есть фиксированное количество элементов, и их размеры не будут изменяться, вы може</mark>те установить фиксированный размер.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-80b3-8f6e-f2f61d43d6d3" class="code"><code class="language-Kotlin">recyclerView.setHasFixedSize(true)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setHasStableIds</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8042-aefc-f93b0063a55a" class=""><mark class="highlight-default">Используется в </mark><mark class="highlight-default"><code>RecyclerView.Adapter</code></mark><mark class="highlight-default"> для указания, что идентификаторы элементов списка стабильны и не изменяются при изменении данных. Этот метод помогает </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> оптимизировать процесс отображения элементов. Если идентификаторы стабильны, </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> может эффективно повторно использовать представления и избегать ненужных операций по созданию и привязке. Если у вас есть список объектов, где каждый объект имеет уникальный и неизменяемый идентификатор, вы можете включить стабильные идентификаторы.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-80d3-b336-ddd0f81b339c" class="code"><code class="language-Kotlin">class MyAdapter: RecyclerView.Adapter&lt;MyViewHolder&gt;() {
+    
+    init {
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return dataList[position].id // Предполагается, что id - это уникальный идентификатор
+    }
+
+    // Остальные методы адаптера...
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setNestedScrollingEnabled</code></mark></summary><div class="indented"><p id="10c15285-0ae8-80f5-8dae-c9684a5656f7" class="">Используется для включения или отключения вложенной прок<mark class="highlight-default">рутки для </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default">, которая поддерживает вложенное прокручивание, например, </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>ScrollView</code></mark><mark class="highlight-default">. Метод позволяет управлять тем, будет ли View обрабатывать собы</mark>тия прокрутки, происходящие из его дочерних элементов. Если у вас есть <mark class="highlight-default"><code>RecyclerView</code></mark> внутри <mark class="highlight-default"><code>ScrollView</code></mark>, вы можете отключить вложенную прокрутку для <mark class="highlight-default"><code>RecyclerView</code></mark>, чтобы предотвратить конфликты прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-809f-9a26-f7efe178af68" class="code"><code class="language-Kotlin">recyclerView.setNestedScrollingEnabled(false)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Adapter</code></mark></summary><div class="indented"><p id="12115285-0ae8-8051-9ae6-e04e986376ee" class="">Абстрактный класс, который связывает данные с элементами пользовательского инте<mark class="highlight-default">рфейса (</mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default">) в сп</mark>иске.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-800c-8651-c8a91c8af27e" class="code"><code class="language-Kotlin">class MyAdapter(
+    private val items: List&lt;String&gt;
+): RecyclerView.Adapter&lt;MyAdapter.MyViewHolder&gt;() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+        return MyViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentItem = items[position]
+        holder.bind(currentItem)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+    
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val textView = itemView.findViewById(R.id.textView)
+
+        fun bind(text: String) {
+            textView.text = text
+        }
+    }
+}
+
+recyclerView.adapter = MyAdapter(listOf(&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;))</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCreateViewHolder</code></mark></summary><div class="indented"><p id="12215285-0ae8-8060-809f-d86d3c6b3c4b" class="">Создаёт новый <mark class="highlight-default"><code>ViewHolder</code></mark>, который будет использован для отображения элемента списка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-80db-b4a4-cb4edab8bada" class="code"><code class="language-Kotlin">override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+    return MyViewHolder(itemView)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onBindViewHolder</code></mark></summary><div class="indented"><p id="12115285-0ae8-806a-9ff4-d6c927f7e272" class="">Вызывается для привязки да<mark class="highlight-default">нных к </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default"> на ука</mark>занной позиции. Здесь происходит обновление содержимого элемента списка в соответствии с данными.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-8076-b4b1-e69ca96489e5" class="code"><code class="language-Kotlin">override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    val item = dataList[position]
+    holder.bind(item)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItemCount</code></mark></summary><div class="indented"><p id="12115285-0ae8-80b0-aa1f-f6c0a001b9bf" class="">Возвращает количество элементов в списке. Используется для определения размера данных, которые будут отображены.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-807d-a1ad-c33cd71ce05b" class="code"><code class="language-Kotlin">override fun getItemCount(): Int {
+    return dataList.size
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItemViewType</code></mark></summary><div class="indented"><p id="12115285-0ae8-8072-bae9-fad787e61f52" class="">Возвращает тип представления для элемента на данной позиции. Может использоваться для отображения разных типов элементов в одном списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-8001-9895-ec63ede4e55a" class="code"><code class="language-Kotlin">override fun getItemViewType(position: Int): Int {
+    return if (position % 2 == 0) TYPE_EVEN else TYPE_ODD
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onViewRecycled</code></mark></summary><div class="indented"><p id="12115285-0ae8-8038-8db0-c7cf147b00e1" class="">Вызывается, к<mark class="highlight-default">огда </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default"> боль</mark>ше не используется и может быть переработан для повторного использования. Полезно для освобождения ресурсов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-805d-a2cf-dfdc78731254" class="code"><code class="language-Kotlin">override fun onViewRecycled(holder: MyViewHolder) {
+    super.onViewRecycled(holder)
+    // Освободить ресурсы
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onViewAttachedToWindow</code></mark></summary><div class="indented"><p id="12115285-0ae8-80e2-bade-e3128c884dca" class="">Вызывается,<mark class="highlight-default"> когда </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default"> прикре</mark>пляется к окну, т.е. когда элемент становится видимым на экране.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-802a-837e-d505bacec56a" class="code"><code class="language-Kotlin">override fun onViewAttachedToWindow(holder: MyViewHolder) {
+    super.onViewAttachedToWindow(holder)
+    // Действия при появлении View
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onViewDetachedFromWindow</code></mark></summary><div class="indented"><p id="12115285-0ae8-80e8-8c95-caf81049a99c" class="">Вызывается, ко<mark class="highlight-default">гда </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default"> отк</mark>репляется от окна, т.е. когда элемент больше не виден.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12115285-0ae8-80af-9807-f57f02f59451" class="code"><code class="language-Kotlin">override fun onViewDetachedFromWindow(holder: MyViewHolder) {
+    super.onViewDetachedFromWindow(holder)
+    // Действия при исчезновении View
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ListAdapter</code></mark></summary><div class="indented"><p id="12215285-0ae8-8058-b27f-e4fc480c20d6" class="">Cпециализированный адаптер, предназначенный для работы с коллекциями данны<mark class="highlight-default">х в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, оптимизирующий обновления списка при изменениях. Он наследуется от </mark><mark class="highlight-default"><code>RecyclerView.Adapter</code></mark><mark class="highlight-default">, но использует </mark><mark class="highlight-default"><code>DiffUtil</code></mark><mark class="highlight-default"> для эффективного вычисления изменений в списке и их применения.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80b7-a846-ca2dd1438483" class="code"><code class="language-Kotlin">class ItemDiffCallback: DiffUtil.ItemCallback&lt;MyItem&gt;() {
+    override fun areItemsTheSame(oldItem: MyItem, newItem: MyItem): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: MyItem, newItem: MyItem): Boolean {
+        return oldItem == newItem
+    }
+}
+
+class MyListAdapter: ListAdapter&lt;MyItem, MyAdapter.MyViewHolder&gt;(ItemDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
+        return MyViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+    
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        private val textView = itemView.findViewById(R.id.textView)
+
+        fun bind(item: MyItem) {
+            textView.text = item.name
+        }
+    }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>submitList</code></mark></summary><div class="indented"><p id="12215285-0ae8-8077-ada1-cfd228f58ae6" class="">Обновляет список данных. При вызове этого метода адаптер рассчитывает разницу между текущим и новым списком с пом<mark class="highlight-default">ощью </mark><mark class="highlight-default"><code>DiffUtil</code></mark><mark class="highlight-default">, чтобы при</mark>менить минимальные изменения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8013-9d16-e9ada43a5fd7" class="code"><code class="language-Kotlin">val newList = listOf(Item(1, &quot;One&quot;), Item(2, &quot;Two&quot;))
+adapter.submitList(newList)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItem</code></mark></summary><div class="indented"><p id="12215285-0ae8-8007-beef-f634f7bd967b" class="">Возвращает элемент списка на указанной позиции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80f8-8881-cb815d8a2bc7" class="code"><code class="language-Kotlin">val item = adapter.getItem(0) // Item(1, &quot;One&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getCurrentList</code></mark></summary><div class="indented"><p id="12215285-0ae8-8017-b107-da5ef1e60154" class="">Возвращает текущий список элементов, который был установлен через <mark class="highlight-default"><code>submitList()</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-807e-9d82-ef86b2ad4c65" class="code"><code class="language-Kotlin">val currentList = adapter.currentList</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onCreateViewHolder</code></mark></summary><div class="indented"><p id="12215285-0ae8-80e6-a67a-e53aca67ae3f" class="">Создаёт новый <mark class="highlight-default"><code>ViewHolder</code></mark>, который будет использован для отображения элемента списка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80f7-b448-e23ed5dcc68b" class="code"><code class="language-Kotlin">override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+    return MyViewHolder(itemView)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onBindViewHolder</code></mark></summary><div class="indented"><p id="12215285-0ae8-8092-bc9b-fc764671013f" class="">Связывает данные с <mark class="highlight-default"><code>ViewHolder</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8095-b147-ee0df223d825" class="code"><code class="language-Kotlin">override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    holder.bind(getItem(position))
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItemViewType</code></mark></summary><div class="indented"><p id="12215285-0ae8-8022-9bc6-e1083d001610" class="">Возвращает тип представления для элемента на определённой позиции.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8019-bbcf-d56ac9bfdc2b" class="code"><code class="language-Kotlin">override fun getItemViewType(position: Int): Int {
+    return if (getItem(position).isSpecial) 1 else 0
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItemCount</code></mark></summary><div class="indented"><p id="12215285-0ae8-8037-ad57-efe86ac90f51" class="">Возвращает количество элементов в списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8069-8133-f21bdb1eb04e" class="code"><code class="language-Kotlin">val count = adapter.itemCount</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ConcatAdapter</code></mark></summary><div class="indented"><p id="12215285-0ae8-802e-a8ff-f915ce52c302" class="">Объединяет несколько адаптеров в один, сохраняя при этом возможность независимого управления каждым из адаптеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80c7-8b38-c4247d53f328" class="code"><code class="language-Kotlin">val adapter1 = MyListAdapter(dataList1)
+val adapter2 = MyListAdapter(dataList2)
+val adapter3 = MyHeaderAdapter(headerData)
+
+val concatAdapter = ConcatAdapter(adapter3, adapter1, adapter2)
+
+recyclerView.adapter = concatAdapter</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>addAdapter</code></mark></summary><div class="indented"><p id="12215285-0ae8-80af-a0e2-d7ff25e72770" class="">Добавляет новый адаптер в конец списка объединенных адаптеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-806b-96dc-e12ee1f932f9" class="code"><code class="language-Kotlin">concatAdapter.addAdapter(adapter3)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>removeAdapter</code></mark></summary><div class="indented"><p id="12215285-0ae8-8023-80bc-cbbbeb9a74d5" class="">Удаляет указанный адаптер из списка объединенных адаптеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8050-b968-e60a6fe8184e" class="code"><code class="language-Kotlin">concatAdapter.removeAdapter(adapter2)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ViewHolder</code></mark></summary><div class="indented"><p id="12215285-0ae8-806e-a594-cc838071faa9" class=""><mark class="highlight-default">Класс, который держит ссылки на элементы интерфейса для каждого элемента списка в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Он помогает оптимизировать работу, повторно используя представления (views), чтобы избежать лишних вызовов </mark><mark class="highlight-default"><code>findViewById</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80b1-be93-ed31ea960885" class="code"><code class="language-Kotlin">class MyViewHolder(
+    private val binding: ItemViewBinding
+): RecyclerView.ViewHolder(binding.root) {
+
+    init {
+        binding.textView.setOnClickListener {
+            println(&quot;TextView clicked at position: $adapterPosition&quot;)
+        }
+    }
+
+    fun bind(item: String) {
+        binding.textView.text = item
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>AdapterDataObserver</code></mark></summary><div class="indented"><p id="996c9071-1a4e-48eb-9a5c-ec20e9bb5482" class="">Испол<mark class="highlight-default">ьзуется для отслеживания изменений в адаптере данных, связанного с </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Он позволяет вам получать уведомления о том, когда данные в адаптере изменяются, и обновлять представление при необходимости. Является абстрактным классом, который предоставляет методы для обработки различных событий. </mark><mark class="highlight-default"><code>AdapterDataObserver</code></mark><mark class="highlight-default"> полезен для управления изменениями в данных адаптера и для синхронизации состояния пользовательского интерфейса с данными, особенно в динамических списках.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-8081-a87c-d29d3f59191e" class="code"><code class="language-Kotlin">class MyAdapter: RecyclerView.Adapter&lt;MyViewHolder&gt;() {
+    
+    private val observer = object: AdapterDataObserver() {
+        override fun onChanged() {
+            super.onChanged()
+            // Обновление UI или другие действия
+        }
+    }
+
+    init {
+        registerAdapterDataObserver(observer)
+    }
+
+    // Другие методы адаптера...
+}
+
+override fun onCleared() {
+    super.onCleared()
+    unregisterAdapterDataObserver(observer)
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onChanged</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8093-b350-e24161105804" class="">Вызывается, когда данные адаптера изменяются.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onItemRangeChanged</code></mark></summary><div class="indented"><p id="10c15285-0ae8-804f-b18a-f798a563166a" class="">Вызывается, когда изменяются элементы в указанном диапазоне.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onItemRangeInserted</code></mark></summary><div class="indented"><p id="10c15285-0ae8-80fb-920e-f864d4c94f63" class="">Вызывается, когда новые элементы добавляются в адаптер.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onItemRangeRemoved</code></mark></summary><div class="indented"><p id="10c15285-0ae8-807a-8a3f-edd57fbe9acf" class="">Вызывается, когда элементы удаляются из адаптера.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onItemRangeMoved</code></mark></summary><div class="indented"><p id="10c15285-0ae8-80e3-a4c7-c5b627045d98" class="">Вызывается, когда элементы перемещаются внутри адаптера.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LayoutManager</code></mark></summary><div class="indented"><p id="12215285-0ae8-8023-a9f9-ead5848c6192" class="">Абстрактный класс, который отвечает за расположение элементов в<mark class="highlight-default">нутри </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> и опред</mark>еляет, как они будут отображаться, управляться и прокручиваться. Он не только позиционирует элементы, но и управляет процессом их повторного использования (recycling) и создания новых элементов.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>reverseLayout</code></mark></summary><div class="indented"><p id="12215285-0ae8-80ab-a4fa-c751ad11d8cc" class="">Устанавливает направление прокрутки <mark class="highlight-default">для </mark><mark class="highlight-default"><code>LayoutManager</code></mark><mark class="highlight-default">. Если </mark><mark class="highlight-default"><code>reverseLayout</code></mark><mark class="highlight-default"> равно tr</mark>ue, элементы будут отображаться в обратном порядке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8058-9e7b-e0a961115c9f" class="code"><code class="language-Kotlin">layoutManager.reverseLayout = true // Элементы будут отображаться в обратном порядке</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>orientation</code></mark></summary><div class="indented"><p id="12215285-0ae8-8060-b550-c5e5be2b0908" class="">Определяет ориентацию <mark class="highlight-default"><code>LayoutManager</code></mark>: вертикальную или горизонтальную.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-803f-83ac-fbb580f0648d" class="code"><code class="language-Kotlin">linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+gridLayoutManager.orientation = GridLayoutManager.HORIZONTAL
+
+staggeredGridLayoutManager.orientation = StaggeredGridLayoutManager.VERTICAL</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>scrollToPosition</code></mark></summary><div class="indented"><p id="12215285-0ae8-801a-b69a-f031947e0ffc" class="">Перемещ<mark class="highlight-default">ает </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> к указанной позиции</mark>, чтобы сделать элемент видимым.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-807f-a8bd-e533d7165e0c" class="code"><code class="language-Kotlin">recyclerView.layoutManager?.scrollToPosition(5) // Прокрутка к элементу с позицией 5</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>scrollToPositionWithOffset</code></mark></summary><div class="indented"><p id="12215285-0ae8-80a3-bc11-ed5ffef611af" class="">Перемещает <mark class="highlight-default"><code>RecyclerView</code></mark> к указанной позиции с заданным смещением. Это позволяет указать, какое расстояние от верхней или левой границы видимой области должно быть у элемента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-803f-b2d9-f139d91bafb9" class="code"><code class="language-Kotlin">recyclerView.layoutManager?.scrollToPositionWithOffset(5, 20) // Прокрутка к элементу с позицией 5, смещение на 20 пикселей</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>findViewByPosition</code></mark></summary><div class="indented"><p id="12215285-0ae8-80f7-8cc0-d9257e7b666f" class="">Используется для получения видимого представл<mark class="highlight-default">ения (</mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default">) элемента на основе его позиции в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Этот мето</mark>д позволяет напрямую получить представление элемента, которое уже отображается на экране.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8043-8050-f8acac3cf492" class="code"><code class="language-Kotlin">val view = recyclerView.layoutManager?.findViewByPosition(position)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>canScrollVertically</code></mark></summary><div class="indented"><p id="12215285-0ae8-8014-bae2-e46723c7eff2" class="">Проверяет, мо<mark class="highlight-default">жет ли </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> прокручиват</mark>ься вертикально. Возвращает true, если прокрутка возможна.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8006-947d-d2e137dab535" class="code"><code class="language-Kotlin">val canScrollVertically = recyclerView.layoutManager?.canScrollVertically() == true</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>canScrollHorizontally</code></mark></summary><div class="indented"><p id="12215285-0ae8-80f1-a71a-e353f0dd61cb" class="">Проверяет, может ли <mark class="highlight-default"><code>RecyclerView</code></mark> прокручиваться горизонтально. Возвращает true, если прокрутка возможна.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-802b-90cd-f10f824a9537" class="code"><code class="language-Kotlin">val canScrollHorizontally = recyclerView.layoutManager?.canScrollHorizontally() == true</code></pre></div></details><p id="13c15285-0ae8-80d1-a03b-d4ec62813376" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LinearLayoutManager</code></mark></summary><div class="indented"><p id="12215285-0ae8-8021-81d4-c59322210fdc" class="">Управляет расположением элементо<mark class="highlight-default">в в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> в виде линейного</mark> списка. Он позволяет организовать элементы вертикально или горизонтально.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-802d-bda7-f9fb7bf00e87" class="code"><code class="language-Kotlin">val layoutManager = LinearLayoutManager(context)
+
+recyclerView.layoutManager = layoutManager</code></pre><p id="12215285-0ae8-806d-8a70-c3efc8df3c63" class="">
+</p><h3 id="12215285-0ae8-804c-ab8f-e1e5ff8f1340" class=""><mark class="highlight-orange"><code>setStackFromEnd</code></mark></h3><p id="12215285-0ae8-8034-82c9-e610db447ef3" class="">Устанавливает флаг, указывающий, следует ли располагать элементы от конца списка (например, для чатов).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80c4-b4ef-df1f556e0fd2" class="code"><code class="language-Kotlin">layoutManager.stackFromEnd = true</code></pre><p id="12215285-0ae8-8083-8f7a-e991550ed652" class="">
+</p><h3 id="12215285-0ae8-806e-8597-f8fd2924d2d1" class=""><mark class="highlight-orange"><code>findFirstVisibleItemPosition</code></mark></h3><p id="12215285-0ae8-801a-863d-f901338d2647" class="">Возвращает позицию первого видимого элемента в списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8093-8bd3-ef8e6a6299b3" class="code"><code class="language-Kotlin">val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()</code></pre><p id="12215285-0ae8-8022-aba8-fa88cf020be5" class="">
+</p><h3 id="12215285-0ae8-8095-a3ac-c1e9857f707a" class=""><mark class="highlight-orange"><code>findLastVisibleItemPosition</code></mark></h3><p id="12215285-0ae8-80b5-ac65-fc3543a7fef8" class="">Возвращает позицию последнего видимого элемента в списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8070-b3ee-cbf3cb7ada64" class="code"><code class="language-Kotlin">val lastVisiblePosition = layoutManager.findLastVisibleItemPosition()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GridLayoutManager</code></mark></summary><div class="indented"><p id="12215285-0ae8-80ff-bffe-f169cf0cc8af" class="">Управляет расположением элемен<mark class="highlight-default">тов в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> в ви</mark>де сетки. Он позволяет задавать количество столбцов и управлять пространством между элементами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8085-ae60-edf57cffecb1" class="code"><code class="language-Kotlin">val layoutManager = GridLayoutManager(context, 2) // 2 столбца
+        
+recyclerView.layoutManager = layoutManager</code></pre><p id="12215285-0ae8-80b8-92f6-e71fceb57013" class="">
+</p><h3 id="12215285-0ae8-80b5-8f7a-e0263e94af33" class=""><mark class="highlight-orange"><code>setStackFromEnd</code></mark></h3><p id="12215285-0ae8-803c-be2c-d9e9e52f4ef2" class="">Устанавливает флаг, указывающий, следует ли располагать элементы от конца списка (например, для чатов).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80c8-befa-d8f413b71252" class="code"><code class="language-Kotlin">layoutManager.stackFromEnd = true</code></pre><p id="12215285-0ae8-80ca-8976-c6b5d7db3cca" class="">
+</p><h3 id="12215285-0ae8-802f-9485-fbb486c8a880" class=""><mark class="highlight-orange"><code>setSpanCount</code></mark></h3><p id="12215285-0ae8-80c4-9300-db84f9755615" class="">Устанавливает количество столбцов в сетке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80f7-a20b-c1c25673af23" class="code"><code class="language-Kotlin">layoutManager.spanCount = 4</code></pre><p id="12215285-0ae8-80e8-a211-c9218bd78589" class="">
+</p><h3 id="12215285-0ae8-8023-9791-fef7d36fa74c" class=""><mark class="highlight-orange"><code>getSpanCount</code></mark></h3><p id="12215285-0ae8-8093-a3a3-c8812c272822" class="">Возвращает текущее количество столбцов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8095-a1ec-ed63ad252f06" class="code"><code class="language-Kotlin">val spanCount = layoutManager.spanCount</code></pre><p id="12215285-0ae8-804c-b8bf-c7c1a1383fa6" class="">
+</p><h3 id="12215285-0ae8-8095-8e6c-fb722cd3e827" class=""><mark class="highlight-orange"><code>findFirstVisibleItemPosition</code></mark></h3><p id="12215285-0ae8-80de-b44e-f8bb8619bffb" class="">Возвращает позицию первого видимого элемента в списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8085-8d20-fceb6b826911" class="code"><code class="language-Kotlin">val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()</code></pre><p id="12215285-0ae8-8003-9c68-e9714d247e77" class="">
+</p><h3 id="12215285-0ae8-8077-9aa6-c9f2445d838d" class=""><mark class="highlight-orange"><code>findLastVisibleItemPosition</code></mark></h3><p id="12215285-0ae8-807c-9544-e35d5c731546" class="">Возвращает позицию последнего видимого элемента в списке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80ed-b561-cc0b6c6ee56b" class="code"><code class="language-Kotlin">val lastVisiblePosition = layoutManager.findLastVisibleItemPosition()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>StaggeredGridLayoutManager</code></mark></summary><div class="indented"><p id="12215285-0ae8-807c-809c-dd6136987701" class="">Позволяет отображать элементы в виде сетки с переменной высотой. Это полезно для создания адаптивных интерфейсов, таких как сетки изображений, где каждый элемент может иметь разную высоту.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8024-84cf-ee1f166f5674" class="code"><code class="language-Kotlin">val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) // 2 столбца
+
+recyclerView.layoutManager = layoutManager</code></pre><p id="12215285-0ae8-808c-ac8e-dc8c32061138" class="">
+</p><h3 id="12215285-0ae8-8009-9cc0-e42eeb39c2da" class=""><mark class="highlight-orange"><code>setSpanCount</code></mark></h3><p id="12215285-0ae8-8025-883a-c389807a0c77" class="">Устанавливает количество столбцов в сетке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8035-a99e-d212f432b47a" class="code"><code class="language-Kotlin">layoutManager.spanCount = 4</code></pre><p id="12215285-0ae8-80a3-bebd-cae16f18497a" class="">
+</p><h3 id="12215285-0ae8-80b4-a424-ede08bfab2ba" class=""><mark class="highlight-orange"><code>getSpanCount</code></mark></h3><p id="12215285-0ae8-80da-90cb-c391f1cc727f" class="">Возвращает текущее количество столбцов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8065-8fd3-ef23f6f55a30" class="code"><code class="language-Kotlin">val spanCount = layoutManager.spanCount</code></pre><p id="12215285-0ae8-8048-a796-d214335c1a0f" class="">
+</p><h3 id="12215285-0ae8-8097-9270-d30aa3bfa685" class=""><mark class="highlight-orange"><code>setGapStrategy</code></mark></h3><p id="12215285-0ae8-801f-b8ca-cf8dd82e2fce" class="">Устанавливает стратегию обработки промежутков в <mark class="highlight-default"><code>StaggeredGridLayoutManager</code></mark>. Стратегия может влиять на то, как <mark class="highlight-default"><code>RecyclerView</code></mark> обрабатывает видимые и невидимые элементы при изменении размера.</p><p id="12215285-0ae8-80a8-9bfa-c7484b337562" class="">• <mark class="highlight-default"><code>GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS</code></mark><mark class="highlight-default"> - позволяет автоматически перемещать элементы между спанами, чтобы заполнить пустые промежутки, которые могут возникнуть при добавлении или удалении элементов. Это помогает поддерживать более равномерное распределение элементов по всей области </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">.</mark></p><p id="12215285-0ae8-809b-8b1a-d5ccc997d48a" class="">• <mark class="highlight-default"><code>GAP_HANDLING_REMOVE_ITEMS</code></mark><mark class="highlight-default"> - устраняет промежутки между спанами, не перемещая другие элементы. При удалении элементов, пустые промежутки остаются, и другие элементы не будут изменять свои позиции.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8086-8e8d-d7b5904edbd9" class="code"><code class="language-Kotlin">layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS</code></pre><p id="12215285-0ae8-80dd-9046-fae40c8d04c5" class="">
+</p><h3 id="12215285-0ae8-80fe-8ac8-f333da84d246" class=""><mark class="highlight-orange"><code>getGapStrategy</code></mark></h3><p id="12215285-0ae8-80da-b47f-dd99037a03d1" class="">Возвращает текущую стратегию обработки промежутков, установленную в <mark class="highlight-default"><code>StaggeredGridLayoutManager</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80a0-afa8-d10ae4f12287" class="code"><code class="language-Kotlin">val gapStrategy = layoutManager.getGapStrategy()</code></pre><p id="12215285-0ae8-80a7-86ea-d6828ab3af52" class="">
+</p><h3 id="12215285-0ae8-808e-80e6-cb77c06b459a" class=""><mark class="highlight-orange"><code>findFirstVisibleItemPositions</code></mark></h3><p id="12215285-0ae8-8058-8868-c2a7b4932e56" class="">Находит позиции первых видимых элементов и заполняет указанный массив.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80bf-805f-e8c1e557ddc2" class="code"><code class="language-Kotlin">val firstVisiblePositions = IntArray(2)
+layoutManager.findFirstVisibleItemPositions(firstVisiblePositions)</code></pre><p id="12215285-0ae8-80cc-abe5-c16bb76fa6b9" class="">
+</p><h3 id="12215285-0ae8-80f7-8fea-fd1a337c6970" class=""><mark class="highlight-orange"><code>findLastVisibleItemPositions</code></mark></h3><p id="12215285-0ae8-8066-881c-fc393165464a" class="">Находит позиции последних видимых элементов и заполняет указанный массив.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-804f-bf69-fdd07db452eb" class="code"><code class="language-Kotlin">
+val lastVisiblePositions = IntArray(2)
+layoutManager.findLastVisibleItemPositions(lastVisiblePositions)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code><strong>DiffUtil</strong></code></mark></summary><div class="indented"><p id="14df5151-6cea-4ab1-9f9c-43975aa4dcb5" class="">Используется для расчета изменений между двумя списками данных и обновления <mark class="highlight-default"><code>RecyclerView</code></mark> только тех элементов, которые изменились. Это значительно повышает производительность и эффективность работы с <mark class="highlight-default"><code>RecyclerView</code></mark>, особенно при работе с большими объемами данных. Вместо полной перерисовки списка при обновлении данных <mark class="highlight-default"><code>DiffUtil</code></mark> вычисляет, какие элементы были добавлены, удалены или изменены. Это позволяет избежать ненужной перерисовки и улучшает плавность анимаций.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>calculateDiff</code></mark></summary><div class="indented"><p id="10c15285-0ae8-802e-82c3-fde2cdfe956a" class="">Метод, который принимает экземпляр <mark class="highlight-default"><code>DiffUtil.Callback</code></mark> для сравнения старого и нового списков. Он возвращает <mark class="highlight-default"><code>DiffUtil.DiffResult</code></mark>, который можно использовать для обновления <mark class="highlight-default"><code>RecyclerView</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-8003-97ff-c82fcb7c0078" class="code"><code class="language-Kotlin">val diffResult = DiffUtil.calculateDiff(object: DiffUtil.Callback() { /* Implementation */ })</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dispatchUpdatesTo</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8063-a8c6-d78cb1d7a0f4" class="">Применяет изменения к адаптеру на основе результатов, полученных от <mark class="highlight-default"><code>DiffUtil</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-8021-99f2-d7e3eca4ee4f" class="code"><code class="language-Kotlin">diffResult.dispatchUpdatesTo(myRecyclerViewAdapter)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>DiffUtil.Callback</code></mark></summary><div class="indented"><p id="10c15285-0ae8-802f-86f1-e86e65005993" class="">Это абстрактный класс, который нужно реализовать для сравнения двух списков.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-80a6-8a71-dc8363bb6914" class="code"><code class="language-Kotlin">val oldList = listOf(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)
+val newList = listOf(&quot;A&quot;, &quot;C&quot;, &quot;D&quot;)
+
+val diffResult = DiffUtil.calculateDiff(object: DiffUtil.Callback() {
+    
+    override fun getOldListSize(): Int = oldList.size
+    
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] == newList[newItemPosition]
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] == newList[newItemPosition]
+    }
+})
+
+diffResult.dispatchUpdatesTo(myRecyclerViewAdapter)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getOldListSize</code></mark></summary><div class="indented"><p id="10c15285-0ae8-809f-a89b-cef554192088" class="">Возвращает размер старого списка.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getNewListSize</code></mark></summary><div class="indented"><p id="10c15285-0ae8-80ee-96b7-c85beac51f6c" class="">Возвращает размер нового списка.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>areItemsTheSame</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8099-a003-d1db6731e138" class="">Проверяет, ссылаются ли элементы на один и тот же объект (уникальность).</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>areContentsTheSame</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8052-b9d0-df412a3398b1" class="">Проверяет, имеют ли элементы одинаковые данные (содержимое).</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ItemDecoration</code></mark></summary><div class="indented"><p id="12215285-0ae8-80cc-85c5-ca5b7d3e3df4" class="">Класс, который позволяет добавлять специальные декоративные элементы вокруг или внутри элементов списк<mark class="highlight-default">а </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, такие</mark> как отступы, разделители, рамки и другие эффекты. Это не часть элементов, а дополнительный слой, который рисуется поверх них.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8025-a73c-e3ecc08da435" class="code"><code class="language-Kotlin">class DividerItemDecoration(
+    private val dividerHeight: Int,
+    private val dividerColor: Int
+): RecyclerView.ItemDecoration() {
+
+    private val paint = Paint().apply {
+        color = dividerColor
+        style = Paint.Style.FILL
+    }
+
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        for (i in 0 until parent.childCount) {
+            val child = parent.getChildAt(i)
+            val params = child.layoutParams as RecyclerView.LayoutParams
+
+            val top = child.bottom + params.bottomMargin
+            val bottom = top + dividerHeight
+
+            c.drawRect(child.left.toFloat(), top.toFloat(), child.right.toFloat(), bottom.toFloat(), paint)
+        }
+    }
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        // Добавляем отступ внизу каждого элемента для разделителя
+        outRect.set(0, 0, 0, dividerHeight)
+    }
+}
+
+recyclerView.addItemDecoration(DividerItemDecoration(8, Color.GRAY))</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDraw</code></mark></summary><div class="indented"><p id="12215285-0ae8-80c6-b6d0-dd1891d159e6" class="">Вызывается для рисования фона или декораций позади элементов списка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80f1-a864-c55ea0cd13f5" class="code"><code class="language-Kotlin">override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    // Пример добавления разделителей между элементами
+    for (i in 0 until parent.childCount) {
+        val child = parent.getChildAt(i)
+        val params = child.layoutParams as RecyclerView.LayoutParams
+        val top = child.bottom + params.bottomMargin
+        val bottom = top + 2 // Толщина линии
+
+        c.drawRect(child.left.toFloat(), top.toFloat(), child.right.toFloat(), bottom.toFloat(), Paint().apply {
+            color = Color.GRAY
+        })
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDrawOver</code></mark></summary><div class="indented"><p id="12215285-0ae8-805e-a772-c88e72a09058" class="">Вызывается для рисования поверх элементов списка, после того как они уже отрисованы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80fc-a049-c62310ea0f3f" class="code"><code class="language-Kotlin">override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    // Например, можно добавить полупрозрачную маску поверх элементов
+    val paint = Paint().apply { color = Color.argb(50, 0, 0, 0) }
+    c.drawRect(0f, 0f, parent.width.toFloat(), parent.height.toFloat(), paint)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getItemOffsets</code></mark></summary><div class="indented"><p id="12215285-0ae8-80c2-998d-dc7f7a733a95" class="">Используется для установки отсту<mark class="highlight-default">пов (</mark><mark class="highlight-default"><code>padding</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>margin</code></mark><mark class="highlight-default">) вок</mark>руг элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8097-8dd1-de7d8f0d1bd4" class="code"><code class="language-Kotlin">override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    // Пример добавления отступов между элементами
+    outRect.set(16, 16, 16, 16)
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ItemAnimator</code></mark></summary><div class="indented"><p id="12215285-0ae8-8074-a397-e865eead80d6" class="">Класс, который отвечает за анимации изменений элемен<mark class="highlight-default">тов в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Он предоста</mark>вляет возможности анимации добавления, удаления, перемещения и обновления элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-802a-a3af-f1202033ccb9" class="code"><code class="language-Kotlin">recyclerView.itemAnimator = DefaultItemAnimator()</code></pre><p id="12215285-0ae8-80f7-b2db-e9ea4aab61b1" class="">
+</p><h3 id="12215285-0ae8-8066-9f06-c22b2c619ffa" class=""><mark class="highlight-orange"><code>DefaultItemAnimator</code></mark></h3><p id="12215285-0ae8-800d-af60-df468ebea43d" class="">Стандартная реализаци<mark class="highlight-default">я </mark><mark class="highlight-default"><code>ItemAnimator</code></mark><mark class="highlight-default">, используемая по умолчанию в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. О</mark>н обрабатывает базовые анимации для добавления, удаления и перемещения элементов в списке. Эта анимация плавная и автоматически применяется к элементам без необходимости дополнительной настройки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80ca-86d3-d5798ef5b549" class="code"><code class="language-Kotlin">val animator = DefaultItemAnimator()
+animator.addDuration = 300 // Устанавливаем длительность анимации добавления
+animator.removeDuration = 300 // Длительность анимации удаления
+
+recyclerView.itemAnimator = animator</code></pre><p id="12215285-0ae8-80b7-87a6-ff09cfcc9a84" class="">
+</p><h3 id="12215285-0ae8-802b-81e8-cc40a084a0a3" class=""><mark class="highlight-orange"><code>SimpleItemAnimator</code></mark></h3><p id="12215285-0ae8-8036-a567-fce397850636" class="">Абстрактный класс, расширяющи<mark class="highlight-default">й </mark><mark class="highlight-default"><code>RecyclerView.ItemAnimator</code></mark><mark class="highlight-default"> и предоставляющий базовую реализацию анимаций для элементов в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. В отличие от </mark><mark class="highlight-default"><code>DefaultItemAnimator</code></mark><mark class="highlight-default">, он не реали</mark>зует все детали анимации, а предоставляет методы, которые разработчик может переопределить для настройки анимаций.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-805f-a05a-e36490029ada" class="code"><code class="language-Kotlin">class CustomItemAnimator: SimpleItemAnimator() {
+
+    override fun animateAdd(holder: RecyclerView.ViewHolder): Boolean {
+        // Пример простой анимации добавления
+        holder.itemView.alpha = 0f
+        holder.itemView.animate().alpha(1f).setDuration(300).start()
+        return true
+    }
+
+    override fun animateRemove(holder: RecyclerView.ViewHolder): Boolean {
+        // Пример анимации удаления
+        holder.itemView.animate().alpha(0f).setDuration(300).start()
+        return true
+    }
+
+    override fun animateMove(holder: RecyclerView.ViewHolder, fromX: Int, fromY: Int, toX: Int, toY: Int): Boolean {
+        // Реализуйте анимацию перемещения элемента, если требуется
+        return false
+    }
+
+    override fun animateChange(oldHolder: RecyclerView.ViewHolder?, newHolder: RecyclerView.ViewHolder?,
+                               fromLeft: Int, fromTop: Int, toLeft: Int, toTop: Int): Boolean {
+        // Пример анимации изменений
+        return false
+    }
+
+    // Переопределите эти методы, чтобы указать, когда анимации завершены
+    override fun runPendingAnimations() { /* Запускает ожидающие анимации */ }
+    override fun endAnimation(item: RecyclerView.ViewHolder) { /* Завершает анимацию элемента */ }
+    override fun endAnimations() { /* Завершает все анимации */ }
+    override fun isRunning(): Boolean { return false }
+}</code></pre><p id="12215285-0ae8-803f-917c-d73c6dec04bf" class="">
+</p><h3 id="12215285-0ae8-80f4-b41f-da0506321fc4" class=""><mark class="highlight-orange"><code>animateAdd</code></mark></h3><p id="12215285-0ae8-80ed-bd01-f68234a46016" class="">Анимация для добавления элемента <mark class="highlight-default">в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80b5-819d-c13e407bc26e" class="code"><code class="language-Kotlin">override fun animateAdd(holder: RecyclerView.ViewHolder): Boolean {
+    holder.itemView.alpha = 0f
+    holder.itemView.animate().alpha(1f).setDuration(300).start()
+    return true
+}</code></pre><p id="12215285-0ae8-80f0-bbc6-f0d4d45a723f" class="">
+</p><h3 id="12215285-0ae8-80fa-a5e9-f6dc3f1585be" class=""><mark class="highlight-orange"><code>animateRemove</code></mark></h3><p id="12215285-0ae8-8014-9759-f11e89944fe2" class="">Анимация для удаления элемента из списка.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-806b-8699-fff3040721e9" class="code"><code class="language-Kotlin">override fun animateRemove(holder: RecyclerView.ViewHolder): Boolean {
+    holder.itemView.animate().alpha(0f).setDuration(300).start()
+    return true
+}</code></pre><p id="12215285-0ae8-8008-9c63-fba285f3f837" class="">
+</p><h3 id="12215285-0ae8-8056-8df5-e2ca3c9f7d11" class=""><mark class="highlight-orange"><code><strong>animateMove</strong></code></mark></h3><p id="12215285-0ae8-80e2-82fc-dfa20148f9db" class="">Анимация перемещения элемента из одной позиции в другую.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8007-9cce-f4303d725d16" class="code"><code class="language-Kotlin">override fun animateMove(holder: RecyclerView.ViewHolder, fromX: Int, fromY: Int, toX: Int, toY: Int): Boolean {
+    holder.itemView.translationX = (fromX - toX).toFloat()
+    holder.itemView.animate().translationX(0f).setDuration(300).start()
+    return true
+}</code></pre><p id="12215285-0ae8-804e-95f6-c2bbfea4f9d4" class="">
+</p><h3 id="12215285-0ae8-8041-be41-dbd502e8241e" class=""><mark class="highlight-orange"><code>animateChange</code></mark></h3><p id="12215285-0ae8-80f4-b519-fabdc59698db" class="">Анимация для обновления элемента (например, изменения содержимого или состояния).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80b5-8aa9-d6939ade7523" class="code"><code class="language-Kotlin">override fun animateChange(oldHolder: RecyclerView.ViewHolder?, newHolder: RecyclerView.ViewHolder?,
+                           fromLeft: Int, fromTop: Int, toLeft: Int, toTop: Int): Boolean {
+    oldHolder?.itemView?.animate()?.alpha(0f)?.setDuration(300)?.start()
+    newHolder?.itemView?.animate()?.alpha(1f)?.setDuration(300)?.start()
+    return true
+}</code></pre><p id="12215285-0ae8-8039-ab5a-dc571dfbf154" class="">
+</p><h3 id="12215285-0ae8-80f0-b540-cffd5f2ec766" class=""><mark class="highlight-orange"><code>isRunning</code></mark></h3><p id="12215285-0ae8-803f-9380-fba6f28c5c0d" class="">Проверяет, выполняется ли сейчас какая-либо анимация.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8042-b55c-f9a55c1f6bc3" class="code"><code class="language-Kotlin">override fun isRunning(): Boolean {
+    return false // Указать, есть ли запущенные анимации
+}</code></pre><p id="12215285-0ae8-802f-8d53-cd0cdace8be7" class="">
+</p><h3 id="12215285-0ae8-8022-b7fd-f67edc4d33d5" class=""><mark class="highlight-orange"><code>runPendingAnimations</code></mark></h3><p id="12215285-0ae8-80f1-a071-c0f9c4eb45d9" class="">Запускает все отложенные анимации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80c2-b1df-e581d3ab0349" class="code"><code class="language-Kotlin">override fun runPendingAnimations() {
+    // Запуск всех ожидающих анимаций
+}</code></pre><p id="12215285-0ae8-805f-a35b-f7f47da413ca" class="">
+</p><h3 id="12215285-0ae8-801b-9149-c8981510406d" class=""><mark class="highlight-orange"><code>endAnimation</code></mark></h3><p id="12215285-0ae8-80c4-9bdc-ec178d2d5736" class="">Завершает конкретную анимацию элемента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8090-90e8-c5ccbcc16748" class="code"><code class="language-Kotlin">override fun endAnimation(item: RecyclerView.ViewHolder) {
+    item.itemView.clearAnimation()
+}</code></pre><p id="12215285-0ae8-808a-915c-e1939dd5aa75" class="">
+</p><h3 id="12215285-0ae8-8037-a046-d60bd470f987" class=""><mark class="highlight-orange"><code>endAnimations</code></mark></h3><p id="12215285-0ae8-8050-9f9a-d074d26d0f82" class="">Завершает все текущие анимации.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8079-9b0c-cea21067a535" class="code"><code class="language-Kotlin">override fun endAnimations() {
+    // Принудительное завершение всех анимаций
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>RecycledViewPool</code></mark></summary><div class="indented"><p id="234f4229-a17b-40aa-852e-e775f7d8229b" class=""><mark class="highlight-default">Используется для оптимизации работы с </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, позволяя переиспользовать </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default"> между несколькими </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Если один </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> не использует все свои </mark><mark class="highlight-default"><code>ViewHolder</code></mark><mark class="highlight-default">, они могут быть использованы другим </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, что экономит память и время на создание. Использование </mark><mark class="highlight-default"><code>RecycledViewPool</code></mark><mark class="highlight-default"> позволяет уменьшить количество создаваемых объектов при быстром скроллинге и больших списках.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-8025-ac1c-f075bf646be2" class="code"><code class="language-Kotlin">val recycledViewPool = RecycledViewPool()
+recyclerView1.setRecycledViewPool(recycledViewPool)
+recyclerView2.setRecycledViewPool(recycledViewPool)</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setMaxRecycledViews</code></mark></summary><div class="indented"><p id="10c15285-0ae8-8027-abcb-e2aecc72f9a5" class=""><mark class="highlight-default"><code>RecycledViewPool</code></mark> позволяет настроить максимальное количество <mark class="highlight-default"><code>ViewHolder</code></mark>, которые могут быть сохранены в пуле для каждого типа представления.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10c15285-0ae8-80b7-907d-c7934783d8f0" class="code"><code class="language-Kotlin">recycledViewPool.setMaxRecycledViews(viewType, maxCount)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>SnapHelper</code></mark></summary><div class="indented"><p id="12215285-0ae8-80f7-9ae6-fda136d46731" class="">Управляет автоматическим выравниванием элементо<mark class="highlight-default">в в </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default"> при пр</mark>окрутке. Он позволяет пользователю «прилипать» к ближайшему элементу списка, создавая эффект снэпинга (snap-to), что улучшает взаимодействие и делает прокрутку более предсказуемой и удобной.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-808d-a655-f8710d36f05c" class="code"><code class="language-Kotlin">val snapHelper = MySnapHelper()
+snapHelper.attachToRecyclerView(recyclerView)</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>attachToRecyclerView</code></mark></summary><div class="indented"><p id="12215285-0ae8-80fe-b086-f78b8e8ddfe4" class="">Связывает <mark class="highlight-default"><code>SnapHelper</code></mark> с указанным экземпляром <mark class="highlight-default"><code>RecyclerView</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-805b-8b22-e13108a8765e" class="code"><code class="language-Kotlin">snapHelper.attachToRecyclerView(recyclerView)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>findSnapView</code></mark></summary><div class="indented"><p id="12215285-0ae8-80c4-83e8-ecad8ff0876b" class="">Определяет, какой элемент должен быть снэпнут (приближен к центру) в зависимости от текущего положения прокрутки и заданного <mark class="highlight-default"><code>LayoutManager</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8049-b2bc-caee6a48816a" class="code"><code class="language-Kotlin">val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+val snapView = snapHelper.findSnapView(layoutManager)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>findTargetSnapPosition</code></mark></summary><div class="indented"><p id="12215285-0ae8-809b-b74e-c4dc2c8cd959" class="">Определяет позицию целевого элемента, к которому нужно «прилипнуть» на основе текущей скорости прокрутки. Возвращает позицию элемента, к которому необходимо выровнять.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80a4-a0cf-f63f1e127cf2" class="code"><code class="language-Kotlin">override fun findTargetSnapPosition(layoutManager: RecyclerView.LayoutManager, velocityX: Int, velocityY: Int): Int {
+    // Возвращает целевую позицию на основе скорости прокрутки
+    return super.findTargetSnapPosition(layoutManager, velocityX, velocityY)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>calculateScrollDistance</code></mark></summary><div class="indented"><p id="12215285-0ae8-8081-9563-ec2c3b197d3e" class="">Вычисляет расстояние, которое нужно прокрутить для достижения целевого элемента. Он возвращает массив, содержащий расстояние по оси X и Y.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80dd-b655-dc131e5a11a1" class="code"><code class="language-Kotlin">val distance = pagerSnapHelper.calculateScrollDistance(dx, dy)
+val scrollX = distance[0]
+val scrollY = distance[1]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>calculateDistanceToFinalSnap</code></mark></summary><div class="indented"><p id="12215285-0ae8-80c9-b5f0-e224fd77c082" class="">Вычисляет расстояние до окончательной позиции снэпа для указанного элемента. Возвращает массив из двух значений — расстояния по X и Y.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-805c-b59f-eaecf7548f8e" class="code"><code class="language-Kotlin">override fun calculateDistanceToFinalSnap(layoutManager: RecyclerView.LayoutManager, targetView: View): IntArray {
+    val distance = super.calculateDistanceToFinalSnap(layoutManager, targetView)
+    // Здесь можно использовать distance[0] и distance[1] для работы с расстоянием
+    return distance
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onFling</code></mark></summary><div class="indented"><p id="12215285-0ae8-80d5-84cc-c63cc4bf415f" class="">Обрабатывает события флинга. Этот метод вызывается, когда пользователь флинет список. Если он возвращает true, флинг будет обработан, если false, то нет.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80e6-92b4-e1bf692ad946" class="code"><code class="language-Kotlin">override fun onFling(recyclerView: RecyclerView, velocityX: Int, velocityY: Int): Boolean {
+    // Здесь можно добавить кастомное поведение при флинге
+    return super.onFling(recyclerView, velocityX, velocityY)
+}</code></pre></div></details><p id="13c15285-0ae8-800f-b497-de42fdbedf56" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LinearSnapHelper</code></mark></summary><div class="indented"><p id="12215285-0ae8-8098-ad55-dc4a2d628f41" class="">Реализаци<mark class="highlight-default">я </mark><mark class="highlight-default"><code>SnapHelper</code></mark><mark class="highlight-default">, предназначенная для линейных списков, созданных с помощью </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">. Он обеспечивает автоматическое выравнивание элементов в вертикальных или горизонтальных </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, поз</mark>воляя пользователю легко «прилипать» к ближайшему элементу при прокрутке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8091-b671-f7ff1921dad5" class="code"><code class="language-Kotlin">val linearSnapHelper = LinearSnapHelper()
+snapHelper.attachToRecyclerView(linearSnapHelper)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>CarouselSnapHelper</code></mark></summary><div class="indented"><p id="12215285-0ae8-8013-8e43-cc40d6817b05" class="">Предназначен для создания эффекта карусели в <mark class="highlight-default"><code>RecyclerView</code></mark>. Он позволяет элементам в списке «крутиться» по кругу, а также обеспечивает плавное и отзывчивое поведение при прокрутке и снэпинге.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-80bc-941e-c20cc3fcdca3" class="code"><code class="language-Kotlin">val carouselSnapHelper = CarouselSnapHelper()
+carouselSnapHelper.attachToRecyclerView(recyclerView)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PagerSnapHelper</code></mark></summary><div class="indented"><p id="12215285-0ae8-801e-a671-e231afe181fb" class="">Упрощает создание интерфейсов, аналогичных страничному прокрутке, в <mark class="highlight-default"><code>RecyclerView</code></mark>. Он позволяет позиционировать элементы так, чтобы они «прилипали» к центру экрана при прокрутке, создавая эффект страниц, подобный тем, что можно увидеть в приложениях для чтения или в галереях изображений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12215285-0ae8-8019-9f2f-f24dc84d0d0d" class="code"><code class="language-Kotlin">val pagerSnapHelper = PagerSnapHelper()
+pagerSnapHelper.attachToRecyclerView(recyclerView)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (15)</mark></summary><div class="indented"><ul id="11015285-0ae8-8083-ab26-dc30e49f994d" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Adapter (6)</strong></mark></summary><ol type="1" id="11015285-0ae8-80b5-b00c-ed39cdd3a023" class="numbered-list" start="1"><li>Для чего нужен адаптер?<p id="11015285-0ae8-8066-a7df-c448baf61105" class=""><mark class="highlight-teal">Отображает и обновляет данные в списке.</mark></p></li></ol><ol type="1" id="11015285-0ae8-80df-9c7c-dc105591b788" class="numbered-list" start="2"><li>Какие методы есть у адаптера?<p id="11015285-0ae8-8049-9e07-ec9a5235ecd5" class="">• <mark class="highlight-teal"><code>onCreateViewHolder</code></mark><mark class="highlight-teal"> - создаёт новый </mark><mark class="highlight-teal"><code>ViewHolder</code></mark><mark class="highlight-teal"> при необходимости.</mark></p><p id="11015285-0ae8-805e-9b71-fcc94f34f3d2" class="">• <mark class="highlight-teal"><code>onBindViewHolder</code></mark><mark class="highlight-teal"> - связывает данные с </mark><mark class="highlight-teal"><code>ViewHolder</code></mark><mark class="highlight-teal"> на указанной позиции.</mark></p><p id="11015285-0ae8-8037-b493-cc4811a23199" class="">• <mark class="highlight-teal"><code>getItemCount</code></mark><mark class="highlight-teal"> - возвращает общее количество элементов в наборе данных.</mark></p><p id="11015285-0ae8-8082-8707-d62e741587b3" class="">• <mark class="highlight-teal"><code>getItemViewType</code></mark><mark class="highlight-teal"> - возвращает тип представления для указанной позиции (по умолчанию - 0).</mark></p><p id="11015285-0ae8-8067-8ce4-e80a62450a77" class="">• <mark class="highlight-teal"><code>getItemId</code></mark><mark class="highlight-teal"> - возвращает уникальный идентификатор элемента на указанной позиции (если используется).</mark></p></li></ol><ol type="1" id="12115285-0ae8-8077-a6b9-fb09d27ea5cd" class="numbered-list" start="3"><li>Разница между RecyclerView.Adapter и ListAdapter?<p id="12115285-0ae8-80d6-87c3-caef80b099e4" class="">• <mark class="highlight-teal"><code>RecyclerView.Adapter</code></mark><mark class="highlight-teal"> требует ручного управления обновлением данных и дифференциацией элементов, что значит, что при изменении данных нужно самостоятельно обновлять список с помощью методов вроде </mark><mark class="highlight-teal"><code>notifyItemChanged()</code></mark><mark class="highlight-teal">.</mark><br/>• <br/><mark class="highlight-teal"><code>ListAdapter</code></mark><mark class="highlight-teal"> автоматически вычисляет разницу между старым и новым списком с помощью DiffUtil и обновляет элементы без необходимости вручного управления. Это упрощает работу с изменениями в списке.</mark></p></li></ol><ol type="1" id="12515285-0ae8-80f5-a1e4-dae2efe02f6b" class="numbered-list" start="4"><li>Если передать лямбду в RecyclerView.Adapter и закрыть экран будет ли утечка памяти?<p id="12515285-0ae8-800d-8451-e52c4d5c7d31" class=""><mark class="highlight-teal">Да, если лямбда-ссылка на объект (например, </mark><mark class="highlight-teal"><code>Activity</code></mark><mark class="highlight-teal"> или </mark><mark class="highlight-teal"><code>Fragment</code></mark><mark class="highlight-teal">) передается в </mark><mark class="highlight-teal"><code>RecyclerView.Adapter</code></mark><mark class="highlight-teal"> и не очищается, это может привести к утечке памяти. Это происходит потому, что </mark><mark class="highlight-teal"><code>RecyclerView.Adapter</code></mark><mark class="highlight-teal"> будет держать ссылку на объект, даже если экран закрыт, что мешает сборщику мусора освободить память.</mark></p></li></ol><ol type="1" id="11f15285-0ae8-80e4-839f-ddebe892d490" class="numbered-list" start="5"><li>Какой метод используется для привязки адаптера к RecyclerView?<p id="11f15285-0ae8-807c-acba-e1ed10eb4a34" class="">• <mark class="highlight-teal"><code>setAdapter()</code></mark></p><p id="11f15285-0ae8-8096-8ec5-fc21dc244320" class="">• <mark class="highlight-red"><code>linkAdapter()</code></mark></p><p id="11f15285-0ae8-80da-98e8-d6b2cfef151c" class="">• <mark class="highlight-red"><code>attachAdapter()</code></mark></p><p id="11f15285-0ae8-8021-a4d4-cc127394c71d" class="">• <code>bindAdapter()</code></p></li></ol><ol type="1" id="f888d5c8-18ba-4932-8bb2-1481b5705a9b" class="numbered-list" start="6"><li>Какой метод используется для обновления содержимого AdapterView?<p id="15ed3595-16f3-4d4a-b5a5-922311fd5a91" class="">• <mark class="highlight-teal"><code>notifyDataSetChanged</code></mark></p><p id="cc00535f-e07f-49de-aa04-9fa7bab4d7f1" class="">• <mark class="highlight-red"><code>updateAdapter</code></mark></p><p id="19b8b401-985e-4aaf-add3-acfa16a3e661" class="">• <mark class="highlight-red"><code>refreshAdapter</code></mark></p><p id="985b27f1-c535-4aa9-99a6-39506c2465dc" class="">• <mark class="highlight-red"><code>invalidateAdapter</code></mark></p></li></ol></details></li></ul><ul id="28626981-9ffa-4584-9559-cb18a8c54def" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>DiffUtil (3)</strong></mark></summary><ol type="1" id="8cb5fe82-2daa-44c4-9342-26793069426c" class="numbered-list" start="1"><li>Как работает DiffUtil в RecyclerView?<p id="08b37a67-2caf-465c-a33f-6b6b4d11dd8c" class=""><mark class="highlight-teal"><code>DiffUtil</code></mark><mark class="highlight-teal"> оптимизирует обновление списка, сравнивая старый и новый наборы данных. Вычисляет разницу между ними и сообщает </mark><mark class="highlight-teal"><code>RecyclerView</code></mark><mark class="highlight-teal">, какие элементы нужно обновить, вставить или удалить. Вызывается метод </mark><mark class="highlight-teal"><code>calculateDiff</code></mark><mark class="highlight-teal">, который анализирует изменения. Это повышает производительность и предотвращает мерцание при обновлениях. Под капотом следующие алгоритмы: алгоритм поиска наименьших различий и метод наибольшей общей подпоследовательности.</mark></p></li></ol><ol type="1" id="11e15285-0ae8-802b-91ea-fc527c4cbec9" class="numbered-list" start="2"><li>Какие основные методы есть у DiffUtil?<p id="11e15285-0ae8-80ea-8ca3-c756a7d8f237" class=""><mark class="highlight-teal"><code>areItemsTheSame()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>areContentsTheSame()</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>getChangePayload()</code></mark></p></li></ol><ol type="1" id="e42c0cca-d1e4-410f-bdb6-d9a8c9f644c0" class="numbered-list" start="3"><li>Разница между метода<mark class="highlight-default">ми areItemsTheSame и areContentsTheSame у DiffUtil?</mark><p id="a710b634-df17-4d2b-a24f-e3118eb84ee8" class="">• <mark class="highlight-teal"><code>areItemsTheSame</code></mark><mark class="highlight-teal"> - проверяет, идентичны ли два элемента (по позиции) в старом и новом списках.</mark></p><p id="168a641c-e327-47bc-aa21-3da80feb3896" class="">• <mark class="highlight-teal"><code>areContentsTheSame</code></mark><mark class="highlight-teal"> - проверяет, равны ли содержимое двух элементов (по позиции) в старом и новом списках.</mark></p></li></ol></details></li></ul><ul id="10a15285-0ae8-8057-bc37-cc42e2863495" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>ItemDecoration (2)</strong></mark></summary><ol type="1" id="10815285-0ae8-80a3-897a-eaf7b38b6bdc" class="numbered-list" start="1"><li>За что отвечает класс ItemDecorator?<p id="10815285-0ae8-80d3-ae2e-f33ae1bcb9f9" class=""><mark class="highlight-teal">За пространство между элементами списка.</mark></p></li></ol><ol type="1" id="da2e3a85-5bab-4a8a-80eb-59900da6e8b1" class="numbered-list" start="2"><li>С помощью какого компонента RecyclerView можно добавить разделители?<p id="d7150391-bda0-4ef9-abf2-f362b0267396" class=""><mark class="highlight-teal"><code>ItemDecoration</code></mark></p></li></ol></details></li></ul><ul id="12815285-0ae8-8070-b935-f8907a2f3729" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (4)</strong></mark></summary><ol type="1" id="df76722c-ae76-4061-a15e-d3d617bd3cdc" class="numbered-list" start="1"><li>Различие между ListView и RecyclerView?<p id="10a15285-0ae8-807a-912f-d5a9ae1c3cf1" class=""><mark class="highlight-teal"><code>RecyclerView</code></mark><mark class="highlight-teal"> более эффективен в плане производительности, поддерживает переиспользование </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal">, работает с </mark><mark class="highlight-teal"><code>LayoutManager</code></mark><mark class="highlight-teal"> для гибких компоновок и поддерживает анимации, в отличие от устаревшего </mark><mark class="highlight-teal"><code>ListView</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="f4eeb38e-934b-4b2a-93ea-be256216b994" class="numbered-list" start="2"><li>Лагает RecyclerView в чем может быть проблема?<p id="db095f3b-f753-45c8-af75-950ba96ee2af" class="">• <mark class="highlight-teal">Тяжелые операции в методе </mark><mark class="highlight-teal"><code>onBindViewHolder</code></mark></p><p id="d492fbbc-a859-41ee-9a7c-ac2deadaa306" class="">• <mark class="highlight-teal">Неэффективная работа с изображениями (использовать </mark><mark class="highlight-teal"><code>VectorDrawable</code></mark><mark class="highlight-teal">)</mark></p><p id="c0b0b282-20cb-4c85-97fc-b8cd0a3b2850" class="">• <mark class="highlight-teal">Частый вызов </mark><mark class="highlight-teal"><code>notifyDataSetChanged</code></mark></p><p id="a6abcddd-fe9a-428d-8938-5a12802042e4" class="">• <mark class="highlight-teal">Неправильная настройка </mark><mark class="highlight-teal"><code>DiffUtil</code></mark></p><p id="10c15285-0ae8-800d-9030-e14eb6b96598" class="">• <mark class="highlight-teal">Использовать </mark><mark class="highlight-teal"><code>RecycledViewPool</code></mark><mark class="highlight-teal"> для вложенных списков.</mark></p><p id="10c15285-0ae8-8004-884d-db9fd756210d" class="">• <mark class="highlight-teal">Использовать </mark><mark class="highlight-teal"><code>setHasFixedSize</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>setHasStableIds</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>setItemViewCacheSize</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10815285-0ae8-806b-8800-d2d1f701a037" class="numbered-list" start="3"><li>Как обновить часть элемента списка в RecyclerView?<p id="10815285-0ae8-80ab-9a78-c570993628b5" class=""><mark class="highlight-teal">В методе </mark><mark class="highlight-teal"><code>onBindViewHolder()</code></mark><mark class="highlight-teal"> можно проверить наличие payload и обновить только те части пользовательского интерфейса, которые изменились.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-802c-92b0-e2379c082d83" class="numbered-list" start="4"><li>Как RecyclerView отображает элементы?<p id="10a15285-0ae8-807b-862a-fe30ea64a5c3" class=""><mark class="highlight-teal"><code>RecyclerView</code></mark><mark class="highlight-teal"> использует </mark><mark class="highlight-teal"><code>LayoutManager</code></mark><mark class="highlight-teal"> для управления компоновкой элементов. Элементы создаются и переиспользуются через </mark><mark class="highlight-teal"><code>Adapter</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>ViewHolder</code></mark><mark class="highlight-teal">, что оптимизирует производительность при прокрутке. </mark><mark class="highlight-teal"><code>RecyclerView</code></mark><mark class="highlight-teal"> отрисовывает столько элементов, сколько необходимо для заполнения видимой области экрана, плюс несколько элементов вне экрана для плавной прокрутки. Точное количество зависит от размера экрана и типа </mark><mark class="highlight-teal"><code>LayoutManager</code></mark><mark class="highlight-teal">.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

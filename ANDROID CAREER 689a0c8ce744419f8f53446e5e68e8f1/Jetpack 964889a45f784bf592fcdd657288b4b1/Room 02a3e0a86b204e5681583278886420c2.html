@@ -1,0 +1,739 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Room</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="02a3e0a8-6b20-4e56-8158-3278886420c2" class="page sans"><header><img class="page-cover-image" src="Room%2002a3e0a86b204e5681583278886420c2/cover-jetpack-room.webp" style="object-position:center 38.71%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Room%2002a3e0a86b204e5681583278886420c2/icon-android-jetpack.svg"/></div><h1 class="page-title">Room</h1><p class="page-description"></p></header><div class="page-body"><table id="7b918bd2-bd99-4bd6-b867-bdd645eefbd0" class="simple-table"><tbody><tr id="9c533b81-9544-4120-8c9d-ecb738285c51"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room">https://developer.android.com/training/data-storage/room</a></td></tr><tr id="d304b5a9-488a-4b5c-bfb6-7aabe860595c"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/defining-data">https://developer.android.com/training/data-storage/room/defining-data</a></td></tr><tr id="e65c3f22-a09f-44b6-9c1b-b28362a003bc"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/accessing-data">https://developer.android.com/training/data-storage/room/accessing-data</a></td></tr><tr id="73b1d06d-39f6-4451-be60-2ef65d91c0e9"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/relationships">https://developer.android.com/training/data-storage/room/relationships</a></td></tr><tr id="443b49c5-6e1c-4e3f-b707-a9382fac00d8"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/async-queries">https://developer.android.com/training/data-storage/room/async-queries</a></td></tr><tr id="706278f3-91f4-45bf-9e07-b95df79f1408"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/creating-views">https://developer.android.com/training/data-storage/room/creating-views</a></td></tr><tr id="65079ed6-166e-4eb6-b7a9-cc050ca3302f"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/prepopulate">https://developer.android.com/training/data-storage/room/prepopulate</a></td></tr><tr id="862449bd-6c19-48b3-9675-904a368be2af"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/migrating-db-versions">https://developer.android.com/training/data-storage/room/migrating-db-versions</a></td></tr><tr id="21b8c56a-96b1-4062-92ef-08c2f0152fa5"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/testing-db">https://developer.android.com/training/data-storage/room/testing-db</a></td></tr><tr id="64822e34-fc54-48bd-bc0d-914af6f2bfc4"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/referencing-data">https://developer.android.com/training/data-storage/room/referencing-data</a></td></tr><tr id="dc6f539a-b2bb-4088-8e2f-cf4341f8f8a8"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/sqlite-room-migration">https://developer.android.com/training/data-storage/room/sqlite-room-migration</a></td></tr><tr id="3d17c9cf-112c-4e21-bbae-1d03feb1414c"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/training/data-storage/room/room-kmp-migration">https://developer.android.com/training/data-storage/room/room-kmp-migration</a></td></tr><tr id="14e15285-0ae8-80f7-b76a-f2193b630e0e"><td id="}qyq" class="" style="width:594px"><a href="https://developer.android.com/kotlin/multiplatform/sqlite">https://developer.android.com/kotlin/multiplatform/sqlite</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Room</summary><div class="indented"><p id="b5ff4d92-0b3c-4618-83e1-9b10286a0cac" class="">Абстракция над SQLite для надежного доступа к базе данных.</p><p id="12a15285-0ae8-80b5-91d0-f8a4a97cb332" class="">
+</p><h3 id="12a15285-0ae8-8042-b4f4-e600fb4eb4c4" class="">Получить количество записей в таблице</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-8086-b6eb-f6ea30941037" class="code"><code class="language-Kotlin">@Query(&quot;SELECT COUNT(*) FROM users&quot;)
+fun usersCount(): Flow&lt;Int&gt;</code></pre><p id="12a15285-0ae8-806c-a6d3-d76f72723664" class="">
+</p><h3 id="12a15285-0ae8-80b0-8511-c731dd8cff5c" class="">Проверить существование записи в таблице</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7db618ca-0492-4e6b-b2fd-19358137cf3f" class="code"><code class="language-Kotlin">@Query(&quot;SELECT EXISTS(SELECT * FROM users WHERE userId = :userId)&quot;)
+suspend fun isExist(userId: Int): Boolean</code></pre><p id="12a15285-0ae8-8059-a110-d29518307609" class="">
+</p><h3 id="12a15285-0ae8-801e-ac35-e51b378cdae7" class="">Фильтр по диапазону значений</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-8042-b395-cd658138fc3b" class="code"><code class="language-Kotlin">@Query(&quot;SELECT * FROM users WHERE type IN (:ids)&quot;)
+fun getUsers(ids: List&lt;Int&gt;): Flow&lt;List&lt;UserDb&gt;&gt;</code></pre><p id="12a15285-0ae8-80a9-91ab-ce6f14183895" class="">
+</p><h3 id="12a15285-0ae8-8045-884a-c8187b4400ab" class="">Обновление значения</h3><p id="12a15285-0ae8-80d1-b0b8-f40461472b36" class="">Если <mark class="highlight-default"><code>Flow</code></mark> не триггерится после обновления значения с использованием Relation.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c74f926d-1044-4ef5-a314-b750741cfec1" class="code"><code class="language-Kotlin">@Update
+suspend fun update(userDb: UserDb)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@Database</code></mark></summary><div class="indented"><p id="aa92334d-8371-4af9-b3ce-e443fc66a268" class="">Маркирует класс-нас<mark class="highlight-default">ледник </mark><mark class="highlight-default"><code>RoomDatabase</code></mark><mark class="highlight-default"> для конфигуриро</mark>вания базы данных. Должен быть абстрактным.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6bc4c0bd-fccf-482a-a680-ce10a663a8c9" class="code"><code class="language-Kotlin">@Database(entities = [User::class], version = 1)
+abstract class AppDatabase: RoomDatabase() {
+    abstract fun userDao(): UserDao
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@Entity</code></mark></summary><div class="indented"><p id="603a0f41-4c4a-4090-803e-9d0265191c67" class="">Сущность данных. Объект данных в Room. Каждый объект - отдельная таблица в базе данных. Каждый экземпляр объекта - строка в таблице.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a70b9b77-629c-49b8-9877-cfbe11c7d9bd" class="code"><code class="language-Kotlin">@Entity
+data class User(
+    @PrimaryKey val userId: Int,
+    val name: String,
+    @ColumnInfo(name = &quot;user_age&quot;) val age: Int
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@Dao</code></mark></summary><div class="indented"><p id="d2c7f3e1-5028-439b-ae0f-fecc8bbb87dd" class="">Data access object. Предоставляет методы для взаимодействия с данными в таблице.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2e8c1a6-63d7-4e67-bfca-22dbbbf8814d" class="code"><code class="language-Kotlin">@Dao
+interface UserDao {
+    
+    @Query(&quot;SELECT * FROM user&quot;)
+    fun getAll(): List&lt;User&gt;
+
+    @Insert
+    fun insertAll(vararg users: User)
+
+    @Delete
+    fun delete(user: User)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@ForeignKey</code></mark></summary><div class="indented"><p id="12a15285-0ae8-8051-9f45-dfde1298a9a2" class="">В Room внешние ключи (ForeignKey) используются для создания связей между таблицами, обеспечивая целостность данных. При объявлении внешнего ключа в сущности (Entity) указываются поля, которые будут ссылаться на другие таблицы. Это позволяет реализовать отношения, такие как один ко многим.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-80bc-a23d-eca68b90de64" class="code"><code class="language-Kotlin">@Entity
+data class Order(
+    @PrimaryKey val orderId: Long,
+    @ForeignKey(entity = Customer::class, parentColumns = [&quot;customerId&quot;], childColumns = [&quot;customerId&quot;]) val customerId: Long
+)
+
+@Entity
+data class Customer(
+    @PrimaryKey val customerId: Long,
+    val name: String
+)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>@RewriteQueriesToDropUnusedColumns</code></mark></summary><div class="indented"><p id="7572905c-dbde-4fe0-afa5-8281f4eafc69" class="">Используется с аннотацией <mark class="highlight-default"><code>Query</code></mark> и позволяет извлечь из таблицы только те столбцы которые указаны в модели для ответа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6d24ca50-93a9-40f6-9026-b895886ff076" class="code"><code class="language-Kotlin">data class NameAndLastName (
+    val name: String,
+    val lastName: String
+)
+
+@Dao
+interface MyDao {
+    
+	  @Query(&quot;SELECT * FROM User&quot;)
+    public fun getAll(): List&lt;NameAndLastName&gt; // извлечет все поля, не только name и lastName
+}
+
+@Dao
+interface MyDao {
+    
+    @RewriteQueriesToDropUnusedColumns
+    @Query(&quot;SELECT * FROM User&quot;)
+    fun getAll(): List&lt;NameAndLastName&gt; // извлечет только name и lastName
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (16)</mark></summary><div class="indented"><ol type="1" id="8fd6dc84-2919-4cda-8046-5ac524d64a66" class="numbered-list" start="1"><li>Что такое Room?<p id="10915285-0ae8-80db-9844-ed8daf8bfede" class=""><mark class="highlight-teal">Библиотека для работы с базами данных в Android, которая предоставляет абстракцию над </mark><mark class="highlight-teal"><code>SQLite</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10915285-0ae8-8086-93bc-dcbe348ca16b" class="numbered-list" start="2"><li>Преимущества Room по сравнению с SQLite?<p id="10915285-0ae8-8062-be48-d325e3ec8d7b" class="">• <mark class="highlight-teal">Типобезопасность — Room проверяет запросы на этапе компиляции.</mark></p><p id="10915285-0ae8-8051-9c27-c6bd67de1e5b" class="">• <mark class="highlight-teal">Упрощенное взаимодействие — благодаря DAO можно использовать аннотации для определения запросов без необходимости писать </mark><mark class="highlight-teal"><code>SQL</code></mark><mark class="highlight-teal">.</mark></p><p id="10915285-0ae8-800d-8e26-f6a53f1ae258" class="">• <mark class="highlight-teal">Автоматическая миграция — упрощает обновление схемы базы данных.</mark></p><p id="977ae947-50fa-4296-955d-84157768aed3" class="">• <mark class="highlight-teal">Поддержка </mark><mark class="highlight-teal"><code>LiveData</code></mark><mark class="highlight-teal"> и Coroutines — позволяет работать с асинхронностью и реактивным программированием.</mark></p><p id="10915285-0ae8-801d-8bcf-dda01beaea66" class="">• <mark class="highlight-teal">Упрощение обработки отношений — поддержка «‎один ко многим»‎ и «‎многие ко многим»‎.</mark></p></li></ol><ol type="1" id="6a4a09ec-40f7-4fa2-a592-216e953bc217" class="numbered-list" start="3"><li>Какие основные компоненты Room?<p id="a66b6934-b2b9-41fa-a095-9e8391488e65" class="">• <mark class="highlight-teal"><code>@Entity</code></mark><mark class="highlight-teal"> - класс, представляющий таблицу в базе данных.</mark></p><p id="10915285-0ae8-80da-8a32-df545b374565" class="">• <mark class="highlight-teal"><code>@Dao</code></mark><mark class="highlight-teal"> (Data Access Object) - интерфейс для определения методов доступа к данным.</mark></p><p id="10915285-0ae8-80e9-b489-c5c3fb3574c6" class="">• <mark class="highlight-teal"><code>@Database</code></mark><mark class="highlight-teal"> - абстрактный класс, который объединяет все сущности и DAO, а также управляет базой данных.</mark></p></li></ol><ol type="1" id="10915285-0ae8-8034-9aec-f63c94e42551" class="numbered-list" start="4"><li>Как работают аннотации @Query @Insert @Update @Delete в Room?<p id="10915285-0ae8-80a0-80aa-f6a5bf1834ef" class=""><mark class="highlight-teal">Используются для определения </mark><mark class="highlight-teal"><code>SQL</code></mark><mark class="highlight-teal">-запросов к базе данных.</mark></p></li></ol><ol type="1" id="3d863320-d359-4255-8570-bc2b33f37b01" class="numbered-list" start="5"><li>Что произойдет, если не настроить миграцию при изменении схемы базы данных?<p id="bf59b47a-62c5-4de6-a5c6-c97a6b4ada3b" class=""><mark class="highlight-teal">Приложение может выдать исключение </mark><mark class="highlight-teal"><code>SQLiteException</code></mark><mark class="highlight-teal">, и база данных не сможет открыться. Это приведет к сбою приложения, так как Room не сможет сопоставить новую структуру с существующей.</mark></p></li></ol><ol type="1" id="9f1124b3-dae8-4dfc-905f-0aee188872f6" class="numbered-list" start="6"><li>Как работать с отношениями между сущностями в Room (наприм<mark class="highlight-default">ер, «‎один ко многим» или «‎многие ко многим»)?</mark><p id="10915285-0ae8-803e-93bc-d5c3d8c2007e" class="">• <mark class="highlight-teal">Один ко многим: создайте две сущности. В основной сущности добавьте поле для идентификатора связанной сущности. Используйте аннотацию </mark><mark class="highlight-teal"><code>@Relation</code></mark><mark class="highlight-teal"> для создания списка связанных объектов в основной сущности.</mark></p><p id="10915285-0ae8-805c-8d32-d29194eeebca" class="">• <mark class="highlight-teal">Многие ко многим: создайте третью сущность, которая будет представлять связь между двумя сущностями (состоящую из двух полей идентификаторов). Затем используйте аннотацию </mark><mark class="highlight-teal"><code>@Relation</code></mark><mark class="highlight-teal"> в обеих сущностях для определения связи через эту промежуточную таблицу.</mark></p></li></ol><ol type="1" id="5ca7e699-1af0-4b44-baab-a38583f18a27" class="numbered-list" start="7"><li>Как использовать типы данных, не поддерживаемые напрямую Room, такие как Date или List?<p id="10915285-0ae8-8020-9d9d-cffb553ab105" class=""><mark class="highlight-teal">Использовать </mark><mark class="highlight-teal"><code>@TypeConverter</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="11da38b0-11b1-45a8-918d-bde6eb4352bd" class="numbered-list" start="8"><li>Как Room обрабатывает конфликты при вставке или обновлении данных?<p id="10915285-0ae8-80d9-8be3-eb215c7ca4a2" class=""><mark class="highlight-teal">Room обрабатывает конфликты при вставке или обновлении данных с помощью стратегии разрешения конфликтов. По умолчанию используется стратегия </mark><mark class="highlight-teal"><code>IGNORE</code></mark><mark class="highlight-teal">, но можно указать другие, такие как </mark><mark class="highlight-teal"><code>REPLACE</code></mark><mark class="highlight-teal"> или </mark><mark class="highlight-teal"><code>ABORT</code></mark><mark class="highlight-teal">. Это позволяет управлять тем, как Room будет реагировать на конфликты, например, игнорировать конфликтующие записи или заменять их новыми данными.</mark></p></li></ol><ol type="1" id="12015285-0ae8-80a1-9f96-d8b8cd89b964" class="numbered-list" start="9"><li>Как объединить несколько таблиц в Room?<p id="12015285-0ae8-80f5-967a-fff059956dfa" class=""><mark class="highlight-teal">Использовать аннотацию </mark><mark class="highlight-teal"><code>@Relation</code></mark><mark class="highlight-teal"> в Entity-классах для отображения отношений «‎один ко многим» или «‎многие ко многим», либо использовать запросы с </mark><mark class="highlight-teal"><code>Join</code></mark><mark class="highlight-teal"> в DAO для выполнения более сложных операций с несколькими таблицами.</mark></p></li></ol><ol type="1" id="10215285-0ae8-80f5-a030-d759fcac66e4" class="numbered-list" start="10"><li>Как работает каскадное удаление в Room?<p id="10215285-0ae8-8036-a3ec-e80ed3608c09" class=""><mark class="highlight-teal">Каскадное удаление в Room позволяет автоматически удалять связанные записи в базе данных при удалении основной записи. Это реализуется с помощью аннотации </mark><mark class="highlight-teal"><code>@ForeignKey</code></mark><mark class="highlight-teal"> с параметром </mark><mark class="highlight-teal"><code>onDelete = ForeignKey.CASCADE</code></mark><mark class="highlight-teal"> в определении связи между сущностями.</mark></p></li></ol><ol type="1" id="b3bc1b20-dfc6-4d2f-b88d-3b103208ff8b" class="numbered-list" start="11"><li>Какие есть базы данных кроме Room?<p id="10215285-0ae8-807f-b878-c66592ee1c6a" class="">• <mark class="highlight-teal"><code>SQLite</code></mark></p><p id="10815285-0ae8-80a7-9765-f542c4886192" class="">• <mark class="highlight-teal"><code>Realm</code></mark></p><p id="b1890255-86d5-4a10-b7e4-c05ac0eb867b" class="">• <mark class="highlight-teal"><code>SQLDelight</code></mark></p></li></ol><ol type="1" id="10815285-0ae8-806e-a89c-eac5b1855e07" class="numbered-list" start="12"><li>Чем Room отличается от Realm?<p id="10815285-0ae8-8053-a4c7-d26a80b692a8" class=""><mark class="highlight-teal">Room — это библиотека для работы с </mark><mark class="highlight-teal"><code>SQLite</code></mark><mark class="highlight-teal"> и реляционными данными, интегрированная с архитектурой Android. </mark><mark class="highlight-teal"><code>Realm</code></mark><mark class="highlight-teal"> — собственная база данных, работающая с объектами напрямую (</mark><mark class="highlight-teal"><code>NoSQL</code></mark><mark class="highlight-teal">), предлагающая высокую производительность, но с ограничениями по миграции и сложным запросам.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-8065-8182-c16b4ca8c629" class="numbered-list" start="13"><li>Как связать 2 Entity между собой?<p id="12a15285-0ae8-80a4-888b-c4b003aad834" class=""><mark class="highlight-teal">Использовать аннотацию </mark><mark class="highlight-teal"><code>@Relation</code></mark><mark class="highlight-teal"> для создания связи между ними. Например, можно создать один класс для родительской сущности и другой для дочерней.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-80ea-8263-fc1232d1b933" class="numbered-list" start="14"><li>Как файл базы данных Room хранится в Android?<p id="12a15285-0ae8-8065-b33d-db8fdfb06fd1" class=""><mark class="highlight-teal">Файл базы данных Room хранится в каталоге приложения на устройстве Android, обычно по пути </mark><mark class="highlight-teal"><code>/data/data/your.package.name/databases/your_database_name.db</code></mark><mark class="highlight-teal">. Этот файл доступен только приложению, которое его создало, и содержит все таблицы, индексы и данные, которые вы определили в своих Entity-классах. Room автоматически управляет созданием и обновлением базы данных при изменении схемы.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-8013-a735-ce41146dae05" class="numbered-list" start="15"><li>Почему файл базы данных Room не может прочитать другое приложение?<p id="12a15285-0ae8-8039-94f1-fa02774bab46" class=""><mark class="highlight-teal">Из-за механизма безопасности Android, который изолирует данные приложений. Каждое приложение работает в своем собственном контейнере, и доступ к файловой системе ограничен. По умолчанию файлы в каталоге </mark><mark class="highlight-teal"><code>/data/data/your.package.name/</code></mark><mark class="highlight-teal"> защищены, и другие приложения не имеют разрешения на их чтение или запись, что предотвращает несанкционированный доступ к данным.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-8019-97bd-cb2f4a6f1570" class="numbered-list" start="16"><li>Какие виды связей существуют в базах данных?<p id="12a15285-0ae8-809f-ba7a-cae9f96f73b5" class="">• <mark class="highlight-teal">Один к одному (1:1) — связь между двумя таблицами, где каждой записи в одной таблице соответствует одна запись в другой.</mark></p><p id="12a15285-0ae8-80d9-8615-c6709d89bab8" class="">• <mark class="highlight-teal">Один ко многим (1:N) — связь, где одной записи в таблице А соответствуют несколько записей в таблице B.</mark></p><p id="12a15285-0ae8-8077-b6cf-c909a54e3cd1" class="">• <mark class="highlight-teal">Многие к одному (N:1) — несколько записей из одной таблицы могут ссылаться на одну запись в другой.</mark></p><p id="12a15285-0ae8-8098-95a8-f0b422d4be87" class="">• <mark class="highlight-teal">Многие ко многим (M:N) — связь, в которой записи из одной таблицы могут соответствовать множеству записей в другой, и наоборот.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

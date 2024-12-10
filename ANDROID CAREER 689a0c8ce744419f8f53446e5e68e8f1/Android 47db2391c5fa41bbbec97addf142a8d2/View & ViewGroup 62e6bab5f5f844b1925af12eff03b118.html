@@ -1,0 +1,886 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>View &amp; ViewGroup</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="62e6bab5-f5f8-44b1-925a-f12eff03b118" class="page sans"><header><img class="page-cover-image" src="View%20&amp;%20ViewGroup%2062e6bab5f5f844b1925af12eff03b118/cover-android-view.webp" style="object-position:center 55.45%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="View%20&amp;%20ViewGroup%2062e6bab5f5f844b1925af12eff03b118/icon-android-platform.svg"/></div><h1 class="page-title">View &amp; ViewGroup</h1><p class="page-description"></p></header><div class="page-body"><table id="a75813c9-e87f-45cb-80d7-967965bdbfc5" class="simple-table"><tbody><tr id="c94eecdc-aeaa-47fb-8390-e72403ee1f3a"><td id="ojwm" class="" style="width:508px"><a href="https://d.android.com/training/custom-views/create-view">https://d.android.com/training/custom-views/create-view</a></td></tr><tr id="49b03552-3dca-4773-bb8b-44528b9978a2"><td id="ojwm" class="" style="width:508px"><a href="https://d.android.com/reference/android/view/View">https://d.android.com/reference/android/view/View</a></td></tr><tr id="17a13c1d-af95-4e46-8d48-016ddeedd123"><td id="ojwm" class="" style="width:508px"><a href="https://d.android.com/reference/android/view/ViewGroup">https://d.android.com/reference/android/view/ViewGroup</a></td></tr><tr id="be7267a6-e065-43f1-9696-0036e6b23aa3"><td id="ojwm" class="" style="width:508px"><a href="https://d.android.com/guide/topics/ui/how-android-draws">https://d.android.com/guide/topics/ui/how-android-draws</a></td></tr></tbody></table><table id="b8f93acb-75b0-4242-8f13-a957c6a15a45" class="simple-table"><tbody><tr id="12ff2dc9-55d6-4fc4-92c0-15cc0cb0d8f2"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/kak-sozdat-kastomnuiu-view">https://itsobes.ru/AndroidSobes/kak-sozdat-kastomnuiu-view</a></td></tr><tr id="dcea793a-7da2-4111-b123-513cdb46e825"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/kak-realizovat-metod-view-onmeasure">https://itsobes.ru/AndroidSobes/kak-realizovat-metod-view-onmeasure</a></td></tr><tr id="7f64bac0-a5da-4b58-b710-2a47ffbe6952"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/kak-realizovat-metod-view-ondraw">https://itsobes.ru/AndroidSobes/kak-realizovat-metod-view-ondraw</a></td></tr><tr id="91c854de-2751-4bc2-864f-9431c10e94c9"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/v-chem-raznitsa-mezhdu-invalidate-i-requestlayout">https://itsobes.ru/AndroidSobes/v-chem-raznitsa-mezhdu-invalidate-i-requestlayout</a></td></tr><tr id="ff580dc2-cb76-4a48-8235-0d6579659870"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/kak-rabotaet-metod-dispatchtouchevent">https://itsobes.ru/AndroidSobes/kak-rabotaet-metod-dispatchtouchevent</a></td></tr><tr id="15a7a08a-2afd-4b58-8afc-b50ebc14090c"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/dlia-chego-nuzhen-metod-onintercepttouchevent">https://itsobes.ru/AndroidSobes/dlia-chego-nuzhen-metod-onintercepttouchevent</a></td></tr><tr id="602e602c-62c9-4993-9c78-45c9237fc71d"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/dlia-chego-nuzhen-metod-view-forcelayout">https://itsobes.ru/AndroidSobes/dlia-chego-nuzhen-metod-view-forcelayout</a></td></tr><tr id="b8fdafa2-1c3f-44bd-9194-ffa26353d92e"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/nazovite-osnovnye-motionevent-actions">https://itsobes.ru/AndroidSobes/nazovite-osnovnye-motionevent-actions</a></td></tr><tr id="a3df7ceb-d061-4270-967a-5a76128b4ce5"><td id="ojwm" class="" style="width:923px"><a href="https://itsobes.ru/AndroidSobes/kak-touch-event-dostavliaetsia-do-target-view">https://itsobes.ru/AndroidSobes/kak-touch-event-dostavliaetsia-do-target-view</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>View</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80a0-b608-de0f869051c6" class="">Базовый класс для всех UI-элементов в Android, таких как кнопки, текстовые поля и изображения. Он отвечает за отображение контента, обработку событий и управление размерами. Все виджеты интерфейса в Android наследуются от класса <strong>View</strong> или его подклассов.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onAttachToWindow</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80a7-90f0-fc27dad098fb" class="">Вызывается, когда <mark class="highlight-default"><code>View</code></mark> привязывается к окну.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80b8-abe5-c6f03e5503d0" class="code"><code class="language-Kotlin">override fun onAttachToWindow() {
+    super.onAttachToWindow()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDetachedFromWindow</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8016-9290-cf4f07cb44be" class="">Вызывается, когда <mark class="highlight-default"><code>View</code></mark> удаляется из окна.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-801d-8f50-d22d9bc75b36" class="code"><code class="language-Kotlin">override fun onDetachedFromWindow() {
+    super.onDetachedFromWindow()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onMeasure</code></mark></summary><div class="indented"><p id="a0533de4-07a7-46aa-bff3-2402378fd215" class="">Отвечает за вычисление размера <mark class="highlight-default"><code>View</code></mark> перед его отображением. Он получает параметры <mark class="highlight-default"><code>widthMeasureSpec</code></mark> и <mark class="highlight-default"><code>heightMeasureSpec</code></mark> от родительского контейнера и на основе этих параметров определяет размеры <mark class="highlight-default"><code>View</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6c479b39-780d-478b-ad9f-25d940cf6436" class="code"><code class="language-Kotlin">override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    // Извлекаем режим и размер для ширины
+    val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+    val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+    
+    // Извлекаем режим и размер для высоты
+    val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+    val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+
+    // Пример желаемых размеров
+    val desiredWidth = 200
+    val desiredHeight = 100
+
+    // Определяем конечные размеры с учетом режимов измерения
+    val width = if (widthMode == MeasureSpec.EXACTLY) {
+        widthSize
+    } else {
+        Math.min(desiredWidth, widthSize)
+    }
+
+    val height = if (heightMode == MeasureSpec.EXACTLY) {
+        heightSize
+    } else {
+        Math.min(desiredHeight, heightSize)
+    }
+
+    // Устанавливаем измеренные размеры
+    setMeasuredDimension(width, height)
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>MeasureSpec</code></mark></summary><div class="indented"><p id="72abee12-cd1c-47a9-8f40-387b52dc2c19" class="">Используется для передачи информации о размере и режиме измерения от родительского компонента к дочернему <mark class="highlight-default"><code>View</code></mark>. Это позволяет дочернему <mark class="highlight-default"><code>View</code></mark> адаптироваться к доступному пространству.</p><p id="92f55601-88d7-4440-965d-9b67af58499a" class="">• <mark class="highlight-default"><code>EXACTLY</code></mark> Родительский компонент предоставляет точный размер для <mark class="highlight-default"><code>View</code></mark>. <mark class="highlight-default"><code>View</code></mark> должна использовать этот размер и не изменять его. Этот режим устанавливается, когда родительский компонент определяет фиксированный размер для <mark class="highlight-default"><code>View</code></mark>, например, в случае <mark class="highlight-default"><code>LayoutParams</code></mark> с точными значениями. При использовании <mark class="highlight-default"><code>match_parent</code></mark> или <mark class="highlight-default"><code>layout_width</code></mark>/<mark class="highlight-default"><code>layout_height</code></mark>, когда размеры явно заданы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="74412b50-47b6-425f-a2d4-9a25f62e2340" class="code"><code class="language-Kotlin">val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+if (widthMode == MeasureSpec.EXACTLY) {
+    val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+    // Ширина точно задана
+}</code></pre><p id="05afab37-69d9-465a-8d4a-73f131e086c3" class="">• <mark class="highlight-default"><code>AT_MOST</code></mark> Родительский компонент предоставляет максимальный размер, который <mark class="highlight-default"><code>View</code></mark> может занять. <mark class="highlight-default"><code>View</code></mark> должна быть не больше этого размера. Этот режим применяется, когда <mark class="highlight-default"><code>View</code></mark> имеет неопределенный размер и может быть ограничена только максимальными размерами, предоставленными родителем. При использовании <mark class="highlight-default"><code>wrap_content</code></mark>, когда <mark class="highlight-default"><code>View</code></mark> может занимать до определенного максимума, но не больше него.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8e5aebe0-fb39-4814-9f96-5eadd4714645" class="code"><code class="language-Kotlin">val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+if (widthMode == MeasureSpec.AT_MOST) {
+    val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+    // Ширина должна быть не больше максимального значения
+}</code></pre><p id="fb986dd1-0361-404a-9b49-be4ac5f131ea" class="">• <mark class="highlight-default"><code>UNSPECIFIED</code></mark> Родительский компонент не ограничивает размер <mark class="highlight-default"><code>View</code></mark>. <mark class="highlight-default"><code>View</code></mark> может быть любого размера. Этот режим применяется, когда родитель не устанавливает конкретные ограничения на размер <mark class="highlight-default"><code>View</code></mark>. View может занять любое пространство, которое она считает нужным. Когда родительский контейнер позволяет <mark class="highlight-default"><code>View</code></mark> занять любое пространство без ограничений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4952bae7-106d-4d94-8817-9167cf5f92c7" class="code"><code class="language-Kotlin">val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+if (widthMode == MeasureSpec.UNSPECIFIED) {
+    // Размер не ограничен, `View` может быть любым
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>MeasureSpec.getMode</code></mark></summary><div class="indented"><p id="197dcbfc-4a27-4174-a468-de182d1da61d" class="">Определяет режим измерения (<mark class="highlight-default"><code>EXACTLY</code></mark>, <mark class="highlight-default"><code>AT_MOST</code></mark>, <mark class="highlight-default"><code>UNSPECIFIED</code></mark>).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a783ee84-1a6a-4c87-947d-d36b8508fd06" class="code"><code class="language-Kotlin">override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+    val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>MeasureSpec.getSize</code></mark></summary><div class="indented"><p id="4f2dee05-1143-4880-afd9-7b926d53736c" class="">Получает размер, указанный в <mark class="highlight-default"><code>measureSpec</code></mark>, который можно использовать для вычислений размеров <mark class="highlight-default"><code>View</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8dc90bb4-6ff0-4afe-beb1-609238ebd3d0" class="code"><code class="language-Kotlin">override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+    val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onLayout</code></mark></summary><div class="indented"><p id="58d05f83-6a44-4cfc-84f3-49b9969157db" class="">Используется для определения расположения и размеров дочерних <mark class="highlight-default"><code>View</code></mark> внутри <mark class="highlight-default"><code>ViewGroup</code></mark>. Этот метод вызывается после того, как <mark class="highlight-default"><code>ViewGroup</code></mark> завершил процесс измерения onMeasure и готов перейти к размещению дочерних элементов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a3d86cb4-be76-4c1b-9175-e38e99a796a5" class="code"><code class="language-Kotlin">class CustomLayout(context: Context) : ViewGroup(context) {
+
+    init {
+        // Пример добавления дочерних View
+        addView(View(context))
+        addView(View(context))
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Определение размеров для этого ViewGroup
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val height = MeasureSpec.getSize(heightMeasureSpec)
+        setMeasuredDimension(width, height)
+
+        // Измерение дочерних View
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            child.measure(
+                MeasureSpec.makeMeasureSpec(width / 2, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(height / childCount, MeasureSpec.EXACTLY)
+            )
+        }
+    }
+
+		/**
+		 * changed - логическое значение, указывающее, изменилось ли расположение.
+		 * l, t, r, b - координаты (левый, верхний, правый, нижний) текущего ViewGroup.
+		 */
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        // Размещение дочерних View
+        var topOffset = 0
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            val childWidth = child.measuredWidth
+            val childHeight = child.measuredHeight
+            child.layout(0, topOffset, childWidth, topOffset + childHeight)
+            topOffset += childHeight
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDraw</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80e5-9c21-de0b4090883b" class="">Используется для рисования содержимого на экране.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80f2-b027-e348c219f2b7" class="code"><code class="language-Kotlin">val paint = Paint().apply {
+    color = Color.RED
+    style = Paint.Style.FILL
+}
+
+override fun onDraw(canvas: Canvas) {
+    super.onDraw(canvas)
+    canvas.drawRect(50F, 50F, 200F, 200F, paint) // Рисуем прямоугольник
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>invalidate</code></mark></summary><div class="indented"><p id="6f032340-da33-46ba-bd4a-f4392e0019e3" class="">Используется для запроса перерисовки экрана. Когда вызывается этот метод, <mark class="highlight-default"><code>View</code></mark> помечается как «нуждающаяся в обновлении», что приводит к вызову м<mark class="highlight-default">етода </mark><mark class="highlight-default"><code>onDraw</code></mark><mark class="highlight-default"> в </mark>следующем цикле отрисовки, где обновляется её содержимое. Это позволяет обновить отображение <mark class="highlight-default"><code>View</code></mark>, например, при изменении её состояния или данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6ea3270-9300-4c94-9795-9d075c7a5553" class="code"><code class="language-Kotlin">class CustomView(context: Context): View(context) {
+
+    private var color: Int = Color.RED
+
+    // Метод для установки нового цвета и запроса перерисовки
+    fun setColor(newColor: Int) {
+        color = newColor
+        invalidate() // Запрашивает перерисовку
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        // Отрисовываем круг с заданным цветом
+        canvas.drawColor(color)
+    }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>postInvalidate</code></mark></summary><div class="indented"><p id="51eddd30-6357-4a6a-bce7-90f00e870f70" class="">Используется для запроса перерисовки <mark class="highlight-default"><code>View</code></mark> из другого потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="87eaf1ec-e75f-4bde-b08a-1a17172dec77" class="code"><code class="language-Kotlin">class CustomView(context: Context): View(context) {
+
+    private var color: Int = Color.RED
+
+    // Метод для установки нового цвета и запроса перерисовки из фонового потока
+    fun setColorFromBackgroundThread(newColor: Int) {
+        color = newColor
+        postInvalidate() // Запрашивает перерисовку из любого потока
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        // Отрисовываем круг с заданным цветом
+        canvas.drawColor(color)
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requestLayout</code></mark></summary><div class="indented"><p id="bdf8b25e-adf2-45ed-a8a5-4a1302757f56" class="">Используется для запроса перерасчета размеров и размещения <mark class="highlight-default"><code>View</code></mark>. Когда этот метод вызывается, система отмечает <mark class="highlight-default"><code>View</code></mark> как требующую перерисовки и запускает процесс перерасчета и повторного размещения всех затронутых <mark class="highlight-default"><code>View</code></mark>. Использовать при изменении размера или содержимого.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2c59ea68-fd17-4e0e-bcec-b470b8af0831" class="code"><code class="language-Kotlin">class CustomView(context: Context): View(context) {
+
+    private var customSize: Int = 100
+
+    // Метод для изменения размера и запроса повторного размещения
+    fun setCustomSize(size: Int) {
+        if (customSize != size) {
+            customSize = size
+            requestLayout() // Запрашивает перерасчет и перераспределение размеров
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Устанавливаем размеры view
+        val width = resolveSize(customSize, widthMeasureSpec)
+        val height = resolveSize(customSize, heightMeasureSpec)
+        setMeasuredDimension(width, height)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        // Отрисовка в зависимости от размера
+        canvas.drawColor(Color.RED)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>forceLayout</code></mark></summary><div class="indented"><p id="cad5871f-4e1f-4e63-a54a-da17300d202d" class="">Используется для принудительного выполнения перерасчета размеров и размещения <mark class="highlight-default"><code>View</code></mark>. Этот метод часто применяется в случаях, когда необходимо убедиться, что перерасчет и размещение <mark class="highlight-default"><code>View</code></mark> происходят немедленно, а не в следующем цикле отрисовки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9acdffda-8479-44eb-8619-53afa44a4988" class="code"><code class="language-Kotlin">class CustomView(context: Context): View(context) {
+
+    private var customSize: Int = 100
+
+    // Метод для изменения размера и принудительного выполнения перерасчета
+    fun setCustomSize(size: Int) {
+        if (customSize != size) {
+            customSize = size
+            forceLayout() // Принудительно выполняет перерасчет и размещение
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Устанавливаем размеры view
+        val width = resolveSize(customSize, widthMeasureSpec)
+        val height = resolveSize(customSize, heightMeasureSpec)
+        setMeasuredDimension(width, height)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        // Отрисовка в зависимости от размера
+        canvas.drawColor(Color.RED)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onSizeChanged</code></mark></summary><div class="indented"><p id="14a15285-0ae8-808a-9f5b-ca567ca34f48" class="">Вызывается, когда размер <mark class="highlight-default"><code>View</code></mark> изменяется.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8093-91d8-f77514e7e78c" class="code"><code class="language-Kotlin">override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    super.onSizeChanged(w, h, oldw, oldh)
+    // Логика при изменении размера
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onTouchEvent</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8029-b3c9-cf515781ae18" class="">Обрабатывает события касания.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80a9-a3e5-e651977a6d74" class="code"><code class="language-Kotlin">override fun onTouchEvent(event: MotionEvent): Boolean {
+    when (event.action) {
+        MotionEvent.ACTION_DOWN -&gt; {
+            // Действие при начале касания
+        }
+        MotionEvent.ACTION_MOVE -&gt; {
+            // Действие при перемещении
+        }
+        MotionEvent.ACTION_UP -&gt; {
+            // Действие при завершении касания
+        }
+    }
+    return true // Возвращаем true, чтобы событие не было передано дальше
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ViewGroup</code></mark></summary><div class="indented"><p id="14a15285-0ae8-801e-aa7b-effd085eeb76" class="">Базовый класс для контейнеров, которые могут содержать другие <mark class="highlight-default"><code>View</code></mark> элементы. Он управляет иерархией виджетов, а также их размещением, размером и позиционированием.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onInterceptTouchEvent</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80df-a1c8-e32beb47b0e7" class="">Решает, перехватывать ли событие касания. Если возвращает <mark class="highlight-default"><code>true</code></mark>, событие не передается дочерним элементам.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80cf-af1f-e0611b404ebf" class="code"><code class="language-Kotlin">override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
+    // Возвращаем true, чтобы перехватить событие
+    return true
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dispatchTouchEvent</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8035-9157-d75930fc8bf1" class="">Передает событие касания соответствующему <mark class="highlight-default"><code>View</code></mark>. Он обрабатывает событие, вызывая <mark class="highlight-default"><code>onInterceptTouchEvent</code></mark> для перехвата, а затем передает его дочерним элементам через <mark class="highlight-default"><code>onTouchEvent</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8057-9c99-d90cd06bc132" class="code"><code class="language-Kotlin">override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+    // Переадресация события в дочерние элементы
+    return super.dispatchTouchEvent(event)
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (20)</mark></summary><div class="indented"><ul id="10f15285-0ae8-80df-b504-d9b8077ac837" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Lifecycle (15)</strong></mark></summary><ol type="1" id="cfcb23eb-8fd2-4cf6-ac1e-3ab9c94897ff" class="numbered-list" start="1"><li>Какой жизненный цикл у View?<p id="1decb27d-cdf9-47ab-a7ed-65d7ba643cb5" class=""><mark class="highlight-teal"><code>onAttachToWindow()</code></mark> → <mark class="highlight-teal"><code>onMeasure()</code></mark> → <mark class="highlight-teal"><code>onLayout()</code></mark> → <mark class="highlight-teal"><code>onDraw()</code></mark> → <mark class="highlight-teal"><code>onDetachedFromWindow()</code></mark></p></li></ol><ol type="1" id="12815285-0ae8-8031-9fc8-dd039934f8f8" class="numbered-list" start="2"><li>Что делает каждый из методов жизненного цикла View?<p id="12815285-0ae8-80a3-b67d-ef168dc5809e" class="">• <mark class="highlight-teal"><code>onAttachToWindow</code></mark><mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal">вызывается когда </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> прикрепляется к окну.</mark></p><p id="12815285-0ae8-80ef-a7ee-f4872664532e" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal"><code>onMeasure</code></mark><mark class="highlight-teal"> вызывается для определения требований к размеру этого </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> и всех его дочерних элементов.</mark></p><p id="12815285-0ae8-8034-b6a8-e18b28958b6d" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal"><code>onLayout</code></mark><mark class="highlight-teal"> вызывается когда </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> должно назначить размер и позицию всем своим дочерним элементам.</mark></p><p id="12815285-0ae8-80b6-af64-f5989da7be62" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal"><code>onDraw</code></mark><mark class="highlight-teal"> вызывается когда View должен отрисовать свое содержимое.</mark></p><p id="12815285-0ae8-80a4-bb29-e4c84c3aa5f4" class=""><mark class="highlight-default">• </mark><mark class="highlight-teal"><code>onDetachedFromWindow</code></mark><mark class="highlight-teal"> вызывается когда View открепляется от своего окна.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-8083-9237-e6b4d72f7c05" class="numbered-list" start="3"><li>Что происходит с View после выполнения полного цикла отрисовки?<p id="10f15285-0ae8-802f-a7cb-fe44f8063376" class=""><mark class="highlight-teal">Обновляет свое состояние, например, положения и размеры, и переходит в состояние, в котором он готов к следующему циклу отрисовки, а также сохраняет состояние, чтобы отразить любые изменения, произошедшие во время этого цикла.</mark></p></li></ol><ol type="1" id="10415285-0ae8-8036-bdf0-d66eaedfbe0a" class="numbered-list" start="4"><li>Что делает метод onMeasure?<p id="10415285-0ae8-80bb-b081-c4f5cba086ed" class=""><mark class="highlight-teal">Используется для измерения размера View и его дочерних элементов, устанавливая ширину и высоту в соответствии с заданными условиями и ограничениями.</mark></p></li></ol><ol type="1" id="5cbae62e-86b5-473d-ba9a-ad5a66671267" class="numbered-list" start="7"><li>Что делает метод onLayout?<p id="10415285-0ae8-808a-9132-ece2577be7b7" class=""><mark class="highlight-teal">Отвечает за позиционирование и установку размеров дочерних элементов внутри </mark><mark class="highlight-teal"><code>ViewGroup</code></mark><mark class="highlight-teal"> или текущего элемента и его оступов в </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10815285-0ae8-805b-b9d7-c307bdda5289" class="numbered-list" start="8"><li>Если View не содержит дочерние элементы, что будет делать метод onLayout?<p id="10815285-0ae8-80db-ac10-e765f708a7cf" class=""><mark class="highlight-teal">Позиционировать текущую </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> и ее отступы.</mark></p></li></ol><ol type="1" id="3076f28d-6d44-4914-8c03-0a7c3c361a81" class="numbered-list" start="9"><li>Что делает метод onDraw?<p id="10415285-0ae8-802c-a2c0-ccafdeb7ce51" class=""><mark class="highlight-teal">Отвечает за отрисовку содержимого </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> на экране, где можно использовать </mark><mark class="highlight-teal"><code>Canvas</code></mark><mark class="highlight-teal"> для рисования графических элементов.</mark></p></li></ol><ol type="1" id="10815285-0ae8-8026-a3a3-ed9622b7668d" class="numbered-list" start="10"><li>Как часто может вызывается метод onDraw?<p id="10815285-0ae8-80fe-9330-f192c020a55b" class=""><mark class="highlight-teal">Метод </mark><mark class="highlight-teal"><code>onDraw</code></mark><mark class="highlight-teal"> может вызываться до 60 раз в секунду, что соответствует частоте обновления экрана в 60 FPS. На практике частота может быть ниже из-за производительности устройства или сложных операций рисования.</mark></p></li></ol><ol type="1" id="12815285-0ae8-80cb-b346-d8f98efdc842" class="numbered-list" start="11"><li>Что не рекомендуется делать в методе onDraw?<p id="12815285-0ae8-80cc-b9e6-f557b6f8c09d" class="">• <mark class="highlight-teal">Создавать объекты (чтобы избежать ненужного использования памяти и GC).</mark></p><p id="12815285-0ae8-805b-bea9-cd89d4015244" class="">• <mark class="highlight-teal">Выполнять долгие операции (например, чтение данных с диска или сети).</mark></p><p id="12815285-0ae8-8054-ab20-f90b9cc33bbb" class="">• <mark class="highlight-teal">Вызывать методы, влияющие на макет или мерки, как </mark><mark class="highlight-teal"><code>requestLayout()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="4ed5a443-954d-4503-b0f6-c943e5290778" class="numbered-list" start="12"><li>Какие методы наследника ViewGroup нужно переопределять чтобы управлять его размерами и позиционированием содержимого?<p id="69a296ab-163f-4683-830f-1ccecb441436" class=""><mark class="highlight-teal"><code>onMeasure()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onLayout()</code></mark></p></li></ol><ol type="1" id="a8244d1e-c05b-4fa9-be8a-805524a83d31" class="numbered-list" start="13"><li>Что делает метод invalidate?<p id="10415285-0ae8-8081-8c9e-ce8b103e6777" class=""><mark class="highlight-teal">Помечает </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> как требующую перерисовки, вызывая метод </mark><mark class="highlight-teal"><code>onDraw()</code></mark><mark class="highlight-teal"> для обновления её внешнего вида.</mark></p></li></ol><ol type="1" id="f373e16b-501f-412b-8529-c37d4ea97bd3" class="numbered-list" start="14"><li>Что делает метод requestLayout?<p id="10415285-0ae8-80fa-bcf7-f38a159d02d5" class=""><mark class="highlight-teal">Инициирует перерасчет размеров и перерисовку View, вызывая </mark><mark class="highlight-teal"><code>onMeasure()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onLayout()</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80c0-be7f-c43eb4068bfb" class="numbered-list" start="15"><li>Что делает метод forceLayout?<p id="10f15285-0ae8-808f-9e86-f82e98c15ffc" class=""><mark class="highlight-teal">Вызывает немедленный перерасчет и повторное построение разметки для текущего View и его дочерних элементов, игнорируя любые флаги, указывающие на то, что разметка уже была выполнена.</mark></p></li></ol><ol type="1" id="11f15285-0ae8-80f7-bdf7-c35d79499265" class="numbered-list" start="16"><li>Что не рекомендуется делать в методе onDraw() при создании Custom View?<p id="1e012fc1-7d23-4b1f-91b4-4ca156d4c6dc" class="">• <mark class="highlight-teal">Создавать объекты, такие как шрифты, кисти или объекты графики — это приведет к частому выделению памяти и сборке мусора.</mark></p><p id="ab2c6862-4940-44ec-b734-6443a82ac637" class="">• <mark class="highlight-teal">Выполнять долгие операции, такие как чтение файлов или запросы к сети, так как это замедлит отрисовку и снизит производительность.</mark></p><p id="d88cbdd4-9f01-4e81-bf5e-34099ecbf192" class="">• <mark class="highlight-teal">Изменять состояние View или триггерить перерисовку (например, вызывать </mark><mark class="highlight-teal"><code>invalidate()</code></mark><mark class="highlight-teal">), так как это может вызвать бесконечный цикл перерисовки.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-802a-bd6a-c5396e6f8c90" class="numbered-list" start="17"><li>Что не рекомендуется делать в методе onDraw() при создании Custom View?<p id="11f15285-0ae8-8065-b6e5-ec62601ae4e3" class="">• <mark class="highlight-red">Использовать несколько объектов </mark><mark class="highlight-red"><code>Paint</code></mark><mark class="highlight-red">.</mark></p><p id="11f15285-0ae8-8023-be81-c111384cbde1" class="">• <mark class="highlight-red">Использовать объект </mark><mark class="highlight-red"><code>Canvas</code></mark><mark class="highlight-red">.</mark></p><p id="11f15285-0ae8-80d9-8d5a-dc4976b97274" class="">• <mark class="highlight-teal">Создавать объекты внутри метода </mark><mark class="highlight-teal"><code>onDraw()</code></mark><mark class="highlight-teal">.</mark></p></li></ol></details></li></ul><ul id="14a15285-0ae8-8006-9742-d7499e43581b" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (5)</strong></mark></summary><ol type="1" id="10315285-0ae8-80c7-9c05-f5b29c2d8aff" class="numbered-list" start="1"><li>Как сохранять состояние View?<p id="10315285-0ae8-803d-b5b6-e7cfd21da588" class="">• <mark class="highlight-teal">Указать </mark><mark class="highlight-teal"><code>id</code></mark><mark class="highlight-teal">.</mark></p><p id="10315285-0ae8-8075-90dd-cedef87ca331" class="">• <mark class="highlight-teal">Переопределить методы </mark><mark class="highlight-teal"><code>onSaveInstanceState</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onRestoreInstanceState</code></mark><mark class="highlight-teal">.</mark></p><p id="10315285-0ae8-80ae-bd4e-fb9ddcc4e6a8" class="">• <mark class="highlight-teal">У </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> может быть своя </mark><mark class="highlight-teal"><code>ViewModel</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="12015285-0ae8-80a7-a412-cd989f964bdf" class="numbered-list" start="2"><li>Как восстановить состояние View после того как перевернулся экран?<p id="12015285-0ae8-8072-a19f-e8a418f71804" class=""><mark class="highlight-teal">Переопределить метод </mark><mark class="highlight-teal"><code>onRestoreInstanceState()</code></mark><mark class="highlight-teal"> для восстановления состояния.</mark></p></li></ol><ol type="1" id="752cf0e7-4884-4c43-812d-392d8a25d2c5" class="numbered-list" start="3"><li>Как сделать круглый View?<p id="d347457b-f0c9-4d03-b8dd-aa9b16379d8f" class=""><mark class="highlight-teal"><code>Сanvas.drawCircle</code></mark></p></li></ol><ol type="1" id="fab55bfe-72b8-4d30-89c7-0d45b62e20f6" class="numbered-list" start="4"><li>Как сделать одинаковое соотношение сторон у View?<p id="4a85fd75-cb88-4585-ace6-6a641e24927b" class="">• <mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> с </mark><mark class="highlight-teal"><code>ratio</code></mark><mark class="highlight-teal">.</mark></p><p id="10f15285-0ae8-80c5-977b-cabfb257600a" class="">• <mark class="highlight-teal"><code>onMeasure()</code></mark><mark class="highlight-teal"> вручную изменить </mark><mark class="highlight-teal"><code>MeasureSpec</code></mark><mark class="highlight-teal">.</mark></p></li></ol><ol type="1" id="70a70172-317b-46a9-9c31-1f216f93a5e5" class="numbered-list" start="5"><li>Как сборщик мусора может заставить UI тормозить?<p id="10815285-0ae8-80fa-b281-dca72d57c01a" class=""><mark class="highlight-teal">Из-за механизма «‎stop-the-world»‎, когда приложение временно приостанавливается для очистки памяти.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

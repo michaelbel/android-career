@@ -1,0 +1,869 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Network</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fb5d92b8-f0d5-4727-b268-96b7ffba67ea" class="page sans"><header><img class="page-cover-image" src="Network%20fb5d92b8f0d54727b26896b7ffba67ea/cover-android-network.webp" style="object-position:center 18.600000000000005%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Network%20fb5d92b8f0d54727b26896b7ffba67ea/icon-android-platform.svg"/></div><h1 class="page-title"><strong>Network</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="f85a7a2e-5227-44a6-8444-ced14ec5c178" class="simple-table"><tbody><tr id="1b3ed623-c6f5-4bd8-a135-35b68b06c0c0"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops">https://developer.android.com/develop/connectivity/network-ops</a></td></tr><tr id="a49ee407-2654-4546-ae11-28cb39850c17"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops/connecting">https://developer.android.com/develop/connectivity/network-ops/connecting</a></td></tr><tr id="e4ea7c16-9b19-4b55-be84-8fdc4b44ed1b"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops/managing">https://developer.android.com/develop/connectivity/network-ops/managing</a></td></tr><tr id="bc55e7a5-6906-4d48-8b3d-2604c659fe63"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops/reading-network-state">https://developer.android.com/develop/connectivity/network-ops/reading-network-state</a></td></tr><tr id="02879f61-10c7-4f33-8dd7-6a929cbf2e8d"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops/network-access-optimization">https://developer.android.com/develop/connectivity/network-ops/network-access-optimization</a></td></tr><tr id="e97269f4-67f0-448d-80b4-9e73e167c48e"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/develop/connectivity/network-ops/data-saver">https://developer.android.com/develop/connectivity/network-ops/data-saver</a></td></tr><tr id="c6a67f37-fef6-47e8-9baa-58cb1a754cbc"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/training/monitoring-device-state/connectivity-status-type">https://developer.android.com/training/monitoring-device-state/connectivity-status-type</a></td></tr><tr id="e9a415b0-5e14-4924-a855-c2a8b619c3ba"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/privacy-and-security/security-ssl">https://developer.android.com/privacy-and-security/security-ssl</a></td></tr><tr id="720e5b1e-eb2e-415b-ad7b-07e331f0e1bd"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/privacy-and-security/security-config">https://developer.android.com/privacy-and-security/security-config</a></td></tr><tr id="08b3b0bc-75c1-42af-bb78-7ff02e7d28cf"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/privacy-and-security/security-gms-provider">https://developer.android.com/privacy-and-security/security-gms-provider</a></td></tr><tr id="43f81ae7-2a1e-4a04-95df-48799d469a38"><td id="sg{g" class="" style="width:586px"><a href="https://developer.android.com/privacy-and-security/security-android-protected-confirmation">https://developer.android.com/privacy-and-security/security-android-protected-confirmation</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>JSON</strong></summary><div class="indented"><p id="f9574209-db99-4e62-93bf-c8ec1bb9a7d7" class="">JavaScript Object Notation — формат обмена данными, который легко читается людьми и обрабатывается компьютерами.</p><p id="15015285-0ae8-802e-ba7f-cf744de8a8c5" class="">• Cтрого типизирован: данные должны соответствовать одному из типов.</p><p id="15015285-0ae8-802e-a771-cc0d5c852b31" class="">• Ключи в объектах должны быть уникальными.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80ac-9925-cf51849afbe5" class="code"><code class="language-Kotlin">{
+  &quot;user&quot;: {
+    &quot;id&quot;: 123,
+    &quot;name&quot;: &quot;Alice&quot;,
+    &quot;email&quot;: &quot;alice@example.com&quot;,
+    &quot;preferences&quot;: [&quot;reading&quot;, &quot;gaming&quot;, &quot;traveling&quot;],
+    &quot;isPremium&quot;: true,
+    &quot;subscription&quot;: null
+  }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Object</summary><div class="indented"><p id="15015285-0ae8-80c3-9e37-e33f91415b02" class="">Набор пар ключ-значение, заключенных в фигурные скобки <mark class="highlight-default"><code>{}</code></mark>.</p><p id="15015285-0ae8-8003-a3ca-cb2a8ba3a43f" class="">• Ключи всегда строки.</p><p id="15015285-0ae8-80ab-b968-f53929c4a202" class="">• Значения могут быть любого типа из поддерживаемых JSON.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80fd-b6c9-fcdad8bb731a" class="code"><code class="language-Kotlin">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;age&quot;: 25,
+  &quot;isStudent&quot;: false
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Array</summary><div class="indented"><p id="15015285-0ae8-8077-9d3f-f9a2fe6c640e" class="">Упорядоченный список значений, заключенный в квадратные скобки <mark class="highlight-default"><code>[]</code></mark>.</p><p id="15015285-0ae8-8049-9765-ddc23a9fccdf" class="">• Элементы массива могут быть разного типа.</p><p id="15015285-0ae8-8045-ba96-c2348d2ec399" class="">• Порядок элементов имеет значение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80db-9f33-c60517c09982" class="code"><code class="language-Kotlin">{
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;Alice&quot;
+    },
+    {
+      &quot;id&quot;: 2,
+      &quot;name&quot;: &quot;Bob&quot;
+    },
+    {
+      &quot;id&quot;: 3,
+      &quot;name&quot;: &quot;Charlie&quot;
+    }
+  ]
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">String</summary><div class="indented"><p id="15015285-0ae8-8045-b107-ebc430b36f33" class="">Текстовые данные, заключенные в двойные кавычки <mark class="highlight-default"><code>&quot;&quot;</code></mark>.</p><p id="15015285-0ae8-80b2-80d0-d8bd5b104c01" class="">• Поддерживаются экранированные символы (например, <mark class="highlight-default"><code>\n</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>\t</code></mark>).</p><p id="15015285-0ae8-8028-b1d6-d739879390da" class="">• Строки используют стандарт кодировки Unicode.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-807f-8582-cb57107979dd" class="code"><code class="language-Kotlin">{
+  &quot;name&quot;: &quot;Bob Miller&quot;,
+  &quot;profilePicture&quot;: &quot;https://example.com/profile.jpg&quot;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Number</summary><div class="indented"><p id="15015285-0ae8-80c3-84c3-f50b8e4a3f3d" class="">Целые или дробные числа.</p><p id="15015285-0ae8-8070-ab45-c7580bc2187b" class="">• Допускаются отрицательные числа.</p><p id="15015285-0ae8-80e9-af48-f0af62444d29" class="">• Не поддерживаются специальные значения, такие как <mark class="highlight-default"><code>NaN</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>Infinity</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80cc-a9a1-ffee5f9c99a1" class="code"><code class="language-Kotlin">{
+  &quot;age&quot;: 29,
+  &quot;height&quot;: 167.5,
+  &quot;accountBalance&quot;: -150.75
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Boolean</summary><div class="indented"><p id="15015285-0ae8-8006-a6c4-edcc07de7804" class="">Представляет истину или ложь.</p><p id="15015285-0ae8-80db-9f48-c36d330d1f75" class="">• Возможные значения: <mark class="highlight-default"><code>true</code></mark> или <mark class="highlight-default"><code>false</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-8052-9549-f4799ff909b9" class="code"><code class="language-Kotlin">{
+  &quot;isActive&quot;: true,
+  &quot;hasPremiumAccount&quot;: false
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Null</summary><div class="indented"><p id="15015285-0ae8-8051-acb4-d4daf51e543e" class="">Указывает на отсутствие значения. Используется для обозначения пустого значения или неизвестного поля.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15015285-0ae8-80c4-a828-c705356b13d0" class="code"><code class="language-Kotlin">{
+  &quot;email&quot;: null
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">WebSockets</summary><div class="indented"><p id="5c565e05-a796-4417-bfc1-eaa8d1e8ed3d" class="">Это коммуникационный протокол, обеспечивающий двустороннее, постоянное соединение между клиентом и сервером через один TCP-сокет. В отличие от HTTP, WebSockets позволяют обмениваться данными в реальном времени без необходимости повторного установления соединения, что снижает задержки и повышает эффективность обмена информацией.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12015285-0ae8-8032-8630-c3df8f924e41" class="code"><code class="language-Kotlin">class WebSocketClient {
+    private val client = OkHttpClient()
+    private lateinit var webSocket: WebSocket
+
+    private val request: Request = Request.Builder()
+        .url(&quot;wss://echo.websocket.org&quot;) // URL сервера WebSocket
+        .build()
+
+    fun start() {
+        webSocket = client.newWebSocket(request, object: WebSocketListener() {
+            override fun onOpen(webSocket: WebSocket, response: Response) {
+                // Соединение установлено
+                webSocket.send(&quot;Hello, WebSocket!&quot;) // Отправка сообщения
+            }
+
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                // Получено сообщение в текстовом формате
+                println(&quot;Received text: $text&quot;)
+            }
+
+            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+                // Получено сообщение в байтовом формате
+                println(&quot;Received bytes: ${bytes.hex()}&quot;)
+            }
+
+            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+                // Сервер закрывает соединение
+                webSocket.close(1000, null)
+                println(&quot;Closing WebSocket: $code / $reason&quot;)
+            }
+
+            override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                // Произошла ошибка
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun stop() {
+        webSocket.close(1000, &quot;Goodbye!&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">SSL pinning</summary><div class="indented"><p id="2e8fb02c-54d3-4a6c-8a68-5cec93e83b88" class="">Техника безопасности, используемая для защиты приложений от атак «человек посередине» (MITM) при установлении защищенных соединений через HTTPS. Эта техника помогает убедиться, что приложение общается только с заранее известными и доверенными серверами, предотвращая возможность подключения к злоумышленным серверам, даже если их сертификаты подписаны доверенными центрами сертификации (CA). OkHttp поддерживает SSL pinning из коробки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="65ceb26b-c101-45fe-92e0-bff7ae84354e" class="code"><code class="language-Kotlin">fun createOkHttpClient(): OkHttpClient {
+    val certificatePinner = CertificatePinner.Builder()
+        .add(&quot;example.com&quot;, &quot;sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=&quot;) // Хэш сертификата
+        .build()
+    
+    return OkHttpClient.Builder()
+        .certificatePinner(certificatePinner)
+        .build()
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">OkHttp</summary><div class="indented"><p id="6a46e997-2378-4518-bb5e-65d9ffefd997" class="">Библиотека для выполнения HTTP-запросов в Android и Java. Она упрощает создание, отправку и обработку HTTP-запросов и ответов, поддерживая такие важные функции, как кэширование, сжатие, повторные попытки запроса и управление соединениями. OkHttp разрабатывается компанией Square и широко используется в Android-приложениях для работы с REST API.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>OkHttpClient</code></mark></summary><div class="indented"><p id="13115285-0ae8-803b-b73a-ce0580649d5a" class="">Основной класс в библиотеке OkHttp, который управляет выполнением HTTP-запросов и предоставляет API для их настройки. Через <mark class="highlight-default"><code>OkHttpClient</code></mark> можно настроить таймауты, кэширование, перехватчики (interceptors), поведение подключения, обработку повторных попыток, настройку SSL и другие параметры работы с сетью.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8018-8cdc-cd15c9790a0c" class="code"><code class="language-Kotlin">val client = OkHttpClient()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Interceptor</code></mark></summary><div class="indented"><p id="13115285-0ae8-80e7-816a-dc2973d798c6" class="">Позволяет перехватывать и изменять HTTP-запросы и ответы до того, как они будут отправлены или получены. <mark class="highlight-default"><code>Interceptor</code></mark> дает возможность добавлять общую логику для всех запросов и ответов в одном месте, что полезно для таких задач, как добавление заголовков, аутентификация, кэширование и логирование.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80c6-8baf-d189b0533727" class="code"><code class="language-Kotlin">class AuthInterceptor: Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val originalRequest = chain.request()
+        val requestWithAuth = originalRequest.newBuilder()
+            .header(&quot;Authorization&quot;, &quot;Bearer &lt;token&gt;&quot;)
+            .build()
+        return chain.proceed(requestWithAuth) // Выполняем запрос с новым заголовком
+    }
+}
+
+// Подключаем кастомный Interceptor
+val client = OkHttpClient.Builder()
+    .addInterceptor(AuthInterceptor())
+    .build()</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Application Interceptor</summary><div class="indented"><p id="13115285-0ae8-805e-8299-e9e1646392b9" class="">Перехватчик, который работает на уровне приложения и позволяет перехватывать и изменять HTTP-запросы и ответы до или после их отправки, но без непосредственного взаимодействия с сетью. Он используется для внесения изменений в запросы и ответы, добавления заголовков, логирования и другой обработки, которая не зависит от сети.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80df-9c73-d0aebb0577b7" class="code"><code class="language-Kotlin">val client = OkHttpClient.Builder()
+    .addInterceptor { chain -&gt;
+        val originalRequest = chain.request()
+        val modifiedRequest = originalRequest.newBuilder()
+            .header(&quot;Authorization&quot;, &quot;Bearer &lt;token&gt;&quot;)
+            .build()
+        
+        chain.proceed(modifiedRequest) // Продолжаем с измененным запросом
+    }
+    .build()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Network Interceptor</summary><div class="indented"><p id="13115285-0ae8-8055-8f14-c81cc10c5c07" class="">Тип перехватчика, который работает на сетевом уровне и перехватывает запросы и ответы после обработки кэшем и перед отправкой в сеть. Network Interceptor предоставляет более низкоуровневый доступ к запросам и ответам, чем Application Interceptor, и позволяет управлять данными, которые фактически отправляются по сети и возвращаются с сервера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-806e-99a7-db97f24bfb03" class="code"><code class="language-Kotlin">val client = OkHttpClient.Builder()
+    .addNetworkInterceptor { chain -&gt;
+        val request = chain.request()
+        println(&quot;Отправка запроса: ${request.url} с заголовками ${request.headers}&quot;)
+        
+        val response = chain.proceed(request)
+        println(&quot;Получен ответ: ${response.code} с заголовками ${response.headers}&quot;)
+        
+        response // Возвращаем ответ
+    }
+    .build()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Cache</code></mark></summary><div class="indented"><p id="13115285-0ae8-807b-86d1-ea4e4c0c4f94" class="">Класс, который управляет кэшированием HTTP-ответов, помогая сократить количество сетевых запросов, ускорить время загрузки и снизить потребление трафика. Cache сохраняет HTTP-ответы в локальном хранилище и использует их для ответа на повторяющиеся запросы, если данные еще актуальны.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-808e-8ab9-c30f995a2beb" class="code"><code class="language-Kotlin">val cacheSize = 10 * 1024 * 1024 // 10 MB
+val cache = Cache(File(&quot;cacheDirectory&quot;), cacheSize)
+
+val client = OkHttpClient.Builder()
+    .cache(cache)
+    .build()</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>cacheControl</code></mark></summary><div class="indented"><p id="13115285-0ae8-801d-9b89-dde8fe545051" class="">Функция в <mark class="highlight-default"><code>Request.Builder</code></mark>, которая позволяет задать поведение кэширования для конкретного HTTP-запроса. Он принимает объект <mark class="highlight-default"><code>CacheControl</code></mark>, который определяет правила кэширования, такие как максимальный срок хранения данных, игнорирование кэша или принудительное использование данных из кэша.</p><p id="13115285-0ae8-8026-af7d-d4c5395d081e" class="">• Настройка времени хранения в кэше</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80fa-8e31-f64b1ec4c289" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/data&quot;)
+    .cacheControl(CacheControl.Builder()
+        .maxAge(10, TimeUnit.MINUTES) // Использовать кэш до 10 минут
+        .build())
+    .build()</code></pre><p id="13115285-0ae8-8041-99b5-da90004aadf0" class="">• Принудительное использование кэша</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8093-8662-de7831f6028b" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/data&quot;)
+    .cacheControl(CacheControl.FORCE_CACHE) // Использовать только кэш, даже если есть сеть
+    .build()</code></pre><p id="13115285-0ae8-805c-bc61-f37ac1a33f74" class="">• Игнорирование кэша</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8037-9fb9-de25ff55c240" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/data&quot;)
+    .cacheControl(CacheControl.FORCE_NETWORK) // Всегда обращаться к серверу, игнорируя кэш
+    .build()</code></pre></div></details></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">REST</summary><div class="indented"><p id="6bf7b83d-fd0e-41dc-9753-a8ef2d317372" class="">REST (Representational State Transfer) — это архитектурный стиль для веб-сервисов, использующий стандартные HTTP-протоколы для взаимодействия с ресурсами в различных форматах (например, JSON, XML) и обеспечивающий статeless-коммуникацию между клиентом и сервером.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Header</code></mark></summary><div class="indented"><p id="10f15285-0ae8-807e-a294-d0c4b7dacd24" class="">Метаданные, передаваемые с запросами и ответами. Они могут содержать информацию о клиенте, формате данных, авторизации, кэшировании и многом другом.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80e6-a0e1-fb0233439b62" class="code"><code class="language-Kotlin">@GET(&quot;endpoint&quot;)
+fun getData(
+    @Header(&quot;Authorization&quot;) authToken: String,
+    @Header(&quot;Custom-Header&quot;) customValue: String
+): Call&lt;DataResponse&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Authorization</code></mark></summary><div class="indented"><p id="13115285-0ae8-8034-aef0-c9a54d65cc93" class="">Используется для передачи токена доступа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8075-9059-db31939b8cc0" class="code"><code class="language-Kotlin">@GET(&quot;user/profile&quot;)
+fun getUserProfile(
+    @Header(&quot;Authorization&quot;) authToken: String
+): Call&lt;UserProfile&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8049-8d8f-f027645fe600" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/user/profile&quot;)
+    .header(&quot;Authorization&quot;, &quot;Bearer &lt;token&gt;&quot;)
+    .build()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Content-Type</code></mark></summary><div class="indented"><p id="13115285-0ae8-800c-a73a-ef691feac322" class="">Указывает формат данных, которые отправляются на сервер.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8090-96e9-fe8d06be2913" class="code"><code class="language-Kotlin">@POST(&quot;data&quot;)
+@Headers(&quot;Content-Type: application/json&quot;)
+fun sendData(
+    @Body data: DataRequest
+): Call&lt;ResponseBody&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-802c-8aaf-f48e83dff08a" class="code"><code class="language-Kotlin">val requestBody = RequestBody.create(&quot;application/json&quot;.toMediaType(), jsonData)
+val request = Request.Builder()
+    .url(&quot;https://api.example.com/data&quot;)
+    .post(requestBody)
+    .build()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Accept</code></mark></summary><div class="indented"><p id="13115285-0ae8-80e5-9544-ebad51baac60" class="">Указывает желаемый формат ответа от сервера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80cb-9509-cf98746d3118" class="code"><code class="language-Kotlin">@GET(&quot;data&quot;)
+fun fetchData(
+    @Header(&quot;Accept&quot;) accept: String = &quot;application/json&quot;
+): Call&lt;DataResponse&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80d1-bbad-f72589b960f6" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/data&quot;)
+    .header(&quot;Accept&quot;, &quot;application/json&quot;)
+    .build()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>User-Agent</code></mark></summary><div class="indented"><p id="13115285-0ae8-800e-9e7e-cca85c901773" class="">Передает информацию о приложении, которое отправляет запрос.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8019-aecd-c5c61ec1e27a" class="code"><code class="language-Kotlin">@GET(&quot;status&quot;)
+fun checkStatus(
+    @Header(&quot;User-Agent&quot;) userAgent: String = &quot;MyApp Android&quot;
+): Call&lt;StatusResponse&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-8068-86cf-c1e8d139205d" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/status&quot;)
+    .header(&quot;User-Agent&quot;, &quot;MyApp Android&quot;)
+    .build()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Cache-Control</code></mark></summary><div class="indented"><p id="13115285-0ae8-808c-8da6-db0442fff96d" class="">Управляет кэшированием данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80a7-a716-d3dea3094dc1" class="code"><code class="language-Kotlin">@GET(&quot;content&quot;)
+fun getContent(
+    @Header(&quot;Cache-Control&quot;) cacheControl: String = &quot;no-cache&quot;
+): Call&lt;ContentResponse&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-808c-9347-e1adc3e2717f" class="code"><code class="language-Kotlin">val request = Request.Builder()
+    .url(&quot;https://api.example.com/content&quot;)
+    .header(&quot;Cache-Control&quot;, &quot;no-cache&quot;)
+    .build()</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Body</code></mark></summary><div class="indented"><p id="10f15285-0ae8-809c-95cc-d0d444f18cc5" class="">Используется для передачи объектов как тела запроса, обычно в формате JSON. Применяется в методах с <mark class="highlight-default"><code>POST</code></mark>, <mark class="highlight-default"><code>PUT</code></mark>, или <mark class="highlight-default"><code>PATCH</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-803f-a46d-e5c51100385c" class="code"><code class="language-Kotlin">@POST(&quot;users&quot;)
+fun createUser(@Body user: User): Call&lt;Response&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Path</code></mark></summary><div class="indented"><p id="10f15285-0ae8-80f6-a2aa-c9244fff0b9e" class="">Используется для вставки переменных в URL-адрес, что позволяет динамически изменять конечную точку API. Переменные задаются в фигурных скобках.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-8087-b2ad-dee7bcff297a" class="code"><code class="language-Kotlin">@GET(&quot;users/{id}&quot;)
+fun getUser(@Path(&quot;id&quot;) userId: String): Call&lt;User&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Query</code></mark></summary><div class="indented"><p id="10f15285-0ae8-80a5-8201-ef2d98b40228" class="">Используется для добавления параметров запроса к URL-адресу. Эти параметры добавляются после знака <mark class="highlight-default"><code>?</code></mark> в URL и разделяются символом <mark class="highlight-default"><code>&amp;</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-8076-a17c-f4b6dd1225f4" class="code"><code class="language-Kotlin">// параметры page и size будут добавлены к URL-адресу, например, users?page=1&amp;size=10.
+@GET(&quot;users&quot;)
+fun getUsers(
+		@Query(&quot;page&quot;) page: Int,
+		@Query(&quot;size&quot;) size: Int
+): Call&lt;List&lt;User&gt;&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GET</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8065-84c5-c1a5ba02989e" class="">Запрашивает данные с сервера. Он не изменяет состояние ресурса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-8055-a3cd-c37a76b56432" class="code"><code class="language-Kotlin">@GET(&quot;users&quot;)
+suspend fun getUsers(): List&lt;User&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>POST</code></mark></summary><div class="indented"><p id="10f15285-0ae8-806a-bb19-db6f3e8d65df" class="">Отправляет данные на сервер для создания нового ресурса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-8065-8622-f92c12f8c4d0" class="code"><code class="language-Kotlin">@POST(&quot;users&quot;)
+suspend fun createUser(@Body user: User): Response&lt;User&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PUT</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8023-ab27-f6da3d9c90e0" class="">Обновляет существующий ресурс, отправляя его полные данные.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80f3-a8c4-d1a4ee3fb969" class="code"><code class="language-Kotlin">@PUT(&quot;users/{id}&quot;)
+suspend fun updateUser(@Path(&quot;id&quot;) userId: String, @Body user: User): Response&lt;User&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PATCH</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8006-8d32-db57e6a683f4" class="">Частично обновляет существующий ресурс. Он отправляет только измененные данные.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-80be-bf57-c456c183eba1" class="code"><code class="language-Kotlin">@PATCH(&quot;users/{id}&quot;)
+suspend fun patchUser(@Path(&quot;id&quot;) userId: String, @Body user: User): Response&lt;User&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>DELETE</code></mark></summary><div class="indented"><p id="10f15285-0ae8-8023-acdd-ddc091b9bf1b" class="">Удаляет ресурс на сервере.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10f15285-0ae8-8012-882d-e1e9cd588974" class="code"><code class="language-Kotlin">@DELETE(&quot;users/{id}&quot;)
+suspend fun deleteUser(@Path(&quot;id&quot;) userId: String): Response&lt;Unit&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">GraphQL</summary><div class="indented"><p id="a13ee02f-54d3-4b3b-b01f-1a72193ec981" class="">Это синтаксис который описывает как запрашивать данные и в основном используется клиентом для загрузки данных с сервера. GraphQL имеет три основные характеристики:</p><p id="4a05997f-e46a-4396-a17e-1cf3566adb93" class="">• Позволяет клиенту точно указать, какие данные ему нужны.</p><p id="0e45e676-c514-4066-9c61-30aaced6f033" class="">• Облегчает агрегацию данных из нескольких источников.</p><p id="0eca326f-2e4a-420e-bf3d-70fa647b8926" class="">• Использует систему типов для описания данных.</p><p id="7268bf3a-9b71-4e6e-9933-2d1cd7bdbe6d" class="">GraphQL разработали в Facebook для замены REST. Из-за загрузки дополнительных данных приложение работает медленнее. Запросы разбиваются на множество endpoints. Они хранятся в разных БД. REST достигает своего предела. Вместо того чтобы иметь множество глупых endpoins лучше иметь один умный endpoint который будет способен работать со сложными запросами и придавать данным такую форму какую запрашивает клиент.</p><p id="57e69d5b-8fbb-4bed-ae37-d2c3d7c6085a" class="">Cлой GraphQL находится между клиентом и одним или несколькими источниками данных. Он принимает запросы клиентов и возвращает необходимые данные в соответствии с переданными инструкциями.</p><p id="0c0999d2-de19-4812-bcb0-9d4e72f17d8a" class="">REST-модель - это заказывать пиццу затем продукты затем химчистку. Три сервиса - три звонка. GraphQL - это передать все помощнику и запрашивать то что нужно.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>gRPC</strong></summary><div class="indented"><table id="15515285-0ae8-803e-9892-e673bb28919c" class="simple-table"><tbody><tr id="790a25f2-edb8-417d-a8c6-97af30b14150"><td id="IHYi" class="" style="width:566px"><a href="https://developer.android.com/guide/topics/connectivity/grpc">https://developer.android.com/guide/topics/connectivity/grpc</a></td></tr></tbody></table><p id="efe93898-2bba-46ff-a557-ef8fb72d6169" class="">Google Remote Procedure Call. Удаленный вызов процедур. Фреймворк для использования Protocol Buffers. Позволяет приложению и серверу взаимодействовать простым, прозрачным и эффективным способом.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Protocol Buffers</strong></summary><div class="indented"><p id="fbd9fe68-2b4c-400e-80ef-e0c459875c39" class="">Protobufs. Метод сериализации структурированных данных. Поддерживает различные языки программирования.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (19)</mark></summary><div class="indented"><ul id="11015285-0ae8-80fe-96b4-c0dc60356959" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>JSON (1)</strong></mark></summary><ol type="1" id="10815285-0ae8-8072-805e-d250b90c78bc" class="numbered-list" start="1"><li>Что такое JSON и как его парсить в Android?<p id="10815285-0ae8-8080-a0b0-fff41b2f78c6" class=""><mark class="highlight-teal">JSON (JavaScript Object Notation) — это легкий формат обмена данными, удобный для чтения и записи человеком, а также для парсинга и генерации машиной. В Android JSON можно парсить с помощью библиотек, таких как Gson или Kotlin Serialization.</mark></p></li></ol></details></li></ul><ul id="12015285-0ae8-8015-a7d1-df4129ec0de7" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Websockets (3)</strong></mark></summary><ol type="1" id="12015285-0ae8-8044-a838-c6be110aeef7" class="numbered-list" start="1"><li>Что такое сокеты?<p id="12015285-0ae8-80f9-9a15-eb0d50791f27" class=""><mark class="highlight-teal">Интерфейс для обмена данными между двумя устройствами по сети, обеспечивающий двустороннюю связь.</mark></p></li></ol><ol type="1" id="12015285-0ae8-80ca-a0bb-e5ba01e7936c" class="numbered-list" start="2"><li>Как работают сокеты?<p id="12015285-0ae8-800e-b68b-fa7cb4b7064d" class=""><mark class="highlight-teal">Сокеты работают как точки соединения для обмена данными между устройствами через сеть, используя IP-адреса и порты для установления и поддержания связи.</mark></p></li></ol><ol type="1" id="12015285-0ae8-80ec-8cb7-d4d5b1ea0cae" class="numbered-list" start="3"><li>Как работать с сокетами в Android?<p id="12015285-0ae8-80ba-a115-d187959c9f28" class=""><mark class="highlight-teal">Использовать OkHttp WebSocket API.</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-803b-a68f-d3d1d2d21048" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>SSL (3)</strong></mark></summary><ol type="1" id="75cfc20b-a2bc-40de-b6eb-f38a9d276fc2" class="numbered-list" start="1"><li>Что такое SSL pinning?<p id="10815285-0ae8-80e4-aad1-f3af6de28640" class=""><mark class="highlight-teal">SSL pinning — это техника безопасности, которая заставляет приложение проверять, что сервер использует конкретный SSL-сертификат, предотвращая атаки типа «человек посередине» (MITM) и обеспечивая доверенное соединение.</mark></p></li></ol><ol type="1" id="12e15285-0ae8-8029-a865-e3bf5bf480d5" class="numbered-list" start="2"><li>Как SSL pinning работает в Android?<p id="12e15285-0ae8-80d9-821d-da35fea482e2" class=""><mark class="highlight-teal">SSL Pinning работает путём закрепления (пиннинга) конкретного сертификата или публичного ключа на стороне клиента, чтобы проверять его при каждом соединении с сервером. Это предотвращает атаки типа MITM, так как соединение будет установлено только если сертификат сервера совпадает с закреплённым на клиенте. В Android SSL Pinning можно реализовать с помощью OkHttp или Network Security Config.</mark></p></li></ol><ol type="1" id="10815285-0ae8-807e-8bd7-ecf9752a6342" class="numbered-list" start="3"><li>Что такое MITM?<p id="c7ea7ed0-90c4-4d87-b297-3b93b94da81c" class=""><mark class="highlight-teal">MITM (Man-in-the-Middle) — это атака, при которой злоумышленник перехватывает и может изменять коммуникацию между двумя сторонами, ставя под угрозу конфиденциальность и целостность данных.</mark></p></li></ol></details></li></ul><ul id="11015285-0ae8-80a6-8571-c68dbce49a87" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>OkHttp (3)</strong></mark></summary><ol type="1" id="444d1f79-662d-4334-bc76-8cfd7569b406" class="numbered-list" start="1"><li>Что такое OkHttp, и как его использовать для выполнения сетевых запросов?<p id="10815285-0ae8-80bc-b262-fdb5ce361a60" class=""><mark class="highlight-teal">Библиотека для работы с HTTP-запросами в Android, которая обеспечивает эффективное выполнение сетевых запросов и управление соединениями. OkHttp поддерживает асинхронные и синхронные запросы, кэширование, автоматическое управление соединениями и другие функции.</mark></p></li></ol><ol type="1" id="12015285-0ae8-8031-bb3a-c2fd084b48b4" class="numbered-list" start="2"><li>Что под капотом использует OkHttp?<p id="12015285-0ae8-80b1-b6f1-e9633e8957cf" class=""><mark class="highlight-teal">HttpURLConnection.</mark></p></li></ol><ol type="1" id="11015285-0ae8-806c-bf36-d9ea34b6bccb" class="numbered-list" start="3"><li>Какие бывают виды интерсепторов?<p id="11015285-0ae8-803a-a1e3-d9151e069a53" class="">• <mark class="highlight-teal">Application Interceptor — перехватывает запросы до их отправки или после получения ответа, может модифицировать запрос и ответ.</mark></p><p id="11015285-0ae8-8054-a2a3-ff4f5bfea2c9" class="">• <mark class="highlight-teal">Network Interceptor — работает на уровне сети, перехватывает запросы и ответы после сетевого слоя.</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-80a6-ab6a-fb2fadb7caed" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>REST (5)</strong></mark></summary><ol type="1" id="9d839951-c9f3-4464-84cf-6a51f5c5fb85" class="numbered-list" start="1"><li>Что такое REST?<p id="10815285-0ae8-8051-995d-e9591ea44ae0" class=""><mark class="highlight-teal">REST (Representational State Transfer) — это архитектурный стиль для проектирования сетевых приложений, использующий стандартные HTTP-методы (</mark><mark class="highlight-teal"><code>GET</code></mark><mark class="highlight-teal">, </mark><mark class="highlight-teal"><code>POST</code></mark><mark class="highlight-teal">, </mark><mark class="highlight-teal"><code>PUT</code></mark><mark class="highlight-teal">, </mark><mark class="highlight-teal"><code>DELETE</code></mark><mark class="highlight-teal">) для работы с ресурсами по URL. Он обеспечивает простоту, масштабируемость и независимость клиента от сервера.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80ab-97e6-c794eec2b002" class="numbered-list" start="2"><li>Разница между GET и POST?<p id="10f15285-0ae8-8094-9ca6-e390200f64a8" class=""><mark class="highlight-teal"><code>GET</code></mark><mark class="highlight-teal"> запрашивает данные с сервера и передает параметры через </mark><mark class="highlight-teal"><code>URL</code></mark><mark class="highlight-teal">, что делает их видимыми. </mark><mark class="highlight-teal"><code>POST</code></mark><mark class="highlight-teal"> отправляет данные на сервер в теле запроса, что обеспечивает большую безопасность и позволяет передавать большие объемы информации.</mark></p></li></ol><ol type="1" id="12415285-0ae8-807b-807e-f6f55677954c" class="numbered-list" start="3"><li>Могут ли GET-запросы содержать Body?<p id="12415285-0ae8-8031-88b9-d422c81afdb0" class=""><mark class="highlight-teal">Нет, согласно спецификации HTTP. Рекомендуется использовать параметры URL для передачи данных.</mark></p></li></ol><ol type="1" id="10f15285-0ae8-80d0-82d4-e411c2f0ec14" class="numbered-list" start="4"><li>Почему нежелательно отправлять конфиденциальные данные через GET?<p id="10f15285-0ae8-8042-bc6e-d32d14a2c14e" class=""><mark class="highlight-teal">Параметры запроса видны в </mark><mark class="highlight-teal"><code>URL</code></mark><mark class="highlight-teal">, что может привести к утечке информации через журналы сервера, кэш браузера или историю. Кроме того, </mark><mark class="highlight-teal"><code>GET</code></mark><mark class="highlight-teal">-запросы могут быть легко перехвачены и проанализированы, что увеличивает риск компрометации данных.</mark></p></li></ol><ol type="1" id="11015285-0ae8-805e-a5b0-f1b00e594604" class="numbered-list" start="5"><li>Разница между path и query?<p id="11015285-0ae8-80f0-b4e5-cdf039d87d16" class=""><mark class="highlight-teal"><code>path</code></mark><mark class="highlight-teal"> определяет ресурс, </mark><mark class="highlight-teal"><code>query</code></mark><mark class="highlight-teal"> передает параметры.</mark></p></li></ol></details></li></ul><ul id="10f15285-0ae8-80af-bb61-e71397ab7e12" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>GraphQL (1)</strong></mark></summary><ol type="1" id="10815285-0ae8-8045-b242-fb9ae1ab9a5f" class="numbered-list" start="1"><li>Что такое GraphQL?<p id="10815285-0ae8-80d4-a404-e7c586e0bbfe" class=""><mark class="highlight-teal">GraphQL — это язык запросов для API, который позволяет клиентам запрашивать именно те данные, которые им нужны, и получать их в едином ответе. В отличие от REST, где структура ответа фиксирована, GraphQL позволяет более гибко определять структуру данных, что уменьшает количество запросов и объем передаваемых данных.</mark></p></li></ol></details></li></ul><ul id="11015285-0ae8-8041-9f4b-e98e3c87dc75" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (3)</strong></mark></summary><ol type="1" id="12015285-0ae8-80d4-9f7b-f34d1fc8ce41" class="numbered-list" start="1"><li>Какие есть способы сделать сетевой запрос на Android?<p id="12015285-0ae8-80c0-b24d-c44da3dfad88" class="">• <mark class="highlight-teal">HttpURLConnection — встроенный класс для выполнения HTTP-запросов. Подходит для простых операций, но требует больше кода для обработки потоков и ошибок.</mark></p><p id="12015285-0ae8-8035-ac2f-c982025fae18" class="">• <mark class="highlight-teal">OkHttp — популярная библиотека от Square, которая упрощает работу с HTTP. Поддерживает асинхронные запросы, кеширование, и повторные попытки.</mark></p><p id="12015285-0ae8-8037-b51f-c3fbc4a8671c" class="">• <mark class="highlight-teal">Retrofit — библиотека для создания API-клиентов на основе HTTP. Работает на базе OkHttp и использует аннотации для простого создания запросов.</mark></p><p id="12015285-0ae8-80fc-bbab-f311e8a0a16e" class="">• <mark class="highlight-teal">Volley — библиотека от Google для выполнения сетевых запросов с поддержкой кеширования и обработки изображений.</mark></p><p id="12015285-0ae8-80f0-b3f3-d84b5d26ff17" class="">• <mark class="highlight-teal">Ktor — библиотека от JetBrains, используемая для асинхронных HTTP-запросов в Kotlin.</mark></p></li></ol><ol type="1" id="3310adec-3764-405c-8401-65dd2f45a78d" class="numbered-list" start="2"><li>Как обеспечить безопасность сетевых запросов в Android приложении?<p id="10815285-0ae8-80dc-9a9c-dc581ab03d89" class="">• <mark class="highlight-teal">Используйте HTTPS вместо HTTP для шифрования данных во время передачи.</mark></p><p id="10815285-0ae8-80ee-917f-c170980e98a7" class="">• <mark class="highlight-teal">Реализуйте SSL pinning для проверки сертификатов сервера.</mark></p><p id="10815285-0ae8-8060-be50-d345b7c72ca9" class="">• <mark class="highlight-teal">Используйте аутентификацию (например, OAuth) для защиты API.</mark></p><p id="10815285-0ae8-80d9-b5da-d273fda4dc80" class="">• <mark class="highlight-teal">Шифруйте конфиденциальные данные на устройстве и при передаче.</mark></p><p id="10815285-0ae8-8063-977d-f14fea4d7366" class="">• <mark class="highlight-teal">Ограничьте доступ к сетевым ресурсам с помощью соответствующих разрешений.</mark></p><p id="10815285-0ae8-8024-a5c7-c19cdca63e38" class="">• <mark class="highlight-teal">Используйте библиотеки для обработки сетевых запросов, которые обеспечивают защиту (например, Retrofit).</mark></p></li></ol><ol type="1" id="9975449d-8e13-4443-a9e3-b3c402052509" class="numbered-list" start="3"><li>В чем разница между HTTP и HTTPS?<p id="10815285-0ae8-8087-bc50-fd357bb5c828" class=""><mark class="highlight-teal">HTTP передает данные в открытом виде, что делает их уязвимыми для перехвата и атак. А HTTPS использует SSL/TLS для шифрования данных, передаваемых между клиентом и сервером, что обеспечивает безопасность и конфиденциальность.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

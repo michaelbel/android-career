@@ -1,0 +1,814 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modifier</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13015285-0ae8-8079-8837-de0e3f773ca2" class="page sans"><header><img class="page-cover-image" src="Modifier%20130152850ae880798837de0e3f773ca2/cover-compose-modifier.webp" style="object-position:center 88%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="icon-compose.svg"/></div><h1 class="page-title">Modifier</h1><p class="page-description"></p></header><div class="page-body"><p id="13615285-0ae8-8087-bd5c-c67f23b7aa95" class="">Cпособ изменить или дополнить поведение и внешний вид UI-компонентов (Composable). С помощью <mark class="highlight-default"><code>Modifier</code></mark> можно задавать размеры, отступы, фон, обработку жестов, анимации и многое другое, без изменения самого компонента. Это позволяет легко комбинировать и переиспользовать стили и эффекты для разных элементов.</p><p id="13615285-0ae8-80e3-91c5-ca2ae618a74e" class="">• Последовательность применения: <mark class="highlight-default"><code>Modifier</code></mark> применяются слева направо, то есть порядок важен.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>then</code></mark></summary><div class="indented"><p id="13615285-0ae8-80dc-b058-e998cbdbbb6b" class="">Позволяет объединять несколько <mark class="highlight-default"><code>Modifier</code></mark> в один. Она полезна для создания цепочек модификаторов, так как позволяет добавлять или комбинировать дополнительные модификаторы, сохраняя порядок их применения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80de-aac2-d64c2105fbd0" class="code"><code class="language-Kotlin">val isClickable = true
+val modifier = Modifier
+    .padding(16.dp)
+    .then(if (isClickable) Modifier.clickable { /* обработка клика */ } else Modifier)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Size</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>width(width: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8063-a1f1-ddf90b9fb71b" class="">Задает фиксированную ширину для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8064-8473-e02392378027" class="code"><code class="language-Kotlin">@Composable
+fun FixedWidthBox() {
+    Box(
+        modifier = Modifier.width(100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>height(height: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-80ea-a1ff-ed923f1546cd" class="">Задает фиксированную высоту для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8032-a912-e902726b1821" class="code"><code class="language-Kotlin">@Composable
+fun FixedHeightBox() {
+    Box(
+        modifier = Modifier.height(100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>size(size: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8018-9d2c-e2674830ba11" class="">Задает фиксированный размер (ширину и высоту) для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-805f-8b7a-ce2268e0e08d" class="code"><code class="language-Kotlin">@Composable
+fun SquareBox() {
+    Box(
+        modifier = Modifier.size(100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>size(width: Dp, height: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-80a7-8686-d41efd13ecd8" class="">Задает фиксированную ширину и высоту для компонента, используя разные значения для каждой из них.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8077-8cd1-efe2d1de6ce2" class="code"><code class="language-Kotlin">@Composable
+fun RectangleBox() {
+    Box(
+        modifier = Modifier.size(width = 120.dp, height = 60.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>size(size: DpSize)</code></mark></summary><div class="indented"><p id="13615285-0ae8-802b-a758-ef627d19de3e" class="">Позволяет установить ширину и высоту компонента с помощью объекта <mark class="highlight-default"><code>DpSize</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8055-95df-c6cb4ce38525" class="code"><code class="language-Kotlin">@Composable
+fun RectangleBox() {
+    val boxSize = DpSize(width = 120.dp, height = 60.dp)
+
+    Box(
+        modifier = Modifier.size(boxSize)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>widthIn(min: Dp, max: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-808d-b8b2-ce7e482d341a" class="">Задает минимальную и максимальную ширину для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8057-8ae7-fe46bc1b2468" class="code"><code class="language-Kotlin">@Composable
+fun LimitedWidthBox() {
+    Box(
+        modifier = Modifier.widthIn(min = 100.dp, max = 200.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>heightIn(min: Dp, max: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8031-85f0-df6fc75472bf" class="">Задает минимальную и максимальную высоту для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8055-9268-e3c351915d1a" class="code"><code class="language-Kotlin">@Composable
+fun LimitedHeightBox() {
+    Box(
+        modifier = Modifier.heightIn(min = 100.dp, max = 200.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>sizeIn(minWidth: Dp, minHeight: Dp, maxWidth: Dp, maxHeight: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8090-96cc-dd6cffa88d04" class="">Задает минимальный и максимальный размер (ширину и высоту) для компонента.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8031-83f3-fe1ba88e4f63" class="code"><code class="language-Kotlin">@Composable
+fun LimitedSizeBox() {
+    Box(
+        modifier = Modifier.sizeIn(minWidth = 100.dp, minHeight = 50.dp, maxWidth = 200.dp, maxHeight = 100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredWidth(width: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8012-89e4-f557a1522d89" class="">Устанавливает фиксированную ширину для компонента, независимо от других модификаторов. В отличие от <mark class="highlight-default"><code>width</code></mark>, который может быть переопределен другими модификаторами (например, <mark class="highlight-default"><code>widthIn</code></mark> или <mark class="highlight-default"><code>sizeIn</code></mark>), <mark class="highlight-default"><code>requiredWidth</code></mark> устанавливает фиксированную ширину, которая игнорирует любые другие ограничения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-802d-93ae-de3533b13a75" class="code"><code class="language-Kotlin">@Composable
+fun RequiredWidthBox() {
+    Box(
+        modifier = Modifier.requiredWidth(150.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredHeight(height: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8051-9fc8-c185a648d81a" class="">Устанавливает фиксированную высоту для компонента, независимо от других модификаторов. В отличие от <mark class="highlight-default"><code>height</code></mark>, который может быть переопределен другими модификаторами (например, <mark class="highlight-default"><code>heightIn</code></mark> или <mark class="highlight-default"><code>sizeIn</code></mark>), <mark class="highlight-default"><code>requiredHeight</code></mark> устанавливает фиксированную высоту, которая игнорирует любые другие ограничения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80b6-a5f5-d62f7be22599" class="code"><code class="language-Kotlin">@Composable
+fun RequiredHeightBox() {
+    Box(
+        modifier = Modifier.requiredHeight(100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredSize(size: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8020-b123-e8fef5a7fc54" class="">Устанавливает фиксированный размер (ширину и высоту) для компонента, независимо от других модификаторов. В отличие от <mark class="highlight-default"><code>size</code></mark>, который может быть переопределен другими модификаторами (например, <mark class="highlight-default"><code>sizeIn</code></mark>), <mark class="highlight-default"><code>requiredSize</code></mark> устанавливает фиксированный размер, который игнорирует любые другие ограничения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8072-ad28-c430de726f70" class="code"><code class="language-Kotlin">@Composable
+fun RequiredSizeBox() {
+    Box(
+        modifier = Modifier.requiredSize(100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredSize(width: Dp, height: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8066-a763-cdafdd735986" class="">Устанавливает фиксированную ширину и высоту для компонента, независимо от других модификаторов. В отличие от <mark class="highlight-default"><code>size</code></mark>, который может быть переопределен другими модификаторами (например, <mark class="highlight-default"><code>sizeIn</code></mark>), <mark class="highlight-default"><code>requiredSize</code></mark> устанавливает фиксированный размер, который игнорирует любые другие ограничения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8013-9b65-dfbc63e5a828" class="code"><code class="language-Kotlin">@Composable
+fun RequiredSizeBox() {
+    Box(
+        modifier = Modifier.requiredSize(width = 120.dp, height = 80.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredWidthIn(min: Dp, max: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-804a-821d-f6a5d5634926" class=""><mark class="highlight-default">Задает обязательные минимальную и максимальную ширину для компонента. В отличие от </mark><mark class="highlight-default"><code>widthIn</code></mark><mark class="highlight-default">, который может быть переопределен другими модификаторами, </mark><mark class="highlight-default"><code>requiredWidthIn</code></mark><mark class="highlight-default"> устанавливает строгие ограничения по ширине, которые не могут быть изменены другими модификаторами.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8008-a888-fc1f2fbd9906" class="code"><code class="language-Kotlin">@Composable
+fun RequiredWidthInBox() {
+    Box(
+        modifier = Modifier.requiredWidthIn(min = 100.dp, max = 200.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredHeightIn(min: Dp, max: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8010-b2ac-eb3b90c7d461" class=""><mark class="highlight-default">Задает обязательные минимальную и максимальную высоту для компонента. В отличие от </mark><mark class="highlight-default"><code>heightIn</code></mark><mark class="highlight-default">, который может быть переопределен другими модификаторами, </mark><mark class="highlight-default"><code>requiredHeightIn</code></mark><mark class="highlight-default"> устанавливает строгие ограничения по высоте, которые не могут быть изменены другими модификаторами.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-806b-87e9-d0d3f323ef65" class="code"><code class="language-Kotlin">@Composable
+fun RequiredHeightInBox() {
+    Box(
+        modifier = Modifier.requiredHeightIn(min = 50.dp, max = 150.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>requiredSizeIn(minWidth: Dp, minHeight: Dp, maxWidth: Dp, maxHeight: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-80c1-b917-fdf8d83f5c33" class=""><mark class="highlight-default">Задает обязательные минимальные и максимальные значения как для ширины, так и для высоты компонента. В отличие от </mark><mark class="highlight-default"><code>sizeIn</code></mark><mark class="highlight-default">, который может быть переопределен другими модификаторами, </mark><mark class="highlight-default"><code>requiredSizeIn</code></mark><mark class="highlight-default"> устанавливает строгие ограничения по ширине и высоте, которые не могут быть изменены другими модификаторами.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-804a-916c-fbf2c7337207" class="code"><code class="language-Kotlin">@Composable
+fun RequiredSizeInBox() {
+    Box(
+        modifier = Modifier.requiredSizeIn(minWidth = 100.dp, minHeight = 50.dp, maxWidth = 200.dp, maxHeight = 100.dp)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>fillMaxWidth(fraction: Float)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8037-b254-dc5089a6d22f" class="">Заставляет компонент занять определенную долю доступной ширины родительского контейнера.</p><p id="13615285-0ae8-8046-bafd-f9dd91a64283" class="">• <mark class="highlight-orange"><code>fraction</code></mark> определяет долю ширины, которую должен занять компонент. Значение должно быть в диапазоне от <mark class="highlight-default"><code>0.0</code></mark> до <mark class="highlight-default"><code>1.0</code></mark>, где <mark class="highlight-default"><code>0.0</code></mark> означает, что компонент не займет никакой ширины, а <mark class="highlight-default"><code>1.0</code></mark> — что он займет всю доступную ширину. Значение по умолчанию — <mark class="highlight-default"><code>1.0</code></mark>, то есть компонент будет занимать всю ширину контейнера. <mark class="highlight-default"><code>fraction = 0.5F</code></mark> означает, что компонент займет 50% доступной ширины контейнера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8024-b7c1-e14bbc924cc7" class="code"><code class="language-Kotlin">@Composable
+fun FullWidthBox() {
+    Box(
+        modifier = Modifier.fillMaxWidth()
+    )
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8020-a148-d2319a68cacb" class="code"><code class="language-Kotlin">@Composable
+fun HalfWidthBox() {
+    Box(
+        modifier = Modifier.fillMaxWidth(fraction = 0.5F)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>fillMaxHeight(fraction: Float)</code></mark></summary><div class="indented"><p id="13615285-0ae8-80a6-b820-c5dd04392302" class="">Заставляет компонент занять определенную долю доступной высоты родительского контейнера.</p><p id="13615285-0ae8-80c2-8c7e-c7a899413700" class="">• <mark class="highlight-orange"><code>fraction</code></mark> определяет долю высоты, которую должен занять компонент. Значение должно быть в диапазоне от <mark class="highlight-default"><code>0.0</code></mark> до <mark class="highlight-default"><code>1.0</code></mark>, где <mark class="highlight-default"><code>0.0</code></mark> означает, что компонент не займет никакой высоты, а <mark class="highlight-default"><code>1.0</code></mark> — что он займет всю доступную высоту контейнера. Значение по умолчанию — <mark class="highlight-default"><code>1.0</code></mark>, то есть компонент будет занимать всю высоту контейнера. <mark class="highlight-default"><code>fraction = 0.5F</code></mark> означает, что компонент займет 50% доступной высоты контейнера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-801b-8d4a-f59385439177" class="code"><code class="language-Kotlin">@Composable
+fun FullHeightBox() {
+    Box(
+        modifier = Modifier.fillMaxHeight()
+    )
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8025-95c3-db240639481e" class="code"><code class="language-Kotlin">@Composable
+fun HalfHeightBox() {
+    Box(
+        modifier = Modifier.fillMaxHeight(0.5F)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>fillMaxSize(fraction: Float)</code></mark></summary><div class="indented"><p id="13615285-0ae8-805d-a5a5-f3a1f5c78ca1" class="">Заставляет компонент занять определенную долю доступного пространства как по ширине, так и по высоте родительского контейнера.</p><p id="13615285-0ae8-8010-8e44-f9188f62a7a9" class="">• <mark class="highlight-orange"><code>fraction</code></mark> определяет долю ширины и высоты, которую должен занять компонент. Значение должно быть в диапазоне от <mark class="highlight-default"><code>0.0</code></mark> до <mark class="highlight-default"><code>1.0</code></mark>, где <mark class="highlight-default"><code>0.0</code></mark> означает, что компонент не займет никакого пространства, а <mark class="highlight-default"><code>1.0</code></mark> — что он займет всю доступную ширину и высоту контейнера. Значение по умолчанию — <mark class="highlight-default"><code>1.0</code></mark>, то есть компонент будет занимать все доступное пространство. <mark class="highlight-default"><code>fraction = 0.5F</code></mark> означает, что компонент займет 50% ширины и 50% высоты родительского контейнера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8054-aac8-fd30345ac329" class="code"><code class="language-Kotlin">@Composable
+fun FullSizeBox() {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    )
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80e7-a349-c49365a2fc3d" class="code"><code class="language-Kotlin">@Composable
+fun HalfSizeBox() {
+    Box(
+        modifier = Modifier.fillMaxSize(0.5F)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>wrapContentWidth(align: Alignment.Horizontal, unbounded: Boolean)</code></mark></summary><div class="indented"><p id="13615285-0ae8-80ca-90f7-ce60ed81d891" class=""><mark class="highlight-default">Заставляет компонент занимать минимально возможную ширину, необходимую для отображения его содержимого. В отличие от </mark><mark class="highlight-default"><code>fillMaxWidth</code></mark><mark class="highlight-default">, который заполняет всю доступную ширину, </mark><mark class="highlight-default"><code>wrapContentWidth</code></mark><mark class="highlight-default"> позволяет компоненту «обернуться» вокруг содержимого, при этом можно задать горизонтальное выравнивание и поведение за пределами ограничений.</mark></p><p id="13615285-0ae8-801d-8a26-c7481f7a9289" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>align</code></mark><mark class="highlight-default"> определяет горизонтальное выравнивание компонента внутри доступного пространства. Это значение задается с помощью </mark><mark class="highlight-default"><code>Alignment.Horizontal</code></mark><mark class="highlight-default">, и может быть, например, </mark><mark class="highlight-default"><code>Alignment.Start</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>Alignment.CenterHorizontally</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>Alignment.End</code></mark><mark class="highlight-default">. Оно управляет тем, как компонент будет выровнен внутри выделенной ему ширины, если доступное пространство больше минимально необходимого.<br/>• <br/></mark><mark class="highlight-orange"><code>unbounded</code></mark><mark class="highlight-default"> логическое значение, которое определяет, может ли компонент игнорировать ограничения по ширине. Если </mark><mark class="highlight-default"><code>unbounded</code></mark><mark class="highlight-default"> установлен в </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, компонент может занимать больше места, чем доступно (например, текст может выходить за пределы экрана). Обычно этот параметр оставляют </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default"> для стандартного поведения, когда размер ограничен границами родительского контейнера.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80d0-8231-cf62b894e1b6" class="code"><code class="language-Kotlin">@Composable
+fun WrapContentWidthBox() {
+    Box(
+        modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally, unbounded = false)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>wrapContentHeight(align: Alignment.Vertical, unbounded: Boolean)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8037-9ad9-d0de49132a16" class=""><mark class="highlight-default">Заставляет компонент занимать минимально возможную высоту, необходимую для отображения его содержимого. В отличие от </mark><mark class="highlight-default"><code>fillMaxHeight</code></mark><mark class="highlight-default">, который заполняет всю доступную высоту, </mark><mark class="highlight-default"><code>wrapContentHeight</code></mark><mark class="highlight-default"> позволяет компоненту «обернуться» вокруг содержимого, при этом можно задать вертикальное выравнивание и поведение за пределами ограничений.</mark></p><p id="13615285-0ae8-80c0-8d29-d05a72fca7ba" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>align</code></mark><mark class="highlight-default"> определяет вертикальное выравнивание компонента внутри доступного пространства. Это значение задается с помощью </mark><mark class="highlight-default"><code>Alignment.Vertical</code></mark><mark class="highlight-default">, и может быть, например, </mark><mark class="highlight-default"><code>Alignment.Top</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>Alignment.CenterVertically</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>Alignment.Bottom</code></mark><mark class="highlight-default">. Выравнивание управляет тем, как компонент будет располагаться внутри выделенной ему высоты, если доступное пространство больше минимально необходимого.<br/>• <br/></mark><mark class="highlight-orange"><code>unbounded</code></mark><mark class="highlight-default"> логическое значение, которое определяет, может ли компонент игнорировать ограничения по высоте. Если </mark><mark class="highlight-default"><code>unbounded</code></mark><mark class="highlight-default"> установлен в </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, компонент может занимать больше места, чем доступно (например, длинный текст может выходить за пределы контейнера). Обычно </mark><mark class="highlight-default"><code>unbounded</code></mark><mark class="highlight-default"> оставляют </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default"> для стандартного поведения, когда размер ограничен границами родительского контейнера.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-80cc-a18e-fe72f75afebd" class="code"><code class="language-Kotlin">@Composable
+fun WrapContentHeightBox() {
+    Box(
+        modifier = Modifier.wrapContentHeight(align = Alignment.CenterVertically, unbounded = false)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>wrapContentSize(align: Alignment, unbounded: Boolean)</code></mark></summary><div class="indented"><p id="13615285-0ae8-8097-8114-d9f1c0c3f0fc" class=""><mark class="highlight-default">Заставляет компонент занимать минимально возможный размер (ширину и высоту), необходимый для отображения его содержимого. В отличие от </mark><mark class="highlight-default"><code>fillMaxSize</code></mark><mark class="highlight-default">, который заполняет все доступное пространство, </mark><mark class="highlight-default"><code>wrapContentSize</code></mark><mark class="highlight-default"> позволяет компоненту «обернуться» вокруг содержимого, при этом можно задать выравнивание и поведение за пределами ограничений как по ширине, так и по высоте.</mark></p><p id="13615285-0ae8-804d-baf2-f1ad6da76caf" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>align</code></mark><mark class="highlight-default"> определяет выравнивание компонента внутри доступного пространства. Использует объект </mark><mark class="highlight-default"><code>Alignment</code></mark><mark class="highlight-default">, который задает как горизонтальное, так и вертикальное выравнивание. Примеры значений: </mark><mark class="highlight-default"><code>Alignment.TopStart</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>Alignment.Center</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>Alignment.BottomEnd</code></mark><mark class="highlight-default"> и другие. Это позволяет расположить компонент в нужной позиции, если доступное пространство больше, чем минимально необходимое.<br/>• <br/></mark><mark class="highlight-orange"><code>unbounded</code></mark><mark class="highlight-default"> логическое значение, которое определяет, может ли компонент игнорировать ограничения по размеру. Если </mark><mark class="highlight-default"><code>unbounded</code></mark><mark class="highlight-default"> установлен в </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, компонент может занимать больше места, чем доступно (например, текст может выйти за пределы контейнера). Обычно </mark><mark class="highlight-default"><code>unbounded</code></mark><mark class="highlight-default"> оставляют </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default"> для стандартного поведения, когда размер ограничен границами родительского контейнера.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-8023-b312-ccbe68e491bc" class="code"><code class="language-Kotlin">@Composable
+fun WrapContentSizeBox() {
+    Box(
+        modifier = Modifier.wrapContentSize(align = Alignment.Center, unbounded = false)
+    )
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>defaultMinSize(minWidth: Dp, minHeight: Dp)</code></mark></summary><div class="indented"><p id="13615285-0ae8-803b-a442-d1a7a31a7fe1" class="">Устанавливает минимальные размеры (ширину и/или высоту) для компонента, если его содержимое занимает меньше места, чем указанные значения. В отличие от модификаторов вроде <mark class="highlight-default"><code>requiredSize</code></mark>, <mark class="highlight-default"><code>defaultMinSize</code></mark> применяется только тогда, когда содержимое компонента меньше минимальных размеров, и не заставляет компонент всегда занимать это пространство. Этот модификатор удобен, когда нужно задать минимальные размеры для компонента, но при этом оставить его адаптивным, если содержимое занимает больше места.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13615285-0ae8-806c-b3df-f8d13d354606" class="code"><code class="language-Kotlin">@Composable
+fun DefaultMinSizeBox() {
+    Box(
+        modifier = Modifier.defaultMinSize(minWidth = 100.dp, minHeight = 50.dp)
+    )
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (1)</mark></summary><div class="indented"><ol type="1" id="10915285-0ae8-8089-a2fa-f22860b57978" class="numbered-list" start="1"><li>В чем особенность Modifier?<p id="10915285-0ae8-80a3-8887-fc387d013a81" class=""><mark class="highlight-teal">Каждый вызов модификатора возвращает новый объект, что способствует декларативному стилю разработки и позволяет легко комбинировать несколько модификаторов, а также наследовать их. Порядок операторов также имеет значение.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

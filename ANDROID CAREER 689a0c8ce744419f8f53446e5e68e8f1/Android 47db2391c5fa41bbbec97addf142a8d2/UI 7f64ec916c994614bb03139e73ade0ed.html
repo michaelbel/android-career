@@ -1,0 +1,854 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>UI</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7f64ec91-6c99-4614-bb03-139e73ade0ed" class="page sans"><header><img class="page-cover-image" src="UI%207f64ec916c994614bb03139e73ade0ed/cover-android-ui.webp" style="object-position:center 51.790000000000006%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="UI%207f64ec916c994614bb03139e73ade0ed/icon-android-platform.svg"/></div><h1 class="page-title"><strong>UI</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="70023657-7269-480c-9829-03d5a6d4c3da" class="simple-table"><tbody><tr id="1cb113ed-caa1-4acf-b442-88628cf15a89"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui">https://developer.android.com/design/ui</a></td></tr><tr id="6765cfd2-5942-4eca-b86d-c02a838ffa01"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui/mobile">https://developer.android.com/design/ui/mobile</a></td></tr><tr id="fdafc262-4cff-4365-92a9-632fa243f545"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui/large-screens">https://developer.android.com/design/ui/large-screens</a></td></tr><tr id="af3a9797-cbc6-4038-889b-f20d830edd31"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui/widget">https://developer.android.com/design/ui/widget</a></td></tr><tr id="7708ada9-fd2c-435e-ae00-a9c98da5bb15"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui/wear">https://developer.android.com/design/ui/wear</a></td></tr><tr id="03832d0d-0d5a-4db6-b4b3-fd002f48eb56"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/design/ui/tv">https://developer.android.com/design/ui/tv</a></td></tr><tr id="bcceabc8-4e24-4a46-909b-4cce1427578a"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/studio/write/draw9patch">https://developer.android.com/studio/write/draw9patch</a></td></tr><tr id="246c850f-3ab7-4c61-9020-1abd33894e86"><td id="UxZE" class="" style="width:569px"><a href="https://developer.android.com/topic/performance/vitals/render">https://developer.android.com/topic/performance/vitals/render</a></td></tr></tbody></table><table id="bb4a8b28-52ad-4161-a79e-c0f7715ba013" class="simple-table"><tbody><tr id="4e9913bd-3f01-4611-a6d6-93ac063a3ced"><td id="UxZE" class="" style="width:494px"><a href="https://m3.material.io/">https://m3.material.io/</a></td><td id="&lt;c{D" class="" style="width:283px">Material3</td></tr><tr id="e28bcdc0-b5df-406a-aa4f-079eb9c667d5"><td id="UxZE" class="" style="width:494px"><a href="https://m2.material.io/design/color/the-color-system.html">https://m2.material.io/design/color/the-color-system.html</a></td><td id="&lt;c{D" class="" style="width:283px">Material2 Color system</td></tr><tr id="13880c01-4568-4a59-801c-eb3bc3f1a36a"><td id="UxZE" class="" style="width:494px"><a href="https://fonts.google.com/">https://fonts.google.com/</a></td><td id="&lt;c{D" class="" style="width:283px">Google Fonts</td></tr><tr id="666ee0a6-9c3f-4a41-81b2-fbc50f43b5c3"><td id="UxZE" class="" style="width:494px"><a href="https://fonts.google.com/icons">https://fonts.google.com/icons</a></td><td id="&lt;c{D" class="" style="width:283px">Google Icons</td></tr><tr id="6a0e2cf8-8850-4649-a9ce-314a2b61cf44"><td id="UxZE" class="" style="width:494px"><a href="https://pictogrammers.com/library/mdi/">https://pictogrammers.com/library/mdi/</a></td><td id="&lt;c{D" class="" style="width:283px">Material Design Icons</td></tr><tr id="ed65e172-3147-4534-8192-331fe5dadc16"><td id="UxZE" class="" style="width:494px"><a href="https://www.color-name.com/hex">https://www.color-name.com/hex</a></td><td id="&lt;c{D" class="" style="width:283px">Name a Color</td></tr><tr id="9bc535ac-031f-4691-90b5-6692e05c8dab"><td id="UxZE" class="" style="width:494px"><a href="https://icon.kitchen/">https://icon.kitchen/</a></td><td id="&lt;c{D" class="" style="width:283px">App Icon Generator</td></tr><tr id="cef0abbd-6860-4157-837b-be3829d1a954"><td id="UxZE" class="" style="width:494px"><a href="https://romannurik.github.io/AndroidAssetStudio/icons-app-shortcut.html">https://romannurik.github.io/AndroidAssetStudio/icons-app-shortcut.html</a></td><td id="&lt;c{D" class="" style="width:283px">App Shortcut Icon Generator</td></tr><tr id="61c49f1d-3e55-4f87-a5bd-51d8eeb1a55c"><td id="UxZE" class="" style="width:494px"><a href="https://mockuphone.com/">https://mockuphone.com/</a></td><td id="&lt;c{D" class="" style="width:283px">Screenshots Device Mockups Generator</td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>XML</strong></summary><div class="indented"><table id="725a69ac-6347-4709-88c9-9b6fd99f5fc3" class="simple-table"><tbody><tr id="721a8444-490f-4708-b963-0840d5356362"><td id="EBP?" class="" style="width:489px"><a href="https://developer.android.com/develop/ui/views/layout/declaring-layout">https://developer.android.com/develop/ui/views/layout/declaring-layout</a></td></tr><tr id="368e3b4b-b0de-4028-9a7c-2e1046a857b5"><td id="EBP?" class="" style="width:489px"><a href="https://developer.android.com/reference/android/util/Xml">https://developer.android.com/reference/android/util/Xml</a></td></tr></tbody></table><p id="44351cbf-9cd6-44f2-954b-b02dc6f62424" class="">Extensible Markup Language. Язык разметки, используемый для описания данных. В Android в основном используется для описания данных, связанных с UI.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>&lt;merge&gt;</code></mark></summary><div class="indented"><p id="bcdd17eb-11fd-49fc-b4ef-e558c5317692" class="">Упрощает макет, убирая лишний уровень вложенности. Дочерние элементы <mark class="highlight-default"><code>&lt;merge&gt;</code></mark> добавляются напрямую в родительский макет, без создания дополнительного контейнера. Это улучшает производительность и упрощает структуру.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ecc690bb-fca9-4dd3-924f-e833fba88e4a" class="code"><code class="language-XML">&lt;!-- layout/fragment_example.xml --&gt;
+&lt;merge xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;TextView
+        android:id=&quot;@+id/example_text_view&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello World&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/example_button&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Click Me&quot; /&gt;
+&lt;/merge&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>&lt;include&gt;</code></mark></summary><div class="indented"><p id="6985edcb-74de-4c55-93e8-ec5e54a20526" class="">Используется для повторного использования макетов и упрощения их структуры. Он позволяет включать один макет в другой, что помогает избежать дублирования кода и улучшает читаемость и поддерживаемость вашего проекта.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ea6ff85-a9d5-44da-af6e-98c58177092f" class="code"><code class="language-XML">&lt;!-- layout/activity_main.xml --&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;include
+        layout=&quot;@layout/fragment_example&quot; /&gt;
+
+&lt;/LinearLayout&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Layers</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-default">Layer List</mark></summary><div class="indented"><p id="13f15285-0ae8-802b-9c51-f02b142e9969" class="">Позволяет накладывать несколько изображений друг на друга в виде слоев. Каждый слой можно настроить по размеру, положению и порядку наложения.</p><p id="13f15285-0ae8-805c-a849-e120bee8444e" class="">• Слои отображаются в порядке их перечисления: первым идет самый нижний слой, последним — самый верхний.</p><p id="13f15285-0ae8-80c2-b68d-e1cb88910ec7" class="">• Если у слоя не указаны размеры, он займет весь доступный контейнер.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1faae30d-7e3d-4bf1-bbe4-9d733fac6b10" class="code"><code class="language-XML" style="white-space:pre-wrap;word-break:break-all">&lt;layer-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item
+        android:id=&quot;@+id/background&quot;
+        android:drawable=&quot;@color/background_color&quot;
+        android:padding=&quot;8dp&quot; /&gt;
+
+    &lt;item
+        android:drawable=&quot;@drawable/icon_shadow&quot;
+        android:left=&quot;5dp&quot;
+        android:top=&quot;5dp&quot;
+        android:right=&quot;5dp&quot;
+        android:bottom=&quot;5dp&quot;
+        android:opacity=&quot;opaque&quot; /&gt;
+
+    &lt;item
+        android:drawable=&quot;@drawable/icon_main&quot;
+        android:width=&quot;48dp&quot;
+        android:height=&quot;48dp&quot;
+        android:gravity=&quot;center&quot;
+        android:visible=&quot;true&quot; /&gt;
+
+    &lt;item
+        android:drawable=&quot;@drawable/icon_overlay&quot;
+        android:paddingLeft=&quot;4dp&quot;
+        android:paddingTop=&quot;4dp&quot;
+        android:paddingRight=&quot;4dp&quot;
+        android:paddingBottom=&quot;4dp&quot;
+        android:blendMode=&quot;src_over&quot; /&gt;
+&lt;/layer-list&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8037-ae2c-e41bcbbe65c5" class="code"><code class="language-Kotlin">imageView.setImageResource(R.drawable.layered_icon)</code></pre><p id="13f15285-0ae8-80af-9730-c192ad26a132" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>drawable</code></mark><mark class="highlight-default"> указывает изображение или цвет для слоя.</mark></p><p id="13f15285-0ae8-80b2-8ebb-da4d6371ada6" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>id</code></mark><mark class="highlight-default"> задает уникальный идентификатор слоя.</mark></p><p id="13f15285-0ae8-805b-8c8a-ec91451b712a" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>left</code></mark><mark class="highlight-default"> отступ от левой стороны контейнера.</mark></p><p id="13f15285-0ae8-80a2-9045-f843dc5737de" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>top</code></mark><mark class="highlight-default"> отступ от верхней стороны контейнера.</mark></p><p id="13f15285-0ae8-80b2-bb7e-c1f8f774c5fa" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>right</code></mark><mark class="highlight-default"> отступ от правой стороны контейнера.</mark></p><p id="13f15285-0ae8-8066-8608-e0e3d1677672" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>bottom</code></mark><mark class="highlight-default"> отступ от нижней стороны контейнера.</mark></p><p id="13f15285-0ae8-80dd-b533-c77660a9c1da" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>width</code></mark><mark class="highlight-default"> задает ширину слоя (в </mark><mark class="highlight-default"><code>dp</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-80c8-b8c9-ee0b3ef67434" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>height</code></mark><mark class="highlight-default"> задает высоту слоя (в </mark><mark class="highlight-default"><code>dp</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-8069-b232-e861e1c73ad5" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>gravity</code></mark><mark class="highlight-default"> указывает позиционирование слоя (например, </mark><mark class="highlight-default"><code>center</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>left</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>right</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-8048-a049-e6d823541c04" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>padding</code></mark><mark class="highlight-default"> задает общий отступ внутри слоя.</mark></p><p id="13f15285-0ae8-808a-8e8f-f8d76a15ed9e" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>paddingLeft</code></mark><mark class="highlight-default"> отступ внутри слоя от левой стороны.</mark></p><p id="13f15285-0ae8-80c9-8ef8-e9b64b43cdab" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>paddingTop</code></mark><mark class="highlight-default"> отступ внутри слоя от верхней стороны.</mark></p><p id="13f15285-0ae8-8017-811e-dc02152141fd" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>paddingRight</code></mark><mark class="highlight-default"> отступ внутри слоя от правой стороны.</mark></p><p id="13f15285-0ae8-806f-b838-f376a36eba92" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>paddingBottom</code></mark><mark class="highlight-default"> отступ внутри слоя от нижней стороны.</mark></p><p id="13f15285-0ae8-80d2-b8b3-ff9f1f3ab3ee" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>opacity</code></mark><mark class="highlight-default"> задает прозрачность слоя (</mark><mark class="highlight-default"><code>opaque</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>translucent</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>transparent</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-8013-9c23-d2d74d19c9f9" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>visible</code></mark><mark class="highlight-default"> определяет, отображается ли слой (</mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default"> или </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-8032-b712-db6279a4584e" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>blendMode</code></mark><mark class="highlight-default"> указывает режим смешивания слоя (</mark><mark class="highlight-default"><code>src_over</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>multiply</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>screen</code></mark><mark class="highlight-default"> и другие).</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">State List</summary><div class="indented"><p id="a580dd40-eda4-4f0b-b4e9-b48bd6fca535" class="">Позволяет отображать разные изображения в зависимости от состояния View. Порядок элементов важен: первым должен быть <mark class="highlight-default"><code>&lt;item&gt;</code></mark> с более специфичным состоянием.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e2cea7d2-aa21-4eda-a21a-c874c38cdb2b" class="code"><code class="language-XML" style="white-space:pre-wrap;word-break:break-all">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item android:drawable=&quot;@drawable/item_pressed&quot; android:state_pressed=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_enabled&quot; android:state_enabled=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_disabled&quot; android:state_enabled=&quot;false&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_checked&quot; android:state_checked=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_selected&quot; android:state_selected=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_focused&quot; android:state_focused=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_activated&quot; android:state_activated=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_drag_can_accept&quot; android:state_drag_can_accept=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_drag_hovered&quot; android:state_drag_hovered=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_hovered&quot; android:state_hovered=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_window_focused&quot; android:state_window_focused=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_checkable&quot; android:state_checkable=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_multiline&quot; android:state_multiline=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_first&quot; android:state_first=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_last&quot; android:state_last=&quot;true&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/item_middle&quot; android:state_middle=&quot;true&quot; /&gt;
+&lt;/selector&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80d8-9d80-cc852e9a169d" class="code"><code class="language-Kotlin">imageView.setImageResource(R.drawable.button_state_list)</code></pre><p id="13f15285-0ae8-8009-8808-f0b28fe45ed9" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_pressed</code></mark><mark class="highlight-default"> состояние нажатия.</mark></p><p id="13f15285-0ae8-80a6-862e-d11f9d8be4e1" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_enabled</code></mark><mark class="highlight-default"> элемент включен или отключен.</mark></p><p id="13f15285-0ae8-80ce-b279-fb2412da0054" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_checked</code></mark><mark class="highlight-default"> находится в состоянии выбора (например, для </mark><mark class="highlight-default"><code>CheckBox</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-808f-baac-d32f0ea886b8" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_selected</code></mark><mark class="highlight-default"> выделена пользователем.</mark></p><p id="13f15285-0ae8-8095-8fb1-f8ec38dd7f64" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_focused</code></mark><mark class="highlight-default"> находится в фокусе.</mark></p><p id="13f15285-0ae8-80e3-ab9c-fa2df6c0ddf1" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_activated</code></mark><mark class="highlight-default"> активирована (например, для </mark><mark class="highlight-default"><code>ListView</code></mark><mark class="highlight-default">).</mark></p><p id="13f15285-0ae8-8009-99a5-ea3ab2219e5a" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_active</code></mark><mark class="highlight-default"> обозначение активного элемента.</mark></p><p id="13f15285-0ae8-8050-80fa-dbcab3d50926" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_drag_can_accept</code></mark><mark class="highlight-default"> может принять перетаскиваемый объект.</mark></p><p id="13f15285-0ae8-80cf-a09b-c9d3f8afb3c0" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_drag_hovered</code></mark><mark class="highlight-default"> находится под перетаскиваемым объектом.</mark></p><p id="13f15285-0ae8-8008-9200-d6b470028adc" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_hovered</code></mark><mark class="highlight-default"> указатель (например, мышь) находится над элементом.</mark></p><p id="13f15285-0ae8-8048-8b2f-febf507c4fa0" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_window_focused</code></mark><mark class="highlight-default"> окно, в котором находится элемент, в фокусе.</mark></p><p id="13f15285-0ae8-80cb-b234-e363695c79b0" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_checked_highlighted</code></mark><mark class="highlight-default"> выбор элемента с дополнительной визуальной подсветкой.</mark></p><p id="13f15285-0ae8-80f2-884c-fad2f545a517" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_checkable</code></mark><mark class="highlight-default"> поддерживает состояние выбора.</mark></p><p id="13f15285-0ae8-8087-a9fe-f40d5b58b922" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_multiline</code></mark><mark class="highlight-default"> поддерживает многострочный текст.</mark></p><p id="13f15285-0ae8-80ad-b1f5-d30a1fdd4819" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_first</code></mark><mark class="highlight-default"> первый элемент в группе.</mark></p><p id="13f15285-0ae8-8099-b7fa-e9372b974abd" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_last</code></mark><mark class="highlight-default"> последний элемент в группе.</mark></p><p id="13f15285-0ae8-80c2-a571-ef19c4ed3423" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>state_middle</code></mark><mark class="highlight-default"> находится между первым и последним в группе.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-default">Level List</mark></summary><div class="indented"><p id="ba6c7c61-ed6c-4d2d-985b-57402e98cf44" class="">Отображает разные изображения в зависимости от текущего уровня.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6d9abd01-dc88-4619-b546-e922ea9842fc" class="code"><code class="language-XML" style="white-space:pre-wrap;word-break:break-all">&lt;level-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item android:drawable=&quot;@drawable/battery_empty&quot; android:minLevel=&quot;0&quot; android:maxLevel=&quot;20&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/battery_low&quot; android:minLevel=&quot;21&quot; android:maxLevel=&quot;50&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/battery_half&quot; android:minLevel=&quot;51&quot; android:maxLevel=&quot;80&quot; /&gt;
+    &lt;item android:drawable=&quot;@drawable/battery_full&quot; android:minLevel=&quot;81&quot; android:maxLevel=&quot;100&quot; /&gt;
+&lt;/level-list&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8039-b88b-c542a71ec417" class="code"><code class="language-Kotlin">imageView.setImageResource(R.drawable.battery_level_list)
+imageView.drawable.level = 45</code></pre><p id="13f15285-0ae8-8052-93ad-e2414e84a331" class="">• <mark class="highlight-orange"><code>minLevel</code></mark> минимальный уровень, при котором изображение отображается.</p><p id="13f15285-0ae8-80ea-bde2-f67b306316dd" class="">• <mark class="highlight-orange"><code>maxLevel</code></mark> максимальный уровень, при котором изображение отображается.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Bitmap</code></mark></summary><div class="indented"><p id="7a7f3483-dd10-48cb-af1b-e292525daa2e" class="">Изображение, представленное в виде пиксельных данных. В Android <mark class="highlight-default"><code>Bitmap</code></mark> используется для работы с изображениями (фото, иконки) и позволяет загружать, создавать и изменять растровые изображения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-808e-9345-e1fe9525595d" class="code"><code class="language-Kotlin">val bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Bitmap.Config</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80d1-85d2-fea698bd887a" class="">Определяет формат и качество хранения пиксельных данных в <mark class="highlight-default"><code>Bitmap</code></mark>. Выбор конфигурации влияет на количество памяти, занимаемой изображением, а также на поддерживаемые цветовые каналы и прозрачность.</p><p id="13f15285-0ae8-809b-8b5f-ef1f822e22fd" class="">• <mark class="highlight-orange"><code>ALPHA_8</code></mark> изображение с 8-битным альфа-каналом (прозрачность).</p><p id="13f15285-0ae8-80a1-857b-f586dd110db6" class="">• <mark class="highlight-orange"><code>RGB_565</code></mark> изображение с 16-битными пикселями (5 бит красный, 6 бит зеленый, 5 бит синий). Меньше памяти, но без альфа-канала.</p><p id="13f15285-0ae8-80b1-aa80-fd6478e44e57" class="">• <mark class="highlight-orange"><code>ARGB_8888</code></mark> изображение с 32-битными пикселями (по 8 бит на каждый канал: альфа, красный, зеленый, синий). Высокое качество, но больше занимает памяти.</p><p id="13f15285-0ae8-80fe-b875-cf2918ed5a09" class="">• <mark class="highlight-orange"><code>RGBA_F16</code></mark> изображение с 16-битными значениями для каждого канала. Используется для изображений высокого качества.</p><p id="13f15285-0ae8-803d-a130-fa86a9a751e6" class="">• <mark class="highlight-orange"><code>HARDWARE</code></mark> используется аппаратное ускорение для обработки изображения. Значительно повышает производительность, но не поддерживает прямое изменение пикселей через методы <code>getPixel()</code> и <code>setPixel()</code>.</p><p id="13f15285-0ae8-801d-aa6c-d96c6bb53e78" class="">• <mark class="highlight-orange"><code>RGBA_1010102</code></mark> изображение с 10-битными значениями для каналов красного, зеленого и синего и 2-битным альфа-каналом. Используется для изображений высокого качества на устройствах с HDR-экраном.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>createBitmap</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8078-b54c-d49cb31349ba" class="">Создает новый пустой <mark class="highlight-default"><code>Bitmap</code></mark> с заданной шириной, высотой и конфигурацией.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80b4-b73c-c3fe4f5c3536" class="code"><code class="language-Kotlin">val bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>copy</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80ff-b7c5-e21b7dfdde88" class=""><mark class="highlight-default">Создает копию текущего </mark><mark class="highlight-default"><code>Bitmap</code></mark><mark class="highlight-default"> с новой конфигурацией. Если </mark><mark class="highlight-default"><code>isMutable = true</code></mark><mark class="highlight-default">, то копия будет изменяемой.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80a9-ac6a-dac1e735787a" class="code"><code class="language-Kotlin">val bitmapCopy = bitmap.copy(Bitmap.Config.RGB_565, true)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getWidth</code></mark></summary><div class="indented"><p id="13f15285-0ae8-809a-af81-fa2c9c13d3d6" class="">Возвращают ширину <mark class="highlight-default"><code>Bitmap</code></mark> в пикселях.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8074-b75d-df0c3ba68d20" class="code"><code class="language-Kotlin">val width = bitmap.width</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getHeight</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80d7-be50-d07a76f29913" class="">Возвращают высоту <mark class="highlight-default"><code>Bitmap</code></mark> в пикселях.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8095-a642-f030486d46e9" class="code"><code class="language-Kotlin">val height = bitmap.height</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>getPixel</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80d7-974a-f3a5cb085b11" class="">Возвращает цвет пикселя по указанным координатам в виде значения <mark class="highlight-default"><code>Int</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8090-8eff-d1cec919224e" class="code"><code class="language-Kotlin">val color = bitmap.getPixel(50, 50)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setPixel</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80a5-8265-c5d67ee3adc0" class="">Устанавливает цвет пикселя по указанным координатам. Работает только для изменяемых <mark class="highlight-default"><code>Bitmap</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8010-b5ca-c73559c982aa" class="code"><code class="language-Kotlin">bitmap.setPixel(50, 50, Color.RED)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>compress</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80ff-9167-e951e6f4a06a" class=""><mark class="highlight-default">Сохраняет </mark><mark class="highlight-default"><code>Bitmap</code></mark><mark class="highlight-default"> в указанный поток в сжатом виде. Параметр </mark><mark class="highlight-default"><code>quality</code></mark><mark class="highlight-default"> определяет степень сжатия (0–100).</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80bf-bfbc-eabb16e51143" class="code"><code class="language-Kotlin">bitmap.compress(Bitmap.CompressFormat.PNG, 100, FileOutputStream(&quot;output.png&quot;))</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>recycle</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8096-94cf-da165a539b03" class="">Освобождает память, занятую <mark class="highlight-default"><code>Bitmap</code></mark>. Используется, когда изображение больше не нужно, чтобы избежать утечек памяти.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-808e-b059-ffed64692a16" class="code"><code class="language-Kotlin">bitmap.recycle()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>isMutable</code></mark></summary><div class="indented"><p id="13f15285-0ae8-802f-bd25-cdcf0604de67" class=""><mark class="highlight-default">Возвращает </mark><mark class="highlight-default"><code>true</code></mark><mark class="highlight-default">, если </mark><mark class="highlight-default"><code>Bitmap</code></mark><mark class="highlight-default"> можно изменять, и </mark><mark class="highlight-default"><code>false</code></mark><mark class="highlight-default">, если изображение неизменяемое.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8059-a693-cbeae8546e2f" class="code"><code class="language-Kotlin">val isMutable = bitmap.isMutable</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>eraseColor</code></mark></summary><div class="indented"><p id="13f15285-0ae8-800e-a03a-d38421cfc310" class="">Заполняет все пиксели <mark class="highlight-default"><code>Bitmap</code></mark> указанным цветом. Работает только для изменяемых изображений.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8074-8ee7-d97d38b2975e" class="code"><code class="language-Kotlin">bitmap.eraseColor(Color.WHITE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>hasAlpha</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80d9-ba70-da11c5ca148a" class="">Возвращает <mark class="highlight-default"><code>true</code></mark>, если изображение поддерживает альфа-канал (прозрачность).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80b2-b9ee-e3d2315abbcc" class="code"><code class="language-Kotlin">val supportsAlpha = bitmap.hasAlpha()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>extractAlpha</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8083-94da-c040feb5ac79" class="">Создает новый <mark class="highlight-default"><code>Bitmap</code></mark>, содержащий только альфа-канал (прозрачность) исходного изображения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80c4-9140-e82d06c79d33" class="code"><code class="language-Kotlin">val alphaBitmap = bitmap.extractAlpha()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BitmapFactory</code></mark></summary><div class="indented"><p id="13f15285-0ae8-804b-9385-c087a46f5b75" class="">Используется для декодирования изображений из различных источников, таких как файлы, ресурсы, потоки или байтовые массивы, в объекты <mark class="highlight-default"><code>Bitmap</code></mark>.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>decodeResource</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80cf-84fe-db167de0e1c9" class="">Декодирует изображение из ресурсов по его идентификатору. Удобен для загрузки изображений, находящихся в папке <mark class="highlight-default"><code>res/drawable</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-807c-98e1-f7239752b9b0" class="code"><code class="language-Kotlin">val bitmap = BitmapFactory.decodeResource(resources, R.drawable.sample_image)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>decodeFile</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8076-af2f-d42d01ae517c" class="">Загружает изображение из файла по указанному пути.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80cd-bfe4-ca3c68769afc" class="code"><code class="language-Kotlin">val bitmap = BitmapFactory.decodeFile(&quot;/storage/emulated/0/Download/image.jpg&quot;)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>decodeStream</code></mark></summary><div class="indented"><p id="13f15285-0ae8-804d-86a0-c945431eab80" class="">Декодирует изображение из потока данных. Полезен для загрузки изображений из сети или при чтении из файлового потока.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8077-95d6-fad26b8c190c" class="code"><code class="language-Kotlin">val inputStream = URL(&quot;https://example.com/image.png&quot;).openStream()
+val bitmap = BitmapFactory.decodeStream(inputStream)
+inputStream.close()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>decodeByteArray</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8052-b8c1-ebd31907a394" class="">Декодирует изображение из массива байтов. Используется, если изображение загружено в виде байтового массива, например, из базы данных.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8019-b34b-e3eb5fb1aa46" class="code"><code class="language-Kotlin">val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)</code></pre></div></details></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Drawable</code></mark></summary><div class="indented"><table id="56fd9eda-26df-4e01-a022-e7d9f9ee68bf" class="simple-table"><tbody><tr id="cbe8621c-59b3-48f4-afea-0942757ec6f4"><td id="VgHg" class="" style="width:459px"><a href="https://developer.android.com/guide/topics/resources/drawable-resource">https://developer.android.com/guide/topics/resources/drawable-resource</a></td></tr></tbody></table><p id="3c575b75-f2a7-4c8d-9dbf-6de667577450" class="">Базовый класс для представления графических объектов, которые можно отображать на экране. Он используется для работы с изображениями, цветами и фигурами в интерфейсе.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>BitmapDrawable</code></mark></summary><div class="indented"><p id="758ce2a5-4a2b-4416-b995-8f214d5e9094" class=""><mark class="highlight-default">Используется для отображения растровых изображений (</mark><mark class="highlight-default"><code>Bitmap</code></mark><mark class="highlight-default">) в Android. Он позволяет загружать, отображать и настраивать растровые изображения, например, управлять их масштабом или положением.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ShapeDrawable</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80f6-8032-c8c6b2b64436" class="">Позволяет рисовать простые фигуры (прямоугольники, овалы, линии и т. д.).</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LayerDrawable</code></mark></summary><div class="indented"><p id="2727fc6c-eeae-4f6c-a5bf-b15abc742b66" class=""><mark class="highlight-default">Позволяет объединить несколько </mark><mark class="highlight-default"><code>Drawable</code></mark><mark class="highlight-default"> в один слой. Каждый слой может быть отрисован отдельно, с возможностью управления их положением и прозрачностью.</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>StateListDrawable</code></mark></summary><div class="indented"><p id="4da270cf-30f5-412c-8eea-3572845ad74e" class="">Позволяет отображать разные изобра<mark class="highlight-default">жения (</mark><mark class="highlight-default"><code>Drawable</code></mark><mark class="highlight-default">) в зависим</mark>ости от состояния элемента интерфейса, например, нажатия, выделения или отключения.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>NinePatchDrawable</code></mark></summary><div class="indented"><p id="e5d65aa3-2f4d-418e-8622-0a4309eb1702" class="">Позволяет создавать растягиваемые изображения для фоновых элементов, кнопок или других UI-компонентов. Использ<mark class="highlight-default">ует </mark><mark class="highlight-default"><code>.9.png</code></mark><mark class="highlight-default"> файлы, кото</mark>рые имеют встроенные данные для растяжения и заполнения.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>VectorDrawable</code></mark></summary><div class="indented"><p id="f8247745-48c3-426c-9a44-d0fef14896bd" class="">Класс в Android для работы с векторными изображениями. Он позволяет описывать графику в виде XML-файлов с использованием форм, линий и цветов.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>AnimationDrawable</code></mark></summary><div class="indented"><p id="abb33ab8-21b8-41f7-9cbd-c22711bd4871" class="">Позволяет создавать анимации из последовательности изображений (кадров). Он используется для покадровой анимации, где каждое изображение отображается в течение заданного времени.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">9-Patch</summary><div class="indented"><p id="dfdc96a4-2494-42d1-9bc5-858d11221f07" class="">Растровые изображения, размер которых автоматически изменяется в соответствии с содержимым представления и размером экрана. Выбранные части изображения масштабируются по горизонтали или вертикали на основе индикаторов, нарисованных внутри изображения.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Density</code></mark></summary><div class="indented"><p id="5b86180c-da9b-4014-8d5b-ab17565abcef" class="">Количество пикселей на единицу площади экрана устройства, обычно измеряется в dpi (dots per inch). В Android экраны делятся на несколько категорий плотности.</p><p id="14a15285-0ae8-8020-8fb4-f72a3a9ee1b0" class="">• ldpi (low) — 120 dpi</p><p id="14a15285-0ae8-807d-8396-d1e2d1407816" class="">• mdpi (medium) — 160 dpi</p><p id="14a15285-0ae8-8067-aa08-c27717a58ad5" class="">• hdpi (high) — 240 dpi</p><p id="14a15285-0ae8-800e-80aa-f78777919b10" class="">• xhdpi (extra high) — 320 dpi</p><p id="14a15285-0ae8-802d-ae58-ed1b0e48a7ea" class="">• xxhdpi (extra extra high) — 480 dpi</p><p id="14a15285-0ae8-807d-8f84-d71c9976325d" class="">• xxxhdpi (extra extra extra high) — 640 dpi</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>dp</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8017-a1fb-ef00f2544267" class="">Density-independent pixels — единица измерения, которая используется для создания интерфейсов, независимых от плотности пикселей экрана. 1 dp эквивалентен 1 пикселю на экране с плотностью 160 dpi. Это помогает поддерживать стабильные размеры элементов интерфейса на устройствах с разной плотностью пикселей.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>sp</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8099-9364-f23577d48514" class="">Scale-independent pixels — единица измерения для текста в Android, которая учитывает настройки размера шрифта пользователя (например, для доступности). Используется для определения размеров текста, чтобы он корректно отображался на разных устройствах и при разных настройках экрана.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>nodpi</code></mark></summary><div class="indented"><p id="14a15285-0ae8-806d-9e27-d3b8314cb361" class="">Квалификатор, который используется для ресурсов, не зависящих от плотности пикселей экрана. Такие ресурсы будут одинаково отображаться на всех устройствах.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>anydpi</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8068-a093-dbe46f2fb891" class="">Квалификатор для ресурсов, который используется на устройствах с любым разрешением экрана.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Strings</code></mark></summary><div class="indented"><p id="12515285-0ae8-806f-b3c5-fcce55029ba0" class="">• Строки хранятся в ресурсах (файл <mark class="highlight-default"><code>strings.xml</code></mark>), что позволяет поддерживать интернационализацию.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12515285-0ae8-80a6-a74e-c071a78d23f0" class="code"><code class="language-XML">&lt;string name=&quot;app_name&quot;&gt;My Application&lt;/string&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Plurals</code></mark></summary><div class="indented"><p id="13f15285-0ae8-80e9-9c7d-cec5bddeb415" class="">Ресурс, предназначенный для отображения текста с учётом числового значения, чтобы правильно склонять слова.</p><p id="e208c514-9269-4cf3-b2c5-a8da456c8dd5" class="">• Для ru-строк корректно будет работать только если в системе установлен русский язык.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-8016-a0ee-e2b525330181" class="code"><code class="language-XML">&lt;plurals name=&quot;item_count&quot;&gt;
+    &lt;item quantity=&quot;zero&quot;&gt;Нет предметов&lt;/item&gt;
+    &lt;item quantity=&quot;one&quot;&gt;%d предмет&lt;/item&gt;
+    &lt;item quantity=&quot;two&quot;&gt;%d предмета&lt;/item&gt;
+    &lt;item quantity=&quot;few&quot;&gt;%d предмета&lt;/item&gt;
+    &lt;item quantity=&quot;many&quot;&gt;%d предметов&lt;/item&gt;
+    &lt;item quantity=&quot;other&quot;&gt;%d предметов&lt;/item&gt;
+&lt;/plurals&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-801b-a955-da535668b877" class="code"><code class="language-Kotlin">val count = 3
+val text = resources.getQuantityString(R.plurals.item_count, count, count)
+textView.text = text</code></pre><p id="13f15285-0ae8-804e-8eb3-c1f986444b35" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>zero</code></mark><mark class="highlight-default"> используется для значения </mark><mark class="highlight-default"><code>0</code></mark><mark class="highlight-default">.</mark></p><p id="13f15285-0ae8-8062-877b-fc92d3a10fc3" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>one</code></mark><mark class="highlight-default"> используется для чисел </mark><mark class="highlight-default"><code>1</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>21</code></mark><mark class="highlight-default">, </mark><mark class="highlight-default"><code>31</code></mark><mark class="highlight-default"> и т.д.</mark></p><p id="13f15285-0ae8-80d2-87bc-cdced296f919" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>two</code></mark><mark class="highlight-default"> используется в некоторых языках (например, на арабском) для значения </mark><mark class="highlight-default"><code>2</code></mark><mark class="highlight-default">.</mark></p><p id="13f15285-0ae8-807f-af48-c865911f9941" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>few</code></mark><mark class="highlight-default"> используется для чисел от </mark><mark class="highlight-default"><code>2</code></mark><mark class="highlight-default"> до </mark><mark class="highlight-default"><code>4</code></mark><mark class="highlight-default"> в русском языке.</mark></p><p id="13f15285-0ae8-80f9-bdf3-f909399f5796" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>many</code></mark><mark class="highlight-default"> используется для чисел от </mark><mark class="highlight-default"><code>5</code></mark><mark class="highlight-default"> до </mark><mark class="highlight-default"><code>20</code></mark><mark class="highlight-default">, а также для всех значений, кратных </mark><mark class="highlight-default"><code>10</code></mark><mark class="highlight-default">.</mark></p><p id="13f15285-0ae8-80e2-8ec1-f915364c8226" class=""><mark class="highlight-default">• </mark><mark class="highlight-orange"><code>other</code></mark><mark class="highlight-default"> используется по умолчанию, если никакое другое правило не подходит.</mark></p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LayoutInflater</code></mark></summary><div class="indented"><p id="03146928-aca7-4a07-9770-5356456af273" class="">Используется для преобразования XML-файлов разметки в соответствующие объ<mark class="highlight-default">екты </mark><mark class="highlight-default"><code>View</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f95758ab-3eec-49fe-8f11-3cc8dd679837" class="code"><code class="language-Kotlin">// Получаем LayoutInflater из контекста
+val inflater = LayoutInflater.from(context)
+
+// Используем inflater для создания View из XML
+val view = inflater.inflate(R.layout.custom_view_layout, null)</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>attachToRoot</code></mark></summary><div class="indented"><p id="68ae38eb-da7d-46b9-8428-01a45e26f9e5" class="">Если вы используете <mark class="highlight-default"><code>LayoutInflater</code></mark> в производительном коде, например, в адап<mark class="highlight-default">терах </mark><mark class="highlight-default"><code>RecyclerView</code></mark><mark class="highlight-default">, ре</mark>комендуется использовать метод <mark class="highlight-default"><code>inflate</code></mark> с параметром attachToRoot = false, чтобы избежать лишних операций и улучшить производительность.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-8052-9615-f3ec1fff0340" class="code"><code class="language-Kotlin">val view = LayoutInflater.from(context).inflate(R.layout.my_layout, rootView, attachToRoot = true)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>AsyncLayoutInflater</code></mark></summary><div class="indented"><p id="10315285-0ae8-80b8-9851-d72013c9e837" class="">Позволяет асинхронно инфлейтить XML-разметку. Это полезно для улучшения производительности и избегания блокировки основного потока приложения при создании сложных или ресурсозатратных пользовательских интерфейсов. Выполняется в фоновом потоке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-804f-b046-cd8369cd85d0" class="code"><code class="language-Kotlin">AsyncLayoutInflater(context).inflate(R.layout.my_layout, null) { inflatedView, _, _ -&gt;
+    // Этот блок кода выполняется после завершения инфлейтации
+    // Вы можете использовать inflatedView для дальнейших операций
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Choreographer</code></mark></summary><div class="indented"><p id="3ede595d-01de-4c33-aa66-35f497bee1cf" class="">Класс, который помогает синхронизировать обновления экрана и анимации с частотой обновления экрана (refresh rate). Он играет ключевую роль в обеспечении плавности анимаций и поддержке высокой производительности пользовательского интерфейса.</p><p id="224b2948-c9e0-4b54-85b0-80a82a4815cb" class="">• Синхронизация с частотой обновления экрана. <mark class="highlight-default"><code>Choreographer</code></mark> обеспечивает, чтобы обновления и отрисовка экрана происходили синхронно с частотой обновления экрана, что помогает избегать мерцания и улучшает плавность анимаций.</p><p id="e128b31d-182b-442b-a954-b8b4df157630" class="">• Планирование и обработка кадров. Класс управляет планированием и обработкой кадров в цикле отображения. Он гарантирует, что обновления пользовательского интерфейса и отрисовка происходят в нужное время.</p><p id="478a8d1f-2143-43ea-ac4b-3ec67b8c27fa" class="">• Методы для добавления задач. <mark class="highlight-default"><code>Choreographer</code></mark> предоставляет методы для добавления задач, которые будут выполняться до или после обновления экрана.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>postFrameCallback</code></mark></summary><div class="indented"><p id="b58fa132-8f09-47b3-86f5-8e7582cd49c7" class="">Позволяет добавить <mark class="highlight-default"><code>FrameCallback</code></mark>, который будет вызван перед следующим обновлением экрана. Это полезно для выполнения задач, которые должны быть синхронизированы с кадровой частотой, например, обновление анимаций.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="056c4fac-8b62-49bd-ae77-51f0cd885244" class="code"><code class="language-Kotlin">Choreographer.getInstance().postFrameCallback(object: Choreographer.FrameCallback {
+    override fun doFrame(frameTimeNanos: Long) {
+        // Ваш код для обновления UI
+        Choreographer.getInstance().postFrameCallback(this) // Повторное добавление
+    }
+})</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>postCallback</code></mark></summary><div class="indented"><p id="bdac14b9-e9bd-40ea-af00-b47e690a8b84" class="">Позволяет добавить <mark class="highlight-default"><code>Runnable</code></mark> (или <mark class="highlight-default"><code>Callback</code></mark>) для выполнения задачи в заданный момент времени, например, после обновления экрана.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c93d9f1b-bf47-4edc-bd05-98d61b3dbba7" class="code"><code class="language-Kotlin">Choreographer.getInstance().postCallback(
+    Choreographer.CALLBACK_ANIMATION,
+    Runnable {
+        // Ваш код для выполнения после обновления экрана
+    },
+    null
+)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">SplashScreen</summary><div class="indented"><p id="12615285-0ae8-8075-b152-d515578f2961" class="">Предоставляет поддержку для создания экранов загрузки (splash screens) на устройствах, работающих на Android до версии 12 (API 31), а также упрощает реализацию сплэш-экранов на более поздних версиях. Она позволяет разработчикам легко и быстро настраивать сплэш-экраны с минимальными усилиями.</p><table id="12615285-0ae8-809b-928b-cc1a174af1aa" class="simple-table"><tbody><tr id="428052d3-090e-4353-90a6-3ffd2e422b63"><td id="xKPt" class="" style="width:594px"><a href="https://developer.android.com/develop/ui/views/launch/splash-screen/migrate">https://developer.android.com/develop/ui/views/launch/splash-screen/migrate</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Theme.SplashScreen</code></mark></summary><div class="indented"><p id="12615285-0ae8-80b1-b407-e1e8d968a622" class="">Специальная тема, предоставляемая библиотекой SplashScreen Compat в Android, предназначенная для настройки внешнего вида сплэш-экрана вашего приложения. Она позволяет определять, как будет выглядеть сплэш-экран при запуске приложения.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8078-873b-e8f0b56b8ad4" class="code"><code class="language-XML">&lt;style name=&quot;Theme.App.Starting&quot; parent=&quot;Theme.SplashScreen&quot;&gt;
+    &lt;item name=&quot;windowSplashScreenBackground&quot;&gt;@color/splash_background&lt;/item&gt;
+    &lt;item name=&quot;windowSplashScreenAnimatedIcon&quot;&gt;@drawable/ic_animated_icon&lt;/item&gt;
+    &lt;item name=&quot;windowSplashScreenIconBackgroundColor&quot;&gt;@color/icon_background&lt;/item&gt;
+    &lt;item name=&quot;windowSplashScreenAnimationDuration&quot;&gt;500&lt;/item&gt;
+    &lt;item name=&quot;android:windowSplashScreenBrandingImage&quot;&gt;@drawable/ic_branding_image&lt;/item&gt;
+    &lt;item name=&quot;postSplashScreenTheme&quot;&gt;@style/Theme.App&lt;/item&gt;
+&lt;/style&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>windowSplashScreenBackground</code></mark></summary><div class="indented"><p id="12615285-0ae8-8016-b2c5-f0c07e23aa27" class="">Задает цвет фона сплэш-экрана.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8091-a1c2-faa9b97b8c99" class="code"><code class="language-XML">&lt;item name=&quot;windowSplashScreenBackground&quot;&gt;@color/splash_background&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>windowSplashScreenAnimatedIcon</code></mark></summary><div class="indented"><p id="12615285-0ae8-80f7-9a85-f10130730f61" class="">Определяет иконку, отображаемую на сплэш-экране.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-80b7-aaa0-d6ccebb1fbcc" class="code"><code class="language-XML">&lt;item name=&quot;windowSplashScreenAnimatedIcon&quot;&gt;@drawable/ic_animated_icon&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>windowSplashScreenIconBackgroundColor</code></mark></summary><div class="indented"><p id="12615285-0ae8-80e0-bda1-eda3ced7dce3" class="">Устанавливает цвет фона для иконки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-800c-b2a5-c9d99c671598" class="code"><code class="language-XML">&lt;item name=&quot;windowSplashScreenIconBackgroundColor&quot;&gt;@color/icon_background&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>windowSplashScreenAnimationDuration</code></mark></summary><div class="indented"><p id="12615285-0ae8-80ab-8666-d1f2daf35fff" class="">Задает продолжительность анимации сплэш-экрана в миллисекундах.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8011-9330-fc90044d8ed2" class="code"><code class="language-XML">&lt;item name=&quot;windowSplashScreenAnimationDuration&quot;&gt;500&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>windowSplashScreenBrandingImage</code></mark></summary><div class="indented"><p id="12615285-0ae8-8095-b27e-cd96728c552b" class="">Добавляет брендированное изображение.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8039-8180-c76954efbd34" class="code"><code class="language-XML">&lt;item name=&quot;android:windowSplashScreenBrandingImage&quot;&gt;@drawable/ic_branding_image&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>postSplashScreenTheme</code></mark></summary><div class="indented"><p id="12615285-0ae8-80c8-88ad-e369c470bd5f" class="">Определяет тему, которая будет применяться после показа сплэш-экрана.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8015-8e61-e9a59a773748" class="code"><code class="language-XML">&lt;item name=&quot;postSplashScreenTheme&quot;&gt;@style/Theme.App&lt;/item&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>installSplashScreen</code></mark></summary><div class="indented"><p id="12615285-0ae8-80bc-a693-c388bd126006" class="">Используется для установки и настройки SplashScreen в <mark class="highlight-default"><code>Activity</code></mark>, обеспечивая возможность кастомизации его поведения и внешнего вида.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-8015-a842-c0a5616a7034" class="code"><code class="language-Kotlin">class MainActivity: ComponentActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // Устанавливаем экран загрузки
+        val splashScreen = installSplashScreen()
+        super.onCreate(savedInstanceState)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>setKeepOnScreenCondition</code></mark></summary><div class="indented"><p id="12615285-0ae8-8041-a33c-e944070f1f46" class="">Позволяет управлять тем, как долго экран загрузки будет оставаться видимым, в зависимости от определенного условия.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12615285-0ae8-80e4-a32c-ec7ea531517d" class="code"><code class="language-Kotlin">class MainActivity: ComponentActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { viewModel.splashLoading.value }
+        super.onCreate(savedInstanceState)
+    }
+}
+
+class MainViewModel: ViewModel() {
+	  private val _splashLoading = MutableStateFlow(true)
+    val splashLoading: StateFlow&lt;Boolean&gt; get() = _splashLoading.asStateFlow()
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>RenderThread</code></mark></summary><div class="indented"><p id="13f15285-0ae8-8013-9e9f-cabf0134c1f3" class="">Отдельный поток для повышения производительности и плавности интерфейса. <mark class="highlight-default"><code>RenderThread</code></mark> отвечает за отрисовку UI, разгружая основной поток (UI Thread) и минимизируя задержки и лаги в отображении интерфейса.</p><p id="db3e998b-c43e-4996-93dc-e0ddd6b47ee7" class=""><mark class="highlight-default">• Появился в Android 5.0 (API 21).</mark></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Gestures</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GestureDetector</code></mark></summary><div class="indented"><p id="10d15285-0ae8-80fd-b807-e49f13cdb836" class="">Класс, который используется для распознавания простых жестов пользователя, таких как нажатие, двойное нажатие, смахивание и прокрутка. Этот класс помогает обработать сложные взаимодействия с пользователем на основе последовательности событий касания.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-808e-aa91-d4bd95b6436a" class="code"><code class="language-Kotlin">val gestureDetector = GestureDetector(context, object: GestureDetector.SimpleOnGestureListener() {
+    override fun onSingleTapUp(e: MotionEvent): Boolean {
+        // обработка одиночного нажатия
+        return true
+    }
+
+    override fun onLongPress(e: MotionEvent) {
+        // обработка долгого нажатия
+    }
+
+    override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+        // обработка смахивания
+        return true
+    }
+})
+
+override fun onTouchEvent(event: MotionEvent): Boolean {
+    return gestureDetector.onTouchEvent(event)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>GestureListener</code></mark></summary><div class="indented"><p id="10d15285-0ae8-80f8-8405-f6c01911ec5c" class="">Интерфейс, который используется для обработки жестов пользователя.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onDown</code></mark></summary><div class="indented"><p id="10d15285-0ae8-8030-b174-f24eccff4363" class="">Вызывается при первом касании экрана.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onShowPress</code></mark></summary><div class="indented"><p id="10d15285-0ae8-8017-b458-e8f60874fc73" class="">Вызывается, когда палец касается экрана, но еще не отпущен.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onSingleTapUp</code></mark></summary><div class="indented"><p id="10d15285-0ae8-80ed-a577-ed14ac6746c9" class="">Вызывается при быстром одиночном нажатии.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onScroll</code></mark></summary><div class="indented"><p id="10d15285-0ae8-8069-96e7-f0cc355551f1" class="">Вызывается при движении пальца по экрану.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onLongPress</code></mark></summary><div class="indented"><p id="10d15285-0ae8-802c-ad22-f663c7387fa9" class="">Вызывается при долгом нажатии.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>onFling</code></mark></summary><div class="indented"><p id="10d15285-0ae8-808b-acdc-eb5f56d771a8" class="">Вызывается при быстром движении пальца по экрану (смахивании).</p></div></details></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Animations</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ValueAnimator</code></mark></summary><div class="indented"><p id="a3355d02-69df-4fe9-aad2-422cb9803efb" class="">Представляет механизм для запуска анимаций вычисления анимированных значений и установки их для целевых объектов. </p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ObjectAnimator</code></mark></summary><div class="indented"><p id="3fea1e00-de23-4052-911e-c7ef68d2f7df" class="">Наследуется от <mark class="highlight-default"><code>ValueAnimator</code></mark>. Обеспечивает поддержку анимации свойств целевых объектов. Анимации можно создавать из кода и XML.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ViewPropertyAnimator</code></mark></summary><div class="indented"><p id="d462834c-e1b2-4614-aeac-2515c073c739" class="">Вызывается че<mark class="highlight-default">рез </mark><mark class="highlight-default"><code>View.animate</code></mark><mark class="highlight-default">. Подходит для выпо</mark>лнения нескольких анимаций одновременно.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">HEX-Colors Opacity</summary><div class="indented"><table id="cff9dceb-0e5f-4f46-a2cb-20d6b3dbc2b5" class="simple-table"><thead class="simple-table-header"><tr id="edf4bc80-b892-41ae-856f-7d0abca94d13"><th id="ziRF" class="simple-table-header-color simple-table-header" style="width:63px">HEX</th><th id="U{[y" class="simple-table-header-color simple-table-header" style="width:74px">Opacity</th></tr></thead><tbody><tr id="366bd005-078c-4d87-833e-6aea15551ca1"><td id="ziRF" class="" style="width:63px">100%</td><td id="U{[y" class="" style="width:74px">FF</td></tr><tr id="f49672d0-c65f-405e-a7d1-3f51f18b38d1"><td id="ziRF" class="" style="width:63px">99%</td><td id="U{[y" class="" style="width:74px">FC</td></tr><tr id="8ab6a7c9-4a84-47fc-9652-4287dca4c929"><td id="ziRF" class="" style="width:63px">98%</td><td id="U{[y" class="" style="width:74px">FA</td></tr><tr id="96f83317-3d1d-4540-ae68-795c659aa2f9"><td id="ziRF" class="" style="width:63px">97%</td><td id="U{[y" class="" style="width:74px">F7</td></tr><tr id="7c91b2e9-f637-4619-ba60-af53b97e71a3"><td id="ziRF" class="" style="width:63px">96%</td><td id="U{[y" class="" style="width:74px">F5</td></tr><tr id="ef879dcc-52f7-4082-ac63-b8eedea54ebf"><td id="ziRF" class="" style="width:63px">95%</td><td id="U{[y" class="" style="width:74px">F2</td></tr><tr id="15d36f8e-a39f-4f80-896d-f54a9a9120c7"><td id="ziRF" class="" style="width:63px">94%</td><td id="U{[y" class="" style="width:74px">F0</td></tr><tr id="8392b408-300c-4b1c-b43b-8831fdd442fb"><td id="ziRF" class="" style="width:63px">93%</td><td id="U{[y" class="" style="width:74px">ED</td></tr><tr id="85be2b96-f3b4-4b8c-b0f7-bc4a272886c1"><td id="ziRF" class="" style="width:63px">92%</td><td id="U{[y" class="" style="width:74px">EB</td></tr><tr id="0ffa69e0-ecb0-41aa-b957-9dd98777bcd9"><td id="ziRF" class="" style="width:63px">91%</td><td id="U{[y" class="" style="width:74px">E8</td></tr><tr id="e2b31812-e979-42bf-8299-21966569d991"><td id="ziRF" class="" style="width:63px">90%</td><td id="U{[y" class="" style="width:74px">E6</td></tr><tr id="8824f144-664a-40ed-bdc3-2aff586c2e50"><td id="ziRF" class="" style="width:63px">89%</td><td id="U{[y" class="" style="width:74px">E3</td></tr><tr id="9f817e45-b94f-44a6-a44b-e4249d741287"><td id="ziRF" class="" style="width:63px">88%</td><td id="U{[y" class="" style="width:74px">E0</td></tr><tr id="e9e0b6ab-cfd9-4e13-b217-a68234240488"><td id="ziRF" class="" style="width:63px">87%</td><td id="U{[y" class="" style="width:74px">DE</td></tr><tr id="e68b13bf-ff47-488d-8d21-b8a6d2270af1"><td id="ziRF" class="" style="width:63px">86%</td><td id="U{[y" class="" style="width:74px">DB</td></tr><tr id="d8398557-65cc-4f33-a45e-8d91b98f31b9"><td id="ziRF" class="" style="width:63px">85%</td><td id="U{[y" class="" style="width:74px">D9</td></tr><tr id="e1deb832-e5b5-45e3-beb7-b48ba645e95e"><td id="ziRF" class="" style="width:63px">84%</td><td id="U{[y" class="" style="width:74px">D6</td></tr><tr id="0c5e40a6-f27a-4e5c-a489-df13fdf82f33"><td id="ziRF" class="" style="width:63px">83%</td><td id="U{[y" class="" style="width:74px">D4</td></tr><tr id="fada99f2-ebfc-4f85-a1fb-fabe4cc7fb28"><td id="ziRF" class="" style="width:63px">82%</td><td id="U{[y" class="" style="width:74px">D1</td></tr><tr id="c911582d-92b9-4e8f-8e43-70e2ec9d07f1"><td id="ziRF" class="" style="width:63px">81%</td><td id="U{[y" class="" style="width:74px">CF</td></tr><tr id="019afe24-e729-45a3-be57-1fe09e30aa27"><td id="ziRF" class="" style="width:63px">80%</td><td id="U{[y" class="" style="width:74px">CC</td></tr><tr id="ae50ae2e-795d-4f1f-9f02-6dd78b2e16b9"><td id="ziRF" class="" style="width:63px">79%</td><td id="U{[y" class="" style="width:74px">C9</td></tr><tr id="33ded55f-df89-46f8-b9a6-76992e461a42"><td id="ziRF" class="" style="width:63px">78%</td><td id="U{[y" class="" style="width:74px">C7</td></tr><tr id="dc930376-32f6-485c-887d-61d5ee8b8369"><td id="ziRF" class="" style="width:63px">77%</td><td id="U{[y" class="" style="width:74px">C4</td></tr><tr id="7704a412-bc1b-4362-bfc7-d0a9708ea5a8"><td id="ziRF" class="" style="width:63px">76%</td><td id="U{[y" class="" style="width:74px">C2</td></tr><tr id="9cc3303e-8cbf-4087-9256-824906144c86"><td id="ziRF" class="" style="width:63px">75%</td><td id="U{[y" class="" style="width:74px">BF</td></tr><tr id="6fbad305-cc20-460b-9fa8-3524cf32f2f1"><td id="ziRF" class="" style="width:63px">74%</td><td id="U{[y" class="" style="width:74px">BD</td></tr><tr id="e56e681c-5ab3-4409-9c39-b16f53132a6a"><td id="ziRF" class="" style="width:63px">73%</td><td id="U{[y" class="" style="width:74px">BA</td></tr><tr id="708e2148-7c07-4cd2-a31b-7bd1422646d3"><td id="ziRF" class="" style="width:63px">72%</td><td id="U{[y" class="" style="width:74px">B8</td></tr><tr id="1b9f344c-cd96-43f6-91df-b33a7cb61fca"><td id="ziRF" class="" style="width:63px">71%</td><td id="U{[y" class="" style="width:74px">B5</td></tr><tr id="1dd9cc4c-b4a5-4846-b13a-14400b8e6a3b"><td id="ziRF" class="" style="width:63px">70%</td><td id="U{[y" class="" style="width:74px">B3</td></tr><tr id="77b687ac-eb88-40d0-b474-b82c36712aa5"><td id="ziRF" class="" style="width:63px">69%</td><td id="U{[y" class="" style="width:74px">B0</td></tr><tr id="f90fc363-786f-4f6e-acdc-98a56f13964b"><td id="ziRF" class="" style="width:63px">68%</td><td id="U{[y" class="" style="width:74px">AD</td></tr><tr id="0e238eb1-96c1-409b-8f80-92f249ea5a4c"><td id="ziRF" class="" style="width:63px">67%</td><td id="U{[y" class="" style="width:74px">AB</td></tr><tr id="bc0c7a2e-3dac-4ee6-9b39-89d7b8d008f2"><td id="ziRF" class="" style="width:63px">66%</td><td id="U{[y" class="" style="width:74px">A8</td></tr><tr id="77c7dad1-c301-453c-a610-0ea21f2f27f6"><td id="ziRF" class="" style="width:63px">65%</td><td id="U{[y" class="" style="width:74px">A6</td></tr><tr id="e8eb3c5c-dcb2-4cac-82b6-62aeae18b52b"><td id="ziRF" class="" style="width:63px">64%</td><td id="U{[y" class="" style="width:74px">A3</td></tr><tr id="49337406-14ed-49c6-a121-561969ea8852"><td id="ziRF" class="" style="width:63px">63%</td><td id="U{[y" class="" style="width:74px">A1</td></tr><tr id="9f48c3b8-7718-44f9-90f1-0c4421c1728b"><td id="ziRF" class="" style="width:63px">62%</td><td id="U{[y" class="" style="width:74px">9E</td></tr><tr id="28eb8c40-ae08-47d6-8a1a-29ea084448f3"><td id="ziRF" class="" style="width:63px">61%</td><td id="U{[y" class="" style="width:74px">9C</td></tr><tr id="089f82f5-6b95-429d-a7d7-1f29ca9ecf57"><td id="ziRF" class="" style="width:63px">60%</td><td id="U{[y" class="" style="width:74px">99</td></tr><tr id="1d849385-792e-40ed-adcd-b5212047b5da"><td id="ziRF" class="" style="width:63px">59%</td><td id="U{[y" class="" style="width:74px">96</td></tr><tr id="354e68ed-e78f-461c-acbe-12afd567d71a"><td id="ziRF" class="" style="width:63px">58%</td><td id="U{[y" class="" style="width:74px">94</td></tr><tr id="7dc56982-d3fc-4085-88ba-7b3f2c0fa181"><td id="ziRF" class="" style="width:63px">57%</td><td id="U{[y" class="" style="width:74px">91</td></tr><tr id="9694fb1d-801c-4f1d-a9b2-e05f89e90508"><td id="ziRF" class="" style="width:63px">56%</td><td id="U{[y" class="" style="width:74px">8F</td></tr><tr id="8bce2cf8-983a-42ef-ae41-c59c826fda78"><td id="ziRF" class="" style="width:63px">55%</td><td id="U{[y" class="" style="width:74px">8C</td></tr><tr id="5ad1208e-ca68-42b0-a92b-9bf5929fe625"><td id="ziRF" class="" style="width:63px">54%</td><td id="U{[y" class="" style="width:74px">8A</td></tr><tr id="ca4ca00b-d092-4662-98ec-e5d4e49185df"><td id="ziRF" class="" style="width:63px">53%</td><td id="U{[y" class="" style="width:74px">87</td></tr><tr id="6cb1e00d-c2e5-43b9-a6fe-af7d500a129c"><td id="ziRF" class="" style="width:63px">52%</td><td id="U{[y" class="" style="width:74px">85</td></tr><tr id="9c2799d2-30af-458e-978e-25a936c28503"><td id="ziRF" class="" style="width:63px">51%</td><td id="U{[y" class="" style="width:74px">82</td></tr><tr id="d8bf4f34-f70a-49f3-9887-74d734609a24"><td id="ziRF" class="" style="width:63px">50%</td><td id="U{[y" class="" style="width:74px">80</td></tr><tr id="872668ed-68b1-4eb2-a122-e73edad7f661"><td id="ziRF" class="" style="width:63px">49%</td><td id="U{[y" class="" style="width:74px">7D</td></tr><tr id="0b16448c-cced-4b70-8f5e-9577e774c6f9"><td id="ziRF" class="" style="width:63px">48%</td><td id="U{[y" class="" style="width:74px">7A</td></tr><tr id="bb9957e6-80c6-4d24-99a6-c5c88a47e1d8"><td id="ziRF" class="" style="width:63px">47%</td><td id="U{[y" class="" style="width:74px">78</td></tr><tr id="31bf7510-0f85-41e7-826c-dac54af94179"><td id="ziRF" class="" style="width:63px">46%</td><td id="U{[y" class="" style="width:74px">75</td></tr><tr id="33066a15-3787-4e97-91b5-88aaccd285ff"><td id="ziRF" class="" style="width:63px">45%</td><td id="U{[y" class="" style="width:74px">73</td></tr><tr id="5658c82f-2218-42cd-b587-5899be59efa4"><td id="ziRF" class="" style="width:63px">44%</td><td id="U{[y" class="" style="width:74px">70</td></tr><tr id="82ffcc53-7865-4fbc-9b3c-fa0c97d6ceee"><td id="ziRF" class="" style="width:63px">43%</td><td id="U{[y" class="" style="width:74px">6E</td></tr><tr id="6b288290-88c9-4186-b284-0b2d91c78368"><td id="ziRF" class="" style="width:63px">42%</td><td id="U{[y" class="" style="width:74px">6B</td></tr><tr id="318b396f-873c-4df0-8f30-8d5e0a9822be"><td id="ziRF" class="" style="width:63px">41%</td><td id="U{[y" class="" style="width:74px">69</td></tr><tr id="3886a7c8-26b4-41bb-8017-33da70c98b66"><td id="ziRF" class="" style="width:63px">40%</td><td id="U{[y" class="" style="width:74px">66</td></tr><tr id="8151e78c-3c38-4557-828c-30f4200c5754"><td id="ziRF" class="" style="width:63px">39%</td><td id="U{[y" class="" style="width:74px">63</td></tr><tr id="b2efad44-a6c6-47e2-acf2-8760b3526430"><td id="ziRF" class="" style="width:63px">38%</td><td id="U{[y" class="" style="width:74px">61</td></tr><tr id="527046f2-c5a4-4378-93af-f15174cf2299"><td id="ziRF" class="" style="width:63px">37%</td><td id="U{[y" class="" style="width:74px">5E</td></tr><tr id="6f412621-23aa-4d3b-95ba-7025d9b0d798"><td id="ziRF" class="" style="width:63px">36%</td><td id="U{[y" class="" style="width:74px">5C</td></tr><tr id="dda6c8a2-90c2-4234-addf-bc3bf1c9b9e7"><td id="ziRF" class="" style="width:63px">35%</td><td id="U{[y" class="" style="width:74px">59</td></tr><tr id="7d0f07b0-c647-4c7b-bbd2-dd2afa227ba0"><td id="ziRF" class="" style="width:63px">34%</td><td id="U{[y" class="" style="width:74px">57</td></tr><tr id="5f33477a-3d5b-47c5-b4e0-d47f90935b5b"><td id="ziRF" class="" style="width:63px">33%</td><td id="U{[y" class="" style="width:74px">54</td></tr><tr id="27ff6383-b120-4a96-ae9a-5f7ab184edae"><td id="ziRF" class="" style="width:63px">32%</td><td id="U{[y" class="" style="width:74px">52</td></tr><tr id="fd639a85-40dc-499d-90c4-440f43cba348"><td id="ziRF" class="" style="width:63px">31%</td><td id="U{[y" class="" style="width:74px">4F</td></tr><tr id="0a8473a0-4a54-4722-8b44-1a4e4d14cf16"><td id="ziRF" class="" style="width:63px">30%</td><td id="U{[y" class="" style="width:74px">4D</td></tr><tr id="d4e75a13-8480-4e6a-8d99-e40723f1bff5"><td id="ziRF" class="" style="width:63px">29%</td><td id="U{[y" class="" style="width:74px">4A</td></tr><tr id="e99d4730-2bb4-484e-a4cb-68948284a464"><td id="ziRF" class="" style="width:63px">28%</td><td id="U{[y" class="" style="width:74px">47</td></tr><tr id="81e2ad32-cb02-4ca0-9fd2-9054f5655bef"><td id="ziRF" class="" style="width:63px">27%</td><td id="U{[y" class="" style="width:74px">45</td></tr><tr id="b104fe74-ce74-4b9f-91ca-b17a2b916aa6"><td id="ziRF" class="" style="width:63px">26%</td><td id="U{[y" class="" style="width:74px">42</td></tr><tr id="d026f866-4155-49f2-9890-881433f85711"><td id="ziRF" class="" style="width:63px">25%</td><td id="U{[y" class="" style="width:74px">40</td></tr><tr id="f388843a-8211-42a6-b8ca-573077042f34"><td id="ziRF" class="" style="width:63px">24%</td><td id="U{[y" class="" style="width:74px">3D</td></tr><tr id="4f180dec-39cd-4fc5-a62c-fe06fc63d09b"><td id="ziRF" class="" style="width:63px">23%</td><td id="U{[y" class="" style="width:74px">3B</td></tr><tr id="998e6ce4-3bf7-4efb-874a-8e89d68dc99e"><td id="ziRF" class="" style="width:63px">22%</td><td id="U{[y" class="" style="width:74px">38</td></tr><tr id="d6e437f8-8aa3-412e-992d-b94f0ee0390a"><td id="ziRF" class="" style="width:63px">21%</td><td id="U{[y" class="" style="width:74px">36</td></tr><tr id="f4ee3159-ab26-4c81-b8b3-0cef915274be"><td id="ziRF" class="" style="width:63px">20%</td><td id="U{[y" class="" style="width:74px">33</td></tr><tr id="70a948ea-1914-4014-947b-bddd433bffcd"><td id="ziRF" class="" style="width:63px">19%</td><td id="U{[y" class="" style="width:74px">30</td></tr><tr id="8cb82d96-7ec9-45fc-9bf2-3b61682d2a2e"><td id="ziRF" class="" style="width:63px">18%</td><td id="U{[y" class="" style="width:74px">2E</td></tr><tr id="64f14492-87cb-459f-9863-ff1c7b7d9f26"><td id="ziRF" class="" style="width:63px">17%</td><td id="U{[y" class="" style="width:74px">2B</td></tr><tr id="35464153-1d92-4938-9355-2a83d89055b1"><td id="ziRF" class="" style="width:63px">16%</td><td id="U{[y" class="" style="width:74px">29</td></tr><tr id="bf26d6a4-6cc1-4d04-8fda-1aa03eb24678"><td id="ziRF" class="" style="width:63px">15%</td><td id="U{[y" class="" style="width:74px">26</td></tr><tr id="1ec73468-5f50-471f-83f6-c01c6900c370"><td id="ziRF" class="" style="width:63px">14%</td><td id="U{[y" class="" style="width:74px">24</td></tr><tr id="2cee6ba9-6557-4e39-8663-7837e8dac94c"><td id="ziRF" class="" style="width:63px">13%</td><td id="U{[y" class="" style="width:74px">21</td></tr><tr id="077784ee-4289-47ea-9cae-58100f9c86a4"><td id="ziRF" class="" style="width:63px">12%</td><td id="U{[y" class="" style="width:74px">1F</td></tr><tr id="8eb59f0d-8ea8-4ba2-b675-1f09fa77478a"><td id="ziRF" class="" style="width:63px">11%</td><td id="U{[y" class="" style="width:74px">1C</td></tr><tr id="5ba32bb0-28a4-4d48-9bc0-6783228ba96e"><td id="ziRF" class="" style="width:63px">10%</td><td id="U{[y" class="" style="width:74px">1A</td></tr><tr id="18dc3ff3-f700-46f6-8e56-702f3cf7b17f"><td id="ziRF" class="" style="width:63px">9%</td><td id="U{[y" class="" style="width:74px">17</td></tr><tr id="bf7f6e6f-5a76-4c60-aea4-5a8ac0ba1aa8"><td id="ziRF" class="" style="width:63px">8%</td><td id="U{[y" class="" style="width:74px">14</td></tr><tr id="81772f49-8627-45f0-b9ff-16b35f700c03"><td id="ziRF" class="" style="width:63px">7%</td><td id="U{[y" class="" style="width:74px">12</td></tr><tr id="baa8756c-6274-497c-9622-cb5d6e9d9aad"><td id="ziRF" class="" style="width:63px">6%</td><td id="U{[y" class="" style="width:74px">0F</td></tr><tr id="4b471255-e610-463d-a953-1e1db818e344"><td id="ziRF" class="" style="width:63px">5%</td><td id="U{[y" class="" style="width:74px">0D</td></tr><tr id="825a1066-d182-43e4-8530-7851a914a494"><td id="ziRF" class="" style="width:63px">4%</td><td id="U{[y" class="" style="width:74px">0A</td></tr><tr id="3432c1af-224a-4e79-8ef0-a13057a269aa"><td id="ziRF" class="" style="width:63px">3%</td><td id="U{[y" class="" style="width:74px">08</td></tr><tr id="21a08160-dffc-40ee-9e88-09c607bcdb9f"><td id="ziRF" class="" style="width:63px">2%</td><td id="U{[y" class="" style="width:74px">05</td></tr><tr id="c116ba87-44ff-43ed-a339-9dae9d1a1d2e"><td id="ziRF" class="" style="width:63px">1%</td><td id="U{[y" class="" style="width:74px">03</td></tr><tr id="72c97b6b-e32d-4d39-bdf4-20e0fe060a6c"><td id="ziRF" class="" style="width:63px">0%</td><td id="U{[y" class="" style="width:74px">00</td></tr></tbody></table></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Server-Driven UI (SDUI)</strong></summary><div class="indented"><p id="13f15285-0ae8-8051-ac8e-d875e415442f" class="">Подход к разработке, в котором сервер управляет отображением пользовательского интерфейса (UI) на клиенте. Вместо жестко закодированного UI на стороне клиента, сервер отправляет инструкции или JSON-описание, и клиентский код строит интерфейс на их основе.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80d8-af93-d6849747bb69" class="code"><code class="language-JSON">{
+    &quot;type&quot;: &quot;VerticalLayout&quot;,
+    &quot;children&quot;: [
+        {
+            &quot;type&quot;: &quot;Text&quot;,
+            &quot;text&quot;: &quot;Добро пожаловать!&quot;
+        },
+        {
+            &quot;type&quot;: &quot;Button&quot;,
+            &quot;text&quot;: &quot;Начать&quot;,
+            &quot;action&quot;: &quot;navigate_to_start&quot;
+        }
+    ]
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f15285-0ae8-80b9-87c6-ca048c5ed09f" class="code"><code class="language-Kotlin">fun renderUI(json: String) {
+    val uiData = parseJson(json)
+    when (uiData.type) {
+        &quot;Text&quot; -&gt; Text(text = uiData.text)
+        &quot;Button&quot; -&gt; Button(onClick = { handleAction(uiData.action) }) {
+            Text(text = uiData.text)
+        }
+        &quot;VerticalLayout&quot; -&gt; Column {
+            uiData.children.forEach { renderUI(it) }
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (10)</mark></summary><div class="indented"><ul id="15515285-0ae8-805e-86ba-cb1870c3a465" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>XML (2)</strong></mark></summary><ol type="1" id="71042e9c-c2ee-4ad0-bde7-e42294c83ae7" class="numbered-list" start="1"><li>Для чего используется тег merge в XML?<p id="3a5f87b5-5b10-4726-8f29-d56bd2f39bc3" class=""><mark class="highlight-teal">Для повторного использования иерархий представлений, позволяя вставлять содержимое одного XML-файла в другой. Это упрощает управление разметкой и уменьшает дублирование кода.</mark></p></li></ol><ol type="1" id="1db92660-045b-454b-8f3e-83e77d9a7698" class="numbered-list" start="2"><li>Для чего используется тег include в XML?<p id="cd3d0c75-1749-443c-9ba5-d2eb72b387f2" class=""><mark class="highlight-teal">Для повторного использования разметки, позволяя вставлять содержимое одного XML-файла в другой. Это упрощает управление представлениями и уменьшает дублирование кода.</mark></p></li></ol></details></li></ul><ul id="15515285-0ae8-8081-8599-cf1437297460" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>Другие (8)</strong></mark></summary><ol type="1" id="340ac078-6304-406d-a50c-6e2c123c22ed" class="numbered-list" start="1"><li>C какой частотой должен отрисовываться UI?<p id="26d2d264-ffe3-4945-b17e-39734d595134" class=""><mark class="highlight-teal">UI должен отрисовываться с частотой не менее 60 кадров в секунду (FPS) для обеспечения плавного и отзывчивого пользовательского интерфейса. Это соответствует обновлению экрана каждые 16,67 миллисекунд. Если частота падает ниже 30 FPS, пользователь может заметить задержки и подтормаживания, что ухудшает опыт использования приложения.</mark></p></li></ol><ol type="1" id="a9f6c61c-3ab6-4361-9541-9cde401faf8a" class="numbered-list" start="2"><li>Что такое RenderThread?<p id="10815285-0ae8-80e0-8ac4-cd37ec63a0d8" class=""><mark class="highlight-teal">Это отдельный поток в Android, используемый для операций отрисовки пользовательского интерфейса, таких как анимации и графика. Он разгружает основной поток приложения, улучшая отзывчивость интерфейса и снижая задержки при отрисовке, что особенно важно в графически насыщенных приложениях.</mark></p></li></ol><ol type="1" id="36496373-5d35-49a8-bf9d-3719ae51c289" class="numbered-list" start="3"><li>Какие есть инструменты для создания анимаций?<p id="d5d0a5ae-e10a-4ef2-b0a9-884fdaa12da6" class=""><mark class="highlight-teal"><code>ValueAnimator</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>PropertyAnimator</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>ObjectAnimator</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>MotionLayout</code></mark></p></li></ol><ol type="1" id="10815285-0ae8-8006-b61a-ec07db855356" class="numbered-list" start="4"><li>Как в Android обрабатывать жесты?<p id="09669151-fd84-41ef-ac37-407d9f541955" class="">• <mark class="highlight-teal"><code>GestureDetector</code></mark><mark class="highlight-teal"> для распознавания стандартных жестов, таких как одиночное нажатие, двойное нажатие, пролистывание и т.д. Можно переопределить методы  </mark><mark class="highlight-teal"><code>onSingleTapConfirmed()</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>onFling()</code></mark><mark class="highlight-teal"> для обработки конкретных жестов.</mark></p><p id="34d2367c-6ba5-41aa-9cd1-8cd542f999c0" class="">• <mark class="highlight-teal"><code>ScaleGestureDetector</code></mark><mark class="highlight-teal"> для обработки жестов масштабирования, позволяя обрабатывать увеличение и уменьшение масштаба.</mark></p><p id="bcbbdf65-d592-4144-8060-dd258136f7ba" class="">• <mark class="highlight-teal"><code>TouchListener</code></mark><mark class="highlight-teal"> реализуйте интерфейс </mark><mark class="highlight-teal"><code>OnTouchListener</code></mark><mark class="highlight-teal"> на </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> для получения детальных данных о прикосновениях и отслеживания движений пальцев.</mark></p></li></ol><ol type="1" id="10815285-0ae8-80e1-a4b1-dd77a56eacfd" class="numbered-list" start="5"><li>Что нельзя делать с MotionEvent?<p id="10815285-0ae8-802a-85a8-d57b8d1619cc" class=""><mark class="highlight-teal">Сохранять ссылки на него. Поскольку события генерируются в большом количестве, а система использует ограниченный пул объектов, сохранять ссылки на </mark><mark class="highlight-teal"><code>MotionEvent</code></mark><mark class="highlight-teal"> неправильно. Лучше обрабатывать события сразу, чтобы избежать проблем с производительностью и утечками памяти.</mark></p></li></ol><ol type="1" id="f1beea5e-5679-4a8d-8098-338a5285949a" class="numbered-list" start="6"><li>Как оптимизировать UI?<p id="10315285-0ae8-80c1-b5c9-e9bac6d4339c" class="">• <mark class="highlight-teal">Не рисовать фон в XML. устанавливать его в </mark><mark class="highlight-teal"><code>windowBackground</code></mark><mark class="highlight-teal">.</mark></p><p id="10315285-0ae8-80ea-835d-cec5c84b79ae" class="">• <mark class="highlight-teal">Задавать размеры </mark><mark class="highlight-teal"><code>View</code></mark><mark class="highlight-teal"> если они известны чтобы не тратить ресурсы на измерение.</mark></p></li></ol><ol type="1" id="12015285-0ae8-807b-bee4-dcaff5dbc150" class="numbered-list" start="7"><li>Какой метод используется для получения ссылки на компонент из макета?<p id="12015285-0ae8-8081-bb5a-ca705c8baf1c" class="">• <mark class="highlight-red"><code>getViewByld()</code></mark></p><p id="12015285-0ae8-80e5-ac40-c4845f33cd6b" class="">• <mark class="highlight-teal"><code>findViewByld()</code></mark></p><p id="12015285-0ae8-80cb-b1b1-d218236a9aa9" class="">• <mark class="highlight-red"><code>findComponentByld()</code></mark></p><p id="12015285-0ae8-800a-93af-e7e78aeb2656" class="">• <mark class="highlight-red"><code>getComponentByld()</code></mark></p></li></ol><ol type="1" id="af4a3d79-edc6-4d0f-b482-2440c6854de4" class="numbered-list" start="8"><li>Какой из следующих классов используется для создания анимаций в Android?<p id="5469aa2f-414e-4149-8b9b-5654194bae75" class="">• <mark class="highlight-red"><code>AnimationManager</code></mark></p><p id="1e65062e-89bb-4ff6-bc35-6abe36c5830a" class="">• <mark class="highlight-red"><code>AnimationController</code></mark></p><p id="475db272-5306-4d60-83ed-45bc45dab7cc" class="">• <mark class="highlight-teal"><code>AnimationUtils</code></mark></p><p id="72173fc5-1028-4ae9-b848-3098845f6747" class="">• <mark class="highlight-red"><code>AnimationHandler</code></mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

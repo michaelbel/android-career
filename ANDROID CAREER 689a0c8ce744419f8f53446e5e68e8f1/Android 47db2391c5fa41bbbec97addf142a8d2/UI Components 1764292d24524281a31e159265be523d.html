@@ -1,0 +1,1115 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>UI Components</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1764292d-2452-4281-a31e-159265be523d" class="page sans"><header><img class="page-cover-image" src="UI%20Components%201764292d24524281a31e159265be523d/cover-android-ui-components.webp" style="object-position:center 25.380000000000003%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="UI%20Components%201764292d24524281a31e159265be523d/icon-android-platform.svg"/></div><h1 class="page-title">UI Components</h1><p class="page-description"></p></header><div class="page-body"><table id="e4a5c142-5a52-4f28-8abe-9a2ec301ffa5" class="simple-table"><tbody><tr id="1acffa02-3fb5-4ca0-b13b-d391df72131c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/declaring-layout">https://developer.android.com/develop/ui/views/layout/declaring-layout</a></td></tr><tr id="b3382935-802b-49a5-b78d-7cab64285c55"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/responsive-adaptive-design-with-views">https://developer.android.com/develop/ui/views/layout/responsive-adaptive-design-with-views</a></td></tr><tr id="0e5acde2-1321-43f5-9513-4e9b01e5ead0"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/window-size-classes">https://developer.android.com/develop/ui/views/layout/window-size-classes</a></td></tr><tr id="a85216ff-539d-4daf-974e-a5c2c61344bb"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/support-multi-window-mode">https://developer.android.com/develop/ui/views/layout/support-multi-window-mode</a></td></tr><tr id="a8d2d106-e3e1-4e2d-bd89-8c66f7e748a8"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/constraint-layout">https://developer.android.com/develop/ui/views/layout/constraint-layout</a></td></tr><tr id="170eea46-aa9a-4383-943c-7934bc74bb1c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/recyclerview">https://developer.android.com/develop/ui/views/layout/recyclerview</a></td></tr><tr id="6cc28da9-c11f-4a50-af25-b29454d8b275"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/recyclerview-custom">https://developer.android.com/develop/ui/views/layout/recyclerview-custom</a></td></tr><tr id="099f3416-e3fc-44b0-9938-81397fff46ec"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/cardview">https://developer.android.com/develop/ui/views/layout/cardview</a></td></tr><tr id="4f196a55-b63a-41ef-89b8-93746b4f3a70"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/twopane">https://developer.android.com/develop/ui/views/layout/twopane</a></td></tr><tr id="47aba64e-846d-4a90-8c04-60f2c276233c"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/linear">https://developer.android.com/develop/ui/views/layout/linear</a></td></tr><tr id="a401fdae-a4fa-4585-aa68-a47085385d13"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/binding">https://developer.android.com/develop/ui/views/layout/binding</a></td></tr><tr id="43211940-40c8-4bf6-bb28-66480357ea57"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/develop/ui/views/layout/relative">https://developer.android.com/develop/ui/views/layout/relative</a></td></tr><tr id="48e57aa6-0454-4485-ad10-0afb5bbb10e3"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/reference/kotlin/android/widget/RemoteViews">https://developer.android.com/reference/kotlin/android/widget/RemoteViews</a></td></tr><tr id="761e72e5-1b0f-48b7-a009-a1fa09b0a97b"><td id="lyyA" class="" style="width:578px"><a href="https://developer.android.com/reference/kotlin/android/widget/FrameLayout">https://developer.android.com/reference/kotlin/android/widget/FrameLayout</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ViewStub</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80d9-9968-e32b97aabecd" class="">Загружает и отображает представление только при необходимости. Используется для оптимизации производительности, чтобы избежать ненужной загрузки ресурсов до того, как они понадобятся.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-800a-9d61-f1fc9d1f6e6d" class="code"><code class="language-XML">&lt;LinearLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ViewStub
+        android:id=&quot;@+id/view_stub&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout=&quot;@layout/your_layout_to_inflate&quot; /&gt;
+        
+&lt;/LinearLayout&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10315285-0ae8-806d-ac2a-ddbf54ba7db8" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Получаем ViewStub
+        val viewStub: ViewStub = findViewById(R.id.view_stub)
+
+        // Загружаем макет
+        viewStub.inflate()
+    }
+}</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>inflate</code></mark></summary><div class="indented"><p id="14a15285-0ae8-806a-ab5e-e8bd644ba98a" class="">Загружает макет из ресурса и возвращает его как иерархию View, которую можно добавить в контейнер.</p></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>FrameLayout</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8020-aef1-fe6f2037a489" class="">Контейнер, который размещает элементы один на другом. Используется для простого наложения или отображения одного элемента в конкретном месте.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>LinearLayout</code></mark></summary><div class="indented"><p id="14a15285-0ae8-801e-8a24-d41b383ceaca" class="">Контейнер для расположения элементов в одном ряду или колонке. Все элементы выстраиваются последовательно, либо по горизонтали, либо по вертикали.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ConstraintLayout</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8034-8037-d282809d2cbf" class="">Контейнер для гибкого расположения элементов интерфейса с помощью ограничений. Упрощает создание сложных макетов без вложенных контейнеров и улучшает производительность.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>MotionLayout</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80d3-9cce-ff7efe60f5c7" class="">Позволяет создавать сложные анимации и переходы между различными состояниями UI. Он является расширением <mark class="highlight-default"><code>ConstraintLayout</code></mark> и упрощает работу с анимациями, особенно для интерфейсов с динамическими переходами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afe4f48f-e481-4431-bc4a-ac2eefff3989" class="code"><code class="language-XML">&lt;MotionLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:layoutDescription=&quot;@xml/motion_scene&quot;&gt;
+
+    &lt;ConstraintLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/button&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Click me&quot;
+            android:layout_centerInParent=&quot;true&quot; /&gt;
+            
+    &lt;/ConstraintLayout&gt;
+
+&lt;/MotionLayout&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>MotionScene</code></mark></summary><div class="indented"><p id="d138f281-62c5-4fcb-bbfd-361c26dfde73" class="">Описывает анимации и переходы между различными состояниями интерфейса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8068-af3d-f3260fbe4f3d" class="code"><code class="language-XML">&lt;MotionScene 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+
+    &lt;Transition
+        app:constraintSetStart=&quot;@id/startState&quot;
+        app:constraintSetEnd=&quot;@id/endState&quot;
+        app:motionDuration=&quot;1000&quot;&gt;
+        
+        &lt;OnSwipe
+            app:touchAnchorId=&quot;@id/button&quot;
+            app:dragDirection=&quot;dragHorizontal&quot;
+            app:touchAnchorSide=&quot;center&quot; /&gt;
+            
+    &lt;/Transition&gt;
+
+    &lt;ConstraintSet 
+		    android:id=&quot;@+id/startState&quot;&gt;
+		    
+        &lt;Constraint
+            android:id=&quot;@id/button&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_centerInParent=&quot;true&quot; /&gt;
+            
+    &lt;/ConstraintSet&gt;
+
+    &lt;ConstraintSet android:id=&quot;@+id/endState&quot;&gt;
+    
+        &lt;Constraint
+            android:id=&quot;@id/button&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_alignParentRight=&quot;true&quot; /&gt;
+            
+    &lt;/ConstraintSet&gt;
+    
+&lt;/MotionScene&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Transition</code></mark></summary><div class="indented"><p id="962c5307-a641-4a14-afc8-38b77beb51df" class="">Описание анимации, которая определяет, как элементы будут изменяться между различными состояниями. <mark class="highlight-default"><code>Transition</code></mark> связывает два состояния (start и end) и управляет анимацией, которая происходит при переходе между ними.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-804a-836d-d135a6d4662c" class="code"><code class="language-XML">&lt;MotionLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:layoutDescription=&quot;@xml/motion_scene&quot;&gt;
+
+    &lt;ConstraintLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/button&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Click me&quot;
+            android:layout_centerInParent=&quot;true&quot; /&gt;
+            
+    &lt;/ConstraintLayout&gt;
+
+    &lt;Transition
+        app:motionDuration=&quot;500&quot;
+        app:motionStagger=&quot;0.1&quot;
+        app:motionInterpolator=&quot;easeInOut&quot;
+        app:constraintSetStart=&quot;@id/startState&quot;
+        app:constraintSetEnd=&quot;@id/endState&quot; /&gt;
+        
+&lt;/MotionLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>OnSwipe</code></mark></summary><div class="indented"><p id="10315285-0ae8-80fe-af06-e1e99ea80326" class="">Cобытие, которое отслеживает свайпы пользователя (горизонтальные или вертикальные движения) и на основе этого изменяет состояние анимации или переходов в <mark class="highlight-default"><code>MotionLayout</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80bc-b1d0-cf3cb0229a90" class="code"><code class="language-XML">&lt;MotionLayout 
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:layoutDescription=&quot;@xml/motion_scene&quot;&gt;
+
+    &lt;ConstraintLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/button&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Swipe Me&quot;
+            android:layout_centerInParent=&quot;true&quot; /&gt;
+            
+    &lt;/ConstraintLayout&gt;
+
+    &lt;OnSwipe
+        app:touchAnchorId=&quot;@id/button&quot;
+        app:touchAnchorSide=&quot;center&quot;
+        app:dragDirection=&quot;dragHorizontal&quot;
+        app:motionProgress=&quot;0.5&quot; /&gt;
+
+&lt;/MotionLayout&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>RemoteViews</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80e6-8252-c09ab74ab6eb" class="">Класс для обновления UI в компонентах, таких как виджеты и уведомления.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8004-bb76-e22a449c9a48" class="code"><code class="language-Kotlin">val remoteViews = RemoteViews(packageName, R.layout.widget_layout)
+remoteViews.setTextViewText(R.id.widget_text_view, &quot;Hello, RemoteViews!&quot;)
+
+val appWidgetManager = AppWidgetManager.getInstance(context)
+appWidgetManager.updateAppWidget(ComponentName(context, MyWidgetProvider::class.java), remoteViews)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>TextView</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8051-bae3-f870564a02ce" class="">Отображает текст.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8016-8d4c-f74d6fbfdc77" class="code"><code class="language-XML">&lt;TextView
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Пример текста&quot;
+    android:textSize=&quot;18sp&quot;
+    android:textColor=&quot;#000000&quot;
+    android:textStyle=&quot;bold&quot; /&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>PrecomputedText</code></mark></summary><div class="indented"><p id="14a15285-0ae8-80e6-8f2f-dc82198c758e" class="">Используется для предварительного вычисления текста.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11af158a-9c37-453b-92a9-746c4eccee51" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">fun TextView.setTextAsync(longString: String) {
+    val params = this.textMetricsParams
+    val ref = WeakReference(this)
+
+    CoroutineScope.launch(Dispatchers.Default) {
+        val precomputedText = PrecomputedText.create(longString, params)
+        withContext(Dispatchers.Main) {
+            ref.get()?.let { textView -&gt;
+                textView.text = precomputedText
+            }
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Spannable</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8095-8358-c5dac37ce815" class="">Позволяет изменять и стилизовать текст на уровне символов или подстрок в тексте.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80c2-a944-c33cb317c557" class="code"><code class="language-Kotlin">val spannable = SpannableString(&quot;Текст с разными стилями&quot;)
+spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+spannable.setSpan(ForegroundColorSpan(Color.RED), 5, 7, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+textView.text = spannable</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Compound Drawable</code></mark></summary><div class="indented"><p id="fde49da0-f460-42bf-891a-6c0871d0a080" class="">Способ добавления изображений (drawable) внутри <mark class="highlight-default"><code>TextView</code></mark><mark class="highlight-default">.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80ce-b67c-f3e1a6c8aadf" class="code"><code class="language-XML">&lt;TextView
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Пример текста&quot;
+    android:drawableLeft=&quot;@drawable/ic_example&quot;
+    android:drawablePadding=&quot;8dp&quot; /&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ScrollView</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8017-ae4f-c693650e3e32" class="">Позволяет отображать контент, выходящий за пределы экрана, с возможностью прокрутки.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8004-9ad2-deea295a0d05" class="code"><code class="language-XML">&lt;ScrollView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;&gt;
+        &lt;TextView android:text=&quot;Элемент 1&quot; /&gt;
+        &lt;TextView android:text=&quot;Элемент 2&quot; /&gt;
+    &lt;/LinearLayout&gt;
+    
+&lt;/ScrollView&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>fillViewport</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8035-8b0a-eba7e98c5bbd" class="">Атрибут, который позволяет растянуть его дочерний элемент до полного размера экрана, если контента недостаточно для прокрутки. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-803b-8c35-edb0d4807a82" class="code"><code class="language-XML">android:fillViewport=&quot;true&quot;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Constraintlayout</code></mark></summary><div class="indented"><p id="dd37ba69-0242-480a-ab8e-5cc791f9abf2" class="">Гибкий и мощный контейнер для размещения UI-элементов в Android. Позволяет создавать сложные интерфейсы с минимальным количеством вложенных элементов, упрощая управление расположением.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8026-bad3-e269b7523fdc" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Flow</code></mark></summary><div class="indented"><p id="80a83ca9-d532-4a09-bdc6-84f3397d3109" class="">Позволяет автоматически располагать дочерние элементы в нескольких строках или столбцах, создавая адаптивные и гибкие макеты. Он особенно полезен, когда нужно выстроить элементы в сетку или в ряд с динамическим распределением.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8035-8927-fb9854e2f198" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;androidx.constraintlayout.widget.Flow
+        android:id=&quot;@+id/flow&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:flow_wrapMode=&quot;chain&quot;
+        app:flow_horizontalAlign=&quot;start&quot;
+        app:flow_verticalAlign=&quot;top&quot;&gt;
+
+        &lt;Button
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Button 1&quot; /&gt;
+        &lt;Button
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Button 2&quot; /&gt;
+        &lt;Button
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Button 3&quot; /&gt;
+        &lt;Button
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Button 4&quot; /&gt;
+        &lt;Button
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;Button 5&quot; /&gt;
+
+    &lt;/androidx.constraintlayout.widget.Flow&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>Guideline</code></mark></summary><div class="indented"><p id="23a555f8-9eb4-47b3-9770-1ae155308f2c" class="">Вспомогательная линия в <mark class="highlight-default"><code>ConstraintLayout</code></mark>, которая помогает выравнивать элементы по заданным процентам или фиксированным позициям относительно родительского контейнера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8010-a50a-dc23e169e916" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;androidx.constraintlayout.widget.Guideline
+        android:id=&quot;@+id/guideline&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:orientation=&quot;vertical&quot;
+        app:layout_constraintGuide_percent=&quot;0.5&quot; /&gt; &lt;!-- 50% ширины экрана --&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello&quot;
+        app:layout_constraintStart_toStartOf=&quot;@id/guideline&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>chain</code></mark></summary><div class="indented"><p id="d2734003-e6a5-4053-8e25-6e3a56c2baa0" class="">Группа элементов, связанных между собой, которые могут быть выровнены по одной оси (горизонтальной или вертикальной) с возможностью динамического изменения расстояний между ними.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-808e-877f-e1e486fee720" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView1&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Item 1&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Item 2&quot;
+        app:layout_constraintStart_toEndOf=&quot;@id/textView1&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView3&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Item 3&quot;
+        app:layout_constraintStart_toEndOf=&quot;@id/textView2&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+    &lt;!-- Chain definition --&gt;
+    &lt;androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintTop_toBottomOf=&quot;@id/textView3&quot;
+        app:layout_constraintHorizontal_chainStyle=&quot;spread&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>barrier</code></mark></summary><div class="indented"><p id="2e1dea42-ba9d-4460-a065-b627d7436605" class="">Действует как динамическая граница, определяя ограничение для других элементов. Он автоматически подстраивается под размер или позицию дочерних элементов и может быть использован для выравнивания элементов с учетом их размеров.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8087-9548-c6e04bc8e358" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView1&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Item 1&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Item 2&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintStart_toEndOf=&quot;@id/textView1&quot; /&gt;
+
+    &lt;androidx.constraintlayout.widget.Barrier
+        android:id=&quot;@+id/barrier&quot;
+        app:constraint_referenced_ids=&quot;textView1,textView2&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/button&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Button&quot;
+        app:layout_constraintTop_toBottomOf=&quot;@id/barrier&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>baseline</code></mark></summary><div class="indented"><p id="6bafe2b9-c6ea-41a8-a317-56b898862def" class="">Используется для выравнивания элементов по базовой линии текста.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-8072-98e2-f680f1a3bb8b" class="code"><code class="language-XML">&lt;androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView1&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;World&quot;
+        app:layout_constraintBaseline_toBaselineOf=&quot;@id/textView1&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>CoordinatorLayout</code></mark></summary><div class="indented"><p id="14a15285-0ae8-802c-afe4-d06c50d85bce" class="">Контейнер для сложных интерфейсов с прокруткой, который координирует поведение дочерних элементов, таких как <mark class="highlight-default"><code>DrawerLayout</code></mark> или <mark class="highlight-default"><code>FloatingActionButton</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-807a-9f4e-e51f80723568" class="code"><code class="language-XML">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout&gt;
+
+    &lt;com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:layout_anchor=&quot;@id/textView&quot;
+        app:layout_anchorGravity=&quot;bottom|end&quot; /&gt;
+
+&lt;/androidx.coordinatorlayout.widget.CoordinatorLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>ViewPager2</code></mark></summary><div class="indented"><p id="14a15285-0ae8-8023-a69c-e7cc38a1b51c" class="">Компонент для прокручиваемых страниц в Android. Он улучшает оригинальный <mark class="highlight-default"><code>ViewPager</code></mark>, поддерживая работу с фрагментами, вертикальную прокрутку и лучшее использование <mark class="highlight-default"><code>RecyclerView</code></mark> для производительности.</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Передать currentItem как аргумент фрагменту</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7b706f6-4e20-4d0d-a91b-141fedd4486b" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">class PagerViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle
+): ViewModel() {
+    val tabLiveData: LiveData&lt;Int&gt; = savedStateHandle.getLiveData&lt;Int&gt;(&quot;tab&quot;)
+}
+
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    viewModel.tabLiveData.observe(viewLifecycleOwner) { tab -&gt;
+        view.post { binding.viewPager.setCurrentItem(tab, false) }
+    }
+}
+
+companion object {
+    fun create(tab: Int) = PagerFragment().apply {
+        arguments = bundleOf(&quot;tab&quot; to tab)
+    }
+}</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>WebView</code></mark></summary><div class="indented"><p id="31a2fbbd-a8d2-476e-9eec-f705ca14480d" class="">Позволяет отображать веб-страницы внутри вашего приложения.</p><p id="c08462b8-ae0a-4180-beb1-66d1944c6e10" class="">• Использование <mark class="highlight-default"><code>WebView</code></mark> может представлять потенциальные угрозы безопасности, так как оно позволяет выполнять JavaScript и обрабатывать веб-контент.</p><p id="90be6654-a9f2-4194-9488-846ff73815f9" class="">• Важно правильно управлять жизненным циклом <mark class="highlight-default"><code>WebView</code></mark>, например, освобождать ресурсы и сохранять состояние, если это необходимо.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2620d04d-6178-4abd-bca3-213c2d94b554" class="code"><code class="language-XML">&lt;WebView
+    android:id=&quot;@+id/my_webview&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;/&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff92b127-3054-4b19-9add-1981175bee09" class="code"><code class="language-Kotlin">class MainActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       
+        val webView: WebView = findViewById(R.id.my_webview)
+        webView.settings.javaScriptEnabled = true  // Включение JavaScript
+        webView.webViewClient = WebViewClient()    // Обработка ссылок внутри WebView
+        webView.loadUrl(&quot;https://www.example.com&quot;) // Загрузка веб-страницы
+    }
+    
+    override fun onPause() {
+		    super.onPause()
+		    webView.onPause()
+		}
+
+		override fun onResume() {
+		    super.onResume()
+		    webView.onResume()
+		}
+
+		override fun onDestroy() {
+		    super.onDestroy()
+		    webView.destroy()
+		}
+}</code></pre><p id="7909441c-57a7-4d34-9cf8-463744eeb8f1" class="">
+</p><h3 id="d784d71d-7466-40a8-9d04-b2dba245c763" class=""><mark class="highlight-orange"><code>javaScriptEnabled</code></mark></h3><p id="19e02d10-9f89-47d7-9b31-789ab53e8648" class="">Включает или отключает поддержку JavaScript.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-8018-81fa-fdfeab60b6d1" class="code"><code class="language-Kotlin">webView.settings.javaScriptEnabled = true</code></pre><p id="2d56968f-9006-4f5e-a545-980543adbdac" class="">
+</p><h3 id="6c21939e-3926-42f7-813d-6453d26dabed" class=""><mark class="highlight-orange"><code>setDomStorageEnabled</code></mark></h3><p id="88c560bf-6ee0-4a61-8b6a-57d9bb414860" class="">Включает или отключает поддержку DOM-хранилища.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-8095-af50-e100c88bb63d" class="code"><code class="language-Kotlin">webView.settings.domStorageEnabled = true</code></pre><p id="9a72b059-bca2-47e8-aa79-29370b3b3dbd" class="">
+</p><h3 id="6bf1db3b-3165-405e-b79d-d6dd2c8a51de" class=""><mark class="highlight-orange"><code>setSupportZoom</code></mark></h3><p id="d721be11-4d0e-49b6-9c0b-8e5fe7385412" class="">Включает или отключает поддержку масштабирования.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-80cb-9330-caaec3d1192f" class="code"><code class="language-Kotlin">webView.settings.setSupportZoom(true)</code></pre><p id="e99c8918-0a28-4cf7-9703-f35bcd50dce4" class="">
+</p><h3 id="b3640e0d-6f24-427a-a152-ea29c3c2b161" class=""><mark class="highlight-orange"><code>goBack</code></mark></h3><p id="56b1b672-cbe0-493b-90fc-4105856d9394" class="">Управлять возвратом на предыдущие страницы в <mark class="highlight-default"><code>WebView</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="747c7cfa-e27e-4e1a-a22e-aa17e430238c" class="code"><code class="language-Kotlin">if (webView.canGoBack()) {
+    webView.goBack()
+} else {
+    super.onBackPressed()
+}</code></pre><p id="2500291d-eef2-4109-8e5b-50a7eb5740a2" class="">
+</p><h3 id="c64ed772-8135-44fb-bb22-f82919787ae4" class=""><mark class="highlight-orange"><code>WebViewClient</code></mark></h3><p id="e941bd50-44aa-4bb2-b10e-cfc37e951a72" class="">По умолчанию, ссылки, которые пользователь нажимает в <mark class="highlight-default"><code>WebView</code></mark>, открываются в браузере. Чтобы ссылки открывались внутри <mark class="highlight-default"><code>WebView</code></mark>, нужно установить <mark class="highlight-default"><code>WebViewClient</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="287d4be9-6e4e-447f-bb4a-7ad4575cbc1b" class="code"><code class="language-Kotlin">webView.webViewClient = object: WebViewClient() {
+    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+        view.loadUrl(url)
+        return true
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-gray"><code>RelativeLayout</code></mark></summary><div class="indented"><blockquote id="14a15285-0ae8-8007-b2b2-fdfad87a6a5a" class=""><mark class="highlight-yellow">RelativeLayout устарел. Мигрируй на ConstraintLayout.</mark></blockquote><p id="7be5e136-0ad7-4000-8bd7-4e61fc3e7a4d" class="">Позволяет располагать дочерние элементы относительно друг друга или родительского контейнера.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14a15285-0ae8-80f1-bf61-de002adaea1c" class="code"><code class="language-XML">&lt;RelativeLayout 
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+    
+    &lt;TextView
+        android:id=&quot;@+id/textView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello&quot;
+        android:layout_centerInParent=&quot;true&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/button&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Click me&quot;
+        android:layout_below=&quot;@id/textView&quot;
+        android:layout_centerHorizontal=&quot;true&quot; /&gt;
+        
+&lt;/RelativeLayout&gt;</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (13)</mark></summary><div class="indented"><ol type="1" id="cc4bd331-ab4e-49e5-80df-9b25c7a4204f" class="numbered-list" start="1"><li>Для чего нужен CoordinatorLayout?<p id="10415285-0ae8-80dc-991f-ebc27f510f7e" class=""><mark class="highlight-teal">Предназначен для управления поведением дочерних View, таких как </mark><mark class="highlight-teal"><code>FloatingActionButton</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>AppBarLayout</code></mark><mark class="highlight-teal">. Он позволяет координировать взаимодействие между этими View, например, автоматическое скрытие или изменение их размера при прокрутке списка.</mark></p></li></ol><ol type="1" id="12115285-0ae8-801e-9c5c-f0a109e553a0" class="numbered-list" start="2"><li>Перечисли наследников ViewGroup?<p id="12115285-0ae8-8051-bd27-dcea2ac59288" class=""><mark class="highlight-teal"><code>LinearLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>RelativeLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>FrameLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>TableLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>GridLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>CoordinatorLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>DrawerLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>ViewPager</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>RecyclerView</code></mark></p></li></ol><ol type="1" id="eef34d16-307a-416d-9690-eacded33ec6a" class="numbered-list" start="3"><li>Ранжируй Layouts по производительности?<p id="1b05baa2-69d2-4983-8243-58a4fa681506" class=""><mark class="highlight-teal"><code>FrameLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>LinearLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> </mark><mark class="highlight-default">→</mark><mark class="highlight-teal"> </mark><mark class="highlight-teal"><code>RelativeLayout</code></mark></p></li></ol><ol type="1" id="12015285-0ae8-80d8-aaa0-d8b952aaea3e" class="numbered-list" start="4"><li>Как FrameLayout располагает дочерние элементы?<p id="12015285-0ae8-80c0-aff1-c765b3b7b4de" class=""><mark class="highlight-teal"><code>FrameLayout</code></mark><mark class="highlight-teal"> располагает дочерние элементы в левом верхнем углу по умолчанию, накладывая их друг на друга. Каждый новый элемент размещается поверх предыдущих, если не заданы другие параметры размещения.</mark></p></li></ol><ol type="1" id="12415285-0ae8-8036-b18a-cb60939b586d" class="numbered-list" start="5"><li>Для чего нужен MotionLayout?<p id="12415285-0ae8-8065-bd4e-fc0fa35484ed" class=""><mark class="highlight-teal">Для создания сложных анимаций и переходов между состояниями интерфейса, объединяя возможности </mark><mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> и анимации.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-806d-83b3-f8bb3f70fec8" class="numbered-list" start="6"><li>Что такое WebView?<p id="12a15285-0ae8-80e9-9ee5-d51e9f45f6fb" class=""><mark class="highlight-teal">Компонент, позволяющий приложениям отображать веб-контент внутри UI. Предоставляет возможность загружать и отображать веб-страницы, выполнять JavaScript и обрабатывать навигацию. </mark><mark class="highlight-teal"><code>WebView</code></mark><mark class="highlight-teal"> полезен для интеграции веб-контента в приложения, например, для отображения инструкций или материалов, не выходя из приложения.</mark></p></li></ol><ol type="1" id="12d15285-0ae8-80a2-8e02-c725de3987f9" class="numbered-list" start="7"><li>Что будет быстрее: 2 LinearLayout вложенные один в другой или ConstraintLayout?<p id="12d15285-0ae8-804c-96ca-c4a8d46db349" class=""><mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> будет быстрее, чем два вложенных </mark><mark class="highlight-teal"><code>LinearLayout</code></mark><mark class="highlight-teal">, так как он оптимизирует размещение элементов и снижает количество проходов по дереву представлений. </mark><mark class="highlight-teal"><code>ConstraintLayout</code></mark><mark class="highlight-teal"> лучше масштабируется для сложных интерфейсов, поскольку позволяет избежать глубокой вложенности и перегрузки измерений.</mark></p></li></ol><ol type="1" id="10215285-0ae8-80f1-8847-e1c06d0aebb1" class="numbered-list" start="8"><li>С помощью какого компонента лучше выполнять отложенный (по запросу) inflate дочерней View?<p id="10215285-0ae8-8060-a2bc-fde039537f87" class="">• <mark class="highlight-red"><code>LazyView</code></mark></p><p id="10215285-0ae8-8016-b3d9-e57cbe4e3175" class="">• <mark class="highlight-red"><code>AsnycLayoutinflater</code></mark></p><p id="fe596f1a-058c-40c0-b83d-e451fff29f5f" class="">• <mark class="highlight-teal"><code>ViewStub</code></mark></p></li></ol><ol type="1" id="e6fa70c1-808c-429b-bc90-8fb36ce7d534" class="numbered-list" start="9"><li>Сколько дочерних элементов может содержать ScrollView?<p id="4f73e7b2-d52c-4ee4-ae5d-b99e379e47f9" class="">• <mark class="highlight-red">2</mark></p><p id="54bc4512-f681-45dc-889b-a960adb57b48" class="">• <mark class="highlight-teal">1</mark></p><p id="3f993e21-f418-4ec3-b30c-971ddcd547eb" class="">• <mark class="highlight-red">3</mark></p><p id="fbb5f372-9355-4dce-ae95-91c9e2b3f995" class="">• <mark class="highlight-red">Сколько угодно</mark></p></li></ol><ol type="1" id="b3e9a1dd-9848-4408-a8ae-10a4439dede1" class="numbered-list" start="10"><li>Какой метод используется для настройки слушателя нажатий в View?<p id="1fdfed98-5575-4265-baa0-69384533c521" class="">• <mark class="highlight-red"><code>setOnTouchListener</code></mark></p><p id="b1960d45-6e0e-4271-813e-9633f7c9137f" class="">• <mark class="highlight-teal"><code>setOnClickListener</code></mark></p><p id="0b9e1b12-db4f-4108-84b5-5c9373efd3d7" class="">• <mark class="highlight-red"><code>setClickListener</code></mark></p><p id="cd80ea00-6c0b-4be9-86e9-9c8f2fe1ba6a" class="">• <mark class="highlight-red"><code>setOnClick</code></mark></p></li></ol><ol type="1" id="10215285-0ae8-80fa-a90f-c406174c7f7f" class="numbered-list" start="11"><li>Какой из следующих атрибутов XML используется для установки стиля текста в TextView?<p id="4d8bdf56-726b-47f1-8964-04eb9066e199" class="">• <mark class="highlight-red"><code>textStyle</code></mark></p><p id="37e57fa5-f79b-4a21-88c5-4e06392753fd" class="">• <mark class="highlight-teal"><code>textAppearance</code></mark></p><p id="5493da3a-1680-41e3-af2b-a471e48f70ad" class="">• <mark class="highlight-red"><code>textFont</code></mark></p><p id="8e7ad19f-6821-4c2a-a317-62d7b2c7db0d" class="">• <mark class="highlight-red"><code>textSize</code></mark></p></li></ol><ol type="1" id="11515285-0ae8-8076-91fa-ecc60fa824df" class="numbered-list" start="12"><li>Сколько проходов по детям с вызовом метода onMeasure() выполняется в LinearLayout (без использования и дополнительных вызовов метода рефреша жизненного цикла View)<p id="74f163d7-c458-43c7-8787-6e707f429fe1" class="">• <mark class="highlight-red">1</mark></p><p id="4e7e13ab-f1bc-48bb-9fb6-9fa2e3088c5c" class="">• <mark class="highlight-teal">1 или 2</mark></p><p id="62988ede-ab66-4fe4-84de-6c0cd299b191" class="">• <mark class="highlight-red">2 или 3</mark></p><p id="de3d9c3a-5546-4a25-9934-0b44237e8ec1" class="">• <mark class="highlight-red">До 5 раз</mark></p></li></ol><ol type="1" id="30ca5d8e-e522-462f-b755-067bf9fb4abe" class="numbered-list" start="13"><li>Что отрисуется на экране при inflate этого XML?<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10215285-0ae8-80d5-a51f-c74fa373b711" class="code"><code class="language-XML">&lt;LinearLayout
+		xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+		android:layout_width=&quot;match_parent&quot;
+		android:layout_height=&quot;match_parent&quot;
+		android:gravity=&quot;center&quot;
+		android:orientation=&quot;horizontal&quot;&gt;
+		
+		&lt;Button
+				android:layout_width=&quot;wrap_content&quot;
+				android:layout_height=&quot;wrap_content&quot;
+				android:text=&quot;Button&quot; /&gt;
+				
+		&lt;Button
+				android:layout_width=&quot;wrap_content&quot;
+				android:layout_height=&quot;wrap_content&quot;
+				android:text=&quot;Button&quot; /&gt;
+
+&lt;/LinearLayout&gt;</code></pre><figure id="10515285-0ae8-80da-b942-f602e7c9e2c6" class="image"><a href="../../BOARDS%207d44a90a3384493a847a87781d0c6b09/%D0%A1%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%202024%20117152850ae880fe9a32d2be30ff0cc6/image-qa-linearlayout.jpg"><img style="width:432px" src="../../BOARDS%207d44a90a3384493a847a87781d0c6b09/%D0%A1%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%202024%20117152850ae880fe9a32d2be30ff0cc6/image-qa-linearlayout.jpg"/></a></figure><p id="10215285-0ae8-80ad-aaf6-ce426f892dec" class="">• <mark class="highlight-teal">left-top</mark></p><p id="b7b9874b-8ff5-4239-b2eb-cbe77a1c6dd0" class="">• <mark class="highlight-red">right-top</mark></p><p id="10215285-0ae8-8057-9b77-fe5fddf60953" class="">• <mark class="highlight-red">left-bottom</mark></p><p id="10215285-0ae8-80cb-9ba9-c22f32cb00b7" class="">• <mark class="highlight-red">right-bottom</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

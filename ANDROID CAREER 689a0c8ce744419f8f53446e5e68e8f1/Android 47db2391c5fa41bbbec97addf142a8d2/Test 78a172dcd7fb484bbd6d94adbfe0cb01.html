@@ -1,0 +1,878 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Test</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="78a172dc-d7fb-484b-bd6d-94adbfe0cb01" class="page sans"><header><img class="page-cover-image" src="Test%2078a172dcd7fb484bbd6d94adbfe0cb01/cover-android-test.webp" style="object-position:center 51.38%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Test%2078a172dcd7fb484bbd6d94adbfe0cb01/icon-android-platform.svg"/></div><h1 class="page-title"><strong>Test</strong></h1><p class="page-description"></p></header><div class="page-body"><table id="0b03c3e0-1530-4d15-9648-933343386839" class="simple-table"><tbody><tr id="b1a75125-70ae-4fb3-81d2-6a8056c1cad5"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing">https://developer.android.com/training/testing</a></td></tr><tr id="000a7324-9142-49cc-a030-da5b18ecc9bf"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/fundamentals">https://developer.android.com/training/testing/fundamentals</a></td></tr><tr id="743b6a3b-bb30-4669-8f4a-abab6051ae7e"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/fundamentals/what-to-test">https://developer.android.com/training/testing/fundamentals/what-to-test</a></td></tr><tr id="021bc664-e049-4c3e-858e-f08ef951bf6e"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/fundamentals/test-doubles">https://developer.android.com/training/testing/fundamentals/test-doubles</a></td></tr><tr id="15315285-0ae8-80d6-8cb1-fc3402486580"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/fundamentals/strategies">https://developer.android.com/training/testing/fundamentals/strategies</a></td></tr><tr id="12154ca4-04c3-42df-90d0-6314184e9c56"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/local-tests">https://developer.android.com/training/testing/local-tests</a></td></tr><tr id="4e481455-45e8-4a93-90af-c0b2979f2a00"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/instrumented-tests">https://developer.android.com/training/testing/instrumented-tests</a></td></tr><tr id="15315285-0ae8-8073-b8a9-e7cf3d44a9f5"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/instrumented-tests/stability">https://developer.android.com/training/testing/instrumented-tests/stability</a></td></tr><tr id="15315285-0ae8-801a-9672-f8d9886ad8f8"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/instrumented-tests/performance">https://developer.android.com/training/testing/instrumented-tests/performance</a></td></tr><tr id="a4983727-105b-4abe-9426-e74508e02cfb"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/test-setup">https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/test-setup</a></td></tr><tr id="2e5acea1-c543-4694-b494-87a9bda0340b"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/runner">https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/runner</a></td></tr><tr id="15315285-0ae8-80ec-8ad4-f0e64dbc93e8"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/ui-tests">https://developer.android.com/training/testing/ui-tests</a></td></tr><tr id="15315285-0ae8-801b-abd8-c530a08e4913"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/ui-tests/behavior">https://developer.android.com/training/testing/ui-tests/behavior</a></td></tr><tr id="15315285-0ae8-80da-955b-e8d7f30607d6"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/ui-tests/screenshot">https://developer.android.com/training/testing/ui-tests/screenshot</a></td></tr><tr id="69b24bc7-465f-488a-a703-2c58e3b44e1c"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/different-screens">https://developer.android.com/training/testing/different-screens</a></td></tr><tr id="f494a4ea-57d2-481e-83fe-7ba708889080"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/different-screens/tools">https://developer.android.com/training/testing/different-screens/tools</a></td></tr><tr id="7c42019b-8163-4a12-bf26-620dfb348caa"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/other-components/content-providers">https://developer.android.com/training/testing/other-components/content-providers</a></td></tr><tr id="f6e4e878-b489-43ad-bd0c-c72e3df2b43e"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/other-components/services">https://developer.android.com/training/testing/other-components/services</a></td></tr><tr id="759883ce-322a-4e3a-a79f-58f7b28bc820"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/training/testing/other-components/ui-automator">https://developer.android.com/training/testing/other-components/ui-automator</a></td></tr><tr id="11715285-0ae8-8092-b793-dfcc47f73e8c"><td id="SJKc" class="" style="width:594px"><a href="https://developer.android.com/studio/run/resizable-emulator">https://developer.android.com/studio/run/resizable-emulator</a></td></tr></tbody></table><table id="97816a31-ebe0-4eef-8e32-a22fc462787a" class="simple-table"><tbody><tr id="c520daa1-a593-4a79-9eb9-8c8d65cdcf43"><td id="TuBh" class="" style="width:102px"><mark class="highlight-brown"><code>13.05.2023</code></mark></td><td id="SJKc" class="" style="width:454px"><a href="https://maxkim.eu/full-guide-to-testing-android-applications-in-2022">https://maxkim.eu/full-guide-to-testing-android-applications-in-2022</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Snapshot Testing</summary><div class="indented"><p id="11415285-0ae8-802f-bf4b-e6fc72f4a726" class="">Метод тестирования UI, при котором создаются и сравниваются “снимки” состояния интерфейса приложения. Основная идея заключается в том, чтобы сохранить изображение или структуру UI в виде “снапшота” и затем проверить, что текущий вывод совпадает с ожидаемым.</p><p id="11415285-0ae8-80bc-910a-e15fd1f5fe42" class="">• Снапшот-тесты позволяют быстро обнаруживать изменения в UI, которые могут возникнуть в результате изменений кода или стилей.</p><p id="11415285-0ae8-8068-a076-cf5555c7ff1e" class="">• Упрощают тестирование сложных интерфейсов, так как позволяют фокусироваться на визуальных аспектах, а не на логике.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Синтетические тесты</summary><div class="indented"><p id="11b15285-0ae8-8098-b7d0-f39c74ad1e0b" class="">Синтетические тесты в моделируют работу приложения в определенных условиях, используя заранее подготовленные данные, а не реальные пользовательские сценарии. Они фокусируются на измерении производительности, скорости выполнения операций или других метрик приложения (например, время рендеринга или загрузки), но могут не отражать реальные взаимодействия пользователей. Такие тесты полезны для оценки производительности отдельных компонентов или сценариев, но их результаты могут отличаться от показателей при реальном использовании.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">JUnit</summary><div class="indented"><table id="15315285-0ae8-80f6-82d9-d75e903a717e" class="simple-table"><tbody><tr id="284fdde9-916f-446c-a754-1f326f276dde"><td id="d}CV" class="" style="width:529px"><a href="https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/rules">https://developer.android.com/training/testing/instrumented-tests/androidx-test-libraries/rules</a></td></tr></tbody></table><p id="10d15285-0ae8-80a3-bda4-ea9d01316a7f" class="">Фреймворк для написания и выполнения тестов в Java. Он является стандартным инструментом для юнит-тестирования и широко используется в разработке приложений, включая Android-приложения. JUnit позволяет создавать автоматические тесты, что способствует повышению качества кода и уменьшению количества ошибок.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-807a-9f8c-f4ba86967d05" class="code"><code class="language-Kotlin">public class CalculatorTest {
+    
+    private Calculator calculator;
+
+    @Before
+    public void setUp() {
+        calculator = new Calculator();
+    }
+
+    @Test
+    public void testAdd() {
+        assertEquals(5, calculator.add(2, 3));
+    }
+
+    @Test
+    public void testSubtract() {
+        assertEquals(1, calculator.subtract(3, 2));
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Robolectric</summary><div class="indented"><table id="15315285-0ae8-802b-8c59-d21c09466b2d" class="simple-table"><tbody><tr id="fb24bd91-838c-4849-9b32-9a79c8d0ad93"><td id="VGHV" class="" style="width:465px"><a href="https://developer.android.com/training/testing/local-tests/robolectric">https://developer.android.com/training/testing/local-tests/robolectric</a></td></tr></tbody></table><p id="7b010201-51a1-408b-bf97-43f86081200b" class="">Библиотека для тестирования Android-приложений, которая позволяет запускать юнит-тесты на обычной JVM без необходимости эмулятора или реального устройства. Это делает процесс тестирования быстрее и удобнее для разработчиков, так как нет необходимости ожидать загрузки эмулятора или устройства.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-8070-8b14-f77465872bc8" class="code"><code class="language-Kotlin">@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [28]) // Указываем версию SDK
+class MainActivityTest {
+
+    @Test
+    fun testActivityLaunch() {
+        // Запуск Activity
+        val activity = Robolectric.buildActivity(MainActivity::class.java).create().start().resume().get()
+
+        // Проверка, что Activity запустилась
+        assertNotNull(activity)
+    }
+
+    @Test
+    fun testIntent() {
+        val intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+        val activity = Robolectric.buildActivity(MainActivity::class.java, intent).create().get()
+
+        // Проверка, что Activity получила правильный Intent
+        assertEquals(activity.intent, intent)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Espresso</summary><div class="indented"><table id="15315285-0ae8-8069-a4ff-d3faf0acd153" class="simple-table"><tbody><tr id="2414b181-2fc6-4537-9ab7-fbec6b172a0c"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso">https://developer.android.com/training/testing/espresso</a></td></tr><tr id="c2c0fb03-6509-4a2f-9ba7-2927eea0656a"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/basics">https://developer.android.com/training/testing/espresso/basics</a></td></tr><tr id="5fbf6aba-5490-4649-b997-85b1dc189c05"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/setup">https://developer.android.com/training/testing/espresso/setup</a></td></tr><tr id="15315285-0ae8-80bf-814c-f8d88b7f2b13"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/cheat-sheet">https://developer.android.com/training/testing/espresso/cheat-sheet</a></td></tr><tr id="15315285-0ae8-8031-8e40-efa3001f4ec2"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/idling-resource">https://developer.android.com/training/testing/espresso/idling-resource</a></td></tr><tr id="15315285-0ae8-80a9-94c1-e0d8ea261ab4"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/intents">https://developer.android.com/training/testing/espresso/intents</a></td></tr><tr id="15315285-0ae8-80a8-88e4-eee19c40038f"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/lists">https://developer.android.com/training/testing/espresso/lists</a></td></tr><tr id="15315285-0ae8-80e6-8953-ead2c47e38d7"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/multiprocess">https://developer.android.com/training/testing/espresso/multiprocess</a></td></tr><tr id="15315285-0ae8-8037-9432-e0279f8353ab"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/recipes">https://developer.android.com/training/testing/espresso/recipes</a></td></tr><tr id="15315285-0ae8-80b9-8db2-e86bd34cedb0"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/web">https://developer.android.com/training/testing/espresso/web</a></td></tr><tr id="15315285-0ae8-80f3-937d-fee8b6d3d723"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/accessibility-checking">https://developer.android.com/training/testing/espresso/accessibility-checking</a></td></tr><tr id="15315285-0ae8-80a0-8ab8-e2e592e1161a"><td id=";{Sz" class="" style="width:552px"><a href="https://developer.android.com/training/testing/espresso/additional-resources">https://developer.android.com/training/testing/espresso/additional-resources</a></td></tr></tbody></table><p id="10d15285-0ae8-80ad-a8cd-c039983540ee" class="">Библиотека для UI-тестирования Android-приложений, предоставляющая API для написания тестов, взаимодействующих с элементами интерфейса пользователя. Она позволяет имитировать пользовательские действия, проверять состояние UI-компонентов и обеспечивать синхронное выполнение тестов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-8099-b741-d5ca9815b722" class="code"><code class="language-Kotlin">@Test
+fun testButtonClick() {
+    // Найти кнопку и кликнуть по ней
+    onView(withId(R.id.my_button)).perform(click())
+    
+    // Проверить текст на экране после нажатия
+    onView(withId(R.id.text_view)).check(matches(withText(&quot;Hello World!&quot;)))
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Kotest</summary><div class="indented"><p id="11015285-0ae8-80a7-a91c-d60265ea8835" class="">Мощная библиотека для тестирования на языке Kotlin, которая предоставляет различные стили для написания тестов и дополнительные утилиты для упрощения тестирования.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11015285-0ae8-8005-83ee-c1f47bfaa15b" class="code"><code class="language-Kotlin">class SampleTest: FunSpec({
+    test(&quot;simple test&quot;) {
+        1 + 1 shouldBe 2
+    }
+})</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Kakao</summary><div class="indented"><p id="10d15285-0ae8-80c4-80f1-e06919e52075" class="">Kotlin DSL для библиотеки Espresso, созданная для упрощения написания UI-тестов в Android. Kakao предоставляет удобный и читаемый синтаксис, благодаря Kotlin DSL, что делает тесты более лаконичными и простыми в поддержке.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-80b4-ba63-c1b21345d8a5" class="code"><code class="language-Kotlin">class MainTest: KTestCase() {
+    
+    @Test
+    fun testButtonClick() {
+        // Поиск кнопки и клик
+        KButton { withId(R.id.my_button) }.click()
+        
+        // Проверка текста на экране после нажатия
+        KTextView { withId(R.id.text_view) }.hasText(&quot;Hello World!&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Kaspresso</summary><div class="indented"><p id="c67195ea-4e1d-4f85-a9d4-1de491bbee05" class="">Инструмент для UI-тестирования Android-приложений, который предоставляет удобный и мощный API на основе Espresso и Kakao. Он расширяет возможности стандартного Espresso, добавляя удобные функции для написания стабильных и читаемых тестов, а также упрощая работу с нестабильными элементами интерфейса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-8075-b25f-e1bbe958788c" class="code"><code class="language-Kotlin">class SimpleTest: KaspressoTestCase() {
+
+    @Test
+    fun testSimpleUI() = run {
+        step(&quot;Open the main screen&quot;) {
+            MainScreen {
+                someButton {
+                    isVisible()
+                    click()
+                }
+            }
+        }
+        
+        step(&quot;Verify the next screen&quot;) {
+            NextScreen {
+                someText {
+                    isVisible()
+                    hasText(&quot;Expected Text&quot;)
+                }
+            }
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Roborazzi</summary><div class="indented"><p id="10d15285-0ae8-803a-86e6-d9e645f612aa" class="">Библиотека для тестирования пользовательского интерфейса (UI) в Android, разработанная для упрощения и улучшения процесса визуального тестирования. Она позволяет автоматически захватывать изображения пользовательских интерфейсов приложений и сравнивать их с эталонными изображениями, что помогает выявлять изменения в интерфейсе при внесении правок в код.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-80e5-9b13-fcbc340b9690" class="code"><code class="language-Kotlin">class MyUITest {
+    
+    @Test
+    fun testMyScreen() {
+        // Открыть экран
+        launchActivity&lt;MyActivity&gt;()
+
+        // Захватить изображение
+        Roborazzi.takeSnapshot(&quot;my_screen&quot;)
+
+        // Сравнить с эталоном
+        Roborazzi.compareSnapshot(&quot;my_screen&quot;)
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Mockito</summary><div class="indented"><p id="10d15285-0ae8-80d9-9956-f261934243c0" class="">Популярная библиотека для создания моков и стаба в Java, широко используемая в тестировании. Она позволяет разработчикам имитировать поведение объектов, что упрощает тестирование бизнес-логики, обеспечивая при этом изоляцию тестируемых классов от их зависимостей.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-8001-9dda-cfc0aeb72f62" class="code"><code class="language-Java">public class UserServiceTest {
+    
+    @Mock
+    private UserRepository userRepository;
+
+    @InjectMocks
+    private UserService userService;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.openMocks(this); // Инициализация моков
+    }
+
+    @Test
+    public void testGetUser() {
+        // Настройка поведения мока
+        when(userRepository.findById(&quot;123&quot;)).thenReturn(new User(&quot;123&quot;, &quot;John Doe&quot;));
+
+        // Выполнение тестируемого метода
+        User user = userService.getUser(&quot;123&quot;);
+
+        // Проверка результата
+        assertNotNull(user);
+        assertEquals(&quot;John Doe&quot;, user.getName());
+
+        // Верификация взаимодействий
+        verify(userRepository).findById(&quot;123&quot;);
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">MockK</summary><div class="indented"><p id="53b91d15-6b62-4f83-bd89-7585d213c5dd" class="">Библиотека для создания моков и стаба в Kotlin, используемая в тестировании. Она предоставляет мощные возможности для упрощения написания тестов, позволяя разработчикам легко имитировать поведение объектов и проверять взаимодействия между ними.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-80a0-8c0e-cab8a43dad94" class="code"><code class="language-Kotlin">class UserService(private val userRepository: UserRepository) {
+    fun getUser(id: String): User? {
+        return userRepository.findById(id)
+    }
+}
+
+class UserServiceTest {
+    private val userRepository = mockk&lt;UserRepository&gt;()
+    private val userService = UserService(userRepository)
+
+    @Test
+    fun testGetUser() {
+        // Устанавливаем поведение мока
+        every { userRepository.findById(&quot;123&quot;) } returns User(&quot;123&quot;, &quot;John Doe&quot;)
+
+        // Выполняем тестируемый метод
+        val user = userService.getUser(&quot;123&quot;)
+
+        // Проверяем результат
+        assertNotNull(user)
+        assertEquals(&quot;John Doe&quot;, user?.name)
+
+        // Проверяем взаимодействие с мок-объектом
+        verify { userRepository.findById(&quot;123&quot;) }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">AssertJ</summary><div class="indented"><p id="10d15285-0ae8-80ef-b254-d113773ef7ef" class="">Библиотека для тестирования, предоставляющая удобный и выразительный API для написания ассертов в Java и Kotlin. Она значительно упрощает проверку ожидаемых результатов в тестах, делая код более читаемым и поддерживаемым.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10d15285-0ae8-80cf-b5da-c5d979435389" class="code"><code class="language-Java">public class ExampleTest {
+    
+    @Test
+    public void testPerson() {
+        Person person = new Person(&quot;John&quot;, 25);
+        
+        assertThat(person)
+            .isNotNull()
+            .hasFieldOrPropertyWithValue(&quot;name&quot;, &quot;John&quot;)
+            .hasFieldOrPropertyWithValue(&quot;age&quot;, 25);
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Shot</summary><div class="indented"><p id="11415285-0ae8-8019-905d-ec95fd2514fe" class="">Библиотека для Android, предназначенная для создания и проверки снапшот-тестов пользовательского интерфейса.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-803f-8454-d1ba819bbe25" class="code"><code class="language-Kotlin">@Test
+fun myTest() {
+    val activity = launchActivity&lt;MyActivity&gt;()
+    activity.onView(withId(R.id.my_view)).check(matches(isDisplayed()))
+    shot().screenshot(activity, &quot;my_view_snapshot&quot;)
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Turbine</summary><div class="indented"><p id="11f15285-0ae8-800a-af25-fd6bad1dc3a4" class="">Библиотека для тестирования Kotlin Flow. Она упрощает написание тестов для Flow-потоков, предоставляя DSL для проверки эмиссий, завершений и исключений в потоках.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11f15285-0ae8-80da-a363-e019b44f3249" class="code"><code class="language-Kotlin">class ExampleTest {
+
+    @Test
+    fun testFlow() = runBlocking {
+        val flow = flow {
+            emit(1)
+            emit(2)
+            emit(3)
+        }
+
+        flow.test {
+            assert(awaitItem() == 1)
+            assert(awaitItem() == 2)
+            assert(awaitItem() == 3)
+            awaitComplete()  // Ожидаем завершения потока
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>runTest</code></mark></summary><div class="indented"><p id="13115285-0ae8-80a4-9927-fb3f78ba73bf" class=""><mark class="highlight-default">Функция из библиотеки </mark><mark class="highlight-default"><code>kotlinx.coroutines</code></mark><mark class="highlight-default">, предназначенная для упрощения тестирования кода, использующего корутины. </mark><mark class="highlight-default"><code>runTest</code></mark><mark class="highlight-default"> позволяет запускать корутины в тестовом окружении, автоматически обрабатывая их задержки и выполнение, делая тесты быстрыми и надежными. Это особенно полезно для unit-тестов, где нужно протестировать функции с асинхронными операциями.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13115285-0ae8-80e8-b7d3-cfd96b5033aa" class="code"><code class="language-Kotlin">class CoroutineTest {
+    
+    // Функция, которую нужно протестировать
+    suspend fun fetchData(): String {
+        delay(1000)
+        return &quot;Data received&quot;
+    }
+
+    @Test
+    fun testFetchData() = runTest {
+        val result = fetchData()
+        assertEquals(&quot;Data received&quot;, result) // Проверяем результат
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (6)</mark></summary><div class="indented"><ol type="1" id="4a0078bb-04a4-4f45-8392-9f8c52dcf2a2" class="numbered-list" start="1"><li>Что такое Unit-тестирование, и почему оно важно в разработке Android приложений?<p id="10915285-0ae8-807d-9ee3-cdb4a9f260b4" class=""><mark class="highlight-teal">Unit-тестирование проверяет отдельные компоненты кода на корректность работы. Оно важно в Android-разработке, так как помогает выявлять ошибки на ранних этапах, улучшает качество кода и упрощает его поддержку.</mark></p></li></ol><ol type="1" id="612b937d-f7ee-47e0-a794-9b886df09c24" class="numbered-list" start="2"><li>Чем интеграционные тесты отличаются от Unit-тестов?<p id="fb544ea7-da5d-4d3c-a7fe-1146a81a7134" class=""><mark class="highlight-teal">Интеграционные тесты проверяют взаимодействие нескольких компонентов системы, тогда как Unit-тесты тестируют отдельные модули в изоляции. Интеграционные тесты помогают выявить проблемы на уровне взаимодействия, а Unit-тесты фокусируются на логике отдельных частей кода.</mark></p></li></ol><ol type="1" id="11015285-0ae8-80c3-bba9-cc8bd4ce85ca" class="numbered-list" start="3"><li>Разница между Mock и Stub?<p id="11015285-0ae8-8018-ba6e-e391c0252b05" class=""><mark class="highlight-teal">Mock создает объект для тестирования, который имитирует поведение реального объекта и проверяет взаимодействия. Stub просто возвращает предопределенные ответы, не проверяя вызовы.</mark></p></li></ol><ol type="1" id="11b15285-0ae8-80f8-b064-d21e2818d2bd" class="numbered-list" start="4"><li>Что такое синтетические тесты?<p id="11b15285-0ae8-805e-925e-f941f87ab8f2" class=""><mark class="highlight-teal">Синтетические тесты — это тесты, которые измеряют производительность системы или приложения в специально созданных условиях, используя искусственные данные. Они помогают оценить эффективность отдельных компонентов, но не всегда отражают реальные сценарии использования.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-80f7-9e39-de1691b0ae6d" class="numbered-list" start="5"><li>Какую функциональность приложения покрывать Unit-тестами?<p id="10a15285-0ae8-8051-a479-da0434e57d85" class="">• <mark class="highlight-teal">Бизнес-логика.</mark></p><p id="330d84b7-6fbf-4704-a831-bcc6e77c91b6" class="">• <mark class="highlight-teal">Проверки данных.</mark></p><p id="10a15285-0ae8-8014-8e6c-f0467e334a43" class="">• <mark class="highlight-teal">Вызовы API.</mark></p><p id="10a15285-0ae8-80c5-9805-c30adba4e85a" class="">• <mark class="highlight-teal">Мапперы и форматтеры.</mark></p></li></ol><ol type="1" id="10a15285-0ae8-80b5-82bd-e9dee36d9f53" class="numbered-list" start="6"><li>Какую функциональность приложения покрывать UI-тестами?<p id="10a15285-0ae8-8046-87b9-c13eac16d418" class="">• <mark class="highlight-teal">Навигацию.</mark></p><p id="10a15285-0ae8-80b9-abc0-e4938a65b889" class="">• <mark class="highlight-teal">Отображение интерактивных элементов.</mark></p><p id="10a15285-0ae8-80dc-994f-ca35cd025cac" class="">• <mark class="highlight-teal">Ошибки и уведомления.</mark></p><p id="10a15285-0ae8-8050-bd4a-d90128495678" class="">• <mark class="highlight-teal">Адаптивное отображение.</mark></p></li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

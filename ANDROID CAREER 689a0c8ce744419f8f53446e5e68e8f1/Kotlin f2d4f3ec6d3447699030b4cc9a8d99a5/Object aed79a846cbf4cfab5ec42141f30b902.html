@@ -560,7 +560,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .highlight-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .highlight-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -631,7 +631,7 @@ blockquote {
 	background: rgba(251, 236, 221, 1);
 }
 .block-color-yellow_background {
-	background: rgba(251, 237, 214, 1);
+	background: rgba(251, 243, 219, 1);
 }
 .block-color-teal_background {
 	background: rgba(237, 243, 236, 1);
@@ -658,7 +658,7 @@ blockquote {
 .select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
 .select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
 .select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
 .select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
 .select-value-color-pageGlass { background-color: undefined; }
 .select-value-color-washGlass { background-color: undefined; }
@@ -681,27 +681,86 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="aed79a84-6cbf-4cfa-b5ec-42141f30b902" class="page sans"><header><img class="page-cover-image" src="Object%20aed79a846cbf4cfab5ec42141f30b902/cover-kotlin-object.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Object%20aed79a846cbf4cfab5ec42141f30b902/icon-kotlin.svg"/></div><h1 class="page-title">Object</h1><p class="page-description"></p></header><div class="page-body"><table id="8d49efcd-9211-416a-9208-38f161a9e972" class="simple-table"><tbody><tr id="330788d1-d068-4994-a147-5a6e486949ef"><td id="A;Qk" class="" style="width:405px"><a href="https://kotlinlang.org/docs/object-declarations.html">https://kotlinlang.org/docs/object-declarations.html</a></td></tr></tbody></table><h3 id="7b0f618e-c8d6-4a45-a569-d87af48af59c" class=""><code><strong>object</strong></code></h3><p id="81f9db34-3506-4636-ac41-83f2b2a3afa8" class="">Одновременно объявляет класс и его экземпляр. Singleton. Инициализируется один раз при первом обращении. Другое назначение - анонимный класс.</p><p id="9ba544ee-6ba2-45d6-9ada-fa52d7c5afce" class="">
-</p><h3 id="79c4d7e9-6c27-4b31-a2a9-00370b76452c" class=""><code><strong>data object</strong></code></h3><p id="f43fb71c-444b-4f0e-90d6-5b77865c42ad" class="">Объект с чистым представлением <code>toString</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="845ad0bd-c648-4506-b7ef-a0ec0918050f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">object MyObject
+</style></head><body><article id="aed79a84-6cbf-4cfa-b5ec-42141f30b902" class="page sans"><header><img class="page-cover-image" src="Object%20aed79a846cbf4cfab5ec42141f30b902/cover-kotlin-object.webp" style="object-position:center 74.03999999999999%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Object%20aed79a846cbf4cfab5ec42141f30b902/icon-kotlin.svg"/></div><h1 class="page-title">Object</h1><p class="page-description"></p></header><div class="page-body"><table id="8d49efcd-9211-416a-9208-38f161a9e972" class="simple-table"><tbody><tr id="330788d1-d068-4994-a147-5a6e486949ef"><td id="A;Qk" class="" style="width:405px"><a href="https://kotlinlang.org/docs/object-declarations.html">https://kotlinlang.org/docs/object-declarations.html</a></td></tr></tbody></table><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>object</code></mark></summary><div class="indented"><p id="11415285-0ae8-80ef-ac5d-c64d5c7b1128" class="">Используется для объявления объектов, которые могут быть единичными экземплярами (Singleton) или анонимными классами. Когда вы объявляете объект с помощью ключевого слова object, Kotlin создает единственный экземпляр этого объекта, который доступен по всему коду. Это удобно для создания глобальных состояний и функций.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-80bd-8e0d-d3f3c8b98fa5" class="code"><code class="language-Kotlin">object Database {
+    fun connect() {
+        // Логика подключения к базе данных
+    }
+}
+
+// Использование
+Database.connect()</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>data object</code></mark></summary><div class="indented"><p id="11415285-0ae8-8032-bbda-d9923566eba7" class=""><mark class="highlight-default"><code>object</code></mark> с автоматической генерацией функции <mark class="highlight-default"><code>toString()</code></mark>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="845ad0bd-c648-4506-b7ef-a0ec0918050f" class="code"><code class="language-Kotlin" style="white-space:pre-wrap;word-break:break-all">object MyObject
 
 data object MyDataObject
 
 fun main() {
     println(MyObject) // org.example.MyObject@1f32e575
     println(MyDataObject) // MyDataObject
-}</code></pre><p id="e027de4c-4e5d-4f0c-b545-11a0f06299d7" class="">
-</p><h3 id="620ab937-b080-4873-a42b-a9f5f4743b4a" class=""><code><strong>companion object</strong></code></h3><p id="b74b79b4-a626-4410-8971-71cd9a23f916" class="">Object, объявленный внутри класса. Функции такого объекта можно вызывать через класс. <code>companion object</code> отличается тем, что инициализируется в момент загрузки своего родительского класса, анонимные объекты инициализируются сразу же где используются, а обычные <code>object</code> лениво при первом доступе.</p><p id="14a6a83c-57d0-447b-ba34-258657382058" class="">
-</p><h3 id="c3d57878-d828-4c7a-872b-86df9cfa8730" class="">Анонимный объект</h3><p id="741d17bf-75d9-440b-b03e-a6d64e79143e" class="">Объекты анонимных классов которые явно не объявлены с помощью <code>class</code> полезны для одноразового использования. Можно объявить их с нуля, наследовать от существующих классов или реализовать интерфейсы.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="94af1f7a-08c2-4aa6-9be8-f09c9c179bdf" class="code"><code class="language-Kotlin">val helloWorld: Any = object {
-    val hello = &quot;Hello&quot;
-    val world = &quot;World&quot;
-    
-    // тип анонимных объектов - Any, поэтому `override` необходим в `toString()`
-    override fun toString() = &quot;$hello $world&quot;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-orange"><code>companion object</code></mark></summary><div class="indented"><p id="11415285-0ae8-804f-91ad-d1222925eb92" class="">Специальный объект, связанный с классом, который позволяет реализовать статические поля, аналогично статическим методам и переменным в других языках, таких как Java. <mark class="highlight-default">Функции такого объекта можно вызывать через класс. Инициализируется в момент загрузки своего родительского класса.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-8021-8425-fa9adc2eeb6e" class="code"><code class="language-Kotlin">class MyClass {
+    companion object {
+        const val CONSTANT = 42
+
+        fun create(): MyClass {
+            return MyClass()
+        }
+    }
 }
 
-binding.root.setOnClickListener(object: View.OnClickListener {
-    override fun onClick(v: View?) {
-        // perform click
+fun main() {
+    println(MyClass.CONSTANT) // Вывод: 42
+    val myObject = MyClass.create() // Создание экземпляра MyClass
+}</code></pre><p id="11415285-0ae8-80c7-af01-eb05be36107e" class="">• По умолчанию <mark class="highlight-default"><code>companion object</code></mark> не имеет имени, но его можно назвать для удобства.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-80a6-a8c0-db0c3a9fced8" class="code"><code class="language-Kotlin">class MyClass {
+    companion object Factory {
+        fun create(): MyClass {
+            return MyClass()
+        }
     }
-})</code></pre><p id="40caa22b-2bc6-425f-bff4-40af010cca43" class="">
-</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Kotlin Object. Вопросы на собесе</mark></summary><div class="indented"><ol type="1" id="435f2ca7-e546-44de-a91e-ddee9d2052ed" class="numbered-list" start="1"><li>Зачем нужен companion object?</li></ol><ol type="1" id="ea93ce0f-592c-4095-8682-dfe99608c90a" class="numbered-list" start="2"><li>Когда инициализируется companion object?</li></ol><ol type="1" id="696f71ac-dc78-4e70-b5aa-9135bacb4c3d" class="numbered-list" start="3"><li>Можно ли наследоваться от object?</li></ol></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+}
+
+val myObject = MyClass.Factory.create()</code></pre><p id="11415285-0ae8-803b-9eb8-c55c5aaf7882" class=""><mark class="highlight-default">• </mark><mark class="highlight-default"><code>companion object</code></mark> может реализовывать интерфейсы, что позволяет организовать код.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-80d0-bfb8-d7414476eee0" class="code"><code class="language-Kotlin">interface Creator&lt;T&gt; {
+    fun create(): T
+}
+
+class MyClass {
+    companion object: Creator&lt;MyClass&gt; {
+        override fun create(): MyClass {
+            return MyClass()
+        }
+    }
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Анонимные объекты</summary><div class="indented"><p id="741d17bf-75d9-440b-b03e-a6d64e79143e" class="">С помощью <mark class="highlight-default"><code>object</code></mark> можно создать анонимный класс, который может реализовать интерфейсы или наследовать от классов. Это полезно, когда нужно создать объект, который не будет использоваться повторно.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="94af1f7a-08c2-4aa6-9be8-f09c9c179bdf" class="code"><code class="language-Kotlin">val listener = object: OnClickListener {
+    override fun onClick(view: View) {
+        // Реакция на клик
+    }
+}
+
+binding.root.setOnClickListener(listener)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Объектные выражения</summary><div class="indented"><p id="11415285-0ae8-8032-b8ca-ee6be17130fd" class="">Создание временных объектов с определенными свойствами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11415285-0ae8-809c-8c42-d0867bce74f8" class="code"><code class="language-Kotlin">val person = object {
+    var name: String = &quot;John&quot;
+    var age: Int = 30
+    
+    // тип анонимных объектов - Any, поэтому `override` необходим в `toString()`
+    override fun toString() = &quot;name=$name, age=$age&quot;
+}
+
+// Использование
+println(&quot;${person.name}, age ${person.age}&quot;)  // Вывод: John, age 30</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><mark class="highlight-purple">Вопросы на собесе (8)</mark></summary><div class="indented"><ul id="11015285-0ae8-8092-9a80-e46fdd943c4e" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>object (4)</strong></mark></summary><ol type="1" id="11015285-0ae8-8088-9b35-fe8faf034040" class="numbered-list" start="1"><li>Что такое object?<p id="11015285-0ae8-80ce-a81c-d2708455aece" class=""><mark class="highlight-teal">Ключевое слово для создания анонимных классов и синглтонов, позволяющее создавать экземпляры без явного определения класса.</mark></p></li></ol><ol type="1" id="11015285-0ae8-80d2-9e14-e53f49b8ea0e" class="numbered-list" start="2"><li>Варианты использования object в Kotlin?<p id="11015285-0ae8-80fd-88c0-dbf398082ea6" class="">• <mark class="highlight-teal"><code>object</code></mark><mark class="highlight-teal"> и </mark><mark class="highlight-teal"><code>data object</code></mark><mark class="highlight-teal"> - синглтон.</mark></p><p id="11015285-0ae8-8085-9ef8-d16e24984caf" class="">• <mark class="highlight-teal"><code>companion object</code></mark></p><p id="11015285-0ae8-80d2-b5a4-fe32551ff2c3" class="">• <mark class="highlight-teal">Анонимный класс</mark></p><p id="11415285-0ae8-8010-8a05-f0bd1dc125b4" class="">• <mark class="highlight-teal">Объектное выражение</mark></p></li></ol><ol type="1" id="696f71ac-dc78-4e70-b5aa-9135bacb4c3d" class="numbered-list" start="3"><li>Можно ли наследоваться от object?<p id="10815285-0ae8-80c2-8f2a-ecddaf45fe98" class=""><mark class="highlight-teal">Нет. Объект является синглтоном, и его нельзя расширять или создавать его подклассы.</mark></p></li></ol><ol type="1" id="12a15285-0ae8-806b-9e49-e9bfcde725c9" class="numbered-list" start="4"><li>Как object выглядит под капотом в Java?<p id="12a15285-0ae8-806f-b75c-dedb061a4d01" class=""><mark class="highlight-teal">В Kotlin </mark><mark class="highlight-teal"><code>object</code></mark><mark class="highlight-teal"> создаёт синглтон, который под капотом реализуется как статический класс в Java. Он содержит статические методы и свойства, инициализируется при первом обращении.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-80b0-9d6b-d5e6d17c6fe5" class="code"><code class="language-Kotlin">object Singleton {
+    init {
+        // Инициализация
+    }
+
+    fun doSomething() {
+        // Логика метода
+    }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12a15285-0ae8-8035-a863-ecb9dc009100" class="code"><code class="language-Java">public final class Singleton {
+    private static final Singleton INSTANCE = new Singleton();
+
+    private Singleton() {
+        // Инициализация
+    }
+
+    public static Singleton getInstance() {
+        return INSTANCE;
+    }
+    
+    public void doSomething() {
+        // Логика метода
+    }
+}</code></pre></li></ol></details></li></ul><ul id="11015285-0ae8-800c-9377-eb9c768ad8d5" class="toggle"><li><details open=""><summary><mark class="highlight-purple"><strong>companion object (4)</strong></mark></summary><ol type="1" id="435f2ca7-e546-44de-a91e-ddee9d2052ed" class="numbered-list" start="1"><li>Зачем нужен companion object?<p id="10815285-0ae8-80a7-a7c3-c7ddc7306d45" class=""><mark class="highlight-teal">Используется для создания статических членов класса, что позволяет определять свойства и методы, которые могут быть вызваны без создания экземпляра класса. Это удобно для создания фабричных методов, констант или для реализации интерфейсов.</mark></p></li></ol><ol type="1" id="ea93ce0f-592c-4095-8682-dfe99608c90a" class="numbered-list" start="2"><li>Когда инициализируется companion object?<p id="10815285-0ae8-80ae-be11-f1d381ef67b6" class=""><mark class="highlight-teal">При первом обращении к классу, в котором он объявлен. Это происходит до создания любого экземпляра класса, что делает его доступным для статических вызовов и операций.</mark></p></li></ol><ol type="1" id="11015285-0ae8-8005-8ab2-f90bee08eb83" class="numbered-list" start="3"><li>Чем является companion object: inner или nested классом?<p id="11015285-0ae8-80a9-a36b-e6be5d4a941d" class=""><mark class="highlight-teal">Является nested классом и не имеет ссылки на экземпляр внешнего класса.</mark></p></li></ol><ol type="1" id="10815285-0ae8-80bd-9590-c287d9b54a5d" class="numbered-list" start="4"><li>Имеет ли companion object доступ к приватным полям класса в котором объявлен?<p id="2e8bc526-642b-4dec-9356-addce14b2eab" class=""><mark class="highlight-teal">Да.</mark></p></li></ol></details></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
